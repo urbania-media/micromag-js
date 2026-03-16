@@ -10,7 +10,7 @@ interface SlidesFieldProps {
     [key: string]: unknown;
 }
 
-function SlidesField(props) {
+function SlidesField(props: SlidesFieldProps) {
     return (
         <ItemsField
             noItemLabel={

@@ -48,7 +48,7 @@ function SortableTreeItem({
     childValue = null,
     isLastChild = false,
     ...props
-}) {
+}: SortableTreeItemProps) {
     const {
         attributes,
         isDragging,

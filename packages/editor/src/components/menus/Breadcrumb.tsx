@@ -36,7 +36,7 @@ function Breadcrumb({
     form = null,
     url,
     className = null,
-}) {
+}: BreadcrumbProps) {
     const intl = useIntl();
     const { components: screens = [] } = story || {};
     const [, setLocation] = useLocation();

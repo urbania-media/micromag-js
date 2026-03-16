@@ -27,7 +27,7 @@ function ScreenTypes({
     legacyTypes = ['video-360', 'urbania-trivia', 'urbania-article'],
     className = null,
     onClickItem = null,
-}) {
+}: ScreenTypesProps) {
     const intl = useIntl();
     const screensManager = useScreensManager();
     const screenDefinitions = screens || screensManager.getDefinitions();

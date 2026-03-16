@@ -46,7 +46,7 @@ function ScreenWithPreview({
     withIndexIndicator = false,
     withDeleteButtonOnRepeatables = false,
     onDeleteButtonClick = null,
-}) {
+}: ScreenWithPreviewProps) {
     const intl = useIntl();
     const { ref, visible } = useIsVisible({ threshold: 0.1 });
 

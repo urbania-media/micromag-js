@@ -28,7 +28,7 @@ function Marker({
         width: 50,
         height: 50,
     },
-}) {
+}: MarkerProps) {
     useGoogleMapMarker(map, {
         position,
         type,

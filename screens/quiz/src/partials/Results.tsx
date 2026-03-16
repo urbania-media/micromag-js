@@ -40,7 +40,7 @@ function Results({
     transitionDisabled = false,
     className = null,
     style = null,
-}) {
+}: ResultsProps) {
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 

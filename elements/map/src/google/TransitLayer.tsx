@@ -7,7 +7,7 @@ interface TransitLayerProps {
     enabled?: boolean;
 }
 
-function TransitLayer({ map = null, enabled = false }) {
+function TransitLayer({ map = null, enabled = false }: TransitLayerProps) {
     const client = useGoogleMapsClient();
     const transitLayerRef = useRef(null);
 

@@ -68,7 +68,7 @@ function Answers({
     onTransitionEnd = null,
     withoutCollapse = false,
     className = null,
-}) {
+}: AnswersProps) {
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
     const answered = answeredIndex !== null;
     const { good: hasAnsweredRight = false } = answeredIndex !== null ? items[answeredIndex] : {};

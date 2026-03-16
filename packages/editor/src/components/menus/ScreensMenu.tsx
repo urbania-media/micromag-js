@@ -49,7 +49,7 @@ function ScreensMenu({
     isTree = false,
     onClickItem = null,
     onOrderChange = null,
-}) {
+}: ScreensMenuProps) {
     const itemsElements = !isTree
         ? items.map(
               (

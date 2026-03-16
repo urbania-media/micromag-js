@@ -7,7 +7,7 @@ interface VStackProps {
     [key: string]: unknown;
 }
 
-function VStack(props) {
+function VStack(props: VStackProps) {
     return <Stack {...props} direction="vertical" />;
 }
 

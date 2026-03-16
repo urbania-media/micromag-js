@@ -21,7 +21,7 @@ function ScreenTypesModal({
     className = null,
     onRequestClose = null,
     onClickScreenType = null,
-}) {
+}: ScreenTypesModalProps) {
     return (
         <Modal>
             <Dialog

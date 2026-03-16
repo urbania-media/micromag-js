@@ -31,7 +31,7 @@ function ScreenButton({
     title = null,
     onClick = null,
     refButton = null,
-}) {
+}: ScreenButtonProps) {
     return (
         <div
             className={classNames([

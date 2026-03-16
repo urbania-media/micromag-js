@@ -38,7 +38,7 @@ function PlaybackControls({
     withoutShadow = false,
     className = null,
     collapsedClassName = null,
-}) {
+}: PlaybackControlsProps) {
     const intl = useIntl();
     const {
         media: mediaElement = null,
@@ -99,6 +99,7 @@ function PlaybackControls({
     }, [controlsTheme, setCustomControlsTheme, defaultColor, defaultProgressColor]);
 
     const onPlay = useCallback(() => {
+        console.log('onPlay');
         setPlaying(true);
         if (!controlsVisible && controls) {
             showControls();
@@ -106,6 +107,7 @@ function PlaybackControls({
     }, [setPlaying, controlsVisible, showControls]);
 
     const onPause = useCallback(() => {
+        console.log('onPause');
         setPlaying(false);
         if (!controlsVisible && controls) {
             showControls();

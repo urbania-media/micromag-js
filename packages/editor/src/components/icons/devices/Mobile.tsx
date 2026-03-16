@@ -6,7 +6,7 @@ interface MobileIconProps {
     className?: string;
 }
 
-function MobileIcon({ color = 'currentColor', className = null }) {
+function MobileIcon({ color = 'currentColor', className = null }: MobileIconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -22,7 +22,7 @@ interface SignCardProps {
     onClick?: (...args: unknown[]) => void;
 }
 
-function SignCard({ className = null, sign = null, focusable = true, onClick = null }) {
+function SignCard({ className = null, sign = null, focusable = true, onClick = null }: SignCardProps) {
     const { id = null, thumbnail = null, label = null, date = null } = sign || {};
 
     return (

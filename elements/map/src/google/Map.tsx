@@ -53,7 +53,7 @@ function Map({
     className = null,
     children = null,
     focusable = true,
-}) {
+}: MapProps) {
     const { map, ref: mapRef } = useGoogleMap({
         zoom,
         maxZoom,

@@ -12,7 +12,7 @@ interface SettingsButtonProps {
     className?: string;
 }
 
-function SettingsButton({ className = null, dots = false, ...props }) {
+function SettingsButton({ className = null, dots = false, ...props }: SettingsButtonProps) {
     return (
         <Button
             className={className}

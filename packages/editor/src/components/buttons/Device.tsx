@@ -15,7 +15,7 @@ interface DeviceButtonProps {
     className?: string;
 }
 
-function DeviceButton({ device, className = null, iconComponents = DeviceIcons, ...props }) {
+function DeviceButton({ device, className = null, iconComponents = DeviceIcons, ...props }: DeviceButtonProps) {
     const DeviceIcon = getComponentFromName(device, iconComponents, DeviceIcons.Desktop);
     return (
         <Button

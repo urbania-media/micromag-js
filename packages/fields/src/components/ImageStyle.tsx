@@ -7,7 +7,7 @@ interface ImageStyleFieldProps {
     [key: string]: unknown;
 }
 
-function ImageStyleField(props) {
+function ImageStyleField(props: ImageStyleFieldProps) {
     return <Fields isList {...props} />;
 }
 

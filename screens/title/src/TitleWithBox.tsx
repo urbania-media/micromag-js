@@ -7,7 +7,7 @@ interface TitleWithBoxScreenProps {
     [key: string]: unknown;
 }
 
-function TitleWithBoxScreen(props) {
+function TitleWithBoxScreen(props: TitleWithBoxScreenProps) {
     return <TitleScreen {...props} withSubtitle withDescription withBox />;
 }
 

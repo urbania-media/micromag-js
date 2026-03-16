@@ -5,7 +5,7 @@ interface WatchIconProps {
     className?: string;
 }
 
-function WatchIcon({ color = '#222', className = null }) {
+function WatchIcon({ color = '#222', className = null }: WatchIconProps) {
     return (
         <svg
             version="1.1"

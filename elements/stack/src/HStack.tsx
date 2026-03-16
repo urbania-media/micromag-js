@@ -7,7 +7,7 @@ interface HStackProps {
     [key: string]: unknown;
 }
 
-function HStack(props) {
+function HStack(props: HStackProps) {
     return <Stack {...props} direction="horizontal" />;
 }
 

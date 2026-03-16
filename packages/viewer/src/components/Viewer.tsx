@@ -442,6 +442,7 @@ function Viewer({
     const onTap = useCallback(
         ({ currentTarget, event, target, xy: [x, y], elapsedTime, args: [bindState] }) => {
             setPointerDownTime(null);
+            console.log('bindState', bindState);
             const {
                 playing: currentPlaying = false,
                 longPressPaused: currentLongPressPaused = false,

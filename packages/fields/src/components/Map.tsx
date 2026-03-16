@@ -7,7 +7,7 @@ interface MapFieldProps {
     [key: string]: unknown;
 }
 
-function MapField(props) {
+function MapField(props: MapFieldProps) {
     return <Fields {...props} />;
 }
 

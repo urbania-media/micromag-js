@@ -43,7 +43,7 @@ function SignModal({
     focusable = true,
     onClick = null,
     className = null,
-}) {
+}: SignModalProps) {
     // eslint-disable-next-line no-unused-vars
     const { label = null, image = null, date = null, word = null, description = null } = sign || {};
     // const { body: wordBody = null } = word || {};

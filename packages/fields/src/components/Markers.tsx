@@ -10,7 +10,7 @@ interface MarkersFieldProps {
     [key: string]: unknown;
 }
 
-function MarkersField(props) {
+function MarkersField(props: MarkersFieldProps) {
     return (
         <ItemsField
             noItemLabel={

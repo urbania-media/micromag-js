@@ -10,7 +10,7 @@ interface DeleteButtonProps {
     className?: string;
 }
 
-function DeleteButton({ className = null, ...props }) {
+function DeleteButton({ className = null, ...props }: DeleteButtonProps) {
     return (
         <Button
             className={className}

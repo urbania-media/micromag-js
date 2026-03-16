@@ -10,7 +10,7 @@ interface DuplicateButtonProps {
     className?: string;
 }
 
-function DuplicateButton({ className = null, ...props }) {
+function DuplicateButton({ className = null, ...props }: DuplicateButtonProps) {
     return (
         <Button
             className={className}

@@ -6,7 +6,7 @@ interface PlusIconProps {
     className?: string;
 }
 
-function PlusIcon({ color = 'currentColor', className = null }) {
+function PlusIcon({ color = 'currentColor', className = null }: PlusIconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

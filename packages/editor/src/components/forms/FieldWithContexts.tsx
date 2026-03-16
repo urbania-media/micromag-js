@@ -13,7 +13,7 @@ interface FieldWithContextsProps {
     children?: React.ReactNode;
 }
 
-function FieldWithContexts({ name = null, form = null, ...props }) {
+function FieldWithContexts({ name = null, form = null, ...props }: FieldWithContextsProps) {
     const definition = useScreenDefinition() || null;
     const { states = null } = definition;
     const screenFields = getScreenFieldsWithStates(definition);

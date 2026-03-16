@@ -7,7 +7,7 @@ interface QuestionFieldProps {
     [key: string]: unknown;
 }
 
-function QuestionField(props) {
+function QuestionField(props: QuestionFieldProps) {
     return <Fields isList {...props} />;
 }
 

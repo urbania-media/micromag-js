@@ -7,7 +7,7 @@ interface ContainerStyleFieldProps {
     [key: string]: unknown;
 }
 
-function ContainerStyleField(props) {
+function ContainerStyleField(props: ContainerStyleFieldProps) {
     return <Fields isList {...props} />;
 }
 

@@ -82,7 +82,7 @@ function SortableTree({
     component = null,
     onClickItem = null,
     onChange = null,
-}) {
+}: SortableTreeProps) {
     const [items, setItems] = useState(() => buildTree(defaultItems));
     const [activeId, setActiveId] = useState(null);
     const [overId, setOverId] = useState(null);

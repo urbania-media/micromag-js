@@ -7,7 +7,7 @@ interface ElementListProps {
     [key: string]: unknown;
 }
 
-function ElementList(props) {
+function ElementList(props: ElementListProps) {
     return <ElementField isList {...props} />;
 }
 

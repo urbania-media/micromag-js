@@ -102,7 +102,7 @@ function Question({
     withoutCollapse = false,
     className = null,
     style = null,
-}) {
+}: QuestionProps) {
     const { isPlaceholder } = useScreenRenderContext();
 
     const isSplitted = layout === 'split';

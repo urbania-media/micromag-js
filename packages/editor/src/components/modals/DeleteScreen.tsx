@@ -13,7 +13,7 @@ interface DeleteScreenModalProps {
     onCancel?: (...args: unknown[]) => void;
 }
 
-function DeleteScreenModal({ className = null, onConfirm = null, onCancel = null }) {
+function DeleteScreenModal({ className = null, onConfirm = null, onCancel = null }: DeleteScreenModalProps) {
     return (
         <Modal>
             <Dialog

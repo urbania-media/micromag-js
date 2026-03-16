@@ -17,7 +17,7 @@ interface DevicesMenuProps {
     onClickItem?: (...args: unknown[]) => void;
 }
 
-function DevicesMenu({ items = emptyArray, className = null, onClickItem = null }) {
+function DevicesMenu({ items = emptyArray, className = null, onClickItem = null }: DevicesMenuProps) {
     return (
         <Tabs
             items={items}

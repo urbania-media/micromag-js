@@ -37,7 +37,7 @@ function Title({
     className = null,
     style = null,
     onClickButton = null,
-}) {
+}: TitleProps) {
     // const { isPreview, isEdit } = useScreenRenderContext();
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;

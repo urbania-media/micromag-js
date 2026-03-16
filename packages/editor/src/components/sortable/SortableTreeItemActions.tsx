@@ -55,7 +55,7 @@ const SortableTreeItemActions = function ({
     children = null,
     containerRef = null,
     ...props
-}) {
+}: SortableTreeItemActionsProps) {
     return (
         <div
             className={classNames([

@@ -25,7 +25,7 @@ function SettingsForm({
     gotoFieldForm,
     closeFieldForm,
     onChange = null,
-}) {
+}: SettingsFormProps) {
     if (field === null) return false;
 
     const { type = null, fieldsProps = null } = field || {};

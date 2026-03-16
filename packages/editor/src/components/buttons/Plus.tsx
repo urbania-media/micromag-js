@@ -12,7 +12,7 @@ interface PlusButtonProps {
     className?: string;
 }
 
-function PlusButton({ className = null, ...props }) {
+function PlusButton({ className = null, ...props }: PlusButtonProps) {
     return (
         <Button
             className={classNames([

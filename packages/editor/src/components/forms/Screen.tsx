@@ -26,7 +26,7 @@ function ScreenForm({
     closeFieldForm,
     onChange = null,
     // onClickDelete,
-}) {
+}: ScreenFormProps) {
     const { fields = [] } = useScreenDefinition();
     // const intl = useIntl();
     // const finalOnClickDelete = useCallback(() => {

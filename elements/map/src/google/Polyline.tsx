@@ -7,7 +7,7 @@ interface PolylineProps {
     events?: Record<string, unknown>;
 }
 
-function Polyline({ map = null, coords }) {
+function Polyline({ map = null, coords }: PolylineProps) {
     useGoogleMapPolyline(map, {
         coords,
     });
