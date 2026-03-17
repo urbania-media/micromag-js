@@ -20,6 +20,7 @@ function ClosedCaptionField({ value: value = null, ...props }: ClosedCaptionFiel
                 />
             }
             {...props}
+            value={value}
             type="subtitle"
         />
     );

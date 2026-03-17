@@ -20,6 +20,7 @@ function VideoField({ value: value = null, ...props }: VideoFieldProps) {
                 />
             }
             {...props}
+            value={value}
             type="video"
         />
     );

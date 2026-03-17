@@ -29,6 +29,7 @@ function ImagesWithCaptionField({ value: value = null, ...props }: ImagesWithCap
                 />
             }
             {...props}
+            value={value}
         />
     );
 }

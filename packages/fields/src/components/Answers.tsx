@@ -29,6 +29,7 @@ function AnswersField({ value: value = null, ...props }: AnswersFieldProps) {
             }
             itemComponent={AnswerField}
             {...props}
+            value={value}
         />
     );
 }

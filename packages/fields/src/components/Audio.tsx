@@ -20,6 +20,7 @@ function AudioField({ value: value = null, ...props }: AudioFieldProps) {
                 />
             }
             {...props}
+            value={value}
             type="audio"
         />
     );

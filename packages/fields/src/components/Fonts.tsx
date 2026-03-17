@@ -26,6 +26,7 @@ function FontsField({ value: value = null, ...props }: FontsFieldProps) {
             }
             itemComponent={FontField}
             {...props}
+            value={value}
         />
     );
 }

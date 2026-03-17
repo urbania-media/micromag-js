@@ -27,6 +27,7 @@ function VisualsWithCaptionField({ value: value = null, ...props }: VisualsWithC
                 />
             }
             {...props}
+            value={value}
         />
     );
 }

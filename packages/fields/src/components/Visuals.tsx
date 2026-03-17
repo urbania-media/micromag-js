@@ -29,6 +29,7 @@ function VisualsField({ value: value = null, ...props }: VisualsFieldProps) {
             }
             itemComponent={VisualField}
             {...props}
+            value={value}
         />
     );
 }

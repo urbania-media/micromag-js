@@ -23,6 +23,7 @@ function VisualField({ value: value = null, ...props }: VisualFieldProps) {
                 />
             }
             {...props}
+            value={value}
             type={visualTypes}
         />
     );

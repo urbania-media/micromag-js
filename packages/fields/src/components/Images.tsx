@@ -29,6 +29,7 @@ function ImagesField({ value: value = null, ...props }: ImagesFieldProps) {
             }
             itemComponent={ImageField}
             {...props}
+            value={value}
         />
     );
 }
