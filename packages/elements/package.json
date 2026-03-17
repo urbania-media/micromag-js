@@ -60,7 +60,7 @@
         "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/element-*' ./src/styles.css.ejs ./assets/css/styles.css",
         "build-css": "../../scripts/build-css.js ./assets/css/styles.css ./assets/css/build.css",
         "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh --types && npm run aggregate-css && npm run css"
+        "build": "../../scripts/prepare-package.sh --types && npm run aggregate-css && npm run build-css"
     },
     "devDependencies": {
         "react": "^18.3.0 || ^19.0.0",
@@ -109,6 +109,6 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "a63f6767ff494180f4ee718e47d274bfc8d82eb4",
+    "gitHead": "ce005f251c60178b9f2afe45d65104a3e0b878fd",
     "types": "es/index.d.ts"
 }
