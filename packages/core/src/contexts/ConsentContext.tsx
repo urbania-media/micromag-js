@@ -123,20 +123,23 @@ interface ConsentProviderProps {
     consent?: Record<string, unknown>[];
     consented?: boolean;
     expiration?: number;
+    children?: React.ReactNode | null;
 }
 
+const defaultValues = [
+    'functionality_storage',
+    'analytics_storage',
+    'ad_storage',
+    'ad_personalization',
+    'ad_user_data',
+];
+
 export function ConsentProvider({
-    consent: providedConsent = [
-        'functionality_storage',
-        'analytics_storage',
-        'ad_storage',
-        'ad_personalization',
-        'ad_user_data',
-    ],
+    consent: providedConsent = defaultValues,
     consented: initialConsented = null,
     expiration = 182,
     children,
-}) {
+}: ConsentProviderProps) {
     // Has consented or not to cookies
     const initialCookieConsented = JSCookie.get('has_consented') === 'true';
     const baseConsented = initialConsented || initialCookieConsented;
