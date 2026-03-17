@@ -39,16 +39,25 @@ export const usePlaybackContext = () => useContext(PlaybackContext);
 export const usePlaybackMediaRef = (active = false, background = false, updateKey = null) => {
     const { setMedia, setIsBackground, media } = usePlaybackContext();
     const mediaRef = useRef<HTMLMediaElement | null>(null);
+    // Track latest media value in a ref so the cleanup function can check ownership
+    // without having media in the dependency array (which would cause cleanup to run
+    // on every registration, immediately clearing the media that was just set).
+    const mediaValueRef = useRef(media);
+    mediaValueRef.current = media;
 
     // Cleanup: only clear if this ref owns the current media registration
     useEffect(
         () => () => {
-            if (active && mediaRef.current !== null && mediaRef.current === media) {
+            if (
+                active &&
+                mediaRef.current !== null &&
+                mediaRef.current === mediaValueRef.current
+            ) {
                 setMedia(null);
                 setIsBackground(false);
             }
         },
-        [active, setMedia, setIsBackground, media],
+        [active, setMedia, setIsBackground],
     );
 
     // Register media with context when active and no media is registered
