@@ -6,16 +6,8 @@ import { useIntl } from 'react-intl';
 
 import { useMediaCurrentTime, useMediaDuration, useMediaProgress } from '@micromag/core/hooks';
 
+import stopDragEventsPropagation from '../../lib/stopDragEventsPropagation';
 import styles from '../../styles/partials/seek-bar.module.css';
-
-const stopDragEventsPropagation = {
-    onTouchMove: (e) => e.stopPropagation(),
-    onTouchStart: (e) => e.stopPropagation(),
-    onTouchEnd: (e) => e.stopPropagation(),
-    onPointerMove: (e) => e.stopPropagation(),
-    onPointerUp: (e) => e.stopPropagation(),
-    onPointerDown: (e) => e.stopPropagation(),
-};
 
 function getFormattedTimestamp(secondsWithMs = null) {
     if (secondsWithMs === null || secondsWithMs <= 0) {

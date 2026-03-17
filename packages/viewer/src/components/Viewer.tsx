@@ -32,6 +32,7 @@ import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
 import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
+import stopDragEventsPropagation from '../lib/stopDragEventsPropagation';
 
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
@@ -1062,6 +1063,7 @@ function Viewer({
                                         className={styles.playbackControls}
                                         id="controls"
                                         ref={playbackControlsContainerRef}
+                                        {...stopDragEventsPropagation}
                                     >
                                         <PlaybackControls
                                             className={styles.controls}
