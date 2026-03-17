@@ -1,4 +1,4 @@
-import { useSpring } from '@react-spring/core';
+import { useSpring, useSpringRef } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useEffect } from 'react';
@@ -29,7 +29,12 @@ function ViewerMenuDot({
     const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.25)' } =
         colors || {};
 
+    // In react-spring v10, useSpring(fn) without deps resets the spring to its initial
+    // value on every render via a layout effect. Passing a dummy SpringRef as `ref`
+    // prevents this, so our imperative setDotSpringProps.start() calls are not overridden.
+    const springRef = useSpringRef();
     const [dotSpringStyles, setDotSpringProps] = useSpring(() => ({
+        ref: springRef,
         scaleX: 0,
         config: {
             tension: 200,

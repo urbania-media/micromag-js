@@ -1,5 +1,5 @@
 /* eslint-disable no-multi-assign, jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
-import { useSpring } from '@react-spring/core';
+import { useSpring, useSpringRef } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
@@ -59,7 +59,11 @@ function AudioWave({
 
     // Linear animation for progress bar
 
+    // In react-spring v10, useSpring(fn) without deps resets the spring on every render
+    // via a layout effect. Passing a SpringRef prevents this reset behavior.
+    const springRef = useSpringRef();
     const [springProps, setSpringProps] = useSpring(() => ({
+        ref: springRef,
         x: 0,
         config: {
             duration: 0,

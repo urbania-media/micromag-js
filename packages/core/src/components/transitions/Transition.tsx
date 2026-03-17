@@ -1,4 +1,4 @@
-import { useSpring } from '@react-spring/core';
+import { useSpring, useSpringRef } from '@react-spring/core';
 import { animated, config as defaultConfigs } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useEffect } from 'react';
@@ -38,7 +38,12 @@ function Transition({
     onStart = null,
     onComplete = null,
 }: TransitionProps) {
-    const [springProps, setSpringProps] = useSpring(() => ({}));
+    // In react-spring v10, useSpring(fn) without deps resets the spring on every render
+    // via a layout effect. Passing a SpringRef prevents this reset behavior.
+    const springRef = useSpringRef();
+    const [springProps, setSpringProps] = useSpring(() => ({
+        ref: springRef,
+    }));
 
     useEffect(() => {
         const immediate = (!playing && direction === 'in') || (playing && direction === 'out');
