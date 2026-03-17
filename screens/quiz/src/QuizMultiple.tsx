@@ -127,8 +127,8 @@ function QuizMultipleScreen({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const { muted } = usePlaybackContext();
-    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
-    console.log('isCurrentMedia', isCurrentMedia, mediaRef);
+
+    // console.log('isCurrentMedia', isCurrentMedia, mediaRef);
 
     const { open: openWebView } = useViewerWebView();
     const screenState = useScreenState();
@@ -136,8 +136,6 @@ function QuizMultipleScreen({
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
-    const backgroundShouldLoad = current || active;
 
     const hasButtonText = isTextFilled(nextButton);
 
@@ -341,6 +339,22 @@ function QuizMultipleScreen({
         finalBackground = questionBackground;
         backgroundKey = `question_${questionIndex}`;
     }
+
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(
+        current,
+        finalBackground !== null,
+        backgroundKey,
+    );
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
+    const backgroundShouldLoad = current || active;
+
+    console.log(
+        'finalBackground',
+        finalBackground,
+        backgroundPlaying,
+        backgroundShouldLoad,
+        isCurrentMedia,
+    );
 
     // Transition direction
     const lastQuestionIndexRef = useRef(questionIndex);
@@ -688,7 +702,10 @@ function QuizMultipleScreen({
                                                   top: 0,
                                                   left: 0,
                                                   width: '100%',
-                                                  minHeight: '100%',
+                                                  minHeight:
+                                                      hasResult && currentAnsweredIndex !== null
+                                                          ? 0
+                                                          : '100%',
                                               }),
                                     }}
                                 >

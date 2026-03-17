@@ -1,4 +1,4 @@
-import { backgroundColor, subtitle, transitions } from '../../data';
+import { backgroundColor, subtitle, transitions, videoMedia } from '../../data';
 
 export default {
     type: 'quiz-multiple',
@@ -47,16 +47,25 @@ export default {
             title: { body: subtitle('Medium') },
             description: { body: 'Medium' },
             points: 4,
+            background: {
+                video: videoMedia(),
+            },
         },
         {
             title: { body: subtitle('Low') },
             description: { body: 'Low' },
             points: 1,
+            background: {
+                video: videoMedia(),
+            },
         },
         {
             title: { body: subtitle('High') },
             description: { body: 'High' },
             points: 8,
+            background: {
+                video: videoMedia(),
+            },
         },
     ],
     background: backgroundColor(),

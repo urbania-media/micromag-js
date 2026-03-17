@@ -6,7 +6,6 @@ interface PlayIconProps {
 }
 
 function PlayIcon({ color = '#fff', className = null }: PlayIconProps) {
-    console.log('color', color);
     return (
         <svg
             width="40"

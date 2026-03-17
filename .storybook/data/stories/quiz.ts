@@ -147,10 +147,11 @@ const Quiz = {
                     },
                     points: 1,
                     background: {
-                        color: {
-                            color: '#45babb',
-                            alpha: 1,
-                        },
+                        // color: {
+                        //     color: '#45babb',
+                        //     alpha: 1,
+                        // },
+                        video: videoMediaFromURL(Test360),
                     },
                 },
             ],

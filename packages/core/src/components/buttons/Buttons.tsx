@@ -43,13 +43,14 @@ function Buttons({
         >
             {buttons.map((button, index) => {
                 const {
+                    id,
+                    name,
                     className: customClassName = null,
                     onClick = null,
                     theme: buttonTheme = null,
                     ...buttonProps
                 } = button;
                 const fixedProps = {
-                    key: `button-${index}`,
                     className: classNames([
                         styles.button,
                         {
@@ -67,10 +68,11 @@ function Buttons({
                     },
                     theme: buttonTheme || theme,
                 };
+                const buttonKey = id || `button-${index}`;
                 return renderButton !== null ? (
-                    renderButton(button, index, fixedProps)
+                    renderButton(button, index, { key: buttonKey, ...fixedProps })
                 ) : (
-                    <Button {...fixedProps} {...buttonProps} />
+                    <Button key={buttonKey} {...fixedProps} {...buttonProps} />
                 );
             })}
         </div>

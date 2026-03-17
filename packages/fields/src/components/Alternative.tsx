@@ -36,12 +36,6 @@ function Alternative({
         [fields, value, toggleLabel],
     );
 
-    console.log({
-        value,
-        fields,
-        finalFields,
-    });
-
     const onUpdateValue = useCallback(
         (newValue) => {
             const { active: nowActive = false } = newValue || {};

@@ -36,51 +36,29 @@ export const PlaybackContext = React.createContext({
 
 export const usePlaybackContext = () => useContext(PlaybackContext);
 
-export const usePlaybackMediaRef = (active = false, background = false) => {
+export const usePlaybackMediaRef = (active = false, background = false, updateKey = null) => {
     const { setMedia, setIsBackground, media } = usePlaybackContext();
-    const mediaRef = useRef(null);
+    const mediaRef = useRef<HTMLMediaElement | null>(null);
 
+    // Cleanup: only clear if this ref owns the current media registration
     useEffect(
         () => () => {
-            if (active) {
+            if (active && mediaRef.current !== null && mediaRef.current === media) {
                 setMedia(null);
                 setIsBackground(false);
             }
         },
-        [active],
+        [active, setMedia, setIsBackground, media],
     );
 
+    // Register media with context when active and no media is registered
     useEffect(() => {
         if (!active || mediaRef.current === null || media !== null) {
             return;
         }
         setIsBackground(background);
         setMedia(mediaRef.current);
-    }, [active, background, media]);
-
-    // const shouldSetMedia = active && media === null && mediaRef.current !== null;
-    // useEffect(
-    //     () => () => {
-    //         if (active) {
-    //             console.log('DESTROY unset media');
-    //             setMedia(null);
-    //             setIsBackground(false);
-    //         }
-    //     },
-    //     [active],
-    // );
-
-    // useEffect(() => {
-    //     if (active && mediaRef.current !== null && media === null) {
-    //         console.log('SET media');
-    //         setIsBackground(background);
-    //         setMedia(mediaRef.current);
-    //     } else if (!active && mediaRef.current === media && media !== null) {
-    //         console.log('Unset media');
-    //         setMedia(null);
-    //         setIsBackground(false);
-    //     }
-    // }, [active, background, media]);
+    }, [active, background, media, updateKey, setMedia, setIsBackground]);
 
     return { ref: mediaRef, isCurrent: mediaRef.current === media };
 };

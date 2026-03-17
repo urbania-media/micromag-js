@@ -1,7 +1,7 @@
-import isString from 'lodash/isString';
+import isEmpty from 'lodash/isEmpty';
 import isInteger from 'lodash/isInteger';
 import isNumber from 'lodash/isNumber';
-import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
 
 const validate = (content = {}, definition = null) => {
     const validated = content
@@ -28,7 +28,7 @@ const validate = (content = {}, definition = null) => {
                       }
                       // Skip the whole thing it cause it aint gonna work
                       if (!isValid && property.required) {
-                          console.log('VALIDATION ERROR: SKIPPED BECAUSE REQUIRED', content, name); // eslint-disable-line
+                          //   console.log('VALIDATION ERROR: SKIPPED BECAUSE REQUIRED', content, name); // eslint-disable-line
                           return null;
                       }
                       if (values !== null && isValid) {
@@ -37,7 +37,7 @@ const validate = (content = {}, definition = null) => {
                               [name]: value,
                           };
                       }
-                      console.log('VALIDATION ERROR: VALID TYPE', name, content); // eslint-disable-line
+                      //   console.log('VALIDATION ERROR: VALID TYPE', name, content); // eslint-disable-line
                   }
               }
 

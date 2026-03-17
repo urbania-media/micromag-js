@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import ScreenDefinition from '#.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, subtitle, transitions } from '#.storybook/data';
+import { backgroundColor, headerFooter, subtitle, transitions, videoMedia } from '#.storybook/data';
 import preview from '#.storybook/preview';
 import React from 'react';
 
@@ -50,21 +50,33 @@ const props = {
             title: { body: subtitle('Weak') },
             description: { body: 'Weak' },
             points: 0,
+            background: {
+                video: { media: videoMedia(), loop: true },
+            },
         },
         {
             title: { body: subtitle('Medium') },
             description: { body: 'Medium' },
             points: 4,
+            background: {
+                video: { media: videoMedia(), loop: true },
+            },
         },
         {
             title: { body: subtitle('Low') },
             description: { body: 'Low' },
             points: 1,
+            background: {
+                video: { media: videoMedia(), loop: true },
+            },
         },
         {
             title: { body: subtitle('High') },
             description: { body: 'High' },
             points: 8,
+            background: {
+                video: videoMedia(),
+            },
         },
     ],
     background: backgroundColor(),

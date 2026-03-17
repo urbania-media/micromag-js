@@ -99,7 +99,7 @@ function PlaybackControls({
     }, [controlsTheme, setCustomControlsTheme, defaultColor, defaultProgressColor]);
 
     const onPlay = useCallback(() => {
-        console.log('onPlay');
+        // console.log('onPlay');
         setPlaying(true);
         if (!controlsVisible && controls) {
             showControls();
@@ -107,7 +107,7 @@ function PlaybackControls({
     }, [setPlaying, controlsVisible, showControls]);
 
     const onPause = useCallback(() => {
-        console.log('onPause');
+        // console.log('onPause');
         setPlaying(false);
         if (!controlsVisible && controls) {
             showControls();

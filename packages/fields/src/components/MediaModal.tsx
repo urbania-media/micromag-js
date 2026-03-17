@@ -277,7 +277,6 @@ function MediaModal({
                             multiple={multiple}
                             onChange={onChangeMedia}
                             onClose={onClose}
-                            onClear={onClearMedia}
                             onMediaFormOpen={onMediaFormOpen}
                             onMediaFormClose={onMediaFormClose}
                         />
