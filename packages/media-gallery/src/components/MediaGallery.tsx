@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
@@ -135,10 +135,10 @@ function MediaGallery({
         [partialFilters, storyId],
     );
 
-    const [query, setQuery] = useState(source !== null ? { source } : null);
-    const finalQuery = useMemo(() => {
-        setQuery({ ...(query || null), ...(source !== null ? { source } : null) });
-    }, [source, setQuery]);
+    const finalQuery = useMemo(
+        () => (source !== null ? { source } : null),
+        [source],
+    );
 
     return (
         <div

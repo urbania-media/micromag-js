@@ -19,7 +19,6 @@ function DropdownButton({
     className = null,
 }) {
     const [opened, setOpened] = useState(false);
-
     const onOpen = useCallback(() => setOpened(!opened));
 
     return (
