@@ -4,7 +4,7 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { animated } from '@react-spring/web';
+
 import classNames from 'classnames';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -355,7 +355,7 @@ function Answers({
         };
 
         return (
-            <animated.div
+            <div
                 key={`answer-${answerI}`}
                 className={classNames([
                     styles.item,
@@ -432,7 +432,7 @@ function Answers({
                         ) : null}
                     </ScreenElement>
                 </div>
-            </animated.div>
+            </div>
         );
     });
 
