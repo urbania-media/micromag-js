@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer",
-    "version": "0.4.30",
+    "version": "0.4.31",
     "private": false,
     "description": "",
     "keywords": [
@@ -67,9 +67,9 @@
         "@micromag/element-scroll": "^0.4.30",
         "@micromag/element-share-options": "^0.4.30",
         "@micromag/element-webview": "^0.4.30",
-        "@micromag/elements": "^0.4.30",
+        "@micromag/elements": "^0.4.31",
         "@micromag/intl": "^0.4.30",
-        "@micromag/screens": "^0.4.30",
+        "@micromag/screens": "^0.4.31",
         "@react-spring/core": "^10.0.3",
         "@react-spring/web": "^10.0.3",
         "@use-gesture/react": "^10.3.0",
