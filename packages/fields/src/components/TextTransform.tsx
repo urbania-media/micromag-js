@@ -11,15 +11,15 @@ interface TextTransformProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultOptions = [
+    { value: 'capitalize', label: <strong>Aa</strong> },
+    { value: 'uppercase', label: <strong>AA</strong> },
+    { value: 'lowercase', label: <strong>aa</strong> },
+];
+
 function TextTransform({
     value = null,
-
-    options = [
-        { value: 'capitalize', label: <strong>Aa</strong> },
-        { value: 'uppercase', label: <strong>AA</strong> },
-        { value: 'lowercase', label: <strong>aa</strong> },
-    ],
-
+    options = defaultOptions,
     onChange = null,
     ...props
 }: TextTransformProps) {

@@ -2,13 +2,18 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 export const useSearchFilters = ({
-    recent = [],
-    tags = [],
-    team = [],
-    sources: upstreamSources = [],
+    recent: initialRecent = null,
+    tags: initialTags = null,
+    team: initialTeam = null,
+    sources: initialSources = null,
     withType = false,
     storyId = null,
 }) => {
+    const recent = initialRecent || [];
+    const tags = initialTags || [];
+    const team = initialTeam || [];
+    const upstreamSources = initialSources || [];
+
     const sources = [
         ...(storyId !== null
             ? [

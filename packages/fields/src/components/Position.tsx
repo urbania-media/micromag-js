@@ -47,11 +47,14 @@ function Icon({ label }: IconProps) {
     return null;
 }
 
+const defaultAxisOptions = ['top', 'center', 'bottom'];
+const defaultCrossOptions = ['left', 'center', 'right'];
+
 function Position({
     name = null,
     value = null,
-    axisOptions: vertical = ['top', 'center', 'bottom'],
-    crossOptions: horizontal = ['left', 'center', 'right'],
+    axisOptions: vertical = defaultAxisOptions,
+    crossOptions: horizontal = defaultCrossOptions,
     className = null,
     buttonClassName = null,
     onChange = null,

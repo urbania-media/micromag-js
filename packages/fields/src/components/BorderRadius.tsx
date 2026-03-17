@@ -13,9 +13,11 @@ interface BorderRadiusProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultSizes = [0, 2, 6, 10, 20, 30];
+
 function BorderRadius({
     value = null,
-    sizes = [0, 2, 6, 10, 20, 30],
+    sizes = defaultSizes,
     className = null,
     onChange = null,
 }: BorderRadiusProps) {

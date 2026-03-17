@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 interface GridProps {
     layout?: GridLayout | null;
-    items?: React.ReactNode[];
+    items?: React.ReactNode[] | null;
     width?: number | null;
     height?: number | null;
     spacing?: number;
@@ -20,7 +20,7 @@ interface GridProps {
 }
 
 function Grid({
-    items = [],
+    items: initialItems = null,
     layout = null,
     width = null,
     height = null,
@@ -31,6 +31,7 @@ function Grid({
     crossClassName = null,
 }: GridProps) {
     let itemIndex = 0;
+    const items = initialItems || [];
     const finalLayout = isArray(layout)
         ? layout
         : [

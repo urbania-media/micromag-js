@@ -118,6 +118,8 @@ interface ViewerProps {
     className?: string | null;
 }
 
+const defaultMenuItems = ['share', 'main'];
+
 function Viewer({
     story = null,
     basePath = null,
@@ -143,7 +145,7 @@ function Viewer({
     menuIsScreenWidth = false,
     menuHeader = null,
     menuFooter = null,
-    menuItems = ['share', 'main'],
+    menuItems = defaultMenuItems,
     shareBasePath = null,
     shareOptions = null,
     afterShareMenuButton = null,
@@ -957,10 +959,7 @@ function Viewer({
                             />
                         ) : null}
                         {ready || withoutScreensTransforms ? (
-                            <div
-                                className={styles.content}
-                                {...clickableAwareBindings}
-                            >
+                            <div className={styles.content} {...clickableAwareBindings}>
                                 {!withoutNavigationArrow &&
                                 !withNeighborScreens &&
                                 !navigationDisabled &&

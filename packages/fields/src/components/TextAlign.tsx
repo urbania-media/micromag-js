@@ -13,15 +13,15 @@ interface TextAlignProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultOptions = [
+    { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
+    { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
+    { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
+];
+
 function TextAlign({
     value = null,
-
-    options = [
-        { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
-        { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
-        { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
-    ],
-
+    options = defaultOptions,
     onChange = null,
     ...props
 }: TextAlignProps) {

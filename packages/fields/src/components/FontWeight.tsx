@@ -13,9 +13,11 @@ interface FontWeightProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900];
+
 function FontWeight({
     value = null,
-    sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    sizes = defaultSizes,
     className = null,
     onChange = null,
 }: FontWeightProps) {

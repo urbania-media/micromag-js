@@ -24,8 +24,10 @@ interface UrlFieldProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultSchemes = ['https://', 'http://'];
+
 function UrlField({
-    schemes = ['https://', 'http://'],
+    schemes = defaultSchemes,
     value = null,
     className = null,
     onChange = null,

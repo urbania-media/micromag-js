@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 export const useSwipe = ({
     width = null,
-    items = [],
+    items: initialItems = null,
     withSpring = true,
     swipeWidthThreshold = 3,
     animateScale = false,
@@ -17,6 +17,7 @@ export const useSwipe = ({
     onSwipeCancel = null,
     onTap = null,
 } = {}) => {
+    const items = initialItems || [];
     const swipingIndex = useRef(null);
     const index = useRef(0);
     const lockedAxis = useRef(null);

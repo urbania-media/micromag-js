@@ -11,13 +11,12 @@ interface DropdownButtonProps {
     className?: string;
 }
 
-function DropdownButton({
-    dropdownItems = [
-        { id: 'rename', label: 'Renommer', onClick: null },
-        { id: 'delete', label: 'Supprimer', onClick: null },
-    ],
-    className = null,
-}) {
+const defaultItems = [
+    { id: 'rename', label: 'Renommer', onClick: null },
+    { id: 'delete', label: 'Supprimer', onClick: null },
+];
+
+function DropdownButton({ dropdownItems = defaultItems, className = null }) {
     const [opened, setOpened] = useState(false);
     const onOpen = useCallback(() => setOpened(!opened));
 

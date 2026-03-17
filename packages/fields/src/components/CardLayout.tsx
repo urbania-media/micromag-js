@@ -14,8 +14,10 @@ interface CardLayoutProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultTypes = ['content-top', 'content-bottom', 'content-split'];
+
 function CardLayout({
-    types = ['content-top', 'content-bottom', 'content-split'],
+    types = defaultTypes,
     value = null,
     className = null,
     onChange = null,

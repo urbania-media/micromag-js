@@ -50,9 +50,11 @@ interface ViewerMenuProps {
     refDots?: { current?: unknown } | null;
 }
 
+const defaultMenuItems = ['share', 'main'];
+
 function ViewerMenu({
     story,
-    menuItems = ['share', 'main'],
+    menuItems = defaultMenuItems,
     currentScreenIndex = 0,
     toggleFullscreen = null,
     fullscreenActive = false,

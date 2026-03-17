@@ -35,7 +35,7 @@ function BackgroundLayers({
     width = null,
     height = null,
     resolution = 1,
-    background = [],
+    background = null,
     playing = false,
     muted = false,
     children = null,

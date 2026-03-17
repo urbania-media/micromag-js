@@ -6,19 +6,20 @@ import Radios from './Radios';
 import styles from '../styles/border-style.module.css';
 
 interface AdFormatFieldProps {
-    types?: string[];
-    value?: string | null;
+    types?: { name: string; width: number; height: number }[];
+    value?: { name: string; width: number; height: number } | null;
     className?: string | null;
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
-function AdFormatField({
-    types = [
-        { name: '300x200', width: 300, height: 200 },
-        { name: '300x100', width: 300, height: 100 },
-        { name: '250x250', width: 250, height: 250 },
-    ],
+const defaultTypes = [
+    { name: '300x200', width: 300, height: 200 },
+    { name: '300x100', width: 300, height: 100 },
+    { name: '250x250', width: 250, height: 250 },
+];
 
+function AdFormatField({
+    types = defaultTypes,
     value = null,
     className = null,
     onChange = null,

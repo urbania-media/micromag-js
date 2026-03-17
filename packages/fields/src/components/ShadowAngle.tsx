@@ -14,15 +14,16 @@ interface ShadowAngleProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultTypes = [45, 90, -45, -90];
+
 function ShadowAngle({
-    types = [45, 90, -45, -90],
+    types = defaultTypes,
     value = null,
     className = null,
     onChange = null,
 }: ShadowAngleProps) {
     const onShadowAngleChange = (newVal) => {
         const v = newVal === value ? null : newVal;
-
         onChange(v);
     };
 

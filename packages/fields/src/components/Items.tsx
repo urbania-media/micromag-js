@@ -44,26 +44,16 @@ function ItemsField({
     name = null,
     value = null,
     getDefaultValue = null,
-
     noItemLabel = (
         <FormattedMessage
             defaultMessage="No item..."
             description="Label when there is no item in items field"
         />
     ),
-
     addItemLabel = (
         <FormattedMessage defaultMessage="Add an item" description="Button label in items field" />
     ),
-
-    itemFieldLabel = ({ index }) => (
-        <FormattedMessage
-            defaultMessage="#{index}"
-            description="Item label in items field"
-            values={{ index }}
-        />
-    ),
-
+    itemFieldLabel: initialItemFieldLabel = null,
     itemComponent = null,
     itemsField = null,
     itemsProps = null,
@@ -77,6 +67,19 @@ function ItemsField({
     closeFieldForm = null,
     ...props
 }: ItemsFieldProps) {
+    const defaultIndexLabel = useCallback(
+        ({ index }) => (
+            <FormattedMessage
+                defaultMessage="#{index}"
+                description="Item label in items field"
+                values={{ index }}
+            />
+        ),
+        [],
+    );
+
+    const itemFieldLabel = initialItemFieldLabel || defaultIndexLabel;
+
     // const finalIsFieldForm =
     //     isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
     const [editing, setEditing] = useState(false);
@@ -145,7 +148,9 @@ function ItemsField({
     const gotoForms = useMemo(
         () =>
             value !== null
-                ? value.map((val, index) => () => gotoFieldForm(`${name}.${index}`, null, fieldContext))
+                ? value.map(
+                      (val, index) => () => gotoFieldForm(`${name}.${index}`, null, fieldContext),
+                  )
                 : null,
         [value, gotoFieldForm, fieldContext],
     );

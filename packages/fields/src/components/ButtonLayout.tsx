@@ -15,8 +15,17 @@ interface ButtonLayoutProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultTypes = [
+    'label-bottom',
+    'label-top',
+    'no-label',
+    'label-over',
+    'label-right',
+    'label-left',
+];
+
 function ButtonLayout({
-    types = ['label-bottom', 'label-top', 'no-label', 'label-over', 'label-right', 'label-left'],
+    types = defaultTypes,
     value = null,
     defaultValue = null,
     className = null,

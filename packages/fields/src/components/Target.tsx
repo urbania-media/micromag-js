@@ -11,8 +11,10 @@ interface TargetFieldProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultOptions = ['_blank', 'self'];
+
 function TargetField({
-    options = ['_blank', 'self'],
+    options = defaultOptions,
     value = null,
     isForm = false,
     className = null,

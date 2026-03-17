@@ -36,7 +36,7 @@ function Map({
     center = null,
     zoom = null,
     draggable = true,
-    markers = [],
+    markers: initialMarkers = null,
     onClickMap = null,
     onClickMarker = null,
     className = null,
@@ -55,6 +55,7 @@ function Map({
     fullscreenControl = false,
     focusable = true,
 }: MapProps) {
+    const markers = initialMarkers || [];
     const client = useGoogleMapsClient();
 
     const onClick = useCallback(

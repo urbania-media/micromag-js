@@ -13,15 +13,15 @@ interface FontStylesProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultOptions = [
+    { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
+    { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
+    { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
+];
+
 function FontStyles({
     value = null,
-
-    options = [
-        { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
-        { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
-        { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
-    ],
-
+    options = defaultOptions,
     onChange = null,
     ...props
 }: FontStylesProps) {

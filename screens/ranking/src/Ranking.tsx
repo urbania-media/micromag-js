@@ -51,10 +51,12 @@ interface RankingScreenProps {
     className?: string | null;
 }
 
+const emptyItems = [null];
+
 function RankingScreen({
     layout = 'side',
     title = null,
-    items = [null],
+    items = emptyItems,
     itemTitleStyle = null,
     itemDescriptionStyle = null,
     numbersStyle = null,

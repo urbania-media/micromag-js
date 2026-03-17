@@ -17,12 +17,13 @@ const useScreenSize = ({
     height = null,
     landscape = false,
     menuOverScreen = false,
-    screens = [],
+    screens: initialScreens = null,
     mediaType = 'screen',
     media: providedMedia = null,
     scale = null,
 }) => {
     const devicePixelRatio = useDevicePixelRatio();
+    const screens = initialScreens || [];
     const screenSize = useMemo(() => {
         const media =
             providedMedia !== null

@@ -7,7 +7,9 @@ interface FontSizeProps {
     sizes?: number[];
 }
 
-function FontSize({ sizes = [12, 14, 16, 18, 20, 24, 28, 32, 48], ...props }: FontSizeProps) {
+const defaultFontSizes = [12, 14, 16, 18, 20, 24, 28, 32, 48];
+
+function FontSize({ sizes = defaultFontSizes, ...props }: FontSizeProps) {
     return <Number {...props} dataList={sizes} />;
 }
 

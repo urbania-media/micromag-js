@@ -7,6 +7,7 @@ import TextField from './Text';
 import styles from '../styles/autocomplete.module.css';
 
 const emptyArray: never[] = [];
+
 const defaultSearchOptions = {
     keys: ['label', 'value'],
 };
@@ -35,7 +36,6 @@ function AutocompleteField({
     items = emptyArray,
     value = null,
     searchOptions = defaultSearchOptions,
-
     maxResults = 10,
     showEmpty = false,
     placeholder = null,

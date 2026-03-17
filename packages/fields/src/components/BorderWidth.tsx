@@ -13,9 +13,11 @@ interface BorderWidthProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultSizes = [1, 2, 4, 8, 10, 14, 20];
+
 function BorderWidth({
     value = null,
-    sizes = [1, 2, 4, 8, 10, 14, 20],
+    sizes = defaultSizes,
     className = null,
     onChange = null,
 }: BorderWidthProps) {

@@ -79,10 +79,12 @@ interface TimelineProps {
     className?: string | null;
 }
 
+const emptyItems = [null];
+
 function Timeline({
     layout = 'normal',
     title = null,
-    items = [null],
+    items = emptyItems,
     itemTitleStyle = null,
     itemDescriptionStyle = null,
     withoutLine = false,

@@ -15,8 +15,10 @@ interface ObjectFitSizeProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultValues = ['cover', 'contain', null];
+
 function ObjectFitSize({
-    values = ['cover', 'contain', null],
+    values = defaultValues,
     value = null,
     className = null,
     onChange = null,

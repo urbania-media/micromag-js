@@ -12,8 +12,10 @@ interface BorderStyleProps {
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
+const defaultTypes = ['solid', 'dotted', 'dashed'];
+
 function BorderStyle({
-    types = ['solid', 'dotted', 'dashed'],
+    types = defaultTypes,
     value = null,
     className = null,
     onChange = null,
