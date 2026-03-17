@@ -40,6 +40,7 @@ function Dropdown({
         (e) => {
             if (
                 refContainer.current &&
+                !refContainer.current.contains(e.currentTarget) &&
                 !refContainer.current.contains(e.target) &&
                 onClickOutside !== null
             ) {
