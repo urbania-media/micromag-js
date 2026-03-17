@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer-build",
-    "version": "0.4.31",
+    "version": "0.4.32",
     "private": false,
     "description": "",
     "keywords": [
@@ -48,9 +48,9 @@
     "devDependencies": {
         "@folklore/cli": "^0.0.50",
         "@micromag/core": "^0.4.30",
-        "@micromag/elements": "^0.4.31",
-        "@micromag/screens": "^0.4.31",
-        "@micromag/viewer": "^0.4.31",
+        "@micromag/elements": "^0.4.32",
+        "@micromag/screens": "^0.4.32",
+        "@micromag/viewer": "^0.4.32",
         "lodash-webpack-plugin": "^0.11.6",
         "react": "^18.3.0 || ^19.0.0",
         "react-dom": "^18.3.0 || ^19.0.0"
