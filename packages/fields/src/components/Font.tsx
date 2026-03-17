@@ -10,7 +10,7 @@ interface FontFieldProps {
     value?: FontMedia | null;
 }
 
-function FontField({ value: value = null, ...props }: FontFieldProps) {
+function FontField({ value = null, ...props }: FontFieldProps) {
     return (
         <MediaField
             noValueLabel={
@@ -20,6 +20,7 @@ function FontField({ value: value = null, ...props }: FontFieldProps) {
                 />
             }
             {...props}
+            value={value}
             type="font"
         />
     );
