@@ -57,8 +57,8 @@
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets",
-        "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/element-*' ./src/styles.css.ejs ./assets/css/aggregate.css",
-        "css": "../../scripts/build-css.js ./assets/css/aggregate.css ./assets/css/styles.css",
+        "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/element-*' ./src/styles.css.ejs ./assets/css/styles.css",
+        "build-css": "../../scripts/build-css.js ./assets/css/styles.css ./assets/css/build.css",
         "prepublishOnly": "npm run build",
         "build": "../../scripts/prepare-package.sh --types && npm run aggregate-css && npm run css"
     },

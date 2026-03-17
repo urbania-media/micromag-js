@@ -64,11 +64,11 @@
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf fields.js && rm -rf fields.json",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
         "build:fields": "NODE_ENV=development rollup --config ./rollup.config.cli.js --bundleConfigAsCjs && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
-        "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.css.ejs ./assets/css/aggregate.css",
-        "css": "../../scripts/build-css.js ./assets/css/aggregate.css ./assets/css/styles.css",
+        "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.css.ejs ./assets/css/styles.css",
+        "build-css": "../../scripts/build-css.js ./assets/css/styles.css ./assets/css/build.css",
         "prepublishOnly": "npm run build",
-        "build": "npm run build:fields && ../../scripts/prepare-package.sh --types && npm run aggregate-css && npm run css",
-        "all-styles": "npm run aggregate-css && npm run css"
+        "build": "npm run build:fields && ../../scripts/prepare-package.sh --types && npm run aggregate-css && npm run build-css",
+        "all-styles": "npm run aggregate-css && npm run build-css"
     },
     "devDependencies": {
         "react": "^18.3.0 || ^19.0.0",
