@@ -558,6 +558,25 @@ function Viewer({
         },
     });
 
+    // Wrap gesture bindings to skip events from clickable elements (buttons, links, inputs).
+    // Without this, @use-gesture captures pointer events at the document level, preventing
+    // native click events from firing on interactive elements inside screens on mobile Safari.
+    const clickableAwareBindings = useMemo(() => {
+        const bindings = dragContentBind({ playing, longPressPaused });
+        const wrapped = {};
+        for (const [key, value] of Object.entries(bindings)) {
+            if (typeof value === 'function') {
+                wrapped[key] = (e) => {
+                    if (checkClickable(e.target)) return;
+                    return value(e);
+                };
+            } else {
+                wrapped[key] = value;
+            }
+        }
+        return wrapped;
+    }, [dragContentBind, playing, longPressPaused]);
+
     const getScreenStylesByIndex = (index, spring) => {
         if (transitionType === 'stack') {
             return {
@@ -940,7 +959,7 @@ function Viewer({
                         {ready || withoutScreensTransforms ? (
                             <div
                                 className={styles.content}
-                                {...dragContentBind({ playing, longPressPaused })}
+                                {...clickableAwareBindings}
                             >
                                 {!withoutNavigationArrow &&
                                 !withNeighborScreens &&
