@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-video",
-    "version": "0.4.27",
+    "version": "0.4.28",
     "private": false,
     "description": "",
     "keywords": [
@@ -60,8 +60,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.27",
-        "@micromag/element-closed-captions": "^0.4.27",
+        "@micromag/core": "^0.4.28",
+        "@micromag/element-closed-captions": "^0.4.28",
         "classnames": "^2.2.6",
         "hls.js": "^1.5.15",
         "lodash": "^4.17.23",
