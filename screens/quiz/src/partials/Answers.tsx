@@ -4,7 +4,6 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import classNames from 'classnames';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -186,7 +185,7 @@ function Answers({
     const listOfItems = isPlaceholder || (isEdit && items.length === 0) ? [...new Array(2)] : items;
 
     const heights = useMemo(() => {
-        if (animated) {
+        if (collapseAnimated) {
             const allHeights = listOfItems.reduce((acc, it, i) => {
                 if (itemsRefs.current[i] && collapseAnimated) {
                     const { height = 0 } = itemsRefs.current[i].getBoundingClientRect() || {};
@@ -197,7 +196,7 @@ function Answers({
             return allHeights;
         }
         return [];
-    }, [animated, answeredIndex, shouldCollapse, collapseAnimated, listOfItems]);
+    }, [collapseAnimated, answeredIndex, shouldCollapse, collapseAnimated, listOfItems]);
 
     const showAnimation = isView || isEdit;
     const filteredListOfItems = listOfItems.map((answer, answerI) => {
