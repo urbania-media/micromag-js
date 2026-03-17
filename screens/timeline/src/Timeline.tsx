@@ -28,6 +28,7 @@ import {
     useActivityDetector,
     useDebounce,
     useDimensionObserver,
+    useResizeObserver,
     useTrackScreenEvent,
     useTrackScreenMedia,
 } from '@micromag/core/hooks';
@@ -315,20 +316,43 @@ function Timeline({
         setImagesLoaded((count) => count + 1);
     }, [setImagesLoaded]);
 
-    const firstLineRef = useRef(null);
-    const firstContentRef = useRef(null);
-    const [imageWidth, setImageWidth] = useState(0);
 
-    useEffect(() => {
-        if (firstContentRef.current === null) {
-            return;
-        }
-        if (firstLineRef.current !== null) {
-            setImageWidth(firstContentRef.current.offsetWidth - firstLineRef.current.offsetWidth);
-        } else {
-            setImageWidth(firstContentRef.current.offsetWidth);
-        }
-    }, [width, height, finalItems]);
+
+    // const {
+    //     ref: firstLineRef,
+    //     entry: { contentRect: firstLineContentRect = null },
+    // } = useResizeObserver();
+    // const {
+    //     ref: firstContentRef,
+    //     entry: { contentRect: firstContentRect = null },
+    // } = useResizeObserver();
+    // const { width: firstLineWidth = null } = firstLineContentRect || {};
+    // const { width: firstContentWidth = null } = firstContentRect || {};
+
+    const { ref: firstLineRef, width: firstLineWidth = null } = useDimensionObserver();
+    const { ref: firstContentRef, width: firstContentWidth = null } = useDimensionObserver();
+
+    const imageWidth = (firstContentWidth ?? 0) - (firstLineWidth ?? 0);
+
+    // const firstLineRef = useRef(null);
+    // const firstContentRef = useRef(null);
+    // const [legacyImageWidth, setImageWidth] = useState(0);
+
+    // useEffect(() => {
+    //     if (firstContentRef.current === null) {
+    //         return;
+    //     }
+    //     if (firstLineRef.current !== null) {
+    //         setImageWidth(firstContentRef.current.offsetWidth - firstLineRef.current.offsetWidth);
+    //     } else {
+    //         setImageWidth(firstContentRef.current.offsetWidth);
+    //     }
+    // }, [width, height, finalItems]);
+
+    // console.log('firstLineWidth', firstLineWidth);
+    // console.log('firstContentWidth', firstContentWidth);
+    // console.log('legacyImageWidth', legacyImageWidth);
+    // console.log('imageWidth', imageWidth);
 
     const timelineElements = (finalItems || []).map((item, itemI) => {
         const { title: itemTitle = null, description = null, image = null } = item || {};
