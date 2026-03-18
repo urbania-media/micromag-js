@@ -14,7 +14,7 @@ interface FieldsProviderProps {
     children: React.ReactNode;
 }
 
-function FieldsProvider({ children }) {
+function FieldsProvider({ children }: FieldsProviderProps) {
     return (
         <ComponentsProvider namespace={FIELDS_NAMESPACE} components={components}>
             <BaseFieldsProvider manager={manager}>{children}</BaseFieldsProvider>

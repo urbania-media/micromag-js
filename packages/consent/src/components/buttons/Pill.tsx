@@ -27,7 +27,7 @@ function PillButton({
     invert = false,
     dark = false,
     ...props
-}) {
+}: PillButtonProps) {
     return (
         <Button
             className={classNames([

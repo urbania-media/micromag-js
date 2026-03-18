@@ -21,7 +21,7 @@ interface ScreenSizeProviderProps {
     size?: ScreenSize;
 }
 
-export function ScreenSizeProvider({ size = {}, children }) {
+export function ScreenSizeProvider({ size = {}, children }: ScreenSizeProviderProps) {
     const {
         screen: nextScreen,
         width: nextWidth,

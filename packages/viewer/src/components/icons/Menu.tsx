@@ -5,7 +5,7 @@ interface MenuIconProps {
     className?: string;
 }
 
-function MenuIcon({ color = 'currentColor', className = null }) {
+function MenuIcon({ color = 'currentColor', className = null }: MenuIconProps) {
     return (
         <svg
             width="28"

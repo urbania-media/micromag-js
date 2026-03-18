@@ -42,7 +42,7 @@ function ViewerMenuShare({
     shareUrl = null,
     onShare = null,
     className = null,
-}) {
+}: ViewerMenuShareProps) {
     // Viewer theme
     const { background = null } = viewerTheme || {};
     const { image = null } = background || {};

@@ -10,7 +10,7 @@ interface CloseMenuButtonProps {
     className?: string;
 }
 
-function CloseMenuButton({ single = false, className = null, ...props }) {
+function CloseMenuButton({ single = false, className = null, ...props }: CloseMenuButtonProps) {
     const intl = useIntl();
     return (
         <IconButton

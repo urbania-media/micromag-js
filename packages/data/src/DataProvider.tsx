@@ -11,7 +11,7 @@ interface DataProviderProps {
     children?: React.ReactNode;
 }
 
-function DataProvider({ api = null, apiBaseUrl = undefined, children = null }) {
+function DataProvider({ api = null, apiBaseUrl = undefined, children = null }: DataProviderProps) {
     return (
         <ApiProvider api={api} baseUrl={apiBaseUrl}>
             {children}

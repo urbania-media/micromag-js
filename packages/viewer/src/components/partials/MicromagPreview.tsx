@@ -21,7 +21,7 @@ function MicromagPreview({
     url = null,
     description = null,
     className = null,
-}) {
+}: MicromagPreviewProps) {
     return (
         <div
             className={classNames([

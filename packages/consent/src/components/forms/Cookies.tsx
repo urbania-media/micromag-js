@@ -31,7 +31,7 @@ function Cookies({
     labels = null,
     className = null,
     ...props
-}) {
+}: CookiesProps) {
     const {
         consent: choices,
         onClickChoice,

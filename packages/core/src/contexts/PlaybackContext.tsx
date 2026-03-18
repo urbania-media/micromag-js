@@ -87,7 +87,7 @@ export function PlaybackProvider({
     controlsTheme: initialControlsTheme = defaultControlsThemeValue,
     currentQualityLevel: initialCurrentQualityLevel = null,
     children,
-}) {
+}: PlaybackProviderProps) {
     const [muted, setMuted] = useState(initialMuted);
     const [playing, setPlaying] = useState(initialPlaying);
     const [media, setMedia] = useState(null);

@@ -25,7 +25,7 @@ function ViewerMenuDot({
     vertical = false,
     onClick = null,
     className = null,
-}) {
+}: ViewerMenuDotProps) {
     const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.25)' } =
         colors || {};
 

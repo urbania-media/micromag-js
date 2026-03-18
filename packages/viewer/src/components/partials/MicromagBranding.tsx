@@ -11,7 +11,7 @@ interface MicromagBrandingProps {
     className?: string;
 }
 
-function MicromagBranding({ className = null }) {
+function MicromagBranding({ className = null }: MicromagBrandingProps) {
     return (
         <div className={classNames([styles.container, { [className]: className }])}>
             <a

@@ -11,7 +11,7 @@ interface IconButtonProps {
     className?: string;
 }
 
-function IconButton({ iconClassName = null, className = null, ...props }) {
+function IconButton({ iconClassName = null, className = null, ...props }: IconButtonProps) {
     return (
         <Button
             className={classNames([

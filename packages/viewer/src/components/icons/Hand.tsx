@@ -5,7 +5,7 @@ interface HandIconProps {
     className?: string;
 }
 
-function HandIcon({ color = 'currentColor', className = null }) {
+function HandIcon({ color = 'currentColor', className = null }: HandIconProps) {
     return (
         <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 367.24 482.87">
             {/* <!-- Hand by Mikhail Bazilevsky from NounProject.com --> */}

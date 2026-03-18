@@ -10,7 +10,7 @@ interface ArrowHintProps {
     className?: string;
 }
 
-function ArrowHint({ withoutShadow = false, className = null }) {
+function ArrowHint({ withoutShadow = false, className = null }: ArrowHintProps) {
     return (
         <div
             className={classNames([

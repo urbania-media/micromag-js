@@ -49,7 +49,7 @@ function ViewerMenuPreview({
     // fullscreenActive,
     // fullscreenEnabled,
     className = null,
-}) {
+}: ViewerMenuPreviewProps) {
     const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3); // @note cool, should be in recipes
 

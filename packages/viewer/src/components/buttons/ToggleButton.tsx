@@ -19,7 +19,7 @@ function ToggleButton({
     button = null,
     toggledButton = null,
     toggledButtonClassName = null,
-}) {
+}: ToggleButtonProps) {
     if (button === null) return null;
 
     return (

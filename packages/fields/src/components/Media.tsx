@@ -15,7 +15,6 @@ function MediaField({ closeForm = null, onChange = null, ...props }: MediaFieldP
                 onChange(newValue);
             }
             if (closeForm !== null) {
-                // console.log('close');
                 closeForm();
             }
         },

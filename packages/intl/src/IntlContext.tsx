@@ -31,7 +31,7 @@ export function IntlProvider({
     locales = null,
     children = null,
     extraMessages = null,
-}) {
+}: IntlProviderProps) {
     const previousLocales = useLocales();
     const { locale: previousLocale = null, messages: previousMessages = null } =
         useContext(IntlContext) || {};

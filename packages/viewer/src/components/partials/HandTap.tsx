@@ -10,7 +10,7 @@ interface HandTapProps {
     className?: string;
 }
 
-function HandTap({ withoutShadow = false, className = null }) {
+function HandTap({ withoutShadow = false, className = null }: HandTapProps) {
     return (
         <div
             className={classNames([

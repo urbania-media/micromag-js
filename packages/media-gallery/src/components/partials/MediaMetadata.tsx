@@ -33,7 +33,7 @@ function MediaMetadata({
     onClickSave = null,
     onClickDelete = null,
     className = null,
-}) {
+}: MediaMetadataProps) {
     const {
         id: mediaId,
         type,

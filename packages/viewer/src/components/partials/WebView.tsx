@@ -25,7 +25,7 @@ interface WebViewContainerProps {
     style?: Record<string, unknown>;
 }
 
-function WebViewContainer({ onChange = null, trackingEnabled = false, className = null, style = null }) {
+function WebViewContainer({ onChange = null, trackingEnabled = false, className = null, style = null }: WebViewContainerProps) {
     const {
         opened,
         close,

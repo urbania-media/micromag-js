@@ -9,7 +9,7 @@ interface ElementsProviderProps {
     children?: React.ReactNode;
 }
 
-function ElementsProvider({ children: children = null, ...props }) {
+function ElementsProvider({ children: children = null, ...props }: ElementsProviderProps) {
     return (
         <ComponentsProvider
             namespace={ELEMENTS_NAMESPACE}

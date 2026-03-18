@@ -12,7 +12,7 @@ interface DropdownSectionProps {
     className?: string;
 }
 
-function DropdownSection({ value = null, items = null, onChange = null, className = null }) {
+function DropdownSection({ value = null, items = null, onChange = null, className = null }: DropdownSectionProps) {
     const [open, setOpen] = useState(false);
     const currentItem = items.find((i) => i.value === value);
 

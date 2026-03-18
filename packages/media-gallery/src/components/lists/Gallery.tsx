@@ -31,7 +31,7 @@ function Gallery({
     onClickItem = null,
     onClickItemInfo = null,
     onClickRemoveItem = null,
-}) {
+}: GalleryProps) {
     const { ref, width } = useDimensionObserver();
 
     const finalItems = useMemo(() => {

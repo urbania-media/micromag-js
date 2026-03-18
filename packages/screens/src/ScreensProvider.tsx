@@ -9,7 +9,7 @@ interface ScreensProviderProps {
     children: React.ReactNode;
 }
 
-function ScreensProvider({ children, ...props }) {
+function ScreensProvider({ children, ...props }: ScreensProviderProps) {
     return (
         <BaseScreensProvider {...props} manager={manager}>
             {children}

@@ -14,14 +14,25 @@ import styles from '../../styles/partials/active-filters.module.css';
 const emptyArray: never[] = [];
 
 interface ActiveFiltersProps {
-    filters?: { types?: string[]; tags?: string[]; users?: string[]; usage?: ('used' | 'unused')[] };
+    filters?: {
+        types?: string[];
+        tags?: string[];
+        users?: string[];
+        usage?: ('used' | 'unused')[];
+    };
     onChange?: (...args: unknown[]) => void;
     onReset?: (...args: unknown[]) => void;
     sections?: Record<string, unknown>[];
     className?: string;
 }
 
-function ActiveFilters({ filters = null, onChange = null, onReset = null, sections = emptyArray, className = null }) {
+function ActiveFilters({
+    filters = null,
+    onChange = null,
+    onReset = null,
+    sections = emptyArray,
+    className = null,
+}: ActiveFiltersProps) {
     const handleReset = useCallback(() => {
         if (onReset !== null) {
             onReset();

@@ -134,7 +134,7 @@ export function UppyProvider({
     companion: providedCompanion = null,
     tus: providedTus = null,
     xhr: providedXhr = null,
-}) {
+}: UppyProviderProps) {
     const { locale: intlLocale } = useIntl();
 
     const {

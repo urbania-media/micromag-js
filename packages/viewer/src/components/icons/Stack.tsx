@@ -5,7 +5,7 @@ interface StackIconProps {
     className?: string;
 }
 
-function StackIcon({ className = null }) {
+function StackIcon({ className = null }: StackIconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

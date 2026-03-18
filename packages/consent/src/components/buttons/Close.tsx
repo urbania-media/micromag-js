@@ -12,7 +12,7 @@ interface CloseButtonProps {
     className?: string;
 }
 
-function CloseButton({ className = null, ...props }) {
+function CloseButton({ className = null, ...props }: CloseButtonProps) {
     return (
         <Button
             className={classNames([

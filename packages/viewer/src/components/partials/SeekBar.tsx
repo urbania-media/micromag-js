@@ -58,7 +58,7 @@ function SeekBar({
     focusable = true,
     className = null,
     withSeekHead = true,
-}) {
+}: SeekBarProps) {
     const intl = useIntl();
     const progress = useMediaProgress(media, {
         disabled: !playing,

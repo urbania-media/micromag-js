@@ -12,7 +12,7 @@ interface NavigationButtonProps {
     className?: string;
 }
 
-function NavigationButton({ direction = 'next', onClick = null, className = null, ...props }) {
+function NavigationButton({ direction = 'next', onClick = null, className = null, ...props }: NavigationButtonProps) {
     return (
         <IconButton
             className={classNames([

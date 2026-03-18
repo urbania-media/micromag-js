@@ -30,7 +30,7 @@ function ViewerMenuScreen({
     screenSize = null,
     alwaysRender = false,
     focusable = true,
-}) {
+}: ViewerMenuScreenProps) {
     const intl = useIntl();
     const { current = false, screen, count = 1 } = item || {};
     const { width: screenWidth, height: screenHeight } = screenSize || {};

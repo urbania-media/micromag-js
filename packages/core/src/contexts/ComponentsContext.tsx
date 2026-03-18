@@ -112,7 +112,7 @@ export function ComponentsProvider({
     manager = null,
     namespace = null,
     children,
-}) {
+}: ComponentsProviderProps) {
     const previousManager = useComponentsManager() || null;
     const finalManager = useMemo(
         () =>

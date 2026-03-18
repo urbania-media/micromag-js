@@ -13,7 +13,7 @@ interface ApiProviderProps {
     children: React.ReactNode;
 }
 
-export function ApiProvider({ api: initialApi = null, baseUrl = undefined, children }) {
+export function ApiProvider({ api: initialApi = null, baseUrl = undefined, children }: ApiProviderProps) {
     const previousApi = useApi();
     const api = useMemo(
         () =>

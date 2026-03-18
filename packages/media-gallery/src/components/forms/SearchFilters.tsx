@@ -30,7 +30,7 @@ function SearchFilters({
     onChange = null,
     onClose = null,
     className = null,
-}) {
+}: SearchFiltersProps) {
     const intl = useIntl();
     const getActive = useCallback((items, sectionFilters) => {
         return items !== null

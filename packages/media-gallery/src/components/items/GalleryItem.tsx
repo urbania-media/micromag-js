@@ -36,7 +36,7 @@ function GalleryItem({
     onClick = null,
     onClickInfo = null,
     onClickRemove = null,
-}) {
+}: GalleryItemProps) {
     const { type, thumbnail_url: thumbnail = null, name, size } = item;
     let title = name;
     if (width < 768) {

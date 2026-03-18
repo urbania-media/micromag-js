@@ -30,7 +30,7 @@ interface GoogleApiClientProviderProps {
     children: React.ReactNode;
 }
 
-export function GoogleApiClientProvider({ children }) {
+export function GoogleApiClientProvider({ children }: GoogleApiClientProviderProps) {
     const { apiKey } = useGoogleKeys();
     const [client, setClient] = useState(null);
     useEffect(() => {

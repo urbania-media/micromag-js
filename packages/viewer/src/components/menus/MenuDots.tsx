@@ -39,7 +39,7 @@ function ViewerMenuDots({
     onClose = null,
     className = null,
     ...props
-}) {
+}: ViewerMenuDotsProps) {
     const { primary = 'rgba(255, 255, 255, 1)' } = colors || {};
     const intl = useIntl();
     const currentIndex = items.findIndex(({ current = false }) => current);

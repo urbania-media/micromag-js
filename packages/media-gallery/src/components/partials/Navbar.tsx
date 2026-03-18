@@ -63,7 +63,7 @@ function Navbar({
     onFocusSearch = null,
     onFiltersChange = null,
     onClickBack = null,
-}) {
+}: NavbarProps) {
     const intl = useIntl();
     const throttle = useRef(null);
     const [open, setOpen] = useState(false);
