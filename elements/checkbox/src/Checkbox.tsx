@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/label-has-associated-control */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -25,13 +24,7 @@ function Checkbox({
 }: CheckboxProps) {
     const { body = null } = option || {};
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-            style={{ ...checkboxStyle }}
-        >
+        <div className={classNames([styles.container, className])} style={{ ...checkboxStyle }}>
             <label
                 className={classNames([
                     styles.label,

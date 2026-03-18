@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 // useOrganisationTeam
 import classNames from 'classnames';
 import uniqBy from 'lodash/uniqBy';

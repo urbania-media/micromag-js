@@ -1,6 +1,3 @@
-/* eslint-disable no-nested-ternary */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';

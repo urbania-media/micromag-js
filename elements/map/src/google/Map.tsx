@@ -83,7 +83,6 @@ function Map({
             {...stopDragEventsPropagation}
         >
             <div ref={mapRef} className={styles.map} tabIndex={focusable ? '0' : '-1'} />
-            {/* eslint-disable-line jsx-a11y/no-noninteractive-tabindex */}
             {React.Children.map(children, (child) => React.cloneElement(child, { map }))}
         </div>
     );

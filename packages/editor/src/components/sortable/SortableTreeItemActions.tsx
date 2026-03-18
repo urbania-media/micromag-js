@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label, react/jsx-props-no-spreading */
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import { faGripLines } from '@fortawesome/free-solid-svg-icons/faGripLines';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';

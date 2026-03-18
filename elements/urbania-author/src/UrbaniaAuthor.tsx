@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -57,13 +54,7 @@ function UrbaniaAuthor({
     });
 
     const authorText = isTextFilled(name) ? (
-        <Text
-            className={classNames([
-                styles.name,
-                backgroundClassName,
-            ])}
-            {...name}
-        />
+        <Text className={classNames([styles.name, backgroundClassName])} {...name} />
     ) : null;
 
     const collaboratorText = isTextFilled(collaborator) ? (
@@ -87,10 +78,7 @@ function UrbaniaAuthor({
             {!withoutPrefix ? (
                 <Text
                     {...name}
-                    className={classNames([
-                        styles.prefix,
-                        backgroundClassName,
-                    ])}
+                    className={classNames([styles.prefix, backgroundClassName])}
                     body={`<span>${prefix}<span>`}
                 />
             ) : null}
@@ -116,12 +104,7 @@ function UrbaniaAuthor({
                     <div>{authorText}</div>
                 )}
                 {collaboratorText !== null ? (
-                    <div
-                        className={classNames([
-                            styles.collaborator,
-                            collaboratorClassName,
-                        ])}
-                    >
+                    <div className={classNames([styles.collaborator, collaboratorClassName])}>
                         {collaboratorText !== null ? collaboratorText : null}
                     </div>
                 ) : null}

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 import { ComponentsProvider, ELEMENTS_NAMESPACE } from '@micromag/core/contexts';
@@ -9,7 +8,7 @@ interface ElementsProviderProps {
     children?: React.ReactNode;
 }
 
-function ElementsProvider({ children: children = null, ...props }: ElementsProviderProps) {
+function ElementsProvider({ children: _children = null, ...props }: ElementsProviderProps) {
     return (
         <ComponentsProvider
             namespace={ELEMENTS_NAMESPACE}

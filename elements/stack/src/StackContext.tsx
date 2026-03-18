@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo } from 'react';
+import React, { use, useMemo } from 'react';
 
 interface StackProviderProps {
     children: React.ReactNode;
@@ -9,10 +8,10 @@ const StackContext = React.createContext({
     direction: 'horizontal',
 });
 
-export const useStack = () => useContext(StackContext);
+export const useStack = () => use(StackContext);
 
 export const useStackDirection = () => {
-    const { direction } = useContext(StackContext);
+    const { direction } = use(StackContext);
     return direction;
 };
 
@@ -20,7 +19,7 @@ export const useStackDirection = () => {
 
 export function StackProvider({ direction = 'vertical', children }: StackProviderProps) {
     const value = useMemo(() => ({ direction }), [direction]);
-    return <StackContext.Provider value={value}>{children}</StackContext.Provider>;
+    return <StackContext value={value}>{children}</StackContext>;
 }
 
 export default StackContext;

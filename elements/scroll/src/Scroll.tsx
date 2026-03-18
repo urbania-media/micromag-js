@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { useScroll } from '@use-gesture/react';
 import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
@@ -58,7 +57,7 @@ function Scroll({
     const { ref: scrollableRef, height: scrollableHeight } = useDimensionObserver();
 
     if (scrollContainerRef !== null) {
-        scrollContainerRef.current = scrollableRef.current; // eslint-disable-line
+        scrollContainerRef.current = scrollableRef.current;
     }
 
     const { ref: scrolleeRef, height: scrolleeHeight } = useDimensionObserver();
@@ -194,4 +193,4 @@ function Scroll({
     );
 }
 
-export default React.forwardRef((props, ref) => <Scroll scrollContainerRef={ref} {...props} />);
+export default ({ ref, ...props }) => <Scroll scrollContainerRef={ref} {...props} />;

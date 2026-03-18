@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
 import classNames from 'classnames';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';

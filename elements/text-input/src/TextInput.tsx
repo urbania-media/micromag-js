@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control, react/no-array-index-key, react/no-danger, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useId } from 'react';
 import { Helmet } from 'react-helmet';

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
 import classNames from 'classnames';
 import isString from 'lodash/isString';
 import React from 'react';

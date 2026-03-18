@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, easings, useTransition } from '@react-spring/web';
@@ -747,10 +746,10 @@ function QuizMultipleScreen({
                               width={width}
                               height={height}
                               resolution={resolution}
-                              playing={backgroundPlaying}
+                              playing={item.key === bgItem.key && backgroundPlaying}
                               muted={muted}
                               shouldLoad={backgroundShouldLoad}
-                              mediaRef={mediaRef}
+                              mediaRef={item.key === bgItem.key ? mediaRef : null}
                               className={styles.background}
                               withoutVideo={isPreview}
                           />

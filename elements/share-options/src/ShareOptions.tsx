@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import React, { useCallback, useMemo, useState } from 'react';
@@ -145,14 +144,7 @@ function ShareOptions({
                     style={finalStyles}
                 >
                     <FacebookIcon {...shareIconProps} />
-                    <div
-                        className={classNames([
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
-                        Facebook
-                    </div>
+                    <div className={classNames([styles.label, labelClassName])}>Facebook</div>
                     <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </FacebookShareButton>
             ),
@@ -171,14 +163,7 @@ function ShareOptions({
                     style={finalStyles}
                 >
                     <TwitterIcon {...shareIconProps} />
-                    <div
-                        className={classNames([
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
-                        X (Twitter)
-                    </div>
+                    <div className={classNames([styles.label, labelClassName])}>X (Twitter)</div>
                     <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </TwitterShareButton>
             ),
@@ -197,14 +182,7 @@ function ShareOptions({
                     style={finalStyles}
                 >
                     <LinkedinIcon {...shareIconProps} />
-                    <div
-                        className={classNames([
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
-                        LinkedIn
-                    </div>
+                    <div className={classNames([styles.label, labelClassName])}>LinkedIn</div>
                     <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </LinkedinShareButton>
             ),
@@ -223,14 +201,7 @@ function ShareOptions({
                     style={finalStyles}
                 >
                     <WhatsappIcon {...shareIconProps} />
-                    <div
-                        className={classNames([
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
-                        Whatsapp
-                    </div>
+                    <div className={classNames([styles.label, labelClassName])}>Whatsapp</div>
                     <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
                 </WhatsappShareButton>
             ),
@@ -275,12 +246,7 @@ function ShareOptions({
                     style={finalStyles}
                 >
                     <EmailIcon {...shareIconProps} />
-                    <div
-                        className={classNames([
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
+                    <div className={classNames([styles.label, labelClassName])}>
                         <FormattedMessage defaultMessage="Email" description="Share option label" />
                     </div>
                     <div className={styles.spacer} style={{ width: `${iconSize}px` }} />
@@ -291,10 +257,7 @@ function ShareOptions({
             id: 'sms',
             button: (
                 <Button
-                    className={classNames([
-                        styles.button,
-                        buttonClassName,
-                    ])}
+                    className={classNames([styles.button, buttonClassName])}
                     href={`sms:?&body=${url}`}
                     focusable={focusable}
                     style={finalStyles}
@@ -302,12 +265,7 @@ function ShareOptions({
                     withoutBootstrapStyles
                 >
                     <SmsIcon {...shareIconProps} />
-                    <div
-                        className={classNames([
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
+                    <div className={classNames([styles.label, labelClassName])}>
                         <span className={styles.labelText}>
                             <FormattedMessage
                                 defaultMessage="SMS"
@@ -341,22 +299,14 @@ function ShareOptions({
                         ])}
                     >
                         <Button
-                            className={classNames([
-                                styles.button,
-                                buttonClassName,
-                            ])}
+                            className={classNames([styles.button, buttonClassName])}
                             onClick={onClickCopy}
                             focusable={focusable}
                             style={finalStyles}
                             withoutBootstrapStyles
                         >
                             <ShareLinkIcon {...shareIconProps} />
-                            <div
-                                className={classNames([
-                                    styles.label,
-                                    labelClassName,
-                                ])}
-                            >
+                            <div className={classNames([styles.label, labelClassName])}>
                                 <span className={styles.labelText}>
                                     {!linkCopied ? (
                                         <FormattedMessage
@@ -377,13 +327,7 @@ function ShareOptions({
                     </div>
                 ) : null}
                 {selectedOptions.map(({ id, button }) => (
-                    <div
-                        key={id}
-                        className={classNames([
-                            styles.item,
-                            itemClassName,
-                        ])}
-                    >
+                    <div key={id} className={classNames([styles.item, itemClassName])}>
                         {button}
                     </div>
                 ))}

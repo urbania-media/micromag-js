@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -19,12 +18,7 @@ function ShareIncentive({ className = null, label = null, boxStyle = null }: Sha
     const bgColor = getColorAsString(backgroundColor);
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <div
                 className={styles.box}
                 style={{

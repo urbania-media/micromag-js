@@ -3,6 +3,7 @@ import isArray from 'lodash/isArray';
 import { ScreensManager } from '@micromag/core';
 
 import * as allScreens from './all';
+
 // import fieldsPattern from './fields';
 
 const manager = new ScreensManager(

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import LayoutGrid from '#.storybook/components/LayoutGrid';
 import preview from '#.storybook/preview';
 import React from 'react';

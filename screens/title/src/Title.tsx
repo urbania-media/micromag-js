@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -67,7 +66,6 @@ function TitleScreen({
     withSubtitle = false,
     withDescription = false,
 
-    // eslint-disable-line
     withBox = false,
 
     spacing = 20,

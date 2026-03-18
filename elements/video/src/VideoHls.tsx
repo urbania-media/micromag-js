@@ -1,10 +1,9 @@
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, import/order */
 import classNames from 'classnames';
 import Hls from 'hls.js';
 import isFunction from 'lodash/isFunction';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import type { ImageMedia, VideoMedia } from '@micromag/core';
+import type { VideoMedia } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
 import {
     useMediaCurrentTime,
@@ -13,7 +12,6 @@ import {
     useMediaThumbnail,
     useProgressSteps,
 } from '@micromag/core/hooks';
-import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
 
 import useSources from './useSources';
 
@@ -354,10 +352,7 @@ function Video({
                     src={mediaUrl}
                     alt={description}
                     tabIndex="-1"
-                    className={classNames([
-                        styles.media,
-                        innerClassName,
-                    ])}
+                    className={classNames([styles.media, innerClassName])}
                 />
             ) : null}
             {!isImageWithoutSourceFile ? (
@@ -391,10 +386,7 @@ function Video({
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     disablePictureInPicture={disablePictureInPicture}
                     tabIndex={focusable ? '0' : '-1'}
-                    className={classNames([
-                        styles.media,
-                        innerClassName,
-                    ])}
+                    className={classNames([styles.media, innerClassName])}
                     onPlay={onPlay}
                     onPlaying={onPlaying}
                     onPause={onPause}
@@ -427,4 +419,4 @@ function Video({
     );
 }
 
-export default React.forwardRef((props, ref) => <Video mediaRef={ref} {...props} />);
+export default ({ ref, ...props }) => <Video mediaRef={ref} {...props} />;

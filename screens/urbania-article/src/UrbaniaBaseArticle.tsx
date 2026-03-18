@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';

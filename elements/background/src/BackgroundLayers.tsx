@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading, react/no-array-index-key */
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 
@@ -93,10 +92,7 @@ function BackgroundLayers({
                                 width={width}
                                 height={height}
                                 resolution={resolution}
-                                className={classNames([
-                                    styles.background,
-                                    backgroundClassName,
-                                ])}
+                                className={classNames([styles.background, backgroundClassName])}
                                 playing={playing}
                                 muted={muted}
                                 horizontalAlign={horizontalAlign}

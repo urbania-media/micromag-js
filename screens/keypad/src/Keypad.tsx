@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';

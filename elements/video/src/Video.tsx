@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, import/order */
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { ImageMedia, VideoMedia } from '@micromag/core';
+import type { VideoMedia } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
 import {
     useMediaCurrentTime,
@@ -286,4 +285,4 @@ function Video({
     );
 }
 
-export default React.forwardRef((props, ref) => <Video mediaRef={ref} {...props} />);
+export default ({ ref, ...props }) => <Video mediaRef={ref} {...props} />;

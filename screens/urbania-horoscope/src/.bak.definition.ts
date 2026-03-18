@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import Horoscope from './Horoscope';
 import signs from './data/signs';
 

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import React, { useId } from 'react';
 
@@ -85,5 +84,4 @@ function Heading({
     );
 }
 
-// eslint-disable-next-line react/jsx-props-no-spreading
-export default React.forwardRef((props, ref) => <Heading headingRef={ref} {...props} />);
+export default ({ ref, ...props }) => <Heading headingRef={ref} {...props} />;

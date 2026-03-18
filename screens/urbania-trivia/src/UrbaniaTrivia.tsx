@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';

@@ -52,23 +52,8 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
                 setIsBackground(false);
             }
         },
-        [active, setMedia, setIsBackground, updateKey],
+        [active, setMedia, setIsBackground],
     );
-
-    // useEffect(() => {
-    //     if (!active) {
-    //         console.log('unset media');
-    //         setMedia(null);
-    //         setIsBackground(false);
-    //     }
-    //     return () => {
-    //         if (active) {
-    //             console.log('clear media');
-    //             setMedia(null);
-    //             setIsBackground(false);
-    //         }
-    //     };
-    // }, [active, setMedia, setIsBackground]);
 
     // Register media with context when active and no media is registered
     useEffect(() => {
@@ -80,8 +65,6 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
         setIsBackground(background);
         setMedia(mediaRef.current);
     }, [active, background, media, updateKey, setMedia, setIsBackground]);
-
-    // console.log('playback', mediaRef.current, media);
 
     return { ref: mediaRef, isCurrent: mediaRef.current === media };
 };

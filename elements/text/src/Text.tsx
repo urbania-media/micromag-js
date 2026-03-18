@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-
-/* eslint-disable react/no-array-index-key, react/no-danger */
 import classNames from 'classnames';
 import React, { useId } from 'react';
 

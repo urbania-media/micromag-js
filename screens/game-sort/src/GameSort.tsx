@@ -1,6 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import { animated, useSprings } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';

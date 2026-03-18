@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
 import classNames from 'classnames';
 import get from 'lodash/get';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';

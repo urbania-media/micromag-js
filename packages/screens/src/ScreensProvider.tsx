@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 import { ScreensProvider as BaseScreensProvider } from '@micromag/core/contexts';

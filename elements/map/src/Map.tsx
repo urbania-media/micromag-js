@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -109,12 +108,7 @@ function Map({
     );
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <GoogleMap
                 center={center}
                 zoom={zoom}
@@ -152,7 +146,7 @@ function Map({
                                           onClick:
                                               onClickMarker !== null
                                                   ? (e) => onClickMarker(e, index)
-                                                  : () => console.log(index), // eslint-disable-line no-console
+                                                  : () => console.log(index),
                                       }}
                                   />
                               ) : (

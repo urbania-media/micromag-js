@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -499,7 +498,6 @@ function UrbaniaRecommendation({
                                         },
                                     ])}
                                     style={
-                                        // eslint-disable-next-line no-nested-ternary
                                         layoutBorderRadius !== null
                                             ? layout === 'bottom'
                                                 ? {

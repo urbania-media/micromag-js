@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isPlainObject from 'lodash/isPlainObject';
 import React, { useCallback, useEffect, useRef, useState } from 'react';

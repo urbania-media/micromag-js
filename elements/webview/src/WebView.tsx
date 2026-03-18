@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -58,7 +57,6 @@ function WebView({
             <iframe
                 className={styles.iframe}
                 aria-hidden={!focusable ? 'true' : null}
-                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                 tabIndex={focusable ? '0' : '-1'}
                 title={intl.formatMessage({
                     defaultMessage: 'Popup',

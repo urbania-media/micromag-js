@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, jsx-a11y/label-has-associated-control */
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';

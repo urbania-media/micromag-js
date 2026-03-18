@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, jsx-a11y/label-has-associated-control */
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 

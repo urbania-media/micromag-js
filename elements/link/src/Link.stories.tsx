@@ -9,7 +9,6 @@ const meta = preview.meta({
 });
 
 export const external = meta.story(() => (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Link url="http://www.urbania.ca" external>
         Hello
     </Link>

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
@@ -166,22 +165,11 @@ function CallToAction({
                 />
             ) : null}
             {swipeUpEnabled ? (
-                <div
-                    className={classNames([
-                        styles.arrow,
-                        arrowClassName,
-                    ])}
-                    style={arrowStyle}
-                >
+                <div className={classNames([styles.arrow, arrowClassName])} style={arrowStyle}>
                     {arrow || <ArrowIcon />}
                 </div>
             ) : null}
-            <div
-                className={classNames([
-                    styles.buttonBorder,
-                    buttonBorderClassName,
-                ])}
-            >
+            <div className={classNames([styles.buttonBorder, buttonBorderClassName])}>
                 <Button
                     className={classNames([
                         styles.button,
@@ -200,12 +188,7 @@ function CallToAction({
                     onClick={onClickLink}
                     {...(swipeUpEnabled && !disabled ? bind() : null)}
                 >
-                    <span
-                        className={classNames([
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
+                    <span className={classNames([styles.label, labelClassName])}>
                         {icon !== null ? <div className={styles.icon}>{icon}</div> : null}
                         <Text
                             {...label}
@@ -220,4 +203,4 @@ function CallToAction({
     );
 }
 
-export default React.forwardRef((props, ref) => <CallToAction elRef={ref} {...props} />);
+export default ({ ref, ...props }) => <CallToAction elRef={ref} {...props} />;

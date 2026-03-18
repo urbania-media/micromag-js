@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-
-/* eslint-disable react/no-array-index-key, react/no-danger, react/button-has-type */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -42,8 +39,7 @@ function Button({
 }: ButtonProps) {
     let finalStyles = style;
 
-    // eslint-disable-next-line no-unused-vars
-    const { body = null, ...otherProps } = buttonProps || {};
+    const { body: _body = null, ...otherProps } = buttonProps || {};
 
     if (textStyle !== null) {
         finalStyles = {
@@ -72,10 +68,7 @@ function Button({
 
     return (
         <CoreButton
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             disabled={disabled}
             style={finalStyles}
             onClick={onClick}

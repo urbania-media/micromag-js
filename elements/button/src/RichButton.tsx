@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -125,18 +124,9 @@ function RichButton({
                         width={visualWidth || defaultWidth}
                         resolution={resolution}
                         shouldLoad={shouldLoad}
-                        className={classNames([
-                            styles.visual,
-                            visualClassName,
-                        ])}
-                        imageClassName={classNames([
-                            styles.image,
-                            imageClassName,
-                        ])}
-                        videoClassName={classNames([
-                            styles.video,
-                            videoClassName,
-                        ])}
+                        className={classNames([styles.visual, visualClassName])}
+                        imageClassName={classNames([styles.image, imageClassName])}
+                        videoClassName={classNames([styles.video, videoClassName])}
                     />
                 ) : null}
                 {hasBody && showLabel ? (
@@ -144,10 +134,7 @@ function RichButton({
                         boxStyle={labelBoxStyle}
                         textStyle={textStyle}
                         body={body}
-                        className={classNames([
-                            styles.text,
-                            textClassName,
-                        ])}
+                        className={classNames([styles.text, textClassName])}
                     />
                 ) : null}
                 {children}

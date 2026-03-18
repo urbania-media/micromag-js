@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -31,19 +30,8 @@ function Badge({
         };
     }
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-            style={boxStyles}
-        >
-            <span
-                className={classNames([
-                    styles.label,
-                    labelClassName,
-                ])}
-            >
+        <div className={classNames([styles.container, className])} style={boxStyles}>
+            <span className={classNames([styles.label, labelClassName])}>
                 <Text {...label} textStyle={{ ...textStyle, lineHeight: lineHeight || 1 }} inline />
             </span>
         </div>

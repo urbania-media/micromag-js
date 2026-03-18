@@ -76,10 +76,37 @@ const config = defineConfig([
     reactPlugin.configs.flat.recommended,
     reactPlugin.configs.flat['jsx-runtime'],
     eslintPluginPrettierRecommended,
-    reactHooks.configs.recommended,
+    reactHooks.configs.flat['recommended-latest'],
     {
         rules: {
             'formatjs/no-literal-string-in-jsx': 'off',
+
+            // PropTypes fully removed — all types are TypeScript interfaces now
+            'react/prop-types': 'off',
+
+            // React import is required for Storybook babel-loader JSX parsing
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    varsIgnorePattern: '^(React|_)',
+                    argsIgnorePattern: '^_',
+                    destructuredArrayIgnorePattern: '^_',
+                    caughtErrorsIgnorePattern: '^_',
+                },
+            ],
+
+            // False positives for patterns like React.forwardRef, Hls.Events
+            'import/no-named-as-default-member': 'off',
+
+            // Computed namespace access (allScreens[name]) can't be statically validated
+            'import/namespace': 'off',
+
+            // React Compiler rules from react-hooks v7 — suppress until codebase is ready
+            'react-hooks/preserve-manual-memoization': 'off',
+            'react-hooks/refs': 'off',
+            'react-hooks/set-state-in-effect': 'off',
+            'react-hooks/immutability': 'off',
+            'react-hooks/purity': 'off',
         },
     },
 ]);

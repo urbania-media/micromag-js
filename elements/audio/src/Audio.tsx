@@ -1,6 +1,3 @@
-/* eslint-disable react/require-default-props */
-
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
@@ -182,12 +179,7 @@ function Audio({
     const progress = currentTime !== null && duration > 0 ? currentTime / duration : 0;
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <audio
                 key={srcUrl}
                 ref={(newRef) => {
@@ -231,4 +223,4 @@ function Audio({
     );
 }
 
-export default React.forwardRef((props, ref) => <Audio mediaRef={ref} {...props} />);
+export default ({ ref, ...props }) => <Audio mediaRef={ref} {...props} />;

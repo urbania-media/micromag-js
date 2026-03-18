@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import React from 'react';
@@ -48,10 +47,7 @@ function Grid({
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             style={{
                 width,
                 height,
@@ -74,10 +70,7 @@ function Grid({
                     return (
                         <div
                             key={`cross-${crossIndex}`}
-                            className={classNames([
-                                styles.cross,
-                                crossClassName,
-                            ])}
+                            className={classNames([styles.cross, crossClassName])}
                             style={{
                                 flexDirection: vertical ? 'column' : 'row',
                                 width: vertical ? crossSize : null,
@@ -92,10 +85,7 @@ function Grid({
                                 return (
                                     <div
                                         key={`axis-${axisIndex}`}
-                                        className={classNames([
-                                            styles.axis,
-                                            axisClassName,
-                                        ])}
+                                        className={classNames([styles.axis, axisClassName])}
                                         style={{
                                             width: vertical ? null : axisSize,
                                             height: vertical ? axisSize : null,

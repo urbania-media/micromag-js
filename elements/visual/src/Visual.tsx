@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import React, { useCallback, useMemo } from 'react';
@@ -46,7 +45,7 @@ function Visual({
     loadingMode = null,
     shouldLoad = true,
     videoLoop = true,
-    videoInitialMuted = true,
+    videoInitialMuted: _videoInitialMuted = true,
     onLoaded: onParentLoaded = null,
     className = null,
     imageClassName = null,
@@ -136,10 +135,7 @@ function Visual({
                     ref={refVisible}
                 >
                     <div
-                        className={classNames([
-                            styles.videoContainer,
-                            videoClassName,
-                        ])}
+                        className={classNames([styles.videoContainer, videoClassName])}
                         style={videoContainerStyle}
                     >
                         <Video

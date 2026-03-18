@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/no-danger */
 import classNames from 'classnames';
 import React, { useId } from 'react';
 
@@ -47,10 +46,7 @@ function Link({
     return url ? (
         <a
             id={id}
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             style={finalStyle}
             href={url}
             target={target}
@@ -60,14 +56,7 @@ function Link({
             {children}
         </a>
     ) : (
-        <div
-            id={id}
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-            style={finalStyle}
-        >
+        <div id={id} className={classNames([styles.container, className])} style={finalStyle}>
             {children}
         </div>
     );

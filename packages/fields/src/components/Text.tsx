@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-autofocus */
 
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';

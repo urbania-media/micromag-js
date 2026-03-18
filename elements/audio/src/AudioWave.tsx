@@ -1,4 +1,3 @@
-/* eslint-disable no-multi-assign, jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
 import { useSpring, useSpringRef } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
@@ -230,14 +229,7 @@ function AudioWave({
     );
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-            ref={elRef}
-            {...bind()}
-        >
+        <div className={classNames([styles.container, className])} ref={elRef} {...bind()}>
             <canvas ref={canvasBackgroundRef} className={styles.canvasBackground} />
             <animated.canvas
                 ref={canvasProgressRef}

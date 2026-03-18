@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { getJSON } from '@folklore/fetch';
 import React, { useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -53,7 +52,7 @@ function UrbaniaLoader({
                     // console.log('art loaded', art);
                     setArticle(art || null);
                 })
-                .catch((e) => {
+                .catch((_e) => {
                     // console.log('art error', e);
                     setArticle(null);
                 });
