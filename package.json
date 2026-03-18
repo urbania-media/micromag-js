@@ -24,6 +24,8 @@
         "build:nocache": "nx run-many --target=build --skip-nx-cache --parallel=false",
         "build:viewer": "npm run build --workspace=@micromag/viewer-build",
         "graph": "nx graph",
+        "lint": "eslint --ext .js,.jsx,.ts,.tsx ./*/*/src",
+        "format": "prettier --write './*/*/src/**/*.{js,jsx,ts,tsx,css}'",
         "typecheck": "tsc --noEmit",
         "typecheck:watch": "tsc --noEmit --watch",
         "update-panneau": "npm update @panneau/core @panneau/medias @panneau/intl @panneau/uppy @panneau/fields @panneau/displays @panneau/filters"

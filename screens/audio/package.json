@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-audio",
-    "version": "0.4.33",
+    "version": "0.4.37",
     "private": false,
     "description": "",
     "keywords": [
@@ -61,15 +61,15 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.33",
-        "@micromag/element-audio": "^0.4.33",
-        "@micromag/element-background": "^0.4.33",
-        "@micromag/element-closed-captions": "^0.4.33",
-        "@micromag/element-container": "^0.4.33",
-        "@micromag/element-footer": "^0.4.33",
-        "@micromag/element-header": "^0.4.33",
-        "@micromag/element-layout": "^0.4.33",
-        "@micromag/transforms": "^0.4.33",
+        "@micromag/core": "^0.4.37",
+        "@micromag/element-audio": "^0.4.37",
+        "@micromag/element-background": "^0.4.37",
+        "@micromag/element-closed-captions": "^0.4.37",
+        "@micromag/element-container": "^0.4.37",
+        "@micromag/element-footer": "^0.4.37",
+        "@micromag/element-header": "^0.4.37",
+        "@micromag/element-layout": "^0.4.37",
+        "@micromag/transforms": "^0.4.37",
         "classnames": "^2.2.6",
         "lodash": "^4.17.23",
         "react-intl": "^8.1.3 || ^10.0.0",
@@ -79,6 +79,6 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "a63f6767ff494180f4ee718e47d274bfc8d82eb4",
+    "gitHead": "6e43b9141a12ad4af1a653ad2cd6fb5bf1e6833d",
     "types": "es/index.d.ts"
 }
