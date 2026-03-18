@@ -280,8 +280,9 @@ function KeypadScreen({
                 trackScreenEvent('close_modal');
             }
             setShowPopup(false);
+            setPopupDragDisabled(false);
         },
-        [setShowPopup, trackScreenEvent, isNotInteractive],
+        [setShowPopup, setPopupDragDisabled, trackScreenEvent, isNotInteractive],
     );
 
     const onClickClose = useCallback(

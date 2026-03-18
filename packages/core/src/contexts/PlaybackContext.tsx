@@ -174,7 +174,7 @@ export function PlaybackProvider({
                 setCurrentQualityLevel(level);
             }
         },
-        [setCurrentQualityLevel],
+        [media, setCurrentQualityLevel],
     );
 
     const value = useMemo(
@@ -222,11 +222,10 @@ export function PlaybackProvider({
             finalSetControlsTheme,
             setControlsSuggestPlay,
             setControlsVisible,
-            setControlsTheme,
             showControls,
             hideControls,
             setMedia,
-            setCurrentQualityLevel,
+            finalSetCurrentQualityLevel,
         ],
     );
 
