@@ -3,7 +3,7 @@ import MediasParser from '../../packages/core/src/lib/MediasParser';
 import getScreenFieldsWithStates from '../../packages/core/src/utils/getScreenFieldsWithStates';
 
 import fieldsManager from '../../packages/fields/src/manager';
-import screensManager from '../../packages/screens/src/manager';
+import screensManager from '../../packages/screens/src/defaultManager';
 
 export default function getScreenFields() {
     const mediasParser = new MediasParser({
