@@ -345,6 +345,7 @@ function QuizMultipleScreen({
         finalBackground !== null,
         backgroundKey,
     );
+
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const backgroundShouldLoad = current || active;
 
@@ -613,7 +614,7 @@ function QuizMultipleScreen({
     const bgItem = useMemo(
         () => ({
             key: backgroundKey,
-            background: finalBackground,
+            background: finalBackground || null,
         }),
         [backgroundKey, finalBackground],
     );
@@ -627,13 +628,7 @@ function QuizMultipleScreen({
     });
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-            data-screen-ready
-        >
+        <div className={classNames([styles.container, className])} data-screen-ready>
             <Container width={width} height={height} className={styles.content}>
                 {showPoints && currentPoints !== null && currentPoints > 0 ? (
                     <div className={styles.points}>
