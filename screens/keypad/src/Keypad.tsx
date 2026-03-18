@@ -31,13 +31,12 @@ import { useDimensionObserver, useDragProgress, useTrackScreenEvent } from '@mic
 import {
     camelCase,
     getFooterProps,
-    getStyleFromAlignment,
     getStyleFromBox,
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
 } from '@micromag/core/utils';
-import Background from '@micromag/element-background';
+import { default as Background } from '@micromag/element-background';
 import Button, { RichButton } from '@micromag/element-button';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
