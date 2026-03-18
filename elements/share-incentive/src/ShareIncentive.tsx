@@ -22,9 +22,7 @@ function ShareIncentive({ className = null, label = null, boxStyle = null }: Sha
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div

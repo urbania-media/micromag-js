@@ -16,16 +16,12 @@ function IconButton({ iconClassName = null, className = null, ...props }: IconBu
         <Button
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             labelClassName={styles.label}
             iconClassName={classNames([
                 styles.icon,
-                {
-                    [iconClassName]: iconClassName !== null,
-                },
+                iconClassName,
             ])}
             {...props}
         />

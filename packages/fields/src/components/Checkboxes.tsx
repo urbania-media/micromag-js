@@ -37,9 +37,7 @@ function Checkboxes({
                 'btn-group',
                 'btn-group-toggle',
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             data-toggle="buttons"
         >
@@ -55,8 +53,8 @@ function Checkboxes({
                             'btn',
                             'btn-outline-secondary',
                             styles.item,
+                            buttonClassName,
                             {
-                                [buttonClassName]: buttonClassName !== null,
                                 active,
                             },
                         ])}

@@ -446,12 +446,12 @@ function Answers({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.answered]: answered,
                     [styles.withIcon]: !withoutIcon && hasGoodOrBadAnswerInList,
                     [styles.withSquareItems]: withSquareItems === true,
                     [styles.isPlaceholder]: isPlaceholder,
-                    [className]: className !== null,
                 },
             ])}
         >

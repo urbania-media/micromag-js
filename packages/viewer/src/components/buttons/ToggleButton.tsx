@@ -26,9 +26,7 @@ function ToggleButton({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <animated.div
@@ -42,9 +40,7 @@ function ToggleButton({
             <animated.div
                 className={classNames([
                     styles.toggled,
-                    {
-                        [toggledButtonClassName]: toggledButtonClassName !== null,
-                    },
+                    toggledButtonClassName,
                 ])}
                 style={{
                     transform: progressSpring.to((p) => `translateY(${(p - 1) * -100}%)`),

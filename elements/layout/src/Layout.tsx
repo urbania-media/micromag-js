@@ -57,9 +57,9 @@ function Layout({
             <div
                 className={classNames([
                     styles.container,
+                    className,
                     {
                         [styles.fullscreen]: fullscreen,
-                        [className]: className !== null,
                     },
                 ])}
                 style={finalStyle}

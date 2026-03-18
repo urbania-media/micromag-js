@@ -42,10 +42,10 @@ function TextField({
             type={type}
             className={classNames([
                 'form-control',
+                className,
                 {
                     'is-invalid': errors !== null && errors.length > 0,
                     disabled,
-                    [className]: className !== null,
                 },
             ])}
             value={value || ''}

@@ -23,9 +23,7 @@ function MarkerField({
         <div
             className={classNames([
                 styles.panel,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <Fields {...props} value={value} />
@@ -34,9 +32,7 @@ function MarkerField({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {title !== null ? (

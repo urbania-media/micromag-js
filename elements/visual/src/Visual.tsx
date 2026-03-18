@@ -121,7 +121,7 @@ function Visual({
                     resolution={resolution}
                     shouldLoad={finalShouldLoad}
                     onLoaded={onLoaded}
-                    className={classNames([styles.container, { [className]: className !== null }])}
+                    className={classNames([styles.container, className])}
                     imageClassName={imageClassName}
                 />
             ) : null}
@@ -129,7 +129,8 @@ function Visual({
                 <div
                     className={classNames([
                         styles.container,
-                        { [styles.natural]: natural, [className]: className !== null },
+                        className,
+                        { [styles.natural]: natural },
                     ])}
                     style={{ width, height, aspectRatio: ratio !== null ? `${ratio}` : null }}
                     ref={refVisible}
@@ -137,9 +138,7 @@ function Visual({
                     <div
                         className={classNames([
                             styles.videoContainer,
-                            {
-                                [videoClassName]: videoClassName !== null,
-                            },
+                            videoClassName,
                         ])}
                         style={videoContainerStyle}
                     >

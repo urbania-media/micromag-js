@@ -93,8 +93,8 @@ function TextInput({
     const containerProps = {
         className: classNames([
             styles.container,
+            className,
             {
-                [className]: className !== null,
                 [styles.element]: !labelOutside,
             },
         ]),

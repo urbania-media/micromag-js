@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
@@ -48,9 +46,7 @@ function Author({
         <Text
             className={classNames([
                 styles.name,
-                {
-                    [backgroundClassName]: backgroundClassName,
-                },
+                backgroundClassName,
             ])}
             {...name}
         />
@@ -64,9 +60,7 @@ function Author({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             {...otherProps}
         >
@@ -95,9 +89,7 @@ function Author({
                     <div
                         className={classNames([
                             styles.collaborator,
-                            {
-                                [collaboratorClassName]: collaboratorClassName,
-                            },
+                            collaboratorClassName,
                         ])}
                     >
                         {collaboratorText !== null ? collaboratorText : null}

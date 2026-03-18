@@ -146,8 +146,8 @@ function CallToAction({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.disabled]: disabled,
                     [styles.animationDisabled]: animationDisabled,
                     [styles.invalidUrl]: !validUrl,
@@ -169,9 +169,7 @@ function CallToAction({
                 <div
                     className={classNames([
                         styles.arrow,
-                        {
-                            [arrowClassName]: arrowClassName !== null,
-                        },
+                        arrowClassName,
                     ])}
                     style={arrowStyle}
                 >
@@ -181,17 +179,15 @@ function CallToAction({
             <div
                 className={classNames([
                     styles.buttonBorder,
-                    {
-                        [buttonBorderClassName]: buttonBorderClassName !== null,
-                    },
+                    buttonBorderClassName,
                 ])}
             >
                 <Button
                     className={classNames([
                         styles.button,
+                        buttonClassName,
                         {
                             [styles.withoutLinkStyle]: !inWebView,
-                            [buttonClassName]: buttonClassName !== null,
                         },
                     ])}
                     refButton={buttonRef}
@@ -207,9 +203,7 @@ function CallToAction({
                     <span
                         className={classNames([
                             styles.label,
-                            {
-                                [labelClassName]: labelClassName !== null,
-                            },
+                            labelClassName,
                         ])}
                     >
                         {icon !== null ? <div className={styles.icon}>{icon}</div> : null}

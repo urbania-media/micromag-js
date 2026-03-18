@@ -110,9 +110,9 @@ function SliderField({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.withInput]: withInput,
-                    [className]: className !== null,
                 },
             ])}
         >

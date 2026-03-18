@@ -23,9 +23,7 @@ function DropdownButton({ dropdownItems = defaultItems, className = null }: Drop
     return (
         <div
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div

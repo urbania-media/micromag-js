@@ -285,8 +285,8 @@ function UrbaniaArticle({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isCurrent]: current,
                     [styles.isVideo]: isVideo,
                     [styles.hasVideoBackground]: hasVideoBackground,

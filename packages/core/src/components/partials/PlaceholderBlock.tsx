@@ -26,8 +26,8 @@ function PlaceholderBlock({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.outline]: outline,
                     [styles.withInvertedColors]: withInvertedColors,
                 },
@@ -36,9 +36,7 @@ function PlaceholderBlock({
             <div
                 className={classNames([
                     styles.box,
-                    {
-                        [boxClassName]: boxClassName !== null,
-                    },
+                    boxClassName,
                 ])}
                 style={{
                     width,

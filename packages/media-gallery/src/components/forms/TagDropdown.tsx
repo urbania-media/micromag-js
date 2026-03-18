@@ -24,9 +24,7 @@ function TagDropdown({ tags = null, parent = null, onChange = null, className = 
                 styles.container,
                 'd-flex',
                 'mt-1',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <select className={classNames(['form-select', styles.select])}>

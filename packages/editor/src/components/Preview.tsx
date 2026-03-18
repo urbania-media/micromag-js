@@ -119,8 +119,8 @@ function EditorPreview({
             className={classNames([
                 styles.container,
                 screens.map((screenName) => styles[`screen-${screenName}`]),
+                className,
                 {
-                    [className]: className,
                     [styles.withoutDevicesSizes]: withoutDevicesSizes,
                 },
             ])}

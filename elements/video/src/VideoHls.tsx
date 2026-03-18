@@ -335,8 +335,8 @@ function Video({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.withSize]: withSize,
                 },
             ])}
@@ -356,7 +356,7 @@ function Video({
                     tabIndex="-1"
                     className={classNames([
                         styles.media,
-                        { [innerClassName]: innerClassName !== null },
+                        innerClassName,
                     ])}
                 />
             ) : null}
@@ -393,7 +393,7 @@ function Video({
                     tabIndex={focusable ? '0' : '-1'}
                     className={classNames([
                         styles.media,
-                        { [innerClassName]: innerClassName !== null },
+                        innerClassName,
                     ])}
                     onPlay={onPlay}
                     onPlaying={onPlaying}

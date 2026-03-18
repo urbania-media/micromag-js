@@ -84,9 +84,7 @@ function Button({
                     <span
                         className={classNames([
                             styles.icon,
-                            {
-                                [iconClassName]: iconClassName !== null,
-                            },
+                            iconClassName,
                         ])}
                     >
                         {icon}
@@ -95,9 +93,7 @@ function Button({
                         <span
                             className={classNames([
                                 styles.label,
-                                {
-                                    [labelClassName]: labelClassName !== null,
-                                },
+                                labelClassName,
                             ])}
                         >
                             {text}
@@ -110,9 +106,7 @@ function Button({
                     <span
                         className={classNames([
                             styles.left,
-                            {
-                                [iconClassName]: iconClassName !== null && iconPosition === 'left',
-                            },
+                            iconPosition === 'left' ? iconClassName : null,
                         ])}
                     >
                         {iconPosition === 'left' ? icon : null}
@@ -120,9 +114,7 @@ function Button({
                     <span
                         className={classNames([
                             styles.center,
-                            {
-                                [labelClassName]: labelClassName !== null,
-                            },
+                            labelClassName,
                         ])}
                     >
                         {text}
@@ -130,9 +122,7 @@ function Button({
                     <span
                         className={classNames([
                             styles.right,
-                            {
-                                [iconClassName]: iconClassName !== null && iconPosition === 'right',
-                            },
+                            iconPosition === 'right' ? iconClassName : null,
                         ])}
                     >
                         {iconPosition === 'right' ? icon : null}
@@ -169,8 +159,8 @@ function Button({
             [styles.asLink]: asLink,
             [styles.isDisabled]: disabled,
             [styles.isLoading]: loading,
-            [className]: className !== null,
         },
+        className,
     ]);
 
     if (href !== null) {

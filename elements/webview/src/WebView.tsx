@@ -32,10 +32,10 @@ function WebView({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.hidden]: !focusable,
                     [styles.closeable]: closeable,
-                    [className]: className !== null,
                 },
             ])}
             style={{ width, height }}

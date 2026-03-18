@@ -21,9 +21,7 @@ function AlignHorizontal({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div className={classNames(['d-flex', 'align-items-center'])}>
@@ -42,9 +40,7 @@ function AlignHorizontal({
                     value={value !== null ? value : null}
                     className={classNames([
                         styles.container,
-                        {
-                            [className]: className !== null,
-                        },
+                        className,
                     ])}
                     buttonClassName={styles.button}
                     onChange={onChange}

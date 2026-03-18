@@ -23,10 +23,10 @@ function Empty({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.withoutBorder]: withoutBorder,
                     [styles.light]: light,
-                    [className]: className,
                 },
             ])}
         >

@@ -74,9 +74,7 @@ function Button({
         <CoreButton
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             disabled={disabled}
             style={finalStyles}

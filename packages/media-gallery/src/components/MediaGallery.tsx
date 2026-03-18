@@ -144,9 +144,7 @@ function MediaGallery({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             {isPicker ? (

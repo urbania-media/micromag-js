@@ -94,11 +94,11 @@ function Text({
         id,
         className: classNames([
             styles.container,
+            className,
             {
                 [styles.withLineClamp]: lineClamp !== null,
                 [styles.showEmpty]: showEmpty,
                 [emptyClassName]: showEmpty && emptyClassName !== null,
-                [className]: className !== null,
             },
         ]),
         style: finalStyle,

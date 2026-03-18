@@ -49,9 +49,7 @@ function Link({
             id={id}
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={finalStyle}
             href={url}
@@ -66,9 +64,7 @@ function Link({
             id={id}
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={finalStyle}
         >

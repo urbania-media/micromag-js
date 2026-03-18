@@ -18,9 +18,7 @@ function NavigationButton({ direction = 'next', onClick = null, className = null
             className={classNames([
                 styles.container,
                 styles[direction],
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             onClick={(e) => {
                 e.stopPropagation();

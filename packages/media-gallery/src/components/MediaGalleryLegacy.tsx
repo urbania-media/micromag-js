@@ -193,9 +193,9 @@ function MediaGallery({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.metadataOpened]: metadataMedia !== null,
-                    [className]: className,
                 },
             ])}
         >

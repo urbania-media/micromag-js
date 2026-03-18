@@ -20,9 +20,9 @@ function Header({ badge = null, fade = false, className = null }: HeaderProps) {
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.fade]: fade === true,
-                    [className]: className !== null,
                 },
             ])}
         >

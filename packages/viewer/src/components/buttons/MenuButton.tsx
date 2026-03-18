@@ -17,9 +17,7 @@ function MenuButton({ className = null, iconClassName = null, ...props }: MenuBu
     return (
         <IconButton
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             label={intl.formatMessage({
                 defaultMessage: 'Menu',

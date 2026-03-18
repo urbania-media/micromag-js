@@ -13,7 +13,7 @@ export function Video360({ width, height, className }) {
         <PlaceholderBlock
             width={width}
             height={height}
-            className={classNames([styles.container, { [className]: className !== null }])}
+            className={classNames([styles.container, className])}
             boxClassName={styles.box}
         >
             <FontAwesomeIcon icon={faVideo} className={styles.icon} />

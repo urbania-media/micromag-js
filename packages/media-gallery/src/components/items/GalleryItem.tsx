@@ -108,10 +108,10 @@ function GalleryItem({
             theme={selected ? null : null}
             className={classNames([
                 styles.container,
+                className,
                 {
                     // 'border-primary': selected,
                     [styles.selected]: selected,
-                    [className]: className !== null,
                 },
             ])}
             footerClassName={classNames(['p-1', styles.footer])}

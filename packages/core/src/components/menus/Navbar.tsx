@@ -53,12 +53,12 @@ function Navbar({
                     [`bg-${theme}`]: theme !== null,
                     [`navbar-${theme === 'light' ? 'light' : 'dark'}`]: theme !== null,
                     [`text-${theme === 'light' ? 'dark' : 'light'}`]: theme !== null,
+                    className,
                     [`navbar-expand-${size}`]: !withoutCollapse,
                     'navbar-expand': withoutCollapse,
                     'py-2': compact,
                     'px-2': compact,
                     'flex-nowrap': noWrap,
-                    [className]: className !== null,
                 },
             ])}
         >
@@ -74,9 +74,9 @@ function Navbar({
                     <Link
                         className={classNames([
                             'navbar-brand',
+                            brandClassName,
                             {
                                 'py-0': compact,
-                                [brandClassName]: brandClassName !== null,
                             },
                         ])}
                         href={brandLink}
@@ -88,9 +88,9 @@ function Navbar({
                     <span
                         className={classNames([
                             'navbar-brand',
+                            brandClassName,
                             {
                                 'py-0': compact,
-                                [brandClassName]: brandClassName !== null,
                             },
                         ])}
                     >
@@ -101,9 +101,9 @@ function Navbar({
                     <span
                         className={classNames([
                             'navbar-breadcrumbs',
+                            breadCrumbsClassName,
                             {
                                 'py-0': compact,
-                                [breadCrumbsClassName]: breadCrumbsClassName !== null,
                             },
                         ])}
                     >
@@ -128,8 +128,8 @@ function Navbar({
                             'navbar-collapse',
                             'collapse',
                             styles.collapse,
+                            collapseClassName,
                             {
-                                [collapseClassName]: collapseClassName !== null,
                                 show: menuVisible,
                             },
                         ])}

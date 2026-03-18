@@ -175,8 +175,9 @@ function PlaybackControls({
         <div
             className={classNames([
                 styles.container,
+                className,
+                isCollapsed ? collapsedClassName : null,
                 {
-                    [className]: className !== null,
                     [styles.withPlayPause]: controls && !seekBarOnly,
                     [styles.withSuggestPlay]: controlsSuggestPlay,
                     [styles.withMute]: hasMedia || controls,
@@ -185,7 +186,6 @@ function PlaybackControls({
                     [styles.isCollapsed]: isCollapsed,
                     [styles.withoutShadow]: withoutShadow,
                     [styles.isMuted]: muted,
-                    [collapsedClassName]: collapsedClassName !== null && isCollapsed,
                 },
             ])}
         >

@@ -104,9 +104,7 @@ function Alignment({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {Object.keys(alignment).map((axis) => (
@@ -139,9 +137,7 @@ function Alignment({
                         value={value !== null ? value[axis] : null}
                         className={classNames([
                             styles.container,
-                            {
-                                [className]: className !== null,
-                            },
+                            className,
                         ])}
                         buttonClassName={styles.button}
                         onChange={

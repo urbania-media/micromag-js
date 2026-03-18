@@ -47,8 +47,8 @@ function Badge({ value = null, className = null, onChange = null, ...props }: Ba
         <Fields
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.active]: active,
                 },
             ])}

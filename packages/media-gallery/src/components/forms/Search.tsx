@@ -60,9 +60,7 @@ function Search({
                 'border',
                 'border-dark',
                 'rounded',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             onSubmit={(e) => e.preventDefault()}
         >

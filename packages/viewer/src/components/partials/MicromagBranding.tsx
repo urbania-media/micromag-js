@@ -13,7 +13,7 @@ interface MicromagBrandingProps {
 
 function MicromagBranding({ className = null }: MicromagBrandingProps) {
     return (
-        <div className={classNames([styles.container, { [className]: className }])}>
+        <div className={classNames([styles.container, className])}>
             <a
                 href="https://micromag.media"
                 target="_blank"

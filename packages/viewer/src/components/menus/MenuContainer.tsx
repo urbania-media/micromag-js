@@ -28,9 +28,7 @@ function ViewerMenuContainer({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={{ pointerEvents: 'none' }}
         >

@@ -28,9 +28,7 @@ function InputGroup({
                     [`input-group-${size}`]: size !== null,
                 },
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {isString(prepend) ? <div className="input-group-text">{prepend}</div> : prepend}

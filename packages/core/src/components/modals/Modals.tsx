@@ -21,9 +21,7 @@ function ModalsContainer({ modals, setModalsContainer, className = null }: Modal
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             <div

@@ -24,9 +24,7 @@ function TagSection({ tags = null, parent = null, onChange = null, className = n
                 styles.container,
                 'd-flex',
                 'mt-1',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {tags !== null

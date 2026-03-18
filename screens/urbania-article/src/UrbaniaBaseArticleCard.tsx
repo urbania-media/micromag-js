@@ -240,8 +240,8 @@ function UrbaniaArticleCard({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isCurrent]: current,
                     [styles.isPlaceholder]: isPlaceholder,
                 },

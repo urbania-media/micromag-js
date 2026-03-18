@@ -25,16 +25,14 @@ function AnswerField({
         <div
             className={classNames([
                 styles.panel,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <Fields
                 className={classNames([
+                    className,
                     {
                         'p-2': isForm,
-                        className: className !== null,
                     },
                 ])}
                 {...props}
@@ -46,9 +44,7 @@ function AnswerField({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {text !== null ? (

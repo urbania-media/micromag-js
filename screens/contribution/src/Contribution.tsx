@@ -528,8 +528,8 @@ function ContributionScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.submitting]: submitState === 1,
                     [styles.submitted]: submitState > 1,

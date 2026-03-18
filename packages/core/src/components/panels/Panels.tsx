@@ -27,9 +27,7 @@ function PanelsContainer({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             <div

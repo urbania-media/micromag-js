@@ -564,8 +564,8 @@ function SurveyScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.answered]: answered,
                     [styles.inputFocused]: inputFocused,
                     [styles.withPercentage]: !withoutPercentage,

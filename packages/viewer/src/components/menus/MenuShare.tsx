@@ -85,9 +85,7 @@ function ViewerMenuShare({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={{ ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}

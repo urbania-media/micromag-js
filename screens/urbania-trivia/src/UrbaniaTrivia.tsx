@@ -306,8 +306,8 @@ function UrbaniaTrivia({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
@@ -459,8 +459,8 @@ function UrbaniaTrivia({
                     background={finalBackground}
                     className={classNames([
                         styles.background,
+                        className,
                         {
-                            [className]: className !== null,
                             [styles.isCustomBackground]: isCustomBackground,
                             [styles.isAnimated]: isAnimatedBackground,
                         },

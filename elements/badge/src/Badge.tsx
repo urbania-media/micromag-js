@@ -34,18 +34,14 @@ function Badge({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={boxStyles}
         >
             <span
                 className={classNames([
                     styles.label,
-                    {
-                        [labelClassName]: labelClassName !== null,
-                    },
+                    labelClassName,
                 ])}
             >
                 <Text {...label} textStyle={{ ...textStyle, lineHeight: lineHeight || 1 }} inline />

@@ -853,6 +853,7 @@ function Viewer({
                         className={classNames([
                             styles.container,
                             screenSize.screens.map((screenName) => `story-screen-${screenName}`),
+                            className,
                             {
                                 [styles.landscape]: landscape,
                                 [styles.withoutGestures]: withoutGestures,
@@ -863,7 +864,6 @@ function Viewer({
                                 [styles.ready]: ready || withoutScreensTransforms,
                                 [styles.hasInteracted]: hasInteracted,
                                 [styles.isDragging]: isDragging,
-                                [className]: className,
                             },
                         ])}
                         ref={containerRef}

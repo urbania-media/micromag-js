@@ -164,9 +164,9 @@ function TextEditorField({
             id={id}
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles[`size-${size}`]]: size !== null,
-                    [className]: className !== null,
                 },
             ])}
         >

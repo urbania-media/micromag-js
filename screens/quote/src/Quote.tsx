@@ -88,8 +88,8 @@ function QuoteScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

@@ -16,9 +16,7 @@ function CloseButton({ className = null, ...props }: CloseButtonProps) {
     return (
         <IconButton
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             label={intl.formatMessage({
                 defaultMessage: 'Close',

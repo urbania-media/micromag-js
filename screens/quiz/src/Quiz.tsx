@@ -230,9 +230,9 @@ function QuizScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.disabled]: clickDisabled,
-                    [className]: className !== null,
                 },
             ])}
             data-screen-ready

@@ -58,8 +58,8 @@ function CallToAction({
         <Fields
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.active]: active,
                 },
             ])}

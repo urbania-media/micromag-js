@@ -74,10 +74,10 @@ function Quote({
                 id={id}
                 className={classNames([
                     styles.container,
+                    className,
                     {
                         [styles.showEmpty]: showEmpty,
                         [emptyClassName]: showEmpty && emptyClassName !== null,
-                        [className]: className !== null,
                     },
                 ])}
                 style={finalStyle}

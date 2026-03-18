@@ -21,9 +21,9 @@ function Spinner({
         <svg
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.animated]: animated,
-                    [className]: className !== null,
                 },
             ])}
             width="40"

@@ -21,9 +21,7 @@ function DeviceButton({ device, className = null, iconComponents = DeviceIcons, 
         <Button
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             {...props}
         >

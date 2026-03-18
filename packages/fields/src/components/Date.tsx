@@ -31,7 +31,7 @@ function DateField({
     );
 
     return (
-        <div className={classNames([styles.container, { [className]: className !== null }])}>
+        <div className={classNames([styles.container, className])}>
             <input
                 type={withTime ? 'datetime-local' : 'date'}
                 className={classNames([styles.input, 'form-control', 'ms-auto'])}

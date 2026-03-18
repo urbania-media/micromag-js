@@ -42,9 +42,7 @@ function Radios({
                 'btn-group',
                 'btn-group-toggle',
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             data-toggle="buttons"
         >
@@ -55,10 +53,10 @@ function Radios({
                         'btn',
                         styles.item,
                         withBackground ? 'btn-secondary' : 'btn-outline-secondary',
+                        buttonClassName,
+                        optionValue === value ? activeClassName : null,
                         {
                             active: optionValue === value,
-                            [activeClassName]: activeClassName !== null && optionValue === value,
-                            [buttonClassName]: buttonClassName !== null,
                         },
                     ])}
                 >

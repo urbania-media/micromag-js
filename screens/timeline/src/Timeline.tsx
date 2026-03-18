@@ -594,8 +594,8 @@ function Timeline({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
                     [styles.withoutLines]: itemsCount < 2,

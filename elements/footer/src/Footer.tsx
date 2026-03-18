@@ -19,9 +19,7 @@ function Footer({ callToAction = null, className = null }: FooterProps) {
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <CallToAction {...callToAction} />

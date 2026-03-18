@@ -50,9 +50,7 @@ function Grid({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={{
                 width,
@@ -78,9 +76,7 @@ function Grid({
                             key={`cross-${crossIndex}`}
                             className={classNames([
                                 styles.cross,
-                                {
-                                    [crossClassName]: crossClassName !== null,
-                                },
+                                crossClassName,
                             ])}
                             style={{
                                 flexDirection: vertical ? 'column' : 'row',
@@ -98,9 +94,7 @@ function Grid({
                                         key={`axis-${axisIndex}`}
                                         className={classNames([
                                             styles.axis,
-                                            {
-                                                [axisClassName]: axisClassName !== null,
-                                            },
+                                            axisClassName,
                                         ])}
                                         style={{
                                             width: vertical ? null : axisSize,

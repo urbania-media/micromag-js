@@ -47,9 +47,7 @@ function Gallery({
                 styles.container,
                 'p-2',
                 'pt-0',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             ref={ref}
         >

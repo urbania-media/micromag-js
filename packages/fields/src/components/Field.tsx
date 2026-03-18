@@ -109,10 +109,12 @@ function Field({
                 isHorizontal={finalIsHorizontal && !isFields}
                 isList={isList}
                 canClear={canClear}
-                labelClassName={classNames({
-                    'col-sm-3': isHorizontal && isFields,
-                    [labelClassName]: labelClassName !== null,
-                })}
+                labelClassName={classNames([
+                    labelClassName,
+                    {
+                        'col-sm-3': isHorizontal && isFields,
+                    },
+                ])}
                 className={fieldClassName}
                 {...props}
                 {...fieldProps}

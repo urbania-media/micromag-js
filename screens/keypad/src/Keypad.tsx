@@ -517,8 +517,8 @@ function KeypadScreen({
             ref={containerRef}
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.withSquareItems]: withSquareItems,
                 },

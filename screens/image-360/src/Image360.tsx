@@ -318,8 +318,8 @@ function Image360Screen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.showVideo]: isPreview || isStatic || isCapture,
                 },
             ])}

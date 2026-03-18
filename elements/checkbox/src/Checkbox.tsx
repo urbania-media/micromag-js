@@ -28,9 +28,7 @@ function Checkbox({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={{ ...checkboxStyle }}
         >

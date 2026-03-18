@@ -74,7 +74,7 @@
         "@micromag/fields": "^0.4.38",
         "@micromag/screens": "^0.4.38",
         "@micromag/viewer": "^0.4.38",
-        "@panneau/uppy": "^4.0.21",
+        "@panneau/uppy": "^4.0.27",
         "classnames": "^2.2.6",
         "lodash": "^4.17.23",
         "react-intl": "^8.1.3 || ^10.0.0",

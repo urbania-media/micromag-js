@@ -30,17 +30,13 @@ function Keypad({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div
                 className={classNames([
                     styles.inner,
-                    {
-                        [innerClassName]: innerClassName !== null,
-                    },
+                    innerClassName,
                 ])}
                 style={{
                     ...getStyleFromAlignment({ horizontal: align }),
@@ -54,9 +50,7 @@ function Keypad({
                                   key={key}
                                   className={classNames([
                                       styles.item,
-                                      {
-                                          [itemClassName]: itemClassName !== null,
-                                      },
+                                      itemClassName,
                                   ])}
                                   style={{
                                       width: itemWidth,

@@ -34,28 +34,24 @@ function CollapsablePanel({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.isOpened]: opened,
                     [openedClassName]: opened && openedClassName !== null,
-                    [className]: className !== null,
                 },
             ])}
         >
             <div
                 className={classNames([
                     styles.top,
-                    {
-                        [topClassName]: topClassName !== null,
-                    },
+                    topClassName,
                 ])}
             >
                 <Button
                     withoutStyle
                     className={classNames([
                         styles.button,
-                        {
-                            [buttonClassName]: buttonClassName !== null,
-                        },
+                        buttonClassName,
                     ])}
                     icon={
                         <FontAwesomeIcon
@@ -73,9 +69,7 @@ function CollapsablePanel({
             <div
                 className={classNames([
                     styles.content,
-                    {
-                        [contentClassName]: contentClassName !== null,
-                    },
+                    contentClassName,
                 ])}
             >
                 {children}

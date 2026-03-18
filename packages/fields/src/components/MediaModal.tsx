@@ -230,9 +230,7 @@ function MediaModal({
                         title={dialogTitle}
                         className={classNames([
                             styles.dialog,
-                            {
-                                [className]: className,
-                            },
+                            className,
                         ])}
                         bodyClassName={styles.dialogBody}
                         size="xl"

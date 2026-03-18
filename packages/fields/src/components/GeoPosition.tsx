@@ -152,9 +152,7 @@ function GeoPosition({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div className={classNames([styles.autoComplete, 'input-group'])}>

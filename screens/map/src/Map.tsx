@@ -325,8 +325,8 @@ function MapScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles[`${layout}Layout`]]: layout !== null,
                     [styles.opened]: opened || (isPreview && screenState !== 'intro'),
                     [styles.hasSelectedMarker]: hasSelectedMarker,

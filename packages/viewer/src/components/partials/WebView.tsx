@@ -117,7 +117,8 @@ function WebViewContainer({ onChange = null, trackingEnabled = false, className 
         <div
             className={classNames([
                 styles.container,
-                { [styles.opened]: opened, [className]: className !== null },
+                className,
+                { [styles.opened]: opened },
             ])}
             style={style}
             onTransitionEnd={onTransitionEnd}

@@ -15,8 +15,8 @@ export function Answer({ width = '75%', height = '0.3em', className, good = true
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.good]: good,
                 },
             ])}

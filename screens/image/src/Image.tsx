@@ -259,8 +259,8 @@ function ImageScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isReversed]: isReversed,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.isCard]: isCard,

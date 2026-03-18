@@ -32,12 +32,12 @@ function PillButton({
         <Button
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.active]: active,
                     [styles.dark]: dark,
                     [styles.invert]: invert,
                     [styles.disabled]: disabled,
-                    [className]: className !== null,
                 },
             ])}
             {...props}

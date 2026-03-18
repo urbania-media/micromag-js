@@ -197,9 +197,7 @@ function MediaMetadata({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             <div

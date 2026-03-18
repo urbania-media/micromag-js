@@ -60,9 +60,7 @@ function UrbaniaAuthor({
         <Text
             className={classNames([
                 styles.name,
-                {
-                    [backgroundClassName]: backgroundClassName,
-                },
+                backgroundClassName,
             ])}
             {...name}
         />
@@ -76,12 +74,12 @@ function UrbaniaAuthor({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.isSmall]: isSmall,
                     [styles.withoutAvatar]: withAvatar,
                     [styles.withoutImage]: !withImage || image === null,
                     [styles.withoutBackground]: withoutBackground,
-                    [className]: className !== null,
                 },
             ])}
             {...otherProps}
@@ -91,9 +89,7 @@ function UrbaniaAuthor({
                     {...name}
                     className={classNames([
                         styles.prefix,
-                        {
-                            [backgroundClassName]: backgroundClassName,
-                        },
+                        backgroundClassName,
                     ])}
                     body={`<span>${prefix}<span>`}
                 />
@@ -123,9 +119,7 @@ function UrbaniaAuthor({
                     <div
                         className={classNames([
                             styles.collaborator,
-                            {
-                                [collaboratorClassName]: collaboratorClassName,
-                            },
+                            collaboratorClassName,
                         ])}
                     >
                         {collaboratorText !== null ? collaboratorText : null}

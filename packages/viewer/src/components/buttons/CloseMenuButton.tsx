@@ -15,9 +15,7 @@ function CloseMenuButton({ single = false, className = null, ...props }: CloseMe
     return (
         <IconButton
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             label={intl.formatMessage({
                 defaultMessage: 'Close',

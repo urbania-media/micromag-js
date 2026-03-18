@@ -31,9 +31,7 @@ function TabsMenu({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             <Buttons
@@ -45,9 +43,7 @@ function TabsMenu({
                 className={styles.buttons}
                 buttonClassName={classNames([
                     styles.button,
-                    {
-                        [buttonClassName]: buttonClassName !== null,
-                    },
+                    buttonClassName,
                 ])}
             />
         </div>

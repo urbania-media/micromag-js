@@ -31,12 +31,12 @@ function SelectField({
             className={classNames([
                 styles.container,
                 'form-select',
+                className,
                 {
                     [styles.lightCaret]: !disabled,
                     'bg-dark': !disabled,
                     'text-light': !disabled,
                     'text-dark': disabled,
-                    [className]: className !== null,
                 },
             ])}
             value={value || ''}

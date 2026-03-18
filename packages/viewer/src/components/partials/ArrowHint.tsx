@@ -15,7 +15,8 @@ function ArrowHint({ withoutShadow = false, className = null }: ArrowHintProps) 
         <div
             className={classNames([
                 styles.container,
-                { [styles.withoutShadow]: withoutShadow, [className]: className !== null },
+                className,
+                { [styles.withoutShadow]: withoutShadow },
             ])}
         >
             <div className={styles.inner}>

@@ -48,9 +48,7 @@ function Stack({
             <div
                 className={classNames([
                     styles.container,
-                    {
-                        [className]: className !== null,
-                    },
+                    className,
                 ])}
                 style={{
                     flexDirection,

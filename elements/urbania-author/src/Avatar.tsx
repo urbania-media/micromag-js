@@ -41,9 +41,9 @@ function Avatar({
             className={classNames([
                 styles.container,
                 {
+                    className,
                     [styles[`shape${finalShape}`]]: finalShape !== null,
                     [styles.isTag]: isTag,
-                    [className]: className !== null,
                 },
             ])}
         >

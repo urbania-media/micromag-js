@@ -230,8 +230,8 @@ function RankingScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles[`${layout}Layout`]]: layout !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                 },

@@ -219,9 +219,7 @@ function Navbar({
             className={classNames([
                 styles.container,
                 'navbar',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div className={classNames([styles.inner])}>

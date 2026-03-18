@@ -35,7 +35,7 @@ function SignCard({ className = null, sign = null, focusable = true, onClick = n
             isEmpty={!id}
         >
             <button
-                className={classNames([styles.container, { [className]: className !== null }])}
+                className={classNames([styles.container, className])}
                 type="button"
                 tabIndex={focusable ? '0' : -1}
                 onClick={onClick}

@@ -24,9 +24,7 @@ function DevicesMenu({ items = emptyArray, className = null, onClickItem = null 
             theme="outline-secondary"
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             renderItemButton={(item, index, props) => {
                 const { id, ...itemProps } = item;

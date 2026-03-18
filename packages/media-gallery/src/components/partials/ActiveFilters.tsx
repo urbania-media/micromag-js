@@ -60,9 +60,7 @@ function ActiveFilters({
             className={classNames([
                 'w-100',
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             {hasValue ? (

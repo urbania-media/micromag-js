@@ -76,9 +76,7 @@ function SearchFilters({
                 styles.container,
                 'flex-nowrap',
                 'mt-1',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {activeSections.length > 0 ? (

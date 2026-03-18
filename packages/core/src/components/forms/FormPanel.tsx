@@ -25,9 +25,7 @@ function FormPanel({
         <Card
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             {...props}
         >

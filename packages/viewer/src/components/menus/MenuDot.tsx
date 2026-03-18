@@ -54,10 +54,10 @@ function ViewerMenuDot({
             type="button"
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.active]: current,
                     [styles.vertical]: vertical,
-                    [className]: className !== null,
                 },
             ])}
             onClick={(e = null) => {

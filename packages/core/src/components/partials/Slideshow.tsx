@@ -49,9 +49,7 @@ function Slideshow({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
             style={style}
         >

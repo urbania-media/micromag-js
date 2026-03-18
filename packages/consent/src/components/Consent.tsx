@@ -31,9 +31,7 @@ function Consent({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             {onClose !== null && withClose ? (

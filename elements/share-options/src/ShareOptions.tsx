@@ -107,7 +107,7 @@ function ShareOptions({
 
     const shareButtonProps = useMemo(
         () => ({
-            className: classNames([styles.button, { [buttonClassName]: buttonClassName !== null }]),
+            className: classNames([styles.button, buttonClassName]),
             url,
             onShareWindowClose: () => {
                 if (onClose !== null) {
@@ -148,7 +148,7 @@ function ShareOptions({
                     <div
                         className={classNames([
                             styles.label,
-                            { [labelClassName]: labelClassName !== null },
+                            labelClassName,
                         ])}
                     >
                         Facebook
@@ -174,7 +174,7 @@ function ShareOptions({
                     <div
                         className={classNames([
                             styles.label,
-                            { [labelClassName]: labelClassName !== null },
+                            labelClassName,
                         ])}
                     >
                         X (Twitter)
@@ -200,7 +200,7 @@ function ShareOptions({
                     <div
                         className={classNames([
                             styles.label,
-                            { [labelClassName]: labelClassName !== null },
+                            labelClassName,
                         ])}
                     >
                         LinkedIn
@@ -226,7 +226,7 @@ function ShareOptions({
                     <div
                         className={classNames([
                             styles.label,
-                            { [labelClassName]: labelClassName !== null },
+                            labelClassName,
                         ])}
                     >
                         Whatsapp
@@ -253,7 +253,7 @@ function ShareOptions({
         //             <div
         //                 className={classNames([
         //                     styles.label,
-        //                     { [labelClassName]: labelClassName !== null },
+        //                     labelClassName,
         //                 ])}
         //             >
         //                 Facebook Messenger
@@ -278,7 +278,7 @@ function ShareOptions({
                     <div
                         className={classNames([
                             styles.label,
-                            { [labelClassName]: labelClassName !== null },
+                            labelClassName,
                         ])}
                     >
                         <FormattedMessage defaultMessage="Email" description="Share option label" />
@@ -293,7 +293,7 @@ function ShareOptions({
                 <Button
                     className={classNames([
                         styles.button,
-                        { [buttonClassName]: buttonClassName !== null },
+                        buttonClassName,
                     ])}
                     href={`sms:?&body=${url}`}
                     focusable={focusable}
@@ -305,7 +305,7 @@ function ShareOptions({
                     <div
                         className={classNames([
                             styles.label,
-                            { [labelClassName]: labelClassName !== null },
+                            labelClassName,
                         ])}
                     >
                         <span className={styles.labelText}>
@@ -328,14 +328,14 @@ function ShareOptions({
             : shareOptions;
 
     return (
-        <div className={classNames([styles.container, { [className]: className !== null }])}>
+        <div className={classNames([styles.container, className])}>
             <div className={styles.options}>
                 {hasShareLink ? (
                     <div
                         className={classNames([
                             styles.item,
+                            itemClassName,
                             {
-                                [itemClassName]: itemClassName !== null,
                                 [styles.isLinkCopied]: linkCopied,
                             },
                         ])}
@@ -343,7 +343,7 @@ function ShareOptions({
                         <Button
                             className={classNames([
                                 styles.button,
-                                { [buttonClassName]: buttonClassName !== null },
+                                buttonClassName,
                             ])}
                             onClick={onClickCopy}
                             focusable={focusable}
@@ -354,7 +354,7 @@ function ShareOptions({
                             <div
                                 className={classNames([
                                     styles.label,
-                                    { [labelClassName]: labelClassName !== null },
+                                    labelClassName,
                                 ])}
                             >
                                 <span className={styles.labelText}>
@@ -381,7 +381,7 @@ function ShareOptions({
                         key={id}
                         className={classNames([
                             styles.item,
-                            { [itemClassName]: itemClassName !== null },
+                            itemClassName,
                         ])}
                     >
                         {button}

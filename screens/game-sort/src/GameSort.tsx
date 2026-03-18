@@ -333,8 +333,8 @@ function GameSort({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.sorted]: initialSorted || !isView,
                     [styles.draggable]: dragEnabled,
                     [styles.resultsVisible]: resultsVisible,

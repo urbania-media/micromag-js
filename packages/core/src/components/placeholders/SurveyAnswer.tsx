@@ -14,9 +14,7 @@ export function Answer({ width = '75%', height = '0.3em', className }) {
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <PlaceholderBlock outline width={width} height={height} className={styles.block}>

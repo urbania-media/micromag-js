@@ -41,9 +41,7 @@ function DropdownSection({ value = null, items = null, onChange = null, classNam
             className={classNames([
                 styles.container,
                 'dropdown',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <span className={styles.label}>

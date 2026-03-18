@@ -40,9 +40,7 @@ function Conversation({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <FieldContextProvider context={{ options: speakerOptions }}>

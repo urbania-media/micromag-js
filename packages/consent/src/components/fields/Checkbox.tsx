@@ -30,9 +30,9 @@ function CheckboxField({ name = null, label = null, value = null, disabled = fal
             htmlFor={name}
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.disabled]: disabled,
-                    [className]: className !== null,
                 },
             ])}
         >

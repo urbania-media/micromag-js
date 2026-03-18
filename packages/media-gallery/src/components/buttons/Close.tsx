@@ -17,9 +17,7 @@ function CloseButton({ className = null, ...props }: CloseButtonProps) {
         <Button
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             withoutStyle
             icon={<FontAwesomeIcon icon={faTimes} className={styles.icon} />}

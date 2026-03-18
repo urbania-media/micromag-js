@@ -20,16 +20,14 @@ function SlideField({ value = null, isForm = false, className = null, ...props }
         <div
             className={classNames([
                 styles.panel,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <Fields
                 className={classNames([
+                    className,
                     {
                         'p-2': isForm,
-                        className: className !== null,
                     },
                 ])}
                 {...props}
@@ -40,9 +38,7 @@ function SlideField({ value = null, isForm = false, className = null, ...props }
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {text !== null ? (

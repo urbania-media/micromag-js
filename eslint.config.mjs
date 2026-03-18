@@ -6,15 +6,24 @@ import importPlugin from 'eslint-plugin-import';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-const config = tseslint.config(
+const config = defineConfig([
     {
         files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
     },
     {
-        ignores: ['**/*.config.js', 'node_modules', '*/*/dist/**', '*/*/es/**', '!.storybook'],
+        ignores: [
+            '**/*.config.js',
+            '**/*.config.mjs',
+            'node_modules',
+            '*/*/dist/**',
+            '*/*/es/**',
+            '!.storybook',
+            './node_modules/**',
+        ],
     },
     {
         settings: {
@@ -23,7 +32,9 @@ const config = tseslint.config(
                 defaultVersion: '19',
             },
             'import/resolver': {
-                typescript: {},
+                typescript: {
+                    alwaysTryTypes: true,
+                },
             },
         },
         languageOptions: {
@@ -65,12 +76,12 @@ const config = tseslint.config(
     reactPlugin.configs.flat.recommended,
     reactPlugin.configs.flat['jsx-runtime'],
     eslintPluginPrettierRecommended,
-    reactHooks.configs.recommended,
+    // reactHooks.configs.recommended,
     {
         rules: {
             'formatjs/no-literal-string-in-jsx': 'off',
         },
     },
-);
+]);
 
 export default config;

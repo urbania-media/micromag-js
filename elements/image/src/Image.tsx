@@ -187,9 +187,7 @@ function Image({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={finalContainerStyle}
             ref={containerRef}
@@ -200,9 +198,7 @@ function Image({
                     alt={alt || description}
                     className={classNames([
                         styles.img,
-                        {
-                            [imageClassName]: imageClassName !== null,
-                        },
+                        imageClassName,
                     ])}
                     style={finalImageStyle}
                     onLoad={onImageLoaded}

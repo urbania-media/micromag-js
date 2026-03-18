@@ -68,9 +68,7 @@ function Position({
                 'btn-group',
                 'btn-group-toggle',
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             data-toggle="buttons"
         >
@@ -81,10 +79,10 @@ function Position({
                         className={classNames([
                             'btn',
                             'btn-outline-secondary',
+                            buttonClassName,
                             {
                                 [styles.button]: true,
                                 active: axisOption === axisAlign && crossOption === crossAlign,
-                                [buttonClassName]: buttonClassName !== null,
                             },
                         ])}
                     >

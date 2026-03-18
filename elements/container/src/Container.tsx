@@ -37,9 +37,7 @@ function Container({
             ref={containerRef}
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={containerStyle}
         >

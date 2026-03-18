@@ -27,9 +27,9 @@ function TextareaField({
             id={id}
             className={classNames([
                 'form-control',
+                className,
                 {
                     'is-invalid': errors !== null && errors.length > 0,
-                    [className]: className !== null,
                 },
             ])}
             value={value || ''}

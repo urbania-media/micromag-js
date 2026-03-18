@@ -126,8 +126,8 @@ function SeekBar({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.withSeekHead]: withSeekHead,
                     [styles.showTimestamp]: showTimestamp,
                 },

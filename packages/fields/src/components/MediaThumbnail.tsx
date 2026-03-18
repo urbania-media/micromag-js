@@ -52,9 +52,7 @@ function MediaThumbnail({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <Image {...props} isForm value={isObject(value) ? value : null} onChange={onChange} closeForm={null} />
@@ -63,9 +61,7 @@ function MediaThumbnail({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {options !== null ? (

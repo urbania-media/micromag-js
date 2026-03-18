@@ -18,9 +18,9 @@ function Spacer({ size = null, minSize = null, maxSize = null, className = null 
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.hasSize]: size !== null,
-                    [className]: className !== null,
                 },
             ])}
             style={{

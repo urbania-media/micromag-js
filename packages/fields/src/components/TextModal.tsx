@@ -146,9 +146,7 @@ function TextModal({
                         }
                         className={classNames([
                             styles.dialog,
-                            {
-                                [className]: className,
-                            },
+                            className,
                         ])}
                         bodyClassName={styles.dialogBody}
                         onClose={onClose}

@@ -1,6 +1,4 @@
-/* eslint-disable react/no-array-index-key */
-
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading, react/no-array-index-key */
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 
@@ -15,7 +13,7 @@ interface BackgroundLayersProps {
     width?: number | null;
     height?: number | null;
     resolution?: number;
-    background?: BackgroundElement | BackgroundElement[];
+    background?: BackgroundElement | BackgroundElement[] | null;
     playing?: boolean;
     muted?: boolean;
     children?: React.ReactNode | null;
@@ -50,7 +48,7 @@ function BackgroundLayers({
     qualityStartLevel = null,
     onQualityLevelChange = null,
 }: BackgroundLayersProps) {
-    const hasSize = width > 0 && height > 0;
+    const hasSize = width !== null && height !== null && width > 0 && height > 0;
 
     const layers = useMemo(() => getLayersFromBackground(background), [background]);
     const maxZIndex = layers.length;
@@ -70,15 +68,7 @@ function BackgroundLayers({
     };
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            style={containerStyle}
-        >
+        <div className={classNames([styles.container, className])} style={containerStyle}>
             <div className={styles.layers}>
                 {layers.map(
                     (
@@ -89,10 +79,10 @@ function BackgroundLayers({
                             key={`background-${index}`}
                             className={classNames([
                                 styles.layer,
+                                layerClassName,
                                 {
                                     [styles.bottom]: verticalAlign === 'bottom',
                                     [styles.right]: horizontalAlign === 'right',
-                                    [layerClassName]: layerClassName !== null,
                                 },
                             ])}
                             style={{
@@ -105,9 +95,7 @@ function BackgroundLayers({
                                 resolution={resolution}
                                 className={classNames([
                                     styles.background,
-                                    {
-                                        [backgroundClassName]: backgroundClassName !== null,
-                                    },
+                                    backgroundClassName,
                                 ])}
                                 playing={playing}
                                 muted={muted}

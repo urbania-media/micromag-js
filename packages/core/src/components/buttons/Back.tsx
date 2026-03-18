@@ -15,9 +15,7 @@ function BackButton({ className = null, ...props }: BackButtonProps) {
         <Button
             className={classNames([
                 'px-2',
-                {
-                    [className]: className,
-                },
+                className,
             ])}
             size="sm"
             icon={<FontAwesomeIcon icon={faAngleLeft} size="lg" />}

@@ -15,9 +15,7 @@ function ShareButton({ className = null, ...props }: ShareButtonProps) {
     return (
         <IconButton
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             label={intl.formatMessage({
                 defaultMessage: 'Share',
