@@ -57,7 +57,7 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
 
     // Register media with context when active and no media is registered
     useEffect(() => {
-        console.log('try to register media');
+        console.log('try to register media', active, mediaRef.current, media);
         if (!active || mediaRef.current === null || media !== null) {
             return;
         }
@@ -65,6 +65,8 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
         setIsBackground(background);
         setMedia(mediaRef.current);
     }, [active, background, media, updateKey, setMedia, setIsBackground]);
+
+    console.log('usePlaybackMediaRef', mediaRef.current, media);
 
     return { ref: mediaRef, isCurrent: mediaRef.current === media };
 };

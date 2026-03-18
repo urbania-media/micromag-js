@@ -2,6 +2,7 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
+import isArray from 'lodash/isArray';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -309,7 +310,8 @@ function QuizMultipleScreen({
         if (!isResults || !isView) {
             return;
         }
-        submitQuiz({ choice: userAnswers, value: currentPoints });
+        const finalUserAnswers = isArray(userAnswers) ? JSON.stringify(userAnswers) : userAnswers;
+        submitQuiz({ choice: finalUserAnswers, value: currentPoints });
     }, [isView, isResults, userAnswers, submitQuiz]);
 
     // Switch state
