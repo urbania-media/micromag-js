@@ -43,8 +43,8 @@
 
 .button {
     &:focus-visible {
-    outline: 3px solid var(--mm-purple);
-    outline-offset: 4px;
+        outline: 3px solid var(--mm-purple);
+        outline-offset: 4px;
     }
 
     position: relative;
@@ -57,8 +57,8 @@
     }
 
     .withIcon & {
-        padding-right: 42px;
-        padding-left: 42px;
+        padding-right: 5%;
+        padding-left: 5%;
     }
 
     .withSquareItems & {
@@ -68,11 +68,11 @@
 
 .resultIcon {
     position: absolute;
-    top: 50%;
-    left: 5px;
+    top: 0;
+    left: 0;
     display: flex;
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
     align-items: center;
     justify-content: center;
     padding: 5px;
@@ -81,6 +81,7 @@
     margin-top: -18px;
     background-color: var(--mm-red);
     opacity: 0;
+    transform: translate(-50%, 50%);
     transition: opacity 0.15s ease;
 
     .answered & {
@@ -93,7 +94,7 @@
 
     .faIcon {
         display: block;
-        height: 24px;
+        height: 16px;
     }
 }
 

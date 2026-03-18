@@ -350,14 +350,6 @@ function QuizMultipleScreen({
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const backgroundShouldLoad = current || active;
 
-    console.log(
-        'finalBackground',
-        finalBackground,
-        backgroundPlaying,
-        backgroundShouldLoad,
-        isCurrentMedia,
-    );
-
     // Transition direction
     const lastQuestionIndexRef = useRef(questionIndex);
     const direction = useMemo(() => {

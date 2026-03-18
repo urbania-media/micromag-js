@@ -43,11 +43,9 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
     // Cleanup: clear media registration when this screen deactivates or unmounts.
     // Note: we cannot check mediaRef.current here because React clears callback refs
     // before running effect cleanups, so mediaRef.current is always null at this point.
-
     useEffect(
         () => () => {
             if (active) {
-                console.log('clear register media');
                 setMedia(null);
                 setIsBackground(false);
             }
@@ -57,11 +55,9 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
 
     // Register media with context when active and no media is registered
     useEffect(() => {
-        console.log('try to register media', active, mediaRef.current, media, updateKey);
         if (!active || mediaRef.current === null || media !== null) {
             return;
         }
-        console.log('register media');
         setIsBackground(background);
         setMedia(mediaRef.current);
     }, [active, background, media, updateKey, setMedia, setIsBackground]);
