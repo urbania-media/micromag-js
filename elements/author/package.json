@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-author",
-    "version": "0.4.45",
+    "version": "0.4.46",
     "private": false,
     "description": "",
     "keywords": [
@@ -61,10 +61,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.45",
-        "@micromag/element-button": "^0.4.45",
-        "@micromag/element-link": "^0.4.45",
-        "@micromag/element-text": "^0.4.45",
+        "@micromag/core": "^0.4.46",
+        "@micromag/element-button": "^0.4.46",
+        "@micromag/element-link": "^0.4.46",
+        "@micromag/element-text": "^0.4.46",
         "classnames": "^2.2.6",
         "lodash": "^4.17.23",
         "react-intl": "^8.1.3 || ^10.0.0",
