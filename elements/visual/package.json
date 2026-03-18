@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-visual",
-    "version": "0.4.40",
+    "version": "0.4.41",
     "private": false,
     "description": "",
     "keywords": [
@@ -61,9 +61,9 @@
     "dependencies": {
         "@babel/runtime": "^7.28.6",
         "@folklore/size": "^0.1.20",
-        "@micromag/core": "^0.4.40",
-        "@micromag/element-image": "^0.4.40",
-        "@micromag/element-video": "^0.4.40",
+        "@micromag/core": "^0.4.41",
+        "@micromag/element-image": "^0.4.41",
+        "@micromag/element-video": "^0.4.41",
         "classnames": "^2.2.6",
         "uuid": "^9.0.0"
     },
