@@ -76,7 +76,7 @@ const config = defineConfig([
     reactPlugin.configs.flat.recommended,
     reactPlugin.configs.flat['jsx-runtime'],
     eslintPluginPrettierRecommended,
-    // reactHooks.configs.recommended,
+    reactHooks.configs.recommended,
     {
         rules: {
             'formatjs/no-literal-string-in-jsx': 'off',

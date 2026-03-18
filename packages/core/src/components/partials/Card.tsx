@@ -64,10 +64,7 @@ function Card({
         ({ label, className: linkClassName = null, ...linkProps }, index) => (
             <Link
                 key={`link-${label}-${index}`}
-                className={classNames([
-                    'card-link',
-                    linkClassName,
-                ])}
+                className={classNames(['card-link', linkClassName])}
                 {...linkProps}
             >
                 {label}
@@ -82,22 +79,12 @@ function Card({
         (links !== null && linksInSameBody) ? (
             <>
                 {title !== null ? (
-                    <h5
-                        className={classNames([
-                            'card-title',
-                            titleClassName,
-                        ])}
-                    >
+                    <h5 className={classNames(['card-title', titleClassName])}>
                         <Label>{title}</Label>
                     </h5>
                 ) : null}
                 {subtitle !== null ? (
-                    <h6
-                        className={classNames([
-                            'card-subtitle',
-                            subtitleClassName,
-                        ])}
-                    >
+                    <h6 className={classNames(['card-subtitle', subtitleClassName])}>
                         <Label>{subtitle}</Label>
                     </h6>
                 ) : null}
@@ -111,12 +98,7 @@ function Card({
     const cardInner = (
         <>
             {header !== null ? (
-                <div
-                    className={classNames([
-                        'card-header',
-                        headerClassName,
-                    ])}
-                >
+                <div className={classNames(['card-header', headerClassName])}>
                     <Label>{header}</Label>
                 </div>
             ) : null}
@@ -124,10 +106,7 @@ function Card({
                 <img
                     src={image}
                     alt={imageAlt}
-                    className={classNames([
-                        'card-img-top',
-                        imageClassName,
-                    ])}
+                    className={classNames(['card-img-top', imageClassName])}
                 />
             ) : (
                 image
@@ -170,21 +149,13 @@ function Card({
                 onClickFooter !== null ? (
                     <button
                         type="button"
-                        className={classNames([
-                            'card-footer',
-                            footerClassName,
-                        ])}
+                        className={classNames(['card-footer', footerClassName])}
                         onClick={onClickFooter}
                     >
                         <Label>{footer}</Label>
                     </button>
                 ) : (
-                    <div
-                        className={classNames([
-                            'card-footer',
-                            footerClassName,
-                        ])}
-                    >
+                    <div className={classNames(['card-footer', footerClassName])}>
                         <Label>{footer}</Label>
                     </div>
                 )
@@ -193,13 +164,14 @@ function Card({
     );
     const cardClassName = classNames([
         'card',
+
         {
-            className,
             [`bg-${theme}`]: !imageOverlay && theme !== 'dark',
             'bg-dark': imageOverlay || theme === 'dark',
             'text-dark': theme === 'light',
             'text-light': imageOverlay || theme === 'dark' || theme === 'primary',
         },
+        className,
     ]);
 
     if (href !== null) {

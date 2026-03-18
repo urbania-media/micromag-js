@@ -51,7 +51,7 @@
         "clean": "rm -rf es && rm -rf lib && rm -rf assets",
         "prepublishOnly": "npm run build",
         "build": "../../scripts/prepare-package.sh --types",
-        "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.js"
+        "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.mjs"
     },
     "devDependencies": {
         "react": "^18.3.0 || ^19.0.0",

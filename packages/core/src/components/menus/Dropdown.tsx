@@ -66,10 +66,10 @@ function Dropdown({
             className={classNames([
                 'dropdown-menu',
                 {
-                    className,
                     [`dropdown-menu-${align}`]: align !== null,
                     [`show`]: visible,
                 },
+                className,
             ])}
             ref={refContainer}
         >
