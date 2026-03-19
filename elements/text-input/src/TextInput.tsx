@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React, { useId } from 'react';
-import { Helmet } from 'react-helmet';
 
 import type { BoxStyle, Margin, TextStyle } from '@micromag/core';
 import { usePlaceholderStyle } from '@micromag/core/hooks';
@@ -96,6 +95,7 @@ function TextInput({
             {
                 [styles.element]: !labelOutside,
             },
+            className,
         ]),
         style: containerStyle,
     };
@@ -114,19 +114,14 @@ function TextInput({
     };
 
     const element = multiline ? (
-        <textarea {...elementProps} tabIndex={focusable ? '0' : '-1'} />
+        <textarea {...elementProps} tabIndex={focusable ? 0 : -1} id={`input-${id}`} />
     ) : (
-        <input {...elementProps} type="text" tabIndex={focusable ? '0' : '-1'} />
+        <input {...elementProps} type="text" tabIndex={focusable ? 0 : -1} id={`input-${id}`} />
     );
 
-    const placeholderStyles = usePlaceholderStyle(styles.element, placeholderStyle);
-    const placeholderStyleElement = (
-        <Helmet>
-            <style href={`inputstyle-${id}`} precedence="medium">
-                {placeholderStyles}
-            </style>
-        </Helmet>
-    );
+    const placeholderStyles = usePlaceholderStyle(`#input-${id}`, placeholderStyle);
+    const placeholderStyleElement =
+        placeholderStyles !== null ? <style type="text/css">{placeholderStyles}</style> : null;
 
     return !labelOutside ? (
         <>

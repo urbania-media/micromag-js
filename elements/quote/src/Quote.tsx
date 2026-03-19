@@ -4,6 +4,7 @@ import React, { useId } from 'react';
 import type { Margin, TextStyle } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
+    cssEscape,
     getStyleFromHighlight,
     getStyleFromLink,
     getStyleFromMargin,
@@ -64,10 +65,10 @@ function Quote({
     return (
         <>
             {finalLinkStyle !== null ? (
-                <LinkStyle selector={`#${CSS.escape(id)}`} style={finalLinkStyle} />
+                <LinkStyle selector={`#${cssEscape(id)}`} style={finalLinkStyle} />
             ) : null}
             {finalHighlightStyle !== null ? (
-                <HighlightStyle selector={`#${CSS.escape(id)}`} style={finalHighlightStyle} />
+                <HighlightStyle selector={`#${cssEscape(id)}`} style={finalHighlightStyle} />
             ) : null}
             <blockquote
                 id={id}

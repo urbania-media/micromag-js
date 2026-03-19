@@ -1,17 +1,24 @@
+import { ScreenDefinition } from '../types';
 import DefinitionsManager from './DefinitionsManager';
 
-class ScreensManager extends DefinitionsManager {
+type ScreensFieldsPattern = {
+    fonts?: Record<string, RegExp[]>;
+    medias?: Record<string, RegExp[]>;
+};
+
+class ScreensManager extends DefinitionsManager<ScreenDefinition> {
+    fieldsPattern: ScreensFieldsPattern | null;
     constructor(definitions = []) {
         super(definitions);
         this.fieldsPattern = null;
     }
 
-    getFields(id) {
+    getFields(id: string) {
         const { fields = null } = this.getDefinition(id) || {};
         return fields;
     }
 
-    getLayouts(id) {
+    getLayouts(id: string) {
         const { layouts = null } = this.getDefinition(id) || {};
         return layouts;
     }
@@ -20,17 +27,17 @@ class ScreensManager extends DefinitionsManager {
         return this.fieldsPattern;
     }
 
-    setFieldsPattern(fieldsPattern) {
+    setFieldsPattern(fieldsPattern: ScreensFieldsPattern) {
         this.fieldsPattern = fieldsPattern;
     }
 
-    filter(filter) {
+    filter(filter: (definition: ScreenDefinition) => boolean): ScreensManager {
         return new ScreensManager(this.definitions.filter(filter));
         // this.definitions = this.definitions.filter(filter);
         // return this;
     }
 
-    merge(manager) {
+    merge(manager: ScreensManager) {
         const newFieldsPattern = manager.getFieldsPattern();
         if (newFieldsPattern !== null && this.fieldsPattern === null) {
             this.fieldsPattern = newFieldsPattern;

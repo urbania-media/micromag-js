@@ -2,7 +2,7 @@
 import React, { useContext, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
-import type { RenderContext, ScreenComponent, ScreenDefinition } from '../lib';
+import type { RenderContext, ScreenComponent, ScreenDefinition } from '../types';
 import { getScreenExtraField } from '../utils';
 
 import { useScreensManager } from './ScreensContext';

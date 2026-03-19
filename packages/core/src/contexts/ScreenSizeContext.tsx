@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useMemo } from 'react';
 
-import type { ScreenSize } from '../lib';
+import type { ScreenSize } from '../types';
 
 export const ScreenSizeContext = React.createContext({
     screen: null,
