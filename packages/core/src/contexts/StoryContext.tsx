@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext } from 'react';
+import React, { ReactNode, createContext, useContext } from 'react';
 
 import type { Story } from '../types';
 

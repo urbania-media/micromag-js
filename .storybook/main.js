@@ -205,4 +205,14 @@ export default defineMain({
     typescript: {
         reactDocgen: 'react-docgen-typescript',
     },
+
+    // swc: () => ({
+    //     jsc: {
+    //         transform: {
+    //             react: {
+    //                 runtime: 'automatic', // This ensures the automatic JSX runtime is used
+    //             },
+    //         },
+    //     },
+    // }),
 });
