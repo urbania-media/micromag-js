@@ -2,10 +2,6 @@
 import isArray from 'lodash/isArray';
 import isString from 'lodash/isString';
 import React from 'react';
-import { Helmet } from 'react-helmet';
-
-const emptyArray: never[] = [];
-const emptyObject = {} as const;
 
 interface MetaProps {
     title?: string | null;
@@ -32,18 +28,18 @@ function Meta({
         favicon = null,
         rssUrl = null,
         atomUrl = null,
-        microformats = emptyArray,
+        microformats = null,
         language = null,
     } = metadata || {};
 
     const realTitle = title !== null ? `${title} | ${suffix}` : fullTitle;
 
-    const { url: imageUrl = null, metadata: imageMetadata = emptyObject } = image || {};
+    const { url: imageUrl = null, metadata: imageMetadata = null } = image || {};
     const { width: imageWidth = null, height: imageHeight = null } = imageMetadata || {};
     const { url: faviconUrl = null } = favicon || {};
 
     return (
-        <Helmet>
+        <>
             {/* General */}
             <title>{realTitle !== null && realTitle.length > 0 ? realTitle : 'Micromag'}</title>
             {description !== null ? <meta name="description" content={description} /> : null}
@@ -74,7 +70,7 @@ function Meta({
             {imageHeight !== null ? (
                 <meta property="og:image:height" content={imageHeight} />
             ) : null}
-            <meta property="og:title" content={realTitle} />
+            {realTitle !== null ? <meta property="og:title" content={realTitle} /> : null}
             {description !== null ? <meta property="og:description" content={description} /> : null}
             {url !== null ? <meta property="og:url" content={url} /> : null}
 
@@ -83,7 +79,7 @@ function Meta({
                 name="twitter:card"
                 content={imageUrl !== null ? 'summary_large_image' : 'summary'}
             />
-            <meta name="twitter:title" content={realTitle} />
+            {realTitle !== null ? <meta name="twitter:title" content={realTitle} /> : null}
             {description !== null ? (
                 <meta name="twitter:description" content={description} />
             ) : null}
@@ -102,7 +98,7 @@ function Meta({
             ))}
             {/* Other tags */}
             {children}
-        </Helmet>
+        </>
     );
 }
 

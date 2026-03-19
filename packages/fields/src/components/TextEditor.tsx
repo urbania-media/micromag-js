@@ -7,7 +7,12 @@ import { useIntl } from 'react-intl';
 import type { FormControlSize } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import { useGetColors } from '@micromag/core/contexts';
-import { getColorAsString, getStyleFromHighlight, getStyleFromLink } from '@micromag/core/utils';
+import {
+    cssEscape,
+    getColorAsString,
+    getStyleFromHighlight,
+    getStyleFromLink,
+} from '@micromag/core/utils';
 
 import useCKEditor from '../hooks/useCKEditor';
 
@@ -183,13 +188,13 @@ function TextEditorField({
             ) : null}
             {linkStyle !== null ? (
                 <LinkStyle
-                    selector={`#${CSS.escape(id)} .ck-content`}
+                    selector={`#${cssEscape(id)} .ck-content`}
                     style={getStyleFromLink(linkStyle)}
                 />
             ) : null}
             {highlightStyle !== null ? (
                 <HighlightStyle
-                    selector={`#${CSS.escape(id)} .ck-content`}
+                    selector={`#${cssEscape(id)} .ck-content`}
                     style={getStyleFromHighlight(highlightStyle)}
                 />
             ) : null}

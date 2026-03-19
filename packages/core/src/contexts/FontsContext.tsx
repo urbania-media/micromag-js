@@ -4,7 +4,7 @@ import isObject from 'lodash/isObject';
 import uniqBy from 'lodash/uniqBy';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 
-import type { Font } from '../lib';
+import type { Font } from '../types';
 
 import { useGoogleKeys } from './GoogleKeysContext';
 

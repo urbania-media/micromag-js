@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import { ReactNode, createContext, useContext } from 'react';
 
-import type { Story, Theme } from '../lib';
+import type { Story } from '../types';
 
-export const StoryContext = React.createContext(null);
+export const StoryContext = createContext<Story | null>(null);
 
 export const useStoryContext = () => useContext(StoryContext);
 
@@ -12,8 +12,8 @@ export const useStory = () => {
 };
 
 interface StoryProviderProps {
-    story?: Story | Theme;
-    children: React.ReactNode;
+    story?: Story | null;
+    children: ReactNode;
 }
 
 export function StoryProvider({ story = null, children }: StoryProviderProps) {

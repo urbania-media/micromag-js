@@ -2,55 +2,59 @@ import isArray from 'lodash/isArray';
 import uniqBy from 'lodash/uniqBy';
 import EventEmitter from 'wolfy87-eventemitter';
 
-class DefinitionsManager extends EventEmitter {
-    constructor(definitions = []) {
+import { Component, Definition } from '../types';
+
+class DefinitionsManager<T extends Definition = Definition> extends EventEmitter {
+    definitions: T[];
+
+    constructor(definitions: T[] = []) {
         super();
         this.definitions = definitions || [];
     }
 
-    addDefinition(definition) {
+    addDefinition(definition: T | T[]) {
         this.addDefinitions(isArray(definition) ? definition : [definition]);
         return this;
     }
 
-    addDefinitions(definitions) {
+    addDefinitions(definitions: T[]) {
         this.definitions = uniqBy([...definitions, ...this.definitions], (it) => it.id);
         this.emit('change');
 
         return this;
     }
 
-    merge(manager) {
+    merge(manager: DefinitionsManager<T>) {
         return this.addDefinitions(manager.getDefinitions());
     }
 
-    filter(filter) {
+    filter(filter: (definition: T) => boolean): DefinitionsManager<T> {
         // this.definitions = this.definitions.filter(filter);
         // return this;
-        return new DefinitionsManager(this.definitions.filter(filter));
+        return new DefinitionsManager<T>(this.definitions.filter(filter));
     }
 
-    getDefinition(id) {
+    getDefinition(id: string) {
         if (id === null) {
             return null;
         }
         return this.definitions.find((it) => it.id === id) || null;
     }
 
-    getDefinitions() {
+    getDefinitions(): T[] {
         return this.definitions;
     }
 
-    hasDefinition(id) {
+    hasDefinition(id: string) {
         return this.getDefinition(id) !== null;
     }
 
-    getComponent(id) {
+    getComponent(id: string) {
         const { component = null } = this.getDefinition(id) || {};
         return component;
     }
 
-    getComponents() {
+    getComponents(): Record<string, Component> {
         return this.definitions.reduce(
             (allComponents, { id, component = null }) =>
                 component !== null

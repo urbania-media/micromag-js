@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useMemo, useState } from 'react';
 
 import { ScreensManager } from '../lib';
 
+import type { ScreenDefinition } from '../types';
 import { ComponentsProvider, SCREENS_NAMESPACE } from './ComponentsContext';
 
 export const ScreensContext = React.createContext(new ScreensManager());
@@ -10,10 +11,10 @@ export const ScreensContext = React.createContext(new ScreensManager());
 export const useScreensManager = () => useContext(ScreensContext);
 
 interface ScreensProviderProps {
-    screens?: ScreenDefinition[];
-    namespaces?: string[];
+    screens?: ScreenDefinition[] | null;
+    namespaces?: string[] | null;
     filterNamespaces?: boolean;
-    manager?: ScreensManager;
+    manager?: ScreensManager | null;
     children: React.ReactNode;
 }
 

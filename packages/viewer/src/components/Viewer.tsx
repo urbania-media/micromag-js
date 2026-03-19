@@ -1,7 +1,6 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Helmet } from 'react-helmet';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
@@ -845,7 +844,7 @@ function Viewer({
                             {overscrollStyle}
                         </Meta>
                     ) : (
-                        <Helmet>{overscrollStyle}</Helmet>
+                        overscrollStyle
                     )}
                     <FontFaces fonts={finalFonts} />
                     <div

@@ -5,6 +5,7 @@ import type { Margin, TextStyle } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
     addNonBreakingSpaces,
+    cssEscape,
     getStyleFromHighlight,
     getStyleFromLink,
     getStyleFromMargin,
@@ -66,10 +67,10 @@ function Heading({
     return (
         <>
             {finalLinkStyle !== null ? (
-                <LinkStyle selector={`#${CSS.escape(id)}`} style={finalLinkStyle} />
+                <LinkStyle selector={`#${cssEscape(id)}`} style={finalLinkStyle} />
             ) : null}
             {finalHighlightStyle !== null ? (
-                <HighlightStyle selector={`#${CSS.escape(id)}`} style={finalHighlightStyle} />
+                <HighlightStyle selector={`#${cssEscape(id)}`} style={finalHighlightStyle} />
             ) : null}
             <HeadingComponent
                 id={id}
