@@ -116,6 +116,7 @@ export const createConfig = ({
                         require('@babel/preset-react'),
                         {
                             useBuiltIns: true,
+                            runtime: 'automatic',
                         },
                     ],
                     require('@babel/preset-typescript'),

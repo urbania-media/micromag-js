@@ -1,5 +1,6 @@
 const path = require('path');
 const getPackagesAliases = require('./scripts/lib/getPackagesAliases');
+const { runtime } = require('webpack');
 
 module.exports = (api) => {
     if (api.env('node')) {
@@ -19,6 +20,7 @@ module.exports = (api) => {
                     require('@babel/preset-react'),
                     {
                         useBuiltIns: true,
+                        runtime: 'automatic',
                     },
                 ],
                 require('@babel/preset-typescript'),
