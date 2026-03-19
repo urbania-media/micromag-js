@@ -23,7 +23,7 @@
     cursor: pointer;
     font-family: inherit;
     inset: 0;
-    transition: border-width 0.4s var(--mm-ease-in-bump);
+    transition: border-width 0.4s var(--mm-ease-in-bump, 'ease-out');
 
     &:focus-visible {
         box-shadow: 0 0 1px 1px var(--micromag-focus-color, #fff);
@@ -68,7 +68,7 @@
     z-index: 2;
     top: 50%;
     left: 50%;
-    color: var(--mm-gray-800);
+    color: var(--mm-gray-800, #ccc);
     letter-spacing: -0.05rem;
     text-align: center;
     transform: translate(-50%, -50%) translate(-0.1rem, -0.1rem);
@@ -79,13 +79,13 @@
     z-index: 1;
     width: 1.15rem;
     height: auto;
-    fill: var(--mm-white);
+    fill: var(--mm-white, #fff);
 }
 
 .screen {
     overflow: hidden;
     border-radius: 0.45rem;
-    animation: intro 0.5s 50ms 1 forwards var(--mm-ease-in-out-sine);
+    animation: intro 0.5s 50ms 1 forwards var(--mm-ease-in-out-sine, 'ease-out');
     opacity: 0;
 }
 

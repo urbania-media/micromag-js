@@ -21,12 +21,14 @@
         &:hover {
             .icon {
                 transform: scale(1.1);
-                transition: transform 0.3s var(--mm-ease-in-yo), opacity 0.3s var(--mm-ease-in-yo);
+                transition:
+                    transform 0.3s var(--mm-ease-in-yo, 'ease-out'),
+                    opacity 0.3s var(--mm-ease-in-yo, 'ease-out');
             }
 
             .label {
                 opacity: 1;
-                transition: opacity 0.3s var(--mm-ease-in-yo);
+                transition: opacity 0.3s var(--mm-ease-in-yo, 'ease-out');
             }
         }
     }
@@ -39,7 +41,7 @@
         .icon,
         .label {
             transform: scale(1);
-            transition: transform 0.3s var(--mm-ease-in-kickback);
+            transition: transform 0.3s var(--mm-ease-in-kickback, 'ease-out');
         }
     }
 }

@@ -43,7 +43,7 @@
         font-family: inherit;
 
         &:focus-visible {
-            outline: 3px solid var(--mm-purple);
+            outline: 3px solid var(--mm-primary, #a13dff);
             outline-offset: 4px;
         }
     }

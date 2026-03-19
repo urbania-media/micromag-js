@@ -75,20 +75,20 @@
     input {
         width: 1rem;
         height: 1rem;
-        border: 2px solid var(--mm-white);
+        border: 2px solid var(--mm-white, #fff);
         border-radius: 4px;
         margin-right: 0.5rem;
-        animation: bump 0.5s 1 var(--mm-ease-in-out-sine) alternate-reverse forwards;
+        animation: bump 0.5s 1 var(--mm-ease-in-out-sine, 'ease-out') alternate-reverse forwards;
         appearance: none;
-        transition: transform 0.3s var(--mm-ease-out-ramp);
+        transition: transform 0.3s var(--mm-ease-out-ramp, 'ease-out');
 
         &:active {
             transform: scale(1.3);
-            transition: transform 0.3s var(--mm-ease-in-kickback);
+            transition: transform 0.3s var(--mm-ease-in-kickback, 'ease-out');
         }
 
         &:checked {
-            background-color: var(--mm-white);
+            background-color: var(--mm-white, #fff);
         }
     }
 }

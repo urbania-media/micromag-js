@@ -25,7 +25,7 @@
         height: 2px;
         background-color: rgb(255 255 255 / 0.45);
         transform: scaleY(1);
-        transition: transform 0.3s var(--mm-ease-in-bump);
+        transition: transform 0.3s var(--mm-ease-in-bump, 'ease-out');
     }
 
     .progress {
@@ -54,7 +54,7 @@
     @media (hover: hover) {
         &:hover {
             .dot {
-                background-color: var(--mm-white) !important;
+                background-color: var(--mm-white, #fff) !important;
                 transform: scaleY(1.5);
             }
         }

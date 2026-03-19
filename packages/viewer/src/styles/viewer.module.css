@@ -6,8 +6,8 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
-    background-color: var(--mm-black);
-    color: var(--mm-white);
+    background-color: var(--mm-black, #000);
+    color: var(--mm-white, #fff);
     font-family: Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: normal;
@@ -16,7 +16,7 @@
     & *,
     & *::before,
     & *::after {
-    box-sizing: border-box;
+        box-sizing: border-box;
     }
 
     & h1,
@@ -37,8 +37,8 @@
     & caption,
     & label,
     & legend {
-    padding: 0;
-    margin: 0;
+        padding: 0;
+        margin: 0;
     }
 
     & h1,
@@ -49,12 +49,12 @@
     & h6,
     & p,
     & li {
-    font-weight: inherit;
+        font-weight: inherit;
     }
 
     & mark,
     & .mark {
-    color: inherit;
+        color: inherit;
     }
 
     &.landscape {
@@ -138,7 +138,7 @@
     cursor: pointer;
     gap: 10px;
     opacity: 0;
-    transition: opacity 0.2s var(--mm-ease-in-out-sine);
+    transition: opacity 0.2s var(--mm-ease-in-out-sine, 'ease-out');
 
     &:focus-visible,
     &:focus-within {
@@ -147,9 +147,9 @@
 
     .accessibilityButton {
         padding: 4px;
-        color: var(--mm-white);
+        color: var(--mm-white, #fff);
         opacity: 0.75;
-        transition: opacity 0.5s var(--mm-ease-in-out-sine);
+        transition: opacity 0.5s var(--mm-ease-in-out-sine, 'ease-out');
 
         &:hover,
         &:focus {
@@ -175,8 +175,8 @@
     contain: content;
     touch-action: none;
     transition:
-        opacity 0.5s var(--mm-ease-in-out-sine),
-        background-image 0.5s var(--mm-ease-in-out-sine);
+        opacity 0.5s var(--mm-ease-in-out-sine, 'ease-out'),
+        background-image 0.5s var(--mm-ease-in-out-sine, 'ease-out');
 
     /* if playing a media and the controls are "collapsed", fade the buttons, too */
     .fadeMenu & {
@@ -208,7 +208,7 @@
 .menuTopContainer {
     display: flex;
     align-items: center;
-    transition: opacity 0.2s var(--mm-ease-in-out-sine);
+    transition: opacity 0.2s var(--mm-ease-in-out-sine, 'ease-out');
 }
 
 .menuItem {
@@ -247,7 +247,7 @@
     z-index: 3;
     top: -5px;
     padding: 0 8px;
-    transition: opacity 0.3s var(--mm-ease-out-ramp);
+    transition: opacity 0.3s var(--mm-ease-out-ramp, 'ease-out');
 
     .hideMenu & {
         pointer-events: none;
@@ -284,7 +284,7 @@
     opacity: 0;
     pointer-events: none;
     transform: translateY(-50%);
-    transition: opacity 0.2s var(--mm-ease-in-out-sine);
+    transition: opacity 0.2s var(--mm-ease-in-out-sine, 'ease-out');
 
     &.previous {
         left: 1.5em;
@@ -323,12 +323,12 @@
     display: flex;
     width: 100%;
     height: 100%;
-    background-color: var(--mm-gray-800);
+    background-color: var(--mm-gray-800, #ccc);
     contain: size layout style paint;
 
     &:focus-visible {
-    outline: 3px solid var(--mm-purple);
-    outline-offset: 4px;
+        outline: 3px solid var(--mm-purple);
+        outline-offset: 4px;
     }
 }
 
