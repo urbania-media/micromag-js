@@ -1,7 +1,7 @@
 .container {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--mm-gray-800);
+    border: 1px solid var(--mm-gray-800, #ccc);
     cursor: pointer;
     transition: border 0.15s ease-out;
 
@@ -44,7 +44,7 @@
         flex-direction: row;
         align-items: center;
         border: 0;
-        border-top: 1px solid var(--mm-gray-800);
+        border-top: 1px solid var(--mm-gray-800, #ccc);
         appearance: none;
         background: transparent;
         color: inherit;

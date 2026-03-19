@@ -1,12 +1,12 @@
 .container {
     .top {
-        border-bottom: solid 1px var(--mm-border-color);
+        border-bottom: solid 1px var(--mm-border-color, #ccc);
     }
 
     .button {
         display: flex;
         width: 100%;
-        padding: calc(var(--mm-spacer) / 4) 0;
+        padding: calc(var(--mm-spacer, 5px) / 4) 0;
         font-size: 0.9rem;
         font-weight: bold;
         text-align: left;
@@ -19,7 +19,7 @@
     .content {
         overflow: hidden;
         max-height: 0;
-        padding-top: var(--mm-spacer);
+        padding-top: var(--mm-spacer, 5px);
         transition: max-height 0.2s ease-out;
     }
 

@@ -6,12 +6,13 @@
     "tabWidth": 4,
     "semi": true,
     "importOrder": [
+        "\\.global\\.css$",
         "<THIRD_PARTY_MODULES>",
         "^@panneau/(.*)$",
         "^@micromag/(.*)$",
         "^[./](.*)?/(utils|hooks|lib)",
         "^[./].*(?<!(\\.[a-z]+))$",
-        "\\.scss$",
+        "\\.css$",
         "\\/(.+)\\.[a-z]+$"
     ],
     "importOrderSeparation": true,

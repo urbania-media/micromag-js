@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import '../styles/styles.global.css';
+
 import { RoutesProvider, useMemoryRouter } from '@folklore/routes';
 import isEmpty from 'lodash/isEmpty';
 import uniq from 'lodash/uniq';
@@ -24,7 +26,6 @@ import Viewer from './Viewer';
 import ViewerRoutes from './ViewerRoutes';
 
 import defaultRoutes from '../data/routes.json';
-import '../styles/styles.global.css';
 
 const emptyComponents = {};
 const defaultLocales = ['fr', 'en'];

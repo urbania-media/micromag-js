@@ -12,7 +12,7 @@
 
     .icon,
     .label {
-        transition: transform 0.3s var(--mm-ease-out-ramp);
+        transition: transform 0.3s var(--mm-ease-out-ramp, 'ease-out');
     }
 
     &.withoutStyle {
@@ -36,7 +36,7 @@
         font-family: inherit;
         cursor: pointer;
         appearance: none;
-        color: var(--mm-primary);
+        color: var(--mm-primary, #a13dff);
         font-weight: bold;
     }
 

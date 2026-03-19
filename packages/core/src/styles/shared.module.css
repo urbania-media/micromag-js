@@ -123,9 +123,9 @@
 }
 
 .empty {
-    border: dashed 2px var(--mm-gray-800);
+    border: dashed 2px var(--mm-gray-800, #ccc);
     margin: 5px auto;
-    color: var(--mm-gray-800);
+    color: var(--mm-gray-800, #ccc);
 }
 
 .emptyText {
@@ -270,11 +270,15 @@
     }
 
     &.enterActiveHorizontal {
-        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        transition:
+            transform 0.2s ease-out,
+            opacity 0.2s ease-out;
     }
 
     &.enterActiveVertical {
-        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        transition:
+            transform 0.5s ease-out,
+            opacity 0.5s ease-out;
     }
 
     &.leave {
@@ -290,13 +294,17 @@
     &.leaveActiveRight,
     &.leaveActiveLeft {
         opacity: 0.5;
-        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        transition:
+            transform 0.2s ease-out,
+            opacity 0.2s ease-out;
     }
 
     &.leaveActiveTop,
     &.leaveActiveBottom {
         opacity: 0.5;
-        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        transition:
+            transform 0.5s ease-out,
+            opacity 0.5s ease-out;
     }
 
     &.leaveActiveRight {
@@ -319,7 +327,7 @@
 /* Focus */
 .focusOutline {
     &:focus-visible {
-        outline: 3px solid var(--mm-purple);
+        outline: 3px solid var(--mm-primary, #a13dff);
         outline-offset: 4px;
     }
 }

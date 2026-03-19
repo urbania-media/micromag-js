@@ -16,7 +16,7 @@
     }
 
     &.invertColor {
-        border: dashed 2px var(--mm-gray-800);
-        color: var(--mm-gray-800);
+        border: dashed 2px var(--mm-gray-800, #ccc);
+        color: var(--mm-gray-800, #ccc);
     }
 }
