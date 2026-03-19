@@ -68,7 +68,7 @@
     z-index: 2;
     top: 50%;
     left: 50%;
-    color: var(--mm-gray-800, #ccc);
+    color: var(--mm-gray-800, #343434);
     letter-spacing: -0.05rem;
     text-align: center;
     transform: translate(-50%, -50%) translate(-0.1rem, -0.1rem);

@@ -286,8 +286,8 @@
 
     &:active,
     &:hover {
-        transition: transform 0.3s var(--mm-ease-in-kickback);
         transform: scale(0.95);
+        transition: transform 0.3s var(--mm-ease-in-kickback);
     }
 }
 
@@ -324,10 +324,10 @@
     overflow: hidden;
     flex-direction: column;
     margin: 10% 7.5%;
-    background-color: var(--mm-black);
+    background-color: var(--mm-black, #000);
 
     &.withShadow {
-        box-shadow: 0 0 2px var(--mm-black);
+        box-shadow: 0 0 2px var(--mm-black, #000);
     }
 
     /* @todo fighting specificity because of some weird reset */

@@ -45,7 +45,7 @@
 .placeholderItem {
     width: 1.5em;
     height: 1.5em;
-    background-color: var(--mm-gray-600);
+    background-color: var(--mm-gray-600, #6c6c6c);
 }
 
 .emptyTitle,

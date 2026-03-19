@@ -16,7 +16,7 @@
         bottom: 6px;
         left: 25%;
         width: 50%;
-        color: var(--mm-gray-600);
+        color: var(--mm-gray-600, #6c6c6c);
     }
 
     .placeholderTextRight {
@@ -26,7 +26,7 @@
     &:hover,
     &:active,
     &.active {
-        color: var(--mm-black);
+        color: var(--mm-black, #000);
 
         .placeholderTextOver {
             opacity: 0.6;

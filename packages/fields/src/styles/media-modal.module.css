@@ -35,14 +35,13 @@
     border: 0;
     appearance: none;
     background: transparent;
-    background-color: transparent;
     color: inherit;
     cursor: pointer;
     font-family: inherit;
 
     &.shaded {
         border-radius: 4px;
-        background-color: var(--mm-gray-700);
+        background-color: var(--mm-gray-700, #494949);
     }
 
     &.small {
@@ -66,7 +65,7 @@
     margin-left: 10px;
     appearance: none;
     background: transparent;
-    background-color: var(--mm-gray-700);
+    background-color: var(--mm-gray-700, #494949);
     color: inherit;
     cursor: pointer;
     font-family: inherit;

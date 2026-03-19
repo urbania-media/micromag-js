@@ -7,13 +7,13 @@
     min-height: 75px;
 
     &:global(.btn-outline-secondary) {
-        border-color: var(--mm-gray-600);
-        color: var(--mm-gray-600);
+        border-color: var(--mm-gray-600, #6c6c6c);
+        color: var(--mm-gray-600, #6c6c6c);
 
         &:hover {
-            border-color: var(--mm-gray-200);
+            border-color: var(--mm-gray-200, #e9e9e9);
             background: transparent;
-            color: var(--mm-gray-200);
+            color: var(--mm-gray-200, #e9e9e9);
         }
     }
 }

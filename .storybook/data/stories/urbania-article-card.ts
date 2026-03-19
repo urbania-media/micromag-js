@@ -5,7 +5,8 @@ import { backgroundColor } from '../../data';
 export default {
     id: uuid(),
     theme: null,
-    url: 'https://urbania.ca/article/nicki-minaj-vs-megan-thee-stallion-ces-beefs-qui-font-vivre-le-rap',
+    // url: 'https://urbania.ca/article/nicki-minaj-vs-megan-thee-stallion-ces-beefs-qui-font-vivre-le-rap',
+    url: 'https://urbania.ca/article/20-ans-plie-en-deux-la-petite-histoire-de-we-are-wolves',
     background: backgroundColor(),
     // background: {
     //     video: {

@@ -32,7 +32,7 @@
         scrollbar-width: none;
 
         &::-webkit-scrollbar {
-        display: none;
+            display: none;
         }
 
         > .inner {
@@ -41,7 +41,7 @@
     }
 
     .center {
-        background-color: var(--mm-gray-900);
+        background-color: var(--mm-gray-900, #2b2b2b);
     }
 
     .preview {

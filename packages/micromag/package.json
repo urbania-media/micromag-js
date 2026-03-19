@@ -38,7 +38,7 @@
         "assets"
     ],
     "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles",
         "css:vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
         "css:styles": "../../scripts/build-css.js ./src/styles/styles.css ./assets/css/styles.css",
         "css": "npm run css:vendor && npm run css:styles",

@@ -5,7 +5,7 @@
     }
 
     .title {
-        color: var(--mm-gray-500);
+        color: var(--mm-gray-500, #adadad);
         font-size: var(--mm-font-size-sm);
         font-weight: var(--mm-font-weight-bold);
         text-transform: uppercase;

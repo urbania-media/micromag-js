@@ -1,11 +1,11 @@
 .container {
     display: grid;
-    border: 1px solid var(--mm-gray-500);
+    border: 1px solid var(--mm-gray-500, #adadad);
     grid-template-columns: 1fr 1fr 1fr;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
-    display: none;
+        display: none;
     }
 
     .button {

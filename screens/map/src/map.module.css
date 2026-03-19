@@ -61,18 +61,18 @@
         flex-direction: column;
         flex-grow: 1;
         padding: 0 20px;
-        background-color: var(--mm-white);
+        background-color: var(--mm-white, #fff);
         transform: translateY(100%);
         transition: transform 0.3s ease;
     }
 
     .markerOverlayContentInner {
-        color: var(--mm-black);
+        color: var(--mm-black, #000);
     }
 
     .swipeIndicator {
         width: 30px;
-        border: 2px solid var(--mm-gray-500);
+        border: 2px solid var(--mm-gray-500, #adadad);
         border-radius: 2px;
         margin: 10px auto;
     }

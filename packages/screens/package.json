@@ -61,7 +61,7 @@
         "all.js"
     ],
     "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf fields.js && rm -rf fields.json",
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles && rm -rf fields.js && rm -rf fields.json",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
         "build:fields": "NODE_ENV=development rollup --config ./rollup.config.cli.mjs && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
         "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.css.ejs ./assets/css/styles.css",

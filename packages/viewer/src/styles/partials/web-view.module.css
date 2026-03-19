@@ -16,7 +16,7 @@
         transform: translate(-50%, 0);
 
         .webView {
-            background-color: var(--mm-gray-800, #ccc);
+            background-color: var(--mm-gray-800, #343434);
         }
     }
 }

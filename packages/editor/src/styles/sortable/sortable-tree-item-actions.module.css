@@ -21,7 +21,6 @@
             border: 0;
             appearance: none;
             background: transparent;
-            background-color: transparent;
             color: inherit;
             color: #fff;
             cursor: pointer;
@@ -65,7 +64,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background-color: var(--mm-primary);
+            background-color: var(--mm-primary, #a13dff);
             color: #fff;
             font-size: 0.8rem;
             font-weight: 600;
@@ -119,7 +118,7 @@
     }
 
     &.withChildren {
-        background-color: var(--mm-gray-700);
+        background-color: var(--mm-gray-700, #494949);
 
         .inner {
             padding-bottom: 30px;
@@ -152,7 +151,7 @@
         }
 
         .inner {
-            border: 1px solid var(--mm-primary);
+            border: 1px solid var(--mm-primary, #a13dff);
             border-radius: 4px;
         }
 
@@ -166,9 +165,9 @@
                 position: relative;
                 height: 8px;
                 padding: 0;
-                border: 1px solid var(--mm-primary);
+                border: 1px solid var(--mm-primary, #a13dff);
                 border-radius: 10px;
-                background-color: var(--mm-primary);
+                background-color: var(--mm-primary, #a13dff);
 
                 > * {
                     height: 0;

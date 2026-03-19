@@ -87,7 +87,7 @@
         "utils.js"
     ],
     "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles",
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles && rm -rf styles",
         "vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
         "theme": "../../scripts/build-css.js ./src/styles/theme.css ./assets/css/theme.css",
         "prepublishOnly": "npm run build",

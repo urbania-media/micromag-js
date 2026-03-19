@@ -2,6 +2,6 @@
     position: relative;
 
     .button {
-        margin-top: var(--mm-spacer);
+        margin-top: var(--mm-spacer, 5px);
     }
 }

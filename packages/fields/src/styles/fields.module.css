@@ -10,10 +10,10 @@
     /* stylelint-enable selector-class-pattern */
 
     .field {
-        margin-bottom: var(--mm-spacer);
+        margin-bottom: var(--mm-spacer, 5px);
 
         &.isSection {
-            margin-bottom: calc(var(--mm-spacer) * 2);
+            margin-bottom: calc(var(--mm-spacer, 5px) * 2);
         }
 
         &.isList {
@@ -26,16 +26,16 @@
     }
 
     .advanced {
-        margin-top: calc(var(--mm-spacer) * 2);
+        margin-top: calc(var(--mm-spacer, 5px) * 2);
     }
 
     &.withBorders {
         .fields {
-            border-bottom: solid 1px var(--mm-border-color);
+            border-bottom: solid 1px var(--mm-border-color, #dee2e6);
         }
 
         .field {
-            border-top: solid 1px var(--mm-border-color);
+            border-top: solid 1px var(--mm-border-color, #dee2e6);
             margin-bottom: 0;
 
             &:last-child {
@@ -44,8 +44,8 @@
         }
 
         .fieldRow {
-            padding-top: calc(var(--mm-spacer) / 2);
-            padding-bottom: calc(var(--mm-spacer) / 2);
+            padding-top: calc(var(--mm-spacer, 5px) / 2);
+            padding-bottom: calc(var(--mm-spacer, 5px) / 2);
         }
     }
 }

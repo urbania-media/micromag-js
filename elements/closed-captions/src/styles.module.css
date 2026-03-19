@@ -5,8 +5,8 @@
     .captions {
         display: inline-block;
         padding: 5px;
-        background-color: var(--mm-black);
-        color: var(--mm-white);
+        background-color: var(--mm-black, #000);
+        color: var(--mm-white, #fff);
         word-break: break-word;
     }
 }

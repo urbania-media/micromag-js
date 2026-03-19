@@ -5,7 +5,7 @@
     align-items: center;
 
     .icon {
-        margin-right: calc(var(--mm-spacer) / 4);
+        margin-right: calc(var(--mm-spacer, 5px) / 4);
     }
 
     .slider {

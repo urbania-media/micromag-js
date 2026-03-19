@@ -10,10 +10,7 @@
 
     /* Theme aliases */
     --mm-primary: var(--mm-purple);
-    --mm-secondary: var(--mm-gray-200);
-    --mm-info: var(--mm-blue);
-    --mm-light: var(--mm-white);
-    --mm-dark: #343434;
+    --mm-secondary: var(--mm-gray-200, #e9e9e9);
 
     /* Gray scale */
     --mm-gray-100: #f5f5f5;
@@ -27,18 +24,19 @@
     --mm-gray-900: #2b2b2b;
 
     /* Typography */
-    --mm-font-family-sans-serif: 'Libre Franklin', -apple-system, blinkmacsystemfont, 'Segoe UI',
-        roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --mm-font-family-monospace: sfmono-regular, menlo, monaco, consolas, 'Liberation Mono',
-        'Courier New', monospace;
+    --mm-font-family-sans-serif:
+        'Libre Franklin', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue',
+        arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+    --mm-font-family-monospace:
+        sfmono-regular, menlo, monaco, consolas, 'Liberation Mono', 'Courier New', monospace;
     --mm-font-weight-normal: 400;
     --mm-font-weight-bold: 600;
     --mm-font-size-sm: 0.875rem;
 
     /* Input/Form variables */
     --mm-input-bg: hsl(0deg 0% 100% / 0.07);
-    --mm-input-color: var(--mm-white);
+    --mm-input-color: var(--mm-white, #fff);
     --mm-input-border-width: 0;
     --mm-input-border-color: transparent;
     --mm-input-border-radius: 0.375rem;
@@ -57,8 +55,8 @@
     --mm-input-btn-focus-color: rgb(161 61 255 / 0.4);
 
     /* Body */
-    --mm-body-bg: var(--mm-black);
-    --mm-body-color: var(--mm-gray-100);
+    --mm-body-bg: var(--mm-black, #000);
+    --mm-body-color: var(--mm-gray-100, #f5f5f5);
 
     /* Spacing */
     --mm-spacer: 1rem;

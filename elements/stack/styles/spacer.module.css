@@ -1,7 +1,0 @@
-.container {
-    flex-grow: 1;
-
-    &.hasSize {
-        flex-grow: 0;
-    }
-}

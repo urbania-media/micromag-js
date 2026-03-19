@@ -135,7 +135,7 @@
     }
 
     .videoPlaceholder {
-        background-color: var(--mm-gray-500);
+        background-color: var(--mm-gray-500, #adadad);
         mix-blend-mode: normal;
     }
 

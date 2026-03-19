@@ -4,7 +4,7 @@
     font-size: 1rem;
 
     .selected {
-        background-color: var(--mm-primary);
+        background-color: var(--mm-primary, #a13dff);
     }
 
     .editor {
@@ -51,7 +51,6 @@
     border: 0;
     appearance: none;
     background: transparent;
-    background-color: transparent;
     color: inherit;
     cursor: pointer;
     font-family: inherit;
@@ -66,7 +65,7 @@
 }
 
 .editor {
-    --ck-color-base-background: #2B2B2B;
+    --ck-color-base-background: #2b2b2b;
 
     :global {
         .ck {

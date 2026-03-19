@@ -1,5 +1,5 @@
 .container {
     .selected {
-        background-color: var(--mm-primary);
+        background-color: var(--mm-primary, #a13dff);
     }
 }

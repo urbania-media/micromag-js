@@ -7,5 +7,5 @@
 }
 
 .panel {
-    padding: calc(var(--mm-spacer) / 2);
+    padding: calc(var(--mm-spacer, 5px) / 2);
 }

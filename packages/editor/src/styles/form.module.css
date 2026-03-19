@@ -12,7 +12,7 @@
 
 .navbar {
     z-index: 999;
-    background-color: var(--mm-black);
+    background-color: var(--mm-black, #000);
 }
 
 .panel {

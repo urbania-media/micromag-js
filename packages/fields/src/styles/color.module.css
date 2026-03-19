@@ -1,10 +1,10 @@
 /* stylelint-disable max-nesting-depth, selector-max-compound-selectors, no-descending-specificity */
 
 .preview {
-    @include background-grid(4px, var(--mm-gray-300));
+    @include background-grid(4px, var(--mm-gray-300, #dedede));
 
     display: block;
-    border: solid 1px var(--mm-black);
+    border: solid 1px var(--mm-black, #000);
 
     .color {
         display: block;
@@ -44,7 +44,7 @@
             }
 
             &:nth-child(4) {
-                border-top-color: rgba(#EEE, 0.2) !important;
+                border-top-color: rgba(#eee, 0.2) !important;
             }
         }
     }

@@ -3,12 +3,12 @@
 
     &.parent {
         padding-bottom: 0;
-        background-color: var(--mm-gray-700);
+        background-color: var(--mm-gray-700, #494949);
     }
 
     &.group {
         padding-top: 3px;
-        background-color: var(--mm-gray-700);
+        background-color: var(--mm-gray-700, #494949);
 
         &.isLastChild {
             padding-bottom: 6px;

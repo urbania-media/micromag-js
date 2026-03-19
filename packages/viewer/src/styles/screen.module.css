@@ -5,7 +5,7 @@
 }
 
 .inner {
-    background-color: var(--mm-gray-800, #ccc);
+    background-color: var(--mm-gray-800, #343434);
     transition: opacity 0.3s var(--mm-ease-in-out-soft-sine, 'ease-out');
 }
 

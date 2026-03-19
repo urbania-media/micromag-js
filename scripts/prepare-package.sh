@@ -41,6 +41,7 @@ clean() {
     rm -rf es
     rm -rf dist
     rm -rf types
+    rm -rf styles
 }
 
 build_rollup() {

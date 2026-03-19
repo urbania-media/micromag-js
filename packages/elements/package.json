@@ -56,7 +56,7 @@
         "all.js"
     ],
     "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles",
         "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/element-*' ./src/styles.css.ejs ./assets/css/styles.css",
         "prepublishOnly": "npm run build",
         "build": "../../scripts/prepare-package.sh --types && npm run aggregate-css"

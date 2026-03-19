@@ -39,7 +39,7 @@
             }
 
             &.ck-content {
-                color: var(--mm-white);
+                color: var(--mm-white, #fff);
                 font-family: Helvetica, Arial, sans-serif;
                 font-size: 16px;
                 font-size: var(--mm-input-font-size);
@@ -49,46 +49,46 @@
 
                 & em,
                 & i {
-                font-style: italic;
+                    font-style: italic;
                 }
 
                 & strong,
                 & b {
-                font-weight: bold;
+                    font-weight: bold;
                 }
 
                 & p {
-                margin-top: 0.5em;
-                margin-bottom: 0.5em;
+                    margin-top: 0.5em;
+                    margin-bottom: 0.5em;
                 }
 
                 & mark {
-                padding: 0;
-                box-decoration-break: clone;
+                    padding: 0;
+                    box-decoration-break: clone;
                 }
 
                 & h2 {
-                font-size: 2em;
+                    font-size: 2em;
                 }
 
                 & h3 {
-                font-size: 1.75em;
+                    font-size: 1.75em;
                 }
 
                 & h4 {
-                font-size: 1.5em;
+                    font-size: 1.5em;
                 }
 
                 & blockquote {
-                padding: 0;
-                padding-left: 1em;
+                    padding: 0;
+                    padding-left: 1em;
                 }
 
                 & img {
-                display: block;
-                width: auto;
-                max-width: 100%;
-                height: auto;
+                    display: block;
+                    width: auto;
+                    max-width: 100%;
+                    height: auto;
                 }
             }
         }

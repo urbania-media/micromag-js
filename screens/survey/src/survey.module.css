@@ -94,7 +94,7 @@
         right: 0;
         width: 4em;
         padding: 0 8px;
-        color: var(--mm-white);
+        color: var(--mm-white, #fff);
         text-align: right;
         transform: translateY(-50%);
     }
@@ -124,14 +124,18 @@
     .itemLabel {
         display: inline-block;
         width: 100%;
-        transition: margin-left 300ms ease-out, transform 300ms ease-out;
+        transition:
+            margin-left 300ms ease-out,
+            transform 300ms ease-out;
     }
 
     .itemText {
         position: relative;
         z-index: 1;
         display: inline-block;
-        transition: margin-left 300ms ease-out, transform 300ms ease-out;
+        transition:
+            margin-left 300ms ease-out,
+            transform 300ms ease-out;
     }
 
     .emptyQuestion,
@@ -166,7 +170,8 @@
         &.disabled {
             opacity: 0.5;
 
-            .textInput, .confirm {
+            .textInput,
+            .confirm {
                 background: transparent;
             }
         }
@@ -174,13 +179,16 @@
         &.selected {
             opacity: 1 !important;
 
-            .confirm, .submit {
+            .confirm,
+            .submit {
                 opacity: 0;
             }
         }
 
-        &.focused, &.filled {
-            .confirm, .submit {
+        &.focused,
+        &.filled {
+            .confirm,
+            .submit {
                 opacity: 1;
             }
         }
@@ -204,10 +212,13 @@
         width: 100%;
         padding: 10px calc(10px + 2em);
         margin: 0;
-        color: var(--mm-white);
+        color: var(--mm-white, #fff);
         line-height: inherit;
         text-align: center;
-        transition: margin-left 300ms ease-out, transform 300ms ease-out, opacity 500ms ease-out;
+        transition:
+            margin-left 300ms ease-out,
+            transform 300ms ease-out,
+            opacity 500ms ease-out;
     }
 
     .confirm {
@@ -288,8 +299,10 @@
             }
         }
 
-        &.withPercentage, &.withBar {
-            .itemLabel, .textInput {
+        &.withPercentage,
+        &.withBar {
+            .itemLabel,
+            .textInput {
                 text-align: left;
             }
         }
@@ -303,7 +316,8 @@
     }
 
     &.inputFocused {
-        .question, .answers {
+        .question,
+        .answers {
             opacity: 0.5;
         }
     }
@@ -328,7 +342,9 @@
     border: 0;
     background-color: transparent;
     transform-origin: center;
-    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+    transition:
+        opacity 0.15s ease-out,
+        transform 0.15s ease-out;
 
     &:hover {
         border: 0;

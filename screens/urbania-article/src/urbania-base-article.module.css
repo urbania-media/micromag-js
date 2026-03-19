@@ -12,7 +12,7 @@
             height: 35%;
             margin: 5px auto;
             background-color: transparent;
-            background-color: var(--mm-gray-900);
+            background-color: var(--mm-gray-900, #2b2b2b);
         }
 
         .visual {
@@ -75,7 +75,7 @@
 
 .placeholder {
     display: block;
-    background-color: var(--mm-gray-600);
+    background-color: var(--mm-gray-600, #6c6c6c);
 }
 
 .emptyContainer {
@@ -294,7 +294,7 @@
 
         /* background-color: #ff0; */
 
-        /* color: var(--mm-black); */
+        /* color: var(--mm-black, #000); */
         font-family: Agrandir, sans-serif;
         font-size: 16px;
     }

@@ -5,7 +5,7 @@
         position: absolute;
         width: 15%;
         height: 15%;
-        color: var(--mm-black);
+        color: var(--mm-black, #000);
 
         &:nth-child(1) {
             top: 10%;

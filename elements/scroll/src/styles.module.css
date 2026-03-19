@@ -16,7 +16,7 @@
         scrollbar-width: none;
 
         &::-webkit-scrollbar {
-        display: none;
+            display: none;
         }
     }
 
@@ -42,10 +42,10 @@
         width: 1rem;
         height: auto;
         animation: upAndDown 0.75s alternate infinite var(--mm-ease-in-out-soft-sine);
-        color: var(--mm-white);
+        color: var(--mm-white, #fff);
 
         path {
-            stroke: var(--mm-black);
+            stroke: var(--mm-black, #000);
             stroke-width: 20;
         }
     }
@@ -69,7 +69,11 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: linear-gradient(to bottom, rgb(28 28 28 / 0), rgb(28 28 28 / 0.85));
+                background-image: linear-gradient(
+                    to bottom,
+                    rgb(28 28 28 / 0),
+                    rgb(28 28 28 / 0.85)
+                );
                 content: '';
             }
         }

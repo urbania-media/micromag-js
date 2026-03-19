@@ -4,8 +4,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: dashed 2px var(--mm-gray-600);
-    color: var(--mm-gray-600);
+    border: dashed 2px var(--mm-gray-600, #6c6c6c);
+    color: var(--mm-gray-600, #6c6c6c);
 
     .middle {
         text-align: center;
@@ -16,7 +16,7 @@
     }
 
     &.invertColor {
-        border: dashed 2px var(--mm-gray-800, #ccc);
-        color: var(--mm-gray-800, #ccc);
+        border: dashed 2px var(--mm-gray-800, #343434);
+        color: var(--mm-gray-800, #343434);
     }
 }

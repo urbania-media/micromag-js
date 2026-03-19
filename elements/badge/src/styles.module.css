@@ -1,9 +1,9 @@
 .container {
     display: inline-block;
     padding: 4px 10px;
-    border: 1px solid var(--mm-gray-500);
+    border: 1px solid var(--mm-gray-500, #adadad);
     border-radius: 100px;
-    color: var(--mm-gray-500);
+    color: var(--mm-gray-500, #adadad);
     line-height: 1;
 
     .label {

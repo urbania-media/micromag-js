@@ -8,11 +8,11 @@
     .grid {
         width: 50px;
         height: 80px;
-        border: solid 2px var(--mm-gray-400);
+        border: solid 2px var(--mm-gray-400, #b3b3b3);
     }
 
     .column {
-        border: solid 1px var(--mm-gray-400);
-        background: var(--mm-gray-100);
+        border: solid 1px var(--mm-gray-400, #b3b3b3);
+        background: var(--mm-gray-100, #f5f5f5);
     }
 }

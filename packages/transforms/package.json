@@ -61,7 +61,7 @@
         "utils.js"
     ],
     "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf assets",
+        "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles",
         "prepublishOnly": "npm run build",
         "build": "../../scripts/prepare-package.sh --types"
     },

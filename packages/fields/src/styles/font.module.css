@@ -14,7 +14,7 @@
 
         > * {
             display: block;
-            margin-right: calc(var(--mm-spacer) / 2);
+            margin-right: calc(var(--mm-spacer, 5px) / 2);
             line-height: 1;
 
             &:last-child {
@@ -24,7 +24,7 @@
     }
 
     .noValue {
-        color: var(--mm-gray-400);
+        color: var(--mm-gray-400, #b3b3b3);
         text-align: right;
     }
 

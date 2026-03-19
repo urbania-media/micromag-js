@@ -18,7 +18,7 @@
         display: block;
         width: 100%;
         height: 100%;
-        color: rgb(var(--mm-white), 0.6);
+        color: rgb(var(--mm-white, #fff), 0.6);
     }
 
     &.good {

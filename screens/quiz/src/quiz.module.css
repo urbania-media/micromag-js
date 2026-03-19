@@ -54,7 +54,7 @@
     top: 0;
     left: 0;
     padding: 10px;
-    color: var(--mm-white);
+    color: var(--mm-white, #fff);
 }
 
 .layout {
@@ -113,7 +113,7 @@
     position: relative;
     width: 100%;
     padding: 10px;
-    color: var(--mm-white);
+    color: var(--mm-white, #fff);
 
     &:disabled {
         opacity: 1;

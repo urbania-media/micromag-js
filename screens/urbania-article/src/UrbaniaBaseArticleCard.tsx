@@ -369,6 +369,7 @@ function UrbaniaArticleCard({
                                                     withoutBackground
                                                     author={author}
                                                     shouldLoad={mediaShouldLoad}
+                                                    className={styles.author}
                                                 />
                                             ) : null}
                                         </div>

@@ -50,7 +50,7 @@
     position: relative;
     width: 100%;
     padding: 10px;
-    color: var(--mm-white);
+    color: var(--mm-white, #fff);
 
     &:disabled {
         opacity: 1;
@@ -76,7 +76,7 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
-    border: 2px solid var(--mm-black);
+    border: 2px solid var(--mm-black, #000);
     border-radius: 50%;
     margin-top: -18px;
     background-color: var(--mm-red);

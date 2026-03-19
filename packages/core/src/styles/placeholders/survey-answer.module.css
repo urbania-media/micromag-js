@@ -13,6 +13,6 @@
 
     .percentIcon {
         padding: 1px;
-        color: rgb(var(--mm-white), 0.6);
+        color: rgb(var(--mm-white, #fff), 0.6);
     }
 }

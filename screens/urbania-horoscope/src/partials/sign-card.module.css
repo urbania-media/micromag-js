@@ -29,7 +29,7 @@
     width: 30px;
     height: 30px;
     margin: 1px;
-    background-color: var(--mm-gray-400);
+    background-color: var(--mm-gray-400, #b3b3b3);
 }
 
 .thumbnail {

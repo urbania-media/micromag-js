@@ -1,7 +1,0 @@
-.container {
-    position: relative;
-
-    .button {
-        margin-top: var(--mm-spacer);
-    }
-}

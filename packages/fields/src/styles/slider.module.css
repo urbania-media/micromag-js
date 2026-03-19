@@ -11,12 +11,12 @@
 
     .input {
         width: 5em;
-        margin-left: calc(var(--mm-spacer) / 4);
+        margin-left: calc(var(--mm-spacer, 5px) / 4);
         font-size: 0.75rem;
     }
 
     .unit {
-        margin-left: calc(var(--mm-spacer) / 4);
+        margin-left: calc(var(--mm-spacer, 5px) / 4);
         font-size: 0.75rem;
     }
 
@@ -51,7 +51,7 @@
             position: absolute;
             height: 4px;
             border-radius: 6px;
-            background-color: var(--mm-primary);
+            background-color: var(--mm-primary, #a13dff);
         }
 
         .rc-slider-track-draggable {
@@ -68,7 +68,7 @@
             z-index: 1;
             width: 14px;
             height: 14px;
-            border: solid 2px var(--mm-primary);
+            border: solid 2px var(--mm-primary, #a13dff);
             border-radius: 50%;
             margin-top: -5px;
             background-color: #fff;
@@ -80,7 +80,7 @@
         }
 
         .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
-            border-color: var(--mm-primary);
+            border-color: var(--mm-primary, #a13dff);
             box-shadow: 0 0 0 5px var(--mm-input-btn-focus-color);
         }
 
@@ -90,21 +90,21 @@
         }
 
         .rc-slider-handle:focus-visible {
-            border-color: var(--mm-primary);
+            border-color: var(--mm-primary, #a13dff);
             box-shadow: 0 0 0 3px var(--mm-input-btn-focus-color);
         }
 
         .rc-slider-handle-click-focused:focus {
-            border-color: var(--mm-primary);
+            border-color: var(--mm-primary, #a13dff);
             box-shadow: unset;
         }
 
         .rc-slider-handle:hover {
-            border-color: var(--mm-primary);
+            border-color: var(--mm-primary, #a13dff);
         }
 
         .rc-slider-handle:active {
-            border-color: var(--mm-primary);
+            border-color: var(--mm-primary, #a13dff);
             box-shadow: 0 0 5px var(--mm-input-btn-focus-color);
             cursor: grabbing;
         }
@@ -150,7 +150,7 @@
         }
 
         .rc-slider-dot-active {
-            border-color: var(--mm-primary);
+            border-color: var(--mm-primary, #a13dff);
         }
 
         .rc-slider-dot-reverse {

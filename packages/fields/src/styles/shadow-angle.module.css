@@ -7,7 +7,7 @@
     color: #ccc;
 
     &.active {
-        color: var(--mm-black);
+        color: var(--mm-black, #000);
     }
 }
 
