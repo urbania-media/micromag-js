@@ -130,7 +130,7 @@ function Viewer({
     renderContext = 'view',
     tapNextScreenWidthPercent = 0.8,
     tapMaximumDuration = 1500,
-    longPressPauseDelay = 300,
+    longPressPauseDelay = 500,
     storyIsParsed = false,
     neighborScreensActive = 1,
     neighborScreenOffset = 105,
