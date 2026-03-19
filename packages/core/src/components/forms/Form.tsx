@@ -170,9 +170,9 @@ function Form({
             action={action}
             className={classNames([
                 styles.container,
+                className,
                 {
                     // 'was-validated': status !== null,
-                    [className]: className !== null,
                 },
             ])}
             method={method}
@@ -206,9 +206,7 @@ function Form({
                     closeFieldForm={closeFieldForm}
                     className={classNames([
                         styles.fields,
-                        {
-                            [fieldsClassName]: fieldsClassName !== null,
-                        },
+                        fieldsClassName,
                     ])}
                 />
             ) : null}
@@ -218,9 +216,9 @@ function Form({
                 <div
                     className={classNames([
                         styles.actions,
+                        actionsClassName,
                         {
                             [styles[actionsAlign]]: actionsAlign,
-                            [actionsClassName]: actionsClassName !== null,
                         },
                     ])}
                 >
@@ -234,9 +232,7 @@ function Form({
                             disabled={status === 'loading'}
                             className={classNames([
                                 'me-2',
-                                {
-                                    [cancelClassName]: cancelClassName !== null,
-                                },
+                                cancelClassName,
                             ])}
                         >
                             <FormattedMessage defaultMessage="Cancel" description="Button label" />

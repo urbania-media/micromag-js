@@ -35,9 +35,9 @@ function ModalDialog({
             className={classNames([
                 styles.container,
                 'modal-dialog',
+                className,
                 {
                     [`modal-${size}`]: size !== null,
-                    [className]: className,
                 },
             ])}
             role="dialog"
@@ -68,9 +68,7 @@ function ModalDialog({
                     className={classNames([
                         'modal-body',
                         'p-2',
-                        {
-                            [bodyClassName]: bodyClassName !== null,
-                        },
+                        bodyClassName,
                     ])}
                 >
                     {children}

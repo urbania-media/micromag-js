@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 export { default as Audio } from '@micromag/element-audio';
 export { default as Author } from '@micromag/element-author';
 export { default as Background } from '@micromag/element-background';

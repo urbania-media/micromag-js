@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isPlainObject from 'lodash/isPlainObject';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -239,8 +238,8 @@ function GalleryScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

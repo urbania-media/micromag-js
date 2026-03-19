@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -285,8 +284,8 @@ function UrbaniaArticle({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isCurrent]: current,
                     [styles.isVideo]: isVideo,
                     [styles.hasVideoBackground]: hasVideoBackground,

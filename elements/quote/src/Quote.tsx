@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/no-danger */
 import classNames from 'classnames';
 import React, { useId } from 'react';
 
@@ -74,10 +73,10 @@ function Quote({
                 id={id}
                 className={classNames([
                     styles.container,
+                    className,
                     {
                         [styles.showEmpty]: showEmpty,
                         [emptyClassName]: showEmpty && emptyClassName !== null,
-                        [className]: className !== null,
                     },
                 ])}
                 style={finalStyle}

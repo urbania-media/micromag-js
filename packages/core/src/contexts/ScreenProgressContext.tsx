@@ -22,7 +22,7 @@ interface ScreenProgressProviderProps {
     duration?: number;
 }
 
-export function ScreenProgressProvider({ currentTime = 0, duration = 0, children }) {
+export function ScreenProgressProvider({ currentTime = 0, duration = 0, children }: ScreenProgressProviderProps) {
     const [progress, setProgress] = useState({ currentTime, duration });
 
     useEffect(() => {

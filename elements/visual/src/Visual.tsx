@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import React, { useCallback, useMemo } from 'react';
@@ -46,7 +45,7 @@ function Visual({
     loadingMode = null,
     shouldLoad = true,
     videoLoop = true,
-    videoInitialMuted = true,
+    videoInitialMuted: _videoInitialMuted = true,
     onLoaded: onParentLoaded = null,
     className = null,
     imageClassName = null,
@@ -121,7 +120,7 @@ function Visual({
                     resolution={resolution}
                     shouldLoad={finalShouldLoad}
                     onLoaded={onLoaded}
-                    className={classNames([styles.container, { [className]: className !== null }])}
+                    className={classNames([styles.container, className])}
                     imageClassName={imageClassName}
                 />
             ) : null}
@@ -129,18 +128,14 @@ function Visual({
                 <div
                     className={classNames([
                         styles.container,
-                        { [styles.natural]: natural, [className]: className !== null },
+                        className,
+                        { [styles.natural]: natural },
                     ])}
                     style={{ width, height, aspectRatio: ratio !== null ? `${ratio}` : null }}
                     ref={refVisible}
                 >
                     <div
-                        className={classNames([
-                            styles.videoContainer,
-                            {
-                                [videoClassName]: videoClassName !== null,
-                            },
-                        ])}
+                        className={classNames([styles.videoContainer, videoClassName])}
                         style={videoContainerStyle}
                     >
                         <Video

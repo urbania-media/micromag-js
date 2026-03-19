@@ -10,12 +10,13 @@ interface HandTapProps {
     className?: string;
 }
 
-function HandTap({ withoutShadow = false, className = null }) {
+function HandTap({ withoutShadow = false, className = null }: HandTapProps) {
     return (
         <div
             className={classNames([
                 styles.container,
-                { [styles.withoutShadow]: withoutShadow, [className]: className !== null },
+                className,
+                { [styles.withoutShadow]: withoutShadow },
             ])}
         >
             <div className={styles.inner}>

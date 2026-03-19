@@ -59,9 +59,7 @@ function SelectAdvancedField({
     return (
         <Select
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             isClearable={!withoutReset}
             {...props}

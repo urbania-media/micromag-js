@@ -24,9 +24,7 @@ function ToggleField({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <Switch checked={finalValue !== null ? finalValue : false} onChange={onChange} />

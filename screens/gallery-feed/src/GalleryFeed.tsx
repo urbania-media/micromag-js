@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -234,8 +233,8 @@ function GalleryFeedScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

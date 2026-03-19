@@ -16,9 +16,7 @@ function ClearButton({ onClick = null, className = null, ...props }: ClearButton
         <button
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
             onClick={onClick}
             {...props}

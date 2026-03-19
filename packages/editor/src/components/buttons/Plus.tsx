@@ -17,9 +17,7 @@ function PlusButton({ className = null, ...props }: PlusButtonProps) {
         <Button
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             withoutStyle
             {...props}

@@ -37,9 +37,7 @@ function AlignVertical({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div className={classNames(['d-flex', 'align-items-center', 'mb-2'])}>
@@ -58,9 +56,7 @@ function AlignVertical({
                     value={finalValue !== null ? finalValue : null}
                     className={classNames([
                         styles.container,
-                        {
-                            [className]: className !== null,
-                        },
+                        className,
                     ])}
                     buttonClassName={styles.button}
                     onChange={onAlignChange}

@@ -10,14 +10,12 @@ interface CloseMenuButtonProps {
     className?: string;
 }
 
-function CloseMenuButton({ single = false, className = null, ...props }) {
+function CloseMenuButton({ single = false, className = null, ...props }: CloseMenuButtonProps) {
     const intl = useIntl();
     return (
         <IconButton
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             label={intl.formatMessage({
                 defaultMessage: 'Close',

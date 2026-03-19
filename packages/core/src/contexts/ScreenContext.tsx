@@ -71,7 +71,7 @@ export function ScreenProvider({
     renderContext = null,
     screenState = null,
     children,
-}) {
+}: ScreenProviderProps) {
     const {
         data: previousData = null,
         definition: previousDefinition = null,

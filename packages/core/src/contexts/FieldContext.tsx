@@ -10,6 +10,6 @@ interface FieldContextProviderProps {
     children: React.ReactNode;
 }
 
-export function FieldContextProvider({ context = null, children }) {
+export function FieldContextProvider({ context = null, children }: FieldContextProviderProps) {
     return <FieldContext.Provider value={context}>{children}</FieldContext.Provider>;
 }

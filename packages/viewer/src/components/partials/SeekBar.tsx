@@ -58,7 +58,7 @@ function SeekBar({
     focusable = true,
     className = null,
     withSeekHead = true,
-}) {
+}: SeekBarProps) {
     const intl = useIntl();
     const progress = useMediaProgress(media, {
         disabled: !playing,
@@ -126,8 +126,8 @@ function SeekBar({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.withSeekHead]: withSeekHead,
                     [styles.showTimestamp]: showTimestamp,
                 },

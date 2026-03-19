@@ -36,8 +36,8 @@ function ToggleSection({
         <Fields
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.enabled]: valueEnabled,
                 },
             ])}

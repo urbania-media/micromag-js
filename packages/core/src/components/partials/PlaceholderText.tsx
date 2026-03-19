@@ -33,8 +33,8 @@ function PlaceholderText({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className,
                     [styles.withInvertedColors]: withInvertedColors,
                 },
             ])}

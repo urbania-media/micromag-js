@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons/faHeadphonesAlt';
@@ -36,7 +35,7 @@ function GalleryItem({
     onClick = null,
     onClickInfo = null,
     onClickRemove = null,
-}) {
+}: GalleryItemProps) {
     const { type, thumbnail_url: thumbnail = null, name, size } = item;
     let title = name;
     if (width < 768) {
@@ -108,10 +107,10 @@ function GalleryItem({
             theme={selected ? null : null}
             className={classNames([
                 styles.container,
+                className,
                 {
                     // 'border-primary': selected,
                     [styles.selected]: selected,
-                    [className]: className !== null,
                 },
             ])}
             footerClassName={classNames(['p-1', styles.footer])}

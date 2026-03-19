@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -21,14 +20,12 @@ function MicromagPreview({
     url = null,
     description = null,
     className = null,
-}) {
+}: MicromagPreviewProps) {
     return (
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             <div className={styles.cover}>

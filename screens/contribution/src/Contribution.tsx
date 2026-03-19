@@ -1,6 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -528,8 +525,8 @@ function ContributionScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.submitting]: submitState === 1,
                     [styles.submitted]: submitState > 1,

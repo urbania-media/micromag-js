@@ -32,9 +32,7 @@ function Media({
             className={classNames([
                 'card',
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {typeof thumbnail === 'string' ? (
@@ -44,11 +42,11 @@ function Media({
                     className={classNames([
                         'me-3',
                         styles.thumbnail,
+                        thumbnailClassName,
                         {
                             'align-self-start': thumbnailAlign === 'top',
                             'align-self-center': thumbnailAlign === 'center',
                             'align-self-end': thumbnailAlign === 'bottom',
-                            [thumbnailClassName]: thumbnailClassName !== null,
                         },
                     ])}
                 />
@@ -60,9 +58,7 @@ function Media({
                     className={classNames([
                         'card-body',
                         styles.body,
-                        {
-                            [bodyClassName]: bodyClassName !== null,
-                        },
+                        bodyClassName,
                     ])}
                 >
                     {title !== null ? (
@@ -71,9 +67,7 @@ function Media({
                                 'mt-0',
                                 'text-truncate',
                                 styles.title,
-                                {
-                                    [titleClassName]: titleClassName !== null,
-                                },
+                                titleClassName,
                             ])}
                         >
                             <Label>{title}</Label>

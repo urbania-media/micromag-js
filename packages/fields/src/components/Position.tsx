@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, jsx-a11y/label-has-associated-control */
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
@@ -68,9 +67,7 @@ function Position({
                 'btn-group',
                 'btn-group-toggle',
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             data-toggle="buttons"
         >
@@ -81,10 +78,10 @@ function Position({
                         className={classNames([
                             'btn',
                             'btn-outline-secondary',
+                            buttonClassName,
                             {
                                 [styles.button]: true,
                                 active: axisOption === axisAlign && crossOption === crossAlign,
-                                [buttonClassName]: buttonClassName !== null,
                             },
                         ])}
                     >

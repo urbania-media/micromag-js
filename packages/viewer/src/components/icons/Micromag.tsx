@@ -5,7 +5,7 @@ interface MicromagIconProps {
     className?: string;
 }
 
-function MicromagIcon({ color = 'currentColor', className = null }) {
+function MicromagIcon({ color = 'currentColor', className = null }: MicromagIconProps) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315.77 56.94" className={className}>
             <path

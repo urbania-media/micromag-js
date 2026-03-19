@@ -1,8 +1,8 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
+import isArray from 'lodash/isArray';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -310,7 +310,8 @@ function QuizMultipleScreen({
         if (!isResults || !isView) {
             return;
         }
-        submitQuiz({ choice: userAnswers, value: currentPoints });
+        const finalUserAnswers = isArray(userAnswers) ? JSON.stringify(userAnswers) : userAnswers;
+        submitQuiz({ choice: finalUserAnswers, value: currentPoints });
     }, [isView, isResults, userAnswers, submitQuiz]);
 
     // Switch state
@@ -345,16 +346,9 @@ function QuizMultipleScreen({
         finalBackground !== null,
         backgroundKey,
     );
+
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const backgroundShouldLoad = current || active;
-
-    console.log(
-        'finalBackground',
-        finalBackground,
-        backgroundPlaying,
-        backgroundShouldLoad,
-        isCurrentMedia,
-    );
 
     // Transition direction
     const lastQuestionIndexRef = useRef(questionIndex);
@@ -613,7 +607,7 @@ function QuizMultipleScreen({
     const bgItem = useMemo(
         () => ({
             key: backgroundKey,
-            background: finalBackground,
+            background: finalBackground || null,
         }),
         [backgroundKey, finalBackground],
     );
@@ -627,15 +621,7 @@ function QuizMultipleScreen({
     });
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            data-screen-ready
-        >
+        <div className={classNames([styles.container, className])} data-screen-ready>
             <Container width={width} height={height} className={styles.content}>
                 {showPoints && currentPoints !== null && currentPoints > 0 ? (
                     <div className={styles.points}>
@@ -754,10 +740,10 @@ function QuizMultipleScreen({
                               width={width}
                               height={height}
                               resolution={resolution}
-                              playing={backgroundPlaying}
+                              playing={item.key === bgItem.key && backgroundPlaying}
                               muted={muted}
                               shouldLoad={backgroundShouldLoad}
-                              mediaRef={mediaRef}
+                              mediaRef={item.key === bgItem.key ? mediaRef : null}
                               className={styles.background}
                               withoutVideo={isPreview}
                           />

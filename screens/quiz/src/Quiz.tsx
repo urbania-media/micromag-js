@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
@@ -230,9 +229,9 @@ function QuizScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.disabled]: clickDisabled,
-                    [className]: className !== null,
                 },
             ])}
             data-screen-ready

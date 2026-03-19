@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -45,15 +42,7 @@ function Author({
     const withAvatar = withImage && image !== null;
 
     const authorText = isTextFilled(name) ? (
-        <Text
-            className={classNames([
-                styles.name,
-                {
-                    [backgroundClassName]: backgroundClassName,
-                },
-            ])}
-            {...name}
-        />
+        <Text className={classNames([styles.name, backgroundClassName])} {...name} />
     ) : null;
 
     const collaboratorText = isTextFilled(collaborator) ? (
@@ -61,15 +50,7 @@ function Author({
     ) : null;
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            {...otherProps}
-        >
+        <div className={classNames([styles.container, className])} {...otherProps}>
             {withAvatar ? (
                 <Avatar className={styles.image} image={image} shouldLoad={shouldLoad} />
             ) : null}
@@ -92,14 +73,7 @@ function Author({
                     <div>{authorText}</div>
                 )}
                 {collaboratorText !== null ? (
-                    <div
-                        className={classNames([
-                            styles.collaborator,
-                            {
-                                [collaboratorClassName]: collaboratorClassName,
-                            },
-                        ])}
-                    >
+                    <div className={classNames([styles.collaborator, collaboratorClassName])}>
                         {collaboratorText !== null ? collaboratorText : null}
                     </div>
                 ) : null}

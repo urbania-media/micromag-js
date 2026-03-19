@@ -27,7 +27,7 @@ function Search({
     onBlur = null,
     onClickIcon = null,
     className = null,
-}) {
+}: SearchProps) {
     const intl = useIntl();
     const onSearchChange = useCallback(
         (e) => {
@@ -60,9 +60,7 @@ function Search({
                 'border',
                 'border-dark',
                 'rounded',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             onSubmit={(e) => e.preventDefault()}
         >

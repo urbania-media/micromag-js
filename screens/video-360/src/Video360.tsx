@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -57,8 +56,7 @@ interface Video360ScreenProps {
 }
 
 function Video360Screen({
-    // eslint-disable-line
-    layout = 'full',
+    layout: _layout = 'full',
 
     video = null,
     header = null,
@@ -514,8 +512,8 @@ function Video360Screen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.showVideo]: isPreview || isStatic || isCapture,
                 },
             ])}

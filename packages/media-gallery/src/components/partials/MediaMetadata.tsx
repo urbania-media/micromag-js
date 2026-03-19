@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 // useOrganisationTeam
 import classNames from 'classnames';
 import uniqBy from 'lodash/uniqBy';
@@ -33,7 +32,7 @@ function MediaMetadata({
     onClickSave = null,
     onClickDelete = null,
     className = null,
-}) {
+}: MediaMetadataProps) {
     const {
         id: mediaId,
         type,
@@ -197,9 +196,7 @@ function MediaMetadata({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             <div

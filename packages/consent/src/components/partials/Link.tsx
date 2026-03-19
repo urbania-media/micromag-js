@@ -35,7 +35,7 @@ function LinkPartial({
     onClick = null,
     className = null,
     ...props
-}) {
+}: LinkPartialProps) {
     const link = href || null;
     if (link === null) {
         return <span className={className}>{children}</span>;

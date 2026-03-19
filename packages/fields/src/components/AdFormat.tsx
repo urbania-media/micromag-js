@@ -43,9 +43,7 @@ function AdFormatField({
             value={value || (types ? types[0] : null)}
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             buttonClassName={styles.button}
             onChange={onChange}

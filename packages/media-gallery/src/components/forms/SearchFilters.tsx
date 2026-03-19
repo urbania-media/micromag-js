@@ -30,7 +30,7 @@ function SearchFilters({
     onChange = null,
     onClose = null,
     className = null,
-}) {
+}: SearchFiltersProps) {
     const intl = useIntl();
     const getActive = useCallback((items, sectionFilters) => {
         return items !== null
@@ -76,9 +76,7 @@ function SearchFilters({
                 styles.container,
                 'flex-nowrap',
                 'mt-1',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {activeSections.length > 0 ? (

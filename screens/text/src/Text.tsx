@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -90,8 +89,8 @@ function TextScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

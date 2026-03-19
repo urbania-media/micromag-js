@@ -50,7 +50,7 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
                 setIsBackground(false);
             }
         },
-        [active, setMedia, setIsBackground],
+        [active, setMedia, setIsBackground, updateKey],
     );
 
     // Register media with context when active and no media is registered
@@ -87,7 +87,7 @@ export function PlaybackProvider({
     controlsTheme: initialControlsTheme = defaultControlsThemeValue,
     currentQualityLevel: initialCurrentQualityLevel = null,
     children,
-}) {
+}: PlaybackProviderProps) {
     const [muted, setMuted] = useState(initialMuted);
     const [playing, setPlaying] = useState(initialPlaying);
     const [media, setMedia] = useState(null);
@@ -174,7 +174,7 @@ export function PlaybackProvider({
                 setCurrentQualityLevel(level);
             }
         },
-        [setCurrentQualityLevel],
+        [media, setCurrentQualityLevel],
     );
 
     const value = useMemo(
@@ -222,11 +222,10 @@ export function PlaybackProvider({
             finalSetControlsTheme,
             setControlsSuggestPlay,
             setControlsVisible,
-            setControlsTheme,
             showControls,
             hideControls,
             setMedia,
-            setCurrentQualityLevel,
+            finalSetCurrentQualityLevel,
         ],
     );
 

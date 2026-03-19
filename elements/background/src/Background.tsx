@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import React, { useRef } from 'react';
@@ -127,15 +126,7 @@ function Background({
     }
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            style={containerStyle}
-        >
+        <div className={classNames([styles.container, className])} style={containerStyle}>
             {isVideo && shouldLoad && !withoutVideo ? (
                 <div className={styles.videoContainer} style={videoContainerStyle}>
                     <Video

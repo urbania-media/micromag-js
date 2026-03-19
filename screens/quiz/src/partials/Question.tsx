@@ -135,11 +135,11 @@ function Question({
         <Layout
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.resultVisible]: resultVisible,
                     [styles.resultHidden]: !hasResult,
-                    [className]: className !== null,
                 },
             ])}
             verticalAlign={verticalAlign}

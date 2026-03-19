@@ -1,6 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -35,12 +32,7 @@ function Container({
     return (
         <div
             ref={containerRef}
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
+            className={classNames([styles.container, className])}
             style={containerStyle}
         >
             {children}
@@ -48,4 +40,4 @@ function Container({
     );
 }
 
-export default React.forwardRef((props, ref) => <Container containerRef={ref} {...props} />);
+export default ({ ref, ...props }) => <Container containerRef={ref} {...props} />;

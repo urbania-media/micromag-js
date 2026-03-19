@@ -289,9 +289,7 @@ function Breadcrumb({
                 className={classNames([
                     styles.container,
                     'text-truncate',
-                    {
-                        [className]: className !== null,
-                    },
+                    className,
                 ])}
             />
         </>

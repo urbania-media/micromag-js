@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading, arrow-body-style */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import classNames from 'classnames';
 import React, { useCallback, useMemo, useState } from 'react';
@@ -42,7 +41,7 @@ function ViewerMenuShare({
     shareUrl = null,
     onShare = null,
     className = null,
-}) {
+}: ViewerMenuShareProps) {
     // Viewer theme
     const { background = null } = viewerTheme || {};
     const { image = null } = background || {};
@@ -85,9 +84,7 @@ function ViewerMenuShare({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={{ ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}

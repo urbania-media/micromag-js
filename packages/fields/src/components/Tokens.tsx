@@ -50,9 +50,7 @@ function Tokens({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <AsyncCreatableSelect

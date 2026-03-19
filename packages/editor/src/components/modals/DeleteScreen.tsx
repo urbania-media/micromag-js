@@ -25,9 +25,7 @@ function DeleteScreenModal({ className = null, onConfirm = null, onCancel = null
                 }
                 className={classNames([
                     styles.container,
-                    {
-                        [className]: className,
-                    },
+                    className,
                 ])}
                 onClose={onCancel}
             >

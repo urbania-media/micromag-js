@@ -11,15 +11,13 @@ interface MenuButtonProps {
     iconClassName?: string;
 }
 
-function MenuButton({ className = null, iconClassName = null, ...props }) {
+function MenuButton({ className = null, iconClassName = null, ...props }: MenuButtonProps) {
     const intl = useIntl();
 
     return (
         <IconButton
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             label={intl.formatMessage({
                 defaultMessage: 'Menu',

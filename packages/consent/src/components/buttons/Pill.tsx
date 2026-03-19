@@ -27,17 +27,17 @@ function PillButton({
     invert = false,
     dark = false,
     ...props
-}) {
+}: PillButtonProps) {
     return (
         <Button
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.active]: active,
                     [styles.dark]: dark,
                     [styles.invert]: invert,
                     [styles.disabled]: disabled,
-                    [className]: className !== null,
                 },
             ])}
             {...props}

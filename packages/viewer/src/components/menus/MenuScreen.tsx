@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading, arrow-body-style */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import classNames from 'classnames';
 import React from 'react';
@@ -30,7 +29,7 @@ function ViewerMenuScreen({
     screenSize = null,
     alwaysRender = false,
     focusable = true,
-}) {
+}: ViewerMenuScreenProps) {
     const intl = useIntl();
     const { current = false, screen, count = 1 } = item || {};
     const { width: screenWidth, height: screenHeight } = screenSize || {};
@@ -57,8 +56,8 @@ function ViewerMenuScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isCurrent]: current,
                 },
             ])}

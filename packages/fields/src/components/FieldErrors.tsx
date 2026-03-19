@@ -16,9 +16,7 @@ function FieldErrors({ errors = null, className = null }: FieldErrorsProps) {
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {errors.map((error) => (

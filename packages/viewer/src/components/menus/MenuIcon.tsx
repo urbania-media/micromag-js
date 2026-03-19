@@ -9,15 +9,13 @@ interface MenuIconProps {
     className?: string;
 }
 
-function MenuIcon({ size = 100, spacing = 8, color = 'white', className = null }) {
+function MenuIcon({ size = 100, spacing = 8, color = 'white', className = null }: MenuIconProps) {
     const squareSize = (size - 2 * spacing) / 3;
 
     return (
         <svg
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             xmlns="http://www.w3.org/2000/svg"
             viewBox={`0 0 ${size} ${size}`}

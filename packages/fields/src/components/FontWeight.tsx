@@ -30,9 +30,7 @@ function FontWeight({
             marksStep={100}
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             onChange={onChange}
         />

@@ -98,15 +98,7 @@ function AudioBars({
     );
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            ref={elRef}
-        >
+        <div className={classNames([styles.container, className])} ref={elRef}>
             <svg
                 version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +127,6 @@ function AudioBars({
                 ))}
             </svg>
             <button
-                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...bind()}
                 onClick={onClick}
                 type="button"

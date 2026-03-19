@@ -17,9 +17,7 @@ function Screens({ screens, screen: screenId = null, className = null }: Screens
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             {screens.map((screen) => {

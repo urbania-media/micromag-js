@@ -34,9 +34,7 @@ function MarginField({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <FontAwesomeIcon

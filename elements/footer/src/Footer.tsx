@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -16,14 +15,7 @@ function Footer({ callToAction = null, className = null }: FooterProps) {
     if (callToAction === null) return null;
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <CallToAction {...callToAction} />
         </div>
     );

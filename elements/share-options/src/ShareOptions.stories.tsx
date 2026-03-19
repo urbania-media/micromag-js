@@ -16,7 +16,7 @@ export const normal = meta.story(() => (
     <ShareOptions
         title="Test share"
         url="https://micromania.urbania.ca"
-        onShare={console.log} // eslint-disable-line
-        onShareWindowClose={console.log} // eslint-disable-line
+        onShare={console.log}
+        onShareWindowClose={console.log}
     />
 ));

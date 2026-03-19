@@ -23,7 +23,7 @@ export function ScreensProvider({
     filterNamespaces = false,
     manager = null,
     children,
-}) {
+}: ScreensProviderProps) {
     const previousManager = useScreensManager();
     const finalManager = useMemo(() => {
         let newManager = manager !== null ? manager : new ScreensManager(screens);

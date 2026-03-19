@@ -53,9 +53,7 @@ function FontStyles({
             className={classNames([
                 'd-flex',
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <FontStyle

@@ -93,9 +93,7 @@ function ScreenTypes({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             <div className={styles.rows}>

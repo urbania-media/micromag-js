@@ -35,9 +35,7 @@ function Buttons({
                     [`btn-group-${size}`]: size !== null,
                 },
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             role="group"
         >
@@ -53,9 +51,9 @@ function Buttons({
                 const fixedProps = {
                     className: classNames([
                         styles.button,
+                        customClassName,
+                        buttonClassName,
                         {
-                            [buttonClassName]: buttonClassName !== null,
-                            [customClassName]: customClassName !== null,
                         },
                     ]),
                     onClick: (e) => {

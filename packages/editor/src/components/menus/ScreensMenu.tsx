@@ -69,9 +69,9 @@ function ScreensMenu({
                       key={item.id}
                       className={classNames([
                           styles.item,
+                          itemCustomClassName,
+                          itemClassName,
                           {
-                              [itemClassName]: itemClassName !== null,
-                              [itemCustomClassName]: itemCustomClassName !== null,
                           },
                       ])}
                       data-screen-id={item.id}
@@ -92,7 +92,7 @@ function ScreensMenu({
                       {settings !== null ? (
                           <div
                               className={classNames([
-                                  { [settingsClassName]: settingsClassName !== null },
+                                  settingsClassName,
                                   styles.settings,
                                   'p-2',
                               ])}
@@ -126,12 +126,12 @@ function ScreensMenu({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.noWrap]: noWrap,
                     [styles.isVertical]: isVertical,
                     [styles.isTree]: isTree,
                     [styles.withPlaceholder]: withPlaceholder,
-                    [className]: className,
                 },
             ])}
         >

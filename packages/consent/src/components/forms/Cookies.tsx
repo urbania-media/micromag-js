@@ -31,7 +31,7 @@ function Cookies({
     labels = null,
     className = null,
     ...props
-}) {
+}: CookiesProps) {
     const {
         consent: choices,
         onClickChoice,
@@ -66,7 +66,7 @@ function Cookies({
 
     return (
         <div
-            className={classNames([styles.container, { [className]: className !== null }])}
+            className={classNames([styles.container, className])}
             {...props}
         >
             <div className={styles.top}>

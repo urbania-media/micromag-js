@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -27,21 +26,9 @@ function Keypad({
 }: KeypadProps) {
     const itemWidth = `${100 / columns}%`;
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <div
-                className={classNames([
-                    styles.inner,
-                    {
-                        [innerClassName]: innerClassName !== null,
-                    },
-                ])}
+                className={classNames([styles.inner, innerClassName])}
                 style={{
                     ...getStyleFromAlignment({ horizontal: align }),
                 }}
@@ -52,12 +39,7 @@ function Keypad({
                           return (
                               <div
                                   key={key}
-                                  className={classNames([
-                                      styles.item,
-                                      {
-                                          [itemClassName]: itemClassName !== null,
-                                      },
-                                  ])}
+                                  className={classNames([styles.item, itemClassName])}
                                   style={{
                                       width: itemWidth,
                                       padding: spacing / 2,

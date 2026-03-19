@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import classNames from 'classnames';
 import parseSRT from 'parse-srt';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -75,14 +74,7 @@ function ClosedCaptions({
     const finalBoxStyles = boxStyle !== null ? getStyleFromBox(boxStyle) : null;
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             {active ? (
                 <div className={styles.captions} style={finalBoxStyles}>
                     <TextElement textStyle={textStyle} body={line.text} />

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -310,8 +309,8 @@ function UrbaniaHoroscope({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

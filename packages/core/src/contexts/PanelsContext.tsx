@@ -36,7 +36,7 @@ interface PanelsProviderProps {
     container?: Record<string, unknown>;
 }
 
-export function PanelsProvider({ children, container: initialContainer = null }) {
+export function PanelsProvider({ children, container: initialContainer = null }: PanelsProviderProps) {
     const [container, setContainer] = useState(initialContainer);
     const [panels, setPanels] = useState([]);
     const panelsRef = useRef(panels);

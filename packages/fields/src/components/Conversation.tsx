@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
@@ -40,9 +39,7 @@ function Conversation({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <FieldContextProvider context={{ options: speakerOptions }}>

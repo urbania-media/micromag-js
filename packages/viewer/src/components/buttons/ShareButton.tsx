@@ -9,15 +9,13 @@ interface ShareButtonProps {
     className?: string;
 }
 
-function ShareButton({ className = null, ...props }) {
+function ShareButton({ className = null, ...props }: ShareButtonProps) {
     const intl = useIntl();
 
     return (
         <IconButton
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             label={intl.formatMessage({
                 defaultMessage: 'Share',

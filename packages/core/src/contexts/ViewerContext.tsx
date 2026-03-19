@@ -114,7 +114,7 @@ export function ViewerProvider({
     gotoPreviousScreen = () => {},
     disableInteraction = () => {},
     enableInteraction = () => {},
-}) {
+}: ViewerProviderProps) {
     const [webView, setWebView] = useState(null);
 
     const value = useMemo(

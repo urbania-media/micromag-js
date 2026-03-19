@@ -16,16 +16,14 @@ const defaultItems = [
     { id: 'delete', label: 'Supprimer', onClick: null },
 ];
 
-function DropdownButton({ dropdownItems = defaultItems, className = null }) {
+function DropdownButton({ dropdownItems = defaultItems, className = null }: DropdownButtonProps) {
     const [opened, setOpened] = useState(false);
     const onOpen = useCallback(() => setOpened(!opened));
 
     return (
         <div
             className={classNames([
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div

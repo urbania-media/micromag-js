@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign, jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -45,8 +44,7 @@ interface AudioScreenProps {
 }
 
 function AudioScreen({
-    // eslint-disable-line
-    layout = 'middle',
+    layout: _layout = 'middle',
     audio = null,
     spacing = 20,
     background = null,
@@ -214,8 +212,8 @@ function AudioScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.placeholder]: isPlaceholder,
                     [styles.isPreview]: isPreview,
                 },

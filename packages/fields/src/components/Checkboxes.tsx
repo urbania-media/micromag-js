@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, jsx-a11y/label-has-associated-control */
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import React, { useMemo } from 'react';
@@ -37,9 +36,7 @@ function Checkboxes({
                 'btn-group',
                 'btn-group-toggle',
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             data-toggle="buttons"
         >
@@ -55,8 +52,8 @@ function Checkboxes({
                             'btn',
                             'btn-outline-secondary',
                             styles.item,
+                            buttonClassName,
                             {
-                                [buttonClassName]: buttonClassName !== null,
                                 active,
                             },
                         ])}

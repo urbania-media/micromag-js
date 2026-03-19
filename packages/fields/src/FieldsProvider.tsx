@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 import {
@@ -14,7 +13,7 @@ interface FieldsProviderProps {
     children: React.ReactNode;
 }
 
-function FieldsProvider({ children }) {
+function FieldsProvider({ children }: FieldsProviderProps) {
     return (
         <ComponentsProvider namespace={FIELDS_NAMESPACE} components={components}>
             <BaseFieldsProvider manager={manager}>{children}</BaseFieldsProvider>

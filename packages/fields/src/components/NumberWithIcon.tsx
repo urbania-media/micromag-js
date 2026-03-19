@@ -24,9 +24,9 @@ function NumberWithIcon({
             className={classNames([
                 'd-flex',
                 'align-items-center',
+                className,
                 {
                     'justify-content-end': isHorizontal,
-                    [className]: className !== null,
                 },
             ])}
         >

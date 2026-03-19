@@ -1,7 +1,5 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import { isNumber } from 'lodash';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -28,7 +26,6 @@ import {
     useActivityDetector,
     useDebounce,
     useDimensionObserver,
-    useResizeObserver,
     useTrackScreenEvent,
     useTrackScreenMedia,
 } from '@micromag/core/hooks';
@@ -124,10 +121,10 @@ function Timeline({
         muted,
         playing,
         setControls,
-        setControlsSuggestPlay,
+        setControlsSuggestPlay: _setControlsSuggestPlay,
         setControlsTheme,
         setPlaying,
-        controlsVisible,
+        controlsVisible: _controlsVisible,
         showControls,
         hideControls,
     } = usePlaybackContext();
@@ -203,7 +200,7 @@ function Timeline({
     useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
     const trackScreenMedia = useTrackScreenMedia('video');
-    const [currentTime, setCurrentTime] = useState(null);
+    const [_currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
 
     const [audioReady, setAudioReady] = useState(audioAlternativeMedia === null);
@@ -287,7 +284,6 @@ function Timeline({
     );
     const itemBottomSpacing = useMemo(
         () =>
-            // eslint-disable-next-line no-nested-ternary
             isPlaceholder
                 ? 4
                 : initialItemBottomSpacing !== null
@@ -315,8 +311,6 @@ function Timeline({
     const onImageLoaded = useCallback(() => {
         setImagesLoaded((count) => count + 1);
     }, [setImagesLoaded]);
-
-
 
     // const {
     //     ref: firstLineRef,
@@ -594,8 +588,8 @@ function Timeline({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
                     [styles.withoutLines]: itemsCount < 2,

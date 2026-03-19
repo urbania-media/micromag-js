@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -194,8 +193,8 @@ function SlideshowScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

@@ -75,9 +75,7 @@ function ButtonLayout({
         <div
             className={classNames([
                 'd-flex',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div className={classNames(['d-inline-flex', 'ms-auto', 'me-auto'])}>
@@ -89,9 +87,7 @@ function ButtonLayout({
                     value={value || null}
                     className={classNames([
                         styles.container,
-                        {
-                            [className]: className !== null,
-                        },
+                        className,
                     ])}
                     buttonClassName={styles.button}
                     onChange={onButtonLayoutChange}

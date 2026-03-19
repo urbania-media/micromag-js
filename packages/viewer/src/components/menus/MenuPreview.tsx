@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading, arrow-body-style */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -49,7 +48,7 @@ function ViewerMenuPreview({
     // fullscreenActive,
     // fullscreenEnabled,
     className = null,
-}) {
+}: ViewerMenuPreviewProps) {
     const { ref: containerRef, width: contentWidth = 0 } = useDimensionObserver();
     const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3); // @note cool, should be in recipes
 
@@ -85,9 +84,7 @@ function ViewerMenuPreview({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={{ ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}

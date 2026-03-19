@@ -107,9 +107,7 @@ function ScreenSizer({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             ref={!hasSize ? refContainer : null}
         >

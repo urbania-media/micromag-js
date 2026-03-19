@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
@@ -31,13 +30,12 @@ import { useDimensionObserver, useDragProgress, useTrackScreenEvent } from '@mic
 import {
     camelCase,
     getFooterProps,
-    getStyleFromAlignment,
     getStyleFromBox,
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
 } from '@micromag/core/utils';
-import Background from '@micromag/element-background';
+import { default as Background } from '@micromag/element-background';
 import Button, { RichButton } from '@micromag/element-button';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
@@ -282,8 +280,9 @@ function KeypadScreen({
                 trackScreenEvent('close_modal');
             }
             setShowPopup(false);
+            setPopupDragDisabled(false);
         },
-        [setShowPopup, trackScreenEvent, isNotInteractive],
+        [setShowPopup, setPopupDragDisabled, trackScreenEvent, isNotInteractive],
     );
 
     const onClickClose = useCallback(
@@ -517,8 +516,8 @@ function KeypadScreen({
             ref={containerRef}
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.withSquareItems]: withSquareItems,
                 },

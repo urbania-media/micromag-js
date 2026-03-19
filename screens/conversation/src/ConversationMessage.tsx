@@ -113,8 +113,8 @@ function ConversationMessage({
         <div
             className={classNames([
                 styles.messageContainer,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.withAnimation]: withAnimation === true,
                     [styles.right]: right,
                 },

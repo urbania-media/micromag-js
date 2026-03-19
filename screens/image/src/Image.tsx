@@ -1,6 +1,3 @@
-/* eslint-disable no-nested-ternary */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -259,8 +256,8 @@ function ImageScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isReversed]: isReversed,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.isCard]: isCard,

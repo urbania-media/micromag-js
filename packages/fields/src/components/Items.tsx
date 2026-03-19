@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';

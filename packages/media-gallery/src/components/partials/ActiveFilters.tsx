@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/label-has-associated-control, react/jsx-indent */
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
@@ -14,14 +13,25 @@ import styles from '../../styles/partials/active-filters.module.css';
 const emptyArray: never[] = [];
 
 interface ActiveFiltersProps {
-    filters?: { types?: string[]; tags?: string[]; users?: string[]; usage?: ('used' | 'unused')[] };
+    filters?: {
+        types?: string[];
+        tags?: string[];
+        users?: string[];
+        usage?: ('used' | 'unused')[];
+    };
     onChange?: (...args: unknown[]) => void;
     onReset?: (...args: unknown[]) => void;
     sections?: Record<string, unknown>[];
     className?: string;
 }
 
-function ActiveFilters({ filters = null, onChange = null, onReset = null, sections = emptyArray, className = null }) {
+function ActiveFilters({
+    filters = null,
+    onChange = null,
+    onReset = null,
+    sections = emptyArray,
+    className = null,
+}: ActiveFiltersProps) {
     const handleReset = useCallback(() => {
         if (onReset !== null) {
             onReset();
@@ -49,9 +59,7 @@ function ActiveFilters({ filters = null, onChange = null, onReset = null, sectio
             className={classNames([
                 'w-100',
                 styles.container,
-                {
-                    [className]: className,
-                },
+                className,
             ])}
         >
             {hasValue ? (

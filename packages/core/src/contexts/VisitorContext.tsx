@@ -29,7 +29,7 @@ interface VisitorProviderProps {
     visitor?: Visitor;
 }
 
-export function VisitorProvider({ visitor: providedVisitor = null, children }) {
+export function VisitorProvider({ visitor: providedVisitor = null, children }: VisitorProviderProps) {
     const [visitor, setVisitor] = useState(providedVisitor);
 
     useEffect(() => {

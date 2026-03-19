@@ -16,7 +16,7 @@ interface CheckboxFieldProps {
     onChange?: (...args: unknown[]) => void;
 }
 
-function CheckboxField({ name = null, label = null, value = null, disabled = false, onClick = null, onChange = null, className = null }) {
+function CheckboxField({ name = null, label = null, value = null, disabled = false, onClick = null, onChange = null, className = null }: CheckboxFieldProps) {
     const onInputChange = useCallback(
         (e) => {
             if (onChange !== null) {
@@ -30,9 +30,9 @@ function CheckboxField({ name = null, label = null, value = null, disabled = fal
             htmlFor={name}
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.disabled]: disabled,
-                    [className]: className !== null,
                 },
             ])}
         >

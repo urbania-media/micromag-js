@@ -79,7 +79,7 @@ export function FontsProvider({
     systemFonts = ['Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana'],
     customFonts = null,
     children,
-}) {
+}: FontsProviderProps) {
     const {
         systemFonts: previousSystemFonts = null,
         googleFonts: previousGoogleFonts = null,

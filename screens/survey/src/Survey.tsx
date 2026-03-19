@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
@@ -564,8 +563,8 @@ function SurveyScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.answered]: answered,
                     [styles.inputFocused]: inputFocused,
                     [styles.withPercentage]: !withoutPercentage,

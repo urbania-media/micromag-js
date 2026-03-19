@@ -46,9 +46,7 @@ function ScreenLayoutField({
             value={value || (layouts ? layouts[0] : null)}
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             buttonClassName={styles.button}
             onChange={onChange}

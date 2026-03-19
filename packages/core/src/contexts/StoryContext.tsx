@@ -16,6 +16,6 @@ interface StoryProviderProps {
     children: React.ReactNode;
 }
 
-export function StoryProvider({ story = null, children }) {
+export function StoryProvider({ story = null, children }: StoryProviderProps) {
     return <StoryContext.Provider value={story}>{children}</StoryContext.Provider>;
 }

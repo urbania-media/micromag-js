@@ -283,10 +283,10 @@
     cursor: pointer;
     font-family: inherit;
     touch-action: none;
-    transition: transform 0.3s var(--mm-ease-in-kickback);
 
     &:active,
     &:hover {
+        transition: transform 0.3s var(--mm-ease-in-kickback);
         transform: scale(0.95);
     }
 }

@@ -14,7 +14,7 @@ function EmailIcon({ className = null, size = 45 }: EmailIconProps) {
             viewBox="0 0 45 45"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={classNames([{ [className]: className !== null }])}
+            className={classNames([className])}
         >
             <g clipPath="url(#clip0_837_18233)">
                 <path

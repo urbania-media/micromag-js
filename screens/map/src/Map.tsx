@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -237,7 +236,7 @@ function MapScreen({
 
             return () => {
                 imgs.filter((img) => img !== null).forEach((img) => {
-                    img.onload = () => {}; // eslint-disable-line no-param-reassign
+                    img.onload = () => {};
                 });
             };
         }
@@ -325,8 +324,8 @@ function MapScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles[`${layout}Layout`]]: layout !== null,
                     [styles.opened]: opened || (isPreview && screenState !== 'intro'),
                     [styles.hasSelectedMarker]: hasSelectedMarker,

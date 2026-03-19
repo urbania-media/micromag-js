@@ -118,9 +118,7 @@ function AutocompleteField({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <TextField

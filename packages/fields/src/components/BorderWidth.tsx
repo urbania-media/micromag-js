@@ -30,9 +30,7 @@ function BorderWidth({
             withInput
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             onChange={onChange}
         />

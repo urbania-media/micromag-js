@@ -17,9 +17,9 @@ function FieldErrors({ children = null, muted = true, className = null }: FieldE
             id="passwordHelpBlock"
             className={classNames([
                 'form-text',
+                className,
                 {
                     'text-body-secondary': muted,
-                    [className]: className !== null,
                 },
             ])}
         >

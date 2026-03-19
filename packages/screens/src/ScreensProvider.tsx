@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 import { ScreensProvider as BaseScreensProvider } from '@micromag/core/contexts';
@@ -9,7 +8,7 @@ interface ScreensProviderProps {
     children: React.ReactNode;
 }
 
-function ScreensProvider({ children, ...props }) {
+function ScreensProvider({ children, ...props }: ScreensProviderProps) {
     return (
         <BaseScreensProvider {...props} manager={manager}>
             {children}

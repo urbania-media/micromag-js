@@ -63,7 +63,7 @@ function Navbar({
     onFocusSearch = null,
     onFiltersChange = null,
     onClickBack = null,
-}) {
+}: NavbarProps) {
     const intl = useIntl();
     const throttle = useRef(null);
     const [open, setOpen] = useState(false);
@@ -219,9 +219,7 @@ function Navbar({
             className={classNames([
                 styles.container,
                 'navbar',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div className={classNames([styles.inner])}>

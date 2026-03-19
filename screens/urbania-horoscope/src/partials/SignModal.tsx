@@ -61,9 +61,9 @@ function SignModal({
             height={height}
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.withoutTransitions]: transitionDisabled,
-                    [className]: className !== null,
                 },
             ])}
         >

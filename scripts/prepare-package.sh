@@ -50,7 +50,7 @@ build_rollup() {
     elif [ -f ./rollup.config.js ]; then
         ../../node_modules/.bin/rollup --config ./rollup.config.js
     else
-        ../../node_modules/.bin/rollup --config ../../rollup.config.js
+        ../../node_modules/.bin/rollup --config ../../rollup.config.mjs
     fi
 }
 
@@ -101,10 +101,10 @@ build_types() {
     ../../node_modules/.bin/tsc "${unique_ts_entries[@]}" --declaration --emitDeclarationOnly --jsx "react-jsx" --declarationDir "types" --listEmittedFiles --noCheck
 
     echo "Bundling types with rollup..."
-    if [ -f ./rollup.config.dts.js ]; then
-        ../../node_modules/.bin/rollup --config ./rollup.config.dts.js
+    if [ -f ./rollup.config.dts.mjs ]; then
+        ../../node_modules/.bin/rollup --config ./rollup.config.dts.mjs
     else
-        ../../node_modules/.bin/rollup --config ../../rollup.config.dts.js
+        ../../node_modules/.bin/rollup --config ../../rollup.config.dts.mjs
     fi
 
     echo "Cleaning up types..."

@@ -60,8 +60,8 @@ function ScreenWithPreview({
                 active={active}
                 className={classNames([
                     styles.button,
+                    className,
                     {
-                        [className]: className !== null,
                         [styles.withIndex]: withIndexIndicator || withName,
                     },
                 ])}

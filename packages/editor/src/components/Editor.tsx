@@ -132,9 +132,9 @@ function Editor({
                                       (screenName) => styles[`screen-${screenName}`],
                                   )
                                 : null,
+                            className,
                             {
                                 [styles.fullscreen]: fullscreen,
-                                [className]: className,
                             },
                         ])}
                         ref={refContainer}

@@ -41,9 +41,7 @@ function ScreenStates({ screen, value, className = null, onChange = null }: Scre
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <div className="d-flex align-items-end m-n1">

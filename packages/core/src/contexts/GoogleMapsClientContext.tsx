@@ -32,7 +32,7 @@ interface GoogleMapsClientProviderProps {
     libraries?: string[];
 }
 
-export function GoogleMapsClientProvider({ children, locale = 'fr', libraries = null }) {
+export function GoogleMapsClientProvider({ children, locale = 'fr', libraries = null }: GoogleMapsClientProviderProps) {
     const { apiKey } = useGoogleKeys();
     const exisitingClient = useGoogleMapsClient();
     const [client, setClient] = useState(exisitingClient);

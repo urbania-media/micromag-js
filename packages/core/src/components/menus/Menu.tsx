@@ -100,29 +100,33 @@ function Menu({
                               onClick={onClickItem}
                               href={href}
                               external={external}
-                              className={classNames({
-                                  active,
-                                  [itemClassName]: itemClassName !== null,
-                                  [customClassName]: customClassName !== null,
-                                  [linkClassName]: linkClassName !== null,
-                                  [customLinkClassName]: customLinkClassName !== null,
-                              })}
+                              className={classNames([
+                                  itemClassName,
+                                  customClassName,
+                                  linkClassName,
+                                  customLinkClassName,
+                                  {
+                                      active,
+                                  },
+                              ])}
                           >
                               {label}
                           </Link>
                       ) : (
                           <ItemComponent
                               key={`item-${id || index}`}
-                              className={classNames({
-                                  dropdown: dropdown !== null,
-                                  active,
-                                  [itemClassName]: itemClassName !== null,
-                                  [customClassName]: customClassName !== null,
-                                  [hasSubMenuClassName]:
-                                      subItems !== null && hasSubMenuClassName !== null,
-                                  [hasDropdownClassName]:
-                                      subItems !== null && hasDropdownClassName !== null,
-                              })}
+                              className={classNames([
+                                  itemClassName,
+                                  customClassName,
+                                  {
+                                      dropdown: dropdown !== null,
+                                      active,
+                                      [hasSubMenuClassName]:
+                                          subItems !== null && hasSubMenuClassName !== null,
+                                      [hasDropdownClassName]:
+                                          subItems !== null && hasDropdownClassName !== null,
+                                  },
+                              ])}
                           >
                               {href !== null ? (
                                   <Link
@@ -130,11 +134,13 @@ function Menu({
                                       onClick={onClickItem}
                                       href={href}
                                       external={external}
-                                      className={classNames({
-                                          [linkClassName]: linkClassName !== null,
-                                          'dropdown-toggle': dropdown !== null,
-                                          [customLinkClassName]: customLinkClassName !== null,
-                                      })}
+                                      className={classNames([
+                                          linkClassName,
+                                          customLinkClassName,
+                                          {
+                                              'dropdown-toggle': dropdown !== null,
+                                          },
+                                      ])}
                                   >
                                       {label}
                                   </Link>
@@ -143,11 +149,13 @@ function Menu({
                                   <Button
                                       {...itemProps}
                                       onClick={onClickItem}
-                                      className={classNames({
-                                          [linkClassName]: linkClassName !== null,
-                                          'dropdown-toggle': dropdown !== null,
-                                          [customLinkClassName]: customLinkClassName !== null,
-                                      })}
+                                      className={classNames([
+                                          linkClassName,
+                                          customLinkClassName,
+                                          {
+                                              'dropdown-toggle': dropdown !== null,
+                                          },
+                                      ])}
                                   >
                                       {label}
                                   </Button>
@@ -156,18 +164,22 @@ function Menu({
                                   <Menu
                                       items={subItems}
                                       className={subMenuClassName}
-                                      itemClassName={classNames({
-                                          [subMenuItemClassName]: subMenuItemClassName !== null,
-                                          [itemClassName]:
-                                              subMenuItemClassName === null &&
-                                              itemClassName !== null,
-                                      })}
-                                      linkClassName={classNames({
-                                          [subMenuLinkClassName]: subMenuLinkClassName !== null,
-                                          [linkClassName]:
-                                              subMenuLinkClassName === null &&
-                                              linkClassName !== null,
-                                      })}
+                                      itemClassName={classNames([
+                                          subMenuItemClassName,
+                                          {
+                                              [itemClassName]:
+                                                  subMenuItemClassName === null &&
+                                                  itemClassName !== null,
+                                          },
+                                      ])}
+                                      linkClassName={classNames([
+                                          subMenuLinkClassName,
+                                          {
+                                              [linkClassName]:
+                                                  subMenuLinkClassName === null &&
+                                                  linkClassName !== null,
+                                          },
+                                      ])}
                                   />
                               ) : null}
                               {dropdown !== null ? (
@@ -175,18 +187,22 @@ function Menu({
                                       items={dropdown}
                                       visible={dropdownsVisible[index] || false}
                                       className={dropdownClassName}
-                                      itemClassName={classNames({
-                                          [dropdownItemClassName]: dropdownItemClassName !== null,
-                                          [itemClassName]:
-                                              dropdownItemClassName === null &&
-                                              itemClassName !== null,
-                                      })}
-                                      linkClassName={classNames({
-                                          [dropdownLinkClassName]: dropdownLinkClassName !== null,
-                                          [linkClassName]:
-                                              dropdownLinkClassName === null &&
-                                              linkClassName !== null,
-                                      })}
+                                      itemClassName={classNames([
+                                          dropdownItemClassName,
+                                          {
+                                              [itemClassName]:
+                                                  dropdownItemClassName === null &&
+                                                  itemClassName !== null,
+                                          },
+                                      ])}
+                                      linkClassName={classNames([
+                                          dropdownLinkClassName,
+                                          {
+                                              [linkClassName]:
+                                                  dropdownLinkClassName === null &&
+                                                  linkClassName !== null,
+                                          },
+                                      ])}
                                       align={dropdownAlign}
                                       onClickItem={closeDropdown}
                                       onClickOutside={closeDropdown}

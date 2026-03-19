@@ -13,7 +13,7 @@ function ShareLinkIcon({ className = null, size = 45 }: ShareLinkIconProps) {
             width={size}
             height={size}
             viewBox="0 0 64 64"
-            className={classNames([{ [className]: className !== null }])}
+            className={classNames([className])}
         >
             <path
                 d="M29.1,33.4a7.19,7.19,0,0,0,10.1,1.4,5,5,0,0,0,.8-.7l4.3-4.3a7.24,7.24,0,0,0,.1-10.2,7.34,7.34,0,0,0-10.2.1l-.1.1-2.5,2.5"

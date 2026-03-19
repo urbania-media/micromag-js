@@ -25,7 +25,7 @@ function ViewerMenuDot({
     vertical = false,
     onClick = null,
     className = null,
-}) {
+}: ViewerMenuDotProps) {
     const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(255, 255, 255, 0.25)' } =
         colors || {};
 
@@ -54,10 +54,10 @@ function ViewerMenuDot({
             type="button"
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.active]: current,
                     [styles.vertical]: vertical,
-                    [className]: className !== null,
                 },
             ])}
             onClick={(e = null) => {

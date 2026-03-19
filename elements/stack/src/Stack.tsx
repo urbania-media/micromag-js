@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-indent */
-
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
@@ -46,12 +43,7 @@ function Stack({
     return (
         <StackProvider direction={direction}>
             <div
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
+                className={classNames([styles.container, className])}
                 style={{
                     flexDirection,
                     alignItems,

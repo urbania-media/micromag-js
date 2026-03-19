@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading, no-param-reassign, jsx-a11y/control-has-associated-label */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -61,7 +60,7 @@ function VideoScreen({
     footer = null,
     background = null,
     current = true,
-    active = true,
+    active: _active = true,
     preload = true,
     spacing = 20,
     mediaRef: customMediaRef = null,
@@ -300,8 +299,8 @@ function VideoScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.fullscreen]: fullscreen,
                 },
             ])}

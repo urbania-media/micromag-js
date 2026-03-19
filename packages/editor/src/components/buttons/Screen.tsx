@@ -37,9 +37,9 @@ function ScreenButton({
             className={classNames([
                 styles.container,
                 'rounded',
+                className,
                 {
                     [styles.active]: active,
-                    [className]: className !== null,
                 },
             ])}
         >

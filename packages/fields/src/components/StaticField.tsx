@@ -14,9 +14,7 @@ function StaticField({ value = null, name = null, className = null }: StaticFiel
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {name === 'user' ? <div className={styles.icon} /> : null}

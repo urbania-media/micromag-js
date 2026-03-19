@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -20,9 +19,9 @@ function Header({ badge = null, fade = false, className = null }: HeaderProps) {
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.fade]: fade === true,
-                    [className]: className !== null,
                 },
             ])}
         >

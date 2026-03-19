@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 // organize-imports-ignore
 import React from 'react';
 import { createRoot } from 'react-dom/client';

@@ -31,7 +31,7 @@ function Gallery({
     onClickItem = null,
     onClickItemInfo = null,
     onClickRemoveItem = null,
-}) {
+}: GalleryProps) {
     const { ref, width } = useDimensionObserver();
 
     const finalItems = useMemo(() => {
@@ -47,9 +47,7 @@ function Gallery({
                 styles.container,
                 'p-2',
                 'pt-0',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             ref={ref}
         >

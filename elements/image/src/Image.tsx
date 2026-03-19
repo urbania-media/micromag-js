@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { forwardRef, useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import type { ContainerStyle, ImageMedia, ObjectFit } from '@micromag/core';
 import { useSetting } from '@micromag/core/contexts';
@@ -185,12 +184,7 @@ function Image({
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
+            className={classNames([styles.container, className])}
             style={finalContainerStyle}
             ref={containerRef}
         >
@@ -198,12 +192,7 @@ function Image({
                 <img
                     src={finalUrl}
                     alt={alt || description}
-                    className={classNames([
-                        styles.img,
-                        {
-                            [imageClassName]: imageClassName !== null,
-                        },
-                    ])}
+                    className={classNames([styles.img, imageClassName])}
                     style={finalImageStyle}
                     onLoad={onImageLoaded}
                     loading={loadingMode}
@@ -213,4 +202,4 @@ function Image({
     );
 }
 
-export default forwardRef((props, ref) => <Image containerRef={ref} {...props} />);
+export default ({ ref, ...props }) => <Image containerRef={ref} {...props} />;

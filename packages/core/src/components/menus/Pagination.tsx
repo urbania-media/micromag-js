@@ -96,26 +96,22 @@ function PaginationMenu({
         <nav
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <ul
                 className={classNames([
                     'pagination',
-                    {
-                        [paginationClassName]: paginationClassName !== null,
-                    },
+                    paginationClassName,
                 ])}
             >
                 {withPreviousNext ? (
                     <li
                         className={classNames([
                             'page-item',
+                            itemClassName,
                             {
                                 disabled: page <= 1,
-                                [itemClassName]: itemClassName !== null,
                             },
                         ])}
                     >
@@ -123,9 +119,7 @@ function PaginationMenu({
                             <Link
                                 className={classNames([
                                     'page-link',
-                                    {
-                                        [linkClassName]: linkClassName !== null,
-                                    },
+                                    linkClassName,
                                 ])}
                                 href={getUrl(page - 1)}
                                 onClick={onClickPage !== null ? () => onClickPage(page - 1) : null}
@@ -136,9 +130,7 @@ function PaginationMenu({
                             <span
                                 className={classNames([
                                     'page-link',
-                                    {
-                                        [linkClassName]: linkClassName !== null,
-                                    },
+                                    linkClassName,
                                 ])}
                             >
                                 <Label>{messages.previous}</Label>
@@ -152,18 +144,16 @@ function PaginationMenu({
                         key={`page-${pageNumber}`}
                         className={classNames([
                             'page-item',
+                            itemClassName,
                             {
                                 active: pageNumber === page,
-                                [itemClassName]: itemClassName !== null,
                             },
                         ])}
                     >
                         <Link
                             className={classNames([
                                 'page-link',
-                                {
-                                    [linkClassName]: linkClassName !== null,
-                                },
+                                linkClassName,
                             ])}
                             href={getUrl(pageNumber)}
                             onClick={onClickPage !== null ? () => onClickPage(pageNumber) : null}
@@ -177,9 +167,9 @@ function PaginationMenu({
                     <li
                         className={classNames([
                             'page-item',
+                            itemClassName,
                             {
                                 disabled: page >= total,
-                                [itemClassName]: itemClassName !== null,
                             },
                         ])}
                     >
@@ -187,9 +177,7 @@ function PaginationMenu({
                             <Link
                                 className={classNames([
                                     'page-link',
-                                    {
-                                        [linkClassName]: linkClassName !== null,
-                                    },
+                                    linkClassName,
                                 ])}
                                 href={getUrl(page + 1)}
                                 onClick={onClickPage !== null ? () => onClickPage(page + 1) : null}
@@ -200,9 +188,7 @@ function PaginationMenu({
                             <span
                                 className={classNames([
                                     'page-link',
-                                    {
-                                        [linkClassName]: linkClassName !== null,
-                                    },
+                                    linkClassName,
                                 ])}
                             >
                                 <Label>{messages.next}</Label>

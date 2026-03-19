@@ -62,7 +62,7 @@ function Button({
     labelClassName = null,
     refButton = null,
     ...props
-}) {
+}: ButtonProps) {
     const finalLabel = label || children;
     const text = finalLabel !== null ? <Label>{finalLabel}</Label> : null;
     const hasChildren = label !== null && children !== null;
@@ -73,6 +73,7 @@ function Button({
     const buttonClassNames = classNames([
         styles.container,
         styles[`icon-${iconPosition}`],
+        className,
         {
             [styles.withIcon]: hasIcon,
             [styles.withIconColumns]: hasIconColumns,
@@ -81,7 +82,6 @@ function Button({
             [styles.asLink]: asLink,
             [styles.isDisabled]: disabled,
             [styles.isLoading]: loading,
-            [className]: className !== null,
         },
     ]);
 
@@ -97,9 +97,7 @@ function Button({
                     <span
                         className={classNames([
                             styles.icon,
-                            {
-                                [iconClassName]: iconClassName !== null,
-                            },
+                            iconClassName,
                         ])}
                     >
                         {icon}
@@ -108,9 +106,7 @@ function Button({
                         <span
                             className={classNames([
                                 styles.label,
-                                {
-                                    [labelClassName]: labelClassName !== null,
-                                },
+                                labelClassName,
                             ])}
                         >
                             {text}
@@ -138,9 +134,7 @@ function Button({
                         className={classNames([
                             styles.center,
                             styles.label,
-                            {
-                                [labelClassName]: labelClassName !== null,
-                            },
+                            labelClassName,
                         ])}
                     >
                         {text}

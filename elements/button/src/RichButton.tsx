@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -94,6 +93,7 @@ function RichButton({
             className={classNames([
                 styles.container,
                 styles.rich,
+                className,
                 {
                     [styles.layoutLabelBottom]: finalLayout === 'label-bottom',
                     [styles.layoutLabelTop]: finalLayout === 'label-top',
@@ -104,7 +104,6 @@ function RichButton({
                     [styles.textFullWidth]:
                         hasBody &&
                         (!hasVisual || (layout !== 'label-right' && layout !== 'label-left')),
-                    [className]: className !== null,
                 },
             ])}
             withoutExternalBorder={withoutExternalBorder}
@@ -125,24 +124,9 @@ function RichButton({
                         width={visualWidth || defaultWidth}
                         resolution={resolution}
                         shouldLoad={shouldLoad}
-                        className={classNames([
-                            styles.visual,
-                            {
-                                [visualClassName]: visualClassName !== null,
-                            },
-                        ])}
-                        imageClassName={classNames([
-                            styles.image,
-                            {
-                                [imageClassName]: imageClassName !== null,
-                            },
-                        ])}
-                        videoClassName={classNames([
-                            styles.video,
-                            {
-                                [videoClassName]: videoClassName !== null,
-                            },
-                        ])}
+                        className={classNames([styles.visual, visualClassName])}
+                        imageClassName={classNames([styles.image, imageClassName])}
+                        videoClassName={classNames([styles.video, videoClassName])}
                     />
                 ) : null}
                 {hasBody && showLabel ? (
@@ -150,12 +134,7 @@ function RichButton({
                         boxStyle={labelBoxStyle}
                         textStyle={textStyle}
                         body={body}
-                        className={classNames([
-                            styles.text,
-                            {
-                                [textClassName]: textClassName !== null,
-                            },
-                        ])}
+                        className={classNames([styles.text, textClassName])}
                     />
                 ) : null}
                 {children}

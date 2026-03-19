@@ -10,7 +10,7 @@ interface TagDropdownProps {
     className?: string;
 }
 
-function TagDropdown({ tags = null, parent = null, onChange = null, className = null }) {
+function TagDropdown({ tags = null, parent = null, onChange = null, className = null }: TagDropdownProps) {
     const onItemChange = useCallback(
         (e) => {
             const val = e.target.dataset.value || null;
@@ -24,9 +24,7 @@ function TagDropdown({ tags = null, parent = null, onChange = null, className = 
                 styles.container,
                 'd-flex',
                 'mt-1',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <select className={classNames(['form-select', styles.select])}>

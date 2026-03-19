@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
 import { fileURLToPath } from 'url';
 
-import { createConfig } from '../../rollup.config.js';
+import { createConfig } from '../../rollup.config.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

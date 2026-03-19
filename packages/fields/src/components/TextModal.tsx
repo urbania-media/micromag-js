@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import { getCSRFHeaders } from '@folklore/fetch';
@@ -146,9 +145,7 @@ function TextModal({
                         }
                         className={classNames([
                             styles.dialog,
-                            {
-                                [className]: className,
-                            },
+                            className,
                         ])}
                         bodyClassName={styles.dialogBody}
                         onClose={onClose}

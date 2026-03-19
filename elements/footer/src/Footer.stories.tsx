@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { footer } from '#.storybook/data';
 import preview from '#.storybook/preview';
 import React from 'react';

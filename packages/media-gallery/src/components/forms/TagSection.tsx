@@ -10,7 +10,7 @@ interface TagSectionProps {
     className?: string;
 }
 
-function TagSection({ tags = null, parent = null, onChange = null, className = null }) {
+function TagSection({ tags = null, parent = null, onChange = null, className = null }: TagSectionProps) {
     const onItemChange = useCallback(
         (e) => {
             const val = e.target.dataset.value || null;
@@ -24,9 +24,7 @@ function TagSection({ tags = null, parent = null, onChange = null, className = n
                 styles.container,
                 'd-flex',
                 'mt-1',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             {tags !== null

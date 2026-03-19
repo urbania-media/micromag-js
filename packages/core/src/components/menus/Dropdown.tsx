@@ -68,8 +68,8 @@ function Dropdown({
                 {
                     [`dropdown-menu-${align}`]: align !== null,
                     [`show`]: visible,
-                    [className]: className !== null,
                 },
+                className,
             ])}
             ref={refContainer}
         >
@@ -111,13 +111,13 @@ function Dropdown({
                           <div key={`item-${index + 1}-${label}-${type}`}>
                               <ItemComponent
                                   className={classNames([
+                                      customClassName,
+                                      itemClassName,
                                       {
                                           'dropdown-item': type === 'link' || type === 'button',
                                           'dropdown-divider': type === 'divider',
                                           'dropdown-header': type === 'header',
                                           active,
-                                          [itemClassName]: itemClassName !== null,
-                                          [customClassName]: customClassName !== null,
                                       },
                                   ])}
                                   onClick={finalOnClickItem}

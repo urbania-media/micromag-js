@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -41,9 +40,9 @@ function Avatar({
             className={classNames([
                 styles.container,
                 {
+                    className,
                     [styles[`shape${finalShape}`]]: finalShape !== null,
                     [styles.isTag]: isTag,
-                    [className]: className !== null,
                 },
             ])}
         >

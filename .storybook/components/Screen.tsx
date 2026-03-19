@@ -44,11 +44,11 @@ function Screen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.withBorder]: withBorder,
                     [styles.withScaling]: withScaling,
                     [styles.withSize]: width !== null || height !== null,
-                    [className]: className !== null,
                 },
             ])}
             style={{
@@ -60,9 +60,7 @@ function Screen({
                 ref={refContainer}
                 className={classNames([
                     styles.screen,
-                    {
-                        [screenClassName]: screenClassName !== null,
-                    },
+                    screenClassName,
                 ])}
             >
                 {screenSize.width > 0 && screenSize.height > 0 ? (

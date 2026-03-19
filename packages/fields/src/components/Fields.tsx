@@ -172,9 +172,9 @@ function Fields({
                         isListItem={isList || isFlushList}
                         className={classNames([
                             styles.field,
+                            fieldClassName,
                             {
                                 [styles.isSection]: isSection,
-                                [fieldClassName]: fieldClassName !== null,
                             },
                         ])}
                         fieldClassName={customClassName}
@@ -206,9 +206,9 @@ function Fields({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
                     [styles.withBorders]: withBorders,
-                    [className]: className !== null,
                 },
             ])}
         >

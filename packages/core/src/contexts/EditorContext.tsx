@@ -19,7 +19,7 @@ interface EditorProviderProps {
     children: React.ReactNode;
 }
 
-export function EditorProvider({ children }) {
+export function EditorProvider({ children }: EditorProviderProps) {
     const story = useStory();
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();

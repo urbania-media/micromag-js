@@ -40,9 +40,7 @@ function ObjectFitSize({
             value={value}
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             buttonClassName={styles.button}
             onChange={onChange}

@@ -50,9 +50,7 @@ function Title({
         <Layout
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             fullscreen
             verticalAlign={verticalAlign}

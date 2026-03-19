@@ -33,9 +33,7 @@ function ScreenTypesModal({
                 }
                 className={classNames([
                     styles.container,
-                    {
-                        [className]: className,
-                    },
+                    className,
                 ])}
                 onClose={onRequestClose}
             >

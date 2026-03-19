@@ -57,7 +57,7 @@ function ColorPickerField({
     );
 
     return (
-        <div className={classNames(['text-light', { [className]: className !== null }])}>
+        <div className={classNames(['text-light', className])}>
             <SketchPicker
                 color={finalColor}
                 presetColors={colors}

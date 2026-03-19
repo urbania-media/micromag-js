@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import React, { useCallback, useMemo, useState } from 'react';
@@ -274,8 +273,8 @@ function ArticleScreen({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}

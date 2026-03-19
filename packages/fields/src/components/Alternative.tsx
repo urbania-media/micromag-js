@@ -50,9 +50,7 @@ function Alternative({
         <Fields
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             fieldClassName={styles.field}
             {...props}

@@ -19,7 +19,7 @@ function ViewerMenuContainer({
     progressSpring = null,
     theme: viewerTheme = null,
     children = null,
-}) {
+}: ViewerMenuContainerProps) {
     const { background = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null } = background || {};
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
@@ -28,9 +28,7 @@ function ViewerMenuContainer({
         <div
             className={classNames([
                 styles.container,
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
             style={{ pointerEvents: 'none' }}
         >

@@ -122,9 +122,7 @@ function ButtonLayout({
             className={classNames([
                 'd-flex',
                 'w-100',
-                {
-                    [className]: className !== null,
-                },
+                className,
             ])}
         >
             <Radios
@@ -135,9 +133,7 @@ function ButtonLayout({
                 value={finalValue || null}
                 className={classNames([
                     styles.container,
-                    {
-                        [className]: className !== null,
-                    },
+                    className,
                 ])}
                 buttonClassName={styles.button}
                 activeClassName={styles.active}

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
@@ -146,8 +145,8 @@ function CallToAction({
         <div
             className={classNames([
                 styles.container,
+                className,
                 {
-                    [className]: className !== null,
                     [styles.disabled]: disabled,
                     [styles.animationDisabled]: animationDisabled,
                     [styles.invalidUrl]: !validUrl,
@@ -166,32 +165,17 @@ function CallToAction({
                 />
             ) : null}
             {swipeUpEnabled ? (
-                <div
-                    className={classNames([
-                        styles.arrow,
-                        {
-                            [arrowClassName]: arrowClassName !== null,
-                        },
-                    ])}
-                    style={arrowStyle}
-                >
+                <div className={classNames([styles.arrow, arrowClassName])} style={arrowStyle}>
                     {arrow || <ArrowIcon />}
                 </div>
             ) : null}
-            <div
-                className={classNames([
-                    styles.buttonBorder,
-                    {
-                        [buttonBorderClassName]: buttonBorderClassName !== null,
-                    },
-                ])}
-            >
+            <div className={classNames([styles.buttonBorder, buttonBorderClassName])}>
                 <Button
                     className={classNames([
                         styles.button,
+                        buttonClassName,
                         {
                             [styles.withoutLinkStyle]: !inWebView,
-                            [buttonClassName]: buttonClassName !== null,
                         },
                     ])}
                     refButton={buttonRef}
@@ -204,14 +188,7 @@ function CallToAction({
                     onClick={onClickLink}
                     {...(swipeUpEnabled && !disabled ? bind() : null)}
                 >
-                    <span
-                        className={classNames([
-                            styles.label,
-                            {
-                                [labelClassName]: labelClassName !== null,
-                            },
-                        ])}
-                    >
+                    <span className={classNames([styles.label, labelClassName])}>
                         {icon !== null ? <div className={styles.icon}>{icon}</div> : null}
                         <Text
                             {...label}
@@ -226,4 +203,4 @@ function CallToAction({
     );
 }
 
-export default React.forwardRef((props, ref) => <CallToAction elRef={ref} {...props} />);
+export default ({ ref, ...props }) => <CallToAction elRef={ref} {...props} />;
