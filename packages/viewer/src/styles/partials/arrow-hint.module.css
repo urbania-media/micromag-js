@@ -25,7 +25,7 @@
         animation-fill-mode: both;
         animation-iteration-count: infinite;
         animation-name: shadowFade;
-        animation-timing-function: var(--mm-ease-in-out-soft-sine);
+        animation-timing-function: var(--mm-ease-in-out-soft-sine, 'ease-out');
         background-image: radial-gradient(rgb(28 28 28 / 0.5), rgb(28 28 28 / 0) 50%);
         content: '';
         transform: translate(-50%, -50%);
@@ -42,7 +42,7 @@
     animation-fill-mode: both;
     animation-iteration-count: infinite;
     animation-name: panX;
-    animation-timing-function: var(--mm-ease-in-out-soft-sine);
+    animation-timing-function: var(--mm-ease-in-out-soft-sine, 'ease-out');
 }
 
 @keyframes panX {
