@@ -2066,7 +2066,7 @@ msgstr "Polices par défaut"
 #: amEvH1
 msgctxt "amEvH1"
 msgid "Fit"
-msgstr "Ajuster"
+msgstr "Positionnement"
 
 # Field label
 #: ao5VYd
@@ -2566,7 +2566,7 @@ msgstr "Paramètres de boîte"
 #: hUUIQt
 msgctxt "hUUIQt"
 msgid "Mute audio of background video"
-msgstr "Couper le son de la vidéo d'arrière-plan"
+msgstr "Couper le son de la vidéo"
 
 # Question field label
 #: hVE7TA

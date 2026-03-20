@@ -151,13 +151,13 @@ function Scroll({
             className={classNames([
                 styles.container,
                 styles.withScroll,
+                className,
                 {
                     [styles.disabled]: disabled,
                     [styles[verticalAlign]]:
                         verticalAlign !== null && scrolleeHeight < scrollableHeight,
                     [styles.withArrow]: showArrow && withArrow,
                     [styles.withShadow]: withShadow,
-                    className,
                 },
             ])}
             style={finalStyle}

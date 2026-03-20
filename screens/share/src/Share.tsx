@@ -160,7 +160,8 @@ function ShareScreen({
                     style={
                         !isPlaceholder
                             ? {
-                                  padding: spacing,
+                                  paddingLeft: spacing,
+                                  paddingRight: spacing,
                                   paddingTop:
                                       (!isPreview ? viewerTopHeight : 0) +
                                       (headerHeight || spacing),

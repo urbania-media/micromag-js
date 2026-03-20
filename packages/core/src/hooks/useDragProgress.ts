@@ -2,6 +2,20 @@ import { useSpring, useSpringRef } from '@react-spring/core';
 import { useGesture } from '@use-gesture/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+interface UseDragProgressProps {
+    progress: number;
+    onTap?: (gestureState) => void;
+    disabled?: boolean;
+    dragDisabled?: boolean;
+    computeProgress?: (gestureState) => number | null;
+    onProgress?: (progress: number, gestureState) => void | null;
+    onPointerDown?: (gestureState) => void | null;
+    onResolve?: (event) => void | null;
+    onScroll?: (gestureState) => void | null;
+    springParams?: object;
+    dragOptions?: object;
+}
+
 function useDragProgress({
     progress: wantedProgress,
     onTap = null,
@@ -10,14 +24,15 @@ function useDragProgress({
     computeProgress = null,
     onProgress = null,
     onPointerDown = null,
+    onResolve = null,
     onScroll = null,
     springParams = undefined,
     dragOptions = {
         filterTaps: true,
     },
-} = {}) {
-    const refDragging = useRef(false);
-    const refProgress = useRef(wantedProgress);
+}: UseDragProgressProps) {
+    const draggingRef = useRef(false);
+    const progressRef = useRef(wantedProgress);
     const wantedProgressRef = useRef(wantedProgress);
     if (wantedProgress !== wantedProgressRef.current) {
         wantedProgressRef.current = wantedProgress;
@@ -36,30 +51,31 @@ function useDragProgress({
         from: { progress: wantedProgress },
         ...springParams,
     }));
+
     const onDrag = useCallback(
         (gestureState) => {
             const { active, tap } = gestureState;
 
             if (disabled) {
-                refDragging.current = false;
+                draggingRef.current = false;
                 return;
             }
 
             if (tap) {
-                refDragging.current = false;
+                draggingRef.current = false;
                 if (onTap !== null) onTap(gestureState);
                 return;
             }
 
             if (dragDisabled) {
-                refDragging.current = false;
+                draggingRef.current = false;
                 return;
             }
 
             const newProgress = computeProgress(gestureState);
-            refDragging.current = active;
+            draggingRef.current = active;
             setDirection(newProgress < wantedProgressRef.current ? -1 : 1);
-            refProgress.current = newProgress;
+            progressRef.current = newProgress;
             if (active !== dragging) {
                 setDragging(active);
             }
@@ -67,17 +83,20 @@ function useDragProgress({
                 progress: newProgress,
                 immediate: active,
                 onResolve: !active
-                    ? () => {
+                    ? (e) => {
                           setDirection(0);
+                          if (onResolve !== null) onResolve(e);
                       }
-                    : () => {},
+                    : (e) => {
+                          if (onResolve !== null) onResolve(e);
+                      },
                 ...springParams,
             });
             if (onProgress !== null) {
                 onProgress(newProgress, gestureState);
             }
         },
-        [setDragging, disabled, onTap, computeProgress, dragging, onProgress],
+        [setDragging, disabled, onTap, computeProgress, dragging, onProgress, onResolve],
     );
 
     const bind = useGesture(
@@ -92,14 +111,15 @@ function useDragProgress({
     );
 
     useEffect(() => {
-        if (!refDragging.current && wantedProgress !== refProgress.current) {
-            setDirection(wantedProgress < refProgress.current ? -1 : 1);
-            refProgress.current = wantedProgress;
+        if (!draggingRef.current && wantedProgress !== progressRef.current) {
+            setDirection(wantedProgress < progressRef.current ? -1 : 1);
+            progressRef.current = wantedProgress;
             api.start({
                 progress: wantedProgress,
                 immediate: disabled,
-                onResolve: () => {
+                onResolve: (e) => {
                     setDirection(0);
+                    if (onResolve !== null) onResolve(e);
                 },
                 ...springParams,
             });

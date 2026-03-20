@@ -134,7 +134,7 @@ function ScreenStates({ screen, value, className = null, onChange = null }: Scre
                         });
                     };
                     return (
-                        <div className="p-1 align-self-stretch d-flex flex-column">
+                        <div key={id} className="p-1 align-self-stretch d-flex flex-column">
                             <h6
                                 className={classNames([
                                     'fw-normal',
@@ -147,7 +147,7 @@ function ScreenStates({ screen, value, className = null, onChange = null }: Scre
                             {repeatable ? (
                                 <ul className="d-flex list-unstyled m-n1 flex-grow-1">
                                     {repeatableItems.map((item, index) => (
-                                        <li className="p-1">
+                                        <li key={index} className="p-1">
                                             <ScreenWithPreview
                                                 index={index}
                                                 withIndexIndicator

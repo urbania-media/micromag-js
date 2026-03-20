@@ -111,7 +111,18 @@ export const useObserver = (Observer, opts = {}, initialEntry = {}) => {
     const elementChanged = nodeRef.current !== currentElement.current;
     useEffect(() => {
         const { current: nodeElement } = nodeRef;
-        const callback = (newEntry) => setEntry(newEntry);
+        const callback = (newEntry) =>
+            setEntry((prev) => {
+                // Avoid re-renders when ResizeObserver fires with unchanged dimensions
+                if (prev?.contentRect && newEntry?.contentRect) {
+                    const p = prev.contentRect;
+                    const n = newEntry.contentRect;
+                    if (p.width === n.width && p.height === n.height) {
+                        return prev;
+                    }
+                }
+                return newEntry;
+            });
         let unsubscribe = null;
         if (nodeElement !== null) {
             const newOpts = {};

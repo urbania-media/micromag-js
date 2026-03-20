@@ -323,7 +323,7 @@ function ViewerMenu({
                     {menuItems.map((item) => {
                         if (item === 'share') {
                             return !withoutShareMenu || afterShareMenuButton !== null ? (
-                                <div className={styles.menuItem} {...bindShareDrag()}>
+                                <div key="share" className={styles.menuItem} {...bindShareDrag()}>
                                     {!withoutShareMenu ? (
                                         <ToggleButton
                                             className={styles.slidingButton}
@@ -361,7 +361,7 @@ function ViewerMenu({
                         }
                         if (item === 'main') {
                             return !withoutScreensMenu || beforeScreensMenuButton !== null ? (
-                                <div className={styles.menuItem} {...bindMenuDrag()}>
+                                <div key="main" className={styles.menuItem} {...bindMenuDrag()}>
                                     {beforeScreensMenuButton}
                                     {!withoutScreensMenu ? (
                                         <ToggleButton

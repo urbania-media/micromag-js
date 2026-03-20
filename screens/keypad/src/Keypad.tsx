@@ -171,6 +171,8 @@ function KeypadScreen({
     const { ref: headerRef, height: headerHeight = 0 } = useDimensionObserver();
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
+    const [popupDragDisabled, setPopupDragDisabled] = useState(false);
+
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = !isPlaceholder && (current || preload);
     const isInteractivePreview = isEdit && screenState === null;
@@ -303,7 +305,7 @@ function KeypadScreen({
         }
     }, []);
 
-    const [popupDragDirection, setPopupDragDirection] = useState(0);
+    const [popupDragDirection, setPopupDragDirection] = useState(null);
 
     const onPopupScrollHeightChange = useCallback(
         ({ scrolleeHeight = 0 }) => {
@@ -328,6 +330,7 @@ function KeypadScreen({
             } else if (popupDragDirection === 'bottom' && my > 0) {
                 progress = delta * damper;
             }
+
             if (!dragActive) {
                 if (reachedThreshold) {
                     onCloseModal(true);
@@ -372,8 +375,6 @@ function KeypadScreen({
         };
     }, [current, popupInnerRef, containerRef, isInteractivePreview, isEdit, showPopup]);
 
-    const [popupDragDisabled, setPopupDragDisabled] = useState(false);
-
     const onPopupScrollBottom = useCallback(() => {
         setPopupDragDisabled(false);
     }, [setPopupDragDisabled]);
@@ -396,14 +397,29 @@ function KeypadScreen({
         onCloseModal(showPopup);
     }, [onCloseModal, showPopup]);
 
-    const { bind: bindPopupDrag, progress: popupSpring } = useDragProgress({
+    const onResolve = useCallback(() => {}, []);
+
+    const {
+        bind: bindPopupDrag,
+        progress: popupSpring,
+        // direction: popupCurrentDirection,
+        transitioning: popupTransitioning,
+    } = useDragProgress({
         disabled: !isView || popupDragDisabled,
         progress: showPopup ? 0 : 1,
         computeProgress: computePopupProgress,
+        onResolve,
         springParams: { config: { tension: 300, friction: 30 } },
         dragOptions: { filterTaps: true, preventDefault: true, stopPropagation: true },
         onTap,
     });
+
+    // Clear popup
+    useEffect(() => {
+        if (!showPopup && !popupTransitioning && popup !== null) {
+            setPopup(null);
+        }
+    }, [showPopup, popupTransitioning, popup]);
 
     useEffect(() => {
         const keyup = (e) => {
@@ -499,17 +515,17 @@ function KeypadScreen({
             setPopup(null);
             setShowPopup(false);
         }
-        if (screenState !== null && screenState.includes('popup')) {
+        if (screenState != null && screenState.includes('popup')) {
             const index = screenState.split('.').pop();
             const found = items[index];
             setPopup(found);
             setShowPopup(true);
         }
-        if (screenState === null && !isView) {
+        if (screenState == null && !isView) {
             setPopup(null);
             setShowPopup(false);
         }
-    }, [screenState, items, isView, showPopup, setPopup, setShowPopup]);
+    }, [screenState, items, isView]);
 
     return (
         <div
@@ -570,7 +586,8 @@ function KeypadScreen({
                         style={
                             !isPlaceholder
                                 ? {
-                                      padding: spacing,
+                                      paddingLeft: spacing,
+                                      paddingRight: spacing,
                                       paddingTop:
                                           (hasHeader ? headerHeight : spacing) +
                                           (current && !isPreview ? viewerTopHeight : 0),

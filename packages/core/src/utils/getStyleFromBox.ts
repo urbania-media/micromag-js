@@ -46,26 +46,38 @@ const getStyleFromBox = (value) => {
         padding: paddingValue = null,
     } = isObject(padding) ? padding : { padding };
 
+    const basePadding = padding || paddingValue;
+    const hasBasePadding = basePadding !== null;
+    const topVal = paddingTop || paddingValueTop;
+    const rightVal = paddingRight || paddingValueRight;
+    const bottomVal = paddingBottom || paddingValueBottom;
+    const leftVal = paddingLeft || paddingValueLeft;
+    const hasAnyIndividual =
+        topVal !== null || rightVal !== null || bottomVal !== null || leftVal !== null;
+
+    // Avoid mixing shorthand `padding` with longhand `paddingTop`/etc — React warns about this
+    const paddingStyles =
+        hasBasePadding && hasAnyIndividual
+            ? {
+                  paddingTop: topVal ?? basePadding,
+                  paddingRight: rightVal ?? basePadding,
+                  paddingBottom: bottomVal ?? basePadding,
+                  paddingLeft: leftVal ?? basePadding,
+              }
+            : {
+                  ...(hasBasePadding ? { padding: basePadding } : null),
+                  ...(topVal !== null ? { paddingTop: topVal } : null),
+                  ...(rightVal !== null ? { paddingRight: rightVal } : null),
+                  ...(bottomVal !== null ? { paddingBottom: bottomVal } : null),
+                  ...(leftVal !== null ? { paddingLeft: leftVal } : null),
+              };
+
     return {
         ...getStyleFromColor(backgroundColor, 'backgroundColor'),
         ...(borderRadius !== null ? { borderRadius } : null),
         ...getStyleFromBorder(border),
         ...getStyleFromShadow(shadow),
-        ...(padding !== null || paddingValue !== null
-            ? { padding: padding || paddingValue }
-            : null),
-        ...(paddingTop !== null || paddingValueTop !== null
-            ? { paddingTop: paddingTop || paddingValueTop }
-            : null),
-        ...(paddingRight !== null || paddingValueRight != null
-            ? { paddingRight: paddingRight || paddingValueRight }
-            : null),
-        ...(paddingBottom !== null || paddingValueBottom !== null
-            ? { paddingBottom: paddingBottom || paddingValueBottom }
-            : null),
-        ...(paddingLeft !== null || paddingValueLeft !== null
-            ? { paddingLeft: paddingLeft || paddingValueLeft }
-            : null),
+        ...paddingStyles,
     };
 };
 

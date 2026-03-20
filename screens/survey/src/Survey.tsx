@@ -617,7 +617,8 @@ function SurveyScreen({
                         style={
                             !isPlaceholder
                                 ? {
-                                      padding: spacing,
+                                      paddingLeft: spacing,
+                                      paddingRight: spacing,
                                       paddingTop:
                                           (current && !isPreview ? viewerTopHeight : 0) +
                                           (headerHeight || spacing),

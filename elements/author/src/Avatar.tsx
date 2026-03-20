@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import React from 'react';
 
 import type { ImageElement } from '@micromag/core';
 import { useSetting } from '@micromag/core/contexts';
@@ -39,8 +40,8 @@ function Avatar({
         <span
             className={classNames([
                 styles.container,
+                className,
                 {
-                    className,
                     [styles[`shape${finalShape}`]]: finalShape !== null,
                     [styles.isTag]: isTag,
                 },

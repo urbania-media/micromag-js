@@ -17,6 +17,7 @@ interface BackgroundProps {
     horizontalAlign?: string;
     verticalAlign?: string;
     repeat?: boolean;
+    loop?: boolean;
     color?: Color | null;
     media?: ImageMedia | VideoMedia | null;
     mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
@@ -41,6 +42,7 @@ function Background({
     horizontalAlign = 'center',
     verticalAlign = 'center',
     repeat = false,
+    loop = true,
     color = null,
     media = null,
     mediaRef = null,
@@ -139,7 +141,7 @@ function Background({
                         onPlayError={onPlayError}
                         disablePictureInPicture
                         autoPlay
-                        loop
+                        loop={loop}
                         withPoster
                         focusable={false}
                         qualityStartLevel={qualityStartLevel}

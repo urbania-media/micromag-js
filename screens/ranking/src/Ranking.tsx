@@ -263,7 +263,8 @@ function RankingScreen({
                         style={
                             !isPlaceholder
                                 ? {
-                                      padding: spacing,
+                                      paddingLeft: spacing,
+                                      paddingRight: spacing,
                                       paddingTop:
                                           !isPlaceholder && hasHeader
                                               ? spacing

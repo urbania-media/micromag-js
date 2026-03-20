@@ -71,6 +71,7 @@ function ViewerMenuDots({
                 const { current = false, count = 1, subIndex = 0 } = item || {};
                 return (
                     <MenuDot
+                        key={index}
                         current={current}
                         active={index <= currentIndex}
                         colors={colors}

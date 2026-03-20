@@ -558,7 +558,8 @@ function ContributionScreen({
                             style={
                                 !isPlaceholder
                                     ? {
-                                          padding: spacing,
+                                          paddingLeft: spacing,
+                                          paddingRight: spacing,
                                           paddingTop: hasHeader
                                               ? spacing / 2 + (!isPreview ? viewerTopHeight : 0)
                                               : spacing / 2,

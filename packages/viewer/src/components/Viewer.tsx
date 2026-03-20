@@ -285,8 +285,10 @@ function Viewer({
         landscape = false,
         menuOverScreen = false,
     } = screenSize || {};
-    const screenContainerWidth = screenScale !== null ? screenWidth * screenScale : screenWidth;
-    const screenContainerHeight = screenScale !== null ? screenHeight * screenScale : screenHeight;
+    const screenContainerWidth =
+        screenScale !== null && screenWidth !== null ? screenWidth * screenScale : screenWidth;
+    const screenContainerHeight =
+        screenScale !== null && screenHeight !== null ? screenHeight * screenScale : screenHeight;
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
     const ready = hasSize || readyWithoutSize;

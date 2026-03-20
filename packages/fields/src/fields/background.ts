@@ -64,6 +64,14 @@ export default {
                     }),
                 },
                 {
+                    name: 'loop',
+                    type: 'toggle',
+                    label: defineMessage({
+                        defaultMessage: 'Loop background video',
+                        description: 'Field label',
+                    }),
+                },
+                {
                     name: 'forceMuted',
                     type: 'toggle',
                     label: defineMessage({
