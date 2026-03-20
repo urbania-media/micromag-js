@@ -423,6 +423,7 @@ function KeypadScreen({
     // Clear popup contents after close transition completes
     useEffect(() => {
         if (prevShowPopupRef.current && !showPopup && !popupTransitioning) {
+            console.log('clear popup');
             setPopup(null);
         }
         prevShowPopupRef.current = showPopup;

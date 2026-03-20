@@ -3,7 +3,7 @@ import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
 import shuffle from 'lodash/shuffle';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type {
@@ -167,7 +167,7 @@ function GameSort({
     const [springs, api] = useSprings(
         (items || []).length,
         () => ({
-            y: `0%`,
+            y: 0,
             scale: 1,
         }),
         [],
@@ -196,7 +196,7 @@ function GameSort({
                 if (item === dragItem) {
                     const deltaY = dragY - currentY;
                     return {
-                        y: `${(deltaY / currentHeight) * 100}%`,
+                        y: currentHeight !== 0 ? (deltaY / currentHeight) * 100 : 0,
                         scale: 1.02,
                         immediate: true,
                     };
@@ -217,7 +217,7 @@ function GameSort({
                 const deltaY = newY - currentY;
 
                 return {
-                    y: `${(deltaY / currentHeight) * 100}%`,
+                    y: currentHeight !== 0 ? (deltaY / currentHeight) * 100 : 0,
                     scale: 1,
                     immediate: initial,
                 };
@@ -229,15 +229,39 @@ function GameSort({
         [api],
     );
 
-    useEffect(() => {
-        if (!isView) {
+    // useLayoutEffect runs AFTER react-spring's internal layout effect which
+    // resets springs to {y:0, scale:1}. We api.stop() the reset, then immediately
+    // re-apply the correct shuffled positions before the browser paints.
+    const springsReady = useRef(false);
+    useLayoutEffect(() => {
+        if (!isView || itemsHeight === 0) {
             return;
         }
+        api.stop();
+        const refs = sortedItems.map((it) => elementsRef.current[it.id] || null);
+        const initialRefs = (items || []).map((it) => elementsRef.current[it.id] || null);
+        const initialHeights = initialRefs.map((it) => it?.getBoundingClientRect()?.height || 0);
+        const heights = refs.map((it) => it?.getBoundingClientRect()?.height || 0);
+        if (!heights.some((h) => h > 0)) return;
 
-        updateSpring(sortedItems, {
-            initial: initialSortedItemsRef.current === sortedItems,
+        api.start((itemIndex) => {
+            const item = (items || [])[itemIndex] || null;
+            const sortedIndex = sortedItems.findIndex((it) => it.id === item.id);
+            const currentHeight = initialHeights[itemIndex] || 0;
+            const currentY = initialHeights.slice(0, itemIndex).reduce((acc, h) => acc + h, 0);
+            const newY = heights.slice(0, sortedIndex).reduce((acc, h) => acc + h, 0);
+            const deltaY = newY - currentY;
+            return {
+                y: currentHeight !== 0 ? (deltaY / currentHeight) * 100 : 0,
+                scale: 1,
+                immediate: true,
+            };
         });
-    }, [sortedItems, itemsHeight]);
+        if (!springsReady.current) {
+            springsReady.current = true;
+            setInitialSorted(true);
+        }
+    });
 
     const bind = useDrag(
         ({ args: [itemIndex], active: dragActive, movement: [, movementY], tap }) => {
@@ -407,6 +431,7 @@ function GameSort({
                         >
                             {springs.map(({ y, scale }, itemIndex) => {
                                 const item = items[itemIndex] || {};
+                                // console.log('item', item, itemIndex);
                                 const {
                                     id = null,
                                     visual = null,
@@ -438,7 +463,7 @@ function GameSort({
                                             elementsRef.current[id] = ref;
                                         }}
                                         style={{
-                                            transform: y.to((yValue) => `translateY(${yValue})`),
+                                            transform: y.to((yValue) => `translateY(${yValue}%)`),
                                             ...getStyleFromText(itemsTextStyle),
                                             ...getStyleFromText(labelTextStyle),
                                         }}

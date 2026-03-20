@@ -66,6 +66,7 @@ export default {
                 {
                     name: 'loop',
                     type: 'toggle',
+                    defaultValue: true,
                     label: defineMessage({
                         defaultMessage: 'Loop background video',
                         description: 'Field label',
