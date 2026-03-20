@@ -12,7 +12,7 @@
     border-radius: 4px;
     appearance: none;
     background: transparent;
-    background-color: var(--mm-gray-700) !important;
+    background-color: var(--mm-gray-700, #ddd) !important;
     color: inherit;
     cursor: pointer;
     font-family: inherit;

@@ -211,6 +211,7 @@ function KeypadScreen({
 
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);
+    const prevShowPopupRef = useRef(showPopup);
 
     const {
         heading: popupHeading = null,
@@ -219,6 +220,11 @@ function KeypadScreen({
         button: popupButton = null,
         popupBoxStyle: singlePopupBoxStyle = null,
     } = popup || {};
+
+    const { metadata = null } = largeVisual || {};
+    const { width: largeVisualWidth = 0, height: largeVisualHeight = 0 } = metadata || {};
+    const largeVisualRatio =
+        largeVisualWidth > 0 && largeVisualHeight > 0 ? largeVisualWidth / largeVisualHeight : null;
 
     const hasPopupHeading = isTextFilled(popupHeading);
     const { textStyle: popupHeadingTextStyle = null } = popupHeading || {};
@@ -414,12 +420,13 @@ function KeypadScreen({
         onTap,
     });
 
-    // Clear popup
+    // Clear popup contents after close transition completes
     useEffect(() => {
-        if (!showPopup && !popupTransitioning && popup !== null) {
+        if (prevShowPopupRef.current && !showPopup && !popupTransitioning) {
             setPopup(null);
         }
-    }, [showPopup, popupTransitioning, popup]);
+        prevShowPopupRef.current = showPopup;
+    }, [showPopup, popupTransitioning]);
 
     useEffect(() => {
         const keyup = (e) => {
@@ -785,7 +792,9 @@ function KeypadScreen({
                                                     videoClassName={styles.popupVisualVideo}
                                                     media={largeVisual}
                                                     resolution={resolution}
+                                                    ratio={largeVisualRatio}
                                                     width="100%"
+                                                    height="auto"
                                                 />
                                             ) : null}
                                         </ScreenElement>
