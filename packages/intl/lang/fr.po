@@ -105,7 +105,7 @@ msgstr "Mes fichiers"
 #: /6zaOP
 msgctxt "/6zaOP"
 msgid "Transition Delay (in seconds)"
-msgstr "Délai de transition (en secondes)"
+msgstr "Délai de transition (sec.)"
 
 # Delete in Media Gallery
 #: /KQ87r
@@ -603,7 +603,7 @@ msgstr "Clavier"
 #: 790Q9C
 msgctxt "790Q9C"
 msgid "Select Subtitles File"
-msgstr "Sélectionner un fichier de sous-titres"
+msgstr "Sélectionner un sous-titre"
 
 # Horoscope date
 #: 7ZzlUE
@@ -861,7 +861,7 @@ msgstr "Badge"
 #: B5Qrmw
 msgctxt "B5Qrmw"
 msgid "Select Font File"
-msgstr "Sélectionner un fichier de police"
+msgstr "Sélectionner une police"
 
 # Upload button label in Media Gallery
 #: BAfC6s
@@ -946,6 +946,12 @@ msgstr "Bouton passer"
 msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Citation"
+
+# Field label
+#: CxntdT
+msgctxt "CxntdT"
+msgid "Loop background video"
+msgstr "En boucle"
 
 # Share button label
 #: D21uVQ
@@ -1047,7 +1053,7 @@ msgstr "23 sept. - 22 oct."
 #: F2SD/0
 msgctxt "F2SD/0"
 msgid "Loop"
-msgstr "Boucle"
+msgstr "En boucle"
 
 # Urbania screen title
 #: F59wsl
@@ -2381,7 +2387,7 @@ msgstr "Dimensions"
 #: eDMxHS
 msgctxt "eDMxHS"
 msgid "Font weight"
-msgstr "Graisse de la police"
+msgstr "Graisse"
 
 # Sort game screen title
 #: eJMcXw
@@ -2393,7 +2399,7 @@ msgstr "Jeu de l'ordre"
 #: eNdbJF
 msgctxt "eNdbJF"
 msgid "Appear delay (seconds)"
-msgstr "Délai d'apparition (secondes)"
+msgstr "Délai d'apparition (sec.)"
 
 # ImageTitleText screen title
 #: eWIM/8
@@ -2644,7 +2650,7 @@ msgstr "Aucune entrée..."
 #: iJ61ZT
 msgctxt "iJ61ZT"
 msgid "Writing state duration (seconds)"
-msgstr "Durée de l'état d'écriture (secondes)"
+msgstr "Durée de l'état d'écriture (sec.)"
 
 # Field label
 #: iL9RLu

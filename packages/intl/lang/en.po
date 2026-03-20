@@ -947,6 +947,12 @@ msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Quote"
 
+# Field label
+#: CxntdT
+msgctxt "CxntdT"
+msgid "Loop background video"
+msgstr "Loop background video"
+
 # Share button label
 #: D21uVQ
 msgctxt "D21uVQ"

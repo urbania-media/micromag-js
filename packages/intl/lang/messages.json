@@ -623,6 +623,10 @@
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
   },
+  "CxntdT": {
+    "defaultMessage": "Loop background video",
+    "description": "Field label"
+  },
   "D21uVQ": {
     "defaultMessage": "Copy link",
     "description": "Share button label"

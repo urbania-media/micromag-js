@@ -45,7 +45,7 @@
         "defaultMessage": "Mes fichiers"
     },
     "/6zaOP": {
-        "defaultMessage": "Délai de transition (en secondes)"
+        "defaultMessage": "Délai de transition (sec.)"
     },
     "/KQ87r": {
         "defaultMessage": "Supprimer le média"
@@ -294,7 +294,7 @@
         "defaultMessage": "Clavier"
     },
     "790Q9C": {
-        "defaultMessage": "Sélectionner un fichier de sous-titres"
+        "defaultMessage": "Sélectionner un sous-titre"
     },
     "7ZzlUE": {
         "defaultMessage": "23 oct. - 22 nov."
@@ -423,7 +423,7 @@
         "defaultMessage": "Badge"
     },
     "B5Qrmw": {
-        "defaultMessage": "Sélectionner un fichier de police"
+        "defaultMessage": "Sélectionner une police"
     },
     "BAfC6s": {
         "defaultMessage": "Téléverser un fichier de sous-titres"
@@ -466,6 +466,9 @@
     },
     "CrzYgw": {
         "defaultMessage": "Citation"
+    },
+    "CxntdT": {
+        "defaultMessage": "En boucle"
     },
     "D21uVQ": {
         "defaultMessage": "Copier le lien"
@@ -516,7 +519,7 @@
         "defaultMessage": "23 sept. - 22 oct."
     },
     "F2SD/0": {
-        "defaultMessage": "Boucle"
+        "defaultMessage": "En boucle"
     },
     "F59wsl": {
         "defaultMessage": "Horoscope Urbania"
@@ -1188,13 +1191,13 @@
         "defaultMessage": "Dimensions"
     },
     "eDMxHS": {
-        "defaultMessage": "Graisse de la police"
+        "defaultMessage": "Graisse"
     },
     "eJMcXw": {
         "defaultMessage": "Jeu de l'ordre"
     },
     "eNdbJF": {
-        "defaultMessage": "Délai d'apparition (secondes)"
+        "defaultMessage": "Délai d'apparition (sec.)"
     },
     "eWIM/8": {
         "defaultMessage": "Image avec titre et texte"
@@ -1320,7 +1323,7 @@
         "defaultMessage": "Aucune entrée..."
     },
     "iJ61ZT": {
-        "defaultMessage": "Durée de l'état d'écriture (secondes)"
+        "defaultMessage": "Durée de l'état d'écriture (sec.)"
     },
     "iL9RLu": {
         "defaultMessage": "Collaborateur"

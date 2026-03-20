@@ -1,11 +1,17 @@
 {
-    "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-    "useNx": true,
-    "version": "0.4.52",
-    "command": {
-        "publish": {
-            "allowBranch": ["master", "develop", "feature/es-module"],
-            "npmClientArgs": ["--maxsockets=3"]
-        }
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "useNx": true,
+  "version": "0.4.53",
+  "command": {
+    "publish": {
+      "allowBranch": [
+        "master",
+        "develop",
+        "feature/es-module"
+      ],
+      "npmClientArgs": [
+        "--maxsockets=3"
+      ]
     }
+  }
 }
