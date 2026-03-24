@@ -211,7 +211,6 @@ function KeypadScreen({
 
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);
-    const prevShowPopupRef = useRef(showPopup);
 
     const {
         heading: popupHeading = null,
@@ -429,15 +428,6 @@ function KeypadScreen({
         onTap,
     });
 
-    // Clear popup contents after close transition completes
-    useEffect(() => {
-        if (prevShowPopupRef.current && !showPopup && !popupTransitioning) {
-            console.log('clear popup');
-            setPopup(null);
-        }
-        prevShowPopupRef.current = showPopup;
-    }, [showPopup, popupTransitioning]);
-
     useEffect(() => {
         const keyup = (e) => {
             if (e.key === 'Escape') {
@@ -543,6 +533,16 @@ function KeypadScreen({
             setShowPopup(false);
         }
     }, [screenState, items, isView]);
+
+    // Clear popup contents after close transition completes
+    useEffect(() => {
+        if (isView && screenState === null && !showPopup && !popupTransitioning) {
+            // console.log('clear popup');
+            setPopup(null);
+        }
+    }, [isView, screenState, showPopup, popupTransitioning]);
+
+    // console.log('render keypad', { screenState, popup, showPopup, popupTransitioning });
 
     return (
         <div

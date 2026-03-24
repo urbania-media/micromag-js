@@ -35,6 +35,8 @@ import { v1 as uuid } from 'uuid';
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Viewer from '../components/ViewerContainer';
 
+import styles from './styles.module.css';
+
 import basic from '#.storybook/data/stories/basic.json';
 import bayard from '#.storybook/data/stories/bayard.json';
 import cannabis from '#.storybook/data/stories/cannabis-quebec-france.json';
@@ -44,10 +46,10 @@ import lol from '#.storybook/data/stories/lol.json';
 import micromagExample2 from '#.storybook/data/stories/micromagExample2.json';
 import micromagExample from '#.storybook/data/stories/micromagExample.json';
 import micromagExampleEarly2024 from '#.storybook/data/stories/micromagExampleEarly2024.json';
+import opera from '#.storybook/data/stories/opera-de-paris.json';
 import tnm from '#.storybook/data/stories/tnm.json';
 import testTheme from '#.storybook/data/themes/new-theme.json';
 import micromagAudio from '#.storybook/examples/micromag-audio.json';
-import styles from './styles.module.css';
 
 const props = {
     screenId: allScreensStory.components[0].id,
@@ -170,6 +172,10 @@ export const Article = meta.story(() => <Viewer story={article} memoryRouter />)
 
 export const Bayard = meta.story(() => (
     <Viewer story={bayard} memoryRouter backToFirstScreenTimeout={5000} />
+));
+
+export const Opera = meta.story(() => (
+    <Viewer story={opera} memoryRouter backToFirstScreenTimeout={5000} />
 ));
 
 export const Cannabis = meta.story(() => <Viewer story={cannabis} memoryRouter />);

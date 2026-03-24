@@ -28,12 +28,7 @@ function Consent({
     children = null,
 }: ConsentProps) {
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             {onClose !== null && withClose ? (
                 <CloseButton
                     type="button"
