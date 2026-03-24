@@ -229,6 +229,17 @@ function GameSort({
         [api],
     );
 
+    // Before :
+    // useEffect(() => {
+    //     if (!isView) {
+    //         return;
+    //     }
+
+    //     updateSpring(sortedItems, {
+    //         initial: initialSortedItemsRef.current === sortedItems,
+    //     });
+    // }, [sortedItems, itemsHeight]);
+
     // useLayoutEffect runs AFTER react-spring's internal layout effect which
     // resets springs to {y:0, scale:1}. We api.stop() the reset, then immediately
     // re-apply the correct shuffled positions before the browser paints.
@@ -277,11 +288,6 @@ function GameSort({
             }
             const sortedIndex = sortedItems.findIndex((it) => it === item);
 
-            // const heights = sortedItems.map((sortedItem) => {
-            //     const elementIndex = items.findIndex((it) => it === sortedItem);
-            //     return elementsRef.current[elementIndex]?.getBoundingClientRect()?.height || 0;
-            // });
-
             const refs = sortedItems.map((it) => elementsRef.current[it.id] || null);
             const heights = refs.map((it) => it?.getBoundingClientRect()?.height || 0);
 
@@ -312,7 +318,6 @@ function GameSort({
                 if (trackingEnabled) {
                     trackEvent('drag', `item_${itemIndex}`);
                 }
-                // updateIndex(item, newIndex !== -1 ? newIndex : sortedIndex);
             }
         },
         {

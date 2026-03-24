@@ -239,6 +239,15 @@ function KeypadScreen({
         boxStyle: popupButtonBoxStyle = null,
     } = popupButton || {};
 
+    // Skips a render loop when opening a popup
+    const [showNextPopup, setShowNextPopup] = useState(false);
+    useEffect(() => {
+        if (showNextPopup) {
+            setShowNextPopup(false);
+            setShowPopup(true);
+        }
+    }, [showNextPopup, setShowPopup, setShowNextPopup]);
+
     const onItemClick = useCallback(
         (e, item, index) => {
             e.stopPropagation();
@@ -260,7 +269,7 @@ function KeypadScreen({
                 });
             } else {
                 setPopup(item);
-                setShowPopup(true);
+                setShowNextPopup(true);
             }
 
             const { body: headingBody = null } = heading || {};
@@ -671,7 +680,7 @@ function KeypadScreen({
                             items={gridItems}
                         />
                     </Layout>
-                    {popup !== null ? (
+                    {popup !== null || true ? (
                         <>
                             <animated.div
                                 className={classNames([styles.popupBackdrop])}

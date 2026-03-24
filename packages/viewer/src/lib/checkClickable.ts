@@ -2,7 +2,7 @@ function checkClickable(el, options = {}, parentDistance = 1) {
     const { maxParentDistance = 7, tags = ['BUTTON', 'A', 'INPUT', 'TEXTAREA'] } = options || {};
     const { tagName = null, parentNode = null, dataset = {}, classList = null } = el || {};
 
-    if (tagName === 'BODY') {
+    if (tagName === null || tagName === 'BODY') {
         return false;
     }
 
