@@ -174,9 +174,7 @@ export const Bayard = meta.story(() => (
     <Viewer story={bayard} memoryRouter backToFirstScreenTimeout={5000} />
 ));
 
-export const Opera = meta.story(() => (
-    <Viewer story={opera} memoryRouter backToFirstScreenTimeout={5000} />
-));
+export const Opera = meta.story(() => <Viewer story={opera} memoryRouter />);
 
 export const Cannabis = meta.story(() => <Viewer story={cannabis} memoryRouter />);
 
