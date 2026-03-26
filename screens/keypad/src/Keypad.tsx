@@ -418,7 +418,7 @@ function KeypadScreen({
         progress: popupSpring,
         transitioning: popupTransitioning,
     } = useDragProgress({
-        disabled: !isView || popupDragDisabled,
+        disabled: true, // !isView || popupDragDisabled, // TODO: remove drag/popupDragDisabled if we're cool with it
         progress: showPopup ? 0 : 1,
         computeProgress: computePopupProgress,
         onResolve,
