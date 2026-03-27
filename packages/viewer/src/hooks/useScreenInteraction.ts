@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import checkClickable from '../lib/checkClickable';
 
@@ -26,28 +26,24 @@ function useScreenInteraction({
 
     const updateInteraction = useCallback(
         (newValue) => {
-            const { [screenId]: currentValue = true } = screensInteractionEnabled;
-            if (currentValue !== newValue) {
-                setScreensInteractionEnabled(
-                    screens.reduce(
-                        (map, { id }) =>
-                            screenId === id
-                                ? {
-                                      ...map,
-                                      [id]: newValue,
-                                  }
-                                : {
-                                      ...map,
-                                      [id]:
-                                          typeof screensInteractionEnabled[id] === 'undefined' ||
-                                          screensInteractionEnabled[id] === true,
-                                  },
-                        {},
-                    ),
+            setScreensInteractionEnabled((prev) => {
+                const { [screenId]: currentValue = true } = prev;
+                if (currentValue === newValue) {
+                    return prev;
+                }
+                return screens.reduce(
+                    (map, { id }) =>
+                        screenId === id
+                            ? { ...map, [id]: newValue }
+                            : {
+                                  ...map,
+                                  [id]: typeof prev[id] === 'undefined' || prev[id] === true,
+                              },
+                    {},
                 );
-            }
+            });
         },
-        [screens, screenId, screensInteractionEnabled, setScreensInteractionEnabled],
+        [screens, screenId],
     );
 
     const enableInteraction = useCallback(() => updateInteraction(true), [updateInteraction]);
@@ -96,7 +92,6 @@ function useScreenInteraction({
         [
             screens,
             screenIndex,
-            screensInteractionEnabled,
             currentScreenInteractionEnabled,
             nextScreenWidthPercent,
             disableCurrentScreenNavigation,
