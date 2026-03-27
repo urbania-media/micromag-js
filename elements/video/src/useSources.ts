@@ -22,7 +22,6 @@ export default function useSources(media = null, options = null) {
         if (newMimes.length === 0) {
             newMimes = ['video/mp4'];
         }
-        console.log('set');
         setSupportedMimes(newMimes);
     }, [finalPossibleMimes]);
 
