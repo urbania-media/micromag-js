@@ -1,9 +1,10 @@
 import raf from 'raf';
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import useMediaDuration from './useMediaDuration';
 
-function useMediaProgress(media, { disabled = false, ...props } = {}) {
+function useMediaProgress(media = null, options = null) {
+    const { disabled = false, ...props } = options || {};
     const [playing, setPlaying] = useState(!disabled);
 
     const duration = useMediaDuration(media, {
@@ -105,7 +106,8 @@ function useMediaProgress(media, { disabled = false, ...props } = {}) {
             const step = elapsed / duration;
             lastSync += elapsed;
             const shouldSync = lastSync > syncTime;
-            const newProgress = realProgressRef.current < 0.1
+            const newProgress =
+                realProgressRef.current < 0.1
                     ? media.currentTime / media.duration
                     : realProgressRef.current + step;
             if (shouldSync) {

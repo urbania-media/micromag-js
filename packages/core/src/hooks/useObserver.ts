@@ -1,5 +1,5 @@
 import isArray from 'lodash/isArray';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const buildThresholdArray = () => [0, 1.0];
 
@@ -103,8 +103,8 @@ export const getObserver = (Observer, options = {}) => {
     return observers[observerKey];
 };
 
-export const useObserver = (Observer, opts = {}, initialEntry = {}) => {
-    const { root = null, rootMargin = null, threshold = null, disabled = false } = opts;
+export const useObserver = (Observer, opts = null, initialEntry = null) => {
+    const { root = null, rootMargin = null, threshold = null, disabled = false } = opts || {};
     const [entry, setEntry] = useState(initialEntry);
     const nodeRef = useRef(null);
     const currentElement = useRef(null);
@@ -193,12 +193,14 @@ const resizeObserverInitialEntry = {
     contentBoxSize: null,
     borderBoxSize: null,
 };
-export const useResizeObserver = ({ disabled = false } = {}) =>
-    useObserver(
+export const useResizeObserver = (options = null) => {
+    const { disabled = false } = options || {};
+    return useObserver(
         typeof window !== 'undefined' ? ResizeObserver : null,
         { disabled },
         resizeObserverInitialEntry,
     );
+};
 
 export const useDimensionObserver = (...args) => {
     const { entry, ...rest } = useResizeObserver(...args);

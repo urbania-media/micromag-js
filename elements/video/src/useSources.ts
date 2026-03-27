@@ -6,11 +6,15 @@ import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/uti
 // Disabled webm for now
 // const defaultPossibleMimes = ['video/mp4', 'video/webm', 'video/ogg', 'application/vnd.apple.mpegurl'];
 
-export default function useSources(media, { possibleMimes = null } = {}) {
+export default function useSources(media = null, options = null) {
+    const { possibleMimes = null } = options || {};
     const { files: mediaFiles = null, metadata = null } = media || {};
     const { mime: mediaMime = null } = metadata || {};
     const settingsPossibleMimes = useSetting('supportedVideoMimes');
-    const finalPossibleMimes = possibleMimes || settingsPossibleMimes || ['video/mp4'];
+    const finalPossibleMimes = useMemo(
+        () => possibleMimes || settingsPossibleMimes || ['video/mp4'],
+        [possibleMimes, settingsPossibleMimes],
+    );
     const files = useMemo(() => getMediaFilesAsArray(mediaFiles), [mediaFiles]);
     const [supportedMimes, setSupportedMimes] = useState(finalPossibleMimes);
     useEffect(() => {
@@ -18,8 +22,10 @@ export default function useSources(media, { possibleMimes = null } = {}) {
         if (newMimes.length === 0) {
             newMimes = ['video/mp4'];
         }
+        console.log('set');
         setSupportedMimes(newMimes);
     }, [finalPossibleMimes]);
+
     const sources = useMemo(() => {
         if (files.length === 0) {
             return null;

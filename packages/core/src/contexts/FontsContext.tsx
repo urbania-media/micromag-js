@@ -5,7 +5,6 @@ import uniqBy from 'lodash/uniqBy';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 
 import type { Font } from '../types';
-
 import { useGoogleKeys } from './GoogleKeysContext';
 
 export const FontsContext = React.createContext({
@@ -14,7 +13,8 @@ export const FontsContext = React.createContext({
     customFonts: null,
 });
 
-export const useGoogleFonts = ({ disabled = false, setFonts = null } = {}) => {
+export const useGoogleFonts = (options = null) => {
+    const { disabled = false, setFonts = null } = options || {};
     const { apiKey } = useGoogleKeys();
     const [googleFonts, setGoogleFonts] = useState(null);
     useEffect(() => {
@@ -44,7 +44,8 @@ export const useGoogleFonts = ({ disabled = false, setFonts = null } = {}) => {
     return googleFonts;
 };
 
-export const useFonts = ({ withoutGoogleFonts = false } = {}) => {
+export const useFonts = (options = null) => {
+    const { withoutGoogleFonts = false } = options || {};
     const {
         setGoogleFonts = null,
         systemFonts = null,

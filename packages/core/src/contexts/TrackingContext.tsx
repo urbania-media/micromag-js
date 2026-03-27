@@ -15,7 +15,8 @@ interface TrackingProviderProps {
     paused?: boolean;
 }
 
-export function TrackingProvider({ variables = null, disabled = false, paused = false, children }: TrackingProviderProps) {
+export function TrackingProvider(options = null) {
+    const { variables = null, disabled = false, paused = false, children = null } = options || {};
     const contextTracking = useTracking() || null;
     const refTracking = useRef(null);
     const tracking = useMemo(() => {

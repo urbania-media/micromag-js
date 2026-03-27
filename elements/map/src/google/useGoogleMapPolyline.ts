@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
+
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 
-export default function useGoogleMapMarker(map, { coords }) {
+export default function useGoogleMapPolyline(map = null, options = null) {
+    const { coords = [] } = options || {};
     const client = useGoogleMapsClient();
     const polylineRef = useRef(null);
     useEffect(() => {

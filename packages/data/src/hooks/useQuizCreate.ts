@@ -4,12 +4,14 @@ import { useStory, useVisitor } from '@micromag/core/contexts';
 
 import { useApi } from '../contexts/ApiContext';
 
-export const useQuizCreate = ({
-    screenId,
-    visitorId: providedVisitorId = null,
-    storyId: providedStoryId = null,
-    onSuccess = null,
-} = {}) => {
+export const useQuizCreate = (options = null) => {
+    const {
+        screenId = null,
+        visitorId: providedVisitorId = null,
+        storyId: providedStoryId = null,
+        onSuccess = null,
+    } = options || {};
+
     const api = useApi();
     const [creating, setCreating] = useState(false);
     const { id: visitorId } = useVisitor() || {};

@@ -1,14 +1,16 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-export const useSearchFilters = ({
-    recent: initialRecent = null,
-    tags: initialTags = null,
-    team: initialTeam = null,
-    sources: initialSources = null,
-    withType = false,
-    storyId = null,
-}) => {
+export const useSearchFilters = (options = null) => {
+    const {
+        recent: initialRecent = null,
+        tags: initialTags = null,
+        team: initialTeam = null,
+        sources: initialSources = null,
+        withType = false,
+        storyId = null,
+    } = options || {};
+
     const recent = initialRecent || [];
     const tags = initialTags || [];
     const team = initialTeam || [];

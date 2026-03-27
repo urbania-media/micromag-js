@@ -1,5 +1,6 @@
-import { useEffect, useRef, useCallback } from 'react';
 import isObject from 'lodash/isObject';
+import { useCallback, useEffect, useRef } from 'react';
+
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 
 const eventMapping = {
@@ -7,10 +8,15 @@ const eventMapping = {
     onDoubleClick: 'dblclick',
 };
 
-export default function useGoogleMapMarker(
-    map,
-    { position = null, icon = null, iconSize = null, events, title } = {},
-) {
+export default function useGoogleMapMarker(map = null, options = null) {
+    const {
+        position = null,
+        icon = null,
+        iconSize = null,
+        events = null,
+        title = null,
+    } = options || {};
+
     const client = useGoogleMapsClient();
     const markerRef = useRef(null);
 
@@ -21,20 +27,23 @@ export default function useGoogleMapMarker(
         }
     }, [position]);
 
-    const updateIcon = useCallback((marker, newIcon) => {
-        if (client === null) {
-            return;
-        }
-        if (isObject(newIcon)) {
-            const { url: iconUrl = null } = newIcon || {};
-            marker.setIcon({
-                url: iconUrl,
-                scaledSize: new client.maps.Size(iconSize.width, iconSize.height),
-            });
-        } else {
-            marker.setIcon(newIcon);
-        }
-    }, [client, iconSize]);
+    const updateIcon = useCallback(
+        (marker, newIcon) => {
+            if (client === null) {
+                return;
+            }
+            if (isObject(newIcon)) {
+                const { url: iconUrl = null } = newIcon || {};
+                marker.setIcon({
+                    url: iconUrl,
+                    scaledSize: new client.maps.Size(iconSize.width, iconSize.height),
+                });
+            } else {
+                marker.setIcon(newIcon);
+            }
+        },
+        [client, iconSize],
+    );
 
     useEffect(() => {
         const { current: marker } = markerRef;

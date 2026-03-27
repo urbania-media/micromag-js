@@ -1,9 +1,10 @@
+import dayjs from 'dayjs';
+import isString from 'lodash/isString';
 import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import isString from 'lodash/isString';
-import dayjs from 'dayjs';
 
-export const useFormattedDate = ({ format = null, showToday = true } = {}) => {
+export const useFormattedDate = (options = null) => {
+    const { format = null, showToday = true } = options || {};
     const intl = useIntl();
     const today = dayjs();
 
@@ -29,7 +30,8 @@ export const useFormattedDate = ({ format = null, showToday = true } = {}) => {
     );
 };
 
-export const useFormattedTime = ({ format = null, showNow = true, timeGap = 2 } = {}) => {
+export const useFormattedTime = (options = null) => {
+    const { format = null, showNow = true, timeGap = 2 } = options || {};
     const intl = useIntl();
     const now = dayjs();
 

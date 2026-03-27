@@ -54,7 +54,8 @@ const useScreenSize = ({
     return screenSize;
 };
 
-export const useScreenSizeFromElement = ({ width = null, height = null, ...opts } = {}) => {
+export const useScreenSizeFromElement = (options = null) => {
+    const { width = null, height = null, ...opts } = options || {};
     const {
         ref,
         width: calculatedWidth = 0,

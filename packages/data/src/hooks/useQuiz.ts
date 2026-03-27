@@ -5,7 +5,8 @@ import { useStory } from '@micromag/core/contexts';
 import { useApi } from '../contexts/ApiContext';
 import useData from './useData';
 
-export const useQuiz = ({ screenId, storyId: providedStoryId = null, opts = {} } = {}) => {
+export const useQuiz = (options = null) => {
+    const { screenId = null, storyId: providedStoryId = null, opts = {} } = options || {};
     const api = useApi();
     const { id: storyId, document_id: documentId } = useStory() || {};
 

@@ -47,6 +47,7 @@ import micromagExample2 from '#.storybook/data/stories/micromagExample2.json';
 import micromagExample from '#.storybook/data/stories/micromagExample.json';
 import micromagExampleEarly2024 from '#.storybook/data/stories/micromagExampleEarly2024.json';
 import opera from '#.storybook/data/stories/opera-de-paris.json';
+import operaSaison2627 from '#.storybook/data/stories/saison26-27.json';
 import tnm from '#.storybook/data/stories/tnm.json';
 import testTheme from '#.storybook/data/themes/new-theme.json';
 import micromagAudio from '#.storybook/examples/micromag-audio.json';
@@ -175,6 +176,8 @@ export const Bayard = meta.story(() => (
 ));
 
 export const Opera = meta.story(() => <Viewer story={opera} memoryRouter />);
+
+export const OperaSaison = meta.story(() => <Viewer story={operaSaison2627} memoryRouter />);
 
 export const Cannabis = meta.story(() => <Viewer story={cannabis} memoryRouter />);
 

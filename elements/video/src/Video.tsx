@@ -87,6 +87,7 @@ function Video({
     const { description = null, has_audio: hasAudio = null } = metadata || {};
     const finalThumbnail = useMediaThumbnail(media, thumbnail);
     const { sources, isImage } = useSources(media);
+    console.log('media', media, sources, isImage);
     const isImageWithoutSourceFile = isImage && (sources === null || sources.length === 0);
 
     const ref = useRef(null);
