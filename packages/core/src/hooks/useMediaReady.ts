@@ -1,6 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-function useMediaReady(element, { id = null } = {}) {
+function useMediaReady(
+    element: HTMLMediaElement | null,
+    { id = null }: { id?: string | null } = {},
+) {
     const [ready, setReady] = useState(element !== null && element.readyState > 0);
 
     const realReady = useRef(ready);
@@ -18,10 +21,10 @@ function useMediaReady(element, { id = null } = {}) {
         }
         function updateReady() {
             let currentReady = ready;
-            if (element.readyState > 0 && !ready) {
+            if (element !== null && element.readyState > 0 && !ready) {
                 setReady(true);
                 currentReady = true;
-            } else if (ready && element.readyState === 0) {
+            } else if (ready && element !== null && element.readyState === 0) {
                 setReady(false);
                 currentReady = false;
             }
@@ -29,17 +32,20 @@ function useMediaReady(element, { id = null } = {}) {
             return currentReady;
         }
         const currentReady = updateReady();
-        if (!currentReady) {
-            element.addEventListener('loadedmetadata', updateReady);
-            element.addEventListener('canplay', updateReady);
-            element.addEventListener('canplaythrough', updateReady);
+        if (currentReady) {
+            return () => {};
         }
+        element.addEventListener('loadstart', updateReady);
+        element.addEventListener('loadeddata', updateReady);
+        element.addEventListener('loadedmetadata', updateReady);
+        element.addEventListener('canplay', updateReady);
+        element.addEventListener('canplaythrough', updateReady);
         return () => {
-            if (!currentReady) {
-                element.removeEventListener('loadedmetadata', updateReady);
-                element.removeEventListener('canplay', updateReady);
-                element.removeEventListener('canplaythrough', updateReady);
-            }
+            element.removeEventListener('loadstart', updateReady);
+            element.removeEventListener('loadeddata', updateReady);
+            element.removeEventListener('loadedmetadata', updateReady);
+            element.removeEventListener('canplay', updateReady);
+            element.removeEventListener('canplaythrough', updateReady);
         };
     }, [element, id]);
 

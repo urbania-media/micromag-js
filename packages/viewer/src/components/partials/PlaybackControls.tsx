@@ -55,7 +55,7 @@ function PlaybackControls({
     } = usePlaybackContext();
 
     const [showLoading, setShowLoading] = useState(false);
-    const mediaUrl = mediaElement !== null ? mediaElement.src : null;
+    const mediaUrl = mediaElement !== null ? mediaElement.currentSrc || mediaElement.src : null;
     const mediaReady = useMediaReady(mediaElement, {
         id: mediaUrl,
     });
@@ -66,6 +66,15 @@ function PlaybackControls({
         playing: wantedPlaying,
         muted: wantedMuted,
     });
+    console.log({
+        wantedPlaying,
+        wantedMuted,
+        muted,
+        playing,
+        buffering,
+        showLoading,
+        ready
+    })
 
     useEffect(() => {
         let id = null;
@@ -77,7 +86,9 @@ function PlaybackControls({
         }
         return () => {
             setShowLoading(false);
-            clearTimeout(id);
+            if (id !== null) {
+                clearTimeout(id);
+            }
         };
     }, [ready, buffering, withLoading, setShowLoading]);
 
@@ -167,7 +178,7 @@ function PlaybackControls({
 
     const withSuggestPlay = controlsSuggestPlay && !finalShowLoading && !playing;
 
-    const playIcon = playing ? (
+    const playIcon = wantedPlaying ? (
         <PauseIcon className={styles.icon} color="currentColor" />
     ) : (
         <PlayIcon className={styles.icon} color="currentColor" />
@@ -218,15 +229,15 @@ function PlaybackControls({
                 className={classNames([
                     styles.playPauseButton,
                     {
-                        [styles.hidden]: controlsSuggestPlay && !controls,
+                        [styles.hidden]: withSuggestPlay && !controls,
                         [styles.loading]: finalShowLoading,
                     },
                 ])}
                 style={{
                     color,
                 }}
-                onClick={playing ? onPause : onPlay}
-                focusable={controls && controlsVisible && (!seekBarOnly || !playing)}
+                onClick={wantedPlaying ? onPause : onPlay}
+                focusable={controls && controlsVisible && (!seekBarOnly || !wantedPlaying)}
                 disabled={finalShowLoading}
                 icon={
                     finalShowLoading ? (
@@ -235,7 +246,7 @@ function PlaybackControls({
                         playIcon
                     )
                 }
-                aria-pressed={!playing}
+                aria-pressed={!wantedPlaying}
                 aria-label={
                     finalShowLoading
                         ? intl.formatMessage({

@@ -1,20 +1,16 @@
 import createDebug from 'debug';
-import isString from 'lodash/isString';
 import { useEffect, useMemo, useState } from 'react';
 
 const useMediaState = (
-    mediaElement = null,
+    mediaElement: HTMLMediaElement | null = null,
     { playing: wantedPlaying = false, muted: wantedMuted = false } = {},
 ) => {
+    const src = mediaElement !== null ? mediaElement.currentSrc || mediaElement.src : null;
     const debug = useMemo(() => {
         const mediaKey =
-            mediaElement !== null && isString(mediaElement.src)
-                ? mediaElement.src
-                      .split('/')
-                      [mediaElement.src.split('/').length - 1].split('#')[0] || null
-                : null;
+            src !== null ? src.split('/')[src.split('/').length - 1].split('#')[0] || null : null;
         return createDebug(mediaKey !== null ? `micromag:media:${mediaKey}` : 'micromag:media');
-    }, [mediaElement]);
+    }, [src]);
     const [playing, setPlaying] = useState(wantedPlaying);
     const [buffering, setBuffering] = useState(false);
     const [muted, setMuted] = useState(
@@ -32,7 +28,7 @@ const useMediaState = (
             setMuted(wantedMuted);
             debug('Unset media: %o', { wantedPlaying, wantedMuted });
         }
-    }, [mediaElement, debug, wantedPlaying, wantedMuted]);
+    }, [mediaElement, src, debug, wantedPlaying, wantedMuted]);
 
     useEffect(() => {
         if (mediaElement === null) {
@@ -40,13 +36,16 @@ const useMediaState = (
         }
         function onBufferingEvent(e) {
             // networkstate
-            if (mediaElement.networkState === mediaElement.NETWORK_LOADING) {
+            if (
+                mediaElement !== null &&
+                mediaElement.networkState === mediaElement.NETWORK_LOADING
+            ) {
                 debug('onBufferingEvent: NETWORK_LOADING');
                 setBuffering(true);
             }
 
             // readystate
-            if (mediaElement.readyState < mediaElement.HAVE_FUTURE_DATA) {
+            if (mediaElement !== null && mediaElement.readyState < mediaElement.HAVE_FUTURE_DATA) {
                 debug('onBufferingEvent: HAVE_FUTURE_DATA');
                 setBuffering(true);
             }
@@ -118,7 +117,7 @@ const useMediaState = (
             mediaElement.removeEventListener('ended', onEnded);
             mediaElement.removeEventListener('volumechange', onVolumeChange);
         };
-    }, [mediaElement, debug]);
+    }, [mediaElement, debug, src]);
 
     return { playing, muted, buffering };
 };
