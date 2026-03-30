@@ -66,15 +66,6 @@ function PlaybackControls({
         playing: wantedPlaying,
         muted: wantedMuted,
     });
-    console.log({
-        wantedPlaying,
-        wantedMuted,
-        muted,
-        playing,
-        buffering,
-        showLoading,
-        ready,
-    });
 
     useEffect(() => {
         let id = null;
