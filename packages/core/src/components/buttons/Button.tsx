@@ -1,14 +1,16 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
+import React, { CSSProperties, ForwardedRef, MouseEventHandler } from 'react';
 import { Link } from 'wouter';
 
 import Label from '../partials/Label';
 
 import styles from '../../styles/buttons/button.module.css';
 
+type ButtonElement = HTMLButtonElement | HTMLAnchorElement;
+
 interface ButtonProps {
-    type?: string;
+    type?: 'button' | 'submit' | 'reset';
     theme?: ButtonTheme | null;
     size?: ButtonSize | null;
     href?: string | null;
@@ -32,11 +34,12 @@ interface ButtonProps {
     withoutTheme?: boolean;
     outline?: boolean;
     asLink?: boolean;
+    style?: CSSProperties;
     className?: string | null;
     iconClassName?: string | null;
     labelClassName?: string | null;
-    onClick?: ((...args: unknown[]) => void) | null;
-    refButton?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    onClick?: MouseEventHandler<ButtonElement> | null;
+    refButton?: ForwardedRef<ButtonElement> | null;
 }
 
 function Button({
@@ -81,23 +84,9 @@ function Button({
         <>
             {hasInlineIcon ? (
                 <>
-                    <span
-                        className={classNames([
-                            styles.icon,
-                            iconClassName,
-                        ])}
-                    >
-                        {icon}
-                    </span>
+                    <span className={classNames([styles.icon, iconClassName])}>{icon}</span>
                     {text !== null ? (
-                        <span
-                            className={classNames([
-                                styles.label,
-                                labelClassName,
-                            ])}
-                        >
-                            {text}
-                        </span>
+                        <span className={classNames([styles.label, labelClassName])}>{text}</span>
                     ) : null}
                 </>
             ) : null}
@@ -111,14 +100,7 @@ function Button({
                     >
                         {iconPosition === 'left' ? icon : null}
                     </span>
-                    <span
-                        className={classNames([
-                            styles.center,
-                            labelClassName,
-                        ])}
-                    >
-                        {text}
-                    </span>
+                    <span className={classNames([styles.center, labelClassName])}>{text}</span>
                     <span
                         className={classNames([
                             styles.right,
@@ -171,12 +153,12 @@ function Button({
         return external || direct ? (
             <a
                 {...props}
-                href={disabled ? null : href}
+                href={!disabled ? href : undefined}
                 className={linkClassNames}
                 onClick={onClick}
-                target={external ? target : null}
+                target={external ? target : undefined}
                 ref={refButton}
-                tabIndex={focusable ? '' : '-1'}
+                tabIndex={!focusable ? -1 : undefined}
             >
                 {content}
             </a>
@@ -201,7 +183,7 @@ function Button({
             onClick={onClick}
             disabled={disabled || (disableOnLoading && loading)}
             ref={refButton}
-            tabIndex={focusable ? '0' : '-1'}
+            tabIndex={!focusable ? -1 : undefined}
         >
             {content}
         </button>

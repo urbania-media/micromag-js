@@ -74,7 +74,12 @@ module.exports = (api) => {
     return {
         presets: api.env('development')
             ? [
-                  '@babel/preset-react',
+                  [
+                      require('@babel/preset-react'),
+                      {
+                          runtime: 'automatic',
+                      },
+                  ],
                   [
                       require('@babel/preset-env'),
                       {

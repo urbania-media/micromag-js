@@ -165,6 +165,8 @@ function PlaybackControls({
     const { color, progressColor, seekBarOnly } = customControlsTheme || {};
     const isCollapsed = (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
 
+    const withSuggestPlay = controlsSuggestPlay && !finalShowLoading && !playing;
+
     const playIcon = playing ? (
         <PauseIcon className={styles.icon} color="currentColor" />
     ) : (
@@ -179,7 +181,7 @@ function PlaybackControls({
                 isCollapsed ? collapsedClassName : null,
                 {
                     [styles.withPlayPause]: controls && !seekBarOnly,
-                    [styles.withSuggestPlay]: controlsSuggestPlay,
+                    [styles.withSuggestPlay]: withSuggestPlay,
                     [styles.withMute]: hasMedia || controls,
                     [styles.withSeekBar]: controls,
                     [styles.withSeekBarOnly]: seekBarOnly,
@@ -189,7 +191,7 @@ function PlaybackControls({
                 },
             ])}
         >
-            {controlsSuggestPlay && !finalShowLoading ? (
+            {withSuggestPlay ? (
                 <Button
                     className={classNames([styles.suggest])}
                     style={{

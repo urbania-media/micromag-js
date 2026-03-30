@@ -1,72 +1,124 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import {
+    ReactNode,
+    createContext,
+    useCallback,
+    useContext,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
+import { flushSync } from 'react-dom';
 
-const defaultControlsThemeValue = {
+interface PlaybackControlsTheme {
+    seekBarOnly?: boolean;
+    color?: unknown;
+    progressColor?: unknown;
+}
+
+type MediaElement = HTMLVideoElement | HTMLAudioElement | HTMLMediaElement;
+
+interface PlaybackContext {
+    playing: boolean;
+    completed: boolean;
+    muted: boolean;
+    controls: boolean;
+    controlsSuggestPlay: boolean;
+    controlsVisible: boolean;
+    media: MediaElement | null;
+    hasAudio: boolean | null;
+    controlsTheme: PlaybackControlsTheme | null;
+    currentQualityLevel: number | null;
+    setMuted: (muted: boolean) => void;
+    setPlaying: (playing: boolean) => void;
+    setControls: (hasControls: boolean) => void;
+    setControlsVisible: (visible: boolean) => void;
+    setControlsTheme: (theme: PlaybackControlsTheme | null) => void;
+    showControls: () => void;
+    hideControls: () => void;
+    setMedia: (media: MediaElement | null) => void;
+    setCurrentQualityLevel: (qualityLevel: number | null, fromRef?: MediaElement | null) => void;
+    setIsBackground: (isBackground: boolean) => void;
+}
+
+const defaultControlsThemeValue: PlaybackControlsTheme = {
     seekBarOnly: false,
     color: null,
     progressColor: null,
 };
 
-const defaultValue = {
+export const PlaybackContext = createContext<PlaybackContext>({
     playing: false,
-    paused: false,
     completed: false,
     muted: true,
     controls: false,
     controlsSuggestPlay: false,
     controlsVisible: false,
+    hasAudio: false,
     media: null,
     controlsTheme: defaultControlsThemeValue,
     currentQualityLevel: null,
-};
-
-export const PlaybackContext = React.createContext({
-    ...defaultValue,
-    setMuted: () => {},
-    setPlaying: () => {},
-    setControls: () => {},
-    setControlsVisible: () => {},
-    setControlsTheme: () => {},
+    setMuted: (muted: boolean) => {},
+    setPlaying: (playing: boolean) => {},
+    setControls: (hasControls: boolean) => {},
+    setControlsVisible: (visible: boolean) => {},
+    setControlsTheme: (theme: PlaybackControlsTheme | null) => {},
     showControls: () => {},
     hideControls: () => {},
-    setMedia: () => {},
-    setCurrentQualityLevel: () => {},
-    setIsBackground: () => {},
+    setMedia: (media: MediaElement | null) => {},
+    setCurrentQualityLevel: (qualityLevel: number | null, fromRef?: MediaElement | null) => {},
+    setIsBackground: (isBackground: boolean) => {},
 });
 
 export const usePlaybackContext = () => useContext(PlaybackContext);
 
 export const usePlaybackMediaRef = (active = false, background = false, updateKey = null) => {
-    const { setMedia, setIsBackground, media } = usePlaybackContext();
+    const { setMedia, setIsBackground, media, isBackground } = usePlaybackContext();
     const mediaRef = useRef<HTMLMediaElement | null>(null);
 
     // Cleanup: clear media registration when this screen deactivates or unmounts.
     // Note: we cannot check mediaRef.current here because React clears callback refs
     // before running effect cleanups, so mediaRef.current is always null at this point.
-    useEffect(
-        () => () => {
+    useEffect(() => {
+        const { current: currentMedia } = mediaRef;
+        return () => {
             if (active) {
+                const playing =
+                    currentMedia !== null &&
+                    !!(
+                        currentMedia.currentTime > 0 &&
+                        !currentMedia.paused &&
+                        !currentMedia.ended &&
+                        currentMedia.readyState > 2
+                    );
                 setMedia(null);
                 setIsBackground(false);
+                if (playing) {
+                    currentMedia.pause();
+                }
             }
-        },
-        [active, setMedia, setIsBackground, updateKey],
-    );
+        };
+    }, [active, setMedia, setIsBackground, updateKey]);
 
     // Register media with context when active and no media is registered
     useEffect(() => {
-        if (!active || mediaRef.current === null || media !== null) {
+        if (
+            !active ||
+            mediaRef.current === null ||
+            (mediaRef.current === media && background === isBackground)
+        ) {
             return;
         }
         setIsBackground(background);
         setMedia(mediaRef.current);
-    }, [active, background, media, updateKey, setMedia, setIsBackground]);
+    }, [active, background, media, updateKey, setMedia, setIsBackground, isBackground]);
 
     return { ref: mediaRef, isCurrent: mediaRef.current === media };
 };
 
 interface PlaybackProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
     controls?: boolean;
     controlsSuggestPlay?: boolean;
     controlsVisible?: boolean;
@@ -74,7 +126,7 @@ interface PlaybackProviderProps {
     muted?: boolean;
     playing?: boolean;
     paused?: boolean;
-    currentQualityLevel?: number;
+    currentQualityLevel?: number | null;
 }
 
 export function PlaybackProvider({
@@ -88,18 +140,24 @@ export function PlaybackProvider({
     currentQualityLevel: initialCurrentQualityLevel = null,
     children,
 }: PlaybackProviderProps) {
-    const [muted, setMuted] = useState(initialMuted);
-    const [playing, setPlaying] = useState(initialPlaying);
-    const [media, setMedia] = useState(null);
-    const [isBackground, setIsBackground] = useState(false);
-    const [controls, setControls] = useState(initialControls);
-    const [controlsSuggestPlay, setControlsSuggestPlay] = useState(initialControlsSuggestPlay);
-    const [controlsVisible, setControlsVisible] = useState(initialControlsVisible);
-    const [controlsTheme, setControlsTheme] = useState(initialControlsTheme);
-    const [currentQualityLevel, setCurrentQualityLevel] = useState(initialCurrentQualityLevel);
+    const [muted, setMuted] = useState<boolean>(initialMuted);
+    const [playing, setPlaying] = useState<boolean>(initialPlaying);
+    const [media, setMedia] = useState<MediaElement | null>(null);
+    const [isBackground, setIsBackground] = useState<boolean>(false);
+    const [controls, setControls] = useState<boolean>(initialControls);
+    const [controlsSuggestPlay, setControlsSuggestPlay] = useState<boolean>(
+        initialControlsSuggestPlay,
+    );
+    const [controlsVisible, setControlsVisible] = useState<boolean>(initialControlsVisible);
+    const [controlsTheme, setControlsTheme] = useState<PlaybackControlsTheme | null>(
+        initialControlsTheme,
+    );
+    const [currentQualityLevel, setCurrentQualityLevel] = useState<number | null>(
+        initialCurrentQualityLevel,
+    );
 
     const finalSetControls = useCallback(
-        (newControls) => {
+        (newControls: boolean) => {
             if (newControls) {
                 setControls(true);
                 setControlsVisible(true);
@@ -114,14 +172,14 @@ export function PlaybackProvider({
     );
 
     const finalSetControlsTheme = useCallback(
-        (newTheme) => {
+        (newTheme: PlaybackControlsTheme | null) => {
             setControlsTheme({ ...defaultControlsThemeValue, ...newTheme });
         },
         [setControlsTheme],
     );
 
     const finalSetPlaying = useCallback(
-        (value) => {
+        (value: boolean) => {
             if (value) {
                 setControlsSuggestPlay(false);
             }
@@ -169,7 +227,7 @@ export function PlaybackProvider({
     }, [media]);
 
     const finalSetCurrentQualityLevel = useCallback(
-        (level, fromRef = null) => {
+        (level: number | null, fromRef: MediaElement | null = null) => {
             if (fromRef === null || media === null || fromRef === media) {
                 setCurrentQualityLevel(level);
             }

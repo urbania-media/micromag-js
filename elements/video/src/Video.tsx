@@ -91,7 +91,7 @@ function Video({
 
     const isImageWithoutSourceFile = isImage && (sources === null || sources.length === 0);
 
-    const ref = useRef(null);
+    const ref = useRef<HTMLVideoElement | null>(null);
 
     const currentTime = useMediaCurrentTime(ref.current, {
         id: mediaUrl,
@@ -179,6 +179,19 @@ function Video({
     }, [ready, onReady]);
 
     const finalPreload = shouldLoad ? preload : 'none';
+    const [wasPreloaded, setWasPreloaded] = useState(
+        finalPreload === 'auto' || finalPreload === 'metadata',
+    );
+
+    useEffect(() => {
+        const { current: element = null } = ref;
+        if (shouldLoad && !wasPreloaded && element !== null) {
+            try {
+                element.load();
+            } catch {}
+            setWasPreloaded(true);
+        }
+    }, [shouldLoad, wasPreloaded]);
 
     useEffect(() => {
         const { current: element = null } = ref;
@@ -186,7 +199,6 @@ function Video({
             return;
         }
         const { paused: isPaused } = element;
-
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused) {
@@ -242,7 +254,7 @@ function Video({
                             mediaRef.current = newRef;
                         }
                     }}
-                    src={sources === null && shouldLoad ? `${mediaUrl}#t=0.001` : null}
+                    src={sources === null && shouldLoad ? `${mediaUrl}#t=0.001` : undefined}
                     autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
