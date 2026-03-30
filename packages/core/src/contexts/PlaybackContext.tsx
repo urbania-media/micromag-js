@@ -19,6 +19,13 @@ interface PlaybackControlsTheme {
 
 type MediaElement = HTMLVideoElement | HTMLAudioElement | HTMLMediaElement;
 
+function mediaElementIsPlaying(media: MediaElement | null): boolean {
+    return (
+        media !== null &&
+        !!(media.currentTime > 0 && !media.paused && !media.ended && media.readyState > 2)
+    );
+}
+
 interface PlaybackContext {
     playing: boolean;
     completed: boolean;
@@ -28,6 +35,7 @@ interface PlaybackContext {
     controlsVisible: boolean;
     media: MediaElement | null;
     hasAudio: boolean | null;
+    isBackground: boolean;
     controlsTheme: PlaybackControlsTheme | null;
     currentQualityLevel: number | null;
     setMuted: (muted: boolean) => void;
@@ -56,6 +64,7 @@ export const PlaybackContext = createContext<PlaybackContext>({
     controlsSuggestPlay: false,
     controlsVisible: false,
     hasAudio: false,
+    isBackground: false,
     media: null,
     controlsTheme: defaultControlsThemeValue,
     currentQualityLevel: null,
@@ -74,32 +83,39 @@ export const PlaybackContext = createContext<PlaybackContext>({
 export const usePlaybackContext = () => useContext(PlaybackContext);
 
 export const usePlaybackMediaRef = (active = false, background = false, updateKey = null) => {
-    const { setMedia, setIsBackground, media, isBackground } = usePlaybackContext();
+    const { setMedia, setIsBackground, media, isBackground, playing } = usePlaybackContext();
     const mediaRef = useRef<HTMLMediaElement | null>(null);
 
     // Cleanup: clear media registration when this screen deactivates or unmounts.
     // Note: we cannot check mediaRef.current here because React clears callback refs
     // before running effect cleanups, so mediaRef.current is always null at this point.
     useEffect(() => {
-        const { current: currentMedia } = mediaRef;
+        const { current: currentMedia = null } = mediaRef;
         return () => {
             if (active) {
-                const playing =
-                    currentMedia !== null &&
-                    !!(
-                        currentMedia.currentTime > 0 &&
-                        !currentMedia.paused &&
-                        !currentMedia.ended &&
-                        currentMedia.readyState > 2
-                    );
+                const shouldPause = currentMedia !== null && mediaElementIsPlaying(currentMedia);
                 setMedia(null);
                 setIsBackground(false);
-                if (playing) {
+                if (shouldPause) {
                     currentMedia.pause();
                 }
             }
         };
     }, [active, setMedia, setIsBackground, updateKey]);
+
+    // Play early in the process
+    const { current: currentMedia } = mediaRef;
+    const forcePlayingRef = useRef(false);
+    const shouldForcePlaying =
+        active &&
+        currentMedia !== null &&
+        playing &&
+        !forcePlayingRef.current &&
+        !mediaElementIsPlaying(currentMedia);
+    if (shouldForcePlaying) {
+        forcePlayingRef.current = true;
+        currentMedia.play();
+    }
 
     // Register media with context when active and no media is registered
     useEffect(() => {

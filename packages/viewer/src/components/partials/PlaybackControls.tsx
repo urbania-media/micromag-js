@@ -73,8 +73,8 @@ function PlaybackControls({
         playing,
         buffering,
         showLoading,
-        ready
-    })
+        ready,
+    });
 
     useEffect(() => {
         let id = null;
@@ -110,12 +110,16 @@ function PlaybackControls({
     }, [controlsTheme, setCustomControlsTheme, defaultColor, defaultProgressColor]);
 
     const onPlay = useCallback(() => {
-        // console.log('onPlay');
-        setPlaying(true);
+        if (wantedPlaying && !playing && mediaElement !== null) {
+            mediaElement.play();
+        } else {
+            setPlaying(true);
+        }
+
         if (!controlsVisible && controls) {
             showControls();
         }
-    }, [setPlaying, controlsVisible, showControls]);
+    }, [setPlaying, controlsVisible, showControls, playing, wantedPlaying]);
 
     const onPause = useCallback(() => {
         // console.log('onPause');
@@ -178,7 +182,7 @@ function PlaybackControls({
 
     const withSuggestPlay = controlsSuggestPlay && !finalShowLoading && !playing;
 
-    const playIcon = wantedPlaying ? (
+    const playIcon = playing ? (
         <PauseIcon className={styles.icon} color="currentColor" />
     ) : (
         <PlayIcon className={styles.icon} color="currentColor" />
@@ -236,8 +240,8 @@ function PlaybackControls({
                 style={{
                     color,
                 }}
-                onClick={wantedPlaying ? onPause : onPlay}
-                focusable={controls && controlsVisible && (!seekBarOnly || !wantedPlaying)}
+                onClick={playing ? onPause : onPlay}
+                focusable={controls && controlsVisible && (!seekBarOnly || !playing)}
                 disabled={finalShowLoading}
                 icon={
                     finalShowLoading ? (
@@ -246,7 +250,7 @@ function PlaybackControls({
                         playIcon
                     )
                 }
-                aria-pressed={!wantedPlaying}
+                aria-pressed={!playing}
                 aria-label={
                     finalShowLoading
                         ? intl.formatMessage({
