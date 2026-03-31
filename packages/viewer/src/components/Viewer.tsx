@@ -70,7 +70,7 @@ interface ViewerProps {
     neighborScreenOffset?: number;
     neighborScreenScale?: number;
     neighborPreloadDelay?: number;
-    neighborPreloadBackward?: number;
+    neighborPreloadBackward?: boolean;
     neighborPreloadScreens?: number | null;
     topSafezoneHeight?: number | null;
     bottomSafezoneHeight?: number | null;
