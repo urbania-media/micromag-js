@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-game-sort",
-    "version": "0.4.69",
+    "version": "0.4.70",
     "private": false,
     "description": "",
     "keywords": [
@@ -66,15 +66,15 @@
     "dependencies": {
         "@babel/runtime": "^7.28.6",
         "@micromag/core": "^0.4.69",
-        "@micromag/element-background": "^0.4.69",
-        "@micromag/element-button": "^0.4.69",
+        "@micromag/element-background": "^0.4.70",
+        "@micromag/element-button": "^0.4.70",
         "@micromag/element-container": "^0.4.69",
-        "@micromag/element-footer": "^0.4.69",
+        "@micromag/element-footer": "^0.4.70",
         "@micromag/element-header": "^0.4.69",
         "@micromag/element-heading": "^0.4.69",
         "@micromag/element-layout": "^0.4.69",
         "@micromag/element-text": "^0.4.69",
-        "@micromag/element-visual": "^0.4.69",
+        "@micromag/element-visual": "^0.4.70",
         "@micromag/transforms": "^0.4.69",
         "@react-spring/web": "^10.0.3",
         "@use-gesture/react": "^10.3.0",
