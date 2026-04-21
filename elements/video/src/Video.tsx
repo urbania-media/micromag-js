@@ -178,20 +178,20 @@ function Video({
         }
     }, [ready, onReady]);
 
-    const finalPreload = shouldLoad ? preload : 'none';
+    const [finalPreload] = useState(shouldLoad ? preload : 'none');
     const [wasPreloaded, setWasPreloaded] = useState(
         finalPreload === 'auto' || finalPreload === 'metadata',
     );
 
     useEffect(() => {
         const { current: element = null } = ref;
-        if (shouldLoad && !wasPreloaded && element !== null) {
+        if (element !== null && shouldLoad && (!wasPreloaded || element.readyState === 0)) {
             try {
                 element.load();
             } catch {}
             setWasPreloaded(true);
         }
-    }, [shouldLoad, wasPreloaded]);
+    }, [shouldLoad, wasPreloaded, mediaUrl, paused]);
 
     useEffect(() => {
         const { current: element = null } = ref;
