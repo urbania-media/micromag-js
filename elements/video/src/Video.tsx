@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { VideoMedia } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
-import { mediaElementIsPlaying } from '@micromag/core/contexts';
 import {
     useMediaCurrentTime,
     useMediaDuration,
@@ -179,37 +178,37 @@ function Video({
         }
     }, [ready, onReady]);
 
-    const [finalPreload] = useState(shouldLoad ? preload : 'none');
+    const finalPreload = shouldLoad ? preload : 'none';
     const [wasPreloaded, setWasPreloaded] = useState(
         finalPreload === 'auto' || finalPreload === 'metadata',
     );
 
     useEffect(() => {
         const { current: element = null } = ref;
-        if (element !== null && shouldLoad && (!wasPreloaded || element.readyState === 0)) {
+        if (shouldLoad && !wasPreloaded && element !== null) {
             try {
                 element.load();
             } catch {}
             setWasPreloaded(true);
         }
-    }, [shouldLoad, wasPreloaded, mediaUrl, paused]);
+    }, [shouldLoad, wasPreloaded]);
 
     useEffect(() => {
         const { current: element = null } = ref;
         if (element === null || mediaUrl === null) {
             return;
         }
-        const isPlaying = mediaElementIsPlaying(element);
-        if (paused && isPlaying) {
+        const { paused: isPaused } = element;
+        if (paused && !isPaused) {
             element.pause();
-        } else if (!paused && !isPlaying) {
+        } else if (!paused && isPaused) {
             element.play().catch((e) => {
                 if (onPlayError !== null) {
                     onPlayError(e);
                 }
             });
         }
-    }, [paused, media, mediaUrl, shouldLoad, wasPreloaded]);
+    }, [paused, media, mediaUrl, onPlayError]);
 
     useProgressSteps({
         currentTime,
