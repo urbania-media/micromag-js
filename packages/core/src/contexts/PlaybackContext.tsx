@@ -9,7 +9,6 @@ import {
     useRef,
     useState,
 } from 'react';
-import { flushSync } from 'react-dom';
 
 interface PlaybackControlsTheme {
     seekBarOnly?: boolean;
@@ -19,7 +18,7 @@ interface PlaybackControlsTheme {
 
 type MediaElement = HTMLVideoElement | HTMLAudioElement | HTMLMediaElement;
 
-function mediaElementIsPlaying(media: MediaElement | null): boolean {
+export function mediaElementIsPlaying(media: MediaElement | null): boolean {
     return (
         media !== null &&
         !!(media.currentTime > 0 && !media.paused && !media.ended && media.readyState > 2)
