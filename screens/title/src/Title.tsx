@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { ForwardedRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -26,6 +26,7 @@ import {
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -54,6 +55,7 @@ interface TitleScreenProps {
     current?: boolean;
     active?: boolean;
     transitionStagger?: number;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -79,6 +81,7 @@ function TitleScreen({
     background = null,
     current = true,
     active = true,
+    mediaRef: customMediaRef = null,
     className = null,
 }: TitleScreenProps) {
     const { width, height, resolution } = useScreenSize();
@@ -320,7 +323,7 @@ function TitleScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={backgroundShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

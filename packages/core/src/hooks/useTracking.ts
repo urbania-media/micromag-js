@@ -15,20 +15,22 @@ const getScreenOptions = (screenContext, opts) => {
     };
 };
 
-const hasTracking = (tracking) => typeof tracking !== 'undefined';
+const hasTracking = (tracking) => typeof tracking !== 'undefined' && tracking !== null;
 
 export const useTrackScreenView = () => {
     const tracking = useTracking();
 
-    if (!hasTracking(tracking)) {
-        return () => {};
-    }
-
-    return useCallback((screen = null, index = null) => {
-        if (screen !== null && index !== null) {
-            tracking.trackScreenView(screen, index);
-        }
-    }, []);
+    return useCallback(
+        (screen = null, index = null) => {
+            if (!hasTracking(tracking)) {
+                return;
+            }
+            if (screen !== null && index !== null) {
+                tracking.trackScreenView(screen, index);
+            }
+        },
+        [tracking],
+    );
 };
 
 export const useTrackScreenEvent = (type = null) => {
@@ -57,21 +59,16 @@ export const useTrackScreenEvent = (type = null) => {
     );
 };
 
-export const useTrackScreenMedia = (type = null) => {
+export const useTrackScreenMedia = (type: string | null = null) => {
     const tracking = useTracking();
-
-    if (!hasTracking(tracking)) {
-        return () => {};
-    }
 
     const screenContext = useScreen();
 
-    if (screenContext.renderContext !== 'view') {
-        return () => {};
-    }
-
     return useCallback(
         (media = null, action = null, opts = null) => {
+            if (!hasTracking(tracking) || screenContext.renderContext !== 'view') {
+                return;
+            }
             if (type !== null && media !== null && action !== null) {
                 tracking.trackMedia(`screen_${type}`, media, action, {
                     ...opts,
@@ -79,32 +76,33 @@ export const useTrackScreenMedia = (type = null) => {
                 });
             }
         },
-        [screenContext],
+        [tracking, screenContext, type],
     );
 };
 
 export const useTrackEvent = () => {
     const tracking = useTracking();
 
-    if (!hasTracking(tracking)) {
-        return () => {};
-    }
-
-    return useCallback((category = null, action = null, label = null, opts = null) => {
-        if (category !== null && action !== null) {
-            tracking.trackEvent(category, action, label, opts);
-        }
-    }, []);
+    return useCallback(
+        (category = null, action = null, label = null, opts = null) => {
+            if (!hasTracking(tracking)) {
+                return;
+            }
+            if (category !== null && action !== null) {
+                tracking.trackEvent(category, action, label, opts);
+            }
+        },
+        [tracking],
+    );
 };
 
 export const useTrackMedia = (type = null) => {
     const tracking = useTracking();
 
-    if (!hasTracking(tracking)) {
-        return () => {};
-    }
-
     return useCallback((media = null, action = null, opts = null) => {
+        if (!hasTracking(tracking)) {
+            return;
+        }
         if (type !== null && media !== null && action !== null) {
             tracking.trackMedia(type, media, action, opts);
         }

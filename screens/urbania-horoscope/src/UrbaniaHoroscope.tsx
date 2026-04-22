@@ -1,6 +1,6 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -22,7 +22,7 @@ import {
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, mergeRefs } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
@@ -36,8 +36,9 @@ import signsList from './data/signs';
 import SignCard from './partials/SignCard';
 import SignModal from './partials/SignModal';
 
-import Astrologie from './images/astrologie-text.svg';
 import styles from './urbania-horoscope.module.css';
+
+import Astrologie from './images/astrologie-text.svg';
 
 const stopDragEventsPropagation = {
     onTouchMove: (e) => e.stopPropagation(),
@@ -83,6 +84,7 @@ interface UrbaniaHoroscopeProps {
     current?: boolean;
     preload?: boolean;
     type?: string;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -100,6 +102,7 @@ function UrbaniaHoroscope({
     current = true,
     preload = true,
     type = 'horoscope',
+    mediaRef: customMediaRef = null,
     className = null,
 }: UrbaniaHoroscopeProps) {
     const intl = useIntl();
@@ -539,7 +542,7 @@ function UrbaniaHoroscope({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     className={styles.background}
                 />
             ) : null}

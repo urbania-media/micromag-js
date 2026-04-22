@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { ForwardedRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -17,7 +17,13 @@ import {
     useViewerContext,
     useViewerWebView,
 } from '@micromag/core/contexts';
-import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
+import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
+    mergeRefs,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -40,6 +46,7 @@ interface QuoteScreenProps {
     footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -53,6 +60,7 @@ function QuoteScreen({
     footer = null,
     current = true,
     preload = true,
+    mediaRef: customMediaRef = null,
     className = null,
 }: QuoteScreenProps) {
     const { width, height, resolution } = useScreenSize();
@@ -206,7 +214,7 @@ function QuoteScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

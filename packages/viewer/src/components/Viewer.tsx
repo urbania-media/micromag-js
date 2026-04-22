@@ -11,6 +11,7 @@ import {
     ScreenSizeProvider,
     StoryProvider,
     ViewerProvider,
+    mediaElementIsPlaying,
     usePlaybackContext,
 } from '@micromag/core/contexts';
 import {
@@ -209,7 +210,7 @@ function Viewer({
         [metadata, screenDescription],
     );
 
-    const screensMediasRef = useRef([]);
+    const screensMediasRef = useRef<HTMLMediaElement[]>([]);
 
     if (currentScreenMedia !== null) {
         currentScreenMedia.current = screensMediasRef.current[screenIndex] || null;
@@ -330,6 +331,7 @@ function Viewer({
     /**
      * Screen Navigation
      */
+    const lastScreenMediaRef = useRef<HTMLMediaElement | null>(null);
     const changeIndex = useCallback(
         (index) => {
             if (index === screenIndex) {
@@ -338,16 +340,45 @@ function Viewer({
 
             setPreloadNeighbors(false);
 
+            const lastScreenMedia = lastScreenMediaRef.current;
+            const screenMedia = screensMediasRef.current[index] || null;
             if (currentScreenMedia !== null) {
-                currentScreenMedia.current = screensMediasRef.current[index] || null;
+                currentScreenMedia.current = screenMedia;
             }
+
+            if (
+                screenMedia !== null &&
+                playing &&
+                screenMedia.dataset.forcePlaying !== 'true' &&
+                !mediaElementIsPlaying(screenMedia)
+            ) {
+                if (lastScreenMedia !== null) {
+                    lastScreenMedia.dataset.forcePlaying = 'false';
+                    lastScreenMedia.pause();
+                }
+                screenMedia.play().catch(() => {});
+                screenMedia.dataset.forcePlaying = 'true';
+            }
+
+            lastScreenMediaRef.current = screenMedia;
 
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
             }
         },
-        [screenIndex, screens, onScreenChange],
+        [screenIndex, screens, onScreenChange, playing],
     );
+
+    useEffect(() => {
+        const screenMedia = screensMediasRef.current[screenIndex] || null;
+        if (currentScreenMedia !== null && currentScreenMedia.current === null) {
+            currentScreenMedia.current = screenMedia;
+        }
+
+        if (lastScreenMediaRef.current === null) {
+            lastScreenMediaRef.current = screenMedia;
+        }
+    }, [screenIndex, currentScreenMedia, playing]);
 
     const onScreenNavigate = useCallback(
         ({ index, newIndex, end, direction }) => {

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import isPlainObject from 'lodash/isPlainObject';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -27,6 +27,7 @@ import {
     isHeaderFilled,
     isImageFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -71,6 +72,7 @@ interface GalleryScreenProps {
     current?: boolean;
     active?: boolean;
     preload?: boolean;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -87,6 +89,7 @@ function GalleryScreen({
     preload = true,
     spacing: initialSpacing = 20,
     captionMaxLines = 2,
+    mediaRef: customMediaRef = null,
     className = null,
 }: GalleryScreenProps) {
     const { width, height, resolution } = useScreenSize();
@@ -300,7 +303,7 @@ function GalleryScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

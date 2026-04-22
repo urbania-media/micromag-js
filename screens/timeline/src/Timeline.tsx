@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -35,6 +35,7 @@ import {
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import Audio from '@micromag/element-audio';
 import Background from '@micromag/element-background';
@@ -74,6 +75,7 @@ interface TimelineProps {
     active?: boolean;
     preload?: boolean;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -104,7 +106,7 @@ function Timeline({
     // transitions,
     // transitionStagger,
     type = null,
-
+    mediaRef: customMediaRef = null,
     className = null,
 }: TimelineProps) {
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -683,7 +685,7 @@ function Timeline({
                 <Audio
                     {...finalAudioAlternative}
                     paused={!audioPlaying}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     muted={muted}
                     className={styles.audio}
                     shouldLoad={mediaShouldLoad}
@@ -706,7 +708,9 @@ function Timeline({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={audioAlternativeMedia === null ? mediaRef : null}
+                    mediaRef={
+                        audioAlternativeMedia === null ? mergeRefs(mediaRef, customMediaRef) : null
+                    }
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

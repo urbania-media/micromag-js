@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import DOMPurify from 'dompurify';
 import isNumber from 'lodash/isNumber';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -34,6 +34,7 @@ import {
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import { useQuiz, useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
@@ -71,6 +72,7 @@ interface SurveyScreenProps {
     transitions?: TransitionsConfig | null;
     resultTransitionDuration?: number;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -96,6 +98,7 @@ function SurveyScreen({
     transitions = null,
     resultTransitionDuration = 500,
     type = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: SurveyScreenProps) {
     const screenId = id || 'screen-id';
@@ -750,7 +753,7 @@ function SurveyScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -33,6 +33,7 @@ import {
     isHeaderFilled,
     isImageFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
@@ -80,6 +81,7 @@ interface QuizMultipleScreenProps {
     transitions?: Transitions | null;
     transitionStagger?: number;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -114,6 +116,7 @@ function QuizMultipleScreen({
     transitions = null,
     transitionStagger = 100,
     type = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: QuizMultipleScreenProps) {
     const screenId = id || 'screen-id';
@@ -746,7 +749,11 @@ function QuizMultipleScreen({
                               playing={item.key === bgItem.key && backgroundPlaying}
                               muted={muted}
                               shouldLoad={backgroundShouldLoad}
-                              mediaRef={item.key === bgItem.key ? mediaRef : null}
+                              mediaRef={
+                                  item.key === bgItem.key
+                                      ? mergeRefs(mediaRef, customMediaRef)
+                                      : null
+                              }
                               className={styles.background}
                               withoutVideo={isPreview}
                           />

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type {
@@ -22,7 +22,8 @@ import {
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import {
     getStyleFromColor,
-    isTextFilled, // isHeaderFilled,
+    isTextFilled,
+    mergeRefs, // isHeaderFilled,
     // isFooterFilled,
     // getFooterProps,
 } from '@micromag/core/utils';
@@ -69,6 +70,7 @@ interface MapScreenProps {
     current?: boolean;
     active?: boolean;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -91,7 +93,7 @@ function MapScreen({
     // enableInteractions,
     // disableInteraction,
     type = null,
-
+    mediaRef: customMediaRef = null,
     className = null,
 }: MapScreenProps) {
     const { locale } = useIntl();
@@ -514,7 +516,7 @@ function MapScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={backgroundShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type {
@@ -39,6 +39,7 @@ import {
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -72,6 +73,7 @@ interface UrbaniaRecommendationProps {
     current?: boolean;
     active?: boolean;
     preload?: boolean;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -94,6 +96,7 @@ function UrbaniaRecommendation({
     current = true,
     active = true,
     preload = true,
+    mediaRef: customMediaRef = null,
     className = null,
 }: UrbaniaRecommendationProps) {
     const intl = useIntl();
@@ -586,7 +589,10 @@ function UrbaniaRecommendation({
                                                     {isVideo ? (
                                                         <Visual
                                                             media={image}
-                                                            mediaRef={mediaRef}
+                                                            mediaRef={mergeRefs(
+                                                                mediaRef,
+                                                                customMediaRef,
+                                                            )}
                                                             width={
                                                                 visualModalTransitioning ||
                                                                 visualModalOpened
@@ -866,7 +872,7 @@ function UrbaniaRecommendation({
                         playing={backgroundPlaying && !visualModalOpened}
                         muted={muted || visualModalOpened}
                         shouldLoad={mediaShouldLoad}
-                        mediaRef={mediaRef}
+                        mediaRef={mergeRefs(mediaRef, customMediaRef)}
                         withoutVideo={isPreview}
                         className={styles.background}
                     />

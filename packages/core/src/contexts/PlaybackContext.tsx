@@ -104,15 +104,14 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
 
     // Play early in the process
     const { current: currentMedia } = mediaRef;
-    const forcePlayingRef = useRef(false);
     const shouldForcePlaying =
         active &&
         currentMedia !== null &&
         playing &&
-        !forcePlayingRef.current &&
+        currentMedia.dataset.forcePlaying !== 'true' &&
         !mediaElementIsPlaying(currentMedia);
     if (shouldForcePlaying) {
-        forcePlayingRef.current = true;
+        currentMedia.dataset.forcePlaying = 'true';
         currentMedia.play();
     }
 
@@ -129,7 +128,7 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
         setMedia(mediaRef.current);
     }, [active, background, media, updateKey, setMedia, setIsBackground, isBackground]);
 
-    return { ref: mediaRef, isCurrent: mediaRef.current === media };
+    return { ref: mediaRef, isCurrent: active || mediaRef.current === media };
 };
 
 interface PlaybackProviderProps {

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useState } from 'react';
+import React, { ForwardedRef, useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -26,6 +26,7 @@ import {
     isHeaderFilled,
     isImageFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -51,6 +52,7 @@ interface GalleryFeedScreenProps {
     active?: boolean;
     preload?: boolean;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -67,6 +69,7 @@ function GalleryFeedScreen({
     active = true,
     preload = true,
     type = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: GalleryFeedScreenProps) {
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -305,7 +308,7 @@ function GalleryFeedScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

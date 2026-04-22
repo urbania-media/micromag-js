@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -20,7 +20,13 @@ import {
     useViewerInteraction,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
+import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
+    mergeRefs,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -45,6 +51,7 @@ interface SlideshowScreenProps {
     active?: boolean;
     preload?: boolean;
     transitions?: TransitionsConfig | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -61,6 +68,7 @@ function SlideshowScreen({
     transitionDelay = 1,
     captionMaxLines = 2,
     transitions = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: SlideshowScreenProps) {
     const { width, height, resolution } = useScreenSize();
@@ -255,7 +263,7 @@ function SlideshowScreen({
                     height={height}
                     resolution={resolution}
                     muted={muted}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     playing={backgroundPlaying}
                     shouldLoad={mediaShouldLoad}
                     withoutVideo={isPreview}

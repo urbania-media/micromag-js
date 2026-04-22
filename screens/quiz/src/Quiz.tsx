@@ -1,7 +1,7 @@
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useState } from 'react';
 
 import type {
     BackgroundElement,
@@ -27,7 +27,7 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, mergeRefs } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -67,6 +67,7 @@ interface QuizScreenProps {
     transitions?: Transitions | null;
     transitionStagger?: number;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -98,6 +99,7 @@ function QuizScreen({
     transitions = null,
     transitionStagger = 100,
     type = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: QuizScreenProps) {
     const screenId = id || 'screen-id';
@@ -354,7 +356,7 @@ function QuizScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

@@ -1,6 +1,6 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -26,7 +26,7 @@ import {
     useMediaThumbnail,
     useTrackScreenMedia,
 } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, mergeRefs } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
@@ -48,7 +48,7 @@ interface VideoScreenProps {
     active?: boolean;
     preload?: boolean;
     spacing?: number;
-    mediaRef?: ((...args: unknown[]) => void) | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -138,12 +138,6 @@ function VideoScreen({
             }
         };
     }, [current, withControls, setControls, withSeekBar, color, progressColor]);
-
-    useEffect(() => {
-        if (customMediaRef !== null) {
-            customMediaRef(mediaRef.current);
-        }
-    }, [mediaRef.current]);
 
     useEffect(() => {
         if (current && autoPlay) {
@@ -372,7 +366,7 @@ function VideoScreen({
                                         height={resizedVideoHeight}
                                         paused={!videoPlaying}
                                         muted={muted}
-                                        mediaRef={mediaRef}
+                                        mediaRef={mergeRefs(mediaRef, customMediaRef)}
                                         className={styles.video}
                                         onReady={onVideoReady}
                                         onPlay={onPlay}

@@ -2,7 +2,7 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -34,6 +34,7 @@ import {
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import { default as Background } from '@micromag/element-background';
 import Button, { RichButton } from '@micromag/element-button';
@@ -118,6 +119,7 @@ interface KeypadScreenProps {
     current?: boolean;
     preload?: boolean;
     withoutCloseButton?: boolean;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -136,6 +138,7 @@ function KeypadScreen({
     current = true,
     preload = true,
     withoutCloseButton = false,
+    mediaRef: customMediaRef = null,
     className = null,
 }: KeypadScreenProps) {
     const containerRef = useRef(null);
@@ -562,7 +565,7 @@ function KeypadScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     className={styles.background}
                 />
             ) : null}

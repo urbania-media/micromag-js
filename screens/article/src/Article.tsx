@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import dayjs from 'dayjs';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type {
@@ -26,6 +26,7 @@ import {
     isHeaderFilled,
     isImageFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import Author from '@micromag/element-author';
 import Background from '@micromag/element-background';
@@ -56,6 +57,7 @@ interface ArticleScreenProps {
     current?: boolean;
     preload?: boolean;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -76,6 +78,7 @@ function ArticleScreen({
     current = true,
     preload = true,
     type = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: ArticleScreenProps) {
     const intl = useIntl();
@@ -366,7 +369,7 @@ function ArticleScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

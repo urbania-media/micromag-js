@@ -67,7 +67,7 @@ interface UrbaniaTriviaProps {
     preload?: boolean;
     spacing?: number;
     padding?: number;
-    mediaRef?: ((...args: unknown[]) => void) | null;
+        mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 

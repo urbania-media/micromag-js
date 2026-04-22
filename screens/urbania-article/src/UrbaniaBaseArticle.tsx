@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
+import React, { ForwardedRef, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -35,6 +35,7 @@ import {
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -68,6 +69,7 @@ interface UrbaniaArticleProps {
     current?: boolean;
     preload?: boolean;
     spacing?: number;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -89,6 +91,7 @@ function UrbaniaArticle({
     current = true,
     preload = true,
     spacing = 20,
+    mediaRef: customMediaRef = null,
     className = null,
 }: UrbaniaArticleProps) {
     const { width, height, resolution } = useScreenSize();
@@ -303,7 +306,7 @@ function UrbaniaArticle({
                 playing={backgroundPlaying}
                 muted={muted}
                 shouldLoad={mediaShouldLoad}
-                mediaRef={isVideoBackground ? mediaRef : null}
+                mediaRef={isVideoBackground ? mergeRefs(mediaRef, customMediaRef) : null}
                 withoutVideo={isPreview}
             />
             <Container className={styles.content} width={width} height={height}>
@@ -379,7 +382,7 @@ function UrbaniaArticle({
                                 playing={finalPlaying}
                                 muted={muted}
                                 withoutVideo={isPreview}
-                                mediaRef={mediaRef}
+                                mediaRef={mergeRefs(mediaRef, customMediaRef)}
                                 autoPlay
                             />
                         ) : null}

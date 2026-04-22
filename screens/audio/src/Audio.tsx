@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -18,7 +18,13 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useTrackScreenMedia } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled, isIos } from '@micromag/core/utils';
+import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
+    isIos,
+    mergeRefs,
+} from '@micromag/core/utils';
 import Audio from '@micromag/element-audio';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -38,7 +44,7 @@ interface AudioScreenProps {
     footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    mediaRef?: ((...args: unknown[]) => void) | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     showWave?: boolean;
     className?: string | null;
 }
@@ -129,12 +135,6 @@ function AudioScreen({
             }
         };
     }, [current, withControls, withSeekBar, setControls, color, progressColor]);
-
-    useEffect(() => {
-        if (customMediaRef !== null) {
-            customMediaRef(mediaRef.current);
-        }
-    }, [mediaRef.current]);
 
     const onAudioReady = useCallback(() => {
         setReady(true);
@@ -251,7 +251,7 @@ function AudioScreen({
                     >
                         <Audio
                             {...finalAudio}
-                            mediaRef={mediaRef}
+                            mediaRef={mergeRefs(mediaRef, customMediaRef)}
                             waveFake={isIOS || isPreview}
                             waveProps={
                                 isPreview

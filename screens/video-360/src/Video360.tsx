@@ -1,6 +1,6 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -12,6 +12,7 @@ import type {
 import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
     usePlaybackContext,
+    usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
     useViewerContainer,
@@ -28,7 +29,7 @@ import {
     useTrackScreenEvent,
     useTrackScreenMedia,
 } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, mergeRefs } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
@@ -51,7 +52,7 @@ interface Video360ScreenProps {
     preload?: boolean;
     type?: string | null;
     spacing?: number;
-    mediaRef?: ((...args: unknown[]) => void) | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -85,7 +86,6 @@ function Video360Screen({
     const { open: openWebView } = useViewerWebView();
     const devicePixelRatio = useDevicePixelRatio();
 
-    const backgroundPlaying = current && (isView || isEdit);
     const mediaShouldLoad = current || preload;
     const {
         media: videoMedia = null,
@@ -113,7 +113,9 @@ function Video360Screen({
         currentQualityLevel,
         setCurrentQualityLevel,
     } = usePlaybackContext();
-    const mediaRef = useRef(null);
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
+    const videoPlaying = current && (isView || isEdit) && playing && (isCurrentMedia || !isView);
 
     useEffect(() => {
         if (!current) {
@@ -145,12 +147,6 @@ function Video360Screen({
             setMedia(null);
         };
     }, [current]);
-
-    useEffect(() => {
-        if (customMediaRef !== null) {
-            customMediaRef(mediaRef.current);
-        }
-    }, [mediaRef.current]);
 
     useEffect(() => {
         if (current && autoPlay && !playing) {
@@ -533,9 +529,9 @@ function Video360Screen({
                     >
                         <Video
                             {...finalVideo}
-                            mediaRef={mediaRef}
+                            mediaRef={mergeRefs(mediaRef, customMediaRef)}
                             className={styles.video}
-                            paused={!current || !playing}
+                            paused={!videoPlaying}
                             muted={muted}
                             withoutCors
                             onReady={onVideoReady}

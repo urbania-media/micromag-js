@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -20,7 +20,13 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
+import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
+    mergeRefs,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -52,6 +58,7 @@ interface ImageScreenProps {
     current?: boolean;
     active?: boolean;
     preload?: boolean;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -73,6 +80,7 @@ function ImageScreen({
     current = true,
     active = true,
     preload = true,
+    mediaRef: customMediaRef = null,
     className = null,
 }: ImageScreenProps) {
     const { width, height, resolution } = useScreenSize();
@@ -355,7 +363,7 @@ function ImageScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

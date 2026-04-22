@@ -44,6 +44,7 @@ export { default as isImageFilled } from './isImageFilled';
 export { default as isLabelFilled } from './isLabelFilled';
 export { default as isTextFilled } from './isTextFilled';
 export { default as isValidUrl } from './isValidUrl';
+export { default as mergeRefs } from './mergeRefs';
 export { default as pascalCase } from './pascalCase';
 export { default as schemaId } from './schemaId';
 export { default as setFieldValue } from './setFieldValue';

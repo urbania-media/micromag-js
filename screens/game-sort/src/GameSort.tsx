@@ -3,7 +3,15 @@ import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
 import shuffle from 'lodash/shuffle';
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, {
+    ForwardedRef,
+    useCallback,
+    useEffect,
+    useLayoutEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type {
@@ -31,6 +39,7 @@ import {
     getStyleFromText,
     isFooterFilled,
     isHeaderFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -65,6 +74,7 @@ interface GameSortProps {
     footer?: FooterConfig | null;
     current?: boolean;
     active?: boolean;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -89,6 +99,7 @@ function GameSort({
     footer = null,
     current = true,
     active = true,
+    mediaRef: customMediaRef = null,
     className = null,
 }: GameSortProps) {
     const intl = useIntl();
@@ -599,7 +610,7 @@ function GameSort({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={backgroundShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

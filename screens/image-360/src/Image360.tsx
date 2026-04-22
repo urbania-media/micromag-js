@@ -1,6 +1,6 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -20,7 +20,7 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useAnimationFrame, useDevicePixelRatio, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, mergeRefs } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -41,6 +41,7 @@ interface Image360ScreenProps {
     preload?: boolean;
     type?: string | null;
     spacing?: number;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -55,6 +56,7 @@ function Image360Screen({
     preload = true,
     type = null,
     spacing = 20,
+    mediaRef: customMediaRef = null,
     className = null,
 }: Image360ScreenProps) {
     const THREE = useThree();
@@ -429,7 +431,7 @@ function Image360Screen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

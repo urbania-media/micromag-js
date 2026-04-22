@@ -3,7 +3,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import DOMPurify from 'dompurify';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type {
@@ -34,6 +34,7 @@ import {
     isHeaderFilled,
     isLabelFilled,
     isTextFilled,
+    mergeRefs,
 } from '@micromag/core/utils';
 import { useContributionCreate, useContributions } from '@micromag/data';
 import Background from '@micromag/element-background';
@@ -74,6 +75,7 @@ interface ContributionScreenProps {
     transitionStagger?: number;
     resizeTransitionDuration?: number;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -97,6 +99,7 @@ function ContributionScreen({
     transitionStagger = 100,
     resizeTransitionDuration = 750,
     type = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: ContributionScreenProps) {
     const intl = useIntl();
@@ -604,7 +607,7 @@ function ContributionScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

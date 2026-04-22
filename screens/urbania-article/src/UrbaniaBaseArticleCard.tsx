@@ -3,7 +3,7 @@ import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
 import queryString from 'query-string';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type {
@@ -25,7 +25,7 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
-import { isHeaderFilled, isTextFilled } from '@micromag/core/utils';
+import { isHeaderFilled, isTextFilled, mergeRefs } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Header from '@micromag/element-header';
@@ -51,6 +51,7 @@ interface UrbaniaArticleCardProps {
     current?: boolean;
     preload?: boolean;
     spacing?: number;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -67,6 +68,7 @@ function UrbaniaArticleCard({
     current = true,
     preload = true,
     spacing = 20,
+    mediaRef: customMediaRef = null,
     className = null,
 }: UrbaniaArticleCardProps) {
     const intl = useIntl();
@@ -255,7 +257,7 @@ function UrbaniaArticleCard({
                 resolution={resolution}
                 playing={backgroundPlaying && !webviewOpened}
                 muted={muted}
-                mediaRef={mediaRef}
+                mediaRef={mergeRefs(mediaRef, customMediaRef)}
                 onPlayError={onPlayError}
                 shouldLoad={mediaShouldLoad}
                 withoutVideo={isPreview}

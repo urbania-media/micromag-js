@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { VideoMedia } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
+import { mediaElementIsPlaying } from '@micromag/core/contexts';
 import {
     useMediaCurrentTime,
     useMediaDuration,
@@ -201,13 +202,14 @@ function Video({
         const { paused: isPaused } = element;
         if (paused && !isPaused) {
             element.pause();
-        } else if (!paused && isPaused) {
+        } else if (!paused && isPaused && element.dataset.forcePlaying !== 'true') {
             element.play().catch((e) => {
                 if (onPlayError !== null) {
                     onPlayError(e);
                 }
             });
         }
+        element.dataset.forcePlaying = 'false';
     }, [paused, media, mediaUrl, onPlayError]);
 
     useProgressSteps({

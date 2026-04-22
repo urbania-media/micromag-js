@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { v1 as uuid } from 'uuid';
 
@@ -22,7 +22,13 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
+import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
+    mergeRefs,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -48,6 +54,7 @@ interface ConversationScreenProps {
     type?: string | null;
     conversation?: ConversationType | null;
     transitions?: TransitionsConfig | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -66,6 +73,7 @@ function ConversationScreen({
     type = null,
     conversation = null,
     transitions = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: ConversationScreenProps) {
     const { width, height, resolution } = useScreenSize();
@@ -386,7 +394,7 @@ function ConversationScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

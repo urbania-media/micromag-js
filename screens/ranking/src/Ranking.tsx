@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useState } from 'react';
+import React, { ForwardedRef, useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -20,7 +20,13 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled, isTextFilled } from '@micromag/core/utils';
+import {
+    getFooterProps,
+    isFooterFilled,
+    isHeaderFilled,
+    isTextFilled,
+    mergeRefs,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -47,6 +53,7 @@ interface RankingScreenProps {
     current?: boolean;
     preload?: boolean;
     type?: string | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -67,6 +74,7 @@ function RankingScreen({
     current = true,
     preload = true,
     type = null,
+    mediaRef: customMediaRef = null,
     className = null,
 }: RankingScreenProps) {
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -313,7 +321,7 @@ function RankingScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

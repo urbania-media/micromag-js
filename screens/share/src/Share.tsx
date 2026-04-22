@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useMemo } from 'react';
+import React, { ForwardedRef, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -20,7 +20,7 @@ import {
     useViewerWebView,
 } from '@micromag/core/contexts';
 import { useDimensionObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled } from '@micromag/core/utils';
+import { getFooterProps, isFooterFilled, isHeaderFilled, mergeRefs } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
@@ -47,6 +47,7 @@ interface ShareScreenProps {
     index?: number | null;
     current?: boolean;
     active?: boolean;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -66,6 +67,7 @@ function ShareScreen({
     index = null,
     current = true,
     active = true,
+    mediaRef: customMediaRef = null,
     className = null,
 }: ShareScreenProps) {
     const { width, height, resolution } = useScreenSize();
@@ -254,7 +256,7 @@ function ShareScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={backgroundShouldLoad}
-                    mediaRef={mediaRef}
+                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
                     withoutVideo={isPreview}
                     className={styles.background}
                 />
