@@ -63,12 +63,12 @@
         "build": "../../scripts/prepare-package.sh --types"
     },
     "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
@@ -84,7 +84,7 @@
         "@micromag/element-keypad": "^0.4.71",
         "@micromag/element-map": "^0.4.71",
         "@micromag/media-gallery": "^0.4.71",
-        "@panneau/uppy": "^4.0.27",
+        "@panneau/uppy": "^4.0.40-alpha.1",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^7.0.0",

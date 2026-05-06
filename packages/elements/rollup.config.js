@@ -2,7 +2,7 @@ import alias from '@rollup/plugin-alias';
 import resolve from '@rollup/plugin-node-resolve';
 import path from 'path';
 
-import { createConfig } from '../../rollup.config.mjs';
+import { createConfig } from '../../rollup.config';
 
 const files = {
     'index.ts': {},

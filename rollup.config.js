@@ -7,16 +7,13 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import url from '@rollup/plugin-url';
-import { createRequire } from 'module';
 import path from 'path';
 // import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss';
 
-import generateScopedName from './scripts/lib/generateScopedName.js';
+import generateScopedName from './scripts/lib/generateScopedName';
 
-import imageAssets from './scripts/rollup-image-assets.js';
-
-const require = createRequire(import.meta.url);
+import imageAssets from './scripts/rollup-image-assets';
 
 export const createConfig = ({
     file = 'index.ts',
@@ -96,60 +93,11 @@ export const createConfig = ({
                 exclude: 'node_modules/**',
                 // rootMode: 'upward',
                 babelHelpers: 'runtime',
-                presets: [
-                    [
-                        require('@babel/preset-env'),
-                        isNode
-                            ? {
-                                  modules: false,
-                                  useBuiltIns: false,
-                                  targets: {
-                                      node: '12',
-                                  },
-                              }
-                            : {
-                                  modules: false,
-                                  useBuiltIns: false,
-                              },
-                    ],
-                    [
-                        require('@babel/preset-react'),
-                        {
-                            useBuiltIns: true,
-                            runtime: 'automatic',
-                        },
-                    ],
-                    require('@babel/preset-typescript'),
-                ],
-                plugins: [
-                    [
-                        require.resolve('@babel/plugin-transform-runtime'),
-                        {
-                            version: require('@babel/helpers/package.json').version,
-                            helpers: true,
-                            // useESModules: !isCjs,
-                        },
-                    ],
-                    [
-                        require.resolve('babel-plugin-static-fs'),
-                        {
-                            target: isNode ? 'node' : 'browser', // defaults to node
-                        },
-                    ],
-                    [
-                        require.resolve('babel-plugin-formatjs'),
-                        {
-                            ast: true,
-                            extractFromFormatMessageCall: true,
-                            idInterpolationPattern: '[sha512:contenthash:base64:6]',
-                        },
-                    ],
-                ],
+                configFile: path.resolve(process.cwd(), '../../babel.config.js')
             }),
             !withoutPostCss &&
                 postcss({
                     extensions: ['.css'],
-                    plugins: [require('postcss-nested')],
                     modules: {
                         generateScopedName,
                     },

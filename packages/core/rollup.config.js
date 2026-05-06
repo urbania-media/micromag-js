@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import { createConfig } from '../../rollup.config.mjs';
+import { createConfig } from '../../rollup.config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -113,7 +113,7 @@ export default Object.keys(files).reduce(
         ...configs,
         createConfig({
             file,
-            format: 'both',
+            format: 'es',
             // outputCjs: `lib/${file.replace('.js', '.cjs')}`,
             ...files[file],
         }),

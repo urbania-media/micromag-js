@@ -56,12 +56,12 @@
     "devDependencies": {
         "@ckeditor/ckeditor5-dev-translations": "^43.1",
         "@ckeditor/ckeditor5-dev-utils": "^43.1",
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
@@ -81,7 +81,7 @@
         "@ckeditor/ckeditor5-react": "^11.1.2",
         "@ckeditor/ckeditor5-upload": "^48.0.1",
         "@folklore/fetch": "0.1.17",
-        "@panneau/ckeditor": "^4.0.21"
+        "@panneau/ckeditor": "^4.0.40-alpha.1"
     },
     "publishConfig": {
         "access": "public",

@@ -1,6 +1,6 @@
-const path = require('path');
-const fs = require('fs');
-const slugify = require('slugify');
+import path from 'path';
+import fs from 'fs';
+import slugify from 'slugify';
 
 const findNearestPackageJson = (startDir) => {
     let currentDir = startDir;
@@ -39,4 +39,4 @@ const generateScopedName = (localName, filePath) => {
         .replace(/\[\s*local\s*\]/gi, localName);
 };
 
-module.exports = generateScopedName;
+export default generateScopedName;

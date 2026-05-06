@@ -30,7 +30,7 @@
         }
     ],
     "license": "ISC",
-    "main": "lib/index.js",
+    "type": "module",
     "module": "es/index.js",
     "style": "assets/css/styles.css",
     "sideEffects": [
@@ -39,29 +39,24 @@
     "exports": {
         ".": {
             "types": "./es/index.d.ts",
-            "import": "./es/index.js",
-            "require": "./lib/index.js",
-            "style": "./assets/css/styles.css"
+            "style": "./assets/css/styles.css",
+            "default": "./es/index.js"
         },
         "./components": {
             "types": "./es/components.d.ts",
-            "require": "./lib/components.js",
-            "import": "./es/components.js"
+            "default": "./es/components.js"
         },
         "./contexts": {
             "types": "./es/contexts.d.ts",
-            "require": "./lib/contexts.js",
-            "import": "./es/contexts.js"
+            "default": "./es/contexts.js"
         },
         "./hooks": {
             "types": "./es/hooks.d.ts",
-            "require": "./lib/hooks.js",
-            "import": "./es/hooks.js"
+            "default": "./es/hooks.js"
         },
         "./utils": {
             "types": "./es/utils.d.ts",
-            "require": "./lib/utils.js",
-            "import": "./es/utils.js"
+            "default": "./es/utils.js"
         },
         "./assets/css/theme": "./assets/css/theme.css",
         "./assets/css/theme.css": "./assets/css/theme.css",
@@ -95,31 +90,31 @@
         "build": "../../scripts/prepare-package.sh --types && npm run vendor && npm run theme"
     },
     "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "peerDependencies": {
-        "@panneau/displays": "^4.0.27",
-        "@panneau/element-button": "^4.0.27",
-        "@panneau/element-buttons": "^4.0.27",
-        "@panneau/element-dropdown": "^4.0.27",
-        "@panneau/element-form-group": "^4.0.27",
-        "@panneau/element-grid": "^4.0.27",
-        "@panneau/element-icon": "^4.0.27",
-        "@panneau/element-link": "^4.0.27",
-        "@panneau/element-media-card": "^4.0.27",
-        "@panneau/element-media-player": "^4.0.27",
-        "@panneau/element-modal": "^4.0.27",
-        "@panneau/fields": "^4.0.28",
-        "@panneau/filters": "^4.0.27",
-        "@panneau/intl": "^4.0.27",
-        "@panneau/medias": "^4.0.29",
-        "@panneau/uppy": "^4.0.27",
+        "@panneau/displays": "^4.0.40-alpha.1",
+        "@panneau/element-button": "^4.0.40-alpha.1",
+        "@panneau/element-buttons": "^4.0.40-alpha.1",
+        "@panneau/element-dropdown": "^4.0.40-alpha.1",
+        "@panneau/element-form-group": "^4.0.40-alpha.1",
+        "@panneau/element-grid": "^4.0.40-alpha.1",
+        "@panneau/element-icon": "^4.0.40-alpha.1",
+        "@panneau/element-link": "^4.0.40-alpha.1",
+        "@panneau/element-media-card": "^4.0.40-alpha.1",
+        "@panneau/element-media-player": "^4.0.40-alpha.1",
+        "@panneau/element-modal": "^4.0.40-alpha.1",
+        "@panneau/fields": "^4.0.40-alpha.1",
+        "@panneau/filters": "^4.0.40-alpha.1",
+        "@panneau/intl": "^4.0.40-alpha.1",
+        "@panneau/medias": "^4.0.40-alpha.1",
+        "@panneau/uppy": "^4.0.40-alpha.1",
         "@uppy/core": "^5.1.1",
         "@uppy/dashboard": "^5.0.4",
         "@uppy/react": "^5.1.1",
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",

@@ -55,15 +55,15 @@
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles",
         "prepublishOnly": "npm run build",
         "build": "../../scripts/prepare-package.sh --types",
-        "rollup": "../../node_modules/.bin/rollup --config ../../rollup.config.mjs"
+        "rollup": "../../node_modules/.bin/rollup --bundleConfigAsCjs --config ../../rollup.config.js"
     },
     "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",

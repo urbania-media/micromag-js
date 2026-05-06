@@ -37,6 +37,7 @@ const config = defineConfig([
                     }),
                     {},
                 ),
+                ...globals.node,
                 __DEV__: 'readonly',
                 __SERVER__: 'readonly',
                 __EDITOR__: 'readonly',
@@ -54,20 +55,6 @@ const config = defineConfig([
     {
         rules: {
             'formatjs/no-literal-string-in-jsx': 'off',
-
-            // PropTypes fully removed — all types are TypeScript interfaces now
-            'react/prop-types': 'off',
-
-            // React import is required for Storybook babel-loader JSX parsing
-            '@typescript-eslint/no-unused-vars': [
-                'error',
-                {
-                    varsIgnorePattern: '^(React|_)',
-                    argsIgnorePattern: '^_',
-                    destructuredArrayIgnorePattern: '^_',
-                    caughtErrorsIgnorePattern: '^_',
-                },
-            ],
 
             // False positives for patterns like React.forwardRef, Hls.Events
             'import/no-named-as-default-member': 'off',

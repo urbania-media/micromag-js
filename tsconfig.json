@@ -1,5 +1,5 @@
 {
-    "extends": "./tsconfig.base.json",
+    "extends": "@tsconfig/create-react-app/tsconfig.json",
     "compilerOptions": {
         "paths": {
             "@micromag/core": ["packages/core/src"],
@@ -21,14 +21,6 @@
             "#.storybook/*": [".storybook/*"]
         }
     },
-    "include": [
-        "types/**/*.d.ts",
-        ".storybook/**/*.ts",
-        ".storybook/**/*.tsx",
-        "packages/*/src/**/*",
-        "elements/*/src/**/*",
-        "screens/*/src/**/*"
-    ],
     "exclude": [
         "node_modules",
         "**/node_modules",

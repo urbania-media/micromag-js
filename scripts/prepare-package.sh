@@ -46,12 +46,10 @@ clean() {
 
 build_rollup() {
     echo "Building JS with rollup..."
-    if [ -f ./rollup.config.mjs ]; then
-        ../../node_modules/.bin/rollup --config ./rollup.config.mjs
-    elif [ -f ./rollup.config.js ]; then
-        ../../node_modules/.bin/rollup --config ./rollup.config.js
+    if [ -f ./rollup.config.js ]; then
+        ../../node_modules/.bin/rollup --bundleConfigAsCjs --config ./rollup.config.js
     else
-        ../../node_modules/.bin/rollup --config ../../rollup.config.mjs
+        ../../node_modules/.bin/rollup --bundleConfigAsCjs --config ../../rollup.config.js
     fi
 }
 
@@ -102,10 +100,10 @@ build_types() {
     ../../node_modules/.bin/tsc "${unique_ts_entries[@]}" --declaration --emitDeclarationOnly --jsx "react-jsx" --declarationDir "types" --listEmittedFiles --noCheck
 
     echo "Bundling types with rollup..."
-    if [ -f ./rollup.config.dts.mjs ]; then
-        ../../node_modules/.bin/rollup --config ./rollup.config.dts.mjs
+    if [ -f ./rollup.config.dts.js ]; then
+        ../../node_modules/.bin/rollup --bundleConfigAsCjs --config ./rollup.config.dts.js
     else
-        ../../node_modules/.bin/rollup --config ../../rollup.config.dts.mjs
+        ../../node_modules/.bin/rollup --bundleConfigAsCjs --config ../../rollup.config.dts.js
     fi
 
     echo "Cleaning up types..."

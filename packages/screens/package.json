@@ -64,7 +64,7 @@
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles && rm -rf fields.js && rm -rf fields.json",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
-        "build:fields": "NODE_ENV=development rollup --config ./rollup.config.cli.mjs && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
+        "build:fields": "NODE_ENV=development rollup --bundleConfigAsCjs --config ./rollup.config.cli.js && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
         "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.css.ejs ./assets/css/styles.css",
         "build-css": "../../scripts/build-css.js ./assets/css/styles.css ./assets/css/build.css",
         "prepublishOnly": "npm run build",
@@ -72,12 +72,12 @@
         "all-styles": "npm run aggregate-css && npm run build-css"
     },
     "devDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",

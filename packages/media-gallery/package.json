@@ -53,17 +53,12 @@
         "build": "../../scripts/prepare-package.sh --types"
     },
     "devDependencies": {
-        "@panneau/data": "^4.0.27",
-        "@panneau/displays": "^4.0.27",
-        "@panneau/fields": "^4.0.28",
-        "@panneau/filters": "^4.0.27",
-        "@panneau/uppy": "^4.0.27",
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "peerDependencies": {
-        "react": "^18.3.0 || ^19.0.0",
-        "react-dom": "^18.3.0 || ^19.0.0"
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
@@ -73,7 +68,7 @@
         "@fortawesome/react-fontawesome": "^3.2.0",
         "@micromag/core": "^0.4.71",
         "@micromag/data": "^0.4.71",
-        "@panneau/medias": "^4.0.29",
+        "@panneau/medias": "^4.0.40-alpha.1",
         "bootstrap": "^5.3.8",
         "classnames": "^2.2.6",
         "lodash": "^4.17.23",

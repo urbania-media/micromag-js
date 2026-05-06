@@ -20,35 +20,18 @@
 @import url('@uppy/dashboard/dist/style.min.css');
 
 /* Panneau fields */
-@import url('@panneau/field-autocomplete');
-@import url('@panneau/field-checkboxes');
-@import url('@panneau/field-color');
-@import url('@panneau/field-date');
-@import url('@panneau/field-html');
-@import url('@panneau/field-import');
-@import url('@panneau/field-input-group');
-@import url('@panneau/field-number');
-@import url('@panneau/field-text');
-@import url('@panneau/field-toggle');
-@import url('@panneau/field-toggles');
-@import url('@panneau/field-upload');
+@import url('@panneau/fields');
 
 /* Panneau displays */
-@import url('@panneau/display-avatar');
-@import url('@panneau/display-image');
+@import url('@panneau/displays');
 
 /* Panneau filters */
-@import url('@panneau/filter-filters');
-@import url('@panneau/filter-label');
-@import url('@panneau/filter-toggle');
+@import url('@panneau/filters');
 
 /* Panneau elements */
 @import url('@panneau/element-button');
-@import url('@panneau/element-dropdown');
 @import url('@panneau/element-form-group');
 @import url('@panneau/element-icon');
-@import url('@panneau/element-link');
-@import url('@panneau/element-modal');
 @import url('@panneau/element-grid');
 @import url('@panneau/element-media-card');
 @import url('@panneau/element-media-player');
