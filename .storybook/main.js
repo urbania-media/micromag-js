@@ -39,18 +39,65 @@ export default defineMain({
     ),
 
     addons: [
+        {
+            name: '@storybook/addon-styling-webpack',
+            options: {
+                rules: [
+                    // Replaces existing CSS rules to support CSS Modules
+                    {
+                        test: /\.css$/,
+                        use: [
+                            'style-loader',
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    importLoaders: 1,
+                                    modules: {
+                                        auto: true,
+                                        namedExport: false,
+                                        localIdentName: '[name]__[local]--[hash:base64:5]',
+                                    },
+                                },
+                            },
+                            {
+                                // Gets options from `postcss.config.js` in your project root
+                                loader: 'postcss-loader',
+                            },
+                        ],
+                    },
+                ],
+            },
+        },
         getAbsolutePath('@storybook/addon-webpack5-compiler-babel'),
         getAbsolutePath('@storybook/addon-docs'),
     ],
 
     webpackFinal: async (config) => {
-        // Filter out Storybook's default CSS rules so our custom ones take over
-        const filteredRules = (config.module.rules || []).filter((rule) => {
-            if (!rule || !rule.test) return true;
-            const testStr = rule.test.toString();
-            // Remove default CSS rules — we define our own
-            if (testStr === '/\\.css$/' || testStr === '/\\.module\\.css$/') return false;
-            return true;
+        config.module.rules.push({
+            test: /\.(j|t)sx?$/,
+            exclude: /node_modules/,
+            use: {
+                loader: require.resolve('babel-loader'),
+                options: {
+                    babelrc: false,
+                    configFile: path.join(__dirname, '../babel.config.js'),
+                    // plugins: [
+                    //     [
+                    //         require.resolve('babel-plugin-react-intl'),
+                    //         {
+                    //             ast: true,
+                    //             extractFromFormatMessageCall: true,
+                    //             idInterpolationPattern: '[sha512:contenthash:base64:6]',
+                    //         },
+                    //     ],
+                    // ],
+                },
+            },
+        });
+
+        config.module.rules.push({
+            test: /\.(srt)$/,
+            loader: require.resolve('file-loader'),
         });
 
         return {
@@ -69,126 +116,27 @@ export default defineMain({
             },
             module: {
                 ...config.module,
-                rules: [
-                    {
-                        test: /\.m?js$/,
-                        resolve: {
-                            fullySpecified: false,
-                        },
-                    },
-                    // CSS modules (*.module.css)
-                    {
-                        test: /\.module\.css$/,
-                        use: [
-                            'style-loader',
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    modules: {
-                                        auto: true,
-                                        namedExport: false,
-                                        localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                                    },
-                                },
-                            },
-                            {
-                                loader: 'postcss-loader',
-                                options: {
-                                    postcssOptions: {
-                                        plugins: [require('postcss-nested')],
-                                    },
-                                },
-                            },
-                        ],
-                    },
-                    // Regular CSS (non-module) — exclude .module.css so it doesn't conflict
-                    {
-                        test: /\.css$/,
-                        exclude: [/\.module\.css$/, /ckeditor5-[^/\\]+[/\\]theme[/\\]/],
-                        use: [
-                            'style-loader',
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    importLoaders: 1,
-                                },
-                            },
-                            {
-                                loader: 'postcss-loader',
-                                options: {
-                                    postcssOptions: {
-                                        plugins: [stripSourceMapCommentPlugin],
-                                    },
-                                },
-                            },
-                        ],
-                    },
-                    {
-                        oneOf: [
-                            {
-                                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-                                use: ['raw-loader'],
-                            },
-                            {
-                                test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
-                                use: [
-                                    {
-                                        loader: 'style-loader',
-                                        options: {
-                                            injectType: 'singletonStyleTag',
-                                            attributes: {
-                                                'data-cke': true,
-                                            },
-                                        },
-                                    },
-                                    'css-loader',
-                                    {
-                                        loader: 'postcss-loader',
-                                        options: {
-                                            postcssOptions: styles.getPostCssConfig({
-                                                themeImporter: {
-                                                    themePath:
-                                                        require.resolve('@ckeditor/ckeditor5-theme-lark'),
-                                                },
-                                                minify: true,
-                                            }),
-                                        },
-                                    },
-                                ],
-                            },
-                            {
-                                rules: [
-                                    ...filteredRules,
-                                    ...getPackagesPaths().map((packagePath) => ({
-                                        loader: require.resolve('babel-loader'),
-                                        test: /\.(js|jsx|ts|tsx)$/,
-                                        include: path.join(packagePath, './src/'),
-                                        exclude: /\/node_modules\//,
-                                        options: {
-                                            babelrc: false,
-                                            configFile: path.join(__dirname, '../babel.config.js'),
-                                            plugins: [
-                                                [
-                                                    require.resolve('babel-plugin-react-intl'),
-                                                    {
-                                                        ast: true,
-                                                        extractFromFormatMessageCall: true,
-                                                        idInterpolationPattern:
-                                                            '[sha512:contenthash:base64:6]',
-                                                    },
-                                                ],
-                                            ],
-                                        },
-                                    })),
-                                    {
-                                        test: /\.(srt)$/,
-                                        loader: require.resolve('file-loader'),
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                ],
+                // rules: [
+                //     {
+                //         test: /\.m?js$/,
+                //         resolve: {
+                //             fullySpecified: false,
+                //         },
+                //     },
+                //     {
+                //         oneOf: [
+                //             {
+                //                 rules: [
+                //                     ...config.module.rules,
+                //                     {
+                //                         test: /\.(srt)$/,
+                //                         loader: require.resolve('file-loader'),
+                //                     },
+                //                 ],
+                //             },
+                //         ],
+                //     },
+                // ],
             },
         };
     },

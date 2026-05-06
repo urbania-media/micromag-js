@@ -100,9 +100,17 @@ module.exports = (api) => {
                 },
             ],
             [
+                require.resolve('babel-plugin-react-intl'),
+                {
+                    ast: true,
+                    extractFromFormatMessageCall: true,
+                    idInterpolationPattern: '[sha512:contenthash:base64:6]',
+                },
+            ],
+            [
                 require.resolve('babel-plugin-react-compiler'),
                 {
-                    compilationMode: 'annotation',
+                    // compilationMode: 'annotation',
                     logger: {
                         logEvent(filename, event) {
                             if (event.kind === 'CompileError') {

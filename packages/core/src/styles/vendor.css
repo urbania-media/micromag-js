@@ -1,53 +1,55 @@
 /* stylelint-disable selector-class-pattern */
 
 /* Google Fonts */
-@import 'https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap';
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 /* Bootstrap (pre-compiled) */
-@import 'bootstrap/dist/css/bootstrap.css';
+
+@import url('bootstrap/dist/css/bootstrap.min.css');
 
 /* Micromag theme (--mm-* custom properties) */
-@import './theme.css';
+@import url('./theme.css');
 
 /* Theme overrides */
-@import './bootstrap-overrides.css';
-@import './bootstrap-patches.css';
+@import url('./bootstrap-overrides.css');
+@import url('./bootstrap-patches.css');
 
 /* Uppy */
-@import '@uppy/core/css/style.min.css';
-@import '@uppy/dashboard/css/style.min.css';
+
+@import url('@uppy/core/dist/style.min.css');
+@import url('@uppy/dashboard/dist/style.min.css');
 
 /* Panneau fields */
-@import '@panneau/field-autocomplete/assets/css/styles.css';
-@import '@panneau/field-checkboxes/assets/css/styles.css';
-@import '@panneau/field-color/assets/css/styles.css';
-@import '@panneau/field-date/assets/css/styles.css';
-@import '@panneau/field-html/assets/css/styles.css';
-@import '@panneau/field-import/assets/css/styles.css';
-@import '@panneau/field-input-group/assets/css/styles.css';
-@import '@panneau/field-number/assets/css/styles.css';
-@import '@panneau/field-text/assets/css/styles.css';
-@import '@panneau/field-toggle/assets/css/styles.css';
-@import '@panneau/field-toggles/assets/css/styles.css';
-@import '@panneau/field-upload/assets/css/styles.css';
+@import url('@panneau/field-autocomplete');
+@import url('@panneau/field-checkboxes');
+@import url('@panneau/field-color');
+@import url('@panneau/field-date');
+@import url('@panneau/field-html');
+@import url('@panneau/field-import');
+@import url('@panneau/field-input-group');
+@import url('@panneau/field-number');
+@import url('@panneau/field-text');
+@import url('@panneau/field-toggle');
+@import url('@panneau/field-toggles');
+@import url('@panneau/field-upload');
 
 /* Panneau displays */
-@import '@panneau/display-avatar/assets/css/styles.css';
-@import '@panneau/display-image/assets/css/styles.css';
+@import url('@panneau/display-avatar');
+@import url('@panneau/display-image');
 
 /* Panneau filters */
-@import '@panneau/filter-filters/assets/css/styles.css';
-@import '@panneau/filter-label/assets/css/styles.css';
-@import '@panneau/filter-toggle/assets/css/styles.css';
+@import url('@panneau/filter-filters');
+@import url('@panneau/filter-label');
+@import url('@panneau/filter-toggle');
 
 /* Panneau elements */
-@import '@panneau/element-button/assets/css/styles.css';
-@import '@panneau/element-dropdown/assets/css/styles.css';
-@import '@panneau/element-form-group/assets/css/styles.css';
-@import '@panneau/element-icon/assets/css/styles.css';
-@import '@panneau/element-link/assets/css/styles.css';
-@import '@panneau/element-modal/assets/css/styles.css';
-@import '@panneau/element-grid/assets/css/styles.css';
-@import '@panneau/element-media-card/assets/css/styles.css';
-@import '@panneau/element-media-player/assets/css/styles.css';
-@import '@panneau/medias/assets/css/styles.css';
+@import url('@panneau/element-button');
+@import url('@panneau/element-dropdown');
+@import url('@panneau/element-form-group');
+@import url('@panneau/element-icon');
+@import url('@panneau/element-link');
+@import url('@panneau/element-modal');
+@import url('@panneau/element-grid');
+@import url('@panneau/element-media-card');
+@import url('@panneau/element-media-player');
+@import url('@panneau/medias');

@@ -32,9 +32,11 @@
     "license": "ISC",
     "type": "module",
     "module": "es/index.js",
+    "style": "./assets/css/styles.css",
     "exports": {
         ".": {
             "types": "./es/index.d.ts",
+            "style": "./assets/css/styles.css",
             "import": "./es/index.js"
         },
         "./assets/css/styles": "./assets/css/styles.css",
@@ -65,7 +67,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@folklore/routes": "^0.2.36",
+        "@folklore/routes": "^0.4.4",
         "@fortawesome/fontawesome-svg-core": "^7.2.0",
         "@fortawesome/free-solid-svg-icons": "^7.2.0",
         "@fortawesome/react-fontawesome": "^3.2.0",

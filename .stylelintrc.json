@@ -10,7 +10,6 @@
             }
         ],
         "max-nesting-depth": 4,
-        "selector-max-compound-selectors": 3,
-        "import-notation": ["string", "url"]
+        "selector-max-compound-selectors": 3
     }
 }

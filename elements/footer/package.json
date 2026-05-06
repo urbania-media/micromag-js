@@ -32,9 +32,7 @@
         ".": {
             "types": "./es/index.d.ts",
             "import": "./es/index.js"
-        },
-        "./assets/css/styles": "./assets/css/styles.css",
-        "./assets/css/styles.css": "./assets/css/styles.css"
+        }
     },
     "files": [
         "lib",

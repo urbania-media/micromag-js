@@ -36,6 +36,7 @@
     "exports": {
         ".": {
             "types": "./es/index.d.ts",
+            "style": "./assets/css/styles.css",
             "import": "./es/index.js"
         },
         "./assets/css/styles": "./assets/css/styles.css",
@@ -64,7 +65,7 @@
         "@dnd-kit/core": "^6.0.6",
         "@dnd-kit/sortable": "^7.0.1",
         "@dnd-kit/utilities": "^3.2.1",
-        "@folklore/routes": "^0.2.36",
+        "@folklore/routes": "^0.4.4",
         "@folklore/size": "^0.1.20",
         "@fortawesome/fontawesome-svg-core": "^7.2.0",
         "@fortawesome/free-solid-svg-icons": "^7.2.0",

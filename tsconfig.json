@@ -1,8 +1,6 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "baseUrl": ".",
-        "typeRoots": ["./node_modules/@types", "./*/*/types"],
         "paths": {
             "@micromag/core": ["packages/core/src"],
             "@micromag/core/*": ["packages/core/src/*"],

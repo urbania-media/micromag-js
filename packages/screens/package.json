@@ -36,6 +36,7 @@
     "exports": {
         ".": {
             "types": "./es/index.d.ts",
+            "style": "./assets/css/styles.css",
             "import": "./es/index.js"
         },
         "./all": {

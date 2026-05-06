@@ -59,7 +59,7 @@
     "dependencies": {
         "@babel/runtime": "^7.28.6",
         "@folklore/fetch": "^0.1.17",
-        "@folklore/routes": "^0.2.36",
+        "@folklore/routes": "^0.4.4",
         "@micromag/core": "^0.4.71",
         "lodash": "^4.17.23",
         "query-string": "^9.0.0"

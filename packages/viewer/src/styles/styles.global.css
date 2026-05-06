@@ -1,7 +1,7 @@
-@import '@micromag/core/assets/css/theme.css';
-@import '@micromag/core/assets/css/styles.css';
-@import '@micromag/elements/assets/css/styles.css';
-@import '@micromag/screens/assets/css/styles.css';
+@import url('@micromag/core/assets/css/theme.css');
+@import url('@micromag/core');
+@import url('@micromag/elements');
+@import url('@micromag/screens');
 
 /* stylelint-disable-next-line */
 .sr-only:not(:focus):not(:active) {

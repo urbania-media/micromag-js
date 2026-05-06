@@ -36,6 +36,7 @@
     "exports": {
         ".": {
             "types": "./es/index.d.ts",
+            "style": "./assets/css/styles.css",
             "import": "./es/index.js"
         },
         "./all": {
@@ -71,7 +72,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@ckeditor/ckeditor5-react": "^11.0.1",
+        "@ckeditor/ckeditor5-react": "^11.1.2",
         "@folklore/fetch": "^0.1.17",
         "@fortawesome/fontawesome-svg-core": "^7.2.0",
         "@fortawesome/free-solid-svg-icons": "^7.2.0",

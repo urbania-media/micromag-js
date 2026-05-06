@@ -36,6 +36,7 @@
     "exports": {
         ".": {
             "types": "./es/index.d.ts",
+            "style": "./assets/css/styles.css",
             "import": "./es/index.js"
         },
         "./assets/css/styles": "./assets/css/styles.css",
@@ -62,7 +63,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@folklore/routes": "^0.2.36",
+        "@folklore/routes": "^0.4.4",
         "@micromag/core": "^0.4.71",
         "@micromag/element-badge": "^0.4.71",
         "@micromag/element-scroll": "^0.4.71",

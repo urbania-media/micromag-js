@@ -17,6 +17,8 @@ import {
 import useCKEditor from '../hooks/useCKEditor';
 
 import styles from '../styles/text-editor.module.css';
+import 'ckeditor5/ckeditor5.css';
+import useCKEditorTranslations from '../hooks/useCKEditorTranslations';
 
 const emptyArray: never[] = [];
 const defaultEditorConfigValue = {
@@ -66,6 +68,7 @@ function TextEditorField({
         fullPlugins = emptyArray,
         inlinePlugins = emptyArray,
     } = useCKEditor();
+    const translations = useCKEditorTranslations(locale);
 
     const getColors = useGetColors();
     const colors = useMemo(
@@ -89,6 +92,7 @@ function TextEditorField({
 
     const finalEditorConfig = useMemo(
         () => ({
+        translations: [translations],
             licenseKey: 'GPL',
             extraPlugins: [
                 ...defaultPlugins,
@@ -138,6 +142,7 @@ function TextEditorField({
             },
         }),
         [
+            translations,
             defaultEditorConfig,
             inline,
             locale,
