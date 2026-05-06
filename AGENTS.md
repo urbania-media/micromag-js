@@ -28,6 +28,10 @@ Each workspace publishes from `src/` to `es/` (ESM) via Rollup.
 - **Classnames**: use the `classnames` package, never string concatenation.
 - **i18n**: all user-facing strings go through `react-intl` (`FormattedMessage` / `useIntl`).
 
+## Typescript / React
+
+- This repo uses react-compiler. Don't use useMemo or useCallback since memoisation is automatically handled by react-compiler.
+
 ## Working in this repo
 
 - **Stay scoped.** A bugfix in one element shouldn't touch unrelated packages. Cross-package refactors deserve their own PR.

@@ -11,7 +11,6 @@ const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
 require('dotenv').config();
@@ -21,17 +20,6 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // insecure
 function getAbsolutePath(value) {
     return dirname(require.resolve(join(value, 'package.json')));
 }
-
-const stripSourceMapCommentPlugin = {
-    postcssPlugin: 'strip-source-map-comment',
-    Once(root) {
-        root.walkComments((comment) => {
-            if (/^#\s*sourceMappingURL=.*\.map\s*$/i.test(comment.text.trim())) {
-                comment.remove();
-            }
-        });
-    },
-};
 
 export default defineMain({
     stories: getPackagesPaths().map((packagePath) =>
@@ -81,16 +69,6 @@ export default defineMain({
                 options: {
                     babelrc: false,
                     configFile: path.join(__dirname, '../babel.config.js'),
-                    // plugins: [
-                    //     [
-                    //         require.resolve('babel-plugin-react-intl'),
-                    //         {
-                    //             ast: true,
-                    //             extractFromFormatMessageCall: true,
-                    //             idInterpolationPattern: '[sha512:contenthash:base64:6]',
-                    //         },
-                    //     ],
-                    // ],
                 },
             },
         });
@@ -114,30 +92,6 @@ export default defineMain({
                     '#.storybook': __dirname,
                 },
             },
-            module: {
-                ...config.module,
-                // rules: [
-                //     {
-                //         test: /\.m?js$/,
-                //         resolve: {
-                //             fullySpecified: false,
-                //         },
-                //     },
-                //     {
-                //         oneOf: [
-                //             {
-                //                 rules: [
-                //                     ...config.module.rules,
-                //                     {
-                //                         test: /\.(srt)$/,
-                //                         loader: require.resolve('file-loader'),
-                //                     },
-                //                 ],
-                //             },
-                //         ],
-                //     },
-                // ],
-            },
         };
     },
 
@@ -154,13 +108,13 @@ export default defineMain({
         reactDocgen: 'react-docgen-typescript',
     },
 
-    // swc: () => ({
-    //     jsc: {
-    //         transform: {
-    //             react: {
-    //                 runtime: 'automatic', // This ensures the automatic JSX runtime is used
-    //             },
-    //         },
-    //     },
-    // }),
+    swc: () => ({
+        jsc: {
+            transform: {
+                react: {
+                    runtime: 'automatic', // This ensures the automatic JSX runtime is used
+                },
+            },
+        },
+    }),
 });
