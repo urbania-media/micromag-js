@@ -15,15 +15,12 @@ const useCKEditor = () => {
             };
         }
 
-        Promise.all([import('@micromag/ckeditor/build'), import('@panneau/ckeditor/build')]).then(
-            (exports) => {
-                console.log(exports);
-                // packageCache = defaultExport;
-                // if (!canceled) {
-                //     setLoadedPackage(packageCache);
-                // }
-            },
-        );
+        import('@micromag/ckeditor/build').then(({ default: defaultExport }) => {
+            packageCache = defaultExport;
+            if (!canceled) {
+                setLoadedPackage(packageCache);
+            }
+        });
 
         return () => {
             canceled = true;

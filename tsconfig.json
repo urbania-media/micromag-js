@@ -2,32 +2,21 @@
     "extends": "@tsconfig/create-react-app/tsconfig.json",
     "compilerOptions": {
         "paths": {
-            "@micromag/core": ["packages/core/src"],
-            "@micromag/core/*": ["packages/core/src/*"],
-            "@micromag/data": ["packages/data/src"],
-            "@micromag/intl": ["packages/intl/src"],
-            "@micromag/transforms": ["packages/transforms/src"],
-            "@micromag/viewer": ["packages/viewer/src"],
-            "@micromag/editor": ["packages/editor/src"],
-            "@micromag/fields": ["packages/fields/src"],
-            "@micromag/elements": ["packages/elements/src"],
-            "@micromag/screens": ["packages/screens/src"],
-            "@micromag/media-gallery": ["packages/media-gallery/src"],
-            "@micromag/consent": ["packages/consent/src"],
-            "@micromag/ckeditor": ["packages/ckeditor/src"],
-            "@micromag/recorder": ["packages/recorder/src"],
-            "@micromag/element-*": ["elements/*/src"],
-            "@micromag/screen-*": ["screens/*/src"],
-            "#.storybook/*": [".storybook/*"]
-        }
+            "@micromag/core": ["./packages/core/src/index.ts"],
+            "@micromag/core/*": ["./packages/core/src/*/index.ts"],
+            "@micromag/element-*": ["./elements/*/src/index.ts"],
+            "@micromag/screen-*": ["./screens/*/src/index.ts"],
+            "@micromag/*": ["./packages/*/src/index.ts"]
+        },
+        "plugins": [{ "name": "typescript-plugin-css-modules" }]
     },
     "exclude": [
         "node_modules",
         "**/node_modules",
         "**/es",
         "**/lib",
+        "**/dist",
         "**/build",
-        "**/assets",
-        "**/*.stories.*"
+        "**/assets"
     ]
 }

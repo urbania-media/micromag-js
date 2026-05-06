@@ -107,14 +107,11 @@ function ImageScreen({
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
-    const onImageLoaded = useCallback(() => {
+    const onImageLoaded = () => {
         setReady(true);
-    }, [setReady]);
+    };
 
-    const finalImageFit = useMemo(
-        () => ({ fit: imageFit || defaultImageFit }),
-        [imageFit, defaultImageFit],
-    );
+    const finalImageFit = { fit: imageFit || defaultImageFit };
 
     const isReversed = layout === 'reverse' || layout === 'card-reverse';
     const isTitleTop = layout === 'title-top';

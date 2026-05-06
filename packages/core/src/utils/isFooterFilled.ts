@@ -1,4 +1,6 @@
-const isFooterFilled = (footer = {}) => {
+import { Footer } from '../types';
+
+const isFooterFilled = (footer: Footer | null = {}) => {
     if (footer === null || typeof footer === 'undefined') {
         return false;
     }

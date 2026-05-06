@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
+import { Footer } from '../types';
 
-const getFooterProps = (
-    footer = {},
+function getFooterProps(
+    footer: Footer | null = {},
     {
         isPreview = false,
         isView = false,
@@ -11,31 +11,19 @@ const getFooterProps = (
         disableInteraction = false,
         ...otherProps
     } = {},
-) => {
+) {
     const { callToAction = null } = footer || {};
-    const footerProps = useMemo(
-        () => ({
-            callToAction: {
-                ...callToAction,
-                animationDisabled: isPreview,
-                focusable: current && isView,
-                openWebView,
-                enableInteraction,
-                disableInteraction,
-                ...otherProps,
-            },
-        }),
-        [
-            callToAction,
-            isPreview,
-            isView,
-            current,
+    return {
+        callToAction: {
+            ...callToAction,
+            animationDisabled: isPreview,
+            focusable: current && isView,
+            openWebView,
             enableInteraction,
             disableInteraction,
-            otherProps,
-        ],
-    );
-    return footerProps;
-};
+            ...otherProps,
+        },
+    };
+}
 
 export default getFooterProps;

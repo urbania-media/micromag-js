@@ -1,4 +1,6 @@
-const isHeaderFilled = (header = {}) => {
+import { Header } from '../types';
+
+const isHeaderFilled = (header: Header | null = {}) => {
     if (header === null || typeof header === 'undefined') {
         return false;
     }

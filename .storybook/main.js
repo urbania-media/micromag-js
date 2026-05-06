@@ -85,10 +85,10 @@ export default defineMain({
                 alias: {
                     ...config.resolve.alias,
                     ...getPackagesAliases(),
-                    '@micromag/ckeditor/build': path.join(
-                        __dirname,
-                        '../packages/ckeditor/src/build',
-                    ),
+                    // '@micromag/ckeditor/build': path.join(
+                    //     __dirname,
+                    //     '../packages/ckeditor/src/build',
+                    // ),
                     '#.storybook': __dirname,
                 },
             },

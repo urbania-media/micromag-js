@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { StoryParser } from '../lib';
 
 // import createDebug from 'debug';
-import { useScreensManager, useFieldsManager } from '../contexts';
+import { useFieldsManager, useScreensManager } from '../contexts';
 
 // const debug = createDebug('core:useParsedStory');
 
