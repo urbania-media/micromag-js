@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { VideoMedia } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
-import { mediaElementIsPlaying } from '@micromag/core/contexts';
 import {
     useMediaCurrentTime,
     useMediaDuration,

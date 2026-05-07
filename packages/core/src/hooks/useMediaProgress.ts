@@ -1,12 +1,13 @@
 import raf from 'raf';
 import { startTransition, useEffect, useState } from 'react';
 
-import { mediaElementIsPlaying } from '../contexts';
+import { getMediaIsPlaying } from '../utils';
+
 import useMediaDuration from './useMediaDuration';
 
 function useMediaProgress(media = null, options = null) {
     const { disabled = false, ...props } = options || {};
-    const [playing, setPlaying] = useState(() => !disabled && mediaElementIsPlaying(media));
+    const [playing, setPlaying] = useState(() => !disabled && getMediaIsPlaying(media));
 
     const duration = useMediaDuration(media, {
         disabled: disabled || !playing,
@@ -24,7 +25,7 @@ function useMediaProgress(media = null, options = null) {
                 : 0;
         setUpdateTime(Date.now() / 1000);
         setProgress(newProgress);
-        setPlaying(mediaElementIsPlaying(media));
+        setPlaying(getMediaIsPlaying(media));
         setProgressMedia(media);
     }
 
@@ -34,7 +35,7 @@ function useMediaProgress(media = null, options = null) {
         }
 
         function onUpdate(e) {
-            setPlaying(mediaElementIsPlaying(e.currentTarget));
+            setPlaying(getMediaIsPlaying(e.currentTarget));
             const newProgress = e.currentTarget.currentTime / e.currentTarget.duration;
             startTransition(() => {
                 setUpdateTime(Date.now() / 1000);

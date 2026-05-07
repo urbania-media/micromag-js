@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
-function useMediaTimestampOffset(element, { attributeName = 'data-ts-offset' } = {}) {
-    const getTimestampOffset = () =>
-        element !== null && element.hasAttribute(attributeName)
-            ? parseFloat(element.getAttribute(attributeName))
-            : 0;
+import { getMediaTimestampOffset } from '../utils';
 
-    const [timestampOffset, setTimestampOffset] = useState(getTimestampOffset());
+function useMediaTimestampOffset(element, { attributeName = 'data-ts-offset' } = {}) {
+    const [timestampOffset, setTimestampOffset] = useState(() =>
+        getMediaTimestampOffset(element, attributeName),
+    );
     const observerRef = useRef(null);
 
     useEffect(() => {
@@ -14,7 +13,7 @@ function useMediaTimestampOffset(element, { attributeName = 'data-ts-offset' } =
             observerRef.current = new MutationObserver((mutations) => {
                 mutations.forEach(({ type: mutationType }) => {
                     if (mutationType === 'attributes') {
-                        setTimestampOffset(getTimestampOffset());
+                        setTimestampOffset(getMediaTimestampOffset(element, attributeName));
                     }
                 });
             });
@@ -30,7 +29,7 @@ function useMediaTimestampOffset(element, { attributeName = 'data-ts-offset' } =
                 observerRef.current.disconnect();
             }
         };
-    }, [element]);
+    }, [element, attributeName]);
 
     return timestampOffset;
 }

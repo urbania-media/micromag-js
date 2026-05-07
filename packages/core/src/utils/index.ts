@@ -53,3 +53,4 @@ export { default as snakeCase } from './snakeCase';
 export { default as unique } from './unique';
 export { default as validateFields } from './validateFields';
 export { default as getContrastingColor } from './getContrastingColor';
+export * from './medias';

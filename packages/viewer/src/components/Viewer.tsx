@@ -14,6 +14,7 @@ import EventEmitter from 'wolfy87-eventemitter';
 
 import type {
     DeviceScreen,
+    MediaElement,
     Ref,
     RenderContext,
     ScreenComponent,
@@ -25,7 +26,6 @@ import {
     ScreenSizeProvider,
     StoryProvider,
     ViewerProvider,
-    mediaElementIsPlaying,
     usePlaybackContext,
 } from '@micromag/core/contexts';
 import {
@@ -38,7 +38,7 @@ import {
     useScreenSizeFromElement,
     useTrackScreenView,
 } from '@micromag/core/hooks';
-import { getColorAsString, getDeviceScreens } from '@micromag/core/utils';
+import { getColorAsString, getDeviceScreens, getMediaIsPlaying } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
@@ -224,7 +224,7 @@ function Viewer({
         [metadata, screenDescription],
     );
 
-    const screensMediasRef = useRef<HTMLMediaElement[]>([]);
+    const screensMediasRef = useRef<MediaElement[]>([]);
 
     useImperativeHandle(currentScreenMedia, () => screensMediasRef.current[screenIndex] || null, [
         screenIndex,
@@ -342,7 +342,7 @@ function Viewer({
     /**
      * Screen Navigation
      */
-    const lastScreenMediaRef = useRef<HTMLMediaElement | null>(null);
+    const lastScreenMediaRef = useRef<MediaElement | null>(null);
     const changeIndex = useCallback(
         (index) => {
             if (index === screenIndex) {
@@ -361,7 +361,7 @@ function Viewer({
                 screenMedia !== null &&
                 playing &&
                 screenMedia.dataset.forcePlaying !== 'true' &&
-                !mediaElementIsPlaying(screenMedia)
+                !getMediaIsPlaying(screenMedia)
             ) {
                 if (lastScreenMedia !== null) {
                     lastScreenMedia.dataset.forcePlaying = 'false';

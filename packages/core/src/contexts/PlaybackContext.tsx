@@ -1,18 +1,14 @@
+import createDebug from 'debug';
 import { ReactNode, createContext, use, useEffect, useRef, useState } from 'react';
+
+import { getMediaDuration, getMediaHasAudio, getMediaIsPlaying, getMediaSrc } from '../utils';
+
+import { MediaElement } from '../types';
 
 interface PlaybackControlsTheme {
     seekBarOnly?: boolean;
     color?: unknown;
     progressColor?: unknown;
-}
-
-export type MediaElement = HTMLVideoElement | HTMLAudioElement | HTMLMediaElement;
-
-export function mediaElementIsPlaying(media: MediaElement | null): boolean {
-    return (
-        media !== null &&
-        !!(media.currentTime > 0 && !media.paused && !media.ended && media.readyState > 2)
-    );
 }
 
 interface PlaybackContext {
@@ -78,8 +74,7 @@ export const PlaybackContext = createContext<PlaybackContext>({
 export const usePlaybackContext = () => use(PlaybackContext);
 
 export const usePlaybackMediaRef = (active = false, background = false, updateKey = null) => {
-    'use no memo';
-    const { setMedia, setIsBackground, media, isBackground, playing } = usePlaybackContext();
+    const { setMedia, setIsBackground, media, isBackground } = usePlaybackContext();
     const mediaRef = useRef<HTMLMediaElement | null>(null);
 
     // Cleanup: clear media registration when this screen deactivates or unmounts.
@@ -89,7 +84,7 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
         const { current: currentMedia = null } = mediaRef;
         return () => {
             if (active) {
-                const shouldPause = currentMedia !== null && mediaElementIsPlaying(currentMedia);
+                const shouldPause = currentMedia !== null && getMediaIsPlaying(currentMedia);
                 setMedia(null);
                 setIsBackground(false);
                 if (shouldPause) {
@@ -100,17 +95,17 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
     }, [active, setMedia, setIsBackground, updateKey]);
 
     // Play early in the process
-    const { current: currentMedia } = mediaRef;
-    const shouldForcePlaying =
-        active &&
-        currentMedia !== null &&
-        playing &&
-        currentMedia.dataset.forcePlaying !== 'true' &&
-        !mediaElementIsPlaying(currentMedia);
-    if (shouldForcePlaying) {
-        currentMedia.dataset.forcePlaying = 'true';
-        currentMedia.play();
-    }
+    // const { current: currentMedia } = mediaRef;
+    // const shouldForcePlaying =
+    //     active &&
+    //     currentMedia !== null &&
+    //     playing &&
+    //     currentMedia.dataset.forcePlaying !== 'true' &&
+    //     !getMediaIsPlaying(currentMedia);
+    // if (shouldForcePlaying) {
+    //     currentMedia.dataset.forcePlaying = 'true';
+    //     currentMedia.play();
+    // }
 
     // Register media with context when active and no media is registered
     useEffect(() => {
@@ -125,7 +120,7 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
         setMedia(mediaRef.current);
     }, [active, background, media, updateKey, setMedia, setIsBackground, isBackground]);
 
-    return { ref: mediaRef, isCurrent: active || mediaRef.current === media };
+    return { ref: mediaRef, isCurrent: active };
 };
 
 interface PlaybackProviderProps {
@@ -146,6 +141,8 @@ function seekMedia(media: MediaElement | null, time: number) {
     }
 }
 
+const debug = createDebug('micromag:media:playback-provider');
+
 export function PlaybackProvider({
     muted: initialMuted = true,
     playing: initialPlaying = false,
@@ -160,6 +157,8 @@ export function PlaybackProvider({
     const [muted, setMuted] = useState<boolean>(initialMuted);
     const [playing, setPlaying] = useState<boolean>(initialPlaying);
     const [media, setMedia] = useState<MediaElement | null>(null);
+    const [mediaSrc, setMediaSrc] = useState<string | null>(null);
+    const [hasAudio, setHasAudio] = useState<boolean | null>(null);
     const [isBackground, setIsBackground] = useState<boolean>(false);
     const [controls, setControls] = useState<boolean>(initialControls);
     const [controlsSuggestPlay, setControlsSuggestPlay] = useState<boolean>(
@@ -174,6 +173,7 @@ export function PlaybackProvider({
     );
 
     const finalSetControls = (newControls: boolean) => {
+        debug('Set controls: %s', newControls);
         if (newControls) {
             setControls(true);
             setControlsVisible(true);
@@ -186,12 +186,24 @@ export function PlaybackProvider({
     };
 
     const finalSetControlsTheme = (newTheme: PlaybackControlsTheme | null) => {
+        debug('Set controls theme: %o', newTheme);
         setControlsTheme({ ...defaultControlsThemeValue, ...newTheme });
     };
 
     const finalSetMedia = (newMedia: MediaElement | null) => {
+        const newSrc = getMediaSrc(newMedia);
+        const newHasAudio = getMediaHasAudio(newMedia);
+        if (newMedia !== null) {
+            debug('Set media: %s %o', newSrc, {
+                hasAudio: newHasAudio,
+            });
+        } else {
+            debug('Unset media');
+        }
         setMedia(newMedia);
         setCurrentQualityLevel(null);
+        setMediaSrc(newSrc);
+        setHasAudio(newHasAudio);
     };
 
     const finalSetPlaying = (value: boolean) => {
@@ -199,6 +211,7 @@ export function PlaybackProvider({
             setControlsSuggestPlay(false);
         }
         setPlaying(value);
+        debug('Set playing: %s', value);
     };
 
     // Handle media ended
@@ -216,14 +229,19 @@ export function PlaybackProvider({
         };
     }, [media, setCompleted]);
 
-    const showControls = () => setControlsVisible(true);
+    const showControls = () => {
+        setControlsVisible(true);
+        debug('Show controls');
+    };
     const hideControls = () => {
         setControlsVisible(false);
+        debug('Hide controls');
     };
 
     const seekByProgress = (progress: number) => {
-        if (media !== null && media.duration) {
-            seekMedia(media, progress * media.duration);
+        const duration = getMediaDuration(media);
+        if (media !== null && duration > 0) {
+            seekMedia(media, progress * duration);
         }
     };
     const seek = (time: number) => {
@@ -231,10 +249,6 @@ export function PlaybackProvider({
             seekMedia(media, time);
         }
     };
-
-    const hasAudio =
-        media !== null &&
-        (media.tagName.toLowerCase() === 'audio' || media.dataset.hasAudio === 'true');
 
     const finalSetCurrentQualityLevel = (
         level: number | null,
@@ -253,7 +267,7 @@ export function PlaybackProvider({
         controlsSuggestPlay,
         controlsVisible,
         media,
-        mediaSrc: media !== null ? media.currentSrc || media.src || null : null,
+        mediaSrc,
         hasAudio,
         controlsTheme,
         currentQualityLevel,

@@ -11,7 +11,6 @@ export { default as useFullscreen } from './useFullscreen';
 export { default as useIsVisible } from './useIsVisible';
 export { default as useLoadedFonts } from './useLoadedFonts';
 export { default as useLongPress } from './useLongPress';
-export { default as useMediaApi } from './useMediaApi';
 export { default as useMediaBuffering } from './useMediaBuffering';
 export { default as useMediaState } from './useMediaState';
 export { default as useMediaCurrentTime } from './useMediaCurrentTime';

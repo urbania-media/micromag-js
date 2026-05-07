@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 function useMediaLoad(element, { preload = 'auto', shouldLoad = false } = {}) {
     const firstPreloadRef = useRef(preload);

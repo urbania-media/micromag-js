@@ -1,125 +1,136 @@
 import createDebug from 'debug';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const useMediaState = (
-    mediaElement: HTMLMediaElement | null = null,
+import { getMediaIsBuffering, getMediaIsMuted, getMediaIsPlaying, getMediaSrc } from '../utils';
+
+import { trueFalse } from '../../../fields/src/fields';
+import { MediaElement } from '../types';
+
+function useMediaState(
+    media: MediaElement | null = null,
     { playing: wantedPlaying = false, muted: wantedMuted = false } = {},
-) => {
-    const src = mediaElement !== null ? mediaElement.currentSrc || mediaElement.src : null;
-    const debug = useMemo(() => {
-        const mediaKey =
-            src !== null ? src.split('/')[src.split('/').length - 1].split('#')[0] || null : null;
-        return createDebug(mediaKey !== null ? `micromag:media:${mediaKey}` : 'micromag:media');
-    }, [src]);
-    const [playing, setPlaying] = useState(wantedPlaying);
+) {
+    const [currentMediaElement, setCurrentMediaElement] = useState(media);
+    const [src, setSrc] = useState(() => getMediaSrc(media));
+    const [playing, setPlaying] = useState(() => getMediaIsPlaying(media) || wantedPlaying);
     const [buffering, setBuffering] = useState(false);
-    const [muted, setMuted] = useState(
-        (mediaElement !== null && (mediaElement.muted || mediaElement.volume === 0)) || wantedMuted,
-    );
+    const [muted, setMuted] = useState(() => getMediaIsMuted(media) || wantedMuted);
+    const mediaKey =
+        src !== null ? src.split('/')[src.split('/').length - 1].split('#')[0] || null : null;
+    const debug = createDebug(mediaKey !== null ? `micromag:media:${mediaKey}` : 'micromag:media');
+    if (media !== currentMediaElement) {
+        setPlaying(getMediaIsPlaying(media) || wantedPlaying);
+        setBuffering(false);
+        setMuted(getMediaIsMuted(media) || wantedMuted);
+        setCurrentMediaElement(media);
+        setSrc(getMediaSrc(media));
+        debug('Unset media: %o', { wantedPlaying, wantedMuted });
+    }
 
     useEffect(() => {
         debug('State change %o', { playing, buffering, muted });
     }, [playing, buffering, muted, debug]);
 
     useEffect(() => {
-        if (mediaElement === null) {
-            setPlaying(wantedPlaying);
-            setBuffering(false);
-            setMuted(wantedMuted);
-            debug('Unset media: %o', { wantedPlaying, wantedMuted });
-        }
-    }, [mediaElement, src, debug, wantedPlaying, wantedMuted]);
-
-    useEffect(() => {
-        if (mediaElement === null) {
+        if (media === null) {
             return () => {};
         }
         function onBufferingEvent(e) {
             // networkstate
-            if (
-                mediaElement !== null &&
-                mediaElement.networkState === mediaElement.NETWORK_LOADING
-            ) {
+            if (e.currentTarget.networkState === e.currentTarget.NETWORK_LOADING) {
                 debug('onBufferingEvent: NETWORK_LOADING');
-                setBuffering(true);
+            } else if (e.currentTarget.readyState < e.currentTarget.HAVE_FUTURE_DATA) {
+                debug('onBufferingEvent: HAVE_FUTURE_DATA');
             }
 
-            // readystate
-            if (mediaElement !== null && mediaElement.readyState < mediaElement.HAVE_FUTURE_DATA) {
-                debug('onBufferingEvent: HAVE_FUTURE_DATA');
-                setBuffering(true);
-            }
+            setBuffering(getMediaIsBuffering(e.currentTarget));
         }
 
+        let timeUpdated = false;
         function onPlay() {
+            timeUpdated = false;
             debug('onPlay');
             setPlaying(true);
             setBuffering(false);
         }
 
         function onPlaying() {
+            timeUpdated = false;
             debug('onPlaying');
             setPlaying(true);
             setBuffering(false);
         }
 
         function onTimeUpdate(e) {
-            debug('onTimeUpdate');
-            setPlaying(!e.currentTarget.paused && !e.currentTarget.ended);
+            if (!timeUpdated) {
+                debug('onTimeUpdate');
+                timeUpdated = true;
+            }
+            setPlaying(true);
             setBuffering(false);
         }
 
         function onPause() {
+            timeUpdated = false;
             debug('onPause');
             setPlaying(false);
             setBuffering(false);
         }
 
         function onEnded() {
+            timeUpdated = false;
             debug('onEnded');
             setPlaying(false);
             setBuffering(false);
         }
         function onSuspend(e) {
+            timeUpdated = false;
             debug('onSuspend');
-            setPlaying(!e.currentTarget.paused && !e.currentTarget.ended);
-            setBuffering(false);
+            setPlaying(getMediaIsPlaying(e.currentTarget));
+            setBuffering(getMediaIsBuffering(e.currentTarget));
         }
-        function onVolumeChange() {
-            setMuted(mediaElement.muted || mediaElement.volume === 0);
-        }
-
-        if (mediaElement.paused || mediaElement.ended) {
-            setPlaying(false);
+        function onVolumeChange(e) {
+            debug('onVolumeChange');
+            setMuted(getMediaIsMuted(e.currentTarget));
         }
 
-        if (muted !== mediaElement.muted) {
-            setMuted(mediaElement.muted);
+        function onLoadChange(e) {
+            debug('onLoadChange %s', e.type);
+            setSrc(getMediaSrc(e.currentTarget));
+            setBuffering(getMediaIsBuffering(e.currentTarget));
         }
 
-        mediaElement.addEventListener('waiting', onBufferingEvent);
-        mediaElement.addEventListener('stalled', onBufferingEvent);
-        mediaElement.addEventListener('timeupdate', onTimeUpdate);
-        mediaElement.addEventListener('play', onPlay);
-        mediaElement.addEventListener('playing', onPlaying);
-        mediaElement.addEventListener('pause', onPause);
-        mediaElement.addEventListener('suspend', onSuspend);
-        mediaElement.addEventListener('ended', onEnded);
-        mediaElement.addEventListener('volumechange', onVolumeChange);
+        media.addEventListener('canplay', onLoadChange);
+        media.addEventListener('loadstart', onLoadChange);
+        media.addEventListener('loadeddata', onLoadChange);
+        media.addEventListener('loadedmetadata', onLoadChange);
+        media.addEventListener('waiting', onBufferingEvent);
+        media.addEventListener('stalled', onBufferingEvent);
+        media.addEventListener('timeupdate', onTimeUpdate);
+        media.addEventListener('play', onPlay);
+        media.addEventListener('playing', onPlaying);
+        media.addEventListener('pause', onPause);
+        media.addEventListener('suspend', onSuspend);
+        media.addEventListener('ended', onEnded);
+        media.addEventListener('volumechange', onVolumeChange);
         return () => {
-            mediaElement.removeEventListener('waiting', onBufferingEvent);
-            mediaElement.removeEventListener('stalled', onBufferingEvent);
-            mediaElement.removeEventListener('timeupdate', onTimeUpdate);
-            mediaElement.removeEventListener('play', onPlay);
-            mediaElement.removeEventListener('playing', onPlaying);
-            mediaElement.removeEventListener('pause', onPause);
-            mediaElement.removeEventListener('suspend', onSuspend);
-            mediaElement.removeEventListener('ended', onEnded);
-            mediaElement.removeEventListener('volumechange', onVolumeChange);
+            media.removeEventListener('canplay', onLoadChange);
+            media.removeEventListener('loadstart', onLoadChange);
+            media.removeEventListener('loadeddata', onLoadChange);
+            media.removeEventListener('loadedmetadata', onLoadChange);
+            media.removeEventListener('waiting', onBufferingEvent);
+            media.removeEventListener('stalled', onBufferingEvent);
+            media.removeEventListener('timeupdate', onTimeUpdate);
+            media.removeEventListener('play', onPlay);
+            media.removeEventListener('playing', onPlaying);
+            media.removeEventListener('pause', onPause);
+            media.removeEventListener('suspend', onSuspend);
+            media.removeEventListener('ended', onEnded);
+            media.removeEventListener('volumechange', onVolumeChange);
         };
-    }, [mediaElement, debug, src]);
+    }, [media, debug, src]);
 
     return { playing, muted, buffering };
-};
+}
 
 export default useMediaState;

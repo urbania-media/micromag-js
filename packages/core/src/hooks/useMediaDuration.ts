@@ -1,44 +1,40 @@
 import { useEffect, useState } from 'react';
 
+import { getMediaDuration } from '../utils';
+
+import { MediaElement } from '../types';
 import useMediaTimestampOffset from './useMediaTimestampOffset';
 
-function useMediaDuration(element, { id = null } = {}) {
-    const tsOffset = useMediaTimestampOffset(element);
-    const [duration, setDuration] = useState(() =>
-        element !== null ? Math.max((element?.duration || 0) - tsOffset, 0) : 0,
-    );
-    const finalId = id || element;
+function useMediaDuration(media: MediaElement | null, { id = null } = {}) {
+    const tsOffset = useMediaTimestampOffset(media);
+    const [duration, setDuration] = useState(() => getMediaDuration(media, tsOffset));
+    const finalId = id || media;
     const [identifier, setIdentifier] = useState(finalId);
     if (finalId !== identifier) {
-        setDuration(element !== null ? Math.max((element?.duration || 0) - tsOffset, 0) : 0);
+        setDuration(getMediaDuration(media, tsOffset));
         setIdentifier(finalId);
-    } else if (element === null && duration !== 0) {
+    } else if (media === null && duration !== 0) {
         setDuration(0);
-    } else if (
-        duration === 0 &&
-        element !== null &&
-        Math.max((element?.duration || 0) - tsOffset, 0) > 0
-    ) {
-        setDuration(Math.max((element?.duration || 0) - tsOffset, 0));
+    } else if (duration === 0 && getMediaDuration(media, tsOffset) > 0) {
+        setDuration(getMediaDuration(media, tsOffset));
     }
 
     useEffect(() => {
-        if (element === null) {
+        if (media === null) {
             return () => {};
         }
         function updateDuration(e) {
-            const newDuration = Math.max((e.currentTarget.duration || 0) - tsOffset, 0);
-            setDuration(newDuration);
+            setDuration(getMediaDuration(e.currentTarget, tsOffset));
         }
-        element.addEventListener('canplay', updateDuration);
-        element.addEventListener('loadedmetadata', updateDuration);
-        element.addEventListener('durationchange', updateDuration);
+        media.addEventListener('canplay', updateDuration);
+        media.addEventListener('loadedmetadata', updateDuration);
+        media.addEventListener('durationchange', updateDuration);
         return () => {
-            element.removeEventListener('canplay', updateDuration);
-            element.removeEventListener('loadedmetadata', updateDuration);
-            element.removeEventListener('durationchange', updateDuration);
+            media.removeEventListener('canplay', updateDuration);
+            media.removeEventListener('loadedmetadata', updateDuration);
+            media.removeEventListener('durationchange', updateDuration);
         };
-    }, [element, id, setDuration, tsOffset]);
+    }, [identifier, media, setDuration, tsOffset]);
 
     return duration;
 }

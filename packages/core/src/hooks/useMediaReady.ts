@@ -1,41 +1,40 @@
 import { useEffect, useState } from 'react';
 
-function useMediaReady(
-    element: HTMLMediaElement | null,
-    { id = null }: { id?: string | null } = {},
-) {
-    const [ready, setReady] = useState(() => element !== null && element.readyState > 0);
-    const finalId = id || element;
+import { MediaElement } from '../types';
+
+function useMediaReady(media: MediaElement | null, { id = null }: { id?: string | null } = {}) {
+    const [ready, setReady] = useState(() => media !== null && media.readyState > 0);
+    const finalId = id || media;
     const [identifier, setIdentifier] = useState(finalId);
     if (finalId !== identifier) {
-        setReady(element !== null && element.readyState > 0);
+        setReady(media !== null && media.readyState > 0);
         setIdentifier(finalId);
-    } else if (element === null && ready) {
+    } else if (media === null && ready) {
         setReady(false);
-    } else if (!ready && element !== null && element.readyState > 0) {
+    } else if (!ready && media !== null && media.readyState > 0) {
         setReady(true);
     }
 
     useEffect(() => {
-        if (element === null || ready) {
+        if (media === null || ready) {
             return () => {};
         }
         function updateReady() {
-            setReady(element.readyState > 0);
+            setReady(media.readyState > 0);
         }
-        element.addEventListener('loadstart', updateReady);
-        element.addEventListener('loadeddata', updateReady);
-        element.addEventListener('loadedmetadata', updateReady);
-        element.addEventListener('canplay', updateReady);
-        element.addEventListener('canplaythrough', updateReady);
+        media.addEventListener('loadstart', updateReady);
+        media.addEventListener('loadeddata', updateReady);
+        media.addEventListener('loadedmetadata', updateReady);
+        media.addEventListener('canplay', updateReady);
+        media.addEventListener('canplaythrough', updateReady);
         return () => {
-            element.removeEventListener('loadstart', updateReady);
-            element.removeEventListener('loadeddata', updateReady);
-            element.removeEventListener('loadedmetadata', updateReady);
-            element.removeEventListener('canplay', updateReady);
-            element.removeEventListener('canplaythrough', updateReady);
+            media.removeEventListener('loadstart', updateReady);
+            media.removeEventListener('loadeddata', updateReady);
+            media.removeEventListener('loadedmetadata', updateReady);
+            media.removeEventListener('canplay', updateReady);
+            media.removeEventListener('canplaythrough', updateReady);
         };
-    }, [element, id, ready]);
+    }, [media, id, ready]);
 
     return ready;
 }
