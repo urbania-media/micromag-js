@@ -1,6 +1,8 @@
 import tinycolor from 'tinycolor2';
 
-const getContrastingColor = (backgroundColor) => {
+import { Color } from '../types';
+
+const getContrastingColor = (backgroundColor: Color | null) => {
     const { color = 'white' } = backgroundColor || {};
     if (tinycolor.equals(color, tinycolor('white'))) {
         return '#A13DFF';

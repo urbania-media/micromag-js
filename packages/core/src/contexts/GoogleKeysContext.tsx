@@ -1,25 +1,21 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo } from 'react';
+import { ReactNode, createContext, use } from 'react';
 
 import { useSetting } from './SettingsContext';
 
-export const GoogleKeysContext = React.createContext({
+export const GoogleKeysContext = createContext({
     apiKey: null,
 });
 
-export const useGoogleKeys = () => useContext(GoogleKeysContext);
+export const useGoogleKeys = () => use(GoogleKeysContext);
 
 interface GoogleKeysProviderProps {
-    children: React.ReactNode;
-    apiKey?: string;
+    children: ReactNode;
+    apiKey?: string | null;
 }
 
 export function GoogleKeysProvider({ children, apiKey = null }: GoogleKeysProviderProps) {
     const { apiKey: previousApiKey } = useGoogleKeys();
     const settingApiKey = useSetting('googleApiKey');
-    const value = useMemo(
-        () => ({ apiKey: apiKey || previousApiKey || settingApiKey }),
-        [apiKey, previousApiKey, settingApiKey],
-    );
-    return <GoogleKeysContext.Provider value={value}>{children}</GoogleKeysContext.Provider>;
+    const value = { apiKey: apiKey || previousApiKey || settingApiKey };
+    return <GoogleKeysContext value={value}>{children}</GoogleKeysContext>;
 }

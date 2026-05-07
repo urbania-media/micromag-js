@@ -43,12 +43,7 @@ function Screen({
     return (
         <ScreenProvider data={screen} renderContext={renderContext} screenState={screenState}>
             {ScreenComponent !== null ? (
-                <div
-                    className={classNames([
-                        styles.container,
-                        className,
-                    ])}
-                >
+                <div className={classNames([styles.container, className])}>
                     <ScreenComponent
                         {...screen}
                         index={index}

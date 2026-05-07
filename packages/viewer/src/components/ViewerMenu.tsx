@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { ForwardedRef, ReactNode, useEffect, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 
 import type { ScreenSize, Story, ViewerTheme } from '@micromag/core';
@@ -22,12 +21,12 @@ import styles from '../styles/viewer.module.css';
 
 interface ViewerMenuProps {
     story: Story;
-    menuItems?: (string | React.ReactNode)[];
+    menuItems?: (string | ReactNode)[];
     currentScreenIndex?: number;
     toggleFullscreen?: ((...args: unknown[]) => void) | null;
     fullscreenActive?: boolean;
     fullscreenEnabled?: boolean;
-    menuDotsButtons?: React.ReactNode | null;
+    menuDotsButtons?: ReactNode | null;
     closeable?: boolean;
     withShadow?: boolean;
     trackingEnabled?: boolean;
@@ -36,10 +35,10 @@ interface ViewerMenuProps {
     theme?: ViewerTheme | null;
     screenSize?: ScreenSize | null;
     menuWidth?: number | null;
-    previewHeader?: React.ReactNode | null;
-    previewFooter?: React.ReactNode | null;
-    afterShareMenuButton?: React.ReactNode | null;
-    beforeScreensMenuButton?: React.ReactNode | null;
+    previewHeader?: ReactNode | null;
+    previewFooter?: ReactNode | null;
+    afterShareMenuButton?: ReactNode | null;
+    beforeScreensMenuButton?: ReactNode | null;
     withMicromagBranding?: boolean;
     withDotItemClick?: boolean;
     withoutScreensMenu?: boolean;
@@ -47,7 +46,7 @@ interface ViewerMenuProps {
     onClickScreen?: ((...args: unknown[]) => void) | null;
     onClickCloseViewer?: ((...args: unknown[]) => void) | null;
     onChange?: ((...args: unknown[]) => void) | null;
-    refDots?: { current?: unknown } | null;
+    refDots?: ForwardedRef<HTMLDivElement> | null;
 }
 
 const defaultMenuItems = ['share', 'main'];
@@ -93,88 +92,74 @@ function ViewerMenu({
 
     const [menuOpened, setMenuOpened] = useState(false);
     const [shareOpened, setShareOpened] = useState(false);
-    const [menuMounted, setMenuMounted] = useState(false);
 
     const { ref: navContainerRef, height: navContainerHeight = 0 } = useDimensionObserver();
 
-    const items = useMemo(
-        () =>
-            screens
-                .map((it) => {
-                    const children = screens.filter((s) => s.parentId === it.id);
-                    const currentChild = children.find((c) => c.id === screenId) || null;
-                    const subIndex = children.findIndex((c) => c.id === screenId) + 1;
-                    return {
-                        screen: it,
-                        screenId: it.id,
-                        current: screenId === it.id || currentChild !== null,
-                        visible: (it?.parentId || null) === null,
-                        count: children.length + 1 || 1,
-                        subIndex: subIndex || 0,
-                    };
-                })
-                .filter(({ visible = true }) => visible),
-        [screens, screenId],
-    );
+    const items = screens
+        .map((it) => {
+            const children = screens.filter((s) => s.parentId === it.id);
+            const currentChild = children.find((c) => c.id === screenId) || null;
+            const subIndex = children.findIndex((c) => c.id === screenId) + 1;
+            return {
+                screen: it,
+                screenId: it.id,
+                current: screenId === it.id || currentChild !== null,
+                visible: (it?.parentId || null) === null,
+                count: children.length + 1 || 1,
+                subIndex: subIndex || 0,
+            };
+        })
+        .filter(({ visible = true }) => visible);
     const trackEvent = useTrackEvent();
-    const trackScreenEvent = useCallback(
-        (cat, action, label) => {
-            if (trackingEnabled) {
-                trackEvent(cat, action, label, {
-                    screenId,
-                    screenIndex: currentScreenIndex,
-                    screenType,
-                });
-            }
-        },
-        [trackEvent, screenId, currentScreenIndex, screenType],
-    );
+    const trackScreenEvent = (cat, action, label = null) => {
+        if (trackingEnabled) {
+            trackEvent(cat, action, label, {
+                screenId,
+                screenIndex: currentScreenIndex,
+                screenType,
+            });
+        }
+    };
 
-    const shareUrl = useMemo(() => {
-        const base =
-            typeof window !== 'undefined'
-                ? `${window.location.protocol}//${window.location.host}`
-                : '';
-        const isFull = shareBasePath !== null && shareBasePath.indexOf('http') !== -1;
-        const partialPath = shareBasePath !== null ? `${base}${shareBasePath}` : base;
-        return shareBasePath !== null && isFull ? shareBasePath.replace(/\/$/, '') : partialPath;
-    }, [shareBasePath]);
+    const base =
+        typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : '';
+    const isFull = shareBasePath !== null && shareBasePath.indexOf('http') !== -1;
+    const partialPath = shareBasePath !== null ? `${base}${shareBasePath}` : base;
+    const shareUrl =
+        shareBasePath !== null && isFull ? shareBasePath.replace(/\/$/, '') : partialPath;
 
-    const onOpenMenu = useCallback(() => {
+    const onOpenMenu = () => {
         setMenuOpened(true);
         setShareOpened(false);
         trackScreenEvent('viewer_menu', 'open_screens_menu');
-    }, [setMenuOpened, setShareOpened, trackScreenEvent]);
+    };
 
-    const onCloseMenu = useCallback(() => {
+    const onCloseMenu = () => {
         setMenuOpened(false);
         setShareOpened(false);
         trackScreenEvent('viewer_menu', 'close_screens_menu');
-    }, [setMenuOpened, setShareOpened, trackScreenEvent]);
+    };
 
-    const onOpenShare = useCallback(() => {
+    const onOpenShare = () => {
         setShareOpened(true);
         setMenuOpened(false);
         trackScreenEvent('viewer_menu', 'open_share_menu');
-    }, [setShareOpened, setMenuOpened, trackScreenEvent]);
+    };
 
-    const onCloseShare = useCallback(() => {
+    const onCloseShare = () => {
         setShareOpened(false);
         setMenuOpened(false);
         trackScreenEvent('viewer_menu', 'close_share_menu');
-    }, [setShareOpened, setMenuOpened, trackScreenEvent]);
+    };
 
-    const onClickScreen = useCallback(
-        (screen) => {
-            setMenuOpened(false);
-            if (customOnClickScreen !== null) {
-                customOnClickScreen(screen);
-            }
-            const index = items.findIndex(({ id }) => id === screenId);
-            trackScreenEvent('viewer_menu', 'click_screen_change', `Screen ${index + 1}`);
-        },
-        [customOnClickScreen, setMenuOpened, items, screenId, trackScreenEvent],
-    );
+    const onClickScreen = (screen) => {
+        setMenuOpened(false);
+        if (customOnClickScreen !== null) {
+            customOnClickScreen(screen);
+        }
+        const index = items.findIndex(({ id }) => id === screenId);
+        trackScreenEvent('viewer_menu', 'click_screen_change', `Screen ${index + 1}`);
+    };
 
     useEffect(() => {
         if (onChange !== null) {
@@ -182,46 +167,44 @@ function ViewerMenu({
         }
     }, [onChange, menuOpened, shareOpened]);
 
-    const onShare = useCallback(
-        (type) => {
-            // @todo display something to say thanks for sharing?
-            trackScreenEvent('viewer_menu', 'shared_story', type);
-        },
-        [trackScreenEvent],
-    );
+    const onShare = (type) => {
+        // @todo display something to say thanks for sharing?
+        trackScreenEvent('viewer_menu', 'shared_story', type);
+    };
 
-    const computeShareProgress = useCallback(
-        ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-            const progress = Math.max(0, my) / (viewerHeight * 0.8);
-            const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
-            if (!active) {
-                if (reachedThreshold) onOpenShare();
-                return reachedThreshold ? 1 : 0;
-            }
-            return progress;
-        },
-        [onOpenShare, viewerHeight],
-    );
+    const computeShareProgress = ({
+        active,
+        direction: [, dy],
+        movement: [, my],
+        velocity: [, vy],
+    }) => {
+        const progress = Math.max(0, my) / (viewerHeight * 0.8);
+        const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
+        if (!active) {
+            if (reachedThreshold) onOpenShare();
+            return reachedThreshold ? 1 : 0;
+        }
+        return progress;
+    };
 
-    const computeShareProgressClose = useCallback(
-        ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-            const progress = Math.max(0, my) / (viewerHeight * 0.8);
-            const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
-            if (!active) {
-                if (reachedThreshold) onCloseShare();
-                return reachedThreshold ? 0 : 1;
-            }
-            return 1 - progress;
-        },
-        [onCloseShare, viewerHeight],
-    );
+    const computeShareProgressClose = ({
+        active,
+        direction: [, dy],
+        movement: [, my],
+        velocity: [, vy],
+    }) => {
+        const progress = Math.max(0, my) / (viewerHeight * 0.8);
+        const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
+        if (!active) {
+            if (reachedThreshold) onCloseShare();
+            return reachedThreshold ? 0 : 1;
+        }
+        return 1 - progress;
+    };
 
-    const springParams = useMemo(
-        () => ({
-            config: { tension: 300, friction: 30 },
-        }),
-        [],
-    );
+    const springParams = {
+        config: { tension: 300, friction: 30 },
+    };
     const {
         bind: bindShareDrag,
         dragging: draggingShare,
@@ -238,32 +221,36 @@ function ViewerMenu({
         },
     });
 
-    const computeMenuProgress = useCallback(
-        ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-            const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-            const progress = windowHeight > 0 ? Math.max(0, my) / (windowHeight * 0.8) : 0;
-            const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
-            if (!active) {
-                if (reachedThreshold) onOpenMenu();
-                return reachedThreshold ? 1 : 0;
-            }
-            return progress;
-        },
-        [onOpenMenu],
-    );
-    const computeMenuProgressClose = useCallback(
-        ({ active, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-            const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-            const progress = windowHeight > 0 ? Math.max(0, my) / (windowHeight * 0.8) : 0;
-            const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
-            if (!active) {
-                if (reachedThreshold) onCloseMenu();
-                return reachedThreshold ? 0 : 1;
-            }
-            return 1 - progress;
-        },
-        [onCloseMenu],
-    );
+    const computeMenuProgress = ({
+        active,
+        direction: [, dy],
+        movement: [, my],
+        velocity: [, vy],
+    }) => {
+        const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+        const progress = windowHeight > 0 ? Math.max(0, my) / (windowHeight * 0.8) : 0;
+        const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
+        if (!active) {
+            if (reachedThreshold) onOpenMenu();
+            return reachedThreshold ? 1 : 0;
+        }
+        return progress;
+    };
+    const computeMenuProgressClose = ({
+        active,
+        direction: [, dy],
+        movement: [, my],
+        velocity: [, vy],
+    }) => {
+        const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+        const progress = windowHeight > 0 ? Math.max(0, my) / (windowHeight * 0.8) : 0;
+        const reachedThreshold = (vy > 0.3 || Math.abs(progress) > 0.3) && dy !== -1;
+        if (!active) {
+            if (reachedThreshold) onCloseMenu();
+            return reachedThreshold ? 0 : 1;
+        }
+        return 1 - progress;
+    };
 
     const {
         bind: bindMenuDrag,
@@ -273,7 +260,7 @@ function ViewerMenu({
         progress: menuOpened ? 1 : 0,
         computeProgress: menuOpened ? computeMenuProgressClose : computeMenuProgress,
         springParams,
-        drapOptions: {
+        dragOptions: {
             axis: 'y',
             pointer: {
                 keys: false,
@@ -281,14 +268,10 @@ function ViewerMenu({
         },
     });
 
-    const keyboardShortcuts = useMemo(
-        () => ({
-            m: () => (!menuOpened ? onOpenMenu() : onCloseMenu()),
-            escape: () => onCloseMenu(),
-        }),
-        [menuOpened, onOpenMenu, onCloseMenu],
-    );
-    useKeyboardShortcuts(keyboardShortcuts);
+    useKeyboardShortcuts({
+        m: () => (!menuOpened ? onOpenMenu() : onCloseMenu()),
+        escape: () => onCloseMenu(),
+    });
 
     // @TODO: Fix if needed
     // const menuOpenedProgressValue = menuOpenedProgress ? menuOpenedProgress.value || 0 : 0;
@@ -297,14 +280,6 @@ function ViewerMenu({
     // const dotsOpacity = useEffect(() => {
     //     Math.min(1, Math.max(0, 1 - (menuOpenedProgressValue + shareOpenedProgressValue)));
     // }, [menuOpenedProgressValue, shareOpenedProgressValue]);
-
-    useEffect(() => {
-        if ((menuOpened || draggingMenu) && !menuMounted) {
-            setMenuMounted(true);
-        } else if (!menuOpened && !draggingMenu && menuMounted) {
-            setMenuMounted(false);
-        }
-    }, [menuOpened, draggingMenu, menuMounted, setMenuMounted]);
 
     return (
         <>
@@ -445,7 +420,7 @@ function ViewerMenu({
                 progressSpring={menuOpenedProgress}
                 theme={viewerTheme}
             >
-                {menuMounted ? (
+                {menuOpened || draggingMenu ? (
                     <FocusLock group="screens" disabled={!menuOpened} returnFocus>
                         <MenuPreview
                             viewerTheme={viewerTheme}

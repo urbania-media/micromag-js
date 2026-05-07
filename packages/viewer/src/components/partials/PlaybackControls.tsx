@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import {
@@ -42,6 +41,7 @@ function PlaybackControls({
     const intl = useIntl();
     const {
         media: mediaElement = null,
+        mediaSrc,
         hasAudio = null,
         playing: wantedPlaying = false,
         muted: wantedMuted = true,
@@ -52,12 +52,12 @@ function PlaybackControls({
         controlsVisible,
         controlsTheme,
         showControls,
+        seekByProgress,
     } = usePlaybackContext();
 
     const [showLoading, setShowLoading] = useState(false);
-    const mediaUrl = mediaElement !== null ? mediaElement.currentSrc || mediaElement.src : null;
     const mediaReady = useMediaReady(mediaElement, {
-        id: mediaUrl,
+        id: mediaSrc,
     });
     const ready = mediaElement === null || mediaReady;
     const finalShowLoading = showLoading && !ready;
@@ -83,24 +83,18 @@ function PlaybackControls({
         };
     }, [ready, buffering, withLoading, setShowLoading]);
 
-    const [customControlsTheme, setCustomControlsTheme] = useState({
-        color: getColorAsString(defaultColor),
-        progressColor: getColorAsString(defaultColor),
-        seekBarOnly: false,
-    });
+    const {
+        color: themeColor,
+        progressColor: themeProgressColor,
+        seekBarOnly: themeSeekbarOnly,
+    } = controlsTheme || {};
+    const color = getColorAsString(themeColor || defaultColor);
+    const progressColor = getColorAsString(themeProgressColor || defaultProgressColor);
+    const seekBarOnly = themeSeekbarOnly;
 
     const [wasPlaying, setWasPlaying] = useState(false);
 
-    useEffect(() => {
-        const { color, progressColor, seekBarOnly } = controlsTheme || {};
-        setCustomControlsTheme({
-            color: getColorAsString(color || defaultColor),
-            progressColor: getColorAsString(progressColor || defaultProgressColor),
-            seekBarOnly,
-        });
-    }, [controlsTheme, setCustomControlsTheme, defaultColor, defaultProgressColor]);
-
-    const onPlay = useCallback(() => {
+    const onPlay = () => {
         if (wantedPlaying && !playing && mediaElement !== null) {
             mediaElement.play();
         } else {
@@ -110,65 +104,58 @@ function PlaybackControls({
         if (!controlsVisible && controls) {
             showControls();
         }
-    }, [setPlaying, controlsVisible, showControls, playing, wantedPlaying]);
+    };
 
-    const onPause = useCallback(() => {
+    const onPause = () => {
         // console.log('onPause');
         setPlaying(false);
         if (!controlsVisible && controls) {
             showControls();
         }
-    }, [setPlaying, controlsVisible, controls, showControls]);
+    };
 
-    const onMute = useCallback(() => {
+    const onMute = () => {
         setMuted(true);
         if (!controlsVisible && controls) {
             showControls();
         }
-    }, [setMuted, controlsVisible, showControls]);
+    };
 
-    const onUnmute = useCallback(() => {
+    const onUnmute = () => {
         setMuted(false);
         if (!controlsVisible && controls) {
             showControls();
         }
-    }, [setMuted, controlsVisible, showControls]);
+    };
 
-    const onSeekStart = useCallback(() => {
+    const onSeekStart = () => {
         setWasPlaying(playing);
         if (playing) {
             setPlaying(false);
         }
-    }, [playing, setWasPlaying, setPlaying]);
+    };
 
-    const onSeek = useCallback(
-        // eslint-disable-next-line no-unused-vars
-        (progress, tap = false) => {
-            if (mediaElement !== null) {
-                mediaElement.currentTime = progress * mediaElement.duration;
-            }
-            if (!controlsVisible && controls) {
-                showControls();
-            }
-        },
-        [mediaElement, controlsVisible, controls, showControls],
-    );
-
-    const onSeekEnd = useCallback(() => {
-        if (wasPlaying) {
-            setPlaying(true);
-        }
-    }, [setPlaying, wasPlaying]);
-
-    const onSeekClick = useCallback(() => {
+    const onSeek = (progress, tap = false) => {
+        seekByProgress(progress);
         if (!controlsVisible && controls) {
             showControls();
         }
-    }, [controlsVisible, controls, showControls]);
+    };
+
+    const onSeekEnd = () => {
+        if (wasPlaying) {
+            setPlaying(true);
+        }
+    };
+
+    const onSeekClick = () => {
+        if (!controlsVisible && controls) {
+            showControls();
+        }
+    };
 
     const hasMedia = mediaElement !== null;
     const mediaHasAudio = hasMedia && (hasAudio === null || hasAudio === true);
-    const { color, progressColor, seekBarOnly } = customControlsTheme || {};
     const isCollapsed = (controls && !controlsVisible && playing) || (!controls && mediaHasAudio);
 
     const withSuggestPlay = controlsSuggestPlay && !finalShowLoading && !playing;

@@ -1,39 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function useMediaReady(
     element: HTMLMediaElement | null,
     { id = null }: { id?: string | null } = {},
 ) {
-    const [ready, setReady] = useState(element !== null && element.readyState > 0);
-
-    const realReady = useRef(ready);
-
-    const lastIdRef = useRef(id);
-    const idChanged = lastIdRef.current !== id;
-    if (idChanged) {
-        realReady.current = false;
-        lastIdRef.current = id;
+    const [ready, setReady] = useState(() => element !== null && element.readyState > 0);
+    const finalId = id || element;
+    const [identifier, setIdentifier] = useState(finalId);
+    if (finalId !== identifier) {
+        setReady(element !== null && element.readyState > 0);
+        setIdentifier(finalId);
+    } else if (element === null && ready) {
+        setReady(false);
+    } else if (!ready && element !== null && element.readyState > 0) {
+        setReady(true);
     }
 
     useEffect(() => {
-        if (element === null) {
+        if (element === null || ready) {
             return () => {};
         }
         function updateReady() {
-            let currentReady = ready;
-            if (element !== null && element.readyState > 0 && !ready) {
-                setReady(true);
-                currentReady = true;
-            } else if (ready && element !== null && element.readyState === 0) {
-                setReady(false);
-                currentReady = false;
-            }
-            realReady.current = currentReady;
-            return currentReady;
-        }
-        const currentReady = updateReady();
-        if (currentReady) {
-            return () => {};
+            setReady(element.readyState > 0);
         }
         element.addEventListener('loadstart', updateReady);
         element.addEventListener('loadeddata', updateReady);
@@ -47,9 +35,9 @@ function useMediaReady(
             element.removeEventListener('canplay', updateReady);
             element.removeEventListener('canplaythrough', updateReady);
         };
-    }, [element, id]);
+    }, [element, id, ready]);
 
-    return realReady.current;
+    return ready;
 }
 
 export default useMediaReady;

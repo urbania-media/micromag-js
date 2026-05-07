@@ -1,8 +1,7 @@
-/* eslint-disable no-nested-ternary */
-
-/* eslint-disable react/jsx-props-no-spreading, react/no-array-index-key */
 import classNames from 'classnames';
 import React from 'react';
+
+import { Label as LabelType } from '@micromag/core/types';
 
 import Label from './Label';
 import Link from './Link';
@@ -14,11 +13,11 @@ interface CardProps {
     imageAlt?: string | null;
     imageOverlay?: boolean;
     beforeBody?: React.ReactNode | null;
-    title?: Label | null;
-    subtitle?: Label | null;
+    title?: LabelType | null;
+    subtitle?: LabelType | null;
     children?: React.ReactNode | null;
     afterBody?: React.ReactNode | null;
-    links?: { label?: Label; href?: string }[] | null;
+    links?: { label?: LabelType; href?: string }[] | null;
     linksInSameBody?: boolean;
     footer?: React.ReactNode | null;
     theme?: null | 'dark' | 'primary' | 'light';

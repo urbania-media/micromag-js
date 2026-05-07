@@ -1,13 +1,13 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
+import { type Label as LabelType } from '@micromag/core/types';
 
 import { isMessage } from '../../utils';
 
 const emptyObject = {} as const;
 
 interface LabelProps {
-    children: Label;
+    children: LabelType;
     isHtml?: boolean;
     values?: Record<string, unknown>;
 }

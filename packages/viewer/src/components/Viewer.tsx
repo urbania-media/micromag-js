@@ -1,11 +1,25 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+    useCallback,
+    useEffect,
+    useImperativeHandle,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
 
-import type { DeviceScreen, Ref, RenderContext, Story, ViewerTheme } from '@micromag/core';
+import type {
+    DeviceScreen,
+    Ref,
+    RenderContext,
+    ScreenComponent,
+    Story,
+    ViewerTheme,
+} from '@micromag/core';
 import { FontFaces, Meta } from '@micromag/core/components';
 import {
     ScreenSizeProvider,
@@ -62,7 +76,7 @@ interface ViewerProps {
     screenState?: string | null;
     deviceScreens?: DeviceScreen[];
     renderContext?: RenderContext;
-    onScreenChange?: ((...args: unknown[]) => void) | null;
+    onScreenChange?: ((screen: ScreenComponent, index: number) => void) | null;
     tapNextScreenWidthPercent?: number;
     tapMaximumDuration?: number;
     longPressPauseDelay?: number;
@@ -212,13 +226,10 @@ function Viewer({
 
     const screensMediasRef = useRef<HTMLMediaElement[]>([]);
 
-    if (currentScreenMedia !== null) {
-        currentScreenMedia.current = screensMediasRef.current[screenIndex] || null;
-    }
-
-    if (screensMedias !== null) {
-        screensMedias.current = screensMediasRef.current;
-    }
+    useImperativeHandle(currentScreenMedia, () => screensMediasRef.current[screenIndex] || null, [
+        screenIndex,
+    ]);
+    useImperativeHandle(screensMedias, () => screensMediasRef.current, [story, screens]);
 
     /**
      * Screen Layout

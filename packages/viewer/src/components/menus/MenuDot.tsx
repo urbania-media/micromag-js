@@ -12,7 +12,7 @@ interface ViewerMenuDotProps {
     count?: number;
     subIndex?: number;
     vertical?: boolean;
-    onClick?: (...args: unknown[]) => void;
+    onClick?: (() => void) | null;
     className?: string;
 }
 
@@ -60,15 +60,13 @@ function ViewerMenuDot({
                     [styles.vertical]: vertical,
                 },
             ])}
-            onClick={(e = null) => {
-                if (e !== null) {
-                    e.stopPropagation();
-                }
+            onClick={(e) => {
+                e.stopPropagation();
                 if (onClick !== null) {
                     onClick();
                 }
             }}
-            tabIndex="-1"
+            tabIndex={-1}
             aria-hidden="true"
         >
             <div

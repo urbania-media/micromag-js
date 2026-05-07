@@ -1,7 +1,9 @@
 import isString from 'lodash/isString';
 import tinycolor from 'tinycolor2';
 
-const getColorAsString = (value = null, overideAlpha = null) => {
+import { Color } from '../types';
+
+const getColorAsString = (value: Color | null = null, overideAlpha = null) => {
     if (value === null) {
         return null;
     }

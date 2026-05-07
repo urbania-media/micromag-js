@@ -1,91 +1,67 @@
 import raf from 'raf';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { startTransition, useEffect, useState } from 'react';
 
+import { mediaElementIsPlaying } from '../contexts';
 import useMediaDuration from './useMediaDuration';
 
 function useMediaProgress(media = null, options = null) {
     const { disabled = false, ...props } = options || {};
-    const [playing, setPlaying] = useState(!disabled);
+    const [playing, setPlaying] = useState(() => !disabled && mediaElementIsPlaying(media));
 
     const duration = useMediaDuration(media, {
         disabled: disabled || !playing,
         ...props,
     });
 
+    const [progressMedia, setProgressMedia] = useState(media);
     const [progress, setProgress] = useState(0);
-    const realProgressRef = useRef(progress);
-    const updateTimeRef = useRef(Date.now() / 1000);
+    const [updateTime, setUpdateTime] = useState(() => Date.now() / 1000);
 
-    const updateProgress = useCallback(
-        (newProgress) => {
-            updateTimeRef.current = Date.now() / 1000;
-            realProgressRef.current = newProgress;
-            setProgress(newProgress);
-        },
-        [setProgress],
-    );
-
-    useEffect(() => {
-        if (media !== null) {
-            const value =
-                (media.currentTime || 0) > 0 && media.duration > 0
-                    ? media.currentTime / media.duration
-                    : 0;
-            updateProgress(value);
-            setPlaying(!media.paused && media.readyState === 4);
-        } else {
-            updateProgress(0);
-            setPlaying(false);
-        }
-    }, [media, disabled, setPlaying]);
+    if (media !== progressMedia) {
+        const newProgress =
+            media !== null && (media?.currentTime || 0) > 0 && (media?.duration || 0) > 0
+                ? media.currentTime / media.duration
+                : 0;
+        setUpdateTime(Date.now() / 1000);
+        setProgress(newProgress);
+        setPlaying(mediaElementIsPlaying(media));
+        setProgressMedia(media);
+    }
 
     useEffect(() => {
         if (media === null) {
             return () => {};
         }
-        function onResume(e) {
-            setPlaying(true);
-            const newProgress = media.currentTime / media.duration;
-            updateProgress(newProgress);
-        }
+
         function onUpdate(e) {
-            setPlaying(!e.currentTarget.paused && !e.currentTarget.ended);
-            const newProgress = media.currentTime / media.duration;
-            updateProgress(newProgress);
+            setPlaying(mediaElementIsPlaying(e.currentTarget));
+            const newProgress = e.currentTarget.currentTime / e.currentTarget.duration;
+            startTransition(() => {
+                setUpdateTime(Date.now() / 1000);
+                setProgress(newProgress);
+            });
         }
-        function onPause() {
-            setPlaying(false);
-            const newProgress = media.currentTime / media.duration;
-            updateProgress(newProgress);
-        }
-        media.addEventListener('play', onResume);
-        media.addEventListener('playing', onResume);
+        media.addEventListener('play', onUpdate);
+        media.addEventListener('playing', onUpdate);
         media.addEventListener('seeked', onUpdate);
-        // media.addEventListener('timeupdate', onUpdate);
-        media.addEventListener('pause', onPause);
-        media.addEventListener('ended', onPause);
-        media.addEventListener('waiting', onPause);
-        media.addEventListener('stalled', onPause);
-        media.addEventListener('seeking', onPause);
+        media.addEventListener('pause', onUpdate);
+        media.addEventListener('ended', onUpdate);
+        media.addEventListener('waiting', onUpdate);
+        media.addEventListener('stalled', onUpdate);
+        media.addEventListener('seeking', onUpdate);
         media.addEventListener('suspend', onUpdate);
-        // if (media.paused) {
-        //     onPause();
-        // } else {
-        //     onResume();
-        // }
         return () => {
-            media.removeEventListener('play', onResume);
-            media.removeEventListener('seeked', onResume);
-            media.removeEventListener('playing', onResume);
-            // media.removeEventListener('timeupdate', onResume);
-            media.removeEventListener('pause', onPause);
-            media.removeEventListener('ended', onPause);
-            media.removeEventListener('waiting', onPause);
-            media.removeEventListener('stalled', onPause);
-            media.removeEventListener('seeking', onPause);
+            media.removeEventListener('play', onUpdate);
+            media.removeEventListener('playing', onUpdate);
+            media.removeEventListener('seeked', onUpdate);
+            media.removeEventListener('pause', onUpdate);
+            media.removeEventListener('ended', onUpdate);
+            media.removeEventListener('waiting', onUpdate);
+            media.removeEventListener('stalled', onUpdate);
+            media.removeEventListener('seeking', onUpdate);
             media.removeEventListener('suspend', onUpdate);
         };
-    }, [media, updateProgress, setPlaying, playing]);
+    }, [media, setPlaying, playing]);
 
     useEffect(() => {
         if (media === null || !playing || disabled) {
@@ -96,24 +72,29 @@ function useMediaProgress(media = null, options = null) {
 
         let lastSync = 0;
         const syncTime = 0.7;
+        let currentProgress = progress;
+        let currentUpdateTime = updateTime;
         function tick() {
             if (canceled) {
                 return;
             }
 
             const newTime = Date.now() / 1000;
-            const elapsed = newTime - updateTimeRef.current;
+            const elapsed = newTime - currentUpdateTime;
             const step = elapsed / duration;
             lastSync += elapsed;
             const shouldSync = lastSync > syncTime;
             const newProgress =
-                realProgressRef.current < 0.1
-                    ? media.currentTime / media.duration
-                    : realProgressRef.current + step;
+                currentProgress < 0.1 ? media.currentTime / media.duration : currentProgress + step;
             if (shouldSync) {
                 lastSync -= syncTime;
             }
-            updateProgress(newProgress);
+            startTransition(() => {
+                setUpdateTime(Date.now() / 1000);
+                setProgress(newProgress);
+            });
+            currentUpdateTime = newTime;
+            currentProgress = newProgress;
             handle = raf(tick);
         }
         tick();
@@ -122,9 +103,9 @@ function useMediaProgress(media = null, options = null) {
             canceled = true;
             raf.cancel(handle);
         };
-    }, [media, playing, disabled, duration, updateProgress]);
+    }, [media, playing, disabled, duration, updateTime, progress, setProgress]);
 
-    return realProgressRef.current;
+    return progress;
 }
 
 export default useMediaProgress;

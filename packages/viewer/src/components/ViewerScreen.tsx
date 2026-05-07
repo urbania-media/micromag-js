@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { RenderContext, ScreenComponent } from '@micromag/core';
 import { Screen } from '@micromag/core/components';
@@ -61,12 +60,7 @@ function ViewerScreen({
     }
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <div
                 className={styles.inner}
                 style={{

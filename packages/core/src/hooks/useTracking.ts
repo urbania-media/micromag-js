@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-import { useCallback } from 'react';
-
 import { useScreen, useTracking } from '../contexts';
 
 const getScreenOptions = (screenContext, opts) => {
@@ -20,43 +17,31 @@ const hasTracking = (tracking) => typeof tracking !== 'undefined' && tracking !=
 export const useTrackScreenView = () => {
     const tracking = useTracking();
 
-    return useCallback(
-        (screen = null, index = null) => {
-            if (!hasTracking(tracking)) {
-                return;
-            }
-            if (screen !== null && index !== null) {
-                tracking.trackScreenView(screen, index);
-            }
-        },
-        [tracking],
-    );
+    return (screen = null, index = null) => {
+        if (!hasTracking(tracking)) {
+            return;
+        }
+        if (screen !== null && index !== null) {
+            tracking.trackScreenView(screen, index);
+        }
+    };
 };
 
 export const useTrackScreenEvent = (type = null) => {
     const tracking = useTracking();
-
-    if (!hasTracking(tracking)) {
-        return () => {};
-    }
-
     const screenContext = useScreen();
 
-    if (screenContext.renderContext !== 'view') {
-        return () => {};
-    }
-
-    return useCallback(
-        (action = null, label = null, opts = null) => {
-            if (type !== null && action !== null) {
-                tracking.trackEvent(`screen_${type}`, action, label, {
-                    ...opts,
-                    ...getScreenOptions(screenContext, opts),
-                });
-            }
-        },
-        [screenContext],
-    );
+    return (action = null, label = null, opts = null) => {
+        if (!hasTracking(tracking) || screenContext.renderContext !== 'view') {
+            return;
+        }
+        if (type !== null && action !== null) {
+            tracking.trackEvent(`screen_${type}`, action, label, {
+                ...opts,
+                ...getScreenOptions(screenContext, opts),
+            });
+        }
+    };
 };
 
 export const useTrackScreenMedia = (type: string | null = null) => {
@@ -64,47 +49,41 @@ export const useTrackScreenMedia = (type: string | null = null) => {
 
     const screenContext = useScreen();
 
-    return useCallback(
-        (media = null, action = null, opts = null) => {
-            if (!hasTracking(tracking) || screenContext.renderContext !== 'view') {
-                return;
-            }
-            if (type !== null && media !== null && action !== null) {
-                tracking.trackMedia(`screen_${type}`, media, action, {
-                    ...opts,
-                    ...getScreenOptions(screenContext, opts),
-                });
-            }
-        },
-        [tracking, screenContext, type],
-    );
+    return (media = null, action = null, opts = null) => {
+        if (!hasTracking(tracking) || screenContext.renderContext !== 'view') {
+            return;
+        }
+        if (type !== null && media !== null && action !== null) {
+            tracking.trackMedia(`screen_${type}`, media, action, {
+                ...opts,
+                ...getScreenOptions(screenContext, opts),
+            });
+        }
+    };
 };
 
 export const useTrackEvent = () => {
     const tracking = useTracking();
 
-    return useCallback(
-        (category = null, action = null, label = null, opts = null) => {
-            if (!hasTracking(tracking)) {
-                return;
-            }
-            if (category !== null && action !== null) {
-                tracking.trackEvent(category, action, label, opts);
-            }
-        },
-        [tracking],
-    );
+    return (category = null, action = null, label = null, opts = null) => {
+        if (!hasTracking(tracking)) {
+            return;
+        }
+        if (category !== null && action !== null) {
+            tracking.trackEvent(category, action, label, opts);
+        }
+    };
 };
 
 export const useTrackMedia = (type = null) => {
     const tracking = useTracking();
 
-    return useCallback((media = null, action = null, opts = null) => {
+    return (media = null, action = null, opts = null) => {
         if (!hasTracking(tracking)) {
             return;
         }
         if (type !== null && media !== null && action !== null) {
             tracking.trackMedia(type, media, action, opts);
         }
-    }, []);
+    };
 };

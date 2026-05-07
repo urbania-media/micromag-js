@@ -1,9 +1,9 @@
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import classNames from 'classnames';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { MenuItem, ViewerTheme } from '@micromag/core';
+import type { MenuItem, ScreenComponent, ViewerTheme } from '@micromag/core';
 import Scroll from '@micromag/element-scroll';
 import ShareOptions from '@micromag/element-share-options';
 
@@ -13,12 +13,17 @@ import styles from '../../styles/menus/menu-share.module.css';
 
 const emptyArray: never[] = [];
 
+type ViewerMenuItem = MenuItem & {
+    current?: boolean;
+    screen?: ScreenComponent | null;
+};
+
 interface ViewerMenuShareProps {
     viewerTheme?: ViewerTheme;
     menuWidth?: number;
     title?: string;
     description?: string;
-    items?: MenuItem[];
+    items?: ViewerMenuItem[];
     shareOptions?: string[];
     focusable?: boolean;
     paddingTop?: number;
@@ -53,39 +58,27 @@ function ViewerMenuShare({
               }
             : null;
 
-    const coverScreen = useMemo(() => {
-        const { screen = null } = items[0] || {};
-        return screen;
-    }, [items]);
+    const { screen: coverScreen = null } = items[0] || {};
 
-    const currentScreen = useMemo(() => {
-        const found = items.find((item) => {
-            const { current = false } = item || {};
-            return current;
-        });
-        const { screen = null } = found || {};
-        return screen;
-    }, [items, currentScreenIndex, focusable]);
+    const found = items.find((item) => {
+        const { current = false } = item || {};
+        return current;
+    });
+    const { screen: currentScreen = null } = found || {};
 
     const [shareCurrentScreen, setShareCurrentScreen] = useState(false);
-    const onShareModeChange = useCallback(() => {
+    const onShareModeChange = () => {
         setShareCurrentScreen((value) => !value);
-    }, [setShareCurrentScreen]);
+    };
 
-    const finalShareUrl = useMemo(
-        () =>
-            shareCurrentScreen && currentScreenIndex !== 0
-                ? `${shareUrl}/${currentScreenIndex + 1}`
-                : shareUrl,
-        [shareUrl, shareCurrentScreen, currentScreenIndex],
-    );
+    const finalShareUrl =
+        shareCurrentScreen && currentScreenIndex !== 0
+            ? `${shareUrl}/${currentScreenIndex + 1}`
+            : shareUrl;
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             style={{ ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}
         >

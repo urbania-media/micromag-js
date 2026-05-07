@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { createPathToRegexpParser, useMemoryRouter } from '@folklore/routes';
+import { createPathToRegexpParser } from '@folklore/routes';
 import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { Router } from 'wouter';
+import { memoryLocation } from 'wouter/memory-location';
 
 import { UppyProvider } from '@panneau/uppy';
 
@@ -53,7 +54,7 @@ function EditorContainer({
 }: EditorContainerProps) {
     const { locale } = useIntl();
 
-    const { hook: memoryLocationHook, searchHook: memorySearchHook } = useMemoryRouter();
+    const { hook: memoryLocationHook, searchHook: memorySearchHook } = memoryLocation();
     const routerProps = useMemo(
         () => ({
             hook: memoryRouter ? memoryLocationHook : null,

@@ -1,4 +1,4 @@
-import { animated } from '@react-spring/web';
+import { SpringValue, animated } from '@react-spring/web';
 import classNames from 'classnames';
 import React from 'react';
 
@@ -8,17 +8,17 @@ import { easings, getStyleFromColor } from '@micromag/core/utils';
 import styles from '../../styles/menus/menu-container.module.css';
 
 interface ViewerMenuContainerProps {
-    className?: string;
-    progressSpring?: Record<string, unknown>;
-    theme?: ViewerTheme;
+    className?: string | null;
+    progressSpring?: SpringValue<number>;
+    theme?: ViewerTheme | null;
     children?: React.ReactNode;
 }
 
 function ViewerMenuContainer({
-    className = null,
-    progressSpring = null,
+    progressSpring,
     theme: viewerTheme = null,
     children = null,
+    className = null,
 }: ViewerMenuContainerProps) {
     const { background = null } = viewerTheme || {};
     const { color: brandBackgroundColor = null } = background || {};
@@ -26,10 +26,7 @@ function ViewerMenuContainer({
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             style={{ pointerEvents: 'none' }}
         >
             <animated.div

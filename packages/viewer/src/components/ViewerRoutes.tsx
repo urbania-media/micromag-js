@@ -10,14 +10,12 @@ import Viewer from './Viewer';
 interface ViewerRoutesProps {
     story?: Story | null;
     pathWithIndex?: boolean;
-    children?: ((...args: unknown[]) => void) | null;
     onScreenChange?: ((...args: unknown[]) => void) | null;
 }
 
 function ViewerRoutes({
     story = null,
     pathWithIndex = false,
-    children = null,
     onScreenChange = null,
     ...otherProps
 }: ViewerRoutesProps) {
@@ -25,35 +23,30 @@ function ViewerRoutes({
     const url = useUrlGenerator();
     const [, navigate] = useLocation();
     const { components: screens = [] } = story || {};
-    const finalOnScreenChange = useCallback(
-        (it) => {
-            const screenIndex = screens.findIndex((screen) => {
-                const { id: screenId } = screen;
-                return screenId === it.id || screen === it;
-            });
-            navigate(
-                url('screen', {
-                    screen: pathWithIndex ? screenIndex + 1 : it.id,
-                }),
-            );
-            if (onScreenChange !== null) {
-                onScreenChange(it);
-            }
-        },
-        [navigate, url, pathWithIndex, screens, onScreenChange],
-    );
+    const finalOnScreenChange = (it) => {
+        const screenIndex = screens.findIndex((screen) => {
+            const { id: screenId } = screen;
+            return screenId === it.id || screen === it;
+        });
+        navigate(
+            url('screen', {
+                screen: pathWithIndex ? screenIndex + 1 : it.id,
+            }) as string,
+        );
+        if (onScreenChange !== null) {
+            onScreenChange(it);
+        }
+    };
 
     return (
         <Switch>
-            <Route path={routes.screen}>
+            <Route<{ screen?: string }> path={routes.screen}>
                 {({ screen: screenParam = null }) => {
                     const screenFromIndex =
                         pathWithIndex && screenParam !== null
                             ? screens[parseInt(screenParam, 10) - 1] || null
                             : null;
-                    const screenId = pathWithIndex
-                        ? (screenFromIndex || {}).id || null
-                        : screenParam;
+                    const screenId = pathWithIndex ? screenFromIndex?.id || null : screenParam;
                     return (
                         <Viewer
                             {...otherProps}

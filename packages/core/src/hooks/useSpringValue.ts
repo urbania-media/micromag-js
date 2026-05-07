@@ -1,5 +1,5 @@
 import { useSpring } from '@react-spring/core';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 const getValueFromSpring = (s) => {
     const { value: v = null } = s || {};
@@ -10,10 +10,7 @@ const getValueFromSpring = (s) => {
 
 function useSpringValue(wantedProgress, immediate, params) {
     const [progress, setProgress] = useState(wantedProgress);
-    const onChange = useCallback(
-        (spring) => setProgress(getValueFromSpring(spring)),
-        [setProgress],
-    );
+    const onChange = (spring) => setProgress(getValueFromSpring(spring));
     useSpring({
         progress: wantedProgress,
         onChange,

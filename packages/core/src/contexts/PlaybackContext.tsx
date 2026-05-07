@@ -1,14 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import {
-    ReactNode,
-    createContext,
-    useCallback,
-    useContext,
-    useEffect,
-    useMemo,
-    useRef,
-    useState,
-} from 'react';
+import { ReactNode, createContext, use, useEffect, useRef, useState } from 'react';
 
 interface PlaybackControlsTheme {
     seekBarOnly?: boolean;
@@ -16,7 +6,7 @@ interface PlaybackControlsTheme {
     progressColor?: unknown;
 }
 
-type MediaElement = HTMLVideoElement | HTMLAudioElement | HTMLMediaElement;
+export type MediaElement = HTMLVideoElement | HTMLAudioElement | HTMLMediaElement;
 
 export function mediaElementIsPlaying(media: MediaElement | null): boolean {
     return (
@@ -33,6 +23,7 @@ interface PlaybackContext {
     controlsSuggestPlay: boolean;
     controlsVisible: boolean;
     media: MediaElement | null;
+    mediaSrc: string | null;
     hasAudio: boolean | null;
     isBackground: boolean;
     controlsTheme: PlaybackControlsTheme | null;
@@ -47,6 +38,8 @@ interface PlaybackContext {
     setMedia: (media: MediaElement | null) => void;
     setCurrentQualityLevel: (qualityLevel: number | null, fromRef?: MediaElement | null) => void;
     setIsBackground: (isBackground: boolean) => void;
+    seekByProgress: (progress: number) => void;
+    seek: (time: number) => void;
 }
 
 const defaultControlsThemeValue: PlaybackControlsTheme = {
@@ -65,23 +58,27 @@ export const PlaybackContext = createContext<PlaybackContext>({
     hasAudio: false,
     isBackground: false,
     media: null,
+    mediaSrc: null,
     controlsTheme: defaultControlsThemeValue,
     currentQualityLevel: null,
-    setMuted: (muted: boolean) => {},
-    setPlaying: (playing: boolean) => {},
-    setControls: (hasControls: boolean) => {},
-    setControlsVisible: (visible: boolean) => {},
-    setControlsTheme: (theme: PlaybackControlsTheme | null) => {},
+    setMuted: () => {},
+    setPlaying: () => {},
+    setControls: () => {},
+    setControlsVisible: () => {},
+    setControlsTheme: () => {},
     showControls: () => {},
     hideControls: () => {},
-    setMedia: (media: MediaElement | null) => {},
-    setCurrentQualityLevel: (qualityLevel: number | null, fromRef?: MediaElement | null) => {},
-    setIsBackground: (isBackground: boolean) => {},
+    setMedia: () => {},
+    setCurrentQualityLevel: () => {},
+    setIsBackground: () => {},
+    seekByProgress: () => {},
+    seek: () => {},
 });
 
-export const usePlaybackContext = () => useContext(PlaybackContext);
+export const usePlaybackContext = () => use(PlaybackContext);
 
 export const usePlaybackMediaRef = (active = false, background = false, updateKey = null) => {
+    'use no memo';
     const { setMedia, setIsBackground, media, isBackground, playing } = usePlaybackContext();
     const mediaRef = useRef<HTMLMediaElement | null>(null);
 
@@ -143,6 +140,12 @@ interface PlaybackProviderProps {
     currentQualityLevel?: number | null;
 }
 
+function seekMedia(media: MediaElement | null, time: number) {
+    if (media !== null) {
+        media.currentTime = time;
+    }
+}
+
 export function PlaybackProvider({
     muted: initialMuted = true,
     playing: initialPlaying = false,
@@ -170,47 +173,38 @@ export function PlaybackProvider({
         initialCurrentQualityLevel,
     );
 
-    const finalSetControls = useCallback(
-        (newControls: boolean) => {
-            if (newControls) {
-                setControls(true);
-                setControlsVisible(true);
-                setControlsSuggestPlay(false);
-            } else {
-                setControls(false);
-                setControlsVisible(false);
-                setControlsSuggestPlay(false);
-            }
-        },
-        [setControls, setControlsVisible, setControlsSuggestPlay],
-    );
+    const finalSetControls = (newControls: boolean) => {
+        if (newControls) {
+            setControls(true);
+            setControlsVisible(true);
+            setControlsSuggestPlay(false);
+        } else {
+            setControls(false);
+            setControlsVisible(false);
+            setControlsSuggestPlay(false);
+        }
+    };
 
-    const finalSetControlsTheme = useCallback(
-        (newTheme: PlaybackControlsTheme | null) => {
-            setControlsTheme({ ...defaultControlsThemeValue, ...newTheme });
-        },
-        [setControlsTheme],
-    );
+    const finalSetControlsTheme = (newTheme: PlaybackControlsTheme | null) => {
+        setControlsTheme({ ...defaultControlsThemeValue, ...newTheme });
+    };
 
-    const finalSetPlaying = useCallback(
-        (value: boolean) => {
-            if (value) {
-                setControlsSuggestPlay(false);
-            }
-            setPlaying(value);
-        },
-        [setPlaying, setControlsSuggestPlay],
-    );
+    const finalSetMedia = (newMedia: MediaElement | null) => {
+        setMedia(newMedia);
+        setCurrentQualityLevel(null);
+    };
 
-    // Reset on media change
-    useEffect(() => {
-        setControlsSuggestPlay(false);
-    }, [media, setControlsSuggestPlay]);
+    const finalSetPlaying = (value: boolean) => {
+        if (value) {
+            setControlsSuggestPlay(false);
+        }
+        setPlaying(value);
+    };
 
     // Handle media ended
     const [completed, setCompleted] = useState(false);
-    const onMediaCompleted = useCallback(() => setCompleted(true), [setCompleted]);
     useEffect(() => {
+        const onMediaCompleted = () => setCompleted(true);
         if (media !== null) {
             media.addEventListener('ended', onMediaCompleted);
         }
@@ -220,86 +214,64 @@ export function PlaybackProvider({
             }
             setCompleted(false);
         };
-    }, [media, onMediaCompleted, setCompleted]);
+    }, [media, setCompleted]);
 
-    const showControls = useCallback(() => setControlsVisible(true), [setControlsVisible]);
-    const hideControls = useCallback(() => {
+    const showControls = () => setControlsVisible(true);
+    const hideControls = () => {
         setControlsVisible(false);
-    }, [setControlsVisible]);
+    };
 
-    const hasAudio = useMemo(() => {
-        if (media === null || media.tagName.toLowerCase() !== 'video') {
-            return false;
+    const seekByProgress = (progress: number) => {
+        if (media !== null && media.duration) {
+            seekMedia(media, progress * media.duration);
         }
-        if (media.tagName.toLowerCase() === 'audio') {
-            return true;
+    };
+    const seek = (time: number) => {
+        if (media !== null) {
+            seekMedia(media, time);
         }
-        if (typeof media.dataset.hasAudio === 'undefined') {
-            return null;
+    };
+
+    const hasAudio =
+        media !== null &&
+        (media.tagName.toLowerCase() === 'audio' || media.dataset.hasAudio === 'true');
+
+    const finalSetCurrentQualityLevel = (
+        level: number | null,
+        fromRef: MediaElement | null = null,
+    ) => {
+        if (fromRef === null || media === null || fromRef === media) {
+            setCurrentQualityLevel(level);
         }
-        return media.dataset.hasAudio === 'true' || media.dataset.hasAudio === true;
-    }, [media]);
+    };
 
-    const finalSetCurrentQualityLevel = useCallback(
-        (level: number | null, fromRef: MediaElement | null = null) => {
-            if (fromRef === null || media === null || fromRef === media) {
-                setCurrentQualityLevel(level);
-            }
-        },
-        [media, setCurrentQualityLevel],
-    );
+    const value = {
+        muted,
+        playing: playing && !paused,
+        completed,
+        controls,
+        controlsSuggestPlay,
+        controlsVisible,
+        media,
+        mediaSrc: media !== null ? media.currentSrc || media.src || null : null,
+        hasAudio,
+        controlsTheme,
+        currentQualityLevel,
+        setMuted,
+        setIsBackground,
+        seekByProgress,
+        seek,
+        isBackground,
+        setPlaying: finalSetPlaying,
+        setControls: finalSetControls,
+        setControlsSuggestPlay,
+        setControlsVisible,
+        setControlsTheme: finalSetControlsTheme,
+        showControls,
+        hideControls,
+        setMedia: finalSetMedia,
+        setCurrentQualityLevel: finalSetCurrentQualityLevel,
+    };
 
-    const value = useMemo(
-        () => ({
-            muted,
-            playing: playing && !paused,
-            completed,
-            controls,
-            controlsSuggestPlay,
-            controlsVisible,
-            media,
-            hasAudio,
-            controlsTheme,
-            currentQualityLevel,
-            setMuted,
-            setIsBackground,
-            isBackground,
-            setPlaying: finalSetPlaying,
-            setControls: finalSetControls,
-            setControlsSuggestPlay,
-            setControlsVisible,
-            setControlsTheme: finalSetControlsTheme,
-            showControls,
-            hideControls,
-            setMedia,
-            setCurrentQualityLevel: finalSetCurrentQualityLevel,
-        }),
-        [
-            muted,
-            playing,
-            completed,
-            paused,
-            controls,
-            controlsSuggestPlay,
-            controlsVisible,
-            controlsTheme,
-            media,
-            hasAudio,
-            currentQualityLevel,
-            setMuted,
-            setIsBackground,
-            isBackground,
-            finalSetPlaying,
-            finalSetControls,
-            finalSetControlsTheme,
-            setControlsSuggestPlay,
-            setControlsVisible,
-            showControls,
-            hideControls,
-            setMedia,
-            finalSetCurrentQualityLevel,
-        ],
-    );
-
-    return <PlaybackContext.Provider value={value}>{children}</PlaybackContext.Provider>;
+    return <PlaybackContext value={value}>{children}</PlaybackContext>;
 }

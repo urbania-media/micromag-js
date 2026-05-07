@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import isString from 'lodash/isString';
-import React, { useContext, useMemo } from 'react';
+import React, { ElementType, createContext, use } from 'react';
 
 import { ComponentsManager } from '../lib';
 
@@ -10,36 +9,36 @@ export const FORMS_NAMESPACE = 'forms';
 export const SCREENS_NAMESPACE = 'screens';
 export const ELEMENTS_NAMESPACE = 'elements';
 
-export const ComponentsContext = React.createContext(null);
+export const ComponentsContext = createContext<ComponentsManager | null>(null);
 
 const emptyComponents = {};
 
 /**
  * Hooks
  */
-export const useComponentsManager = (namespace = null) => {
-    const manager = useContext(ComponentsContext);
-    const finalManager = useMemo(
-        () =>
-            namespace !== null ? new ComponentsManager(manager.getComponents(namespace)) : manager,
-        [manager, namespace],
-    );
-    return finalManager;
+export const useComponentsManager = (namespace: string | null = null): ComponentsManager | null => {
+    const manager = use(ComponentsContext);
+    return namespace !== null ? new ComponentsManager(manager?.getComponents(namespace)) : manager;
 };
 
-export const useComponents = (namespace = null, defaultComponents = emptyComponents) => {
+export const useComponents = (
+    namespace: string | null = null,
+    defaultComponents = emptyComponents,
+): Record<string, ElementType> => {
     const manager = useComponentsManager();
-    return manager.getComponents(namespace) || defaultComponents;
+    return manager?.getComponents(namespace) || defaultComponents;
 };
 
-export const useComponent = (name, defaultComponent = null, namespace = null) => {
+export const useComponent = (
+    name: string | ElementType | null,
+    defaultComponent: ElementType | null = null,
+    namespace: string | null = null,
+): ElementType | null => {
     const manager = useComponentsManager(namespace);
-    return useMemo(() => {
-        if (!isString(name)) {
-            return name || defaultComponent;
-        }
-        return manager.getComponent(name) || defaultComponent;
-    }, [manager, name, defaultComponent]);
+    if (!isString(name)) {
+        return name || defaultComponent;
+    }
+    return manager?.getComponent(name) || defaultComponent;
 };
 
 /**
@@ -50,7 +49,7 @@ export const useFieldsComponentsManager = () => useComponentsManager(FIELDS_NAME
 export const useFieldsComponents = (defaultComponents = emptyComponents) =>
     useComponents(FIELDS_NAMESPACE, defaultComponents);
 
-export const useFieldComponent = (name, defaultComponent = null) =>
+export const useFieldComponent = (name: string | ElementType | null, defaultComponent = null) =>
     useComponent(name, defaultComponent, FIELDS_NAMESPACE);
 
 /**
@@ -61,7 +60,7 @@ export const useScreensComponentsManager = () => useComponentsManager(SCREENS_NA
 export const useScreensComponents = (defaultComponents = emptyComponents) =>
     useComponents(SCREENS_NAMESPACE, defaultComponents);
 
-export const useScreenComponent = (name, defaultComponent = null) =>
+export const useScreenComponent = (name: string | ElementType | null, defaultComponent = null) =>
     useComponent(name, defaultComponent, SCREENS_NAMESPACE);
 
 /**
@@ -72,7 +71,7 @@ export const useFormsComponentsManager = () => useComponentsManager(FORMS_NAMESP
 export const useFormsComponents = (defaultComponents = emptyComponents) =>
     useComponents(FORMS_NAMESPACE, defaultComponents);
 
-export const useFormComponent = (name, defaultComponent = null) =>
+export const useFormComponent = (name: string | ElementType | null, defaultComponent = null) =>
     useComponent(name, defaultComponent, FORMS_NAMESPACE);
 
 /**
@@ -83,7 +82,7 @@ export const useModalsComponentsManager = () => useComponentsManager(MODALS_NAME
 export const useModalsComponents = (defaultComponents = emptyComponents) =>
     useComponents(MODALS_NAMESPACE, defaultComponents);
 
-export const useModalComponent = (name, defaultComponent = null) =>
+export const useModalComponent = (name: string | ElementType | null, defaultComponent = null) =>
     useComponent(name, defaultComponent, MODALS_NAMESPACE);
 
 /**
@@ -94,7 +93,7 @@ export const useElementsComponentsManager = () => useComponentsManager(ELEMENTS_
 export const useElementsComponents = (defaultComponents = emptyComponents) =>
     useComponents(ELEMENTS_NAMESPACE, defaultComponents);
 
-export const useElementComponent = (name, defaultComponent = null) =>
+export const useElementComponent = (name: string | ElementType | null, defaultComponent = null) =>
     useComponent(name, defaultComponent, ELEMENTS_NAMESPACE);
 
 /**
@@ -102,9 +101,9 @@ export const useElementComponent = (name, defaultComponent = null) =>
  */
 interface ComponentsProviderProps {
     children: React.ReactNode;
-    namespace?: string;
-    manager?: ComponentsManager;
-    components?: Record<string, Record<string, unknown> | ((...args: unknown[]) => void)>;
+    namespace?: string | null;
+    manager?: ComponentsManager | null;
+    components?: Record<string, Record<string, ElementType>> | Record<string, ElementType>;
 }
 
 export function ComponentsProvider({
@@ -114,14 +113,10 @@ export function ComponentsProvider({
     children,
 }: ComponentsProviderProps) {
     const previousManager = useComponentsManager() || null;
-    const finalManager = useMemo(
-        () =>
-            new ComponentsManager({
-                ...(previousManager !== null ? previousManager.getComponents() : null),
-                ...(manager !== null ? manager.getComponents() : null),
-                ...new ComponentsManager(components).addNamespace(namespace).getComponents(),
-            }),
-        [previousManager, manager, components, namespace],
-    );
-    return <ComponentsContext.Provider value={finalManager}>{children}</ComponentsContext.Provider>;
+    const finalManager = new ComponentsManager({
+        ...(previousManager !== null ? previousManager.getComponents() : null),
+        ...(manager !== null ? manager.getComponents() : null),
+        ...new ComponentsManager(components).addNamespace(namespace).getComponents(),
+    });
+    return <ComponentsContext value={finalManager}>{children}</ComponentsContext>;
 }

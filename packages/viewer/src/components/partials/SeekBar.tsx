@@ -1,12 +1,14 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
-import React, { useCallback, useRef, useState } from 'react';
+import isString from 'lodash/isString';
+import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { MediaElement } from '@micromag/core/contexts';
 import { useMediaCurrentTime, useMediaDuration, useMediaProgress } from '@micromag/core/hooks';
 
 import stopDragEventsPropagation from '../../lib/stopDragEventsPropagation';
+
 import styles from '../../styles/partials/seek-bar.module.css';
 
 function getFormattedTimestamp(secondsWithMs = null) {
@@ -16,7 +18,9 @@ function getFormattedTimestamp(secondsWithMs = null) {
     const parts = `${secondsWithMs}`.split('.');
     const [fullSeconds = 0] = parts || [];
 
-    const finalFullSeconds = Math.round(fullSeconds);
+    const finalFullSeconds = Math.round(
+        isString(fullSeconds) ? parseInt(fullSeconds) : fullSeconds,
+    );
 
     const seconds = finalFullSeconds % 60;
     const diff = finalFullSeconds - seconds;
@@ -31,7 +35,7 @@ function getFormattedTimestamp(secondsWithMs = null) {
 const SHOW_MILLISECONDS_THRESHOLD = 5; // show milliseconds when scrubbing if length of video is shorter than 5 seconds
 
 interface SeekBarProps {
-    media?: (...args: unknown[]) => void | { current?: unknown };
+    media?: MediaElement;
     playing?: boolean;
     backgroundColor?: string;
     progressColor?: string;
@@ -73,45 +77,48 @@ function SeekBar({
 
     const startProgressRef = useRef(progress);
 
-    const onDrag = useCallback(
-        // eslint-disable-next-line no-unused-vars
-        ({ xy: [xOffset], movement: [xMovement], elapsedTime, active, tap, currentTarget }) => {
-            if (!active && elapsedTime > 300) {
-                return;
-            }
-            if (collapsed) {
-                onClick();
-                return;
-            }
-            const { width: elWidth = 0, x: xGap = null } = currentTarget.getBoundingClientRect();
-            let newProgress = null;
-            if (tap) {
-                newProgress = Math.max(0, Math.min(1, (xOffset - xGap) / elWidth));
-            } else {
-                // startProgressRef.current + xMovement
-                newProgress = Math.max(0, Math.min(1, (xOffset - xGap) / elWidth));
-            }
-            if (onSeek !== null) {
-                onSeek(newProgress, tap);
-            }
-        },
-        [onSeek, onClick, collapsed],
-    );
+    const onDrag = ({
+        xy: [xOffset],
+        movement: [xMovement],
+        elapsedTime,
+        active,
+        tap,
+        currentTarget,
+    }) => {
+        if (!active && elapsedTime > 300) {
+            return;
+        }
+        if (collapsed) {
+            onClick();
+            return;
+        }
+        const { width: elWidth = 0, x: xGap = null } = currentTarget.getBoundingClientRect();
+        let newProgress = null;
+        if (tap) {
+            newProgress = Math.max(0, Math.min(1, (xOffset - xGap) / elWidth));
+        } else {
+            // startProgressRef.current + xMovement
+            newProgress = Math.max(0, Math.min(1, (xOffset - xGap) / elWidth));
+        }
+        if (onSeek !== null) {
+            onSeek(newProgress, tap);
+        }
+    };
 
-    const onDragStart = useCallback(() => {
+    const onDragStart = () => {
         startProgressRef.current = progress;
         setShowTimestamp(true);
         if (onSeekStart !== null) {
             onSeekStart();
         }
-    }, [progress, onSeekStart, setShowTimestamp]);
+    };
 
-    const onDragEnd = useCallback(() => {
+    const onDragEnd = () => {
         if (onSeekEnd !== null) {
             setShowTimestamp(false);
             onSeekEnd();
         }
-    }, [onSeekEnd, setShowTimestamp]);
+    };
 
     const bind = useGesture(
         {

@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
+import { ReactNode, cloneElement } from 'react';
 
 import { useDevicePixelRatio, useDimensionObserver } from '../../hooks';
 
@@ -16,7 +15,7 @@ interface ScreenSizerProps {
     screenWidth?: number;
     screenHeight?: number;
     className?: string | null;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 function ScreenSizer({
@@ -36,17 +35,13 @@ function ScreenSizer({
         height: calculatedHeight = 0,
     } = useDimensionObserver();
 
-    const {
-        width: frameWidth = null,
-        height: frameHeight = null,
-        scale: frameScale = null,
-        transform: screenTransform = null,
-    } = useMemo(() => {
-        const containerWidth = width || calculatedWidth || null;
-        const containerHeight = height || calculatedHeight || null;
-        if (containerWidth === null && containerHeight === null) {
-            return {};
-        }
+    let frameWidth = null;
+    let frameHeight = null;
+    let frameScale = null;
+    let screenTransform = null;
+    const containerWidth = width || calculatedWidth || null;
+    const containerHeight = height || calculatedHeight || null;
+    if (containerWidth !== null && containerHeight !== null) {
         const screenRatio = screenWidth / screenHeight;
         const finalContainerWidth = hasSize
             ? width || containerHeight * screenRatio
@@ -54,61 +49,51 @@ function ScreenSizer({
         const finalContainerHeight = hasSize
             ? height || containerWidth / screenRatio
             : containerWidth / screenRatio;
-        if (fit === null) {
-            const screenScale = finalContainerWidth / screenWidth;
-            return {
-                width: finalContainerWidth,
-                height: finalContainerHeight,
+        if (fit !== null) {
+            const {
+                width: screenScaledWidth,
+                height: screenScaledHeight,
                 scale: screenScale,
-                transform: `scale(${screenScale})`,
-            };
+            } = getSizeWithinBounds(
+                screenWidth,
+                screenHeight,
+                finalContainerWidth,
+                finalContainerHeight,
+                {
+                    cover: fit === 'cover',
+                },
+            );
+
+            const x = (finalContainerWidth - screenScaledWidth) / 2;
+            const y = (finalContainerHeight - screenScaledHeight) / 2;
+
+            frameWidth = finalContainerWidth;
+            frameHeight = finalContainerHeight;
+            frameScale = screenScale;
+            screenTransform = `scale(${screenScale}) translate(${x}px, ${y}px)`;
+        } else {
+            const screenScale = finalContainerWidth / screenWidth;
+            frameWidth = finalContainerWidth;
+            frameHeight = finalContainerHeight;
+            frameScale = screenScale;
+            screenTransform = `scale(${screenScale})`;
         }
-
-        const {
-            width: screenScaledWidth,
-            height: screenScaledHeight,
-            scale: screenScale,
-        } = getSizeWithinBounds(
-            screenWidth,
-            screenHeight,
-            finalContainerWidth,
-            finalContainerHeight,
-            {
-                cover: fit === 'cover',
-            },
-        );
-
-        const x = (finalContainerWidth - screenScaledWidth) / 2;
-        const y = (finalContainerHeight - screenScaledHeight) / 2;
-
-        return {
-            width: finalContainerWidth,
-            height: finalContainerHeight,
-            scale: screenScale,
-            transform: `scale(${screenScale}) translate(${x}px, ${y}px)`,
-        };
-    }, [screenWidth, screenHeight, width, height, fit, calculatedWidth, calculatedHeight, hasSize]);
+    }
 
     const devicePixelRatio = useDevicePixelRatio();
-    const screenSize = useMemo(
-        () => ({
-            screen: 'mobile',
-            screens: ['mobile'],
-            width: screenWidth,
-            height: screenHeight,
-            resolution: frameScale !== null ? frameScale * devicePixelRatio : devicePixelRatio,
-        }),
-        [screenWidth, screenHeight, frameScale],
-    );
+    const screenSize = {
+        screen: 'mobile',
+        screens: ['mobile'],
+        width: screenWidth,
+        height: screenHeight,
+        resolution: frameScale !== null ? frameScale * devicePixelRatio : devicePixelRatio,
+    };
 
     const hasFrameSize = frameWidth !== null && frameHeight !== null;
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             ref={!hasSize ? refContainer : null}
         >
             {hasFrameSize ? (
@@ -128,7 +113,7 @@ function ScreenSizer({
                         }}
                     >
                         <ScreenSizeProvider size={screenSize}>
-                            {React.cloneElement(children, {
+                            {cloneElement(children, {
                                 width: screenWidth,
                                 height: screenHeight,
                             })}

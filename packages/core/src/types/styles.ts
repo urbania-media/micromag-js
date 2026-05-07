@@ -1,4 +1,4 @@
-import { FontMedia } from "./medias";
+import { FontMedia } from './medias';
 
 /**
  * Style
@@ -7,9 +7,10 @@ export interface CustomFont {
     type?: 'system' | 'google' | 'custom';
     name?: string;
     media?: FontMedia;
+    variants?: string[] | { fvd?: string; weight?: number; style?: string }[];
 }
 
-export type Font = Record<string, unknown> | string;
+export type Font = CustomFont | string;
 
 export type TextAlign = 'left' | 'right' | 'center';
 

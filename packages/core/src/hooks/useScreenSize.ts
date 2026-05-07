@@ -1,6 +1,6 @@
 import { useWindowSize } from '@folklore/hooks';
 import { match as matchMediaQuery } from 'css-mediaquery';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDimensionObserver } from './useObserver';
 
@@ -24,34 +24,30 @@ const useScreenSize = ({
 }) => {
     const devicePixelRatio = useDevicePixelRatio();
     const screens = initialScreens || [];
-    const screenSize = useMemo(() => {
-        const media =
-            providedMedia !== null
-                ? providedMedia
-                : {
-                      type: mediaType,
-                      width: `${width}px`,
-                      height: `${height}px`,
-                  };
-        const matchingScreens = [...screens]
-            .reverse()
-            .filter(
-                ({ mediaQuery = null }) =>
-                    mediaQuery === null || matchMediaQuery(mediaQuery, media),
-            );
+    const media =
+        providedMedia !== null
+            ? providedMedia
+            : {
+                  type: mediaType,
+                  width: `${width}px`,
+                  height: `${height}px`,
+              };
+    const matchingScreens = [...screens]
+        .reverse()
+        .filter(
+            ({ mediaQuery = null }) => mediaQuery === null || matchMediaQuery(mediaQuery, media),
+        );
 
-        return {
-            screen: matchingScreens.length > 0 ? matchingScreens[0].name : null,
-            screens: [...matchingScreens].reverse().map(({ name }) => name),
-            width,
-            height,
-            landscape,
-            menuOverScreen,
-            resolution: scale !== null ? scale * devicePixelRatio : devicePixelRatio,
-            imageResolution: scale !== null ? Math.max(scale, devicePixelRatio) : devicePixelRatio,
-        };
-    }, [screens, providedMedia, mediaType, width, height, landscape, menuOverScreen]);
-    return screenSize;
+    return {
+        screen: matchingScreens.length > 0 ? matchingScreens[0].name : null,
+        screens: [...matchingScreens].reverse().map(({ name }) => name),
+        width,
+        height,
+        landscape,
+        menuOverScreen,
+        resolution: scale !== null ? scale * devicePixelRatio : devicePixelRatio,
+        imageResolution: scale !== null ? Math.max(scale, devicePixelRatio) : devicePixelRatio,
+    };
 };
 
 export const useScreenSizeFromElement = (options = null) => {

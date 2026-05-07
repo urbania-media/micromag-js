@@ -1,60 +1,55 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import isString from 'lodash/isString';
 import uniqBy from 'lodash/uniqBy';
-import React, { useContext, useMemo } from 'react';
+import { ReactNode, createContext, use } from 'react';
 
 import { FieldsManager } from '../lib';
 
+import { FieldDefinition } from '../types';
 import { ComponentsProvider, FIELDS_NAMESPACE } from './ComponentsContext';
 
-export const FieldsContext = React.createContext(null);
+export const FieldsContext = createContext<FieldsManager | null>(null);
 
-export const useFieldsManager = () => useContext(FieldsContext);
+export const useFieldsManager = () => use(FieldsContext);
 
-export const useFieldDefinition = (id) => {
+export const useFieldDefinition = (id: string) => {
     const manager = useFieldsManager();
-    return manager.getDefinition(id);
+    return manager?.getDefinition(id);
 };
 
 interface FieldsProviderProps {
-    fields?: FieldDefinition[];
-    manager?: FieldsManager;
-    children: React.ReactNode;
+    fields?: FieldDefinition[] | null;
+    manager?: FieldsManager | null;
+    children: ReactNode;
 }
 
 export function FieldsProvider({ fields = null, manager = null, children }: FieldsProviderProps) {
     const previousManager = useFieldsManager() || null;
 
-    const finalManager = useMemo(() => {
-        const newFields = uniqBy(
-            [
-                ...(fields || []),
-                ...(manager !== null ? manager.getDefinitions() : []),
-                ...(previousManager !== null ? previousManager.getDefinitions() : []),
-            ],
-            ({ id }) => id,
-        ).reverse();
-        return new FieldsManager(newFields);
-    }, [previousManager, manager, fields]);
-
-    const components = useMemo(() => {
-        const newComponents = finalManager.getComponents();
-        return Object.keys(newComponents).reduce((map, id) => {
-            const component = newComponents[id];
-            return isString(component)
-                ? map
-                : {
-                      ...map,
-                      [id]: component,
-                  };
-        }, {});
-    }, [finalManager]);
+    const newFields = uniqBy(
+        [
+            ...(fields || []),
+            ...(manager !== null ? manager.getDefinitions() : []),
+            ...(previousManager !== null ? previousManager.getDefinitions() : []),
+        ],
+        ({ id }) => id,
+    ).reverse();
+    const finalManager = new FieldsManager(newFields);
+    const newComponents = finalManager.getComponents();
+    const components = Object.keys(newComponents).reduce((map, id) => {
+        const component = newComponents[id];
+        return isString(component)
+            ? map
+            : {
+                  ...map,
+                  [id]: component,
+              };
+    }, {});
 
     return (
-        <FieldsContext.Provider value={finalManager}>
+        <FieldsContext value={finalManager}>
             <ComponentsProvider namespace={FIELDS_NAMESPACE} components={components}>
                 {children}
             </ComponentsProvider>
-        </FieldsContext.Provider>
+        </FieldsContext>
     );
 }

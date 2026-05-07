@@ -1,16 +1,15 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import dayjs from 'dayjs';
-import React, { useMemo } from 'react';
+import { ReactNode } from 'react';
 import { FormattedDate, FormattedTime } from 'react-intl';
 
 interface DateProps {
     date?: string | null;
     withTime?: boolean;
-    timeSeparator?: React.ReactNode;
+    timeSeparator?: ReactNode;
 }
 
 function Date({ date = null, withTime = false, timeSeparator = ', ' }: DateProps) {
-    const dateObject = useMemo(() => dayjs(date).toDate(), [date]);
+    const dateObject = dayjs(date).toDate();
     return (
         <>
             <FormattedDate value={dateObject} year="numeric" month="long" day="2-digit" />
