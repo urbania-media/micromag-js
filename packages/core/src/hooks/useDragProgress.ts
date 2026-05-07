@@ -1,6 +1,6 @@
 import { useSpring, useSpringRef } from '@react-spring/core';
 import { useGesture } from '@use-gesture/react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface UseDragProgressProps {
     progress: number;
@@ -16,6 +16,10 @@ interface UseDragProgressProps {
     dragOptions?: object;
 }
 
+const defaultDragOptions = {
+    filterTaps: true,
+};
+
 function useDragProgress({
     progress: wantedProgress,
     onTap = null,
@@ -27,16 +31,14 @@ function useDragProgress({
     onResolve = null,
     onScroll = null,
     springParams = undefined,
-    dragOptions = {
-        filterTaps: true,
-    },
+    dragOptions = defaultDragOptions,
 }: UseDragProgressProps) {
     const draggingRef = useRef(false);
     const progressRef = useRef(wantedProgress);
-    const wantedProgressRef = useRef(wantedProgress);
-    if (wantedProgress !== wantedProgressRef.current) {
-        wantedProgressRef.current = wantedProgress;
-    }
+    // const wantedProgressRef = useRef(wantedProgress);
+    // if (wantedProgress !== wantedProgressRef.current) {
+    //     wantedProgressRef.current = wantedProgress;
+    // }
     const [dragging, setDragging] = useState(false);
     const [direction, setDirection] = useState(0);
 
@@ -52,52 +54,49 @@ function useDragProgress({
         ...springParams,
     }));
 
-    const onDrag = useCallback(
-        (gestureState) => {
-            const { active, tap } = gestureState;
+    const onDrag = (gestureState) => {
+        const { active, tap } = gestureState;
 
-            if (disabled) {
-                draggingRef.current = false;
-                return;
-            }
+        if (disabled) {
+            draggingRef.current = false;
+            return;
+        }
 
-            if (tap) {
-                draggingRef.current = false;
-                if (onTap !== null) onTap(gestureState);
-                return;
-            }
+        if (tap) {
+            draggingRef.current = false;
+            if (onTap !== null) onTap(gestureState);
+            return;
+        }
 
-            if (dragDisabled) {
-                draggingRef.current = false;
-                return;
-            }
+        if (dragDisabled) {
+            draggingRef.current = false;
+            return;
+        }
 
-            const newProgress = computeProgress(gestureState);
-            draggingRef.current = active;
-            setDirection(newProgress < wantedProgressRef.current ? -1 : 1);
-            progressRef.current = newProgress;
-            if (active !== dragging) {
-                setDragging(active);
-            }
-            api.start({
-                progress: newProgress,
-                immediate: active,
-                onResolve: !active
-                    ? (e) => {
-                          setDirection(0);
-                          if (onResolve !== null) onResolve(e);
-                      }
-                    : (e) => {
-                          if (onResolve !== null) onResolve(e);
-                      },
-                ...springParams,
-            });
-            if (onProgress !== null) {
-                onProgress(newProgress, gestureState);
-            }
-        },
-        [setDragging, disabled, onTap, computeProgress, dragging, onProgress, onResolve],
-    );
+        const newProgress = computeProgress(gestureState);
+        draggingRef.current = active;
+        setDirection(newProgress < wantedProgress ? -1 : 1);
+        progressRef.current = newProgress;
+        if (active !== dragging) {
+            setDragging(active);
+        }
+        api.start({
+            progress: newProgress,
+            immediate: active,
+            onResolve: !active
+                ? (e) => {
+                      setDirection(0);
+                      if (onResolve !== null) onResolve(e);
+                  }
+                : (e) => {
+                      if (onResolve !== null) onResolve(e);
+                  },
+            ...springParams,
+        });
+        if (onProgress !== null) {
+            onProgress(newProgress, gestureState);
+        }
+    };
 
     const bind = useGesture(
         {
@@ -124,12 +123,9 @@ function useDragProgress({
                 ...springParams,
             });
         }
-    }, [wantedProgress, disabled]);
+    }, [api, wantedProgress, disabled, onResolve, springParams]);
 
-    const transitioning = useMemo(
-        () => wantedProgress !== progress.get() || progress.isAnimating || dragging,
-        [wantedProgress, progress.isAnimating, dragging],
-    );
+    const transitioning = wantedProgress !== progress.get() || progress.isAnimating || dragging;
 
     return {
         transitioning,

@@ -8,6 +8,17 @@ export const useDevicePixelRatio = () => {
     const [pixelRatio, setPixelRatio] = useState(1);
     useEffect(() => {
         setPixelRatio(typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1);
+
+        const media = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+        function onChange() {
+            setPixelRatio(typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1);
+        }
+
+        media.addEventListener('change', onChange, { once: true });
+
+        return () => {
+            media.removeEventListener('change', onChange);
+        };
     }, [setPixelRatio]);
     return pixelRatio;
 };
