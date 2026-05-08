@@ -445,6 +445,8 @@ function Viewer({
     if (screenIndex !== longPressScreenIndex && (longPressPaused || pointerDownTime !== null)) {
         setLongPressPaused(false);
         setPointerDownTime(null);
+    } else if (longPressPaused && pointerDownTime !== null) {
+        setPointerDownTime(null);
     }
     useEffect(() => {
         const { tagName: mediaTagName } = playbackMedia || {};
@@ -460,7 +462,10 @@ function Viewer({
         return () => clearTimeout(interval);
     }, [playing, pointerDownTime, longPressPauseDelay, playbackMedia, setPlaying, screenIndex]);
 
-    const onPointerDown = () => {
+    const onPointerDown = (e) => {
+        if (checkClickable(e.target)) {
+            return;
+        }
         setPointerDownTime(Date.now());
         setLongPressScreenIndex(screenIndex);
     };
