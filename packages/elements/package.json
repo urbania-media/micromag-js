@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.4.77",
+    "version": "0.4.78",
     "private": false,
     "description": "",
     "keywords": [
@@ -93,7 +93,7 @@
         "@micromag/element-link": "^0.4.77",
         "@micromag/element-map": "^0.4.77",
         "@micromag/element-quote": "^0.4.77",
-        "@micromag/element-scroll": "^0.4.77",
+        "@micromag/element-scroll": "^0.4.78",
         "@micromag/element-share-incentive": "^0.4.77",
         "@micromag/element-share-options": "^0.4.77",
         "@micromag/element-stack": "^0.4.77",

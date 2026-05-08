@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-timeline",
-    "version": "0.4.77",
+    "version": "0.4.78",
     "private": false,
     "description": "",
     "keywords": [
@@ -69,7 +69,7 @@
         "@micromag/element-header": "^0.4.77",
         "@micromag/element-heading": "^0.4.77",
         "@micromag/element-layout": "^0.4.77",
-        "@micromag/element-scroll": "^0.4.77",
+        "@micromag/element-scroll": "^0.4.78",
         "@micromag/element-text": "^0.4.77",
         "@micromag/element-visual": "^0.4.77",
         "@micromag/transforms": "^0.4.77",
