@@ -153,13 +153,6 @@ function Scroll({
         }
     }, [scrollableRef, scrollPosition]);
 
-    console.log({
-        scrollableHeight,
-        scrolleeHeight,
-        maxScrollAmount,
-        withArrow,
-    });
-
     return (
         <div
             className={classNames([
