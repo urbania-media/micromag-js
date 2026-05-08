@@ -4,7 +4,7 @@
         "strict": false,
         "paths": {
             "@micromag/core": ["./packages/core/src/index.ts"],
-            "@micromag/core/*": ["./packages/core/src/*/index.ts"],
+            "@micromag/core/*": ["./packages/core/src/*.ts"],
             "@micromag/element-*": ["./elements/*/src/index.ts"],
             "@micromag/screen-*": ["./screens/*/src/index.ts"],
             "@micromag/*": ["./packages/*/src/index.ts"]

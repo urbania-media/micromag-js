@@ -1,10 +1,4 @@
 .container {
-    /* &:focus { */
-
-    /* box-shadow: none; */
-
-    /* } */
-
     .icon {
         position: relative;
         display: block;
@@ -16,27 +10,27 @@
     }
 
     &.withoutStyle {
-        display: inline-block;
         position: relative;
+        display: inline-block;
         padding: 0;
         border: 0;
+        appearance: none;
         background: transparent;
         color: inherit;
-        font-family: inherit;
         cursor: pointer;
-        appearance: none;
+        font-family: inherit;
     }
 
     &.asLink {
-        display: inline-block;
         position: relative;
+        display: inline-block;
         padding: 0;
         border: 0;
-        background: transparent;
-        font-family: inherit;
-        cursor: pointer;
         appearance: none;
+        background: transparent;
         color: var(--mm-primary, #a13dff);
+        cursor: pointer;
+        font-family: inherit;
         font-weight: bold;
     }
 
@@ -45,7 +39,6 @@
         flex-direction: row;
         align-items: center;
 
-        /* stylelint-disable */
         .label {
             margin-left: 0.5em;
             transform-origin: 0 50%;
@@ -54,9 +47,9 @@
         .right {
             margin-left: 0.5em;
         }
-        /* stylelint-enable */
     }
 
+    /* stylelint-disable-next-line selector-class-pattern */
     &.withIcon.withAnimations.icon-right {
         .label {
             transform-origin: 100% 50%;
@@ -71,12 +64,12 @@
 
     &.linkDisabled {
         opacity: 0.4;
-        text-decoration: none;
         pointer-events: none;
+        text-decoration: none;
     }
 
     &:focus-visible {
-        outline: 2px solid #000;
         box-shadow: 0 0 2px 0 var(--micromag-focus-color, #fff);
+        outline: 2px solid #000;
     }
 }

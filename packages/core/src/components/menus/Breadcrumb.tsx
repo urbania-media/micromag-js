@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import React from 'react';
 import { Link } from 'wouter';
 
+import { BootstrapTheme, MenuItem } from '../../types';
 import Button from '../buttons/Button';
 import Label from '../partials/Label';
 

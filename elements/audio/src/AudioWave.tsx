@@ -2,7 +2,7 @@ import { useSpring, useSpringRef } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import type { Color } from '@micromag/core';
 import { useDevicePixelRatio, useDimensionObserver } from '@micromag/core/hooks';

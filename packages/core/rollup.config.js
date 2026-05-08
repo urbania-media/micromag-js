@@ -22,7 +22,10 @@ const files = {
         // ],
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
-            resolveOnly: [new RegExp(path.join(__dirname, './src/lib'))],
+            resolveOnly: [
+                new RegExp(path.join(__dirname, './src/lib')),
+                new RegExp(path.join(__dirname, './src/types')),
+            ],
         },
     },
 
@@ -36,6 +39,10 @@ const files = {
                     },
                     {
                         find: /(\.\.\/)*\.\.\/\.\.\/lib\/?$/,
+                        replacement: '@micromag/core',
+                    },
+                    {
+                        find: /(\.\.\/)*\.\.\/\.\.\/types\/?$/,
                         replacement: '@micromag/core',
                     },
                 ],
@@ -60,6 +67,10 @@ const files = {
                     },
                     {
                         find: /\.\.\/lib\/?$/,
+                        replacement: '@micromag/core',
+                    },
+                    {
+                        find: /\.\.\/types\/?$/,
                         replacement: '@micromag/core',
                     },
                 ],
@@ -88,6 +99,10 @@ const files = {
                         find: /\.\.\/lib\/?$/,
                         replacement: '@micromag/core',
                     },
+                    {
+                        find: /\.\.\/types\/?$/,
+                        replacement: '@micromag/core',
+                    },
                 ],
             }),
         ],
@@ -101,6 +116,16 @@ const files = {
     },
 
     'utils.ts': {
+        prependPlugins: [
+            alias({
+                entries: [
+                    {
+                        find: /\.\.\/types\/?$/,
+                        replacement: '@micromag/core',
+                    },
+                ],
+            }),
+        ],
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],
             resolveOnly: [new RegExp(path.join(__dirname, './src/utils'))],

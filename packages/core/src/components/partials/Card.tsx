@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import { Label as LabelType } from '@micromag/core/types';
+import { Label as LabelType } from '../../types';
 
 import Label from './Label';
 import Link from './Link';

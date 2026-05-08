@@ -75,7 +75,21 @@ export interface Panel {
 }
 
 export interface Button {
+    id?: string | number;
     label?: Label;
+    name?: string;
+    theme?: ButtonTheme | null;
+    size?: ButtonSize | null;
+    href?: string | null;
+    external?: boolean;
+    direct?: boolean;
+    target?: string;
+    focusable?: boolean;
+    active?: boolean;
+    icon?: React.ReactNode | null;
+    iconPosition?: 'left' | 'right' | 'inline';
+    disabled?: boolean;
+    className?: string | null;
     onClick?: (...args: unknown[]) => void;
 }
 

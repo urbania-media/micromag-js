@@ -1,7 +1,6 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
 
+import { ButtonSize, ButtonTheme, MenuItem } from '../../types';
 import Buttons from '../buttons/Buttons';
 
 import styles from '../../styles/menus/tabs.module.css';
@@ -28,12 +27,7 @@ function TabsMenu({
     onClickItem = null,
 }: TabsMenuProps) {
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <Buttons
                 buttons={items}
                 size={size}
@@ -41,10 +35,7 @@ function TabsMenu({
                 renderButton={renderItemButton}
                 onClickButton={onClickItem}
                 className={styles.buttons}
-                buttonClassName={classNames([
-                    styles.button,
-                    buttonClassName,
-                ])}
+                buttonClassName={classNames([styles.button, buttonClassName])}
             />
         </div>
     );

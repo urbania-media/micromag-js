@@ -1,8 +1,8 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { CSSProperties, ForwardedRef, MouseEventHandler } from 'react';
+import { CSSProperties, ForwardedRef, MouseEventHandler, ReactNode } from 'react';
 import { Link } from 'wouter';
 
+import { ButtonSize, ButtonTheme, Label as LabelType } from '../../types';
 import Label from '../partials/Label';
 
 import styles from '../../styles/buttons/button.module.css';
@@ -17,11 +17,11 @@ interface ButtonProps {
     external?: boolean;
     direct?: boolean;
     target?: string;
-    label?: Label | null;
-    children?: Label | null;
+    label?: LabelType | null;
+    children?: LabelType | null;
     focusable?: boolean;
     active?: boolean;
-    icon?: React.ReactNode | null;
+    icon?: ReactNode | null;
     iconPosition?: 'left' | 'right' | 'inline';
     disabled?: boolean;
     loading?: boolean;
@@ -92,15 +92,10 @@ function Button({
             ) : null}
             {hasIconColumns ? (
                 <>
-                    <span
-                        className={classNames([
-                            styles.left,
-                            iconPosition === 'left' ? iconClassName : null,
-                        ])}
-                    >
+                    <span className={classNames([iconPosition === 'left' ? iconClassName : null])}>
                         {iconPosition === 'left' ? icon : null}
                     </span>
-                    <span className={classNames([styles.center, labelClassName])}>{text}</span>
+                    <span className={classNames([labelClassName])}>{text}</span>
                     <span
                         className={classNames([
                             styles.right,
@@ -133,14 +128,7 @@ function Button({
             [styles.withoutStyle]: withoutStyle,
             [styles.withIcon]: hasIcon,
             [styles.withIconColumns]: hasIconColumns,
-            [styles.withText]: text !== null,
-            [styles.withShadow]: withShadow,
-            [styles.isSmall]: small,
-            [styles.isBig]: big,
-            [styles.isLink]: href !== null,
             [styles.asLink]: asLink,
-            [styles.isDisabled]: disabled,
-            [styles.isLoading]: loading,
         },
         className,
     ]);
@@ -157,7 +145,7 @@ function Button({
                 className={linkClassNames}
                 onClick={onClick}
                 target={external ? target : undefined}
-                ref={refButton}
+                ref={refButton as ForwardedRef<HTMLAnchorElement>}
                 tabIndex={!focusable ? -1 : undefined}
             >
                 {content}
@@ -167,8 +155,8 @@ function Button({
                 href={href}
                 className={linkClassNames}
                 onClick={onClick}
-                ref={refButton}
-                tabIndex={focusable ? '' : '-1'}
+                ref={refButton as ForwardedRef<HTMLAnchorElement>}
+                tabIndex={!focusable ? -1 : undefined}
             >
                 {content}
             </Link>
@@ -182,7 +170,7 @@ function Button({
             className={buttonClassNames}
             onClick={onClick}
             disabled={disabled || (disableOnLoading && loading)}
-            ref={refButton}
+            ref={refButton as ForwardedRef<HTMLButtonElement>}
             tabIndex={!focusable ? -1 : undefined}
         >
             {content}

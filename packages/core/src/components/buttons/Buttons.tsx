@@ -1,19 +1,19 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
+import { JSX, MouseEvent } from 'react';
 
+import { ButtonSize, ButtonTheme, Button as ButtonType } from '../../types';
 import Button from './Button';
-
-import styles from '../../styles/buttons/buttons.module.css';
 
 const emptyArray: never[] = [];
 
 interface ButtonsProps {
-    buttons?: Button[];
+    buttons?: ButtonType[];
     size?: ButtonSize | null;
     theme?: ButtonTheme;
-    renderButton?: ((...args: unknown[]) => void) | null;
-    onClickButton?: ((...args: unknown[]) => void) | null;
+    renderButton?:
+        | ((button: ButtonType, index: number, props: Record<string, unknown>) => JSX.Element)
+        | null;
+    onClickButton?: ((e: MouseEvent, button: ButtonType, index) => void) | null;
     className?: string | null;
     buttonClassName?: string | null;
 }
@@ -31,10 +31,7 @@ function Buttons({
         <div
             className={classNames([
                 'btn-group',
-                {
-                    [`btn-group-${size}`]: size !== null,
-                },
-                styles.container,
+                size !== null ? `btn-group-${size}` : null,
                 className,
             ])}
             role="group"
@@ -49,13 +46,7 @@ function Buttons({
                     ...buttonProps
                 } = button;
                 const fixedProps = {
-                    className: classNames([
-                        styles.button,
-                        customClassName,
-                        buttonClassName,
-                        {
-                        },
-                    ]),
+                    className: classNames([customClassName, buttonClassName, {}]),
                     onClick: (e) => {
                         if (onClick !== null) {
                             onClick(e, button, index);

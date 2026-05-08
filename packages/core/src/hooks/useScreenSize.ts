@@ -11,7 +11,7 @@ export const useDevicePixelRatio = () => {
 
         const media = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
         function onChange() {
-            setPixelRatio(typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1);
+            setPixelRatio(window.devicePixelRatio || 1);
         }
 
         media.addEventListener('change', onChange, { once: true });
@@ -61,6 +61,8 @@ const useScreenSize = ({
     };
 };
 
+const defaultLandscapeMinRatio = 2 / 3;
+
 export const useScreenSizeFromElement = (options = null) => {
     const { width = null, height = null, ...opts } = options || {};
     const {
@@ -79,7 +81,7 @@ export const useScreenSizeFromElement = (options = null) => {
         landscapeMinHeight = 600,
         menuAlwaysOverScreen = true,
         // screenRatio = 320 / 480,
-        landscapeMinRatio = 2 / 3,
+        landscapeMinRatio = defaultLandscapeMinRatio,
         withoutScale = false,
     } = opts || {};
     const screenRatio = screenWidth / screenHeight;

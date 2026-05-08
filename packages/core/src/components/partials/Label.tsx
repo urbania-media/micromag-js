@@ -1,8 +1,8 @@
 import { FormattedMessage } from 'react-intl';
 
-import { type Label as LabelType } from '@micromag/core/types';
-
 import { isMessage } from '../../utils';
+
+import { type Label as LabelType } from '../../types';
 
 const emptyObject = {} as const;
 
