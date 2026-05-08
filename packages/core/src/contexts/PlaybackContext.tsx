@@ -90,10 +90,10 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
         const { current: currentMedia = null } = mediaRef;
         return () => {
             if (active) {
-                const shouldPause = currentMedia !== null && getMediaIsPlaying(currentMedia);
+                // const shouldPause = currentMedia !== null && getMediaIsPlaying(currentMedia);
                 setMedia(null);
                 setIsBackground(false);
-                if (shouldPause) {
+                if (currentMedia !== null) {
                     currentMedia.pause();
                 }
             }
