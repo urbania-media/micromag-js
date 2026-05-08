@@ -1,6 +1,6 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
+import { ForwardedRef, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -15,18 +15,19 @@ import {
     usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
-    useViewerContainer,
+    useViewerActivityDetected,
     useViewerContext,
     useViewerNavigation,
     useViewerWebView,
 } from '@micromag/core/contexts';
+import { useDebounce, useTrackScreenMedia } from '@micromag/core/hooks';
 import {
-    useActivityDetector,
-    useDebounce,
-    useMediaThumbnail,
-    useTrackScreenMedia,
-} from '@micromag/core/hooks';
-import { getFooterProps, isFooterFilled, isHeaderFilled, mergeRefs } from '@micromag/core/utils';
+    getFooterProps,
+    getMediaThumbnail,
+    isFooterFilled,
+    isHeaderFilled,
+    mergeRefs,
+} from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
@@ -145,84 +146,61 @@ function VideoScreen({
         }
     }, [current, autoPlay]);
 
-    const viewerContainer = useViewerContainer();
-    const { detected: activityDetected } = useActivityDetector({
-        element: viewerContainer,
-        disabled: !isView,
-        timeout: 2000,
-    });
-    const toggleControlsVisibility = useCallback(() => {
+    const activityDetected = useViewerActivityDetected();
+    const toggleControlsVisibility = () => {
         if (activityDetected) {
             showControls();
         } else {
             hideControls();
         }
-    }, [activityDetected, showControls, hideControls]);
+    };
     useDebounce(toggleControlsVisibility, activityDetected, 1000);
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
 
-    const onTimeUpdate = useCallback(
-        (time = null) => {
-            if (time !== null && typeof time.currentTarget !== 'undefined') {
-                const { currentTime: targetTime = 0 } = time.currentTarget || {};
-                setCurrentTime(targetTime);
-            } else {
-                setCurrentTime(0);
-            }
-        },
-        [duration, setCurrentTime],
-    );
+    const onTimeUpdate = (time = null) => {
+        if (time !== null && typeof time.currentTarget !== 'undefined') {
+            const { currentTime: targetTime = 0 } = time.currentTarget || {};
+            setCurrentTime(targetTime);
+        } else {
+            setCurrentTime(0);
+        }
+    };
 
-    const onProgressStep = useCallback(
-        (step, meta) => {
-            trackScreenMedia(videoMedia, `progress_${Math.round(step * 100, 10)}%`, meta);
-        },
-        [trackScreenMedia, videoMedia],
-    );
+    const onProgressStep = (step, meta) => {
+        trackScreenMedia(videoMedia, `progress_${Math.round(step * 100, 10)}%`, meta);
+    };
 
-    const onDurationChange = useCallback(
-        (dur) => {
-            setDuration(dur);
-        },
-        [setDuration],
-    );
+    const onDurationChange = (dur) => {
+        setDuration(dur);
+    };
 
-    const onPlay = useCallback(
-        ({ initial }) => {
-            if (!hasPlayed) {
-                setHasPlayed(true);
-            }
-            trackScreenMedia(videoMedia, initial ? 'play' : 'resume');
-        },
-        [trackScreenMedia, videoMedia],
-    );
+    const onPlay = ({ initial }) => {
+        if (!hasPlayed) {
+            setHasPlayed(true);
+        }
+        trackScreenMedia(videoMedia, initial ? 'play' : 'resume');
+    };
 
-    const onPause = useCallback(
-        ({ midway }) => {
-            trackScreenMedia(videoMedia, midway ? 'pause' : 'ended');
-        },
-        [trackScreenMedia, videoMedia],
-    );
+    const onPause = ({ midway }) => {
+        trackScreenMedia(videoMedia, midway ? 'pause' : 'ended');
+    };
 
-    const onSeeked = useCallback(
-        (time) => {
-            if (time > 0) {
-                trackScreenMedia(videoMedia, 'seek', { currentTime: time });
-            }
-        },
-        [trackScreenMedia, videoMedia],
-    );
+    const onSeeked = (time) => {
+        if (time > 0) {
+            trackScreenMedia(videoMedia, 'seek', { currentTime: time });
+        }
+    };
 
-    const onEnded = useCallback(() => {
+    const onEnded = () => {
         if (current && !loop) {
             setPlaying(false);
         }
         if (current && shouldGotoNextScreenOnEnd) {
             gotoNextScreen();
         }
-    }, [loop, current, shouldGotoNextScreenOnEnd, gotoNextScreen]);
+    };
 
     const fullscreen = layout === 'full';
 
@@ -238,19 +216,15 @@ function VideoScreen({
     const hasVideo = video !== null;
     const [ready, setReady] = useState(hasVideo);
 
-    const finalVideo = useMemo(
-        () =>
-            hasVideo
-                ? {
-                      ...video,
-                      autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
-                  }
-                : null,
-        [hasVideo, video, isPreview, isStatic, isCapture, autoPlay, current],
-    );
+    const finalVideo = hasVideo
+        ? {
+              ...video,
+              autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
+          }
+        : null;
 
     const { metadata: videoMetadata = null, url: videoUrl = null } = videoMedia || {};
-    const finalThumbnail = useMediaThumbnail(videoMedia, thumbnail);
+    const finalThumbnail = getMediaThumbnail(videoMedia, thumbnail);
 
     const hasVideoUrl = videoUrl !== null;
 
@@ -268,26 +242,20 @@ function VideoScreen({
 
     const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
 
-    useEffect(() => {
-        setReady(!hasVideoUrl);
-    }, [videoUrl, hasVideoUrl, setReady]);
+    if (!hasVideoUrl && ready) {
+        setReady(false);
+    }
 
-    const onVideoReady = useCallback(() => {
+    const onVideoReady = () => {
         setReady(true);
-    }, [setReady]);
+    };
 
-    // const onSuspended = useCallback(() => {
-    //     if (playing && current) {
-    //         setPlaying(false);
-    //     }
-    // }, [current, playing, setPlaying]);
-
-    const onPlayError = useCallback(() => {
+    const onPlayError = () => {
         if (isView && playing && current && hasVideoUrl && autoPlay) {
             setPlaying(false);
             setControlsSuggestPlay(true);
         }
-    }, [isView, current, playing, hasVideoUrl, autoPlay, setPlaying, setControlsSuggestPlay]);
+    };
 
     return (
         <div

@@ -44,6 +44,7 @@ node_modules
 .env
 .eslintcache
 /*/*/es
+/*/*/types
 /*/*/lib
 /*/*/assets
 /*/*/scss

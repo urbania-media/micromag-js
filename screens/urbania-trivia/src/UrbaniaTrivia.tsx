@@ -16,15 +16,11 @@ import {
     usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
-    useViewerContainer,
+    useViewerActivityDetected,
     useViewerContext,
     useViewerNavigation,
 } from '@micromag/core/contexts';
-import {
-    useActivityDetector,
-    useDimensionObserver,
-    useTrackScreenMedia,
-} from '@micromag/core/hooks';
+import { useDimensionObserver, useTrackScreenMedia } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -33,9 +29,10 @@ import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 
+import styles from './urbania-trivia.module.css';
+
 import AnimeLinesGrey from './images/anime-lines-grey.svg';
 import AnimeLines from './images/anime-lines.svg';
-import styles from './urbania-trivia.module.css';
 
 const defaultBackground = {
     image: {
@@ -67,7 +64,7 @@ interface UrbaniaTriviaProps {
     preload?: boolean;
     spacing?: number;
     padding?: number;
-        mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
     className?: string | null;
 }
 
@@ -210,12 +207,7 @@ function UrbaniaTrivia({
         }
     }, [current, shouldGotoNextScreenOnEnd, gotoNextScreen, setPlaying]);
 
-    const viewerContainer = useViewerContainer();
-    const { detected: activityDetected } = useActivityDetector({
-        element: viewerContainer,
-        disabled: !current || !isView,
-        timeout: 2000,
-    });
+    const activityDetected = useViewerActivityDetected();
     useEffect(() => {
         if (!current) {
             return;

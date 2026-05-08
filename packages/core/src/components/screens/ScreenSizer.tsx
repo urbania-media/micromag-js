@@ -6,6 +6,7 @@ import { useDevicePixelRatio, useDimensionObserver } from '../../hooks';
 
 import { ScreenSizeProvider } from '../../contexts';
 
+import { container } from '../../styles/buttons/button.module.css';
 import styles from '../../styles/screens/screen-sizer.module.css';
 
 interface ScreenSizerProps {
@@ -39,8 +40,8 @@ function ScreenSizer({
     let frameHeight = null;
     let frameScale = null;
     let screenTransform = null;
-    const containerWidth = width || calculatedWidth || null;
-    const containerHeight = height || calculatedHeight || null;
+    const containerWidth = width ?? calculatedWidth ?? null;
+    const containerHeight = height ?? calculatedHeight ?? null;
     if (containerWidth !== null && containerHeight !== null) {
         const screenRatio = screenWidth / screenHeight;
         const finalContainerWidth = hasSize

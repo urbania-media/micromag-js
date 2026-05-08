@@ -15,13 +15,13 @@ export interface MediaFile {
     handle?: string;
     type?: string;
     mime?: string;
-    url?: string;
+    url: string;
 }
 
 export interface Media {
     id?: string;
     type: string;
-    url?: string;
+    url: string;
     thumbnail_url?: string;
     name?: string;
     metadata?: MediaMetadata;

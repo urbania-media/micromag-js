@@ -1,9 +1,6 @@
-/* eslint-disable react/jsx-indent */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ReactSortable } from 'react-sortablejs';
 
 import type { MenuItem } from '@micromag/core';
@@ -67,13 +64,7 @@ function ScreensMenu({
               ) => (
                   <li
                       key={item.id}
-                      className={classNames([
-                          styles.item,
-                          itemCustomClassName,
-                          itemClassName,
-                          {
-                          },
-                      ])}
+                      className={classNames([styles.item, itemCustomClassName, itemClassName, {}])}
                       data-screen-id={item.id}
                   >
                       <ScreenWithPreview
@@ -90,13 +81,7 @@ function ScreensMenu({
                           onClickItem={onClickItem}
                       />
                       {settings !== null ? (
-                          <div
-                              className={classNames([
-                                  settingsClassName,
-                                  styles.settings,
-                                  'p-2',
-                              ])}
-                          >
+                          <div className={classNames([settingsClassName, styles.settings, 'p-2'])}>
                               {isFunction(settings) ? settings(index) : settings}
                           </div>
                       ) : null}
@@ -105,22 +90,18 @@ function ScreensMenu({
           )
         : [];
 
-    const sortableItems = useMemo(
-        () =>
-            isTree
-                ? items.map(({ id, screen = {}, href, ...props }) => {
-                      const { parentId = null, group = {} } = screen;
-                      const { collapsed = true } = group || {};
-                      return {
-                          id,
-                          parentId,
-                          collapsed,
-                          value: { id, screen, href, ...props },
-                      };
-                  }, [])
-                : items.map(({ id }) => ({ id })),
-        [items, isTree, items.length],
-    );
+    const sortableItems = isTree
+        ? items.map(({ id, screen = {}, href, ...props }) => {
+              const { parentId = null, group = {} } = screen;
+              const { collapsed = true } = group || {};
+              return {
+                  id,
+                  parentId,
+                  collapsed,
+                  value: { id, screen, href, ...props },
+              };
+          }, [])
+        : items.map(({ id }) => ({ id }));
 
     return (
         <div

@@ -1,27 +1,33 @@
 import classNames from 'classnames';
-import isFunction from 'lodash/isFunction';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { ForwardedRef, HTMLAttributes, useEffect, useRef, useState } from 'react';
 
-import type { VideoMedia } from '@micromag/core';
+import type { ImageMedia, VideoMedia } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
 import {
     useMediaCurrentTime,
     useMediaDuration,
     useMediaReady,
-    useMediaThumbnail,
     useProgressSteps,
 } from '@micromag/core/hooks';
+import { getMediaThumbnail, mergeRefs } from '@micromag/core/utils';
 
 import useSources from './useSources';
 
 import styles from './styles.module.css';
 
-interface VideoProps {
+function resetForcePlaying(element: HTMLVideoElement) {
+    if (element.dataset.forcePlaying === 'true') {
+        element.dataset.forcePlaying = 'false';
+    }
+}
+
+interface VideoProps extends HTMLAttributes<HTMLVideoElement> {
     media?: VideoMedia | null;
-    thumbnail?: unknown | null;
+    thumbnail?: ImageMedia | null;
     width?: number | null;
     height?: number | null;
-    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    ref?: ForwardedRef<HTMLVideoElement> | null;
+    mediaRef?: ForwardedRef<HTMLVideoElement> | null;
     muted?: boolean;
     autoPlay?: boolean;
     paused?: boolean;
@@ -34,15 +40,10 @@ interface VideoProps {
     className?: string | null;
     innerClassName?: string | null;
     onReady?: ((...args: unknown[]) => void) | null;
-    onPlay?: ((...args: unknown[]) => void) | null;
-    onPause?: ((...args: unknown[]) => void) | null;
-    onEnded?: ((...args: unknown[]) => void) | null;
     onSeeked?: ((...args: unknown[]) => void) | null;
-    onTimeUpdate?: ((...args: unknown[]) => void) | null;
     onProgressStep?: ((...args: unknown[]) => void) | null;
     onDurationChange?: ((...args: unknown[]) => void) | null;
     onVolumeChange?: ((...args: unknown[]) => void) | null;
-    onSuspend?: ((...args: unknown[]) => void) | null;
     onSuspended?: ((...args: unknown[]) => void) | null;
     onPlayError?: ((...args: unknown[]) => void) | null;
     focusable?: boolean;
@@ -56,6 +57,7 @@ function Video({
     width = null,
     height = null,
     mediaRef = null,
+    ref: externalRef = null,
     muted = false,
     autoPlay = false,
     paused = false,
@@ -68,6 +70,7 @@ function Video({
     innerClassName = null,
     onReady = null,
     onPlay: customOnPlay = null,
+    onPlaying: customOnPlaying = null,
     onPause = null,
     onEnded = null,
     onSeeked = null,
@@ -85,34 +88,40 @@ function Video({
 }: VideoProps) {
     const { url: mediaUrl = null, metadata = null } = media || {};
     const { description = null, has_audio: hasAudio = null } = metadata || {};
-    const finalThumbnail = useMediaThumbnail(media, thumbnail);
+    const finalThumbnail = getMediaThumbnail(media, thumbnail);
     const { sources, isImage } = useSources(media);
     // console.log('media', media, sources, isImage);
 
     const isImageWithoutSourceFile = isImage && (sources === null || sources.length === 0);
 
     const ref = useRef<HTMLVideoElement | null>(null);
+    const [mediaElement, setMediaElement] = useState<HTMLVideoElement | null>(null);
 
-    const currentTime = useMediaCurrentTime(ref.current, {
+    const currentTime = useMediaCurrentTime(mediaElement, {
         id: mediaUrl,
         disabled: paused || onProgressStep === null,
     });
-    const duration = useMediaDuration(ref.current, {
+    const duration = useMediaDuration(mediaElement, {
         id: mediaUrl,
     });
     const [showLoading, setShowLoading] = useState(false);
-    const ready = useMediaReady(ref.current, {
+    const ready = useMediaReady(mediaElement, {
         id: mediaUrl,
     });
 
     useEffect(() => {
-        let id = null;
-        setShowLoading(false);
-        if (mediaUrl && withLoading) {
-            id = setTimeout(() => {
-                setShowLoading(true);
-            }, 2000);
+        const { current: element = null } = ref;
+        setMediaElement(element);
+    }, [isImageWithoutSourceFile, mediaUrl, ref]);
+
+    useEffect(() => {
+        if (mediaUrl === null || !withLoading) {
+            return () => {};
         }
+        setShowLoading(false);
+        const id = setTimeout(() => {
+            setShowLoading(true);
+        }, 2000);
         return () => {
             clearTimeout(id);
         };
@@ -126,51 +135,44 @@ function Video({
         }
     }, [duration, customOnDurationChange]);
 
-    const onVolumeChange = useCallback(() => {
-        const { current: element = null } = ref;
-        if (element === null) {
-            return;
-        }
+    const onVolumeChange = (e) => {
         if (customOnVolumeChange !== null) {
-            customOnVolumeChange(element.volume);
+            customOnVolumeChange(e.currentTarget.volume);
         }
-    }, [customOnVolumeChange]);
+    };
 
     // Manage suspend
     const [isSuspended, setIsSuspended] = useState(false);
-    const onPlay = useCallback(
-        (e) => {
-            if (isSuspended) {
-                setIsSuspended(false);
-            }
-            if (customOnPlay !== null) {
-                customOnPlay(e);
-            }
-        },
-        [isSuspended, setIsSuspended, customOnPlay],
-    );
-
-    const onPlaying = useCallback(() => {
+    const onPlay = (e) => {
         if (isSuspended) {
             setIsSuspended(false);
         }
-    }, [isSuspended, setIsSuspended]);
+        if (customOnPlay !== null) {
+            customOnPlay(e);
+        }
+    };
 
-    const onSuspend = useCallback(
-        (e) => {
-            if (e.currentTarget.paused && !paused && !isSuspended) {
-                setIsSuspended(true);
+    const onPlaying = (e) => {
+        if (isSuspended) {
+            setIsSuspended(false);
+        }
+        if (customOnPlaying !== null) {
+            customOnPlaying(e);
+        }
+    };
 
-                if (onSuspended !== null) {
-                    onSuspended();
-                }
+    const onSuspend = (e) => {
+        if (e.currentTarget.paused && !paused && !isSuspended) {
+            setIsSuspended(true);
+
+            if (onSuspended !== null) {
+                onSuspended();
             }
-            if (customOnSuspend !== null) {
-                customOnSuspend(e);
-            }
-        },
-        [isSuspended, paused, setIsSuspended, customOnSuspend, onSuspended],
-    );
+        }
+        if (customOnSuspend !== null) {
+            customOnSuspend(e);
+        }
+    };
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -198,7 +200,7 @@ function Video({
         if (element === null || mediaUrl === null) {
             return;
         }
-        const { paused: isPaused } = element;
+        const isPaused = element?.paused || false;
         if (paused && !isPaused) {
             element.pause();
         } else if (!paused && isPaused && element.dataset.forcePlaying !== 'true') {
@@ -208,7 +210,7 @@ function Video({
                 }
             });
         }
-        element.dataset.forcePlaying = 'false';
+        resetForcePlaying(element);
     }, [paused, media, mediaUrl, onPlayError]);
 
     useProgressSteps({
@@ -240,21 +242,14 @@ function Video({
                 <img
                     src={mediaUrl}
                     alt={description}
-                    tabIndex="-1"
+                    tabIndex={-1}
                     className={classNames([styles.media, innerClassName])}
                 />
             ) : null}
             {!isImageWithoutSourceFile ? (
                 <video
                     key={mediaUrl}
-                    ref={(newRef) => {
-                        ref.current = newRef;
-                        if (mediaRef !== null && isFunction(mediaRef)) {
-                            mediaRef(newRef);
-                        } else if (mediaRef !== null) {
-                            mediaRef.current = newRef;
-                        }
-                    }}
+                    ref={mergeRefs(ref, mediaRef, externalRef)}
                     src={sources === null && shouldLoad ? `${mediaUrl}#t=0.001` : undefined}
                     autoPlay={autoPlay && !paused}
                     loop={loop}
@@ -268,7 +263,7 @@ function Video({
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
                     disablePictureInPicture={disablePictureInPicture}
-                    tabIndex={focusable ? '0' : '-1'}
+                    tabIndex={focusable ? 0 : -1}
                     className={classNames([styles.media, innerClassName])}
                     onPlay={onPlay}
                     onPlaying={onPlaying}
@@ -300,4 +295,4 @@ function Video({
     );
 }
 
-export default ({ ref, ...props }) => <Video mediaRef={ref} {...props} />;
+export default Video;

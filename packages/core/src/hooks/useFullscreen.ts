@@ -1,19 +1,21 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import screenfull from 'screenfull';
 
-const useFullscreen = (element) => {
-    const enabled = screenfull.isEnabled;
+const useFullscreen = () => {
+    const ref = useRef(null);
+    const [enabled, setEnabled] = useState(() => screenfull.isEnabled);
     const [active, setActive] = useState(false);
 
-    const fullscreen = useCallback(() => {
+    const fullscreen = () => {
+        const { current: element = null } = ref;
         if (screenfull.isEnabled) {
-            if (typeof element !== 'undefined' && element !== null) {
+            if (element !== null) {
                 screenfull.request(element);
             } else {
                 screenfull.request();
             }
         }
-    }, [element]);
+    };
 
     const unFullscreen = useCallback(() => {
         if (screenfull.isEnabled) {
@@ -30,6 +32,7 @@ const useFullscreen = (element) => {
     }, [active, fullscreen, unFullscreen]);
 
     useEffect(() => {
+        setEnabled(screenfull.isEnabled);
         const onChange = () => {
             setActive(screenfull.isFullscreen);
         };
@@ -44,6 +47,7 @@ const useFullscreen = (element) => {
     }, []);
 
     return {
+        ref,
         toggle,
         fullscreen,
         unFullscreen,

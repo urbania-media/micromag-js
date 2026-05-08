@@ -1,12 +1,32 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import isString from 'lodash/isString';
-import React, { useContext, useMemo, useState } from 'react';
+import { ReactNode, createContext, use, useMemo, useState } from 'react';
 import EventEmitter from 'wolfy87-eventemitter';
+
+interface ViewerContextType {
+    events: EventEmitter;
+    menuVisible: boolean;
+    menuOverScreen: boolean;
+    width: number | null;
+    height: number | null;
+    activityDetected: boolean;
+    topHeight: number;
+    bottomHeight: number;
+    bottomSidesWidth: number;
+    gotoNextScreen: () => void;
+    gotoPreviousScreen: () => void;
+    disableInteraction: () => void;
+    enableInteraction: () => void;
+    webView: { url: string; [key: string]: unknown } | null;
+    setWebView: (webView: { url: string; [key: string]: unknown } | null) => void;
+}
 
 const defaultValue = {
     events: new EventEmitter(),
     menuVisible: false,
     menuOverScreen: false,
+    activityDetected: false,
+    width: null,
+    height: null,
     topHeight: 0,
     bottomHeight: 0,
     bottomSidesWidth: 0,
@@ -16,13 +36,13 @@ const defaultValue = {
     enableInteraction: () => {},
 };
 
-export const ViewerContext = React.createContext({
+export const ViewerContext = createContext<ViewerContextType>({
     ...defaultValue,
     webView: null,
     setWebView: () => {},
 });
 
-export const useViewerContext = () => useContext(ViewerContext);
+export const useViewerContext = () => use(ViewerContext);
 
 export const useViewerSize = () => {
     const { width, height } = useViewerContext();
@@ -45,9 +65,9 @@ export const useViewerEvents = () => {
     return events;
 };
 
-export const useViewerContainer = () => {
-    const { containerRef = null } = useViewerContext();
-    return containerRef !== null ? containerRef.current : null;
+export const useViewerActivityDetected = () => {
+    const { activityDetected = false } = useViewerContext();
+    return activityDetected;
 };
 
 export const useViewerInteraction = () => {
@@ -83,11 +103,11 @@ export const useViewerWebView = () => {
 };
 
 interface ViewerProviderProps {
-    children: React.ReactNode;
-    events?: EventEmitter;
-    containerRef?: (...args: unknown[]) => void | { current?: unknown };
+    children: ReactNode;
+    events: EventEmitter;
     menuVisible?: boolean;
     menuOverScreen?: boolean;
+    activityDetected?: boolean;
     width?: number;
     height?: number;
     topHeight?: number;
@@ -101,10 +121,10 @@ interface ViewerProviderProps {
 
 export function ViewerProvider({
     children,
-    containerRef,
-    events = new EventEmitter(),
+    events,
     menuVisible = false,
     menuOverScreen = false,
+    activityDetected = false,
     width,
     height,
     topHeight = 0,
@@ -117,41 +137,22 @@ export function ViewerProvider({
 }: ViewerProviderProps) {
     const [webView, setWebView] = useState(null);
 
-    const value = useMemo(
-        () => ({
-            containerRef,
-            events,
-            menuVisible,
-            menuOverScreen,
-            width,
-            height,
-            topHeight,
-            bottomHeight,
-            bottomSidesWidth,
-            gotoNextScreen,
-            gotoPreviousScreen,
-            disableInteraction,
-            enableInteraction,
-            webView,
-            setWebView,
-        }),
-        [
-            containerRef,
-            events,
-            menuVisible,
-            menuOverScreen,
-            width,
-            height,
-            topHeight,
-            bottomHeight,
-            bottomSidesWidth,
-            gotoNextScreen,
-            gotoPreviousScreen,
-            disableInteraction,
-            enableInteraction,
-            webView,
-            setWebView,
-        ],
-    );
-    return <ViewerContext.Provider value={value}>{children}</ViewerContext.Provider>;
+    const value = {
+        events,
+        menuVisible,
+        menuOverScreen,
+        activityDetected,
+        width,
+        height,
+        topHeight,
+        bottomHeight,
+        bottomSidesWidth,
+        gotoNextScreen,
+        gotoPreviousScreen,
+        disableInteraction,
+        enableInteraction,
+        webView,
+        setWebView,
+    };
+    return <ViewerContext value={value}>{children}</ViewerContext>;
 }

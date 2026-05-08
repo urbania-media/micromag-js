@@ -1,13 +1,8 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
-import React, {
-    useCallback,
-    useEffect,
-    useImperativeHandle,
-    useMemo,
-    useRef,
-    useState,
-} from 'react';
+import createDebug from 'debug';
+import isFunction from 'lodash/isFunction';
+import React, { RefObject, useEffect, useImperativeHandle, useRef, useState } from 'react';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
@@ -15,7 +10,6 @@ import EventEmitter from 'wolfy87-eventemitter';
 import type {
     DeviceScreen,
     MediaElement,
-    Ref,
     RenderContext,
     ScreenComponent,
     Story,
@@ -38,7 +32,13 @@ import {
     useScreenSizeFromElement,
     useTrackScreenView,
 } from '@micromag/core/hooks';
-import { getColorAsString, getDeviceScreens, getMediaIsPlaying } from '@micromag/core/utils';
+import {
+    getColorAsString,
+    getDeviceScreens,
+    getMediaIsPlaying,
+    getMediaSrc,
+    mergeRefs,
+} from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
@@ -65,6 +65,30 @@ const DRAG_VELOCITY_ACTIVATION_THRESHOLD = 0.3;
 const DEFAULT_TRANSITION_TYPE_LANDSCAPE = 'carousel';
 const DEFAULT_TRANSITION_TYPE_PORTRAIT = 'stack';
 const SHARE_INCENTIVE_TIMEOUT = 6000;
+
+const debug = createDebug('micromag:viewer');
+
+function updateMediaPlaying(
+    currentMedia: MediaElement | null,
+    lastMedia: MediaElement | null,
+    playing: boolean,
+) {
+    if (
+        currentMedia !== null &&
+        playing &&
+        currentMedia.dataset.forcePlaying !== 'true' &&
+        !getMediaIsPlaying(currentMedia)
+    ) {
+        if (lastMedia !== null) {
+            debug('Pause media: %s', getMediaSrc(lastMedia));
+            lastMedia.dataset.forcePlaying = 'false';
+            lastMedia.pause();
+        }
+        debug('Force playing media: %s', getMediaSrc(currentMedia));
+        currentMedia.play().catch(() => {});
+        currentMedia.dataset.forcePlaying = 'true';
+    }
+}
 
 interface ViewerProps {
     story?: Story | null;
@@ -121,8 +145,8 @@ interface ViewerProps {
     onEnd?: ((...args: unknown[]) => void) | null;
     onViewModeChange?: ((...args: unknown[]) => void) | null;
     onMenuChange?: ((...args: unknown[]) => void) | null;
-    currentScreenMedia?: Ref | null;
-    screensMedias?: Ref | null;
+    currentScreenMedia?: RefObject<MediaElement> | null;
+    screensMedias?: RefObject<MediaElement[]> | null;
     screenSizeOptions?: {
         withoutMaxSize?: boolean;
         desktopHeightRatio?: number;
@@ -132,6 +156,7 @@ interface ViewerProps {
 }
 
 const defaultMenuItems = ['share', 'main'];
+const defaultDeviceScreens = getDeviceScreens();
 
 function Viewer({
     story = null,
@@ -141,7 +166,7 @@ function Viewer({
     height = null,
     screen: screenId = null,
     screenState = null,
-    deviceScreens = getDeviceScreens(),
+    deviceScreens = defaultDeviceScreens,
     renderContext = 'view',
     tapNextScreenWidthPercent = 0.8,
     tapMaximumDuration = 1500,
@@ -174,10 +199,6 @@ function Viewer({
     withoutScreensMenu = false,
     withoutShareMenu = false,
     withoutMenuShadow = false,
-
-    // eslint-disable-line no-unused-vars
-    withoutFullscreen = false,
-
     withoutNavigationArrow = false,
     withoutTransitions = false,
     withNeighborScreens = false,
@@ -203,33 +224,30 @@ function Viewer({
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
     const screensCount = screens.length;
-    const eventsManager = useMemo(() => new EventEmitter(), [parsedStory]);
-    const screenIndex = useMemo(
-        () =>
-            Math.max(
-                0,
-                screens.findIndex((it) => `${it.id}` === `${screenId}`),
-            ),
-        [screenId, screens],
+    const [eventsManager] = useState(() => new EventEmitter());
+    const screenIndex = Math.max(
+        0,
+        screens.findIndex((it) => `${it.id}` === `${screenId}`),
     );
     const currentScreen = screens[screenIndex] || null;
-    const { id: currentScreenId = screenIndex, parameters: screenParameters } = currentScreen || {};
+    const { parameters: screenParameters } = currentScreen || {};
     const { metadata: screenMetadata } = screenParameters || {};
     const { title: screenTitle = null, description: screenDescription = null } =
         screenMetadata || {};
     const finalTitle = screenTitle !== null ? screenTitle : title;
-    const finalMetadata = useMemo(
-        () =>
-            screenDescription !== null ? { ...metadata, description: screenDescription } : metadata,
-        [metadata, screenDescription],
-    );
+    const finalMetadata =
+        screenDescription !== null ? { ...metadata, description: screenDescription } : metadata;
 
     const screensMediasRef = useRef<MediaElement[]>([]);
 
     useImperativeHandle(currentScreenMedia, () => screensMediasRef.current[screenIndex] || null, [
         screenIndex,
     ]);
-    useImperativeHandle(screensMedias, () => screensMediasRef.current, [story, screens]);
+    useImperativeHandle(screensMedias, () => screensMediasRef.current, [
+        story,
+        screens,
+        screenIndex,
+    ]);
 
     /**
      * Screen Layout
@@ -243,10 +261,7 @@ function Viewer({
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
     // Fonts
-    const finalFonts = useMemo(
-        () => [...(fonts || []), themeFont].filter((font) => font !== null),
-        [fonts],
-    );
+    const finalFonts = [...(fonts || []), themeFont].filter((font) => font !== null);
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
     const isView = renderContext === 'view';
@@ -268,18 +283,16 @@ function Viewer({
         setMuted = null,
     } = usePlaybackContext();
 
-    const playbackHelpVisible = useMemo(
-        () => playbackControls && playbackControlsVisible,
-        [playbackControls, playbackControlsVisible],
-    );
+    const playbackHelpVisible = playbackControls && playbackControlsVisible;
 
     const { ref: playbackControlsContainerRef, height: playbackControlsContainerHeight = 0 } =
         useDimensionObserver();
 
     const trackScreenView = useTrackScreenView();
 
+    const containerRef = useRef(null);
     const {
-        ref: containerRef,
+        ref: screenSizeRef,
         fullWidth: viewerWidth,
         fullHeight: viewerHeight,
         screenSize,
@@ -310,7 +323,7 @@ function Viewer({
         if (trackingEnabled && currentScreen !== null) {
             trackScreenView(currentScreen, screenIndex);
         }
-    }, [currentScreenId, trackScreenView, trackingEnabled]);
+    }, [currentScreen, screenIndex, trackScreenView, trackingEnabled]);
 
     useEffect(() => {
         if (ready && onViewModeChange !== null) {
@@ -327,7 +340,7 @@ function Viewer({
         if (finalFocusColor !== null) {
             containerRef.current.style.setProperty('--micromag-focus-color', finalFocusColor);
         }
-    }, [finalFocusColor]);
+    }, [finalFocusColor, containerRef]);
 
     const [preloadNeighbors, setPreloadNeighbors] = useState(false);
 
@@ -343,106 +356,71 @@ function Viewer({
      * Screen Navigation
      */
     const lastScreenMediaRef = useRef<MediaElement | null>(null);
-    const changeIndex = useCallback(
-        (index) => {
-            if (index === screenIndex) {
-                return;
-            }
-
-            setPreloadNeighbors(false);
-
-            const lastScreenMedia = lastScreenMediaRef.current;
-            const screenMedia = screensMediasRef.current[index] || null;
-            if (currentScreenMedia !== null) {
-                currentScreenMedia.current = screenMedia;
-            }
-
-            if (
-                screenMedia !== null &&
-                playing &&
-                screenMedia.dataset.forcePlaying !== 'true' &&
-                !getMediaIsPlaying(screenMedia)
-            ) {
-                if (lastScreenMedia !== null) {
-                    lastScreenMedia.dataset.forcePlaying = 'false';
-                    lastScreenMedia.pause();
-                }
-                screenMedia.play().catch(() => {});
-                screenMedia.dataset.forcePlaying = 'true';
-            }
-
-            lastScreenMediaRef.current = screenMedia;
-
-            if (onScreenChange !== null) {
-                onScreenChange(screens[index], index);
-            }
-        },
-        [screenIndex, screens, onScreenChange, playing],
-    );
-
-    useEffect(() => {
-        const screenMedia = screensMediasRef.current[screenIndex] || null;
-        if (currentScreenMedia !== null && currentScreenMedia.current === null) {
-            currentScreenMedia.current = screenMedia;
+    const changeIndex = (index) => {
+        if (index === screenIndex) {
+            return;
         }
 
-        if (lastScreenMediaRef.current === null) {
-            lastScreenMediaRef.current = screenMedia;
+        setPreloadNeighbors(false);
+
+        const lastScreenMedia = lastScreenMediaRef.current;
+        const screenMedia = screensMediasRef.current[index] || null;
+
+        updateMediaPlaying(screenMedia, lastScreenMedia, playing);
+
+        lastScreenMediaRef.current = screenMedia;
+
+        if (onScreenChange !== null) {
+            onScreenChange(screens[index], index);
         }
-    }, [screenIndex, currentScreenMedia, playing]);
+    };
 
-    const onScreenNavigate = useCallback(
-        ({ index, newIndex, end, direction }) => {
-            if (end && onEnd !== null) {
-                onEnd();
-            }
-            changeIndex(newIndex);
-            eventsManager.emit('navigate', {
-                index,
-                newIndex,
-                direction,
-                end,
-            });
-            if (end) {
-                eventsManager.emit('navigate_end');
-            } else {
-                eventsManager.emit(`navigate_${direction}`, newIndex);
-            }
-        },
-        [onEnd, changeIndex],
-    );
+    const onScreenNavigate = ({ index, newIndex, end, direction }) => {
+        if (end && onEnd !== null) {
+            onEnd();
+        }
+        changeIndex(newIndex);
+        eventsManager.emit('navigate', {
+            index,
+            newIndex,
+            direction,
+            end,
+        });
+        if (end) {
+            eventsManager.emit('navigate_end');
+        } else {
+            eventsManager.emit(`navigate_${direction}`, newIndex);
+        }
+    };
 
-    const gotoPreviousScreen = useCallback(() => {
+    const gotoPreviousScreen = () => {
         changeIndex(Math.max(0, screenIndex - 1));
-    }, [changeIndex, screenIndex]);
+    };
 
-    const gotoNextScreen = useCallback(() => {
+    const gotoNextScreen = () => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-    }, [changeIndex, screenIndex]);
+    };
 
     const [hasInteracted, setHasInteracted] = useState(false);
     const [wasUnmuted, setWasUnmuted] = useState(false);
-    const onInteractionPrivate = useCallback(
-        ({ target = null } = {}) => {
-            if (onInteraction !== null) {
-                onInteraction();
-            }
-            if (!hasInteracted) {
-                setHasInteracted(true);
-            }
+    const onInteractionPrivate = ({ target = null } = {}) => {
+        if (onInteraction !== null) {
+            onInteraction();
+        }
+        if (!hasInteracted) {
+            setHasInteracted(true);
+        }
 
-            if (
-                !withoutAutoUnmute &&
-                !wasUnmuted &&
-                setMuted !== null &&
-                (target === null || !checkClickable(target))
-            ) {
-                setMuted(false);
-                setWasUnmuted(true);
-            }
-        },
-        [onInteraction, hasInteracted, setHasInteracted, withoutAutoUnmute, setMuted, wasUnmuted],
-    );
+        if (
+            !withoutAutoUnmute &&
+            !wasUnmuted &&
+            setMuted !== null &&
+            (target === null || !checkClickable(target))
+        ) {
+            setMuted(false);
+            setWasUnmuted(true);
+        }
+    };
 
     const {
         interact: interactWithScreen,
@@ -462,11 +440,11 @@ function Viewer({
     // Long press to pause playback
     const [pointerDownTime, setPointerDownTime] = useState(null);
     const [longPressPaused, setLongPressPaused] = useState(false);
-
-    useEffect(() => {
+    const [longPressScreenIndex, setLongPressScreenIndex] = useState(null);
+    if (screenIndex !== longPressScreenIndex && (longPressPaused || pointerDownTime !== null)) {
         setLongPressPaused(false);
         setPointerDownTime(null);
-    }, [screenIndex]);
+    }
     useEffect(() => {
         const { tagName: mediaTagName } = playbackMedia || {};
         const mediaIsVideo = mediaTagName === 'VIDEO';
@@ -476,103 +454,91 @@ function Viewer({
         const interval = setTimeout(() => {
             setPlaying(false);
             setLongPressPaused(true);
+            setLongPressScreenIndex(screenIndex);
         }, longPressPauseDelay);
-        return () => clearInterval(interval);
-    }, [playing, pointerDownTime, longPressPauseDelay, playbackMedia]);
+        return () => clearTimeout(interval);
+    }, [playing, pointerDownTime, longPressPauseDelay, playbackMedia, setPlaying, screenIndex]);
 
-    const onPointerDown = useCallback(() => {
+    const onPointerDown = () => {
         setPointerDownTime(Date.now());
-    }, []);
+    };
 
-    const onTap = useCallback(
-        ({ currentTarget, event, target, xy: [x, y], elapsedTime, args: [bindState] }) => {
-            setPointerDownTime(null);
-            const {
-                playing: currentPlaying = false,
-                longPressPaused: currentLongPressPaused = false,
-            } = bindState || {};
-            if (!currentPlaying && currentLongPressPaused) {
-                setPlaying(true);
-                setLongPressPaused(false);
-                return;
-            }
-            if (tapMaximumDuration !== null && elapsedTime > tapMaximumDuration) {
-                return;
-            }
-            // if (event) {
-            //     event.stopPropagation();
-            // }
-            interactWithScreen({
-                event,
-                target,
-                currentTarget,
+    const onTap = ({
+        currentTarget,
+        event,
+        target,
+        xy: [x, y],
+        elapsedTime,
+        args: [bindState],
+    }) => {
+        setPointerDownTime(null);
+        const { playing: currentPlaying = false, longPressPaused: currentLongPressPaused = false } =
+            bindState || {};
+        if (!currentPlaying && currentLongPressPaused) {
+            setPlaying(true);
+            setLongPressPaused(false);
+            return;
+        }
+        if (tapMaximumDuration !== null && elapsedTime > tapMaximumDuration) {
+            return;
+        }
+        // if (event) {
+        //     event.stopPropagation();
+        // }
+        interactWithScreen({
+            event,
+            target,
+            currentTarget,
+            index: screenIndex,
+            x,
+            y,
+        });
+    };
+
+    const computeScreenProgress = ({ active, movement: [mx], velocity: [vx] }) => {
+        const p = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
+        const forwards = mx < 0; // true if swiping to left (to navigate forwards)
+        const newIndex = !forwards ? screenIndex - 1 : screenIndex + 1; // which item index are we moving towards?
+        const reachedThreshold =
+            vx > DRAG_VELOCITY_ACTIVATION_THRESHOLD ||
+            Math.abs(p) > DRAG_PROGRESS_ACTIVATION_THRESHOLD;
+        const reachedBounds = newIndex < 0 || newIndex >= screensCount; // have we reached the end of the stack?
+        const damper = reachedBounds ? 0.1 : 1;
+        const progress = Math.max(-1, Math.min(1, p * damper));
+
+        if (!active) {
+            return reachedThreshold && !reachedBounds ? newIndex : screenIndex;
+        }
+        return screenIndex - progress;
+    };
+
+    const onScreenProgress = (progress, { active, args: [bindState] }) => {
+        const { playing: currentPlaying = false, longPressPaused: currentLongPressPaused = false } =
+            bindState || {};
+        if (!active && !currentPlaying && currentLongPressPaused) {
+            setPlaying(true);
+            setLongPressPaused(false);
+        }
+        const delta = Math.abs(progress - screenIndex);
+        const reachedBounds = progress < 0 || progress >= screensCount; // have we reached the end of the stack?
+        if (!active && delta === 1 && !reachedBounds) {
+            onScreenNavigate({
                 index: screenIndex,
-                x,
-                y,
+                newIndex: progress,
+                end: progress === screensCount - 1,
+                direction: progress > screenIndex ? 1 : -1,
             });
-        },
-        [interactWithScreen, screenIndex, tapMaximumDuration],
-    );
-
-    const computeScreenProgress = useCallback(
-        ({ active, movement: [mx], velocity: [vx] }) => {
-            const p = mx / screenContainerWidth; // drag "ratio": how much of the screen width has been swiped?
-            const forwards = mx < 0; // true if swiping to left (to navigate forwards)
-            const newIndex = !forwards ? screenIndex - 1 : screenIndex + 1; // which item index are we moving towards?
-            const reachedThreshold =
-                vx > DRAG_VELOCITY_ACTIVATION_THRESHOLD ||
-                Math.abs(p) > DRAG_PROGRESS_ACTIVATION_THRESHOLD;
-            const reachedBounds = newIndex < 0 || newIndex >= screensCount; // have we reached the end of the stack?
-            const damper = reachedBounds ? 0.1 : 1;
-            const progress = Math.max(-1, Math.min(1, p * damper));
-
-            if (!active) {
-                return reachedThreshold && !reachedBounds ? newIndex : screenIndex;
-            }
-            return screenIndex - progress;
-        },
-        [screenContainerWidth, screenIndex],
-    );
-
-    const onScreenProgress = useCallback(
-        (progress, { active, args: [bindState] }) => {
-            const {
-                playing: currentPlaying = false,
-                longPressPaused: currentLongPressPaused = false,
-            } = bindState || {};
-            if (!active && !currentPlaying && currentLongPressPaused) {
-                setPlaying(true);
-                setLongPressPaused(false);
-            }
-            const delta = Math.abs(progress - screenIndex);
-            const reachedBounds = progress < 0 || progress >= screensCount; // have we reached the end of the stack?
-            if (!active && delta === 1 && !reachedBounds) {
-                onScreenNavigate({
-                    index: screenIndex,
-                    newIndex: progress,
-                });
-            }
-        },
-        [onScreenNavigate, screenIndex],
-    );
+        }
+    };
 
     const [transitioned, setTransitioned] = useState(true);
-    const onTransitionStart = useCallback(() => {
+    const onTransitionStart = () => {
         setTransitioned(false);
-    }, [setTransitioned]);
+    };
 
-    const onTransitionComplete = useCallback(() => {
+    const onTransitionComplete = () => {
         setTransitioned(true);
-    }, [setTransitioned]);
-
-    const springParams = useMemo(
-        () => ({
-            config: SPRING_CONFIG_TIGHT,
-            onStart: onTransitionStart,
-            onRest: onTransitionComplete,
-        }),
-        [onTransitionStart, onTransitionComplete],
-    );
+    };
 
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
     const navigationDisabled = currentScreenInteractionEnabled === false;
@@ -591,7 +557,11 @@ function Viewer({
         onProgress: onScreenProgress,
         onPointerDown,
         onTap,
-        springParams,
+        springParams: {
+            config: SPRING_CONFIG_TIGHT,
+            onStart: onTransitionStart,
+            onRest: onTransitionComplete,
+        },
         dragOptions: {
             filterTaps: true,
             axis: 'x',
@@ -601,24 +571,22 @@ function Viewer({
         },
     });
 
-    // Wrap gesture bindings to skip events from clickable elements (buttons, links, inputs).
-    // Without this, @use-gesture captures pointer events at the document level, preventing
-    // native click events from firing on interactive elements inside screens on mobile Safari.
-    const clickableAwareBindings = useMemo(() => {
-        const bindings = dragContentBind({ playing, longPressPaused });
-        const wrapped = {};
-        for (const [key, value] of Object.entries(bindings)) {
-            if (typeof value === 'function') {
-                wrapped[key] = (e) => {
-                    if (checkClickable(e.target)) return;
-                    return value(e);
-                };
-            } else {
-                wrapped[key] = value;
-            }
-        }
-        return wrapped;
-    }, [dragContentBind, playing, longPressPaused]);
+    const originalDragBindings = dragContentBind({ playing, longPressPaused });
+    const dragBindings = {
+        onClickCapture: (e) =>
+            !checkClickable(e.target) ? originalDragBindings?.onClickCapture?.(e) : null,
+        onLostPointerCapture: (e) =>
+            !checkClickable(e.target) ? originalDragBindings?.onLostPointerCapture?.(e) : null,
+        onPointerCancel: (e) =>
+            !checkClickable(e.target) ? originalDragBindings?.onPointerCancel?.(e) : null,
+        onPointerDown: (e) =>
+            !checkClickable(e.target) ? originalDragBindings?.onPointerDown?.(e) : null,
+        onPointerMove: (e) =>
+            !checkClickable(e.target) ? originalDragBindings?.onPointerMove?.(e) : null,
+        onPointerUp: (e) =>
+            !checkClickable(e.target) ? originalDragBindings?.onPointerUp?.(e) : null,
+        onScroll: (e) => (!checkClickable(e.target) ? originalDragBindings?.onScroll?.(e) : null),
+    };
 
     const getScreenStylesByIndex = (index, spring) => {
         if (transitionType === 'stack') {
@@ -666,35 +634,30 @@ function Viewer({
     };
 
     const {
+        ref: fullscreenRef,
         toggle: toggleFullscreen,
         active: fullscreenActive,
         enabled: fullscreenEnabled,
-    } = useFullscreen(containerRef.current || null);
+    } = useFullscreen();
 
     // Get element height
     const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
         useDimensionObserver();
 
-    const onClickScreen = useCallback(
-        ({ screenId: itemScreenId }) => {
-            onInteractionPrivate();
+    const onClickScreen = ({ screenId: itemScreenId }) => {
+        onInteractionPrivate();
 
-            const index = screens.findIndex(({ id }) => id === itemScreenId);
-            changeIndex(index);
-        },
-        [onInteractionPrivate, changeIndex],
-    );
+        const index = screens.findIndex(({ id }) => id === itemScreenId);
+        changeIndex(index);
+    };
 
-    const onContextMenu = useCallback(
-        (e) => {
-            if (!landscape) {
-                e.preventDefault();
-                return false;
-            }
-            return true;
-        },
-        [landscape],
-    );
+    const onContextMenu = (e) => {
+        if (!landscape) {
+            e.preventDefault();
+            return false;
+        }
+        return true;
+    };
 
     const overscrollStyle = (
         <style
@@ -705,8 +668,8 @@ function Viewer({
         />
     );
 
-    const keyboardShortcuts = useMemo(
-        () => ({
+    useKeyboardShortcuts(
+        {
             f: () => toggleFullscreen(),
             arrowleft: () => {
                 if (!checkDraggable(document.activeElement)) {
@@ -719,12 +682,11 @@ function Viewer({
                 }
             },
             // ' ': () => gotoNextScreen(),
-        }),
-        [gotoPreviousScreen, gotoNextScreen],
+        },
+        {
+            disabled: renderContext !== 'view',
+        },
     );
-    useKeyboardShortcuts(keyboardShortcuts, {
-        disabled: renderContext !== 'view',
-    });
 
     // const onClickSkipToContent = useCallback(() => {
     //     const contentElement = document.getElementById('content') || null;
@@ -733,18 +695,20 @@ function Viewer({
     //     }
     // }, []);
 
-    const onClickSkipToPlaybackControls = useCallback(() => {
+    const onClickSkipToPlaybackControls = () => {
         const controlsElement = document.getElementById('controls');
 
         if (controlsElement) {
             const buttons = controlsElement.querySelectorAll('button[tabindex]');
-            const firstFocusableButton = Array.from(buttons).find((button) => button.tabIndex >= 0);
+            const firstFocusableButton =
+                Array.from(buttons).find((button: HTMLButtonElement) => button.tabIndex >= 0) ||
+                null;
 
-            if (firstFocusableButton) {
-                firstFocusableButton.focus({ preventScroll: true });
+            if (firstFocusableButton !== null) {
+                (firstFocusableButton as HTMLButtonElement).focus({ preventScroll: true });
             }
         }
-    }, []);
+    };
 
     const [currentShareIncentive, setCurrentShareIncentive] = useState(null);
     const [shareIncentiveVisible, setShareIncentiveVisible] = useState(false);
@@ -756,31 +720,23 @@ function Viewer({
     const { body: incentiveLabel = null } = shareIncentiveLabel || {};
     const { body: currentIncentiveLabel = null } = currentShareIncentiveLabel || {};
 
-    useEffect(() => {
+    if (hasShareIncentive && shareIncentiveLabel !== currentShareIncentiveLabel) {
+        setCurrentShareIncentive(shareIncentive);
         setShareIncentiveVisible(true);
+    }
 
-        if (hasShareIncentive && shareIncentiveLabel !== currentShareIncentiveLabel) {
-            setCurrentShareIncentive(shareIncentive);
+    useEffect(() => {
+        if (!shareIncentiveVisible || !isView) {
+            return () => {};
         }
-
         const timeout = setTimeout(() => {
-            if (isView) {
-                setShareIncentiveVisible(false);
-            }
+            setShareIncentiveVisible(false);
         }, SHARE_INCENTIVE_TIMEOUT);
 
         return () => {
             clearTimeout(timeout);
         };
-    }, [
-        shareIncentiveLabel,
-        setShareIncentiveVisible,
-        hasShareIncentive,
-        incentiveLabel,
-        currentIncentiveLabel,
-        setCurrentShareIncentive,
-        isView,
-    ]);
+    }, [shareIncentiveVisible, isView]);
 
     useEffect(() => {
         if (preloadNeighbors) {
@@ -792,7 +748,7 @@ function Viewer({
         return () => {
             clearTimeout(timeout);
         };
-    }, [preloadNeighbors]);
+    }, [preloadNeighbors, neighborPreloadDelay]);
 
     let topHeight = 0;
     if (topSafezoneHeight !== null) {
@@ -814,57 +770,36 @@ function Viewer({
 
     const NavigationHint = withNavigationHint === 'hand' ? HandTap : ArrowHint;
 
-    const { detected: activityDetected } = useActivityDetector({
-        element: containerRef.current,
+    const { ref: activityRef, detected: activityDetected } = useActivityDetector({
         disabled: !isView,
         timeout: 2000,
     });
 
+    const hasMediaCompleted = playbackMedia !== null && !isBackgroundVideo ? mediaCompleted : true;
+    const shouldStartBackToFirstScreenTimeout =
+        backToFirstScreenTimeout !== null &&
+        isView &&
+        screensCount > 1 &&
+        screenIndex !== 0 &&
+        hasMediaCompleted &&
+        !isDragging &&
+        !activityDetected;
     useEffect(() => {
-        let timeout = null;
-        // const looping = playbackMedia !== null ? playbackMedia.loop || false : false;
-        const hasMediaCompleted =
-            playbackMedia !== null && !isBackgroundVideo ? mediaCompleted : true;
-
-        if (
-            backToFirstScreenTimeout !== null &&
-            isView &&
-            screensCount > 1 &&
-            screenIndex !== 0 &&
-            hasMediaCompleted &&
-            !isDragging &&
-            !activityDetected
-        ) {
-            timeout = setTimeout(() => {
-                changeIndex(0);
-            }, backToFirstScreenTimeout);
+        if (!shouldStartBackToFirstScreenTimeout) {
+            return () => {};
         }
+        const timeout = setTimeout(() => {
+            changeIndex(0);
+        }, backToFirstScreenTimeout);
         return () => {
-            if (timeout !== null) {
-                clearTimeout(timeout);
-            }
+            clearTimeout(timeout);
         };
-    }, [
-        backToFirstScreenTimeout,
-        isView,
-        screenIndex,
-        screensCount,
-        changeIndex,
-        playbackMedia,
-        mediaCompleted,
-        isDragging,
-        activityDetected,
-        isBackgroundVideo,
-    ]);
-
-    // console.log('mediaCompleted', mediaCompleted, playbackMedia);
-    // console.log('activityDetected', activityDetected);
+    }, [shouldStartBackToFirstScreenTimeout, backToFirstScreenTimeout, changeIndex]);
 
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
                 <ViewerProvider
-                    containerRef={containerRef}
                     events={eventsManager}
                     menuVisible={menuVisible}
                     menuOverScreen={menuOverScreen}
@@ -872,6 +807,7 @@ function Viewer({
                     height={viewerHeight}
                     topHeight={topHeight}
                     bottomHeight={bottomHeight}
+                    activityDetected={activityDetected}
                     bottomSidesWidth={
                         (playbackControlsVisible || !playing || playbackMedia !== null) &&
                         currentScreenInteractionEnabled
@@ -908,7 +844,7 @@ function Viewer({
                                 [styles.isDragging]: isDragging,
                             },
                         ])}
-                        ref={containerRef}
+                        ref={mergeRefs(containerRef, fullscreenRef, activityRef, screenSizeRef)}
                         onContextMenu={onContextMenu}
                     >
                         {/* Announce screen change on screen reader */}
@@ -1000,7 +936,7 @@ function Viewer({
                             />
                         ) : null}
                         {ready || withoutScreensTransforms ? (
-                            <div className={styles.content} {...clickableAwareBindings}>
+                            <div className={styles.content} {...dragBindings}>
                                 {!withoutNavigationArrow &&
                                 !withNeighborScreens &&
                                 !navigationDisabled &&

@@ -3,7 +3,7 @@ import { ImageMedia } from './medias';
 import { Color, TextStyle } from './styles';
 
 export interface StoryComponent {
-    id?: string;
+    id: string;
     type: string;
     [key: string]: unknown;
 }

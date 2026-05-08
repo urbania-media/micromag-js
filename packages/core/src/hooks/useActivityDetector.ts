@@ -1,12 +1,9 @@
-import { useRef, useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-function useActivityDetector({ element: providedElement = null, disabled = false, timeout: timeoutDelay = 2000 } = {}) {
-    const ref = useRef(providedElement);
+function useActivityDetector({ disabled = false, timeout: timeoutDelay = 2000 } = {}) {
+    const ref = useRef(null);
     const [detected, setDetected] = useState(false);
     const detectedRef = useRef(detected);
-    if (providedElement !== null && providedElement !== ref.current) {
-        ref.current = providedElement;
-    }
 
     useEffect(() => {
         const { current: element = null } = ref;
@@ -52,7 +49,7 @@ function useActivityDetector({ element: providedElement = null, disabled = false
             element.removeEventListener('touchmove', onActivity);
             element.removeEventListener('touchstart', onActivity);
         };
-    }, [providedElement, disabled, timeoutDelay]);
+    }, [disabled, timeoutDelay]);
 
     return {
         ref,

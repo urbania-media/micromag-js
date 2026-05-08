@@ -18,12 +18,11 @@ import {
     usePlaybackMediaRef,
     useScreenRenderContext,
     useScreenSize,
-    useViewerContainer,
+    useViewerActivityDetected,
     useViewerContext,
     useViewerWebView,
 } from '@micromag/core/contexts';
 import {
-    useActivityDetector,
     useDebounce,
     useDimensionObserver,
     useTrackScreenEvent,
@@ -186,12 +185,7 @@ function Timeline({
             setPlaying(true);
         }
     }, [current, autoPlay]);
-    const viewerContainer = useViewerContainer();
-    const { detected: activityDetected } = useActivityDetector({
-        element: viewerContainer,
-        disabled: !isView,
-        timeout: 2000,
-    });
+    const activityDetected = useViewerActivityDetected();
     const toggleControlsVisibility = useCallback(() => {
         if (activityDetected) {
             showControls();

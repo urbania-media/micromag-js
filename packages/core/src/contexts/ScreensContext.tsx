@@ -1,21 +1,20 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { ReactNode, createContext, use, useEffect, useMemo, useState } from 'react';
 
 import { ScreensManager } from '../lib';
 
 import type { ScreenDefinition } from '../types';
 import { ComponentsProvider, SCREENS_NAMESPACE } from './ComponentsContext';
 
-export const ScreensContext = React.createContext(new ScreensManager());
+export const ScreensContext = createContext(null);
 
-export const useScreensManager = () => useContext(ScreensContext);
+export const useScreensManager = () => use(ScreensContext);
 
 interface ScreensProviderProps {
     screens?: ScreenDefinition[] | null;
     namespaces?: string[] | null;
     filterNamespaces?: boolean;
     manager?: ScreensManager | null;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function ScreensProvider({
@@ -26,13 +25,13 @@ export function ScreensProvider({
     children,
 }: ScreensProviderProps) {
     const previousManager = useScreensManager();
-    const finalManager = useMemo(() => {
+    const [finalManager] = useState(() => {
         let newManager = manager !== null ? manager : new ScreensManager(screens);
         if ((previousManager || null) !== null) {
             newManager = previousManager.merge(newManager);
         }
         if (filterNamespaces) {
-            newManager = previousManager.filter(
+            newManager = newManager.filter(
                 ({ namespaces: screenGroups = null }) =>
                     screenGroups === null ||
                     (namespaces !== null &&
@@ -43,10 +42,9 @@ export function ScreensProvider({
             );
         }
         return newManager;
-    }, [manager, screens, namespaces, filterNamespaces, previousManager]);
+    });
 
-    const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
-    const [components, setComponents] = useState(initialComponents);
+    const [components, setComponents] = useState(() => finalManager.getComponents());
     useEffect(() => {
         const onChange = () => setComponents(finalManager.getComponents());
         finalManager.on('change', onChange);
@@ -56,10 +54,10 @@ export function ScreensProvider({
     }, [finalManager, setComponents]);
 
     return (
-        <ScreensContext.Provider value={finalManager}>
+        <ScreensContext value={finalManager}>
             <ComponentsProvider namespace={SCREENS_NAMESPACE} components={components}>
                 {children}
             </ComponentsProvider>
-        </ScreensContext.Provider>
+        </ScreensContext>
     );
 }

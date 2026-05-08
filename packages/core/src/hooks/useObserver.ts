@@ -3,7 +3,7 @@ import isArray from 'lodash/isArray';
 
 export { useIntersectionObserver, useResizeObserver };
 
-export function useDimensionObserver(opts) {
+export function useDimensionObserver(opts = {}) {
     const { entry, ...rest } = useResizeObserver(opts);
     const { contentRect = null, borderBoxSize = null } = entry || {};
     const { width = 0, height = 0 } = contentRect || {};

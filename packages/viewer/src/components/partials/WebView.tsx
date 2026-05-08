@@ -1,9 +1,6 @@
-/* eslint-disable react/forbid-prop-types */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import queryString from 'query-string';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import {
     usePlaybackContext,
@@ -25,7 +22,12 @@ interface WebViewContainerProps {
     style?: Record<string, unknown>;
 }
 
-function WebViewContainer({ onChange = null, trackingEnabled = false, className = null, style = null }: WebViewContainerProps) {
+function WebViewContainer({
+    onChange = null,
+    trackingEnabled = false,
+    className = null,
+    style = null,
+}: WebViewContainerProps) {
     const {
         opened,
         close,
@@ -45,21 +47,18 @@ function WebViewContainer({ onChange = null, trackingEnabled = false, className 
 
     const ref = useRef(null);
 
-    // Handle current webview url
-    useEffect(() => {
-        if (url !== null) {
-            setCurrentUrl(url);
-        }
-    }, [url, setCurrentUrl]);
+    if (currentUrl !== url && url !== null) {
+        setCurrentUrl(url);
+    }
 
-    const onTransitionEnd = useCallback(() => {
+    const onTransitionEnd = () => {
         if (url === null) {
             setCurrentUrl(null);
         }
         if (onChange !== null) {
             onChange(opened);
         }
-    }, [url, setCurrentUrl, onChange]);
+    };
 
     // Disable interaction and pause playback
     useEffect(() => {
@@ -79,7 +78,16 @@ function WebViewContainer({ onChange = null, trackingEnabled = false, className 
                 setPlaying(true);
             }
         }
-    }, [opened, trackEvent]);
+    }, [
+        opened,
+        trackEvent,
+        disableInteraction,
+        enableInteraction,
+        hideControls,
+        showControls,
+        playing,
+        setPlaying,
+    ]);
 
     useEffect(() => {
         if (!trackingEnabled || currentUrl === null) {
@@ -88,22 +96,18 @@ function WebViewContainer({ onChange = null, trackingEnabled = false, className 
         trackEvent('viewer_webview', opened ? 'open' : 'close', currentUrl, { source });
     }, [trackingEnabled, currentUrl, opened]);
 
-    const keyboardShortcuts = useMemo(
-        () => ({
-            escape: () => {
-                close();
-            },
-        }),
-        [close],
-    );
-    useKeyboardShortcuts(keyboardShortcuts);
+    useKeyboardShortcuts({
+        escape: () => {
+            close();
+        },
+    });
 
     const webViewUrl = url || currentUrl;
-    const finalUrl = useMemo(() => {
-        const currentQueryString = queryString.parse(
-            webViewUrl !== null && webViewUrl.indexOf('?') !== -1 ? webViewUrl.split('?')[1] : '',
-        );
-        return webViewUrl !== null
+    const currentQueryString = queryString.parse(
+        webViewUrl !== null && webViewUrl.indexOf('?') !== -1 ? webViewUrl.split('?')[1] : '',
+    );
+    const finalUrl =
+        webViewUrl !== null
             ? `${webViewUrl.split('?')[0]}?${queryString.stringify({
                   utm_source: 'Micromag',
                   utm_medium: source || 'webview',
@@ -111,15 +115,10 @@ function WebViewContainer({ onChange = null, trackingEnabled = false, className 
                   ...currentQueryString,
               })}`
             : url;
-    }, [webViewUrl, source]);
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                className,
-                { [styles.opened]: opened },
-            ])}
+            className={classNames([styles.container, className, { [styles.opened]: opened }])}
             style={style}
             onTransitionEnd={onTransitionEnd}
             ref={ref}

@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { StoryParser } from '../lib';
 
 // import createDebug from 'debug';
-import { useScreensManager, useFieldsManager } from '../contexts';
+import { useFieldsManager, useScreensManager } from '../contexts';
 
 // const debug = createDebug('core:useParsedStory');
 
@@ -19,14 +19,13 @@ const useParsedStory = (
 ) => {
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();
-    const parser = useMemo(
+    const [parser] = useState(
         () =>
             new StoryParser({
                 screensManager,
                 fieldsManager,
                 fieldsPattern: screensManager.getFieldsPattern(),
             }),
-        [screensManager, fieldsManager],
     );
     const newStory = useMemo(() => {
         if (disabled) {

@@ -9,13 +9,13 @@ import {
     useMediaCurrentTime,
     useMediaDuration,
     useMediaReady,
-    useMediaThumbnail,
     useProgressSteps,
 } from '@micromag/core/hooks';
 
 import useSources from './useSources';
 
 import styles from './styles.module.css';
+import { getMediaThumbnail } from '@micromag/core/utils';
 
 interface VideoProps {
     media?: VideoMedia | null;
@@ -93,7 +93,7 @@ function Video({
     const { url: mediaUrl = null, metadata = null } = media || {};
     const { description = null, has_audio: hasAudio = null } = metadata || {};
     const { sources, isImage, files } = useSources(media);
-    const finalThumbnail = useMediaThumbnail(media, thumbnail);
+    const finalThumbnail = getMediaThumbnail(media, thumbnail);
 
     const ref = useRef(null);
 

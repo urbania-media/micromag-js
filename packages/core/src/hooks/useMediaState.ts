@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 
 import { getMediaIsBuffering, getMediaIsMuted, getMediaIsPlaying, getMediaSrc } from '../utils';
 
-import { trueFalse } from '../../../fields/src/fields';
 import { MediaElement } from '../types';
 
 function useMediaState(

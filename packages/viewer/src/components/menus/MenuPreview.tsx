@@ -82,10 +82,7 @@ function ViewerMenuPreview({
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             style={{ ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}
         >
