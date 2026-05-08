@@ -34,7 +34,6 @@
     "devDependencies": {
         "@babel/cli": "^7.28.6",
         "@babel/core": "^7.29.0",
-        "@babel/eslint-parser": "^7.28.6",
         "@babel/helpers": "^7.28.6",
         "@babel/node": "^7.29.0",
         "@babel/plugin-external-helpers": "^7.27.1",
