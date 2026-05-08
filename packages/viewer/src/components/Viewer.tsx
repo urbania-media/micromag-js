@@ -441,7 +441,7 @@ function Viewer({
     // Long press to pause playback
     const [pointerDownTime, setPointerDownTime] = useState(null);
     const [longPressPaused, setLongPressPaused] = useState(false);
-    const [longPressScreenIndex, setLongPressScreenIndex] = useState(null);
+    const [longPressScreenIndex, setLongPressScreenIndex] = useState(screenIndex);
     if (screenIndex !== longPressScreenIndex && (longPressPaused || pointerDownTime !== null)) {
         setLongPressPaused(false);
         setPointerDownTime(null);
@@ -462,6 +462,7 @@ function Viewer({
 
     const onPointerDown = () => {
         setPointerDownTime(Date.now());
+        setLongPressScreenIndex(screenIndex);
     };
 
     const onTap = ({
@@ -478,6 +479,7 @@ function Viewer({
         if (!currentPlaying && currentLongPressPaused) {
             setPlaying(true);
             setLongPressPaused(false);
+            setPointerDownTime(null);
             return;
         }
         if (tapMaximumDuration !== null && elapsedTime > tapMaximumDuration) {

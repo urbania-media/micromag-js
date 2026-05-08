@@ -66,7 +66,6 @@ function useDragProgress({
 
     const onDrag = (gestureState) => {
         const { active, tap, first } = gestureState;
-        console.log('DRAG');
 
         if (disabled) {
             draggingRef.current = false;
