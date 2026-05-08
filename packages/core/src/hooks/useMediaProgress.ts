@@ -104,7 +104,7 @@ function useMediaProgress(media = null, options = null) {
             canceled = true;
             raf.cancel(handle);
         };
-    }, [media, playing, disabled, duration, updateTime, progress, setProgress]);
+    }, [media, playing, disabled, duration, setProgress]);
 
     return progress;
 }

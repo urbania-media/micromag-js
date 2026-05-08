@@ -1,7 +1,13 @@
 import createDebug from 'debug';
 import { ReactNode, createContext, use, useEffect, useRef, useState } from 'react';
 
-import { getMediaDuration, getMediaHasAudio, getMediaIsPlaying, getMediaSrc } from '../utils';
+import {
+    getMediaDuration,
+    getMediaFilename,
+    getMediaHasAudio,
+    getMediaIsPlaying,
+    getMediaSrc,
+} from '../utils';
 
 import { MediaElement } from '../types';
 
@@ -109,11 +115,7 @@ export const usePlaybackMediaRef = (active = false, background = false, updateKe
 
     // Register media with context when active and no media is registered
     useEffect(() => {
-        if (
-            !active ||
-            mediaRef.current === null ||
-            (mediaRef.current === media && background === isBackground)
-        ) {
+        if (!active || (mediaRef.current === media && background === isBackground)) {
             return;
         }
         setIsBackground(background);
@@ -194,11 +196,11 @@ export function PlaybackProvider({
         const newSrc = getMediaSrc(newMedia);
         const newHasAudio = getMediaHasAudio(newMedia);
         if (newMedia !== null) {
-            debug('Set media: %s %o', newSrc, {
+            debug('Set current media: %s %o', getMediaFilename(newSrc), {
                 hasAudio: newHasAudio,
             });
         } else {
-            debug('Unset media');
+            debug('Unset current media');
         }
         setMedia(newMedia);
         setCurrentQualityLevel(null);

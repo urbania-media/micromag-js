@@ -516,9 +516,11 @@ function KeypadScreen({
         }
     }, [screenState, items, isView]);
 
-    if (isView && screenState === null && !showPopup && !popupTransitioning) {
-        setPopup(null);
-    }
+    useEffect(() => {
+        if (isView && screenState === null && !showPopup && !popupTransitioning) {
+            setPopup(null);
+        }
+    }, [isView, screenState, showPopup, popupTransitioning]);
 
     return (
         <div

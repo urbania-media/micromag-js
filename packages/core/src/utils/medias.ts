@@ -49,3 +49,7 @@ export function getMediaHasAudio(media: MediaElement | null): boolean {
         (media.tagName.toLowerCase() === 'audio' || media.dataset.hasAudio === 'true')
     );
 }
+
+export function getMediaFilename(src: string | null): string | null {
+    return src !== null ? src.split('/')[src.split('/').length - 1].split('#')[0] || null : null;
+}

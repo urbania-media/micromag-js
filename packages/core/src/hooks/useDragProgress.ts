@@ -41,6 +41,14 @@ function useDragProgress({
     // }
     const [dragging, setDragging] = useState(false);
     const [direction, setDirection] = useState(0);
+    const [transitioned, setTransitioned] = useState(true);
+    const onTransitionStart = () => {
+        setTransitioned(false);
+    };
+
+    const onTransitionComplete = () => {
+        setTransitioned(true);
+    };
 
     // In react-spring v10, useSpring(fn) without deps stores the initial update and
     // re-applies it via ctrl.start() in a layout effect on EVERY render, resetting the
@@ -51,11 +59,14 @@ function useDragProgress({
     const [{ progress }, api] = useSpring(() => ({
         ref: imperativeRef,
         from: { progress: wantedProgress },
+        onStart: onTransitionStart,
+        onRest: onTransitionComplete,
         ...springParams,
     }));
 
     const onDrag = (gestureState) => {
-        const { active, tap } = gestureState;
+        const { active, tap, first } = gestureState;
+        console.log('DRAG');
 
         if (disabled) {
             draggingRef.current = false;
@@ -83,14 +94,14 @@ function useDragProgress({
         api.start({
             progress: newProgress,
             immediate: active,
-            onResolve: !active
-                ? (e) => {
-                      setDirection(0);
-                      if (onResolve !== null) onResolve(e);
-                  }
-                : (e) => {
-                      if (onResolve !== null) onResolve(e);
-                  },
+            onResolve: (e) => {
+                if (!active) {
+                    setDirection(0);
+                }
+                if (onResolve !== null) onResolve(e);
+            },
+            onStart: first ? onTransitionStart : undefined,
+            onRest: !active ? onTransitionComplete : undefined,
             ...springParams,
         });
         if (onProgress !== null) {
@@ -101,17 +112,20 @@ function useDragProgress({
     const bind = useGesture(
         {
             onDrag,
-            onPointerDown: onPointerDown !== null ? onPointerDown : () => {},
-            onScroll: onScroll !== null ? onScroll : () => {},
+            onPointerDown: onPointerDown !== null ? onPointerDown : undefined,
+            onScroll: onScroll !== null ? onScroll : undefined,
         },
         {
             drag: dragOptions,
         },
     );
 
+    const [lastWantedProgress, setLastWantedProgress] = useState(wantedProgress);
+
     useEffect(() => {
         if (!draggingRef.current && wantedProgress !== progressRef.current) {
             setDirection(wantedProgress < progressRef.current ? -1 : 1);
+            setLastWantedProgress(wantedProgress);
             progressRef.current = wantedProgress;
             api.start({
                 progress: wantedProgress,
@@ -120,19 +134,35 @@ function useDragProgress({
                     setDirection(0);
                     if (onResolve !== null) onResolve(e);
                 },
+                onStart: onTransitionStart,
+                onRest: onTransitionComplete,
                 ...springParams,
             });
         }
-    }, [api, wantedProgress, disabled, onResolve, springParams]);
+    }, [
+        api,
+        wantedProgress,
+        disabled,
+        onResolve,
+        springParams,
+        onTransitionStart,
+        onTransitionComplete,
+    ]);
 
-    const transitioning = wantedProgress !== progress.get() || progress.isAnimating || dragging;
+    const transitioning =
+        wantedProgress !== progress.get() || progress.isAnimating || dragging || !transitioned;
 
     return {
         transitioning,
         bind,
         dragging,
         progress,
-        direction,
+        direction:
+            wantedProgress !== lastWantedProgress
+                ? wantedProgress < lastWantedProgress
+                    ? -1
+                    : 1
+                : direction,
     };
 }
 

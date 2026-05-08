@@ -1,7 +1,13 @@
 import createDebug from 'debug';
 import { useEffect, useState } from 'react';
 
-import { getMediaIsBuffering, getMediaIsMuted, getMediaIsPlaying, getMediaSrc } from '../utils';
+import {
+    getMediaFilename,
+    getMediaIsBuffering,
+    getMediaIsMuted,
+    getMediaIsPlaying,
+    getMediaSrc,
+} from '../utils';
 
 import { MediaElement } from '../types';
 
@@ -14,8 +20,7 @@ function useMediaState(
     const [playing, setPlaying] = useState(() => getMediaIsPlaying(media) || wantedPlaying);
     const [buffering, setBuffering] = useState(false);
     const [muted, setMuted] = useState(() => getMediaIsMuted(media) || wantedMuted);
-    const mediaKey =
-        src !== null ? src.split('/')[src.split('/').length - 1].split('#')[0] || null : null;
+    const mediaKey = getMediaFilename(src);
     const debug = createDebug(mediaKey !== null ? `micromag:media:${mediaKey}` : 'micromag:media');
     if (media !== currentMediaElement) {
         setPlaying(getMediaIsPlaying(media) || wantedPlaying);

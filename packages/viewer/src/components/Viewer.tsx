@@ -1,7 +1,6 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import createDebug from 'debug';
-import isFunction from 'lodash/isFunction';
 import React, { RefObject, useEffect, useImperativeHandle, useRef, useState } from 'react';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -35,6 +34,7 @@ import {
 import {
     getColorAsString,
     getDeviceScreens,
+    getMediaFilename,
     getMediaIsPlaying,
     getMediaSrc,
     mergeRefs,
@@ -56,6 +56,7 @@ import HandTap from './partials/HandTap';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
+import { index } from '../../../editor/src/styles/buttons/screen-with-preview.module.css';
 import styles from '../styles/viewer.module.css';
 
 // @todo export from somewhere else; or use as props in possible component for screen transitions
@@ -80,11 +81,11 @@ function updateMediaPlaying(
         !getMediaIsPlaying(currentMedia)
     ) {
         if (lastMedia !== null) {
-            debug('Pause media: %s', getMediaSrc(lastMedia));
+            debug('Pause media: %s', getMediaFilename(getMediaSrc(lastMedia)));
             lastMedia.dataset.forcePlaying = 'false';
             lastMedia.pause();
         }
-        debug('Force playing media: %s', getMediaSrc(currentMedia));
+        debug('Force playing media: %s', getMediaFilename(getMediaSrc(currentMedia)));
         currentMedia.play().catch(() => {});
         currentMedia.dataset.forcePlaying = 'true';
     }
@@ -531,15 +532,6 @@ function Viewer({
         }
     };
 
-    const [transitioned, setTransitioned] = useState(true);
-    const onTransitionStart = () => {
-        setTransitioned(false);
-    };
-
-    const onTransitionComplete = () => {
-        setTransitioned(true);
-    };
-
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
     const navigationDisabled = currentScreenInteractionEnabled === false;
 
@@ -559,8 +551,6 @@ function Viewer({
         onTap,
         springParams: {
             config: SPRING_CONFIG_TIGHT,
-            onStart: onTransitionStart,
-            onRest: onTransitionComplete,
         },
         dragOptions: {
             filterTaps: true,
@@ -720,7 +710,7 @@ function Viewer({
     const { body: incentiveLabel = null } = shareIncentiveLabel || {};
     const { body: currentIncentiveLabel = null } = currentShareIncentiveLabel || {};
 
-    if (hasShareIncentive && shareIncentiveLabel !== currentShareIncentiveLabel) {
+    if (hasShareIncentive && incentiveLabel !== currentIncentiveLabel) {
         setCurrentShareIncentive(shareIncentive);
         setShareIncentiveVisible(true);
     }
@@ -1024,7 +1014,7 @@ function Viewer({
                                                         index={i}
                                                         current={current}
                                                         active={active || current}
-                                                        ready={current && transitioned}
+                                                        ready={current && !transitioning}
                                                         preload={preload || current}
                                                         mediaRef={(ref) => {
                                                             screensMediasRef.current[i] = ref;
