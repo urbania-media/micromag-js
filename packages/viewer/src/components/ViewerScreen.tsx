@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { ForwardedRef, useEffect, useState } from 'react';
 
-import type { RenderContext, ScreenComponent } from '@micromag/core';
+import type { MediaElement, RenderContext, ScreenComponent } from '@micromag/core';
 import { Screen } from '@micromag/core/components';
 
 // @todo: remove if validated with team
@@ -16,7 +16,7 @@ interface ViewerScreenProps {
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    mediaRef?: ((...args: unknown[]) => void) | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     width?: number | null;
     index?: number | null;
     height?: number | null;

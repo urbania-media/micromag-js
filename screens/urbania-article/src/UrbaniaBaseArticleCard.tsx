@@ -11,6 +11,7 @@ import type {
     BackgroundElement,
     Header as HeaderConfig,
     HeadingElement,
+    MediaElement,
     TextElement,
     VisualElement,
 } from '@micromag/core';
@@ -51,7 +52,7 @@ interface UrbaniaArticleCardProps {
     current?: boolean;
     preload?: boolean;
     spacing?: number;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

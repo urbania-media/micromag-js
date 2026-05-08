@@ -11,6 +11,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     ImageElement,
+    MediaElement,
     QuizAnswer,
     TextElement,
     TextStyle,
@@ -67,7 +68,7 @@ interface QuizScreenProps {
     transitions?: Transitions | null;
     transitionStagger?: number;
     type?: string | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

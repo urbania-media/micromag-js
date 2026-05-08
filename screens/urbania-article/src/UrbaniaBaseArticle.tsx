@@ -9,6 +9,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     HeadingElement,
+    MediaElement,
     TextElement,
     VisualElement,
 } from '@micromag/core';
@@ -69,7 +70,7 @@ interface UrbaniaArticleProps {
     current?: boolean;
     preload?: boolean;
     spacing?: number;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

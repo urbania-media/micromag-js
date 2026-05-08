@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
+import { ForwardedRef, ReactNode } from 'react';
 
-import type { BackgroundElement } from '@micromag/core';
+import type { BackgroundElement, MediaElement } from '@micromag/core';
 import { getLayersFromBackground } from '@micromag/core/utils';
 
 import Background from './Background';
@@ -15,12 +15,12 @@ interface BackgroundLayersProps {
     background?: BackgroundElement | BackgroundElement[] | null;
     playing?: boolean;
     muted?: boolean;
-    children?: React.ReactNode | null;
+    children?: ReactNode | null;
     className?: string | null;
     layerClassName?: string | null;
     backgroundClassName?: string | null;
     loadingMode?: string;
-    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     shouldLoad?: boolean;
     withoutVideo?: boolean;
     onPlayError?: boolean | null;
@@ -49,7 +49,7 @@ function BackgroundLayers({
 }: BackgroundLayersProps) {
     const hasSize = width !== null && height !== null && width > 0 && height > 0;
 
-    const layers = useMemo(() => getLayersFromBackground(background), [background]);
+    const layers = getLayersFromBackground(background);
     const maxZIndex = layers.length;
 
     if (layers.length === 0) {

@@ -7,6 +7,7 @@ import type {
     GeoPosition,
     Marker,
     MarkerWithImage,
+    MediaElement,
     TextElement,
 } from '@micromag/core';
 import { Button, PlaceholderMap, ScreenElement } from '@micromag/core/components';
@@ -70,7 +71,7 @@ interface MapScreenProps {
     current?: boolean;
     active?: boolean;
     type?: string | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

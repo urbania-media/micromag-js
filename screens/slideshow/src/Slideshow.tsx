@@ -8,6 +8,7 @@ import type {
     Header as HeaderConfig,
     ImageElement,
     ImageMedia,
+    MediaElement,
     Transitions as TransitionsConfig,
 } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
@@ -51,7 +52,7 @@ interface SlideshowScreenProps {
     active?: boolean;
     preload?: boolean;
     transitions?: TransitionsConfig | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

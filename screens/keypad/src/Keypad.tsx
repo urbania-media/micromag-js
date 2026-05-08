@@ -2,7 +2,7 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
-import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ForwardedRef, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -11,6 +11,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     HeadingElement,
+    MediaElement,
     TextElement,
     TextStyle,
     VisualElement,
@@ -119,7 +120,7 @@ interface KeypadScreenProps {
     current?: boolean;
     preload?: boolean;
     withoutCloseButton?: boolean;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 
@@ -207,10 +208,7 @@ function KeypadScreen({
     const { buttonTextStyle: popupButtonsTextStyle = null, boxStyle: popupButtonsBoxStyle = null } =
         popupButtons || {};
 
-    const popupLayoutClassName = useMemo(
-        () => (popupLayout !== null ? camelCase(popupLayout) : ''),
-        [popupLayout],
-    );
+    const popupLayoutClassName = popupLayout !== null ? camelCase(popupLayout) : '';
 
     const [showPopup, setShowPopup] = useState(false);
     const [popup, setPopup] = useState(null);
@@ -250,116 +248,105 @@ function KeypadScreen({
         }
     }, [showNextPopup, setShowPopup, setShowNextPopup]);
 
-    const onItemClick = useCallback(
-        (e, item, index) => {
-            e.stopPropagation();
+    const onItemClick = (e, item, index) => {
+        e.stopPropagation();
 
-            if (isNotInteractive) {
-                return;
-            }
+        if (isNotInteractive) {
+            return;
+        }
 
-            const {
-                label: itemLabel = null,
-                heading = null,
-                inWebView = false,
-                url = null,
-            } = item || {};
+        const {
+            label: itemLabel = null,
+            heading = null,
+            inWebView = false,
+            url = null,
+        } = item || {};
 
-            if (inWebView && url !== null) {
-                openWebView({
-                    url,
-                });
-            } else {
-                setPopup(item);
-                setShowNextPopup(true);
-            }
+        if (inWebView && url !== null) {
+            openWebView({
+                url,
+            });
+        } else {
+            setPopup(item);
+            setShowNextPopup(true);
+        }
 
-            const { body: headingBody = null } = heading || {};
-            const finalLabel = isString(itemLabel) ? itemLabel : (itemLabel || {}).body || null;
-            trackScreenEvent(
-                'click_item',
-                [`#${index + 1}`, finalLabel || headingBody || '']
-                    .filter((it) => !isEmpty(it))
-                    .join(' '),
-                {
-                    linkType: 'keypad_item',
-                    linkUrl: url || null,
-                },
-            );
-        },
-        [setPopup, setShowPopup, trackScreenEvent, openWebView, isNotInteractive],
-    );
+        const { body: headingBody = null } = heading || {};
+        const finalLabel = isString(itemLabel) ? itemLabel : (itemLabel || {}).body || null;
+        trackScreenEvent(
+            'click_item',
+            [`#${index + 1}`, finalLabel || headingBody || '']
+                .filter((it) => !isEmpty(it))
+                .join(' '),
+            {
+                linkType: 'keypad_item',
+                linkUrl: url || null,
+            },
+        );
+    };
 
-    const onCloseModal = useCallback(
-        (isShowPopup = false) => {
-            if (isNotInteractive) {
-                return;
-            }
-            if (isShowPopup) {
-                trackScreenEvent('close_modal');
-            }
-            setShowPopup(false);
-            setPopupDragDisabled(false);
-        },
-        [setShowPopup, setPopupDragDisabled, trackScreenEvent, isNotInteractive],
-    );
+    const onCloseModal = (isShowPopup = false) => {
+        if (isNotInteractive) {
+            return;
+        }
+        if (isShowPopup) {
+            trackScreenEvent('close_modal');
+        }
+        setShowPopup(false);
+        setPopupDragDisabled(false);
+    };
 
-    const onClickClose = useCallback(
-        (e) => {
-            if (isNotInteractive) {
-                return;
-            }
-            e.preventDefault();
-            e.stopPropagation();
-            onCloseModal(showPopup);
-        },
-        [onCloseModal, isNotInteractive, showPopup],
-    );
+    const onClickClose = (e) => {
+        if (isNotInteractive) {
+            return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        onCloseModal(showPopup);
+    };
 
-    const onClickCta = useCallback((e = null) => {
+    const onClickCta = (e = null) => {
         if (e !== null) {
             e.stopPropagation();
         }
-    }, []);
+    };
 
     const [popupDragDirection, setPopupDragDirection] = useState(null);
 
-    const onPopupScrollHeightChange = useCallback(
-        ({ scrolleeHeight = 0 }) => {
-            if (Math.floor(scrolleeHeight) >= Math.floor(height)) {
-                setPopupDragDirection('top');
-            } else {
-                setPopupDragDirection('bottom');
-            }
-        },
-        [height],
-    );
+    const onPopupScrollHeightChange = ({ scrolleeHeight = 0 }) => {
+        if (Math.floor(scrolleeHeight) >= Math.floor(height)) {
+            setPopupDragDirection('top');
+        } else {
+            setPopupDragDirection('bottom');
+        }
+    };
 
-    const computePopupProgress = useCallback(
-        ({ active: dragActive = false, movement: [, my = null], velocity: [, vy = null] }) => {
-            const damper = 0.5;
-            const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-            const delta = windowHeight > 0 && my !== null ? Math.abs(my) / windowHeight : 0;
-            const reachedThreshold = vy !== null ? vy > 1 || delta > 0.3 : false;
-            let progress = 0;
-            if (popupDragDirection === 'top' && my !== null && my < 0) {
-                progress = delta * damper * -1;
-            } else if (popupDragDirection === 'bottom' && my !== null && my > 0) {
-                progress = delta * damper;
-            }
+    const computePopupProgress = ({
+        active: dragActive = false,
+        movement: [, my = null],
+        velocity: [, vy = null],
+    }) => {
+        const damper = 0.5;
+        const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+        const delta = windowHeight > 0 && my !== null ? Math.abs(my) / windowHeight : 0;
+        const reachedThreshold = vy !== null ? vy > 1 || delta > 0.3 : false;
+        let progress = 0;
+        if (popupDragDirection === 'top' && my !== null && my < 0) {
+            progress = delta * damper * -1;
+        } else if (popupDragDirection === 'bottom' && my !== null && my > 0) {
+            progress = delta * damper;
+        }
 
-            if (!dragActive) {
-                if (reachedThreshold) {
-                    onCloseModal(true);
-                    return 1;
-                }
-                return 0;
+        if (!dragActive) {
+            if (reachedThreshold) {
+                onCloseModal(true);
+                return 1;
             }
+            return 0;
+        }
 
-            return progress;
-        },
-        [onCloseModal, popupDragDirection],
-    );
+        return progress;
+    };
 
     useEffect(() => {
         if (showPopup) {
@@ -392,29 +379,26 @@ function KeypadScreen({
         };
     }, [current, popupInnerRef, containerRef, isInteractivePreview, isEdit, showPopup]);
 
-    const onPopupScrollBottom = useCallback(() => {
+    const onPopupScrollBottom = () => {
         setPopupDragDisabled(false);
-    }, [setPopupDragDisabled]);
+    };
 
-    const onPopupScrollNotBottom = useCallback(() => {
+    const onPopupScrollNotBottom = () => {
         setPopupDragDisabled(true);
-    }, [setPopupDragDisabled]);
+    };
 
-    const onScrolledTrigger = useCallback(
-        (trigger = null) => {
-            if (trigger !== null) {
-                const scrollPercent = Math.round(trigger * 100);
-                trackScreenEvent('scroll', scrollPercent, { scrollPercent });
-            }
-        },
-        [trackScreenEvent],
-    );
+    const onScrolledTrigger = (trigger = null) => {
+        if (trigger !== null) {
+            const scrollPercent = Math.round(trigger * 100);
+            trackScreenEvent('scroll', scrollPercent, { scrollPercent });
+        }
+    };
 
-    const onTap = useCallback(() => {
+    const onTap = () => {
         onCloseModal(showPopup);
-    }, [onCloseModal, showPopup]);
+    };
 
-    const onResolve = useCallback(() => {}, []);
+    const onResolve = () => {};
 
     const {
         bind: bindPopupDrag,
@@ -444,75 +428,71 @@ function KeypadScreen({
         };
     }, [showPopup, onCloseModal]);
 
-    const gridItems = useMemo(
-        () =>
-            (items === null || items.length === 0 ? placeholders : items).map((item, index) => {
-                const {
-                    id = null,
-                    label: itemLabel = null,
-                    visual = null,
-                    boxStyle = null,
-                    // alignment = null,
-                    heading = null,
-                    content = null,
-                    url = null,
-                    inWebView = false,
-                    largeVisual: popupLargeVisual = null,
-                } = item || {};
+    const gridItems = (items === null || items.length === 0 ? placeholders : items).map(
+        (item, index) => {
+            const {
+                id = null,
+                label: itemLabel = null,
+                visual = null,
+                boxStyle = null,
+                // alignment = null,
+                heading = null,
+                content = null,
+                url = null,
+                inWebView = false,
+                largeVisual: popupLargeVisual = null,
+            } = item || {};
 
-                const { url: visualUrl = null } = visual || {};
-                const { body: headingBody = null } = heading || {};
-                const { body: contentBody = null } = content || {};
-                const finalLabel = isString(itemLabel) ? { body: itemLabel } : itemLabel || {};
-                const { textStyle: finalLabelTextStyle = null } = finalLabel || {};
-                const { body: finalBody = null } = finalLabel || {};
+            const { url: visualUrl = null } = visual || {};
+            const { body: headingBody = null } = heading || {};
+            const { body: contentBody = null } = content || {};
+            const finalLabel = isString(itemLabel) ? { body: itemLabel } : itemLabel || {};
+            const { textStyle: finalLabelTextStyle = null } = finalLabel || {};
+            const { body: finalBody = null } = finalLabel || {};
 
-                const key = finalBody || visualUrl || id;
-                const itemIsEmpty = finalBody === null && visual === null;
-                const isExternalLink = url !== null && !inWebView;
-                const isPopupEmpty =
-                    (heading === null || headingBody === null || headingBody === '') &&
-                    (content === null || contentBody === null || contentBody === '') &&
-                    popupLargeVisual === null;
+            const key = finalBody || visualUrl || id;
+            const itemIsEmpty = finalBody === null && visual === null;
+            const isExternalLink = url !== null && !inWebView;
+            const isPopupEmpty =
+                (heading === null || headingBody === null || headingBody === '') &&
+                (content === null || contentBody === null || contentBody === '') &&
+                popupLargeVisual === null;
 
-                return (
-                    <div key={key} className={styles.item}>
-                        <RichButton
-                            className={classNames([
-                                styles.button,
-                                {
-                                    [styles.isEmpty]: itemIsEmpty,
-                                    [styles.isLink]: url !== null,
-                                    [styles.disableHover]: isPopupEmpty && url === null,
-                                },
-                            ])}
-                            layout={buttonLayout || null}
-                            external={isExternalLink}
-                            href={isExternalLink ? url : null}
-                            focusable={current}
-                            onClick={
-                                !isPopupEmpty || (url !== null && !isExternalLink)
-                                    ? (e) => onItemClick(e, item, index)
-                                    : null
-                            }
-                            // style={{
-                            //     ...getStyleFromAlignment(alignment, true, 'flex-start'),
-                            // }}
-                            textStyle={{ ...buttonTextStyle, ...finalLabelTextStyle }}
-                            buttonStyle={{ ...buttonBoxStyle, ...boxStyle }}
-                            label={finalLabel}
-                            labelBoxStyle={buttonLabelBoxStyle}
-                            visual={visual}
-                            visualWidth={
-                                buttonVisualWidth !== null ? `${buttonVisualWidth}%` : null
-                            }
-                            resolution={resolution}
-                            textClassName={styles.buttonLabel}
-                        />
-                    </div>
-                );
-            }),
-        [items, screenState, buttonBoxStyle, buttonTextStyle, buttonLayout, isNotInteractive],
+            return (
+                <div key={key} className={styles.item}>
+                    <RichButton
+                        className={classNames([
+                            styles.button,
+                            {
+                                [styles.isEmpty]: itemIsEmpty,
+                                [styles.isLink]: url !== null,
+                                [styles.disableHover]: isPopupEmpty && url === null,
+                            },
+                        ])}
+                        layout={buttonLayout || null}
+                        external={isExternalLink}
+                        href={isExternalLink ? url : null}
+                        focusable={current}
+                        onClick={
+                            !isPopupEmpty || (url !== null && !isExternalLink)
+                                ? (e) => onItemClick(e, item, index)
+                                : null
+                        }
+                        // style={{
+                        //     ...getStyleFromAlignment(alignment, true, 'flex-start'),
+                        // }}
+                        textStyle={{ ...buttonTextStyle, ...finalLabelTextStyle }}
+                        buttonStyle={{ ...buttonBoxStyle, ...boxStyle }}
+                        label={finalLabel}
+                        labelBoxStyle={buttonLabelBoxStyle}
+                        visual={visual}
+                        visualWidth={buttonVisualWidth !== null ? `${buttonVisualWidth}%` : null}
+                        resolution={resolution}
+                        textClassName={styles.buttonLabel}
+                    />
+                </div>
+            );
+        },
     );
 
     useEffect(() => {
@@ -524,24 +504,21 @@ function KeypadScreen({
             setPopup(null);
             setShowPopup(false);
         }
-        if (screenState != null && screenState.includes('popup')) {
+        if (screenState !== null && screenState.includes('popup')) {
             const index = screenState.split('.').pop();
             const found = items[index];
             setPopup(found);
             setShowPopup(true);
         }
-        if (screenState == null && !isView) {
+        if (screenState === null && !isView) {
             setPopup(null);
             setShowPopup(false);
         }
     }, [screenState, items, isView]);
 
-    // Clear popup contents after close transition completes
-    useEffect(() => {
-        if (isView && screenState === null && !showPopup && !popupTransitioning) {
-            setPopup(null);
-        }
-    }, [isView, screenState, showPopup, popupTransitioning]);
+    if (isView && screenState === null && !showPopup && !popupTransitioning) {
+        setPopup(null);
+    }
 
     return (
         <div

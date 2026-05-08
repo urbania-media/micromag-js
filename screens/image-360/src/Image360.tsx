@@ -8,6 +8,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     ImageMedia,
+    MediaElement,
 } from '@micromag/core';
 import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
@@ -41,7 +42,7 @@ interface Image360ScreenProps {
     preload?: boolean;
     type?: string | null;
     spacing?: number;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

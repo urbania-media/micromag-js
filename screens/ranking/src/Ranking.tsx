@@ -7,6 +7,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     HeadingElement,
+    MediaElement,
     TextElement,
     TextStyle,
 } from '@micromag/core';
@@ -53,7 +54,7 @@ interface RankingScreenProps {
     current?: boolean;
     preload?: boolean;
     type?: string | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

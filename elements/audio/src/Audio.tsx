@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef } from 'react';
 
-import type { AudioMedia } from '@micromag/core';
+import type { AudioMedia, MediaElement } from '@micromag/core';
 import {
     useMediaCurrentTime,
     useMediaDuration,
@@ -18,7 +18,7 @@ import styles from './styles/audio.module.css';
 
 interface AudioProps {
     media?: AudioMedia | null;
-    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     muted?: boolean;
     autoPlay?: boolean;
     paused?: boolean;

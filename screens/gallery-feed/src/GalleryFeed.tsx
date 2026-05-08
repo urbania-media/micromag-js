@@ -8,6 +8,7 @@ import type {
     Header as HeaderConfig,
     ImageElementWithCaption,
     ImageMedia,
+    MediaElement,
     TextStyle,
 } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -52,7 +53,7 @@ interface GalleryFeedScreenProps {
     active?: boolean;
     preload?: boolean;
     type?: string | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

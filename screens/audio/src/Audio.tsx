@@ -7,6 +7,7 @@ import type {
     BackgroundElement,
     Footer as FooterConfig,
     Header as HeaderConfig,
+    MediaElement,
 } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
 import {
@@ -44,7 +45,7 @@ interface AudioScreenProps {
     footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     showWave?: boolean;
     className?: string | null;
 }

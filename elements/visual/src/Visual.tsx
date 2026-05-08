@@ -1,8 +1,8 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useCallback, useMemo } from 'react';
+import { ForwardedRef } from 'react';
 
-import type { Media, ObjectFit } from '@micromag/core';
+import type { ImageMedia, MediaElement, ObjectFit, VideoMedia } from '@micromag/core';
 import { useIsVisible } from '@micromag/core/hooks';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
@@ -10,8 +10,8 @@ import Video from '@micromag/element-video';
 import styles from './styles.module.css';
 
 interface VisualProps {
-    media?: Media | null;
-    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    media?: ImageMedia | VideoMedia | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     width?: number | string | null;
     height?: number | string | null;
     ratio?: number | null;
@@ -55,9 +55,8 @@ function Visual({
     onQualityLevelChange = null,
     ...props
 }: VisualProps) {
-    const { type = null, thumbnail_url: thumbnailUrl = null, url = null } = media || {};
+    const { type = null, thumbnail_url: thumbnailUrl = null } = media || {};
     const isVideo = type === 'video';
-    const elProps = useMemo(() => ({ ...props, media }), [props, media]);
     const isLazyLoading = loadingMode === 'lazy';
     const { ref: refVisible, visible: isVisible } = useIsVisible({
         rootMargin: '200px',
@@ -65,14 +64,6 @@ function Visual({
         disabled: !isLazyLoading,
     });
     const finalShouldLoad = (!isLazyLoading || isVisible) && shouldLoad;
-
-    const imageElProps = useMemo(() => {
-        const tmpProps =
-            (!shouldLoad || withoutVideo) && isVideo
-                ? { ...elProps, media: { url: thumbnailUrl } }
-                : elProps;
-        return shouldLoad && !withoutVideo ? { ...elProps, media: { ...media, url } } : tmpProps;
-    }, [isVideo, elProps, thumbnailUrl, url, shouldLoad]);
 
     let videoContainerStyle = null;
 
@@ -101,17 +92,18 @@ function Visual({
 
     const natural = objectFit === null;
 
-    const onLoaded = useCallback((e) => {
+    const onLoaded = (e) => {
         if (onParentLoaded !== null) {
             onParentLoaded(e);
         }
-    }, []);
+    };
 
     return type !== null ? (
         <>
             {type === 'image' || !shouldLoad || withoutVideo ? (
                 <Image
-                    {...imageElProps}
+                    {...props}
+                    media={isVideo ? { url: thumbnailUrl } : media}
                     ref={refVisible}
                     loadingMode={loadingMode !== 'lazy' ? 'lazy' : null}
                     objectFit={objectFit}
@@ -139,7 +131,8 @@ function Visual({
                         style={videoContainerStyle}
                     >
                         <Video
-                            {...elProps}
+                            {...props}
+                            media={media as VideoMedia}
                             innerClassName={styles.videoTag}
                             mediaRef={mediaRef}
                             width={objectFit === null ? width : null}

@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { ComponentType, ElementType } from 'react';
 
 import { ComponentsMap } from '../types';
 import pascalCase from './pascalCase';
@@ -7,7 +7,7 @@ const getComponentFromName = (
     name: string | null = null,
     components: ComponentsMap,
     defaultComponent: ComponentType | null = null,
-): ComponentType | null => {
+): ElementType | null => {
     if (components === null || name === null) {
         return defaultComponent;
     }

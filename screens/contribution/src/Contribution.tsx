@@ -13,6 +13,7 @@ import type {
     Header as HeaderConfig,
     HeadingElement,
     InputElement,
+    MediaElement,
     TextElement,
     TextStyle,
     Transitions as TransitionsConfig,
@@ -75,7 +76,7 @@ interface ContributionScreenProps {
     transitionStagger?: number;
     resizeTransitionDuration?: number;
     type?: string | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

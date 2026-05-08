@@ -1,10 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
+import React, { Component, ElementType, ForwardedRef } from 'react';
 
 import { getComponentFromName } from '../../utils';
 
 import { ScreenProvider, useScreenComponent } from '../../contexts';
+import { MediaElement, RenderContext, StoryComponent } from '../../types';
 
 import styles from '../../styles/screens/screen.module.css';
 
@@ -17,9 +17,9 @@ interface ScreenProps {
     preload?: boolean;
     current?: boolean;
     component?: React.ReactNode | null;
-    components?: Record<string, Component> | null;
+    components?: Record<string, ElementType> | null;
     className?: string | null;
-    mediaRef?: ((...args: unknown[]) => void) | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
 }
 
 function Screen({

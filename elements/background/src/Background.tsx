@@ -1,8 +1,8 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useRef } from 'react';
+import { CSSProperties, ForwardedRef, ReactNode, useState } from 'react';
 
-import type { Color, ImageMedia, VideoMedia } from '@micromag/core';
+import type { Color, ImageMedia, MediaElement, VideoMedia } from '@micromag/core';
 import { useSetting } from '@micromag/core/contexts';
 import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
@@ -20,11 +20,11 @@ interface BackgroundProps {
     loop?: boolean;
     color?: Color | null;
     media?: ImageMedia | VideoMedia | null;
-    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
     playing?: boolean;
     muted?: boolean;
-    children?: React.ReactNode | null;
+    children?: ReactNode | null;
     loadingMode?: string;
     shouldLoad?: boolean;
     onPlayError?: ((...args: unknown[]) => void) | null;
@@ -69,14 +69,14 @@ function Background({
 
     // Lazy load
     const newShouldLoad = shouldLoad || loadingMode !== 'lazy';
-    const wasLoadedRef = useRef(newShouldLoad);
-    if (newShouldLoad && !wasLoadedRef.current) {
-        wasLoadedRef.current = newShouldLoad;
+    const [wasLoaded, setWasLoaded] = useState(newShouldLoad);
+    if (newShouldLoad && !wasLoaded) {
+        setWasLoaded(newShouldLoad);
     }
-    const { current: finalShouldLoad } = wasLoadedRef;
+    const finalShouldLoad = wasLoaded || shouldLoad;
 
     // color
-    const containerStyle = {
+    const containerStyle: CSSProperties = {
         width,
         height,
         ...getStyleFromColor(color),
@@ -106,7 +106,7 @@ function Background({
     }
 
     // video
-    const videoContainerStyle = {};
+    const videoContainerStyle: CSSProperties = {};
     if (isVideo && shouldLoad) {
         if (width > 0 && height > 0) {
             const { width: videoWidth = 0, height: videoHeight = 0 } = getSizeWithinBounds(

@@ -13,6 +13,7 @@ import type {
     Color,
     Footer as FooterConfig,
     Header as HeaderConfig,
+    MediaElement,
     TextElement,
     TextStyle,
     Transitions as TransitionsConfig,
@@ -72,7 +73,7 @@ interface SurveyScreenProps {
     transitions?: TransitionsConfig | null;
     resultTransitionDuration?: number;
     type?: string | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

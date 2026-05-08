@@ -6,6 +6,7 @@ import type {
     BackgroundElement,
     Footer as FooterConfig,
     Header as HeaderConfig,
+    MediaElement,
     TextElement,
 } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -46,7 +47,7 @@ interface QuoteScreenProps {
     footer?: FooterConfig | null;
     current?: boolean;
     preload?: boolean;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

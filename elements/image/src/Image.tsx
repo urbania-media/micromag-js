@@ -1,6 +1,6 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useRef, useState } from 'react';
 
 import type { ContainerStyle, ImageMedia, ObjectFit } from '@micromag/core';
 import { useSetting } from '@micromag/core/contexts';
@@ -24,7 +24,7 @@ interface ImageProps {
     onLoaded?: ((...args: unknown[]) => void) | null;
     loadingMode?: string;
     shouldLoad?: boolean;
-    containerRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    ref?: ForwardedRef<HTMLDivElement> | null;
 }
 
 function Image({
@@ -41,7 +41,7 @@ function Image({
     onLoaded = null,
     loadingMode = 'lazy',
     shouldLoad = true,
-    containerRef = null,
+    ref = null,
 }: ImageProps) {
     const { metadata = null } = media || {};
     const {
@@ -51,33 +51,31 @@ function Image({
     } = metadata || {};
     const mediaRatio = mediaWidth / mediaHeight;
 
-    const [{ width: realWidth = 0, height: realHeight = 0 }, setRealSize] = useState({
+    const [realSize, setRealSize] = useState({
         width: mediaWidth,
         height: mediaHeight,
     });
+    const { width: realWidth = 0, height: realHeight = 0 } = realSize;
     const supportsWebp = useSetting('supportsWebp', false);
     const imageResolution = useSetting('imageResolution', resolution);
 
-    const wasLoadedRef = useRef(shouldLoad);
-    if (shouldLoad && !wasLoadedRef.current) {
-        wasLoadedRef.current = shouldLoad;
+    const [wasLoaded, setWasLoaded] = useState(shouldLoad);
+    if (shouldLoad && !wasLoaded) {
+        setWasLoaded(shouldLoad);
     }
-    const { current: finalShouldLoad } = wasLoadedRef;
+    const finalShouldLoad = wasLoaded || shouldLoad;
 
-    const onImageLoaded = useCallback(
-        (e) => {
-            const {
-                target: { naturalWidth = 0, naturalHeight = 0 },
-            } = e;
-            if (naturalWidth !== realWidth || naturalHeight !== realHeight) {
-                setRealSize({ width: naturalWidth || 0, height: naturalHeight || 0 });
-            }
-            if (onLoaded !== null) {
-                onLoaded(e);
-            }
-        },
-        [onLoaded],
-    );
+    const onImageLoaded = (e) => {
+        const {
+            target: { naturalWidth = 0, naturalHeight = 0 },
+        } = e;
+        if (naturalWidth !== realWidth || naturalHeight !== realHeight) {
+            setRealSize({ width: naturalWidth || 0, height: naturalHeight || 0 });
+        }
+        if (onLoaded !== null) {
+            onLoaded(e);
+        }
+    };
 
     const withFit = objectFit !== null;
     const mediaHasSize = realWidth > 0 && realHeight > 0;
@@ -186,7 +184,7 @@ function Image({
         <div
             className={classNames([styles.container, className])}
             style={finalContainerStyle}
-            ref={containerRef}
+            ref={ref}
         >
             {finalUrl !== null && finalShouldLoad ? (
                 <img
@@ -202,4 +200,4 @@ function Image({
     );
 }
 
-export default ({ ref, ...props }) => <Image containerRef={ref} {...props} />;
+export default Image;

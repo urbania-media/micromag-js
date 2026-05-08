@@ -3,7 +3,7 @@ import { faGripLines } from '@fortawesome/free-solid-svg-icons/faGripLines';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { forwardRef } from 'react';
+import { ForwardedRef, ReactNode } from 'react';
 
 import styles from '../../styles/sortable/sortable-tree-item-actions.module.css';
 
@@ -27,8 +27,8 @@ interface SortableTreeItemActionsProps {
     showId?: boolean;
     showCount?: boolean;
     showCollapsedCount?: boolean;
-    children?: React.ReactNode;
-    containerRef?: unknown;
+    children?: ReactNode;
+    ref?: ForwardedRef<HTMLDivElement> | null;
 }
 
 const SortableTreeItemActions = function ({
@@ -52,7 +52,7 @@ const SortableTreeItemActions = function ({
     showCount = false,
     showCollapsedCount = false,
     children = null,
-    containerRef = null,
+    ref: containerRef = null,
     ...props
 }: SortableTreeItemActionsProps) {
     return (
@@ -117,6 +117,4 @@ const SortableTreeItemActions = function ({
     );
 };
 
-export default forwardRef((props, ref) => (
-    <SortableTreeItemActions {...props} containerRef={ref} />
-));
+export default SortableTreeItemActions;

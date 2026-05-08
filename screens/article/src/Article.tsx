@@ -8,6 +8,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     ImageMedia,
+    MediaElement,
     Text,
 } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -57,7 +58,7 @@ interface ArticleScreenProps {
     current?: boolean;
     preload?: boolean;
     type?: string | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

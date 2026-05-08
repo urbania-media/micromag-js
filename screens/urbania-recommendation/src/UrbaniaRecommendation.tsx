@@ -9,6 +9,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     HeadingElement,
+    MediaElement,
     TextElement,
     VisualElement,
 } from '@micromag/core';
@@ -73,7 +74,7 @@ interface UrbaniaRecommendationProps {
     current?: boolean;
     active?: boolean;
     preload?: boolean;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

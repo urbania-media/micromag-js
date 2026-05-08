@@ -1,8 +1,9 @@
 import { useScroll } from '@use-gesture/react';
 import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
+import { ForwardedRef, ReactNode, useEffect, useRef, useState } from 'react';
 
 import { useDimensionObserver } from '@micromag/core/hooks';
+import { mergeRefs } from '@micromag/core/utils';
 
 import styles from './styles.module.css';
 
@@ -14,14 +15,14 @@ interface ScrollProps {
     className?: string | null;
     scrollableClassName?: string | null;
     scrolleeClassName?: string | null;
-    children?: React.ReactNode | null;
-    scrollPosition?: number | string | null;
+    children?: ReactNode | null;
+    scrollPosition?: number | null;
     triggers?: number[];
     onScrolledTrigger?: ((...args: unknown[]) => void) | null;
     onScrolledBottom?: ((...args: unknown[]) => void) | null;
     onScrolledNotBottom?: ((...args: unknown[]) => void) | null;
     onScrollHeightChange?: ((...args: unknown[]) => void) | null;
-    scrollContainerRef?: unknown | null;
+    ref?: ForwardedRef<HTMLDivElement> | null;
     withShadow?: boolean;
     withArrow?: boolean;
 }
@@ -41,7 +42,7 @@ function Scroll({
     onScrolledBottom = null,
     onScrolledNotBottom = null,
     onScrollHeightChange = null,
-    scrollContainerRef = null,
+    ref: scrollContainerRef = null,
     withShadow = false,
     withArrow: showArrow = true,
 }: ScrollProps) {
@@ -51,87 +52,93 @@ function Scroll({
     };
 
     const triggersCompletedRef = useRef([]);
-
     const [withArrow, setWithArrow] = useState(false);
-
     const { ref: scrollableRef, height: scrollableHeight } = useDimensionObserver();
-
-    if (scrollContainerRef !== null) {
-        scrollContainerRef.current = scrollableRef.current;
-    }
-
     const { ref: scrolleeRef, height: scrolleeHeight } = useDimensionObserver();
 
-    const scrolledBottomOnce = useRef(false);
-    const scrolledNotBottomOnce = useRef(false);
-    const reachedBottom = useRef(false);
-    const bind = useScroll(
-        ({ xy: [, scrollY] }) => {
-            const newWithArrow = scrollY <= 1;
+    const scrolledBottomOnceRef = useRef(false);
+    const scrolledNotBottomOnceRef = useRef(false);
+    const reachedBottomRef = useRef(false);
+    const onScroll = ({ xy: [, scrollY] }) => {
+        const newWithArrow = scrollY <= 1;
 
-            const maxScrollAmount = scrolleeHeight - scrollableHeight;
+        const maxScrollAmount = scrolleeHeight - scrollableHeight;
 
-            const nowReachedBottom = scrollY + 1 >= maxScrollAmount;
+        const nowReachedBottom = scrollY + 1 >= maxScrollAmount;
 
-            const progress = Math.min(Math.max((scrollY + 1) / maxScrollAmount, 0), 1);
+        const progress = Math.min(Math.max((scrollY + 1) / maxScrollAmount, 0), 1);
 
-            const newTriggersCompleted = (triggers || []).filter(
-                (step) => progress >= step && triggersCompletedRef.current.indexOf(step) === -1,
-            );
+        const newTriggersCompleted = (triggers || []).filter(
+            (step) => progress >= step && triggersCompletedRef.current.indexOf(step) === -1,
+        );
 
-            newTriggersCompleted.forEach((step) => {
-                if (onScrolledTrigger != null) {
-                    // console.log('call me', step, progress);
-                    onScrolledTrigger(step);
-                }
-            });
-
-            if (newTriggersCompleted.length > 0) {
-                triggersCompletedRef.current = [
-                    ...triggersCompletedRef.current,
-                    ...newTriggersCompleted,
-                ];
+        newTriggersCompleted.forEach((step) => {
+            if (onScrolledTrigger != null) {
+                // console.log('call me', step, progress);
+                onScrolledTrigger(step);
             }
+        });
 
-            if (nowReachedBottom) {
-                if (!reachedBottom.current) {
-                    if (onScrolledBottom !== null) {
-                        onScrolledBottom({ initial: !scrolledBottomOnce.current });
-                    }
-                    scrolledBottomOnce.current = true;
+        if (newTriggersCompleted.length > 0) {
+            triggersCompletedRef.current = [
+                ...triggersCompletedRef.current,
+                ...newTriggersCompleted,
+            ];
+        }
+
+        if (nowReachedBottom) {
+            if (!reachedBottomRef.current) {
+                if (onScrolledBottom !== null) {
+                    onScrolledBottom({ initial: !scrolledBottomOnceRef.current });
                 }
-            } else if (reachedBottom.current) {
-                if (onScrolledNotBottom !== null) {
-                    onScrolledNotBottom({ initial: !scrolledNotBottomOnce.current });
-                }
-                scrolledNotBottomOnce.current = true;
+                scrolledBottomOnceRef.current = true;
             }
-
-            if (newWithArrow !== withArrow && showArrow) {
-                setWithArrow(newWithArrow);
+        } else if (reachedBottomRef.current) {
+            if (onScrolledNotBottom !== null) {
+                onScrolledNotBottom({ initial: !scrolledNotBottomOnceRef.current });
             }
+            scrolledNotBottomOnceRef.current = true;
+        }
 
-            reachedBottom.current = nowReachedBottom;
-        },
-        { enabled: !disabled, threshold: 10, axis: 'y', filterTaps: true },
-    );
+        if (newWithArrow !== withArrow && showArrow) {
+            setWithArrow(newWithArrow);
+        }
+
+        reachedBottomRef.current = nowReachedBottom;
+    };
+    const bind = useScroll(onScroll, {
+        enabled: !disabled,
+        threshold: 10,
+        axis: 'y',
+        filterTaps: true,
+    });
 
     // need to call scrolled callbacks on initial render also
 
+    const shouldShowArrow =
+        !disabled &&
+        scrolleeHeight > 0 &&
+        scrollableHeight > 0 &&
+        Math.round(scrolleeHeight) > Math.round(scrollableHeight);
+    if (shouldShowArrow !== withArrow) {
+        setWithArrow(shouldShowArrow);
+    }
+
+    const maxScrollAmount =
+        scrolleeHeight > 0 && scrollableHeight > 0 ? scrolleeHeight - scrollableHeight : null;
     useEffect(() => {
-        if (scrolleeHeight > 0 && scrollableHeight > 0 && !disabled) {
-            setWithArrow(Math.round(scrolleeHeight) > Math.round(scrollableHeight));
-            const maxScrollAmount = scrolleeHeight - scrollableHeight;
-            const nowReachedBottom = scrollableRef.current.scrollTop + 1 >= maxScrollAmount;
-            if (nowReachedBottom) {
-                if (onScrolledBottom !== null) {
-                    onScrolledBottom({ initial: false });
-                }
-            } else if (onScrolledNotBottom !== null) {
-                onScrolledNotBottom({ initial: false });
+        const nowReachedBottom =
+            maxScrollAmount !== null &&
+            !disabled &&
+            scrollableRef.current.scrollTop + 1 >= maxScrollAmount;
+        if (nowReachedBottom) {
+            if (onScrolledBottom !== null) {
+                onScrolledBottom({ initial: false });
             }
+        } else if (onScrolledNotBottom !== null) {
+            onScrolledNotBottom({ initial: false });
         }
-    }, [scrollableHeight, scrolleeHeight, setWithArrow, disabled]);
+    }, [maxScrollAmount, disabled, scrollableRef, onScrolledBottom, onScrolledNotBottom]);
 
     useEffect(() => {
         if (onScrollHeightChange !== null) {
@@ -144,7 +151,7 @@ function Scroll({
         if (scrollableRef.current !== null && scrollPosition !== null) {
             scrollableRef.current.scrollTop = scrollPosition;
         }
-    }, [scrolleeRef, scrollPosition]);
+    }, [scrollableRef, scrollPosition]);
 
     return (
         <div
@@ -164,10 +171,13 @@ function Scroll({
         >
             <div
                 className={classNames([styles.scrollable, scrollableClassName])}
-                ref={scrollableRef}
+                ref={mergeRefs(scrollableRef, scrollContainerRef)}
                 {...bind()}
             >
-                <div className={classNames([styles.scrollee, scrolleeClassName])} ref={scrolleeRef}>
+                <div
+                    className={classNames([styles.scrollee, scrolleeClassName])}
+                    ref={scrolleeRef as ForwardedRef<HTMLDivElement>}
+                >
                     {children}
                 </div>
             </div>
@@ -193,4 +203,4 @@ function Scroll({
     );
 }
 
-export default ({ ref, ...props }) => <Scroll scrollContainerRef={ref} {...props} />;
+export default Scroll;

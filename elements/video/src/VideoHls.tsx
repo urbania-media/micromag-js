@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import Hls from 'hls.js';
 import isFunction from 'lodash/isFunction';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import type { VideoMedia } from '@micromag/core';
+import type { MediaElement, VideoMedia } from '@micromag/core';
 import { Spinner } from '@micromag/core/components';
 import {
     useMediaCurrentTime,
@@ -11,18 +11,18 @@ import {
     useMediaReady,
     useProgressSteps,
 } from '@micromag/core/hooks';
+import { getMediaThumbnail } from '@micromag/core/utils';
 
 import useSources from './useSources';
 
 import styles from './styles.module.css';
-import { getMediaThumbnail } from '@micromag/core/utils';
 
 interface VideoProps {
     media?: VideoMedia | null;
     thumbnail?: unknown | null;
     width?: number | null;
     height?: number | null;
-    mediaRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     muted?: boolean;
     autoPlay?: boolean;
     paused?: boolean;

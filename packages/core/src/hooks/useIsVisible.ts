@@ -2,7 +2,17 @@ import { useState } from 'react';
 
 import { useIntersectionObserver } from './useObserver';
 
-const useIsVisible = ({ rootMargin, persist = false, disabled = false } = {}) => {
+interface UseIsVisibleOptions {
+    rootMargin?: string;
+    persist?: boolean;
+    disabled?: boolean;
+}
+
+const useIsVisible = ({
+    rootMargin,
+    persist = false,
+    disabled = false,
+}: UseIsVisibleOptions = {}) => {
     const {
         ref,
         entry: { isIntersecting },

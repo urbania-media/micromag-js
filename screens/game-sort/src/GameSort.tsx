@@ -20,6 +20,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     HeadingElement,
+    MediaElement,
     TextElement,
     TextStyle,
 } from '@micromag/core';
@@ -74,7 +75,7 @@ interface GameSortProps {
     footer?: FooterConfig | null;
     current?: boolean;
     active?: boolean;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

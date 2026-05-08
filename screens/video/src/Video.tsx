@@ -7,6 +7,7 @@ import type {
     BackgroundElement,
     Footer as FooterConfig,
     Header as HeaderConfig,
+    MediaElement,
     VideoElement,
 } from '@micromag/core';
 import { Empty, PlaceholderVideo, ScreenElement } from '@micromag/core/components';
@@ -49,7 +50,7 @@ interface VideoScreenProps {
     active?: boolean;
     preload?: boolean;
     spacing?: number;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

@@ -9,6 +9,7 @@ import type {
     BackgroundElement,
     Button,
     HeadingElement,
+    MediaElement,
     TextElement,
 } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -84,7 +85,7 @@ interface UrbaniaHoroscopeProps {
     current?: boolean;
     preload?: boolean;
     type?: string;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

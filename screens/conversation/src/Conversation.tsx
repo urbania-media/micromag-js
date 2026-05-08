@@ -10,6 +10,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     HeadingElement,
+    MediaElement,
     Transitions as TransitionsConfig,
 } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
@@ -54,7 +55,7 @@ interface ConversationScreenProps {
     type?: string | null;
     conversation?: ConversationType | null;
     transitions?: TransitionsConfig | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

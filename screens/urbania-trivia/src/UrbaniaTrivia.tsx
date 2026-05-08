@@ -1,10 +1,10 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BackgroundElement, HeadingElement, VideoElement } from '@micromag/core';
+import type { BackgroundElement, HeadingElement, MediaElement, VideoElement } from '@micromag/core';
 import {
     Empty,
     PlaceholderTitle,
@@ -64,7 +64,7 @@ interface UrbaniaTriviaProps {
     preload?: boolean;
     spacing?: number;
     padding?: number;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { ForwardedRef } from 'react';
 
 import styles from './styles.module.css';
 
 interface ContainerProps {
-    containerRef?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    ref?: ForwardedRef<HTMLDivElement> | null;
     width: number;
     height: number;
     style?: Record<string, unknown> | null;
@@ -13,7 +13,7 @@ interface ContainerProps {
 }
 
 function Container({
-    containerRef = null,
+    ref = null,
     width,
     height,
     style = null,
@@ -30,14 +30,10 @@ function Container({
         : style;
 
     return (
-        <div
-            ref={containerRef}
-            className={classNames([styles.container, className])}
-            style={containerStyle}
-        >
+        <div ref={ref} className={classNames([styles.container, className])} style={containerStyle}>
             {children}
         </div>
     );
 }
 
-export default ({ ref, ...props }) => <Container containerRef={ref} {...props} />;
+export default Container;

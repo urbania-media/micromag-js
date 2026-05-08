@@ -9,6 +9,7 @@ import type {
     Header as HeaderConfig,
     HeadingElement,
     Label,
+    MediaElement,
     TextElement,
 } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -55,7 +56,7 @@ interface TitleScreenProps {
     current?: boolean;
     active?: boolean;
     transitionStagger?: number;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

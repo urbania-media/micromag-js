@@ -12,6 +12,7 @@ import type {
     Color,
     Footer as FooterConfig,
     Header as HeaderConfig,
+    MediaElement,
     QuizAnswer,
     TextElement,
     TextStyle,
@@ -81,7 +82,7 @@ interface QuizMultipleScreenProps {
     transitions?: Transitions | null;
     transitionStagger?: number;
     type?: string | null;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 

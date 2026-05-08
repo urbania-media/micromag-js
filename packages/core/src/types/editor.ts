@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { ElementType } from 'react';
 
 import { Label, Target, Text } from './base';
 import { ImageMedia } from './medias';
@@ -6,9 +6,9 @@ import { ImageMedia } from './medias';
 export type Errors = string | string[];
 export type FormErrors = Record<string, Errors>;
 
-export type Component = string | ComponentType;
+export type Component = ElementType;
 
-export type ComponentsMap = Record<string, ComponentType>;
+export type ComponentsMap = Record<string, ElementType>;
 
 export type SelectOption =
     | string

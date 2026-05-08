@@ -8,6 +8,7 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     HeadingElement,
+    MediaElement,
     TextStyle,
 } from '@micromag/core';
 import { ScreenElement } from '@micromag/core/components';
@@ -47,7 +48,7 @@ interface ShareScreenProps {
     index?: number | null;
     current?: boolean;
     active?: boolean;
-    mediaRef?: ForwardedRef<HTMLMediaElement> | null;
+    mediaRef?: ForwardedRef<MediaElement> | null;
     className?: string | null;
 }
 
