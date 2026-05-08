@@ -339,7 +339,7 @@
     .preload & {
         display: block;
         contain-intrinsic-size: auto 100vw auto 100vh;
-        content-visibility: auto;
+        content-visibility: visible;
     }
 
     .visible & {
