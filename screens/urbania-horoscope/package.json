@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-horoscope",
-    "version": "0.4.74",
+    "version": "0.4.76",
     "private": false,
     "description": "",
     "keywords": [
@@ -65,9 +65,9 @@
     "dependencies": {
         "@babel/runtime": "^7.28.6",
         "@micromag/core": "^0.4.74",
-        "@micromag/element-background": "^0.4.74",
-        "@micromag/element-button": "^0.4.74",
-        "@micromag/element-call-to-action": "^0.4.74",
+        "@micromag/element-background": "^0.4.76",
+        "@micromag/element-button": "^0.4.76",
+        "@micromag/element-call-to-action": "^0.4.76",
         "@micromag/element-container": "^0.4.74",
         "@micromag/element-grid": "^0.4.74",
         "@micromag/element-heading": "^0.4.74",
@@ -75,7 +75,7 @@
         "@micromag/element-layout": "^0.4.74",
         "@micromag/element-scroll": "^0.4.74",
         "@micromag/element-text": "^0.4.74",
-        "@micromag/element-urbania-author": "^0.4.74",
+        "@micromag/element-urbania-author": "^0.4.76",
         "@micromag/transforms": "^0.4.74",
         "@react-spring/core": "^10.0.3",
         "@react-spring/web": "^10.0.3",

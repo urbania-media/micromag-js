@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-survey",
-    "version": "0.4.74",
+    "version": "0.4.76",
     "private": false,
     "description": "",
     "keywords": [
@@ -67,10 +67,10 @@
         "@fortawesome/react-fontawesome": "^3.2.0",
         "@micromag/core": "^0.4.74",
         "@micromag/data": "^0.4.74",
-        "@micromag/element-background": "^0.4.74",
-        "@micromag/element-button": "^0.4.74",
+        "@micromag/element-background": "^0.4.76",
+        "@micromag/element-button": "^0.4.76",
         "@micromag/element-container": "^0.4.74",
-        "@micromag/element-footer": "^0.4.74",
+        "@micromag/element-footer": "^0.4.76",
         "@micromag/element-header": "^0.4.74",
         "@micromag/element-heading": "^0.4.74",
         "@micromag/element-layout": "^0.4.74",

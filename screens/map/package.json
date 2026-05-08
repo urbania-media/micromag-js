@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-map",
-    "version": "0.4.74",
+    "version": "0.4.76",
     "private": false,
     "description": "",
     "keywords": [
@@ -63,10 +63,10 @@
     "dependencies": {
         "@babel/runtime": "^7.28.6",
         "@micromag/core": "^0.4.74",
-        "@micromag/element-background": "^0.4.74",
-        "@micromag/element-button": "^0.4.74",
+        "@micromag/element-background": "^0.4.76",
+        "@micromag/element-button": "^0.4.76",
         "@micromag/element-container": "^0.4.74",
-        "@micromag/element-footer": "^0.4.74",
+        "@micromag/element-footer": "^0.4.76",
         "@micromag/element-header": "^0.4.74",
         "@micromag/element-heading": "^0.4.74",
         "@micromag/element-image": "^0.4.74",
