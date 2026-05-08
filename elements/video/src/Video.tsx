@@ -9,7 +9,7 @@ import {
     useMediaReady,
     useProgressSteps,
 } from '@micromag/core/hooks';
-import { getMediaThumbnail, mergeRefs } from '@micromag/core/utils';
+import { getMediaIsPlaying, getMediaThumbnail, mergeRefs } from '@micromag/core/utils';
 
 import useSources from './useSources';
 
@@ -200,10 +200,10 @@ function Video({
         if (element === null || mediaUrl === null) {
             return;
         }
-        const isPaused = element?.paused || false;
-        if (paused && !isPaused) {
+        const isPlaying = getMediaIsPlaying(element);
+        if (paused && isPlaying) {
             element.pause();
-        } else if (!paused && isPaused && element.dataset.forcePlaying !== 'true') {
+        } else if (!paused && !isPlaying && element.dataset.forcePlaying !== 'true') {
             element.play().catch((e) => {
                 if (onPlayError !== null) {
                     onPlayError(e);
