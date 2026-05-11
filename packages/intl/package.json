@@ -37,16 +37,10 @@
             "types": "./es/index.d.ts",
             "import": "./es/index.js"
         },
-        "./locale": "./locale",
-        "./locale/fr.json": "./locale/fr.json",
-        "./locale/en.json": "./locale/en.json",
-        "./locale/fr": {
-            "types": "./locale/fr.d.ts",
-            "import": "./locale/fr.js"
-        },
-        "./locale/en": {
-            "types": "./locale/en.d.ts",
-            "import": "./locale/en.js"
+        "./locale/*.json": "./locale/*.json",
+        "./locale/*": {
+            "types": "./locale/*.d.ts",
+            "import": "./locale/*.js"
         }
     },
     "files": [
