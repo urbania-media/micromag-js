@@ -3291,6 +3291,12 @@ msgctxt "uSpItE"
 msgid "Add tags..."
 msgstr "Add tags..."
 
+# Placeholder label
+#: uT+qYH
+msgctxt "uT+qYH"
+msgid "Video"
+msgstr "Video"
+
 # Field label
 #: uaL28k
 msgctxt "uaL28k"
