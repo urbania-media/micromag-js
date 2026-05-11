@@ -7,7 +7,8 @@
             "@micromag/core/*": ["./packages/core/src/*.ts"],
             "@micromag/element-*": ["./elements/*/src/index.ts"],
             "@micromag/screen-*": ["./screens/*/src/index.ts"],
-            "@micromag/*": ["./packages/*/src/index.ts"]
+            "@micromag/*": ["./packages/*/src/index.ts"],
+            "#.storybook/*": ["./.storybook/*"]
         },
         "plugins": [{ "name": "typescript-plugin-css-modules" }]
     },

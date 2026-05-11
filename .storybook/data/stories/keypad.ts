@@ -9,7 +9,7 @@ export default {
     title: {
         body: 'Horoscope 2.0',
     },
-    items: signs.map(({ id = 'sign' }) => ({
+    items: signs.map(({ id = 'sign' }, index) => ({
         label: id,
         textStyle: {
             color: { color: '#00F', alpha: 1 },
@@ -21,11 +21,23 @@ export default {
         content: {
             body: paragraph(),
         },
-        visual: Math.random() > 0.5 ? imageMedia({ rand: true, width: 500, height: 500 }) : null,
-        largeVisual:
-            Math.random() > 0.5
+        visual:
+            Math.random() > 0.5 && index > 0
                 ? imageMedia({ rand: true, width: 500, height: 500 })
-                : videoMedia({ rand: true, width: 500, height: 500 }),
+                : null,
+        video:
+            index === 0
+                ? {
+                      media: videoMedia({ rand: true, width: 500, height: 500 }),
+                      withControls: true,
+                  }
+                : null,
+        largeVisual:
+            index > 0
+                ? Math.random() > 0.5
+                    ? imageMedia({ rand: true, width: 500, height: 500 })
+                    : videoMedia({ rand: true, width: 500, height: 500 })
+                : null,
         boxStyle: {
             backgroundColor: { color: '#00ff77', alpha: 1 },
             borderRadius: 4,

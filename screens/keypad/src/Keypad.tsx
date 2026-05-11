@@ -23,11 +23,17 @@ import {
     useScreenRenderContext,
     useScreenSize,
     useScreenState,
+    useViewerActivityDetected,
     useViewerContext,
     useViewerInteraction,
     useViewerWebView,
 } from '@micromag/core/contexts';
-import { useDimensionObserver, useDragProgress, useTrackScreenEvent } from '@micromag/core/hooks';
+import {
+    useDebounce,
+    useDimensionObserver,
+    useDragProgress,
+    useTrackScreenEvent,
+} from '@micromag/core/hooks';
 import {
     camelCase,
     getFooterProps,
@@ -48,6 +54,7 @@ import Keypad from '@micromag/element-keypad';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+import Video from '@micromag/element-video';
 import Visual from '@micromag/element-visual';
 
 import styles from './keypad.module.css';
@@ -146,8 +153,15 @@ function KeypadScreen({
     const popupInnerRef = useRef(null);
 
     const trackScreenEvent = useTrackScreenEvent('keypad');
-    const { muted } = usePlaybackContext();
-    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
+    const {
+        muted,
+        playing,
+        setControlsTheme,
+        setControls,
+        setPlaying,
+        showControls,
+        hideControls,
+    } = usePlaybackContext();
 
     const screenState = useScreenState();
 
@@ -176,11 +190,6 @@ function KeypadScreen({
     const { ref: footerRef, height: footerHeight = 0 } = useDimensionObserver();
 
     const [popupDragDisabled, setPopupDragDisabled] = useState(false);
-
-    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
-    const mediaShouldLoad = !isPlaceholder && (current || preload);
-    const isInteractivePreview = isEdit && screenState === null;
-    const isNotInteractive = isEdit && screenState !== null;
 
     const {
         columnAlign = null,
@@ -217,14 +226,33 @@ function KeypadScreen({
         heading: popupHeading = null,
         content: popupContent = null,
         largeVisual = null,
+        video = null,
         button: popupButton = null,
         popupBoxStyle: singlePopupBoxStyle = null,
     } = popup || {};
 
-    const { metadata = null } = largeVisual || {};
-    const { width: largeVisualWidth = 0, height: largeVisualHeight = 0 } = metadata || {};
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(
+        current,
+        video === null,
+        video !== null ? 'popup' : null,
+    );
+    const videoPlaying = current && (isView || isEdit) && playing && (isCurrentMedia || !isView);
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
+    const mediaShouldLoad = !isPlaceholder && (current || preload);
+    const isInteractivePreview = isEdit && screenState === null;
+    const isNotInteractive = isEdit && screenState !== null;
+
+    const { metadata: { width: largeVisualWidth = 0, height: largeVisualHeight = 0 } = {} } =
+        largeVisual || {};
     const largeVisualRatio =
         largeVisualWidth > 0 && largeVisualHeight > 0 ? largeVisualWidth / largeVisualHeight : null;
+    const {
+        autoPlay = true,
+        withSeekBar = false,
+        withControls = false,
+        color = null,
+        progressColor = null,
+    } = video || {};
 
     const hasPopupHeading = isTextFilled(popupHeading);
     const { textStyle: popupHeadingTextStyle = null } = popupHeading || {};
@@ -238,6 +266,58 @@ function KeypadScreen({
         inWebView: popupInWebView = false,
         boxStyle: popupButtonBoxStyle = null,
     } = popupButton || {};
+
+    useEffect(() => {
+        if (!current || video === null) {
+            return () => {};
+        }
+
+        setControlsTheme({
+            seekBarOnly: withSeekBar && !withControls,
+            color,
+            progressColor,
+        });
+
+        if (withControls || withSeekBar) {
+            setControls(true);
+        } else {
+            setControls(false);
+        }
+        return () => {
+            if (withControls || withSeekBar) {
+                setControls(false);
+            }
+        };
+    }, [
+        video,
+        current,
+        withControls,
+        setControls,
+        setControlsTheme,
+        withSeekBar,
+        color,
+        progressColor,
+    ]);
+
+    useEffect(() => {
+        if (current && autoPlay && video !== null) {
+            setPlaying(true);
+        }
+    }, [current, autoPlay, video, setPlaying]);
+
+    const activityDetected = useViewerActivityDetected();
+    const toggleControlsVisibility = () => {
+        if (activityDetected) {
+            showControls();
+        } else {
+            hideControls();
+        }
+    };
+    useDebounce(
+        video !== null && current ? toggleControlsVisibility : null,
+        activityDetected,
+        1000,
+    );
 
     // Skips a render loop when opening a popup
     const [showNextPopup, setShowNextPopup] = useState(false);
@@ -440,7 +520,8 @@ function KeypadScreen({
                 content = null,
                 url = null,
                 inWebView = false,
-                largeVisual: popupLargeVisual = null,
+                largeVisual: itemLargeVisual = null,
+                video: itemVideo,
             } = item || {};
 
             const { url: visualUrl = null } = visual || {};
@@ -456,7 +537,8 @@ function KeypadScreen({
             const isPopupEmpty =
                 (heading === null || headingBody === null || headingBody === '') &&
                 (content === null || contentBody === null || contentBody === '') &&
-                popupLargeVisual === null;
+                itemLargeVisual === null &&
+                itemVideo === null;
 
             return (
                 <div key={key} className={styles.item}>
@@ -544,7 +626,7 @@ function KeypadScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
+                    mediaRef={mergeRefs(video === null ? mediaRef : null, customMediaRef)}
                     className={styles.background}
                 />
             ) : null}
@@ -705,6 +787,35 @@ function KeypadScreen({
                                         ...getStyleFromBox(singlePopupBoxStyle),
                                     }}
                                 >
+                                    <ScreenElement
+                                        placeholder="video"
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Video"
+                                                description="Placeholder label"
+                                            />
+                                        }
+                                        emptyClassName={classNames([
+                                            styles.empty,
+                                            styles.emptyVisual,
+                                        ])}
+                                        isEmpty={video === null}
+                                    >
+                                        {video !== null ? (
+                                            <div className={styles.popupVideoWrapper}>
+                                                <Video
+                                                    {...video}
+                                                    paused={!videoPlaying}
+                                                    muted={muted}
+                                                    className={styles.video}
+                                                    resolution={resolution}
+                                                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
+                                                    // width="100%"
+                                                    // height={200}
+                                                />
+                                            </div>
+                                        ) : null}
+                                    </ScreenElement>
                                     <ScreenElement
                                         emptyLabel={
                                             <FormattedMessage

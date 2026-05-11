@@ -162,7 +162,7 @@ function Video360Screen({
             hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
-    useDebounce(toggleControlsVisibility, activityDetected, 1000);
+    useDebounce(current ? toggleControlsVisibility : null, activityDetected, 1000);
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);

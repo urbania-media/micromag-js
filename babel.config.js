@@ -39,7 +39,7 @@ module.exports = {
         [
             require.resolve('babel-plugin-formatjs'),
             {
-                // removeDefaultMessage: true,
+                // removeDefaultMessage: false,
                 idInterpolationPattern: '[sha512:contenthash:base64:6]',
             },
         ],

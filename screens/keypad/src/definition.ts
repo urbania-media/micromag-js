@@ -181,6 +181,14 @@ export default [
                         },
                     },
                     {
+                        name: 'video',
+                        type: 'video-element',
+                        label: defineMessage({
+                            defaultMessage: 'Video',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
                         name: 'largeVisual',
                         type: 'visual',
                         label: defineMessage({

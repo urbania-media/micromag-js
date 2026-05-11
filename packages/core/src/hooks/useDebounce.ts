@@ -10,7 +10,7 @@ const useDebounced = (handler, watchedValue, delay = 300) => {
         return () => {
             clearTimeout(timeoutHandler);
         };
-    }, [watchedValue, delay]);
+    }, [watchedValue, delay, handler]);
 };
 
 export default useDebounced;

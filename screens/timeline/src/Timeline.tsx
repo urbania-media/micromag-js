@@ -194,7 +194,7 @@ function Timeline({
             hideControls();
         }
     }, [activityDetected, showControls, hideControls]);
-    useDebounce(toggleControlsVisibility, activityDetected, 1000);
+    useDebounce(current ? toggleControlsVisibility : null, activityDetected, 1000);
 
     const trackScreenMedia = useTrackScreenMedia('video');
     const [_currentTime, setCurrentTime] = useState(null);

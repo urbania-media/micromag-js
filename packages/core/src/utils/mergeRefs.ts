@@ -5,7 +5,7 @@ export default function mergeRefs<T>(...refs: Array<ForwardedRef<T> | null | und
         refs.forEach((ref) => {
             if (typeof ref === 'function') {
                 ref(value);
-            } else if (ref != null) {
+            } else if (ref !== null) {
                 (ref as RefObject<T | null>).current = value;
             }
         });
