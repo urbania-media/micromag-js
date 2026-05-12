@@ -90,7 +90,7 @@ interface UrbaniaHoroscopeProps {
 }
 
 function UrbaniaHoroscope({
-    defaultSigns = signsList,
+    defaultSigns = null,
     signs: signsValue = null,
     title = null,
     description = null,
@@ -115,14 +115,14 @@ function UrbaniaHoroscope({
 
     const signs = useMemo(
         () =>
-            defaultSigns.map((defaultSign, index) => ({
+            (defaultSigns || signsList).map((defaultSign, index) => ({
                 ...(signsValue !== null
                     ? signsValue.find(({ id: signValueId }) => signValueId === defaultSign.id) ||
                       signsValue[index]
                     : null),
                 ...defaultSign,
             })),
-        [signsValue],
+        [defaultSigns, signsValue],
     );
 
     const { width, height, resolution } = useScreenSize();
