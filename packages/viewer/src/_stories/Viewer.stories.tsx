@@ -223,21 +223,21 @@ export const Keypad = meta.story(() => (
                         body: 'Horoscope 1.0',
                     },
                 },
-                {
-                    ...keypad,
-                    id: uuid(),
-                    type: 'keypad',
-                    title: {
-                        body: 'Horoscope 2.0',
-                    },
-                },
-                {
-                    ...keypad,
-                    id: uuid(),
-                    title: {
-                        body: 'Horoscope 3.0',
-                    },
-                },
+                // {
+                //     ...keypad,
+                //     id: uuid(),
+                //     type: 'keypad',
+                //     title: {
+                //         body: 'Horoscope 2.0',
+                //     },
+                // },
+                // {
+                //     ...keypad,
+                //     id: uuid(),
+                //     title: {
+                //         body: 'Horoscope 3.0',
+                //     },
+                // },
             ],
         }}
         memoryRouter

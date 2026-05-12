@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { ScreenComponent } from '@micromag/core';
 
@@ -41,27 +41,37 @@ function useScreenInteraction({
         ? (screensInteractionEnabled[screenId] ?? true)
         : true;
 
+    const screenIdRef = useRef(screenId);
+
+    useEffect(() => {
+        screenIdRef.current = screenId;
+    }, [screenId]);
+
     const updateInteraction = (newValue) => {
         setScreensInteractionEnabled((prev) => {
-            const currentValue = prev?.[screenId] ?? true;
+            const currentValue = prev?.[screenIdRef.current] ?? true;
             if (currentValue === newValue) {
                 return prev;
             }
             return screens.reduce(
                 (map, { id }) =>
-                    screenId === id
+                    screenIdRef.current === id
                         ? { ...map, [id]: newValue }
                         : {
                               ...map,
-                              [id]: typeof prev[id] === 'undefined' || prev[id] === true,
+                              [id]: prev?.[id] ?? true,
                           },
                 {},
             );
         });
     };
 
-    const enableInteraction = () => updateInteraction(true);
-    const disableInteraction = () => updateInteraction(false);
+    const enableInteraction = () => {
+        updateInteraction(true);
+    };
+    const disableInteraction = () => {
+        updateInteraction(false);
+    };
 
     const interact = ({ event, target, currentTarget, x, y, index }) => {
         if (onInteract !== null) {

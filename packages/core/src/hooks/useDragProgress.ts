@@ -65,7 +65,7 @@ function useDragProgress({
     }));
 
     const onDrag = (gestureState) => {
-        const { active, tap, first } = gestureState;
+        const { active, tap, first, last } = gestureState;
 
         if (disabled) {
             draggingRef.current = false;
@@ -100,7 +100,7 @@ function useDragProgress({
                 if (onResolve !== null) onResolve(e);
             },
             onStart: first ? onTransitionStart : undefined,
-            onRest: !active ? onTransitionComplete : undefined,
+            onRest: last ? onTransitionComplete : undefined,
             ...springParams,
         });
         if (onProgress !== null) {
@@ -148,8 +148,7 @@ function useDragProgress({
         onTransitionComplete,
     ]);
 
-    const transitioning =
-        wantedProgress !== progress.get() || progress.isAnimating || dragging || !transitioned;
+    const transitioning = progress.isAnimating || dragging || !transitioned;
 
     return {
         transitioning,

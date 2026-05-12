@@ -78,16 +78,7 @@ function WebViewContainer({
                 setPlaying(true);
             }
         }
-    }, [
-        opened,
-        trackEvent,
-        disableInteraction,
-        enableInteraction,
-        hideControls,
-        showControls,
-        playing,
-        setPlaying,
-    ]);
+    }, [opened]);
 
     useEffect(() => {
         if (!trackingEnabled || currentUrl === null) {

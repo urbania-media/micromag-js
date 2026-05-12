@@ -236,7 +236,8 @@ function KeypadScreen({
         video === null,
         video !== null ? 'popup' : null,
     );
-    const videoPlaying = current && (isView || isEdit) && playing && (isCurrentMedia || !isView);
+    const videoPlaying =
+        current && (isView || isEdit) && playing && (isCurrentMedia || !isView) && showPopup;
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = !isPlaceholder && (current || preload);
     const isInteractivePreview = isEdit && screenState === null;
@@ -268,7 +269,7 @@ function KeypadScreen({
     } = popupButton || {};
 
     useEffect(() => {
-        if (!current || video === null) {
+        if (!current || video === null || !showPopup) {
             return () => {};
         }
 
@@ -289,6 +290,7 @@ function KeypadScreen({
             }
         };
     }, [
+        showPopup,
         video,
         current,
         withControls,
@@ -320,13 +322,6 @@ function KeypadScreen({
     );
 
     // Skips a render loop when opening a popup
-    const [showNextPopup, setShowNextPopup] = useState(false);
-    useEffect(() => {
-        if (showNextPopup) {
-            setShowNextPopup(false);
-            setShowPopup(true);
-        }
-    }, [showNextPopup, setShowPopup, setShowNextPopup]);
 
     const onItemClick = (e, item, index) => {
         e.stopPropagation();
@@ -348,7 +343,7 @@ function KeypadScreen({
             });
         } else {
             setPopup(item);
-            setShowNextPopup(true);
+            setShowPopup(true);
         }
 
         const { body: headingBody = null } = heading || {};
@@ -429,12 +424,15 @@ function KeypadScreen({
     };
 
     useEffect(() => {
+        if (!current) {
+            return;
+        }
         if (showPopup) {
             disableInteraction();
         } else {
             enableInteraction();
         }
-    }, [showPopup, enableInteraction, disableInteraction]);
+    }, [current, showPopup, enableInteraction, disableInteraction]);
 
     useEffect(() => {
         function handleClickOutside(e) {
