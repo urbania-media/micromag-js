@@ -81,7 +81,7 @@
         "@ckeditor/ckeditor5-react": "^11.1.2",
         "@ckeditor/ckeditor5-upload": "^48.0.1",
         "@folklore/fetch": "0.1.17",
-        "@panneau/ckeditor": "^4.0.40-alpha.1"
+        "@panneau/ckeditor": "^4.0.40"
     },
     "publishConfig": {
         "access": "public",
