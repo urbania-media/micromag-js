@@ -1,6 +1,4 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { FormErrors, FormField } from '@micromag/core';
@@ -60,33 +58,27 @@ function Fields({
     fieldsProps = null,
     fieldProps = null,
 }: FieldsProps) {
-    const nullableOnChange = useCallback(
-        nullEmptyObject ? createNullableOnChange(onChange) : onChange,
-        [nullEmptyObject, onChange],
-    );
+    const nullableOnChange = nullEmptyObject ? createNullableOnChange(onChange) : onChange;
 
-    const onFieldChange = useCallback(
-        (key, newFieldValue) => {
-            const newValue =
-                key !== null
-                    ? {
-                          ...value,
-                          [key]: newFieldValue,
-                      }
-                    : {
-                          ...value,
-                          ...newFieldValue,
-                      };
-            if (nullableOnChange !== null) {
-                nullableOnChange(newValue);
-            }
-        },
-        [value, nullableOnChange],
-    );
+    const onFieldChange = (key, newFieldValue) => {
+        const newValue =
+            key !== null
+                ? {
+                      ...value,
+                      [key]: newFieldValue,
+                  }
+                : {
+                      ...value,
+                      ...newFieldValue,
+                  };
+        if (nullableOnChange !== null) {
+            nullableOnChange(newValue);
+        }
+    };
 
-    const onClearField = useCallback(() => {
+    const onClearField = () => {
         nullableOnChange(null);
-    }, [nullableOnChange]);
+    };
 
     const includedFields = fields.filter(
         ({ name = null, key = null }) =>
@@ -96,107 +88,79 @@ function Fields({
     );
     const visibleFields = includedFields.filter(({ hidden = false }) => !hidden);
     const fieldsAdvanced = visibleFields.map(({ advanced = false }) => advanced);
-    const normalFieldsIndex = useMemo(
-        () =>
-            fieldsAdvanced
-                .map((advanced, index) => (!advanced ? index : null))
-                .filter((it) => it !== null),
-        [fieldsAdvanced.join(',')],
-    );
-    const advancedFieldsIndex = useMemo(
-        () =>
-            fieldsAdvanced
-                .map((advanced, index) => (advanced ? index : null))
-                .filter((it) => it !== null),
-        [fieldsAdvanced.join(',')],
-    );
+    const normalFieldsIndex = fieldsAdvanced
+        .map((advanced, index) => (!advanced ? index : null))
+        .filter((it) => it !== null);
+    const advancedFieldsIndex = fieldsAdvanced
+        .map((advanced, index) => (advanced ? index : null))
+        .filter((it) => it !== null);
 
-    const fieldsElements = useMemo(
-        () =>
-            visibleFields.map((field, i) => {
-                const {
-                    name = null,
-                    value: customValue,
-                    errors: customErrors,
-                    onChange: customOnChange = null,
-                    isHorizontal = globalIsHorizontal,
-                    isSection = false,
-                    className: customClassName = null,
-                    fieldsProps: customFieldsProps = null,
-                } = field;
+    const fieldsElements = visibleFields.map((field, i) => {
+        const {
+            name = null,
+            value: customValue,
+            errors: customErrors,
+            onChange: customOnChange = null,
+            isHorizontal = globalIsHorizontal,
+            isSection = false,
+            className: customClassName = null,
+            fieldsProps: customFieldsProps = null,
+        } = field;
 
-                const fieldExcludedFields =
-                    excludedFields !== null
-                        ? excludedFields
-                              .filter((key) => name === null || key.match(new RegExp(`^${name}.`)))
-                              .map((key) =>
-                                  name !== null ? key.replace(new RegExp(`^${name}.`), '') : key,
-                              )
-                        : null;
+        const fieldExcludedFields =
+            excludedFields !== null
+                ? excludedFields
+                      .filter((key) => name === null || key.match(new RegExp(`^${name}.`)))
+                      .map((key) =>
+                          name !== null ? key.replace(new RegExp(`^${name}.`), '') : key,
+                      )
+                : null;
 
-                const customFieldProps =
-                    name !== null ? (customFieldsProps || fieldsProps || {})[name] || null : null;
+        const customFieldProps =
+            name !== null ? (customFieldsProps || fieldsProps || {})[name] || null : null;
 
-                const singleFieldValue =
-                    name !== null && typeof (value || {})[name] !== 'undefined'
-                        ? (value || {})[name]
-                        : null;
-                const singleFieldErrors =
-                    name !== null && typeof (errors || {})[name] !== 'undefined'
-                        ? (errors || {})[name]
-                        : null;
-                const fieldValue = name !== null ? singleFieldValue : value;
-                const fieldErrors = name !== null ? singleFieldErrors : errors;
-                const fieldOnChange = (newFieldValue) => onFieldChange(name, newFieldValue);
+        const singleFieldValue =
+            name !== null && typeof (value || {})[name] !== 'undefined'
+                ? (value || {})[name]
+                : null;
+        const singleFieldErrors =
+            name !== null && typeof (errors || {})[name] !== 'undefined'
+                ? (errors || {})[name]
+                : null;
+        const fieldValue = name !== null ? singleFieldValue : value;
+        const fieldErrors = name !== null ? singleFieldErrors : errors;
+        const fieldOnChange = (newFieldValue) => onFieldChange(name, newFieldValue);
 
-                return (
-                    <Field
-                        excludedFields={fieldExcludedFields}
-                        {...field}
-                        {...fieldProps}
-                        {...customFieldProps}
-                        key={`field-${name}-${i + 1}`}
-                        name={
-                            namespace !== null
-                                ? `${namespace}${name !== null ? `.${name}` : ''}`
-                                : name
-                        }
-                        value={typeof customValue !== 'undefined' ? customValue : fieldValue}
-                        errors={typeof customErrors !== 'undefined' ? customErrors : fieldErrors}
-                        onChange={customOnChange || fieldOnChange}
-                        gotoFieldForm={gotoFieldForm}
-                        closeFieldForm={closeFieldForm}
-                        components={components}
-                        isHorizontal={isHorizontal}
-                        isSection={isSection}
-                        isListItem={isList || isFlushList}
-                        className={classNames([
-                            styles.field,
-                            fieldClassName,
-                            {
-                                [styles.isSection]: isSection,
-                            },
-                        ])}
-                        fieldClassName={customClassName}
-                        labelClassName={labelClassName}
-                        fieldRowClassName={styles.fieldRow}
-                    />
-                );
-            }),
-        [
-            visibleFields,
-            globalIsHorizontal,
-            isList,
-            isFlushList,
-            value,
-            errors,
-            onFieldChange,
-            gotoFieldForm,
-            closeFieldForm,
-            fieldProps,
-            fieldsProps,
-        ],
-    );
+        return (
+            <Field
+                excludedFields={fieldExcludedFields}
+                {...field}
+                {...fieldProps}
+                {...customFieldProps}
+                key={`field-${name}-${i + 1}`}
+                name={namespace !== null ? `${namespace}${name !== null ? `.${name}` : ''}` : name}
+                value={typeof customValue !== 'undefined' ? customValue : fieldValue}
+                errors={typeof customErrors !== 'undefined' ? customErrors : fieldErrors}
+                onChange={customOnChange || fieldOnChange}
+                gotoFieldForm={gotoFieldForm}
+                closeFieldForm={closeFieldForm}
+                components={components}
+                isHorizontal={isHorizontal}
+                isSection={isSection}
+                isListItem={isList || isFlushList}
+                className={classNames([
+                    styles.field,
+                    fieldClassName,
+                    {
+                        [styles.isSection]: isSection,
+                    },
+                ])}
+                fieldClassName={customClassName}
+                labelClassName={labelClassName}
+                fieldRowClassName={styles.fieldRow}
+            />
+        );
+    });
 
     if (fieldsElements.length === 0) {
         return null;

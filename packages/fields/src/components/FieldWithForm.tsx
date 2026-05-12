@@ -5,7 +5,7 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
-import React, { useCallback, useMemo } from 'react';
+import React, { isValidElement, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { FormField, Label as LabelType, Message } from '@micromag/core';
@@ -106,30 +106,24 @@ function FieldWithForm({
                 ? labelString.replace(/(<([^>]+)>)/gi, '').replace(/\&nbsp;/g, ' ')
                 : null;
 
-        labelElement = React.isValidElement(labelValue) ? labelValue : labelElement;
+        labelElement = isValidElement(labelValue) ? labelValue : labelElement;
     }
 
-    const thumbnailElement = useMemo(() => {
-        let thumbElement = null;
-        const thumbnailSrc = get(value, thumbnailPath, null);
-        if (thumbnail !== null) {
-            thumbElement = thumbnail;
-        } else if (thumbnailSrc !== null) {
-            thumbElement = <img src={thumbnailSrc} className={styles.thumbnail} alt={label} />;
-        }
-        return thumbElement;
-    }, [value, thumbnailPath, thumbnail, label]);
+    let thumbnailElement = null;
+    const thumbnailSrc = get(value, thumbnailPath, null);
+    if (thumbnail !== null) {
+        thumbnailElement = thumbnail;
+    } else if (thumbnailSrc !== null) {
+        thumbnailElement = <img src={thumbnailSrc} className={styles.thumbnail} alt={label} />;
+    }
 
-    const onClear = useCallback(
-        (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (onChange !== null) {
-                onChange(null);
-            }
-        },
-        [onChange],
-    );
+    const onClear = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (onChange !== null) {
+            onChange(null);
+        }
+    };
 
     return (
         <span
@@ -177,7 +171,11 @@ function FieldWithForm({
                             <span className="col-auto ps-0">{thumbnailElement}</span>
                         ) : null}
                         {value !== null && canClear ? (
-                            <ClearButton className={styles.clearButton} onClick={onClear} />
+                            <ClearButton
+                                className={styles.clearButton}
+                                iconOnly
+                                onClick={onClear}
+                            />
                         ) : null}
                     </span>
                 </span>

@@ -1,4 +1,3 @@
-
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
@@ -43,15 +42,8 @@ function ItemsField({
     name = null,
     value = null,
     getDefaultValue = null,
-    noItemLabel = (
-        <FormattedMessage
-            defaultMessage="No item..."
-            description="Label when there is no item in items field"
-        />
-    ),
-    addItemLabel = (
-        <FormattedMessage defaultMessage="Add an item" description="Button label in items field" />
-    ),
+    noItemLabel = null,
+    addItemLabel = null,
     itemFieldLabel: initialItemFieldLabel = null,
     itemComponent = null,
     itemsField = null,
@@ -66,15 +58,12 @@ function ItemsField({
     closeFieldForm = null,
     ...props
 }: ItemsFieldProps) {
-    const defaultIndexLabel = useCallback(
-        ({ index }) => (
-            <FormattedMessage
-                defaultMessage="#{index}"
-                description="Item label in items field"
-                values={{ index }}
-            />
-        ),
-        [],
+    const defaultIndexLabel = ({ index }) => (
+        <FormattedMessage
+            defaultMessage="#{index}"
+            description="Item label in items field"
+            values={{ index }}
+        />
     );
 
     const itemFieldLabel = initialItemFieldLabel || defaultIndexLabel;
@@ -82,13 +71,13 @@ function ItemsField({
     // const finalIsFieldForm =
     //     isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
     const [editing, setEditing] = useState(false);
-    const idMap = useRef((value || []).map(() => uuid()));
+    const [idMaps, setIdMaps] = useState(() => (value || []).map(() => uuid()));
     const fieldContext = useFieldContext();
 
-    const onClickAdd = useCallback(() => {
+    const onClickAdd = () => {
         const newDefaultValue = getDefaultValue !== null ? getDefaultValue() : null;
         const newValue = [...(value || []), newDefaultValue];
-        idMap.current = [...idMap.current, uuid()];
+        setIdMaps([...idMaps, uuid()]);
 
         if (onChange !== null) {
             onChange(newValue);
@@ -96,76 +85,49 @@ function ItemsField({
         if (gotoFieldForm !== null) {
             gotoFieldForm(`${name}.${newValue.length - 1}`, null, fieldContext);
         }
-    }, [value, onChange, getDefaultValue, gotoFieldForm, name, fieldContext]);
+    };
 
-    const onClickEdit = useCallback(() => {
+    const onClickEdit = () => {
         setEditing((old) => !old);
-    }, [setEditing]);
+    };
 
-    const onClickDelete = useCallback(
-        (index) => {
-            if (onChange !== null) {
-                const newValues = [...value];
-                newValues.splice(index, 1);
-                idMap.current = idMap.current.filter((_, idIndex) => idIndex !== index);
-                onChange(newValues);
+    const onClickDelete = (index) => {
+        if (onChange !== null) {
+            const newValues = [...value];
+            newValues.splice(index, 1);
+            setIdMaps(idMaps.filter((_, idIndex) => idIndex !== index));
+            onChange(newValues);
 
-                if (newValues.length === 0) {
-                    setEditing(false);
-                }
+            if (newValues.length === 0) {
+                setEditing(false);
             }
-        },
-        [value, onChange, setEditing],
-    );
+        }
+    };
 
-    const onItemChange = useCallback(
-        (index, newValue) => {
-            if (onChange !== null) {
-                const newValues = [...value];
-                newValues[index] = newValue;
-                onChange(newValues);
-            }
-        },
-        [value, onChange],
-    );
+    const onItemChange = (index, newValue) => {
+        if (onChange !== null) {
+            const newValues = [...value];
+            newValues[index] = newValue;
+            onChange(newValues);
+        }
+    };
 
-    const onOrderChange = useCallback(
-        (newItems) => {
-            const orderChanged = newItems.reduce(
-                (changed, { index: newIndex }, prevIndex) => changed || prevIndex !== newIndex,
-                false,
-            );
-            if (orderChanged && onChange !== null) {
-                const newIdMap = newItems.map(({ index }) => idMap.current[index]);
-                idMap.current = newIdMap;
-                onChange(newItems.map(({ it }) => it));
-            }
-        },
-        [onChange],
-    );
-
-    const gotoForms = useMemo(
-        () =>
-            value !== null
-                ? value.map(
-                      (val, index) => () => gotoFieldForm(`${name}.${index}`, null, fieldContext),
-                  )
-                : null,
-        [value, gotoFieldForm, fieldContext],
-    );
-
-    const closeForms = useMemo(
-        () =>
-            value !== null
-                ? value.map((val, index) => () => closeFieldForm(`${name}.${index}`))
-                : null,
-        [value, closeFieldForm],
-    );
+    const onOrderChange = (newItems) => {
+        const orderChanged = newItems.reduce(
+            (changed, { index: newIndex }, prevIndex) => changed || prevIndex !== newIndex,
+            false,
+        );
+        if (orderChanged && onChange !== null) {
+            const newIdMap = newItems.map(({ index }) => idMaps[index]);
+            setIdMaps(newIdMap);
+            onChange(newItems.map(({ it }) => it));
+        }
+    };
 
     const items = value || [];
     const { length: itemsLength = 0 } = items;
     const hasItems = itemsLength > 0;
-    const sortableItems = items.map((it, index) => ({ id: idMap.current[index], it, index }));
+    const sortableItems = items.map((it, index) => ({ id: idMaps[index], it, index }));
     const finalWithoutSort = withoutSort || !editing;
 
     return (
@@ -180,7 +142,7 @@ function ItemsField({
                         key={finalWithoutSort}
                     >
                         {items.map((itemValue, index) => (
-                            <div className="p-0 d-flex">
+                            <div className="p-0 d-flex" key={`item-${index}`}>
                                 {!finalWithoutSort ? (
                                     <div
                                         className={classNames([
@@ -225,8 +187,10 @@ function ItemsField({
                                     name={`${name}.${index}`}
                                     value={itemValue}
                                     onChange={(newValue) => onItemChange(index, newValue)}
-                                    closeForm={closeForms[index]}
-                                    gotoForm={gotoForms[index]}
+                                    closeForm={() => closeFieldForm(`${name}.${index}`)}
+                                    gotoForm={() =>
+                                        gotoFieldForm(`${name}.${index}`, null, fieldContext)
+                                    }
                                     gotoFieldForm={gotoFieldForm}
                                     closeFieldForm={closeFieldForm}
                                 />
@@ -247,7 +211,14 @@ function ItemsField({
                 </div>
             ) : (
                 <Empty className="p-4">
-                    <Label>{noItemLabel}</Label>
+                    <Label>
+                        {noItemLabel || (
+                            <FormattedMessage
+                                defaultMessage="No item..."
+                                description="Label when there is no item in items field"
+                            />
+                        )}
+                    </Label>
                 </Empty>
             )}
             <div className="d-flex mt-1">
@@ -259,7 +230,14 @@ function ItemsField({
                         icon={<FontAwesomeIcon icon={faPlus} />}
                         onClick={onClickAdd}
                     >
-                        <Label>{addItemLabel}</Label>
+                        <Label>
+                            {addItemLabel || (
+                                <FormattedMessage
+                                    defaultMessage="Add an item"
+                                    description="Button label in items field"
+                                />
+                            )}
+                        </Label>
                     </Button>
                 ) : null}
                 {hasItems && !withoutDeleteItem ? (

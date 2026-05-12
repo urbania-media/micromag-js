@@ -20,15 +20,12 @@ function DateField({
     withTime = false,
     onChange = null,
 }: DateFieldProps) {
-    const onInputChange = useCallback(
-        (e) => {
-            if (onChange !== null) {
-                const val = e.currentTarget.value || null;
-                onChange(val);
-            }
-        },
-        [onChange],
-    );
+    const onInputChange = (e) => {
+        if (onChange !== null) {
+            const val = e.currentTarget.value || null;
+            onChange(val);
+        }
+    };
 
     return (
         <div className={classNames([styles.container, className])}>

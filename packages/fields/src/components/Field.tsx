@@ -75,12 +75,9 @@ function Field({
     const isFields = FieldComponent === FieldsComponent;
     const context = useFieldContext();
 
-    const gotoForm = useCallback(
-        (form) => gotoFieldForm(name, form, context),
-        [name, context, gotoFieldForm],
-    );
-    const closeForm = useCallback((form) => closeFieldForm(name, form), [name, closeFieldForm]);
-    const gotoSettings = useCallback(() => gotoForm('settings'), [gotoForm]);
+    const gotoForm = (form) => gotoFieldForm(name, form, context);
+    const closeForm = (form) => closeFieldForm(name, form);
+    const gotoSettings = () => gotoForm('settings');
 
     if (FieldComponent === null) {
         return null;

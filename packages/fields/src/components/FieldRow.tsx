@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons/faAngleRight';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -71,19 +70,19 @@ function FieldRow({
     const withLabel = !withoutLabel && label !== null;
     const isClickable = withForm;
     const [isCollapsed, setIsCollapsed] = useState(isCollapsible);
-    const toggleCollapsed = useCallback(() => {
+    const toggleCollapsed = () => {
         if (isCollapsible) {
             setIsCollapsed(!isCollapsed);
         }
-    }, [isCollapsible, isCollapsed, setIsCollapsed]);
+    };
 
-    const onClickRow = useCallback(() => {
+    const onClickRow = () => {
         if (typeof withForm === 'string') {
             gotoForm(withForm);
         } else if (withForm) {
             gotoForm();
         }
-    }, [withForm, gotoForm]);
+    };
 
     const containerClassName = classNames([
         'form-group',
@@ -202,14 +201,11 @@ function FieldRow({
         );
     }
 
-    const onToggleChange = useCallback(
-        (newValue) => {
-            if (onChange !== null) {
-                onChange(newValue ? defaultValue || {} : null);
-            }
-        },
-        [withToggle, onChange, defaultValue],
-    );
+    const onToggleChange = (newValue) => {
+        if (onChange !== null) {
+            onChange(newValue ? defaultValue || {} : null);
+        }
+    };
 
     const toggleElement = withToggle ? (
         <div className={classNames(['col-auto'])}>

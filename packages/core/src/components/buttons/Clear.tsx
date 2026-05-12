@@ -6,14 +6,25 @@ import styles from '../../styles/buttons/clear.module.css';
 
 interface ClearButtonProps {
     onClick?: ((...args: unknown[]) => void) | null;
+    iconOnly?: boolean;
     className?: string | null;
 }
 
-function ClearButton({ onClick = null, className = null, ...props }: ClearButtonProps) {
+function ClearButton({
+    onClick = null,
+    className = null,
+    iconOnly = false,
+    ...props
+}: ClearButtonProps) {
+    const ButtonComponent = iconOnly ? 'span' : 'button';
     return (
-        <button className={classNames([styles.container, className])} onClick={onClick} {...props}>
+        <ButtonComponent
+            className={classNames([styles.container, className])}
+            onClick={onClick}
+            {...props}
+        >
             <FontAwesomeIcon className={styles.icon} icon={faClose} />
-        </button>
+        </ButtonComponent>
     );
 }
 
