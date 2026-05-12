@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-text-input",
-    "version": "0.4.85",
+    "version": "0.4.86",
     "private": false,
     "description": "",
     "keywords": [
@@ -62,7 +62,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.85",
+        "@micromag/core": "^0.4.86",
         "classnames": "^2.2.6",
         "react-helmet": "^6.1.0"
     },
