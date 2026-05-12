@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import get from 'lodash/get';
+import isArray from 'lodash/isArray';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -72,8 +73,8 @@ function MediaModal({
     // Temporary value
     const [media, setMedia] = useState(value);
     useEffect(() => {
-        setMedia(value);
-    }, [value, setMedia]);
+        setMedia(!multiple && isArray(value) ? value[0] : value);
+    }, [value, multiple, setMedia]);
 
     const dialogTitle = useMemo(() => {
         if (title) {
@@ -116,9 +117,9 @@ function MediaModal({
             e.preventDefault();
             e.stopPropagation();
             setModalOpen(true);
-            setMedia(value);
+            setMedia(!multiple && isArray(value) ? value[0] : value);
         },
-        [setModalOpen, setMedia, value],
+        [setModalOpen, setMedia, value, multiple],
     );
 
     const onClose = useCallback(
@@ -141,13 +142,14 @@ function MediaModal({
 
     const onChangeMedia = useCallback(
         (newMedia = null) => {
-            if (newMedia !== null && !multiple && autoClose) {
+            const newSelectedMedia = !multiple && isArray(newMedia) ? newMedia[0] : newMedia;
+            if (newSelectedMedia !== null && !multiple && autoClose) {
                 if (onChange !== null) {
-                    onChange(newMedia);
+                    onChange(newSelectedMedia);
                 }
                 onClose();
             } else {
-                setMedia(newMedia);
+                setMedia(newSelectedMedia);
             }
         },
         [value, setMedia, multiple, autoClose, onChange, onClose],
@@ -227,10 +229,7 @@ function MediaModal({
                 <Modal>
                     <Dialog
                         title={dialogTitle}
-                        className={classNames([
-                            styles.dialog,
-                            className,
-                        ])}
+                        className={classNames([styles.dialog, className])}
                         bodyClassName={styles.dialogBody}
                         size="xl"
                         onClose={onClose}

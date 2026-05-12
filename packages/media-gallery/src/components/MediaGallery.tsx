@@ -135,18 +135,10 @@ function MediaGallery({
         [partialFilters, storyId],
     );
 
-    const finalQuery = useMemo(
-        () => (source !== null ? { source } : null),
-        [source],
-    );
+    const finalQuery = useMemo(() => (source !== null ? { source } : null), [source]);
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             {isPicker ? (
                 <MediasPickerContainer
                     className={styles.browser}
