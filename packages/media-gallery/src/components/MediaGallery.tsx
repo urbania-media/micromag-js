@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
-import React, { useCallback, useMemo } from 'react';
+import isObject from 'lodash/isObject';
+import { useCallback, useMemo } from 'react';
 
 import { MediasBrowserContainer, MediasPickerContainer } from '@panneau/medias';
 
@@ -15,7 +16,7 @@ import defaultFilters from './filters';
 import styles from '../styles/new-media-gallery.module.css';
 
 interface MediaGalleryProps {
-    value?: { id?: string | number } | null;
+    value?: Media | Media[] | null;
     types?: string | unknown[] | null;
     source?: string;
     filters?: { id?: string }[] | null;
@@ -143,7 +144,7 @@ function MediaGallery({
                 <MediasPickerContainer
                     className={styles.browser}
                     api={mediasApi}
-                    value={value}
+                    value={isObject(value) ? [value] : value}
                     theme="dark"
                     types={finalTypes}
                     query={finalQuery}
