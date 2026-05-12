@@ -6,10 +6,12 @@ import { Component, Definition } from '../types';
 
 class DefinitionsManager<T extends Definition = Definition> extends EventEmitter {
     definitions: T[];
+    components: Record<string, Component> | null;
 
     constructor(definitions: T[] = []) {
         super();
         this.definitions = definitions || [];
+        this.components = null;
     }
 
     addDefinition(definition: T | T[]) {
@@ -19,6 +21,7 @@ class DefinitionsManager<T extends Definition = Definition> extends EventEmitter
 
     addDefinitions(definitions: T[]) {
         this.definitions = uniqBy([...definitions, ...this.definitions], (it) => it.id);
+        this.components = null;
         this.emit('change');
 
         return this;
@@ -55,16 +58,19 @@ class DefinitionsManager<T extends Definition = Definition> extends EventEmitter
     }
 
     getComponents(): Record<string, Component> {
-        return this.definitions.reduce(
-            (allComponents, { id, component = null }) =>
-                component !== null
-                    ? {
-                          ...allComponents,
-                          [id]: component,
-                      }
-                    : allComponents,
-            {},
-        );
+        if (this.components === null) {
+            this.components = this.definitions.reduce(
+                (allComponents, { id, component = null }) =>
+                    component !== null
+                        ? {
+                              ...allComponents,
+                              [id]: component,
+                          }
+                        : allComponents,
+                {},
+            );
+        }
+        return this.components;
     }
 }
 

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { Label, Media } from '@micromag/core';
@@ -32,12 +32,7 @@ function MediaModal({
     title = null,
     value = null,
     type = null,
-    noValueLabel = (
-        <FormattedMessage
-            defaultMessage="Select a media..."
-            description="Label when no value is provided to Media field"
-        />
-    ),
+    noValueLabel = null,
     isHorizontal = false,
     isForm = false,
     onChange = null,
@@ -50,15 +45,15 @@ function MediaModal({
     buttonsClassName = null,
     ...props
 }: MediaModalProps) {
-    const [modalOpen, setModalOpen] = useState();
+    const [modalOpen, setModalOpen] = useState(false);
 
     const [mediaFormOpen, setMediaFormOpen] = useState(false);
-    const onMediaFormOpen = useCallback(() => {
+    const onMediaFormOpen = () => {
         setMediaFormOpen(true);
-    }, [setMediaFormOpen]);
-    const onMediaFormClose = useCallback(() => {
+    };
+    const onMediaFormClose = () => {
         setMediaFormOpen(false);
-    }, [setMediaFormOpen]);
+    };
 
     const label = value !== null ? value.name || getFileName(value.url) || null : null;
 
@@ -76,97 +71,86 @@ function MediaModal({
         setMedia(!multiple && isArray(value) ? value[0] : value);
     }, [value, multiple, setMedia]);
 
-    const dialogTitle = useMemo(() => {
-        if (title) {
-            return title;
-        }
-        switch (type) {
-            case 'video':
-                return <FormattedMessage defaultMessage="Select Video" description="Modal title" />;
-            case 'image':
-                return <FormattedMessage defaultMessage="Select Image" description="Modal title" />;
-            case 'audio':
-                return (
-                    <FormattedMessage
-                        defaultMessage="Select Audio File"
-                        description="Modal title"
-                    />
-                );
-            case 'font':
-                return (
-                    <FormattedMessage defaultMessage="Select Font File" description="Modal title" />
-                );
-            case 'document':
-                return (
-                    <FormattedMessage defaultMessage="Select Document" description="Modal title" />
-                );
-            case 'subtitle':
-                return (
-                    <FormattedMessage
-                        defaultMessage="Select Subtitles File"
-                        description="Modal title"
-                    />
-                );
-            default:
-                return <FormattedMessage defaultMessage="Choose media" description="Modal title" />;
-        }
-    }, [title, type]);
-
-    const onOpen = useCallback(
-        (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setModalOpen(true);
-            setMedia(!multiple && isArray(value) ? value[0] : value);
-        },
-        [setModalOpen, setMedia, value, multiple],
+    let dialogTitle: ReactNode = (
+        <FormattedMessage defaultMessage="Choose media" description="Modal title" />
     );
+    if (title !== null) {
+        dialogTitle = title;
+    } else if (type === 'video') {
+        dialogTitle = <FormattedMessage defaultMessage="Select Video" description="Modal title" />;
+    } else if (type === 'image') {
+        dialogTitle = <FormattedMessage defaultMessage="Select Image" description="Modal title" />;
+    } else if (type === 'audio') {
+        dialogTitle = (
+            <FormattedMessage defaultMessage="Select Audio File" description="Modal title" />
+        );
+    } else if (type === 'font') {
+        dialogTitle = (
+            <FormattedMessage defaultMessage="Select Font File" description="Modal title" />
+        );
+    } else if (type === 'document') {
+        dialogTitle = (
+            <FormattedMessage defaultMessage="Select Document" description="Modal title" />
+        );
+    } else if (type === 'subtitle') {
+        dialogTitle = (
+            <FormattedMessage defaultMessage="Select Subtitles File" description="Modal title" />
+        );
+    }
 
-    const onClose = useCallback(
-        (e) => {
-            setModalOpen(false);
-            setMedia(null);
-            if (onRequestClose !== null) {
-                onRequestClose(e);
-            }
-        },
-        [setModalOpen, onRequestClose, setMedia],
-    );
+    const onOpen = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setModalOpen(true);
+        setMedia(!multiple && isArray(value) ? value[0] : value);
+    };
 
-    const onConfirmSelection = useCallback(() => {
+    const onClose = (e = null) => {
+        setModalOpen(false);
+        setMedia(null);
+        if (onRequestClose !== null) {
+            onRequestClose(e);
+        }
+    };
+
+    const onConfirmSelection = () => {
         if (onChange !== null) {
             onChange(media);
         }
         onClose();
-    }, [media, onChange, onClose]);
+    };
 
-    const onChangeMedia = useCallback(
-        (newMedia = null) => {
-            const newSelectedMedia = !multiple && isArray(newMedia) ? newMedia[0] : newMedia;
-            if (newSelectedMedia !== null && !multiple && autoClose) {
-                if (onChange !== null) {
-                    onChange(newSelectedMedia);
-                }
-                onClose();
-            } else {
-                setMedia(newSelectedMedia);
+    const onChangeMedia = (newMedia = null) => {
+        const newSelectedMedia = !multiple && isArray(newMedia) ? newMedia[0] : newMedia;
+        if (newSelectedMedia !== null && !multiple && autoClose) {
+            if (onChange !== null) {
+                onChange(newSelectedMedia);
             }
-        },
-        [value, setMedia, multiple, autoClose, onChange, onClose],
-    );
+            onClose();
+        } else {
+            setMedia(newSelectedMedia);
+        }
+    };
 
-    const onClearMedia = useCallback(() => {
+    const onClearMedia = () => {
         if (onChange !== null) {
             onChange(null);
             setMedia(null);
         }
-    }, [value, onChange, setMedia]);
+    };
 
     return (
         <>
             <FieldWithForm
                 value={value}
-                noValueLabel={noValueLabel}
+                noValueLabel={
+                    noValueLabel || (
+                        <FormattedMessage
+                            defaultMessage="Select a media..."
+                            description="Label when no value is provided to Media field"
+                        />
+                    )
+                }
                 label={label}
                 withTitleLabel={label !== null}
                 thumbnailPath="thumbnail_url"

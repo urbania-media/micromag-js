@@ -44,14 +44,7 @@ export function ScreensProvider({
         return newManager;
     });
 
-    const [components, setComponents] = useState(() => finalManager.getComponents());
-    useEffect(() => {
-        const onChange = () => setComponents(finalManager.getComponents());
-        finalManager.on('change', onChange);
-        return () => {
-            finalManager.off('change', onChange);
-        };
-    }, [finalManager, setComponents]);
+    const components = finalManager.getComponents();
 
     return (
         <ScreensContext value={finalManager}>
