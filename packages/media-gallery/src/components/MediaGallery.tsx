@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { isArray } from 'lodash';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 
@@ -24,7 +25,7 @@ interface MediaGalleryProps {
     multiple?: boolean;
     medias?: Media[] | null;
     query?: Record<string, unknown> | null;
-    onChange?: ((...args: unknown[]) => void) | null;
+    onChange?: ((media: Media | Media[] | null) => void) | null;
     onMediaFormOpen?: ((...args: unknown[]) => void) | null;
     onMediaFormClose?: ((...args: unknown[]) => void) | null;
     className?: string | null;
@@ -114,13 +115,20 @@ function MediaGallery({
         ...(source !== null ? { source } : null),
     };
 
+    const pickerValue = isObject(value) ? [value] : value;
+    const onPickerChange = (newValue) => {
+        if (onChange !== null) {
+            onChange(!multiple && isArray(newValue) ? (newValue?.[0] ?? null) : newValue);
+        }
+    };
+
     return (
         <div className={classNames([styles.container, className])}>
             {isPicker ? (
                 <MediasPickerContainer
                     className={styles.browser}
                     api={mediasApi}
-                    value={isObject(value) ? [value] : value}
+                    value={pickerValue}
                     theme="dark"
                     types={finalTypes}
                     query={finalQuery}
@@ -129,7 +137,7 @@ function MediaGallery({
                     fields={fields}
                     columns={columns}
                     multiple={multiple}
-                    onChange={onChange}
+                    onChange={onPickerChange}
                     uppyConfig={uppyConfig}
                     onMediaUploaded={onMediaUploaded}
                     onMediaFormOpen={onMediaFormOpen}
@@ -141,7 +149,6 @@ function MediaGallery({
                 <MediasBrowserContainer
                     className={styles.browser}
                     api={mediasApi}
-                    value={value}
                     theme="dark"
                     types={finalTypes}
                     query={finalQuery}

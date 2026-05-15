@@ -121,7 +121,8 @@ function MediaModal({
     };
 
     const onChangeMedia = (newMedia = null) => {
-        const newSelectedMedia = !multiple && isArray(newMedia) ? newMedia[0] : newMedia;
+        const newSelectedMedia =
+            !multiple && isArray(newMedia) ? (newMedia?.[0] ?? null) : newMedia;
         if (newSelectedMedia !== null && !multiple && autoClose) {
             if (onChange !== null) {
                 onChange(newSelectedMedia);
@@ -256,7 +257,6 @@ function MediaModal({
                             isPicker
                             multiple={multiple}
                             onChange={onChangeMedia}
-                            onClose={onClose}
                             onMediaFormOpen={onMediaFormOpen}
                             onMediaFormClose={onMediaFormClose}
                         />
