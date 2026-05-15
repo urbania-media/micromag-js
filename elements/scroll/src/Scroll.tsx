@@ -120,9 +120,9 @@ function Scroll({
         scrolleeHeight > 0 &&
         scrollableHeight > 0 &&
         Math.round(scrolleeHeight) > Math.round(scrollableHeight);
-    if (shouldShowArrow !== withArrow) {
+    useEffect(() => {
         setWithArrow(shouldShowArrow);
-    }
+    }, [shouldShowArrow]);
 
     const maxScrollAmount =
         scrolleeHeight > 0 && scrollableHeight > 0 ? scrolleeHeight - scrollableHeight : null;

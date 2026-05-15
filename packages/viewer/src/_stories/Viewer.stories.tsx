@@ -29,6 +29,7 @@ import treeTheme from '#.storybook/data/themes/tree';
 import viewerTheme from '#.storybook/data/viewerTheme';
 import withGoogleMaps from '#.storybook/decorators/withGoogleMaps';
 import preview from '#.storybook/preview';
+import { getJSON } from '@folklore/fetch';
 import React, { useCallback, useEffect, useState } from 'react';
 import { v1 as uuid } from 'uuid';
 
@@ -134,6 +135,50 @@ export const Basic = meta.story(() => (
         withMicromagBranding
     />
 ));
+
+export const Loader = meta.story(() => {
+    const [url, setUrl] = useState(() => localStorage.getItem('lastLoadedStory') || null);
+    const [storyUrl, setStoryUrl] = useState(() =>
+        url !== null ? url.replace(/(\.json)?$/, '.json') : null,
+    );
+    const [story, setStory] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const newStoryUrl = url.replace(/(\.json)?$/, '.json');
+        setStoryUrl(newStoryUrl);
+        localStorage.setItem('lastLoadedStory', url);
+    };
+    useEffect(() => {
+        setLoading(true);
+        getJSON(storyUrl).then((data) => {
+            setLoading(false);
+            setStory(data);
+        });
+    }, [storyUrl]);
+
+    return (
+        <div className="d-flex flex-column" style={{ width: '100%', height: '100vh' }}>
+            <form onSubmit={onSubmit} className="p-3">
+                <div className="input-group">
+                    <input
+                        type="text"
+                        value={url || ''}
+                        onChange={(e) => setUrl(e.target.value)}
+                        className="form-control"
+                        placeholder="Enter a story URL (e.g. https://microm.ag)"
+                    />
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                        {loading ? 'Loading' : 'Load'}
+                    </button>
+                </div>
+            </form>
+            <div className="position-relative flex-grow-1">
+                {story !== null ? <Viewer story={story} withNavigationHint memoryRouter /> : null}
+            </div>
+        </div>
+    );
+});
 
 export const BackgroundColor = meta.story(() => (
     <div style={{ width: '100%', height: '100%', backgroundColor: hexColor() }}>

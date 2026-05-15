@@ -52,6 +52,7 @@
         "@eslint/js": "^10.0.1",
         "@folklore/cli": "^0.0.50",
         "@folklore/routes": "^0.2.47",
+        "@folklore/fetch": "^0.1.24",
         "@formatjs/cli": "^6.13.0",
         "@panneau/actions": "^4.0.40-alpha.1",
         "@panneau/data": "^4.0.40-alpha.1",

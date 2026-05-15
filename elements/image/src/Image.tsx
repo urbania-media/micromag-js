@@ -82,6 +82,8 @@ function Image({
 
     let finalContainerStyle;
     let finalImageStyle;
+    let imageWidthPixel;
+    let imageHeightPixel;
 
     if (withFit) {
         let imageTop = 0;
@@ -141,6 +143,8 @@ function Image({
             objectFit: imageObjectFit,
             objectPosition: imageObjectPosition,
         };
+        imageWidthPixel = imageWidth;
+        imageHeightPixel = imageHeight;
     } else {
         const validWidth = width !== null && typeof width === 'number';
         const validHeight = height !== null && typeof height === 'number';
@@ -155,6 +159,9 @@ function Image({
             finalWidth = realWidth > 0 ? mediaWidth : null;
             finalHeight = realHeight > 0 ? mediaHeight : null;
         }
+
+        imageWidthPixel = ratioWidth ?? realWidth ?? mediaWidth;
+        imageHeightPixel = ratioHeight ?? realHeight ?? mediaHeight;
 
         finalContainerStyle = {
             width: finalWidth,
@@ -174,11 +181,15 @@ function Image({
         ...imageStyle,
     };
 
-    const { width: finalWidth = null, height: finalHeight = null } = finalImageStyle;
-    const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight || finalWidth, {
-        resolution: imageResolution,
-        supportsWebp,
-    });
+    const finalUrl = getOptimalImageUrl(
+        media,
+        imageWidthPixel,
+        imageHeightPixel || imageWidthPixel,
+        {
+            resolution: imageResolution,
+            supportsWebp,
+        },
+    );
 
     return (
         <div
@@ -192,6 +203,8 @@ function Image({
                     alt={alt || description}
                     className={classNames([styles.img, imageClassName])}
                     style={finalImageStyle}
+                    width={realWidth}
+                    height={realHeight}
                     onLoad={onImageLoaded}
                     loading={loadingMode}
                 />
