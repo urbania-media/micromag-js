@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
-import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { Label, Media } from '@micromag/core';
@@ -22,7 +22,7 @@ interface MediaModalProps {
     onChange?: ((...args: unknown[]) => void) | null;
     onRequestClose?: ((...args: unknown[]) => void) | null;
     multiple?: boolean;
-    thumbnail?: React.ReactNode | null;
+    thumbnail?: ReactNode | null;
     thumbnailPath?: string;
     className?: string | null;
     buttonsClassName?: string | null;
