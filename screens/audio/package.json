@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-audio",
-    "version": "0.4.88",
+    "version": "0.4.89",
     "private": false,
     "description": "",
     "keywords": [
@@ -67,7 +67,7 @@
         "@micromag/element-background": "^0.4.88",
         "@micromag/element-closed-captions": "^0.4.88",
         "@micromag/element-container": "^0.4.88",
-        "@micromag/element-footer": "^0.4.88",
+        "@micromag/element-footer": "^0.4.89",
         "@micromag/element-header": "^0.4.88",
         "@micromag/element-layout": "^0.4.88",
         "@micromag/transforms": "^0.4.88",

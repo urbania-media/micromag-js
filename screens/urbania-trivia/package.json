@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-urbania-trivia",
-    "version": "0.4.88",
+    "version": "0.4.89",
     "private": false,
     "description": "",
     "keywords": [
@@ -66,11 +66,11 @@
         "@folklore/size": "^0.1.20",
         "@micromag/core": "^0.4.88",
         "@micromag/element-background": "^0.4.88",
-        "@micromag/element-call-to-action": "^0.4.88",
+        "@micromag/element-call-to-action": "^0.4.89",
         "@micromag/element-closed-captions": "^0.4.88",
         "@micromag/element-container": "^0.4.88",
         "@micromag/element-heading": "^0.4.88",
-        "@micromag/element-image": "^0.4.88",
+        "@micromag/element-image": "^0.4.89",
         "@micromag/element-video": "^0.4.88",
         "@micromag/transforms": "^0.4.88",
         "classnames": "^2.2.6",

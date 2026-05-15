@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quote",
-    "version": "0.4.88",
+    "version": "0.4.89",
     "private": false,
     "description": "",
     "keywords": [
@@ -65,7 +65,7 @@
         "@micromag/core": "^0.4.88",
         "@micromag/element-background": "^0.4.88",
         "@micromag/element-container": "^0.4.88",
-        "@micromag/element-footer": "^0.4.88",
+        "@micromag/element-footer": "^0.4.89",
         "@micromag/element-header": "^0.4.88",
         "@micromag/element-layout": "^0.4.88",
         "@micromag/element-quote": "^0.4.88",
