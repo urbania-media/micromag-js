@@ -49,6 +49,15 @@ function MediaGallery({
     const api = useApi();
     const story = useStory();
     const { id: storyId = null } = story || {};
+
+    const finalTypes = isString(types) ? [types] : types;
+    const fileTypes = [
+        ...(finalTypes || []).map((t) =>
+            ['image', 'video', 'audio'].indexOf(t) !== -1 ? `${t}/*` : null,
+        ),
+        (finalTypes || []).indexOf('video') !== -1 ? 'image/gif' : null,
+    ].filter((t) => t !== null);
+
     const defaultFields = useDefaultFields();
     const defaultFilters = useDefaultFilters();
     const fields = providedFields ?? defaultFields;
@@ -94,14 +103,6 @@ function MediaGallery({
     const { create: createMedia } = useMediaCreate();
     const onMediaUploaded = (newMedias) =>
         Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => newAddedMedias);
-
-    const finalTypes = isString(types) ? [types] : types;
-    const fileTypes = [
-        ...(finalTypes || []).map((t) =>
-            ['image', 'video', 'audio'].indexOf(t) !== -1 ? `${t}/*` : null,
-        ),
-        (finalTypes || []).indexOf('video') !== -1 ? 'image/gif' : null,
-    ].filter((t) => t !== null);
 
     const uppyConfig = {
         // set sources ? - uppy sources -

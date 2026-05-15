@@ -56,9 +56,6 @@ const config = defineConfig([
         rules: {
             'formatjs/no-literal-string-in-jsx': 'off',
 
-            // False positives for patterns like React.forwardRef, Hls.Events
-            'import/no-named-as-default-member': 'off',
-
             // Computed namespace access (allScreens[name]) can't be statically validated
             'import/namespace': 'off',
         },
