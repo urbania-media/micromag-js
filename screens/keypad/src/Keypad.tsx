@@ -721,6 +721,7 @@ function KeypadScreen({
                             }
                             emptyClassName={classNames([styles.empty, styles.emptyHeading])}
                             isEmpty={!hasSubtitle}
+                            placeholderClassName="mt-2"
                         >
                             {hasSubtitle ? (
                                 <Text className={styles.subtitle} {...subtitle} />
@@ -728,10 +729,7 @@ function KeypadScreen({
                         </ScreenElement>
 
                         <Keypad
-                            className={classNames([
-                                styles.grid,
-                                { [styles.gridPlaceholder]: isPlaceholder },
-                            ])}
+                            className={classNames([styles.grid, { 'mt-4': isPlaceholder }])}
                             align={columnAlign}
                             columns={isPlaceholder ? 3 : columns}
                             spacing={isPlaceholder ? 2 : columnSpacing}

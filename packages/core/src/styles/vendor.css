@@ -6,6 +6,7 @@
 /* Bootstrap (pre-compiled) */
 
 @import url('bootstrap/dist/css/bootstrap.min.css');
+@import url('./global.css');
 
 /* Micromag theme (--mm-* custom properties) */
 @import url('./theme.css');

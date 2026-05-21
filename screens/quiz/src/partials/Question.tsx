@@ -149,7 +149,9 @@ function Question({
                 !withoutIndex && hasIndex ? (
                     <ScreenElement
                         key="stats"
-                        placeholder={<div className={styles.index}>1 / 10</div>}
+                        placeholder={
+                            <div className={classNames([styles.index, 'fs-3'])}>1 / 10</div>
+                        }
                     >
                         {totalCount > 1 ? (
                             <Transitions
@@ -176,6 +178,7 @@ function Question({
                         />
                     }
                     emptyClassName={styles.emptyQuestion}
+                    placeholderClassName="mb-4"
                     isEmpty={!hasQuestion}
                 >
                     {hasQuestion ? (

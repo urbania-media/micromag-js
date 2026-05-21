@@ -11,7 +11,8 @@
 
 .colValue {
     margin-left: auto;
-    white-space: nowrap;
+
+    /* white-space: nowrap; */
 }
 
 .colButtonWidth {

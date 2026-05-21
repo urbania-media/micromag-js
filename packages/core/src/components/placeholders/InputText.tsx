@@ -1,10 +1,15 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
+import classNames from 'classnames';
+import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
-import PlaceholderBlock from '../partials/PlaceholderBlock';
-
-export function InputText({ width = '75%', height = '0.5em', className }) {
-    return <PlaceholderBlock outline width={width} height={height} className={className} />;
+export function InputText({ className, ...props }: PlaceholderBlockProps) {
+    return (
+        <PlaceholderBlock
+            outline
+            height="1em"
+            className={classNames(['rounded', className])}
+            {...props}
+        />
+    );
 }
 
 export default InputText;

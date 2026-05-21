@@ -1,16 +1,12 @@
-/* eslint-disable react/prop-types */
 import { faAd } from '@fortawesome/free-solid-svg-icons/faAd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 
-import PlaceholderBlock from '../partials/PlaceholderBlock';
+import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.css';
-
-export function AdFrame({ width, height, className }) {
+export function AdFrame({ width, height, ...props }: PlaceholderBlockProps) {
     return (
-        <PlaceholderBlock width={width} height={height} className={className}>
-            <FontAwesomeIcon icon={faAd} className={styles.icon} />
+        <PlaceholderBlock {...props}>
+            <FontAwesomeIcon icon={faAd} style={{ width, height }} />
         </PlaceholderBlock>
     );
 }

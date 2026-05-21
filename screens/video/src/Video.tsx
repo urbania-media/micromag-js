@@ -241,8 +241,6 @@ function VideoScreen({
     const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
     const resizedVideoTop = -(resizedVideoHeight - height) / 2;
 
-    const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
-
     if (!hasVideoUrl && ready) {
         setReady(false);
     }
@@ -288,12 +286,12 @@ function VideoScreen({
 
                     <ScreenElement
                         key="video"
-                        placeholder={
-                            <PlaceholderVideo
-                                className={styles.placeholder}
-                                {...placeholderProps}
-                            />
-                        }
+                        placeholder="video"
+                        placeholderProps={{
+                            width: fullscreen ? '100%' : '50%',
+                            height: fullscreen ? '100%' : '50%',
+                        }}
+                        placeholderClassName="position-absolute top-50 start-50 translate-middle w-100"
                         empty={
                             <div className={styles.emptyContainer}>
                                 <Empty className={styles.empty}>

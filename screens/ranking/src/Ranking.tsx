@@ -109,6 +109,7 @@ function RankingScreen({
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Placeholder label" />}
             emptyClassName={classNames([styles.empty, styles.emptyTitle])}
             isEmpty={!hasTitle}
+            placeholderClassName="mb-3"
         >
             {hasTitle ? (
                 <Heading
@@ -164,6 +165,7 @@ function RankingScreen({
                     }
                     emptyClassName={styles.empty}
                     isEmpty={!hasDescription}
+                    placeholderClassName="mt-2"
                 >
                     {hasDescription ? (
                         <Text

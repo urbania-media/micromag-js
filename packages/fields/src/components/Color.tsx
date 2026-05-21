@@ -66,7 +66,7 @@ function ColorField({
             label={hexColor}
             thumbnail={previewElement}
             noValueLabel={
-                <FormattedMessage defaultMessage="Select a color..." description="No value label" />
+                <FormattedMessage defaultMessage="Select..." description="No value label" />
             }
             canClear={canClear}
             {...props}

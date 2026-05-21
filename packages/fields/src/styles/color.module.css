@@ -1,51 +1,13 @@
 /* stylelint-disable max-nesting-depth, selector-max-compound-selectors, no-descending-specificity */
 
 .preview {
-    @include background-grid(4px, var(--mm-gray-300, #dedede));
-
     display: block;
-    border: solid 1px var(--mm-black, #000);
+    border: solid 1px var(--bs-black, #000);
+    background: repeating-conic-gradient(#808080 0 25%, #0000 0 50%) 50% / 1.5em 1.5em;
 
     .color {
         display: block;
-        width: 1.3em;
-        height: 1.3em;
-    }
-}
-
-.picker {
-    label {
-        color: #fff !important;
-    }
-
-    > div {
-        overflow: hidden;
-
-        > div {
-            &:nth-child(2) {
-                > div {
-                    &:first-child > div {
-                        margin: 0 1px;
-                        box-shadow: 0 0 0 1px rgb(255 255 255 / 0.25);
-                    }
-
-                    &:last-child {
-                        margin-right: 1px;
-                        box-shadow: 0 0 0 1px rgb(255 255 255 / 0.25);
-                    }
-                }
-            }
-
-            &:nth-child(3) {
-                &,
-                input {
-                    text-align: center;
-                }
-            }
-
-            &:nth-child(4) {
-                border-top-color: rgba(#eee, 0.2) !important;
-            }
-        }
+        width: 1.5em;
+        height: 1.5em;
     }
 }

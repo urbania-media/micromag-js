@@ -184,6 +184,7 @@ function TextScreen({
                             />
                         }
                         emptyClassName={styles.emptyText}
+                        placeholderClassName="mt-2"
                         isEmpty={!hasText}
                     >
                         {hasText ? <Text className={styles.text} {...text} /> : null}

@@ -84,10 +84,11 @@
     ],
     "scripts": {
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles && rm -rf styles",
-        "vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
-        "theme": "../../scripts/build-css.js ./src/styles/theme.css ./assets/css/theme.css",
+        "css:vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
+        "css:theme": "../../scripts/build-css.js ./src/styles/theme.css ./assets/css/theme.css",
+        "css:styles": "../../scripts/build-css.js ./src/styles/styles.css ./assets/css/styles.css",
         "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh --types && npm run vendor && npm run theme"
+        "build": "../../scripts/prepare-package.sh --types && npm run css:vendor && npm run css:theme"
     },
     "devDependencies": {
         "react": "^19.0.0",

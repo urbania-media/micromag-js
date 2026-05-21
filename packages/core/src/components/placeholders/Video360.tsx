@@ -1,23 +1,25 @@
-/* eslint-disable react/prop-types */
 import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React from 'react';
 
-import PlaceholderBlock from '../partials/PlaceholderBlock';
+import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/video-360.module.css';
-
-export function Video360({ width, height, className }) {
+export function Video360({ width, height, className, ...props }: PlaceholderBlockProps) {
     return (
         <PlaceholderBlock
-            width={width}
-            height={height}
-            className={classNames([styles.container, className])}
-            boxClassName={styles.box}
+            {...props}
+            className={className}
+            boxClassName="d-flex flex-column align-items-center justify-content-center"
         >
-            <FontAwesomeIcon icon={faVideo} className={styles.icon} />
-            <div className={styles.label}>360</div>
+            <FontAwesomeIcon
+                icon={faVideo}
+                className="d-block mb-1"
+                style={{
+                    width,
+                    height,
+                }}
+            />
+            <div style={{ fontSize: '0.75em' }}>360</div>
         </PlaceholderBlock>
     );
 }

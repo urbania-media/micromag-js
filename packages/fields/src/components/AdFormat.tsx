@@ -1,9 +1,6 @@
 import classNames from 'classnames';
-import React from 'react';
 
 import Radios from './Radios';
-
-import styles from '../styles/border-style.module.css';
 
 interface AdFormatFieldProps {
     types?: { name: string; width: number; height: number }[];
@@ -29,23 +26,17 @@ function AdFormatField({
             options={types.map((type) => ({
                 value: type,
                 label: (
-                    <div className={styles.type}>
-                        <div
-                            style={{
-                                width: type.width / 10,
-                                height: type.height / 10,
-                                border: `2px solid #ccc`,
-                            }}
-                        />
-                    </div>
+                    <div
+                        style={{
+                            width: type.width / 10,
+                            height: type.height / 10,
+                            border: `2px solid #ccc`,
+                        }}
+                    />
                 ),
             }))}
             value={value || (types ? types[0] : null)}
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-            buttonClassName={styles.button}
+            className={classNames(['d-inline-flex', className])}
             onChange={onChange}
         />
     );

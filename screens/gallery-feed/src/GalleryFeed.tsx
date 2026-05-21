@@ -120,9 +120,14 @@ function GalleryFeedScreen({
             <ScreenElement
                 key={`image-${index}`}
                 placeholder="image"
+                placeholderProps={{
+                    width: '4em',
+                    height: '4em',
+                }}
                 emptyLabel={
                     <FormattedMessage defaultMessage="Image" description="Image placeholder" />
                 }
+                placeholderClassName="mb-2"
                 emptyClassName={styles.emptyImage}
                 isEmpty={!hasImage}
             >
@@ -162,6 +167,7 @@ function GalleryFeedScreen({
                         />
                     }
                     emptyClassName={styles.emptyCaption}
+                    placeholderClassName="mb-2"
                     isEmpty={!hasCaption}
                 >
                     {hasCaption ? (

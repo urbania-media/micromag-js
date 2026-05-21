@@ -20,8 +20,8 @@ interface ScreenPlaceholderProps {
 function ScreenPlaceholder({
     screen,
     layout = undefined,
-    screenWidth = 100,
-    screenHeight = 150,
+    screenWidth = 240,
+    screenHeight = 360,
     screenState = null,
     withSize = false,
     className = null,

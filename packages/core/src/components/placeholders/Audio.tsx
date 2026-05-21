@@ -1,16 +1,19 @@
-/* eslint-disable react/destructuring-assignment, react/prop-types */
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 
-import PlaceholderBlock from '../partials/PlaceholderBlock';
+import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.css';
-
-export function Audio({ width = '100%', height = '2em', className }) {
+export function Audio({ width, height, ...props }: PlaceholderBlockProps) {
     return (
-        <PlaceholderBlock width={width} height={height} className={className}>
-            <FontAwesomeIcon icon={faMusic} className={styles.icon} />
+        <PlaceholderBlock {...props}>
+            <FontAwesomeIcon
+                icon={faMusic}
+                style={{
+                    width,
+                    height,
+                }}
+                className="d-block m-auto"
+            />
         </PlaceholderBlock>
     );
 }

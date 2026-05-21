@@ -1,20 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
-import classNames from 'classnames';
-import React from 'react';
+import PlaceholderText, { PlaceholderTextProps } from '../partials/PlaceholderText';
 
-import PlaceholderText from '../partials/PlaceholderText';
-
-import styles from '../../styles/placeholders/placeholders.module.css';
-
-export function ShortText(props) {
-    return (
-        <PlaceholderText
-            {...props}
-            className={classNames([props.className, styles.shortText])}
-            height={0.2}
-            lines={2}
-        />
-    );
+export function ShortText({ height = 0.8, lines = 2, ...props }: PlaceholderTextProps) {
+    return <PlaceholderText height={height} lines={lines} {...props} />;
 }
 
 export default ShortText;

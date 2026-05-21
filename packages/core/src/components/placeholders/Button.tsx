@@ -1,13 +1,12 @@
-/* eslint-disable react/destructuring-assignment, react/prop-types */
-import React from 'react';
+import classNames from 'classnames';
 
-import PlaceholderBlock from '../partials/PlaceholderBlock';
+import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 import PlaceholderText from '../partials/PlaceholderText';
 
-export function Button({ width = '75%', height = '0.4em', className }) {
+export function Button({ className, ...props }: PlaceholderBlockProps) {
     return (
-        <PlaceholderBlock outline width={width} height={height} className={className}>
-            <PlaceholderText line={1} height="0.1em" />
+        <PlaceholderBlock outline className={classNames(['rounded', className])} {...props}>
+            <PlaceholderText height="0.5em" />
         </PlaceholderBlock>
     );
 }

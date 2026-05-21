@@ -278,6 +278,7 @@ function ConversationScreen({
                                 }
                                 emptyClassName={styles.empty}
                                 isEmpty={messages.length === 0 && title === null}
+                                placeholderClassName="p-2"
                             >
                                 <Transitions
                                     transitions={transitions}

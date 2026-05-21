@@ -129,11 +129,12 @@ function FieldWithForm({
         <span
             className={classNames([
                 'align-items-center',
-                'flex-nowrap',
                 'mw-100',
                 'w-100',
                 {
                     row: thumbnailElement === null && labelElement === null,
+                    'g-1': thumbnailElement === null && labelElement === null,
+                    'flex-nowrap': thumbnailElement !== null || labelElement !== null,
                 },
                 className,
             ])}
@@ -141,7 +142,7 @@ function FieldWithForm({
             {thumbnailElement !== null || labelElement !== null ? (
                 <span>
                     <span
-                        className="row px-1"
+                        className="row g-1 flex-nowrap align-items-center"
                         title={
                             withTitleLabel && (isString(labelString) || isString(label))
                                 ? labelString || label || ''
@@ -172,7 +173,7 @@ function FieldWithForm({
                         ) : null}
                         {value !== null && canClear ? (
                             <ClearButton
-                                className={styles.clearButton}
+                                className="ms-1"
                                 iconOnly
                                 onClick={onClear}
                             />
@@ -182,12 +183,13 @@ function FieldWithForm({
             ) : (
                 <span
                     className={classNames([
-                        'col',
+                        'col-auto',
                         'text-body-secondary',
                         {
                             'text-start': !isHorizontal,
                             'text-end': isHorizontal,
-                            'text-truncate': isHorizontal,
+                            'ms-auto': isHorizontal,
+                            // 'text-truncate': isHorizontal,
                         },
                     ])}
                 >

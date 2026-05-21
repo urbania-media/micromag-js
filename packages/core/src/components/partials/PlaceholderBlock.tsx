@@ -1,9 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import styles from '../../styles/partials/placeholder-block.module.css';
-
-interface PlaceholderBlockProps {
+export interface PlaceholderBlockProps {
     width?: number | string;
     height?: number | string;
     outline?: boolean;
@@ -15,27 +13,37 @@ interface PlaceholderBlockProps {
 
 function PlaceholderBlock({
     width = '100%',
-    height = '3em',
+    height = null,
     outline = false,
     className = null,
     boxClassName = null,
-    withInvertedColors = true,
     children = null,
 }: PlaceholderBlockProps) {
     return (
         <div
             className={classNames([
-                styles.container,
-                className,
+                'opacity-75',
                 {
-                    [styles.outline]: outline,
-                    [styles.withInvertedColors]: withInvertedColors,
+                    border: outline,
+                    'border-2': outline,
                 },
+                className,
             ])}
+            style={{
+                '--bs-border-color': 'currentColor',
+                borderColor: 'currentColor',
+                // mixBlendMode: 'difference',
+            }}
         >
             <div
                 className={classNames([
-                    styles.box,
+                    {
+                        'd-flex': outline,
+                        'align-items-center': outline,
+                        'justify-content-center': outline,
+                        'w-100': outline,
+                        'p-2': outline,
+                    },
                     boxClassName,
                 ])}
                 style={{

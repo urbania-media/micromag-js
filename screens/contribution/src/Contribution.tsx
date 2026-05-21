@@ -304,9 +304,9 @@ function ContributionScreen({
         <ScreenElement
             key="title"
             placeholder="title"
-            placeholderProps={{ height: '0.75em' }}
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.emptyTitle}
+            placeholderClassName="mb-4"
             isEmpty={!hasTitle}
         >
             {hasTitle ? <Heading {...title} className={styles.title} /> : null}
@@ -335,7 +335,7 @@ function ContributionScreen({
                 <div className={styles.formContent}>
                     <ScreenElement
                         placeholder="inputText"
-                        placeholderProps={{ height: '0.25em' }}
+                        placeholderClassName="mb-2"
                         emptyLabel={
                             <FormattedMessage
                                 defaultMessage="Your name"
@@ -365,7 +365,8 @@ function ContributionScreen({
                     </ScreenElement>
                     <ScreenElement
                         placeholder="inputText"
-                        placeholderProps={{ height: '0.75em' }}
+                        placeholderClassName="mb-2"
+                        placeholderProps={{ height: '3em' }}
                         emptyLabel={
                             <FormattedMessage
                                 defaultMessage="Your message"

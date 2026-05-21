@@ -1,28 +1,22 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import isNumber from 'lodash/isNumber';
-import React from 'react';
 
-import styles from '../../styles/partials/placeholder-text.module.css';
-
-interface PlaceholderTextProps {
+export interface PlaceholderTextProps {
     lines?: number;
     lineMargin?: number | string;
     width?: number | string;
     height?: number | string | null;
     fontSize?: number;
     className?: string | null;
-    withInvertedColors?: boolean;
 }
 
 function PlaceholderText({
     lines = 1,
-    lineMargin = 1,
+    lineMargin = '0.4em',
     width = '100%',
     height = null,
     fontSize = 16,
     className = null,
-    withInvertedColors = true,
 }: PlaceholderTextProps) {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
@@ -31,23 +25,20 @@ function PlaceholderText({
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                className,
-                {
-                    [styles.withInvertedColors]: withInvertedColors,
-                },
-            ])}
+            className={classNames(['w-100', 'opacity-75', className])}
+            style={{
+                // mixBlendMode: 'difference',
+            }}
         >
             {[...Array(lines)].map((e, index) => (
                 <div
                     key={`line-${index}`}
-                    className={styles.line}
                     style={{
                         width: index % 2 === 0 ? width : oddWidth,
                         height: lineHeight,
-                        marginTop: lineMargin,
-                        marginBottom: lineMargin,
+                        marginTop: index > 0 ? lineMargin : null,
+                        marginBottom: index < lines - 1 ? lineMargin : null,
+                        backgroundColor: 'currentcolor',
                     }}
                 />
             ))}

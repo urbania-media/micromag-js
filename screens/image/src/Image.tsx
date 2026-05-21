@@ -156,11 +156,16 @@ function ImageScreen({
         >
             <ScreenElement
                 placeholder="image"
-                placeholderProps={{ className: styles.placeholderImage, height: '100%' }}
+                placeholderProps={{
+                    // className: styles.placeholderImage,
+                    width: '50%',
+                    height: '50%',
+                }}
                 emptyLabel={
                     <FormattedMessage defaultMessage="Image" description="Image placeholder" />
                 }
                 emptyClassName={styles.emptyImage}
+                placeholderClassName="position-absolute top-50 start-50 translate-middle w-100"
                 isEmpty={!hasImage}
             >
                 {hasImage ? (
@@ -190,6 +195,7 @@ function ImageScreen({
                     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                 }
                 emptyClassName={styles.emptyTitle}
+                placeholderClassName="mt-2"
                 isEmpty={!hasTitle}
             >
                 {hasTitle ? (
@@ -208,6 +214,7 @@ function ImageScreen({
                     <FormattedMessage defaultMessage="Text" description="Text placeholder" />
                 }
                 emptyClassName={styles.emptyText}
+                placeholderClassName="mt-2"
                 isEmpty={!hasText}
             >
                 {hasText ? (
@@ -226,6 +233,7 @@ function ImageScreen({
                     <FormattedMessage defaultMessage="Legend" description="Legend placeholder" />
                 }
                 emptyClassName={styles.emptyLegend}
+                placeholderClassName="mt-2"
                 isEmpty={!hasLegend}
             >
                 {hasLegend ? (

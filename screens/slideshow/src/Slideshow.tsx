@@ -222,7 +222,8 @@ function SlideshowScreen({
                     {isPlaceholder ? (
                         <ScreenElement
                             placeholder="image"
-                            placeholderProps={{ className: styles.placeholder, height: '100%' }}
+                            placeholderProps={{ width: '50%', height: '50%' }}
+                            placeholderClassName="position-absolute top-50 start-50 translate-middle w-100"
                             emptyLabel={
                                 <FormattedMessage
                                     defaultMessage="Image"

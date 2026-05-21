@@ -1,10 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import isString from 'lodash/isString';
 import React from 'react';
 
 import { getComponentFromName } from '../../utils';
 
 import { useScreenRenderContext } from '../../contexts';
+import { Label } from '../../types';
 import Empty from '../partials/Empty';
 import * as Placeholders from '../placeholders/index';
 
@@ -17,6 +17,7 @@ interface ScreenElementProps {
     isEmpty?: boolean;
     placeholderProps?: Record<string, unknown> | null;
     emptyClassName?: string | null;
+    placeholderClassName?: string | null;
 }
 
 function ScreenElement({
@@ -28,6 +29,7 @@ function ScreenElement({
     isEmpty = false,
     placeholderProps = null,
     emptyClassName = null,
+    placeholderClassName = null,
 }: ScreenElementProps) {
     const { isPlaceholder, isEdit, isPreview } = useScreenRenderContext();
     if (isPlaceholder) {
@@ -35,7 +37,7 @@ function ScreenElement({
             ? getComponentFromName(placeholder, Placeholders)
             : null;
         return PlaceholderComponent !== null ? (
-            <PlaceholderComponent {...placeholderProps} />
+            <PlaceholderComponent className={placeholderClassName} {...placeholderProps} />
         ) : (
             placeholder
         );

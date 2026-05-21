@@ -1,9 +1,6 @@
 import classNames from 'classnames';
-import React from 'react';
 
 import Radios from './Radios';
-
-import styles from '../styles/border-style.module.css';
 
 interface BorderStyleProps {
     types?: string[];
@@ -26,37 +23,23 @@ function BorderStyle({
     };
 
     return (
-        <div
-            className={classNames([
-                'd-flex',
-                className,
-            ])}
-        >
-            <div className={classNames(['d-inline-flex', 'ms-auto', 'me-auto'])}>
-                <Radios
-                    options={types.map((type) => ({
-                        value: type,
-                        label: (
-                            <div className={styles.type}>
-                                <div
-                                    className={styles.borders}
-                                    style={{
-                                        border: `2px ${type} currentColor`,
-                                    }}
-                                />
-                            </div>
-                        ),
-                    }))}
-                    value={value || null}
-                    className={classNames([
-                        styles.container,
-                        className,
-                    ])}
-                    buttonClassName={styles.button}
-                    onChange={onBorderStyleChange}
-                />
-            </div>
-        </div>
+        <Radios
+            options={types.map((type) => ({
+                value: type,
+                label: (
+                    <div
+                        style={{
+                            width: '1.5em',
+                            height: '1.5em',
+                            border: `2px ${type} currentColor`,
+                        }}
+                    />
+                ),
+            }))}
+            value={value || null}
+            className={classNames(['d-inline-flex', className])}
+            onChange={onBorderStyleChange}
+        />
     );
 }
 

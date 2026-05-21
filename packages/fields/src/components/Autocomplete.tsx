@@ -1,10 +1,8 @@
 import classNames from 'classnames';
 import Fuse from 'fuse.js';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 import TextField from './Text';
-
-import styles from '../styles/autocomplete.module.css';
 
 const emptyArray: never[] = [];
 
@@ -29,7 +27,7 @@ interface AutocompleteFieldProps {
     placeholder?: string | null;
     className?: string | null;
     onChange?: ((...args: unknown[]) => void) | null;
-    children?: React.ReactNode | null;
+    children?: ReactNode | null;
 }
 
 function AutocompleteField({
@@ -89,20 +87,23 @@ function AutocompleteField({
         [onChange, showEmpty],
     );
 
-    const listItems =
-        children !== null ? (
-            <div className={styles.list}>{children}</div>
-        ) : (
-            <div className={styles.list}>
-                <ul className="list-group bg-light">
+    return (
+        <div className={classNames(['dropdown', className])}>
+            <TextField value={value} placeholder={placeholder} onChange={onInputChange} />
+            {children !== null ? (
+                <div className="position-absolute mt-2">{children}</div>
+            ) : (
+                <ul
+                    className={classNames([
+                        'dropdown-menu mt-2',
+                        { show: open && maxedList.length > 0 },
+                    ])}
+                >
                     {maxedList.map(({ item }) => (
-                        <li
-                            className={classNames(['list-group-item', styles.item])}
-                            key={`auto-${item.label}`}
-                        >
+                        <li key={`auto-${item.label}`}>
                             <button
                                 type="button"
-                                className="btn btn-link"
+                                className="dropdown-item"
                                 data-value={item.label}
                                 onClick={onClick}
                             >
@@ -111,23 +112,7 @@ function AutocompleteField({
                         </li>
                     ))}
                 </ul>
-            </div>
-        );
-
-    return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
-            <TextField
-                value={value}
-                buttonClassName={styles.button}
-                placeholder={placeholder}
-                onChange={onInputChange}
-            />
-            {open ? listItems : null}
+            )}
         </div>
     );
 }

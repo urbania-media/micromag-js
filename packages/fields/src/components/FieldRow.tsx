@@ -118,7 +118,7 @@ function FieldRow({
                         col: !isHorizontal && withSettings,
                         'py-0': isHorizontal,
                         'pt-2': isHorizontal && hasIndicationsUnder,
-                        'me-1': isHorizontal,
+                        // 'me-1': isHorizontal,
                         'align-self-center': isHorizontal && !hasIndicationsUnder,
                         'fw-normal': !isSection,
                         'fw-bold': isSection,
@@ -154,7 +154,7 @@ function FieldRow({
                         'align-self-center',
                         {
                             [styles.collapsed]: isCollapsible && isCollapsed,
-                            [styles.colMinWidth]: isListItem,
+                            // [styles.colMinWidth]: isListItem,
                             [styles.colButtonWidth]: isClickable && buttonTheme !== null,
                         },
                     ])}

@@ -151,6 +151,7 @@ function ArticleScreen({
             placeholder="image"
             emptyLabel={<FormattedMessage defaultMessage="Image" description="Image placeholder" />}
             emptyClassName={styles.emptyText}
+            placeholderClassName="fs-1 mb-3"
             isEmpty={!hasImage}
         >
             <div ref={imageCntRef} className={styles.visualContainer}>
@@ -175,6 +176,7 @@ function ArticleScreen({
             placeholder="title"
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.emptyTitle}
+            placeholderClassName="mb-3"
             isEmpty={!hasTitle}
         >
             {hasTitle ? <Heading className={styles.title} {...title} /> : null}
@@ -189,6 +191,7 @@ function ArticleScreen({
                 <FormattedMessage defaultMessage="Surtitle" description="Surtitle placeholder" />
             }
             emptyClassName={styles.emptySurtitle}
+            placeholderClassName="mb-2"
             isEmpty={!hasSurtitle}
         >
             {hasSurtitle ? <Text className={styles.surtitle} {...surtitle} /> : null}
@@ -203,6 +206,7 @@ function ArticleScreen({
                 <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
             }
             emptyClassName={styles.emptySubtitle}
+            placeholderClassName="mb-2"
             isEmpty={!hasSubtitle}
         >
             {hasSubtitle ? <Text className={styles.subtitle} {...subtitle} /> : null}
@@ -215,6 +219,7 @@ function ArticleScreen({
             placeholder="line"
             emptyLabel={<FormattedMessage defaultMessage="Date" description="Date placeholder" />}
             emptyClassName={styles.emptyDate}
+            placeholderClassName="mb-2"
             isEmpty={!hasDate}
         >
             {hasDate ? <Text className={styles.date} {...date} body={finalDate} /> : null}
@@ -229,6 +234,7 @@ function ArticleScreen({
                 <FormattedMessage defaultMessage="Author" description="Author placeholder" />
             }
             emptyClassName={styles.emptyAuthor}
+            placeholderClassName="mb-2"
             isEmpty={!hasAuthor && !hasSimpleAuthor}
         >
             {hasSimpleAuthor ? <Text className={styles.author} {...author} /> : null}

@@ -343,6 +343,7 @@ function SurveyScreen({
                 <FormattedMessage defaultMessage="Question" description="Question placeholder" />
             }
             emptyClassName={styles.emptyQuestion}
+            placeholderClassName="mb-4"
             isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
@@ -436,7 +437,6 @@ function SurveyScreen({
                             >
                                 <ScreenElement
                                     placeholder="surveyAnswer"
-                                    placeholderProps={{ className: styles.placeholderAnswer }}
                                     emptyLabel={
                                         <FormattedMessage
                                             defaultMessage="Answer"
@@ -444,6 +444,7 @@ function SurveyScreen({
                                         />
                                     }
                                     emptyClassName={styles.emptyAnswer}
+                                    placeholderClassName="mb-2"
                                     isEmpty={!hasAnswerLabel}
                                 >
                                     {hasAnswer ? (

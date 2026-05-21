@@ -8,13 +8,19 @@ const meta = preview.meta({
     title: 'Fields/Toggle',
 });
 
-const FieldContainer = () => {
+const FieldContainer = (props) => {
     const [value, setValue] = useState(null);
-    return <Toggle value={value} onChange={setValue} />;
+    return <Toggle value={value} onChange={setValue} {...props} />;
 };
 
 export const normal = meta.story(() => (
     <div className="container mt-4">
         <FieldContainer />
+    </div>
+));
+
+export const disabled = meta.story(() => (
+    <div className="container mt-4">
+        <FieldContainer disabled />
     </div>
 ));

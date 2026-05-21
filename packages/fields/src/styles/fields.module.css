@@ -7,45 +7,4 @@
             }
         }
     }
-    /* stylelint-enable selector-class-pattern */
-
-    .field {
-        margin-bottom: var(--mm-spacer, 5px);
-
-        &.isSection {
-            margin-bottom: calc(var(--mm-spacer, 5px) * 2);
-        }
-
-        &.isList {
-            margin-bottom: 0;
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    .advanced {
-        margin-top: calc(var(--mm-spacer, 5px) * 2);
-    }
-
-    &.withBorders {
-        .fields {
-            border-bottom: solid 1px var(--mm-border-color, #dee2e6);
-        }
-
-        .field {
-            border-top: solid 1px var(--mm-border-color, #dee2e6);
-            margin-bottom: 0;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        .fieldRow {
-            padding-top: calc(var(--mm-spacer, 5px) / 2);
-            padding-bottom: calc(var(--mm-spacer, 5px) / 2);
-        }
-    }
 }

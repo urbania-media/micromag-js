@@ -145,6 +145,7 @@ function TitleScreen({
                 <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
             }
             emptyClassName={styles.emptySubtitle}
+            placeholderClassName="mt-3"
             isEmpty={!hasSubtitle}
         >
             {hasSubtitle ? (
@@ -167,6 +168,7 @@ function TitleScreen({
             emptyLabel={descriptionEmptyLabel}
             emptyClassName={styles.emptyDescription}
             isEmpty={!hasDescription}
+            placeholderClassName="mt-4"
         >
             {hasDescription ? <Text {...description} /> : null}
         </ScreenElement>

@@ -106,6 +106,7 @@ function Fields({
             className: customClassName = null,
             fieldsProps: customFieldsProps = null,
         } = field;
+        const isLast = i === visibleFields.length - 1;
 
         const fieldExcludedFields =
             excludedFields !== null
@@ -134,10 +135,10 @@ function Fields({
         return (
             <Field
                 excludedFields={fieldExcludedFields}
+                key={`field-${name}-${i + 1}`}
                 {...field}
                 {...fieldProps}
                 {...customFieldProps}
-                key={`field-${name}-${i + 1}`}
                 name={namespace !== null ? `${namespace}${name !== null ? `.${name}` : ''}` : name}
                 value={typeof customValue !== 'undefined' ? customValue : fieldValue}
                 errors={typeof customErrors !== 'undefined' ? customErrors : fieldErrors}
@@ -149,15 +150,18 @@ function Fields({
                 isSection={isSection}
                 isListItem={isList || isFlushList}
                 className={classNames([
-                    styles.field,
                     fieldClassName,
                     {
-                        [styles.isSection]: isSection,
+                        'border-top': withBorders,
+                        'mb-3': !withBorders && !isSection && !isLast && !isList,
+                        'mb-4': isSection,
                     },
                 ])}
                 fieldClassName={customClassName}
                 labelClassName={labelClassName}
-                fieldRowClassName={styles.fieldRow}
+                fieldRowClassName={classNames({
+                    'py-2': withBorders,
+                })}
             />
         );
     });
@@ -167,20 +171,12 @@ function Fields({
     }
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-                {
-                    [styles.withBorders]: withBorders,
-                },
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <FieldsValueContextProvider value={value}>
                 <div
                     className={classNames([
-                        styles.fields,
                         {
+                            'border-bottom': withBorders,
                             'list-group': isList,
                             'list-group-flush': isFlushList,
                         },
@@ -197,12 +193,12 @@ function Fields({
                             />
                         }
                         isSection
-                        className={styles.advanced}
                     >
                         <div
                             className={classNames([
-                                styles.fields,
+                                'mt-2',
                                 {
+                                    'border-bottom': withBorders,
                                     'list-group': isList,
                                     'list-group-flush': isFlushList,
                                 },

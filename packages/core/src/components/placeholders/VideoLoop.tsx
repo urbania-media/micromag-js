@@ -1,18 +1,26 @@
-/* eslint-disable react/prop-types */
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 
-import PlaceholderBlock from '../partials/PlaceholderBlock';
+import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.css';
-
-export function VideoLoop({ width, height, className }) {
+export function VideoLoop({ width, height, ...props }: PlaceholderBlockProps) {
     return (
-        <PlaceholderBlock width={width} height={height} className={className}>
-            <FontAwesomeIcon icon={faPlay} className={styles.icon} />
-            <FontAwesomeIcon icon={faRedo} className={styles.icon} />
+        <PlaceholderBlock {...props}>
+            <FontAwesomeIcon
+                icon={faPlay}
+                style={{
+                    width,
+                    height,
+                }}
+            />
+            <FontAwesomeIcon
+                icon={faRedo}
+                style={{
+                    width,
+                    height,
+                }}
+            />
         </PlaceholderBlock>
     );
 }

@@ -1,43 +1,29 @@
-/* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
 import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkerAlt';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React from 'react';
 
-import PlaceholderBlock from '../partials/PlaceholderBlock';
+import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/map.module.css';
 
-export function Map(props) {
+interface MapPlaceholderProps extends PlaceholderBlockProps {
+    withImages?: boolean;
+}
+
+export function Map({ withImages = false, className, ...props }: MapPlaceholderProps) {
+    const icon = withImages ? faImage : faMapMarkerAlt;
     return (
         <PlaceholderBlock
+            width={null}
+            height={null}
             {...props}
-            width="100%"
-            height="100%"
-            className={classNames([
-                styles.container,
-                {
-                    [props.className]: props.className !== null,
-                },
-            ])}
+            className={classNames([styles.container, className])}
         >
-            <FontAwesomeIcon
-                icon={props.withImages ? faImage : faMapMarkerAlt}
-                className={styles.icon}
-            />
-            <FontAwesomeIcon
-                icon={props.withImages ? faImage : faMapMarkerAlt}
-                className={styles.icon}
-            />
-            <FontAwesomeIcon
-                icon={props.withImages ? faImage : faMapMarkerAlt}
-                className={styles.icon}
-            />
-            <FontAwesomeIcon
-                icon={props.withImages ? faImage : faMapMarkerAlt}
-                className={styles.icon}
-            />
+            <FontAwesomeIcon icon={icon} className={styles.icon} />
+            <FontAwesomeIcon icon={icon} className={styles.icon} />
+            <FontAwesomeIcon icon={icon} className={styles.icon} />
+            <FontAwesomeIcon icon={icon} className={styles.icon} />
         </PlaceholderBlock>
     );
 }

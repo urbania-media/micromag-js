@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import React, { useCallback, useMemo } from 'react';
@@ -7,6 +6,8 @@ import tinycolor from 'tinycolor2';
 import { v4 as uuid } from 'uuid';
 
 import { useGetColors } from '@micromag/core/contexts';
+
+import styles from '../styles/colorpickler.module.css';
 
 interface ColorPickerFieldProps {
     value?: { color?: string; alpha?: number } | null;
@@ -57,7 +58,12 @@ function ColorPickerField({
     );
 
     return (
-        <div className={classNames(['text-light', className])}>
+        <div
+            className={classNames([styles.container, 'text-light', 'bg-dark', className])}
+            style={{
+                padding: 10,
+            }}
+        >
             <SketchPicker
                 color={finalColor}
                 presetColors={colors}
@@ -66,7 +72,7 @@ function ColorPickerField({
                         boxShadow: 'none',
                     },
                     label: {
-                        color: '#FFF',
+                        color: 'inherit',
                     },
                 }}
                 onChange={onPickerChange}

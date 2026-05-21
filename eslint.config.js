@@ -55,6 +55,7 @@ const config = defineConfig([
     {
         rules: {
             'formatjs/no-literal-string-in-jsx': 'off',
+            '@eslint-react/static-components': 'off',
 
             // Computed namespace access (allScreens[name]) can't be statically validated
             'import/namespace': 'off',

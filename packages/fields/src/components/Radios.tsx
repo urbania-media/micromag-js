@@ -6,11 +6,9 @@ import { Label } from '@micromag/core/components';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
-import styles from '../styles/radios.module.css';
-
 const emptyArray: never[] = [];
 
-interface RadiosProps {
+export interface RadiosProps {
     name?: string | null;
     value?: string | null;
     options?: SelectOption[];
@@ -40,7 +38,10 @@ function Radios({
             className={classNames([
                 'btn-group',
                 'btn-group-toggle',
-                styles.container,
+                'd-flex',
+                'flex-nowrap',
+                'overflow-auto',
+                'no-scrollbar',
                 className,
             ])}
             data-toggle="buttons"
@@ -50,7 +51,6 @@ function Radios({
                     key={`radio-${optionValue}-${index + 1}`}
                     className={classNames([
                         'btn',
-                        styles.item,
                         withBackground ? 'btn-secondary' : 'btn-outline-secondary',
                         buttonClassName,
                         optionValue === value ? activeClassName : null,

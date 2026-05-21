@@ -1,7 +1,5 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import Switch from 'rc-switch';
-import React from 'react';
 
 import styles from '../styles/toggle.module.css';
 
@@ -9,6 +7,7 @@ interface ToggleFieldProps {
     value?: boolean | null;
     defaultValue?: boolean | null;
     className?: string | null;
+    disabled?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
@@ -17,17 +16,17 @@ function ToggleField({
     defaultValue = null,
     className = null,
     onChange = null,
+    ...props
 }: ToggleFieldProps) {
     const finalValue =
         value === null && (defaultValue === true || defaultValue === 'true') ? true : value;
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
-            <Switch checked={finalValue !== null ? finalValue : false} onChange={onChange} />
+        <div className={classNames([styles.container, className])}>
+            <Switch
+                {...props}
+                checked={finalValue !== null ? finalValue : false}
+                onChange={onChange}
+            />
         </div>
     );
 }

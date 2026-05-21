@@ -182,7 +182,11 @@ function GalleryScreen({
                 >
                     <ScreenElement
                         placeholder="image"
-                        placeholderProps={{ className: styles.placeholder, height: '100%' }}
+                        placeholderProps={{
+                            // className: styles.placeholder,
+                            width: '70%',
+                            height: '70%',
+                        }}
                         emptyLabel={
                             <FormattedMessage
                                 defaultMessage="Image"
@@ -190,6 +194,7 @@ function GalleryScreen({
                             />
                         }
                         emptyClassName={styles.emptyImage}
+                        placeholderClassName="position-absolute top-50 start-50 translate-middle w-100"
                         isEmpty={!hasImage}
                     >
                         {active || current ? (
@@ -211,7 +216,10 @@ function GalleryScreen({
                 </div>
                 {withCaptions ? (
                     <ScreenElement
-                        placeholder="line"
+                        placeholder="text"
+                        placeholderProps={{
+                            lines: 1,
+                        }}
                         emptyLabel={
                             <FormattedMessage
                                 defaultMessage="Caption"

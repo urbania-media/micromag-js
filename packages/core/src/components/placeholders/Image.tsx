@@ -1,18 +1,27 @@
-/* eslint-disable react/prop-types, react/jsx-props-no-spreading */
 import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 
-import PlaceholderBlock from '../partials/PlaceholderBlock';
+import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.css';
+interface PlaceholderImageProps extends PlaceholderBlockProps {
+    width?: number | string;
+    height?: number | string;
+    className?: string | null;
+}
 
-export function Image({ width, height, className, ...props }) {
+export function PlaceholderImage({ width, height, className, ...props }: PlaceholderImageProps) {
     return (
-        <PlaceholderBlock {...props} width={width} height={height} className={className}>
-            <FontAwesomeIcon icon={faImage} className={styles.icon} />
+        <PlaceholderBlock {...props} className={className}>
+            <FontAwesomeIcon
+                icon={faImage}
+                className="d-block m-auto"
+                style={{
+                    width,
+                    height,
+                }}
+            />
         </PlaceholderBlock>
     );
 }
 
-export default Image;
+export default PlaceholderImage;

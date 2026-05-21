@@ -180,6 +180,7 @@ function QuoteScreen({
                             />
                         }
                         emptyClassName={styles.emptyAuthor}
+                        placeholderClassName="mt-4"
                         isEmpty={!hasAuthor}
                     >
                         {hasAuthor ? <Text className={styles.author} {...author} /> : null}

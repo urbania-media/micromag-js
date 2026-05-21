@@ -412,6 +412,7 @@ function Timeline({
                                                 description="Image placeholder"
                                             />
                                         }
+                                        placeholderClassName="mt-2 fs-1"
                                         emptyClassName={styles.empty}
                                         isEmpty={!hasImage}
                                     >
@@ -446,6 +447,7 @@ function Timeline({
                                                 description="Description placeholder"
                                             />
                                         }
+                                        placeholderClassName="mt-2"
                                         emptyClassName={styles.empty}
                                         isEmpty={!hasDescription}
                                     >
@@ -638,6 +640,7 @@ function Timeline({
                                 />
                             }
                             emptyClassName={classNames([styles.empty, styles.emptyTitle])}
+                            placeholderClassName="mb-3"
                             isEmpty={!hasTitle}
                         >
                             {hasTitle ? (

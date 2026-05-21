@@ -1,20 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
-import classNames from 'classnames';
-import React from 'react';
+import PlaceholderText, { PlaceholderTextProps } from '../partials/PlaceholderText';
 
-import PlaceholderText from '../partials/PlaceholderText';
-
-import styles from '../../styles/placeholders/placeholders.module.css';
-
-export function Quote(props) {
-    return (
-        <PlaceholderText
-            {...props}
-            className={classNames([props.className, styles.subtitle])}
-            height={0.5}
-            lines={6}
-        />
-    );
+export function Quote({ height = 1.5, lines = 6, ...props }: PlaceholderTextProps) {
+    return <PlaceholderText height={height} lines={lines} {...props} />;
 }
 
 export default Quote;

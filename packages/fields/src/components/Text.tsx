@@ -1,13 +1,10 @@
-
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import React from 'react';
+import { ForwardedRef } from 'react';
 
 import type { Errors } from '@micromag/core';
 
-interface TextFieldProps {
-    inputRef?: ((...args: unknown[]) => void | { current?: Record<string, unknown> }) | null;
+export interface TextFieldProps {
     type?: 'text' | 'email' | 'number' | 'password';
     value?: string | number | null;
     errors?: Errors | null;
@@ -19,10 +16,11 @@ interface TextFieldProps {
     onFocus?: ((...args: unknown[]) => void) | null;
     onChange?: ((...args: unknown[]) => void) | null;
     className?: string | null;
+    ref?: ForwardedRef<HTMLInputElement>;
 }
 
 function TextField({
-    inputRef = null,
+    ref: inputRef = null,
     type = 'text',
     value = null,
     errors = null,
@@ -69,4 +67,4 @@ function TextField({
     );
 }
 
-export default React.forwardRef((props, ref) => <TextField {...props} inputRef={ref} />);
+export default TextField;

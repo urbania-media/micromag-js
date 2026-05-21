@@ -1,28 +1,29 @@
-/* eslint-disable react/destructuring-assignment, react/prop-types */
 import { faPercent } from '@fortawesome/free-solid-svg-icons/faPercent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React from 'react';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 import PlaceholderText from '../partials/PlaceholderText';
 
-import styles from '../../styles/placeholders/survey-answer.module.css';
+interface SurveyAnswerProps {
+    className?: string | null;
+}
 
-export function Answer({ width = '75%', height = '0.3em', className }) {
+export function Answer({ className }: SurveyAnswerProps) {
     return (
         <div
             className={classNames([
-                styles.container,
+                'd-flex',
+                'align-items-center',
+                'mw-75',
+                'opacity-75',
                 className,
             ])}
         >
-            <PlaceholderBlock outline width={width} height={height} className={styles.block}>
-                <PlaceholderText line={1} height="0.2em" />
+            <PlaceholderBlock outline className="w-100 me-2 opacity-100">
+                <PlaceholderText lines={1} height="1em" />
             </PlaceholderBlock>
-            <div className={styles.percent}>
-                <FontAwesomeIcon className={styles.percentIcon} icon={faPercent} />
-            </div>
+            <FontAwesomeIcon icon={faPercent} className="fs-2" />
         </div>
     );
 }

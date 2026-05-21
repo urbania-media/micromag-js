@@ -9,7 +9,7 @@
         height: calc(30px / 3 - 2px);
         margin-right: 2px;
         margin-bottom: 2px;
-        background-color: var(--mm-white, #fff);
+        background-color: var(--bs-light);
         mix-blend-mode: difference;
     }
 
