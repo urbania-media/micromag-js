@@ -13,10 +13,11 @@ import FieldWithForm from './FieldWithForm';
 
 import styles from '../styles/media-modal.module.css';
 
-interface MediaModalProps {
+export interface MediaModalProps {
     title?: string | null;
     value?: Media | null;
     type?: string | null;
+    disabled?: boolean;
     noValueLabel?: Label;
     isHorizontal?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;
@@ -32,6 +33,7 @@ function MediaModal({
     title = null,
     value = null,
     type = null,
+    disabled = false,
     noValueLabel = null,
     isHorizontal = false,
     isForm = false,
@@ -157,56 +159,67 @@ function MediaModal({
                 thumbnailPath="thumbnail_url"
                 isForm
                 isHorizontal={isHorizontal}
+                disabled={disabled}
                 {...props}
             >
-                <div className="d-flex w-100 align-items-center justify-content-between mw-100 overflow-hidden">
+                <div className="d-flex w-100 align-items-center mw-100 flex-nowrap">
                     <button
                         type="button"
                         className={classNames([
-                            styles.previewButton,
+                            'btn',
+                            'btn-sm',
+                            'd-flex',
+                            'flex-no-wrap',
+                            'align-items-center',
+                            'flex-grow-1',
                             {
-                                [styles.shaded]: !isHorizontal,
-                                [styles.small]: isHorizontal,
-                                'p-2': !isHorizontal,
-                                'mx-auto': !isHorizontal,
-                                'bg-dark': !isHorizontal,
-                                'flex-grow-1': true,
+                                'btn-dark': !isHorizontal,
+                                // [styles.shaded]: !isHorizontal,
+                                // [styles.small]: isHorizontal,
+                                // 'p-2': !isHorizontal,
+                                // 'mx-auto': !isHorizontal,
+                                // 'bg-dark': !isHorizontal,
                             },
                         ])}
+                        disabled={disabled}
                         onClick={onOpen}
+                        style={{
+                            width: value !== null ? 'calc(100% - 2em)' : '100%',
+                        }}
                     >
-                        <span className="row">
-                            <span
-                                className={classNames([
-                                    styles.label,
-                                    'col',
-                                    'w-75',
-                                    'text-monospace',
-                                    'text-truncate',
-                                    {
-                                        'fw-bold': value !== null,
-                                        'text-start': !isHorizontal,
-                                        'text-end': isHorizontal,
-                                    },
-                                ])}
-                                style={{ maxWidth: 270 }}
-                            >
-                                {label || (
-                                    <span className="text-body-secondary">
-                                        <FormattedMessage defaultMessage="Select media..." />
-                                    </span>
-                                )}
-                            </span>
-                            {thumbnailElement !== null ? (
-                                <span className="col-auto ps-0">{thumbnailElement}</span>
-                            ) : null}
+                        <span
+                            className={classNames([
+                                'flex-grow-1',
+                                'text-monospace',
+                                'text-truncate',
+                                {
+                                    // 'fw-bold': value !== null,
+                                    'fw-normal': value === null,
+                                    'text-muted': value === null,
+                                    'text-center': !isHorizontal,
+                                    'text-end': isHorizontal,
+                                },
+                            ])}
+                        >
+                            {label || (
+                                <FormattedMessage
+                                    defaultMessage="Select media..."
+                                    description="no value"
+                                />
+                            )}
                         </span>
+                        {thumbnailElement !== null ? (
+                            <span className="ms-1">{thumbnailElement}</span>
+                        ) : null}
                     </button>
                     {value !== null ? (
-                        <ClearButton
-                            className={classNames([styles.clearButton])}
-                            onClick={onClearMedia}
-                        />
+                        <span>
+                            <ClearButton
+                                onClick={onClearMedia}
+                                disabled={disabled}
+                                className="ms-1"
+                            />
+                        </span>
                     ) : null}
                 </div>
             </FieldWithForm>

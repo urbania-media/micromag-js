@@ -1,3 +1,37 @@
-.label {
-    margin-right: auto;
+.icon {
+    display: flex;
+    width: 2em;
+    flex-wrap: wrap;
+    align-items: center;
+
+    > div {
+        width: calc(2em / 3 - 2px);
+        margin-right: 2px;
+        margin-bottom: 2px;
+        background-color: currentcolor;
+
+        &:nth-child(1n) {
+            height: 0.5em;
+        }
+
+        &:nth-child(2n) {
+            height: 1.2em;
+        }
+
+        &:nth-child(3n) {
+            height: 0.75em;
+        }
+    }
+
+    &.top {
+        align-items: flex-start;
+    }
+
+    &.middle {
+        align-items: center;
+    }
+
+    &.bottom {
+        align-items: flex-end;
+    }
 }

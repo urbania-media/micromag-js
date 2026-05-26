@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
@@ -6,110 +5,76 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons/faDotCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Radios from './Radios';
 
-import styles from '../styles/alignment.module.css';
-
 const icons = {
     horizontal: {
-        left: (props) => (
-            <div {...props}>
-                <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} />
-            </div>
-        ),
-        middle: (props) => (
-            <div {...props}>
-                <FontAwesomeIcon icon={faDotCircle} className={styles.icon} />
-            </div>
-        ),
-        right: (props) => (
-            <div {...props}>
-                <FontAwesomeIcon icon={faArrowRight} className={styles.icon} />
-            </div>
-        ),
+        left: faArrowLeft,
+        middle: faDotCircle,
+        right: faArrowRight,
     },
     vertical: {
-        top: (props) => (
-            <div {...props}>
-                <FontAwesomeIcon icon={faArrowUp} className={styles.icon} />
-            </div>
-        ),
-        middle: (props) => (
-            <div {...props}>
-                <FontAwesomeIcon icon={faDotCircle} className={styles.icon} />
-            </div>
-        ),
-        bottom: (props) => (
-            <div {...props}>
-                <FontAwesomeIcon icon={faArrowDown} className={styles.icon} />
-            </div>
-        ),
+        top: faArrowUp,
+        middle: faDotCircle,
+        bottom: faArrowDown,
     },
 };
 
 interface AlignmentProps {
-    alignment?: {
-        horizontal?: 'left' | 'right' | 'middle';
-        vertical?: 'top' | 'bottom' | 'middle';
-    };
     value?: {
         horizontal?: 'left' | 'right' | 'middle';
         vertical?: 'top' | 'bottom' | 'middle';
     } | null;
     className?: string | null;
+    disabled?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Alignment({
-    alignment = {
-        horizontal: 'middle',
-        vertical: 'middle',
-    },
-
     value = null,
+    disabled = false,
     className = null,
     onChange = null,
 }: AlignmentProps) {
-    const onVerticalAlignChange = useCallback(
-        (newVal) => {
-            const { vertical = null, horizontal = null } = value || {};
-            const v = newVal === vertical ? null : newVal;
-            const nextValue =
-                v === null && horizontal === null ? null : { ...(value || null), vertical: v };
-            onChange(nextValue);
-        },
-        [value, onChange],
-    );
-
-    const onHorizontalAlignChange = useCallback(
-        (newVal) => {
-            const { horizontal = null, vertical = null } = value || {};
-            const h = newVal === horizontal ? null : newVal;
-            const nextValue =
-                h === null && vertical === null
-                    ? null
-                    : {
-                          ...(value || null),
-                          horizontal: h,
-                      };
-            onChange(nextValue);
-        },
-        [value, onChange],
-    );
+    const onAlignmentChange = (key, newValue) => {
+        const currentValue = value?.[key] || null;
+        if (onChange !== null) {
+            const newKeyValue = currentValue !== newValue ? newValue : null;
+            onChange(
+                newKeyValue !== null || value !== null
+                    ? {
+                          ...value,
+                          [key]: newKeyValue,
+                      }
+                    : null,
+            );
+        }
+    };
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
-            {Object.keys(alignment).map((axis) => (
-                <div key={axis} className={classNames(['d-flex', 'align-items-center', 'mb-2'])}>
-                    <small className={styles.label}>
+        <div className={className}>
+            {['horizontal', 'vertical'].map((axis, index) => (
+                <div
+                    key={axis}
+                    className={classNames([
+                        'row',
+                        'align-items-center',
+                        'g-1',
+                        {
+                            'mb-2': index === 0,
+                        },
+                    ])}
+                >
+                    <label
+                        className={classNames([
+                            'col ms-auto',
+                            {
+                                'text-muted': disabled,
+                            },
+                        ])}
+                    >
                         {axis === 'horizontal' ? (
                             <FormattedMessage
                                 defaultMessage="Horizontal"
@@ -118,31 +83,22 @@ function Alignment({
                         ) : (
                             <FormattedMessage defaultMessage="Vertical" description="Field label" />
                         )}
-                    </small>
+                    </label>
                     <Radios
                         options={(axis === 'horizontal'
                             ? ['left', 'middle', 'right']
                             : ['top', 'middle', 'bottom']
                         ).map((type) => {
-                            const Icon = icons[axis][type];
+                            const icon = icons[axis][type];
                             return {
                                 value: type,
-                                label: (
-                                    <div className={styles.type}>
-                                        <Icon className={styles.icon} />
-                                    </div>
-                                ),
+                                label: <FontAwesomeIcon icon={icon} />,
                             };
                         })}
-                        value={value !== null ? value[axis] : null}
-                        className={classNames([
-                            styles.container,
-                            className,
-                        ])}
-                        buttonClassName={styles.button}
-                        onChange={
-                            axis === 'horizontal' ? onHorizontalAlignChange : onVerticalAlignChange
-                        }
+                        className="col-auto me-auto"
+                        value={value?.[axis] || null}
+                        onChange={(newValue) => onAlignmentChange(axis, newValue)}
+                        disabled={disabled}
                     />
                 </div>
             ))}

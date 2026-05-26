@@ -1,14 +1,19 @@
-/* For Chrome, Safari, and newer Edge */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-/* For Firefox */
-.no-scrollbar {
-    scrollbar-width: none;
-}
-
-/* For IE and old Edge */
+/* stylelint-disable selector-class-pattern */
 .no-scrollbar {
     -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.no-selection {
+    user-select: none;
+}
+
+.btn-xs {
+    --bs-btn-padding-y: 0.1rem;
+    --bs-btn-padding-x: 0.15rem;
+    --bs-btn-font-size: 0.6rem;
 }

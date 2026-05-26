@@ -1,12 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { ClosedCaptionsMedia } from '@micromag/core';
 
-import MediaField from './Media';
+import MediaField, { MediaFieldProps } from './Media';
 
-interface ClosedCaptionFieldProps {
+interface ClosedCaptionFieldProps extends MediaFieldProps {
     value?: ClosedCaptionsMedia | null;
 }
 

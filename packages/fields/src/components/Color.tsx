@@ -1,26 +1,19 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useMemo } from 'react';
-// import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import tinycolor from 'tinycolor2';
 
+import type { ColorObject } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { getStyleFromColor } from '@micromag/core/utils';
 
 import ColorPicker from './ColorPicker';
-import FieldWithForm from './FieldWithForm';
+import FieldWithForm, { FieldWithFormProps } from './FieldWithForm';
 
 import styles from '../styles/color.module.css';
 
-interface ColorFieldProps {
-    value?: { color?: string; alpha?: number } | null;
-    isForm?: boolean;
-    isHorizontal?: boolean;
-    canClear?: boolean;
+interface ColorFieldProps extends FieldWithFormProps {
+    value?: ColorObject | null;
     disableAlpha?: boolean;
-    className?: string;
-    onChange?: ((...args: unknown[]) => void) | null;
-    closeForm?: ((...args: unknown[]) => void) | null;
+    onChange?: ((newValue: ColorObject | null) => void) | null;
 }
 
 function ColorField({
@@ -28,15 +21,12 @@ function ColorField({
     onChange = null,
     closeForm = null,
     disableAlpha = false,
-    canClear = true,
+    disabled = false,
     ...props
 }: ColorFieldProps) {
     const { color = null } = value || {};
 
-    const hexColor = useMemo(
-        () => (color !== null ? tinycolor(color).toHexString() : null),
-        [color],
-    );
+    const hexColor = color !== null ? tinycolor(color).toHexString() : null;
 
     const previewElement =
         value !== null && color !== null ? (
@@ -50,14 +40,14 @@ function ColorField({
             </span>
         ) : null;
 
-    const onClickReset = useCallback(() => {
+    const onClickReset = () => {
         if (onChange !== null) {
             onChange(null);
         }
         if (closeForm !== null) {
             closeForm();
         }
-    }, [onChange, closeForm]);
+    };
 
     return (
         <FieldWithForm
@@ -68,27 +58,28 @@ function ColorField({
             noValueLabel={
                 <FormattedMessage defaultMessage="Select..." description="No value label" />
             }
-            canClear={canClear}
+            canClear
+            disabled={disabled}
             {...props}
         >
             <div className="p-2">
                 <ColorPicker
-                    className={styles.picker}
                     value={value}
                     onChange={onChange}
                     disableAlpha={disableAlpha}
+                    disabled={disabled}
                 />
                 <div className="d-flex mt-4">
-                    <Button theme="light" size="md" onClick={closeForm}>
+                    <Button theme="light" onClick={closeForm}>
                         <FormattedMessage defaultMessage="Close" description="Button label" />
                     </Button>
                     {value !== null ? (
                         <Button
                             outline
                             theme="secondary"
-                            size="md"
                             className="ms-auto"
                             onClick={onClickReset}
+                            disabled={disabled}
                         >
                             <FormattedMessage defaultMessage="Clear" description="Button label" />
                         </Button>

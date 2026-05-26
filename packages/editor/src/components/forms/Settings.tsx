@@ -2,14 +2,14 @@
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
 
-import type { Component, FormField } from '@micromag/core';
+import type { Component, Field } from '@micromag/core';
 import { useFieldComponent, useFieldsManager } from '@micromag/core/contexts';
 
 import styles from '../../styles/forms/settings.module.css';
 
 interface SettingsFormProps {
     name?: string;
-    field?: FormField;
+    field?: Field;
     value?: Component;
     className?: string;
     gotoFieldForm: (...args: unknown[]) => void;

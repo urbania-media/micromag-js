@@ -49,32 +49,6 @@
     }
 }
 
-.clearButton {
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    display: flex;
-    width: 18px;
-    height: 18px;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    padding: 0 10px;
-    border: 0;
-    border-radius: 4px;
-    margin-left: 10px;
-    appearance: none;
-    background: transparent;
-    background-color: var(--mm-gray-700, #494949);
-    color: inherit;
-    cursor: pointer;
-    font-family: inherit;
-
-    svg {
-        display: block;
-    }
-}
-
 .preview {
     overflow: hidden;
     height: calc(1.4em + 1rem);

@@ -1,0 +1,21 @@
+import preview from '#.storybook/preview';
+import { useState } from 'react';
+
+import BorderWidth from '../components/BorderWidth';
+
+const meta = preview.meta({
+    component: BorderWidth,
+    title: 'Fields/BorderWidth',
+});
+
+const FieldContainer = (props) => {
+    const [value, setValue] = useState(null);
+    return (
+        <div className="container mt-4">
+            <BorderWidth value={value} onChange={setValue} {...props} />
+        </div>
+    );
+};
+
+export const normal = meta.story(() => <FieldContainer />);
+export const disabled = meta.story(() => <FieldContainer disabled />);

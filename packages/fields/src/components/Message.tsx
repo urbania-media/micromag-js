@@ -1,8 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { FormField, Label, Media, MediaType } from '@micromag/core';
+import type { Field, Label, Media, MediaType } from '@micromag/core';
 import { useFieldContext } from '@micromag/core/contexts';
 import { getFileName } from '@micromag/core/utils';
 
@@ -11,7 +9,7 @@ import FieldWithForm from './FieldWithForm';
 interface MessageFieldProps {
     type?: MediaType | MediaType[] | null;
     value?: Media | null;
-    fields?: FormField[] | null;
+    fields?: Field[] | null;
     noValueLabel?: Label;
     withoutThumbnail?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;

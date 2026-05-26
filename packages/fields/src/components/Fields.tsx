@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import type { FormErrors, FormField } from '@micromag/core';
+import type { Field as FieldType, FormErrors } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { FieldsValueContextProvider } from '@micromag/core/contexts';
 import { createNullableOnChange } from '@micromag/core/utils';
@@ -13,9 +13,9 @@ import styles from '../styles/fields.module.css';
 
 const emptyArray: never[] = [];
 
-interface FieldsProps {
+export interface FieldsProps {
     name?: string | null;
-    fields?: FormField[];
+    fields?: FieldType[];
     excludedFields?: string[] | null;
     value?: Record<string, unknown> | null;
     errors?: FormErrors | null;
@@ -27,6 +27,7 @@ interface FieldsProps {
     isList?: boolean;
     isFlushList?: boolean;
     canClear?: boolean;
+    disabled?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;
     className?: string | null;
     fieldClassName?: string | null;
@@ -50,6 +51,7 @@ function Fields({
     isList = false,
     isFlushList = false,
     canClear = false,
+    disabled = false,
     onChange = null,
     className = null,
     fieldClassName = null,
@@ -106,6 +108,7 @@ function Fields({
             className: customClassName = null,
             fieldsProps: customFieldsProps = null,
         } = field;
+        const isFirst = i === 0;
         const isLast = i === visibleFields.length - 1;
 
         const fieldExcludedFields =
@@ -136,6 +139,7 @@ function Fields({
             <Field
                 excludedFields={fieldExcludedFields}
                 key={`field-${name}-${i + 1}`}
+                disabled={disabled}
                 {...field}
                 {...fieldProps}
                 {...customFieldProps}
@@ -154,7 +158,8 @@ function Fields({
                     {
                         'border-top': withBorders,
                         'mb-3': !withBorders && !isSection && !isLast && !isList,
-                        'mb-4': isSection,
+                        'mb-4': isSection && !isLast,
+                        'mt-4': isSection && !isFirst,
                     },
                 ])}
                 fieldClassName={customClassName}
@@ -210,8 +215,8 @@ function Fields({
                 ) : null}
             </FieldsValueContextProvider>
             {canClear ? (
-                <div className="mt-2">
-                    <Button theme="light" outline size="md" onClick={onClearField}>
+                <div className="mt-4">
+                    <Button theme="light" outline onClick={onClearField}>
                         <FormattedMessage defaultMessage="Clear all" description="Button label" />
                     </Button>
                 </div>

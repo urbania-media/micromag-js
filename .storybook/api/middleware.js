@@ -5,6 +5,7 @@ const _ = require('lodash');
 const dayjs = require('dayjs');
 const { sync: globSync } = require('glob');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const send = require('@polka/send-type');
 
 module.exports = () => {
     const router = express.Router();
@@ -111,24 +112,24 @@ module.exports = () => {
     let loggedInUser = require(path.join(dataPath, '/me'));
 
     router.get('/auth/check', (req, res) => {
-        res.json(loggedInUser);
+        send(res, 200, loggedInUser);
         res.end();
     });
 
     router.post('/auth/login', (req, res) => {
         loggedInUser = require(path.join(dataPath, '/me'));
-        res.json(loggedInUser);
+        send(res, 200, loggedInUser);
         res.end();
     });
 
     router.post('/auth/logout', (req, res) => {
         loggedInUser = null;
-        res.json(loggedInUser);
+        send(res, 200, loggedInUser);
         res.end();
     });
 
     router.get('/csrf-cookie', (req, res) => {
-        res.json(null);
+        send(res, 200, null);
         res.end();
     });
 
@@ -164,9 +165,9 @@ module.exports = () => {
         const items = getResourceItems(resource);
         const filteredItems = sortItems(filterItems(items, query), sort, sortDirection);
         if (page !== null) {
-            res.json(getItemsPage(filteredItems, parseInt(page, 10), parseInt(count, 10)));
+            send(res, 200, getItemsPage(filteredItems, parseInt(page, 10), parseInt(count, 10)));
         } else {
-            res.json(count !== null ? filteredItems.slice(0, count - 1) : filteredItems);
+            send(res, 200, count !== null ? filteredItems.slice(0, count - 1) : filteredItems);
         }
         res.end();
     });
@@ -187,7 +188,7 @@ module.exports = () => {
             res.sendStatus(404);
             return;
         }
-        res.json(item);
+        send(res, 200, item);
         res.end();
     });
 
@@ -211,7 +212,7 @@ module.exports = () => {
             updated_at: now,
         };
         addResourceItem(resource, newItem);
-        res.json(newItem);
+        send(res, 200, newItem);
         res.end();
     });
 
@@ -230,7 +231,7 @@ module.exports = () => {
             updated_at: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         };
         updateResourceItem(resource, newItem);
-        res.json(newItem);
+        send(res, 200, newItem);
         res.end();
     };
 
@@ -243,7 +244,7 @@ module.exports = () => {
             return;
         }
         deleteResourceItem(resource, id);
-        res.json({ ...currentItem });
+        send(res, 200, { ...currentItem });
         res.end();
     };
 
@@ -280,7 +281,7 @@ module.exports = () => {
             res.sendStatus(404);
             return;
         }
-        res.json({ ...currentItem });
+        send(res, 200, { ...currentItem });
         res.end();
     });
 

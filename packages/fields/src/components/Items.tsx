@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faList } from '@fortawesome/free-solid-svg-icons/faList';
@@ -7,12 +6,12 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';
 import { v4 as uuid } from 'uuid';
 
-import type { FormField, Label as LabelType } from '@micromag/core';
+import type { Field as FieldType, Label as LabelType } from '@micromag/core';
 import { Button, Empty, Label } from '@micromag/core/components';
 import { useFieldContext } from '@micromag/core/contexts';
 
@@ -24,9 +23,9 @@ interface ItemsFieldProps {
     getDefaultValue?: ((...args: unknown[]) => void) | null;
     noItemLabel?: LabelType;
     addItemLabel?: LabelType;
-    itemFieldLabel?: (...args: unknown[]) => void | Label;
+    itemFieldLabel?: (...args: unknown[]) => void | LabelType;
     itemComponent?: unknown | null;
-    itemsField?: FormField | null;
+    itemsField?: FieldType | null;
     itemsProps?: Record<string, unknown> | null;
     className?: string | null;
     withoutSort?: boolean;

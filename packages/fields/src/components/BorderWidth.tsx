@@ -1,12 +1,10 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
 
-import Slider from './Slider';
+import Slider, { SliderFieldProps } from './Slider';
 
 import styles from '../styles/border-width.module.css';
 
-interface BorderWidthProps {
+interface BorderWidthProps extends SliderFieldProps {
     value?: string | null;
     sizes?: number[];
     className?: string | null;
@@ -20,6 +18,7 @@ function BorderWidth({
     sizes = defaultSizes,
     className = null,
     onChange = null,
+    ...props
 }: BorderWidthProps) {
     return (
         <Slider
@@ -28,11 +27,9 @@ function BorderWidth({
             max={sizes[sizes.length - 1]}
             marks={sizes}
             withInput
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             onChange={onChange}
+            {...props}
         />
     );
 }

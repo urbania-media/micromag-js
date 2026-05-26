@@ -1,16 +1,15 @@
 .icon {
     display: flex;
-    width: 30px;
+    width: 2em;
     flex-wrap: wrap;
     align-items: center;
 
     > div {
-        width: calc(30px / 3 - 2px);
-        height: calc(30px / 3 - 2px);
+        width: calc(2em / 3 - 2px);
+        height: calc(2em / 3 - 2px);
         margin-right: 2px;
         margin-bottom: 2px;
-        background-color: var(--bs-light);
-        mix-blend-mode: difference;
+        background-color: currentcolor;
     }
 
     &.left {

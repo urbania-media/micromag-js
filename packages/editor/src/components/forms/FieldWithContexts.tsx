@@ -39,23 +39,17 @@ function FieldWithContexts({ name = null, form = null, ...props }: FieldWithCont
 
     const formComponents = useFormsComponents();
     return definition !== null ? (
-        <div
-            className={classNames({
-                'p-2': form === null,
-            })}
-        >
-            {finalNameParts.length > 0 ? (
-                <FieldForm
-                    fields={finalScreenFields}
-                    formComponents={formComponents}
-                    name={finalNameParts.join('.')}
-                    form={form}
-                    {...props}
-                />
-            ) : (
-                <Fields fields={stateFields} {...props} />
-            )}
-        </div>
+        finalNameParts.length > 0 ? (
+            <FieldForm
+                fields={finalScreenFields}
+                formComponents={formComponents}
+                name={finalNameParts.join('.')}
+                form={form}
+                {...props}
+            />
+        ) : (
+            <Fields fields={stateFields} {...props} />
+        )
     ) : null;
 }
 

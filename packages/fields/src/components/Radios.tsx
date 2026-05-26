@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
+import React, { Fragment, useId, useMemo } from 'react';
 
 import type { SelectOption } from '@micromag/core';
 import { Label } from '@micromag/core/components';
@@ -16,8 +16,9 @@ export interface RadiosProps {
     className?: string | null;
     buttonClassName?: string | null;
     activeClassName?: string | null;
-    onChange?: ((...args: unknown[]) => void) | null;
+    onChange?: ((newValue: unknown) => void) | null;
     uncheckable?: boolean;
+    disabled?: boolean;
 }
 
 function Radios({
@@ -30,15 +31,19 @@ function Radios({
     activeClassName = null,
     onChange = null,
     uncheckable = false,
+    disabled = false,
 }: RadiosProps) {
-    const finalOptions = useMemo(() => getSelectOptions(options), [options]);
+    const finalOptions = getSelectOptions(options);
+    const id = useId();
 
     return (
         <div
             className={classNames([
+                {
+                    'd-inline-flex': className === null || className.indexOf('d-flex') === -1,
+                },
                 'btn-group',
                 'btn-group-toggle',
-                'd-flex',
                 'flex-nowrap',
                 'overflow-auto',
                 'no-scrollbar',
@@ -47,24 +52,15 @@ function Radios({
             data-toggle="buttons"
         >
             {finalOptions.map(({ value: optionValue, label }, index) => (
-                <label
-                    key={`radio-${optionValue}-${index + 1}`}
-                    className={classNames([
-                        'btn',
-                        withBackground ? 'btn-secondary' : 'btn-outline-secondary',
-                        buttonClassName,
-                        optionValue === value ? activeClassName : null,
-                        {
-                            active: optionValue === value,
-                        },
-                    ])}
-                >
+                <Fragment key={`radio-${optionValue}-${index + 1}`}>
                     <input
                         type="radio"
                         name={name}
                         autoComplete="off"
                         value={optionValue || ''}
                         className="btn-check"
+                        disabled={disabled}
+                        id={`${id}-${index + 1}`}
                         onClick={(e) => {
                             if (onChange !== null) {
                                 if (uncheckable && optionValue === value) {
@@ -76,9 +72,23 @@ function Radios({
                         }}
                         onChange={() => {}}
                         checked={optionValue === value}
-                    />{' '}
-                    <Label>{label}</Label>
-                </label>
+                    />
+                    <label
+                        className={classNames([
+                            'btn',
+                            withBackground ? 'btn-secondary' : 'btn-outline-secondary',
+                            buttonClassName,
+                            optionValue === value ? activeClassName : null,
+                            {
+                                disabled,
+                                active: optionValue === value,
+                            },
+                        ])}
+                        htmlFor={`${id}-${index + 1}`}
+                    >
+                        <Label>{label}</Label>
+                    </label>
+                </Fragment>
             ))}
         </div>
     );

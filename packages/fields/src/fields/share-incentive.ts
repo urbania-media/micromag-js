@@ -2,17 +2,12 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'share-incentive',
-    component: 'share-incentive',
+    component: 'toggle-fields',
+    toggleLabel: defineMessage({
+        defaultMessage: 'Share Incentive',
+        description: 'Field label',
+    }),
     fields: [
-        {
-            name: 'active',
-            type: 'toggle',
-            isHorizontal: true,
-            label: defineMessage({
-                defaultMessage: 'Share Incentive',
-                description: 'Field label',
-            }),
-        },
         {
             name: 'label',
             type: 'text-element',
@@ -22,6 +17,14 @@ export default {
                     excludedFields: ['highlight', 'link'],
                 },
             },
+            defaultValue: ({ intl }) => ({
+                body: intl.formatMessage(
+                    defineMessage({
+                        defaultMessage: 'Share this Micromag!',
+                        description: 'Share Incentive default label',
+                    }),
+                ),
+            }),
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',

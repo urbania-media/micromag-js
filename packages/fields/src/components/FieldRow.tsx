@@ -15,6 +15,7 @@ import ToggleField from './Toggle';
 import styles from '../styles/field-row.module.css';
 
 interface FieldRowProps {
+    inputId?: string | null;
     label?: LabelType | null;
     errors?: Errors | null;
     help?: LabelType | null;
@@ -30,7 +31,9 @@ interface FieldRowProps {
     withSettings?: boolean;
     withToggle?: boolean;
     withForm?: boolean | string;
+    withModal?: boolean | string;
     withValue?: boolean;
+    withTruncateValue?: boolean;
     buttonTheme?: ButtonTheme | null;
     buttonOutline?: boolean;
     gotoSettings?: ((...args: unknown[]) => void) | null;
@@ -42,6 +45,7 @@ interface FieldRowProps {
 }
 
 function FieldRow({
+    inputId = null,
     label = null,
     errors = null,
     help = null,
@@ -57,9 +61,12 @@ function FieldRow({
     withSettings = false,
     withToggle = false,
     withForm = false,
+    withModal = false,
     withValue = false,
+    withTruncateValue = false,
     buttonTheme = null,
     buttonOutline = false,
+
     gotoForm = null,
     gotoSettings = null,
     onChange = null,
@@ -86,6 +93,7 @@ function FieldRow({
 
     const containerClassName = classNames([
         'form-group',
+        'w-100',
         {
             'list-group-item': isListItem,
             'mb-0': isListItem,
@@ -112,8 +120,8 @@ function FieldRow({
                     labelClassName,
                     {
                         [styles.colLabel]: isHorizontal,
-                        'col-form-label': isHorizontal || withSettings,
-                        'form-label': !isHorizontal && !withSettings,
+                        'col-form-label': (isHorizontal || withSettings) && !isSection,
+                        'form-label': (!isHorizontal && !withSettings) || isSection,
                         'col-auto': isHorizontal,
                         col: !isHorizontal && withSettings,
                         'py-0': isHorizontal,
@@ -122,8 +130,10 @@ function FieldRow({
                         'align-self-center': isHorizontal && !hasIndicationsUnder,
                         'fw-normal': !isSection,
                         'fw-bold': isSection,
+                        'me-auto': isListItem,
                     },
                 ])}
+                htmlFor={inputId}
             >
                 <Label>{label}</Label>
                 {isCollapsible ? (
@@ -153,13 +163,14 @@ function FieldRow({
                         styles.colValue,
                         'align-self-center',
                         {
+                            'overflow-hidden': withTruncateValue,
                             [styles.collapsed]: isCollapsible && isCollapsed,
                             // [styles.colMinWidth]: isListItem,
                             [styles.colButtonWidth]: isClickable && buttonTheme !== null,
                         },
                     ])}
                 >
-                    <span className={classNames(['d-flex', 'justify-content-end'])}>
+                    <span className={classNames(['d-flex', 'w-100', 'justify-content-end'])}>
                         {children}
                     </span>
                     {helpElement !== null || errorsElement !== null ? (

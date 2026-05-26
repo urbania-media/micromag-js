@@ -23,6 +23,7 @@ export default {
             name: 'layout',
             type: 'screen-layout',
             defaultValue: 'top',
+            isSection: true,
             label: defineMessage({
                 defaultMessage: 'Layout',
                 description: 'Layout field label',
@@ -31,6 +32,7 @@ export default {
         {
             name: 'question',
             type: 'heading-element',
+            isSection: true,
             theme: {
                 textStyle: 'heading2',
             },
@@ -40,41 +42,48 @@ export default {
             }),
         },
         {
-            name: 'answers',
-            type: 'answers',
-            theme: {
-                label: {
-                    textStyle: 'button',
-                },
-            },
+            type: 'fields',
+            isSection: true,
             label: defineMessage({
                 defaultMessage: 'Answers',
                 description: 'Field label',
             }),
-        },
-        {
-            name: 'result',
-            type: 'text-element',
-            theme: {
-                textStyle: 'text',
-            },
-            label: defineMessage({
-                defaultMessage: 'Default feedback',
-                description: 'Field label',
-            }),
-        },
-        {
-            name: 'customAnswer',
-            type: 'custom-answer',
-            defaultValue: false,
-            isList: true,
-            theme: {
-                textStyle: 'button',
-            },
+            fields: [
+                {
+                    name: 'answers',
+                    type: 'answers',
+                    isSection: true,
+                    theme: {
+                        label: {
+                            textStyle: 'button',
+                        },
+                    },
+                },
+                {
+                    name: 'customAnswer',
+                    type: 'custom-answer',
+                    defaultValue: false,
+                    theme: {
+                        textStyle: 'button',
+                    },
+                },
+                {
+                    name: 'result',
+                    type: 'text-element',
+                    theme: {
+                        textStyle: 'text',
+                    },
+                    label: defineMessage({
+                        defaultMessage: 'Default feedback',
+                        description: 'Field label',
+                    }),
+                },
+            ],
         },
         {
             type: 'fields',
             isList: true,
+            isSection: true,
             label: defineMessage({
                 defaultMessage: 'Styles',
                 description: 'Field section label',
@@ -140,6 +149,7 @@ export default {
         {
             name: 'background',
             type: 'background',
+            isSection: true,
             label: defineMessage({
                 defaultMessage: 'Background',
                 description: 'Background field label',
@@ -148,6 +158,7 @@ export default {
         {
             name: 'header',
             type: 'header',
+            isSection: true,
             label: defineMessage({
                 defaultMessage: 'Header',
                 description: 'Field label',
@@ -164,6 +175,7 @@ export default {
         {
             name: 'footer',
             type: 'footer',
+            isSection: true,
             label: defineMessage({
                 defaultMessage: 'Footer',
                 description: 'Field label',

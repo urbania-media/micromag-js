@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 
-import Radios from './Radios';
+import Radios, { RadiosProps } from './Radios';
 
-interface BorderStyleProps {
+interface BorderStyleProps extends RadiosProps {
     types?: string[];
     value?: string | null;
     className?: string | null;
@@ -16,12 +16,8 @@ function BorderStyle({
     value = null,
     className = null,
     onChange = null,
+    ...props
 }: BorderStyleProps) {
-    const onBorderStyleChange = (newVal) => {
-        const v = newVal === value ? null : newVal;
-        onChange(v);
-    };
-
     return (
         <Radios
             options={types.map((type) => ({
@@ -29,16 +25,18 @@ function BorderStyle({
                 label: (
                     <div
                         style={{
-                            width: '1.5em',
-                            height: '1.5em',
+                            width: '1em',
+                            height: '1em',
                             border: `2px ${type} currentColor`,
                         }}
                     />
                 ),
             }))}
+            uncheckable
             value={value || null}
             className={classNames(['d-inline-flex', className])}
-            onChange={onBorderStyleChange}
+            onChange={onChange}
+            {...props}
         />
     );
 }

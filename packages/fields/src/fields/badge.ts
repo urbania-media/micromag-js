@@ -2,17 +2,12 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'badge',
-    component: 'badge',
+    component: 'toggle-fields',
+    toggleLabel: defineMessage({
+        defaultMessage: 'Badge',
+        description: 'Field label',
+    }),
     fields: [
-        {
-            name: 'active',
-            type: 'toggle',
-            isHorizontal: true,
-            label: defineMessage({
-                defaultMessage: 'Badge',
-                description: 'Field label',
-            }),
-        },
         {
             name: 'label',
             type: 'text-element',

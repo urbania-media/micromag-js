@@ -2,17 +2,12 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'custom-answer',
-    component: 'custom-answer',
+    component: 'toggle-fields',
+    toggleLabel: defineMessage({
+        defaultMessage: 'Custom answer',
+        description: 'Field label',
+    }),
     fields: [
-        {
-            name: 'active',
-            type: 'toggle',
-            isHorizontal: true,
-            label: defineMessage({
-                defaultMessage: 'Custom answer',
-                description: 'Field label',
-            }),
-        },
         {
             name: 'multiline',
             type: 'toggle',

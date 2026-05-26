@@ -1,8 +1,7 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback } from 'react';
+import { ReactNode, useId } from 'react';
 
-import type { Errors, FormField, Label } from '@micromag/core';
+import type { Errors, Field as FieldType, Label } from '@micromag/core';
 import { useFieldComponent, useFieldContext, useFieldsManager } from '@micromag/core/contexts';
 
 import FieldRow from './FieldRow';
@@ -10,12 +9,12 @@ import FieldRow from './FieldRow';
 interface FieldProps {
     name?: string | null;
     type?: string | null;
-    component?: React.ReactNode | ((...args: unknown[]) => void) | null;
+    component?: ReactNode | ((...args: unknown[]) => void) | null;
     label?: Label | null;
     help?: Label | null;
     errors?: Errors | null;
     value?: unknown | null;
-    fields?: FormField[];
+    fields?: FieldType[];
     isHorizontal?: boolean | null;
     isSection?: boolean;
     isListItem?: boolean;
@@ -65,6 +64,7 @@ function Field({
         isList = false,
         canClear = false,
         withToggle = providedWithToggle,
+        truncateValueLabel = false,
         ...fieldProps
     } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
         component: providedComponent,
@@ -78,6 +78,8 @@ function Field({
     const gotoForm = (form) => gotoFieldForm(name, form, context);
     const closeForm = (form) => closeFieldForm(name, form);
     const gotoSettings = () => gotoForm('settings');
+
+    const id = useId();
 
     if (FieldComponent === null) {
         return null;
@@ -113,6 +115,7 @@ function Field({
                     },
                 ])}
                 className={fieldClassName}
+                inputId={id}
                 {...props}
                 {...fieldProps}
                 errors={errors}
@@ -129,6 +132,7 @@ function Field({
         <FieldRow
             {...props}
             {...fieldProps}
+            inputId={id}
             value={value}
             onChange={onChange}
             label={label}
@@ -141,7 +145,9 @@ function Field({
             withSettings={finalWithSettings}
             withToggle={withToggle}
             withForm={finalWithForm}
+            withModal={finalWithModal}
             withValue={value !== null}
+            withTruncateValue={truncateValueLabel}
             gotoSettings={gotoSettings}
             gotoForm={gotoForm}
             closeForm={closeForm}

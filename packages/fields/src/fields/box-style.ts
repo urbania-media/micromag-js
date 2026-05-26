@@ -6,11 +6,12 @@ export default {
     fields: [
         {
             type: 'fields',
-            isList: true,
             label: defineMessage({
                 defaultMessage: 'Box',
                 description: 'Field label',
             }),
+            isList: true,
+            isSection: true,
             fields: [
                 {
                     name: 'backgroundColor',
@@ -48,6 +49,7 @@ export default {
                 description: 'Field label',
             }),
             isList: true,
+            isSection: true,
             fields: [
                 {
                     name: 'borderWidth',
@@ -71,6 +73,7 @@ export default {
                 {
                     name: 'borderStyle',
                     type: 'border-style',
+                    isHorizontal: true,
                     label: defineMessage({
                         defaultMessage: 'Style',
                         description: 'Field label',
@@ -85,6 +88,7 @@ export default {
                 description: 'Field label',
             }),
             isList: true,
+            isSection: true,
             fields: [
                 {
                     name: 'shadowDistance',
@@ -117,6 +121,7 @@ export default {
                 {
                     name: 'shadowAngle',
                     type: 'shadow-angle',
+                    isHorizontal: true,
                     label: defineMessage({
                         defaultMessage: 'Angle',
                         description: 'Field label',

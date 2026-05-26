@@ -3,4 +3,5 @@ export default {
     component: 'media-modal',
     media: true,
     type: 'image',
+    truncateValueLabel: true,
 };

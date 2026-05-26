@@ -125,6 +125,7 @@ export default [
                     defaultMessage: 'Header',
                     description: 'Field label',
                 }),
+                isSection: true,
                 theme: {
                     badge: {
                         label: {

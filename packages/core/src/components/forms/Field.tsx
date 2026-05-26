@@ -1,10 +1,10 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import get from 'lodash/get';
-import React, { useCallback } from 'react';
+import { Component, useCallback } from 'react';
 
 import { getComponentFromName, getFieldFromPath, setFieldValue } from '../../utils';
 
 import { FieldContextProvider, useFieldComponent, useFieldsManager } from '../../contexts';
+import { Field } from '../../types';
 
 const emptyArray: never[] = [];
 const emptyObject = {} as const;

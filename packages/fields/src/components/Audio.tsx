@@ -1,12 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { AudioMedia } from '@micromag/core';
 
-import MediaField from './Media';
+import MediaField, { MediaFieldProps } from './Media';
 
-interface AudioFieldProps {
+interface AudioFieldProps extends MediaFieldProps {
     value?: AudioMedia | null;
 }
 

@@ -1,9 +1,8 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 
-import MediaModal from './MediaModal';
+import MediaModal, { MediaModalProps } from './MediaModal';
 
-interface MediaFieldProps {
+export interface MediaFieldProps extends MediaModalProps {
     onChange?: ((...args: unknown[]) => void) | null;
     closeForm?: ((...args: unknown[]) => void) | null;
 }

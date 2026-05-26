@@ -1,6 +1,4 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
 
 import type { GridLayout as GridLayoutType } from '@micromag/core';
 import { getGridLayoutName } from '@micromag/core/utils';
@@ -38,10 +36,7 @@ function GridLayout({
                     ? grids.find((it) => getGridLayoutName(it) === getGridLayoutName(value)) || null
                     : null
             }
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             buttonClassName={styles.button}
             onChange={onChange}
         />

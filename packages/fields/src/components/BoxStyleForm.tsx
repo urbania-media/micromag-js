@@ -2,7 +2,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { BoxStyle, FormField } from '@micromag/core';
+import type { BoxStyle, Field } from '@micromag/core';
 import { getStyleFromBox } from '@micromag/core/utils';
 
 import FieldWithForm from './FieldWithForm';
@@ -11,7 +11,7 @@ import styles from '../styles/box-style.module.css';
 
 interface BoxStyleFormProps {
     value?: BoxStyle | null;
-    fields?: FormField[] | null;
+    fields?: Field[] | null;
     isForm?: boolean | null;
     isHorizontal?: boolean;
     withAlignment?: boolean;

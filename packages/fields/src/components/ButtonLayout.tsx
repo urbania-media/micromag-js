@@ -2,9 +2,9 @@ import classNames from 'classnames';
 
 import { PlaceholderImage, PlaceholderText } from '@micromag/core/components';
 
-import Radios from './Radios';
+import Radios, { RadiosProps } from './Radios';
 
-interface ButtonLayoutProps {
+interface ButtonLayoutProps extends RadiosProps {
     types?: string[];
     value?: string | null;
     defaultValue?: string | null;
@@ -27,6 +27,7 @@ function ButtonLayout({
     defaultValue = null,
     className = null,
     onChange = null,
+    ...props
 }: ButtonLayoutProps) {
     const finalValue = value === null && defaultValue !== null ? defaultValue : value;
 
@@ -42,8 +43,12 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderImage width="1.25em" height="1.25em" className="mb-1" />
-                        <PlaceholderText lines={1} height={0.25} />
+                        <PlaceholderImage
+                            width="1.25em"
+                            height="1.25em"
+                            className="mb-1 opacity-100"
+                        />
+                        <PlaceholderText lines={1} height={0.25} className="opacity-100" />
                     </div>
                 );
             case 'label-top':
@@ -56,8 +61,8 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderText lines={1} height={0.25} className="mb-1" />
-                        <PlaceholderImage width="1.25em" height="1.25em" />
+                        <PlaceholderText lines={1} height={0.25} className="mb-1 opacity-100" />
+                        <PlaceholderImage width="1.25em" height="1.25em" className="opacity-100" />
                     </div>
                 );
             case 'no-label':
@@ -70,7 +75,7 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderImage width="1.25em" height="1.25em" />
+                        <PlaceholderImage width="1.25em" height="1.25em" className="opacity-100" />
                     </div>
                 );
             case 'label-over':
@@ -83,8 +88,12 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderImage width="1.25em" height="1.25em" className="mb-1" />
-                        <PlaceholderText lines={1} height={0.25} />
+                        <PlaceholderImage
+                            width="1.25em"
+                            height="1.25em"
+                            className="mb-1 opacity-100"
+                        />
+                        <PlaceholderText lines={1} height={0.25} className="opacity-100" />
                     </div>
                 );
             case 'label-right':
@@ -97,8 +106,17 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderImage width="1.25em" height="1.25em" className="me-1" />
-                        <PlaceholderText lines={1} height={0.25} width="1.25em" />
+                        <PlaceholderImage
+                            width="1.25em"
+                            height="1.25em"
+                            className="me-1 opacity-100"
+                        />
+                        <PlaceholderText
+                            lines={1}
+                            height={0.25}
+                            width="1.25em"
+                            className="opacity-100"
+                        />
                     </div>
                 );
             case 'label-left':
@@ -111,8 +129,13 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderText lines={1} height={0.25} width="1.25em" className="me-1" />
-                        <PlaceholderImage width="1.25em" height="1.25em" />
+                        <PlaceholderText
+                            lines={1}
+                            height={0.25}
+                            width="1.25em"
+                            className="me-1 opacity-100"
+                        />
+                        <PlaceholderImage width="1.25em" height="1.25em" className="opacity-100" />
                     </div>
                 );
             default:
@@ -127,10 +150,11 @@ function ButtonLayout({
                 label: getLayoutPreviewByType(type),
             }))}
             value={finalValue || null}
-            className={className}
+            className={classNames(['d-flex', className])}
             onChange={onChange}
             buttonClassName="d-flex"
             uncheckable
+            {...props}
         />
     );
 }

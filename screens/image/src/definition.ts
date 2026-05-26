@@ -164,6 +164,7 @@ export default [
             {
                 name: 'header',
                 type: 'header',
+                isSection: true,
                 label: defineMessage({
                     defaultMessage: 'Header',
                     description: 'Field label',
@@ -180,6 +181,7 @@ export default [
             {
                 name: 'footer',
                 type: 'footer',
+                isSection: true,
                 label: defineMessage({
                     defaultMessage: 'Footer',
                     description: 'Field label',
@@ -365,6 +367,7 @@ export default [
             {
                 name: 'background',
                 type: 'background',
+                isSection: true,
                 label: defineMessage({
                     defaultMessage: 'Background',
                     description: 'Background field label',
@@ -373,6 +376,7 @@ export default [
             {
                 name: 'header',
                 type: 'header',
+                isSection: true,
                 label: defineMessage({
                     defaultMessage: 'Header',
                     description: 'Field label',
@@ -389,6 +393,7 @@ export default [
             {
                 name: 'footer',
                 type: 'footer',
+                isSection: true,
                 label: defineMessage({
                     defaultMessage: 'Footer',
                     description: 'Field label',

@@ -1,13 +1,10 @@
 import classNames from 'classnames';
-import React, { useCallback } from 'react';
 
 import { PlaceholderImage, PlaceholderText, PlaceholderTitle } from '@micromag/core/components';
 
-import Radios from './Radios';
+import Radios, { RadiosProps } from './Radios';
 
-import styles from '../styles/card-layout.module.css';
-
-interface CardLayoutProps {
+interface CardLayoutProps extends RadiosProps {
     types?: string[];
     value?: string | null;
     className?: string | null;
@@ -20,69 +17,81 @@ function CardLayout({
     types = defaultTypes,
     value = null,
     className = null,
-    onChange = null,
+    ...props
 }: CardLayoutProps) {
-    const onButtonLayoutChange = (newVal) => {
-        const v = newVal === value ? null : newVal;
-
-        onChange(v);
-    };
-
-    const getLayoutPreviewByType = useCallback((type) => {
+    const getLayoutPreviewByType = (type) => {
         switch (type) {
             case 'content-top':
                 return (
-                    <div className={styles.layout}>
-                        <PlaceholderTitle lines={1} lineMargin={1} />
-                        <PlaceholderText lines={2} lineMargin={1} />
-                        <PlaceholderImage width="100%" height="1.25em" />
-                    </div>
+                    <>
+                        <PlaceholderTitle
+                            lines={1}
+                            lineMargin={1}
+                            height="0.3em"
+                            className="opacity-100"
+                        />
+                        <PlaceholderText
+                            lines={2}
+                            lineMargin={1}
+                            height="0.3em"
+                            className="opacity-100"
+                        />
+                        <PlaceholderImage width="100%" height="1.25em" className="opacity-100" />
+                    </>
                 );
             case 'content-bottom':
                 return (
-                    <div className={styles.layout}>
-                        <PlaceholderImage width="100%" height="1.25em" />
-                        <PlaceholderTitle lines={1} lineMargin={1} />
-                        <PlaceholderText lines={2} lineMargin={1} />
-                    </div>
+                    <>
+                        <PlaceholderImage width="100%" height="1.25em" className="opacity-100" />
+                        <PlaceholderTitle
+                            lines={1}
+                            lineMargin={1}
+                            height="0.3em"
+                            className="opacity-100"
+                        />
+                        <PlaceholderText
+                            lines={2}
+                            lineMargin={1}
+                            height="0.3em"
+                            className="opacity-100"
+                        />
+                    </>
                 );
             case 'content-split':
                 return (
-                    <div className={styles.layout}>
-                        <PlaceholderTitle lines={1} lineMargin={1} />
-                        <PlaceholderImage width="100%" height="1.25em" />
-                        <PlaceholderText lines={2} lineMargin={1} />
-                    </div>
+                    <>
+                        <PlaceholderTitle
+                            lines={1}
+                            lineMargin={1}
+                            height="0.3em"
+                            className="opacity-100"
+                        />
+                        <PlaceholderImage width="100%" height="1.25em" className="opacity-100" />
+                        <PlaceholderText
+                            lines={2}
+                            lineMargin={1}
+                            height="0.3em"
+                            className="opacity-100"
+                        />
+                    </>
                 );
             default:
                 return <div />;
         }
-    }, []);
+    };
 
     return (
-        <div
-            className={classNames([
-                'd-flex',
-                className,
-            ])}
-        >
-            <div className={classNames(['d-inline-flex', 'me-auto'])}>
-                <Radios
-                    options={types.map((type) => ({
-                        value: type,
-                        label: getLayoutPreviewByType(type),
-                    }))}
-                    value={value || null}
-                    className={classNames([
-                        styles.container,
-                        className,
-                    ])}
-                    buttonClassName={styles.button}
-                    onChange={onButtonLayoutChange}
-                    uncheckable
-                />
-            </div>
-        </div>
+        <Radios
+            options={types.map((type) => ({
+                value: type,
+                label: getLayoutPreviewByType(type),
+            }))}
+            value={value}
+            className={classNames(['d-inline-flex', className])}
+            buttonClassName="px-3"
+            uncheckable
+            {...props}
+        />
     );
 }
 

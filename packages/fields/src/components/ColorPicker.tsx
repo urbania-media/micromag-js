@@ -13,6 +13,7 @@ interface ColorPickerFieldProps {
     value?: { color?: string; alpha?: number } | null;
     disableAlpha?: boolean;
     className?: string | null;
+    disabled?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
@@ -20,7 +21,9 @@ function ColorPickerField({
     value = null,
     disableAlpha = false,
     className = null,
+    disabled = false,
     onChange = null,
+    ...props
 }: ColorPickerFieldProps) {
     const getColors = useGetColors();
     const colors = useMemo(
@@ -59,11 +62,24 @@ function ColorPickerField({
 
     return (
         <div
-            className={classNames([styles.container, 'text-light', 'bg-dark', className])}
-            style={{
-                padding: 10,
-            }}
+            className={classNames([
+                styles.container,
+                'position-relative',
+                'p-1',
+                {
+                    'opacity-50': disabled,
+                },
+                className,
+            ])}
         >
+            {disabled ? (
+                <div
+                    className="position-absolute w-100 h-100 top-0 start-0"
+                    style={{
+                        zIndex: 2,
+                    }}
+                />
+            ) : null}
             <SketchPicker
                 color={finalColor}
                 presetColors={colors}
@@ -75,8 +91,9 @@ function ColorPickerField({
                         color: 'inherit',
                     },
                 }}
-                onChange={onPickerChange}
+                onChange={!disabled ? onPickerChange : null}
                 disableAlpha={disableAlpha}
+                {...props}
             />
         </div>
     );

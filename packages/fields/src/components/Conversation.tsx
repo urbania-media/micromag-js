@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import type { Conversation as ConversationType, FormField } from '@micromag/core';
+import type { Conversation as ConversationType, Field } from '@micromag/core';
 import { FieldContextProvider } from '@micromag/core/contexts';
 
 import Fields from './Fields';
@@ -12,7 +12,7 @@ import styles from '../styles/conversation.module.css';
 
 interface ConversationProps {
     value?: ConversationType | null;
-    fields?: FormField[] | null;
+    fields?: Field[] | null;
     name: string;
     className?: string | null;
     onChange?: ((...args: unknown[]) => void) | null;

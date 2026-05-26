@@ -8,6 +8,7 @@ import { ClearButton } from '@micromag/core/components';
 import styles from '../styles/number.module.css';
 
 interface NumberFieldProps {
+    inputId?: string | null;
     name?: string | null;
     value?: number | null;
     min?: number | null;
@@ -24,6 +25,7 @@ interface NumberFieldProps {
 }
 
 function NumberField({
+    inputId = null,
     name = null,
     value = null,
     min = null,
@@ -84,13 +86,10 @@ function NumberField({
 
     return (
         <div
-            className={classNames([
-                styles.container,
-                className,
-                { [styles.fullWidth]: fullWidth },
-            ])}
+            className={classNames([styles.container, className, { [styles.fullWidth]: fullWidth }])}
         >
             <input
+                id={inputId}
                 type="number"
                 className={classNames([styles.input, 'form-control', 'ms-auto'])}
                 name={name}

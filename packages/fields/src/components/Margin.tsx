@@ -2,12 +2,8 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React from 'react';
 
 import Slider from './Slider';
-
-// import Number from './Number';
-import styles from '../styles/margin.module.css';
 
 interface MarginFieldProps {
     value?: number | null;
@@ -16,6 +12,7 @@ interface MarginFieldProps {
     min?: number;
     max?: number;
     marksStep?: number;
+    disabled?: boolean;
     className?: string | null;
     onChange?: ((...args: unknown[]) => void) | null;
 }
@@ -27,19 +24,24 @@ function MarginField({
     min = 0,
     max = 20,
     marksStep = 5,
+    disabled = false,
     className = null,
     onChange = null,
 }: MarginFieldProps) {
     return (
         <div
             className={classNames([
-                styles.container,
+                'd-flex',
+                'align-items-center',
+                {
+                    'text-muted': disabled,
+                },
                 className,
             ])}
         >
             <FontAwesomeIcon
                 icon={direction === 'top' ? faArrowUp : faArrowDown}
-                className={styles.icon}
+                className="me-2"
             />
             <Slider
                 value={value}
@@ -52,10 +54,10 @@ function MarginField({
                 }}
                 withInput
                 unit={unit}
+                disabled={disabled}
                 onChange={(newValue) =>
                     onChange !== null ? onChange(newValue !== 0 ? newValue : null) : null
                 }
-                className={styles.slider}
             />
         </div>
     );

@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import { ForwardedRef } from 'react';
+import { ForwardedRef, InputHTMLAttributes } from 'react';
 
 import type { Errors } from '@micromag/core';
 
-export interface TextFieldProps {
+export interface TextFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+    inputId?: string | null;
     type?: 'text' | 'email' | 'number' | 'password';
     value?: string | number | null;
     errors?: Errors | null;
@@ -20,22 +21,22 @@ export interface TextFieldProps {
 }
 
 function TextField({
+    inputId = null,
     ref: inputRef = null,
     type = 'text',
     value = null,
     errors = null,
-    required = false,
     disabled = false,
-    placeholder = null,
     prefix = null,
     autofocus = false,
     onChange = null,
-    onFocus = null,
     className = null,
+    ...props
 }: TextFieldProps) {
     const input = (
         <input
             ref={inputRef}
+            id={inputId}
             type={type}
             className={classNames([
                 'form-control',
@@ -49,11 +50,9 @@ function TextField({
             onChange={({ currentTarget: { value: newValue = '' } }) =>
                 onChange !== null ? onChange(!isEmpty(newValue) ? newValue : null) : null
             }
-            placeholder={placeholder}
-            required={required}
-            disabled={disabled}
             autoFocus={autofocus}
-            {...(onFocus !== null ? { onFocus } : null)}
+            disabled={disabled}
+            {...props}
         />
     );
 

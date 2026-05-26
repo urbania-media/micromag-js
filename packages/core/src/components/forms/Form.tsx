@@ -1,6 +1,4 @@
 /* eslint-disable no-lone-blocks */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -9,6 +7,7 @@ import { useForm } from '../../hooks';
 import { validateFields } from '../../utils';
 
 import { useFieldComponent, useFieldContext } from '../../contexts';
+import type { Button as ButtonType, Field, Label } from '../../types';
 import BackButton from '../buttons/Back';
 import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
@@ -21,14 +20,14 @@ const emptyArray: never[] = [];
 interface FormProps {
     action: string;
     method?: string;
-    fields?: FormField[];
+    fields?: Field[];
     initialValue?: Record<string, unknown> | null;
     postForm?: ((...args: unknown[]) => void) | null;
     submitButtonLabel?: Label;
     submitButtonLoadingLabel?: Label | null;
     submitButtonTheme?: string | null;
     cancelButtonTheme?: string | null;
-    buttons?: Button[] | null;
+    buttons?: ButtonType[] | null;
     children?: React.ReactNode | null;
     actionsAlign?: 'left' | 'right';
     withoutActions?: boolean;
@@ -204,10 +203,7 @@ function Form({
                     onChange={setValue}
                     gotoFieldForm={gotoFieldForm}
                     closeFieldForm={closeFieldForm}
-                    className={classNames([
-                        styles.fields,
-                        fieldsClassName,
-                    ])}
+                    className={classNames([styles.fields, fieldsClassName])}
                 />
             ) : null}
             {generalError ? <p className="text-danger my-1">{generalError}</p> : null}
@@ -230,10 +226,7 @@ function Form({
                             theme={cancelButtonTheme || 'secondary'}
                             outline
                             disabled={status === 'loading'}
-                            className={classNames([
-                                'me-2',
-                                cancelClassName,
-                            ])}
+                            className={classNames(['me-2', cancelClassName])}
                         >
                             <FormattedMessage defaultMessage="Cancel" description="Button label" />
                         </Button>

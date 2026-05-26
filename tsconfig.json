@@ -11,14 +11,5 @@
             "#.storybook/*": ["./.storybook/*"]
         },
         "plugins": [{ "name": "typescript-plugin-css-modules" }]
-    },
-    "exclude": [
-        "node_modules",
-        "**/node_modules",
-        "**/es",
-        "**/lib",
-        "**/dist",
-        "**/build",
-        "**/assets"
-    ]
+    }
 }

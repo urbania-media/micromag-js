@@ -1,14 +1,12 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
 
 import type { ObjectFitSize as ObjectFitSizeType } from '@micromag/core';
 
-import Radios from './Radios';
+import Radios, { RadiosProps } from './Radios';
 
 import styles from '../styles/fit.module.css';
 
-interface ObjectFitSizeProps {
+interface ObjectFitSizeProps extends RadiosProps {
     values?: ObjectFitSizeType[];
     value?: ObjectFitSizeType | null;
     className?: string | null;
@@ -22,27 +20,35 @@ function ObjectFitSize({
     value = null,
     className = null,
     onChange = null,
+    ...props
 }: ObjectFitSizeProps) {
     return (
         <Radios
+            {...props}
             options={values.map((val) => ({
                 value: val,
                 label: (
-                    <div className={classNames([styles.frame, styles[val || 'none']])}>
-                        <div className={styles.shape}>
-                            <div className={styles.inner}>
-                                <div className={styles.media} />
-                            </div>
+                    <div
+                        className={classNames([styles.frame, 'position-relative ratio m-auto'])}
+                        style={{ '--bs-aspect-ratio': '150%' }}
+                    >
+                        <div className="position-absolute w-100 h-100 top-0 start-0 p-1 d-flex flex-column">
+                            {val !== null ? (
+                                <div
+                                    className={classNames([styles.media, 'w-100', 'm-auto'])}
+                                    style={{
+                                        height: val === 'cover' ? '100%' : '50%',
+                                        background: 'currentcolor',
+                                        objectFit: val || 'none',
+                                    }}
+                                />
+                            ) : null}
                         </div>
                     </div>
                 ),
             }))}
             value={value}
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-            buttonClassName={styles.button}
+            className={classNames(['d-flex', className])}
             onChange={onChange}
         />
     );

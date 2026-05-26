@@ -1,15 +1,13 @@
 .container {
     user-select: none;
 
-    :global {
-        .rc-switch {
-            border-color: var(--bs-border-color);
-            background-color: var(--bs-border-color);
-        }
+    &:global(.rc-switch) {
+        border-color: var(--bs-border-color);
+        background-color: var(--bs-border-color);
+    }
 
-        .rc-switch-checked {
-            border-color: var(--bs-primary);
-            background-color: var(--bs-primary);
-        }
+    &:global(.rc-switch-checked) {
+        border-color: var(--bs-primary);
+        background-color: var(--bs-primary);
     }
 }

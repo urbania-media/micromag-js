@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-// // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import type { Answer } from '@micromag/core';

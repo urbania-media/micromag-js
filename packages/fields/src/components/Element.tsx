@@ -1,6 +1,6 @@
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
-import type { FormField } from '@micromag/core';
+import type { Field } from '@micromag/core';
 
 import Fields from './Fields';
 
@@ -8,7 +8,7 @@ const emptyArray: never[] = [];
 
 interface ElementFieldProps {
     name?: string | null;
-    fields?: FormField[];
+    fields?: Field[];
     value?: Record<string, unknown> | null;
     isList?: boolean;
     gotoFieldForm?: ((...args: unknown[]) => void) | null;

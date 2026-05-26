@@ -1,18 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback } from 'react';
 
-import Radios from './Radios';
+import Radios, { RadiosProps } from './Radios';
 
 import styles from '../styles/align-vertical.module.css';
 
-const icons = {
-    top: (props) => <div {...props}>top</div>,
-    middle: (props) => <div {...props}>middle</div>,
-    bottom: (props) => <div {...props}>bottom</div>,
-};
-
-interface AlignVerticalProps {
+interface AlignVerticalProps extends RadiosProps {
     value?: 'top' | 'bottom' | 'middle' | null;
     defaultValue?: 'top' | 'bottom' | 'middle' | null;
     className?: string | null;
@@ -23,46 +15,24 @@ function AlignVertical({
     value = null,
     defaultValue = null,
     className = null,
-    onChange = null,
+    ...props
 }: AlignVerticalProps) {
-    const finalValue = value === null && defaultValue !== null ? defaultValue : value;
-    const onAlignChange = useCallback(
-        (newVal) => {
-            onChange(newVal);
-        },
-        [finalValue],
-    );
-
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
-            <div className={classNames(['d-flex', 'align-items-center', 'mb-2'])}>
-                <Radios
-                    options={['top', 'middle', 'bottom'].map((type) => {
-                        const Icon = icons[type];
-                        return {
-                            value: type,
-                            label: (
-                                <div className={styles.type}>
-                                    <Icon className={styles.icon} />
-                                </div>
-                            ),
-                        };
-                    })}
-                    value={finalValue !== null ? finalValue : null}
-                    className={classNames([
-                        styles.container,
-                        className,
-                    ])}
-                    buttonClassName={styles.button}
-                    onChange={onAlignChange}
-                />
-            </div>
-        </div>
+        <Radios
+            {...props}
+            options={['top', 'middle', 'bottom'].map((type) => ({
+                value: type,
+                label: (
+                    <div className={classNames([styles.icon, styles[type]])}>
+                        <div />
+                        <div />
+                        <div />
+                    </div>
+                ),
+            }))}
+            value={value === null && defaultValue !== null ? defaultValue : value}
+            className={classNames(['d-inline-flex', className])}
+        />
     );
 }
 

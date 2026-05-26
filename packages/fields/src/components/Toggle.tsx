@@ -2,10 +2,11 @@ import classNames from 'classnames';
 import Switch from 'rc-switch';
 
 import styles from '../styles/toggle.module.css';
+import 'rc-switch/assets/index.css';
 
 interface ToggleFieldProps {
     value?: boolean | null;
-    defaultValue?: boolean | null;
+    defaultValue?: boolean | string | null;
     className?: string | null;
     disabled?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;
@@ -21,13 +22,12 @@ function ToggleField({
     const finalValue =
         value === null && (defaultValue === true || defaultValue === 'true') ? true : value;
     return (
-        <div className={classNames([styles.container, className])}>
-            <Switch
-                {...props}
-                checked={finalValue !== null ? finalValue : false}
-                onChange={onChange}
-            />
-        </div>
+        <Switch
+            {...props}
+            className={classNames([styles.container, className])}
+            checked={finalValue !== null ? finalValue : false}
+            onChange={onChange}
+        />
     );
 }
 

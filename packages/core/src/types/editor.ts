@@ -17,11 +17,6 @@ export type SelectOption =
           label?: Label;
       };
 
-export interface FormField {
-    name?: string;
-    component?: Component;
-}
-
 export interface Definition {
     id: string;
     component?: Component;
@@ -32,7 +27,10 @@ export interface Field {
     type: string;
     label?: Text;
     isSection?: boolean;
+    component?: Component;
+    defaultValue?: (() => unknown) | unknown;
     fields?: Field[];
+    [key: string]: unknown;
 }
 
 export interface ScreenDefinition extends Definition {

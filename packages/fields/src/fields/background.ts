@@ -7,7 +7,6 @@ export default {
         {
             name: 'color',
             type: 'color',
-            withoutCaret: true,
             label: defineMessage({
                 defaultMessage: 'Color',
                 description: 'Field label',

@@ -20,7 +20,7 @@ export interface MediaFile {
 
 export interface Media {
     id?: string;
-    type: string;
+    type?: string;
     url: string;
     thumbnail_url?: string;
     name?: string;
@@ -31,7 +31,7 @@ export interface Media {
 export type MediaType = 'image' | 'video' | 'audio' | 'closed-captions' | 'font';
 
 export interface ImageMedia extends Omit<Media, 'type' | 'metadata'> {
-    type?: 'image' | 'video';
+    type: 'image' | 'video';
     metadata?: MediaMetadata & {
         width?: number;
         height?: number;
@@ -39,11 +39,11 @@ export interface ImageMedia extends Omit<Media, 'type' | 'metadata'> {
 }
 
 export interface FontMedia extends Omit<Media, 'type'> {
-    type?: 'font';
+    type: 'font';
 }
 
 export interface VideoMedia extends Omit<Media, 'type' | 'metadata'> {
-    type?: 'video';
+    type: 'video';
     metadata?: MediaMetadata & {
         width?: number;
         height?: number;
@@ -52,12 +52,12 @@ export interface VideoMedia extends Omit<Media, 'type' | 'metadata'> {
 }
 
 export interface AudioMedia extends Omit<Media, 'type' | 'metadata'> {
-    type?: 'audio';
+    type: 'audio';
     metadata?: MediaMetadata & {
         duration?: number;
     };
 }
 
 export interface ClosedCaptionsMedia extends Omit<Media, 'type'> {
-    type?: 'closed-captions';
+    type: 'closed-captions';
 }

@@ -4,25 +4,32 @@ import React, { useState } from 'react';
 
 import { EditorProvider } from '@micromag/core/contexts';
 
+import { ColorObject } from '../../../core/src/types';
 // import fieldsManager from '@micromag/fields';
-import Color from '../components/Color';
+import ColorField from '../components/Color';
 
 const meta = preview.meta({
-    component: Color,
+    component: ColorField,
     title: 'Fields/Color',
     parameters: {
         intl: true,
     },
 });
 
-function FieldContainer() {
-    const [value, setValue] = useState({
+function FieldContainer(props) {
+    const [value, setValue] = useState<ColorObject>({
         color: '#ff0000',
         alpha: 0.5,
     });
     return (
         <EditorProvider story={null}>
-            <Color value={value} onChange={setValue} />
+            <div style={{ maxWidth: 400 }}>
+                <h4>Field</h4>
+                <ColorField value={value} onChange={setValue} {...props} />
+                <hr />
+                <h4>Form</h4>
+                <ColorField value={value} onChange={setValue} isForm {...props} />
+            </div>
         </EditorProvider>
     );
 }
@@ -30,5 +37,11 @@ function FieldContainer() {
 export const normal = meta.story(() => (
     <div className="container mt-4">
         <FieldContainer />
+    </div>
+));
+
+export const disabled = meta.story(() => (
+    <div className="container mt-4">
+        <FieldContainer disabled />
     </div>
 ));

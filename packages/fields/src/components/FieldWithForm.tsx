@@ -1,14 +1,13 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
-import React, { isValidElement, useCallback, useMemo } from 'react';
+import React, { isValidElement } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { FormField, Label as LabelType, Message } from '@micromag/core';
+import type { Field as FieldType, Label as LabelType, Message } from '@micromag/core';
 import { ClearButton, Label } from '@micromag/core/components';
 import { isMessage } from '@micromag/core/utils';
 
@@ -26,7 +25,7 @@ function getItemLabel(item, labelPath, defaultValue) {
     }, defaultValue);
 }
 
-interface FieldWithFormProps {
+export interface FieldWithFormProps {
     value?: unknown | null;
     isForm?: boolean;
     canClear?: boolean;
@@ -38,8 +37,9 @@ interface FieldWithFormProps {
     noValueLabel?: LabelType | null;
     isHorizontal?: boolean;
     children?: React.ReactNode | null;
-    field?: FormField | null;
+    field?: FieldType | null;
     className?: string | null;
+    disabled?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;
     closeForm?: ((...args: unknown[]) => void) | null;
 }
@@ -60,6 +60,7 @@ function FieldWithForm({
     closeForm = null,
     children = null,
     field = null,
+    disabled = false,
     ...props
 }: FieldWithFormProps) {
     if (isForm) {
@@ -71,6 +72,7 @@ function FieldWithForm({
                 className="p-2"
                 {...field}
                 {...props}
+                disabled={disabled}
                 value={value}
                 onChange={onChange}
                 buttonTheme="primary"
@@ -80,6 +82,7 @@ function FieldWithForm({
             <Fields
                 className="p-2"
                 {...props}
+                disabled={disabled}
                 canClear={canClear}
                 value={value}
                 onChange={onChange}
@@ -172,11 +175,9 @@ function FieldWithForm({
                             <span className="col-auto ps-0">{thumbnailElement}</span>
                         ) : null}
                         {value !== null && canClear ? (
-                            <ClearButton
-                                className="ms-1"
-                                iconOnly
-                                onClick={onClear}
-                            />
+                            <span className="col-auto">
+                                <ClearButton iconOnly onClick={onClear} disabled={disabled} />
+                            </span>
                         ) : null}
                     </span>
                 </span>
@@ -184,7 +185,7 @@ function FieldWithForm({
                 <span
                     className={classNames([
                         'col-auto',
-                        'text-body-secondary',
+                        'text-muted',
                         {
                             'text-start': !isHorizontal,
                             'text-end': isHorizontal,

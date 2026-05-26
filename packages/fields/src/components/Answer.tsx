@@ -1,12 +1,8 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
 
 import type { ImageMedia } from '@micromag/core';
 
 import Fields from './Fields';
-
-import styles from '../styles/slide.module.css';
 
 interface AnswerFieldProps {
     value?: { text?: string; image?: ImageMedia } | null;
@@ -22,36 +18,20 @@ function AnswerField({
 }: AnswerFieldProps) {
     const { text = null } = value || {};
     return isForm ? (
-        <div
+        <Fields
             className={classNames([
-                styles.panel,
                 className,
+                {
+                    'p-2': isForm,
+                },
             ])}
-        >
-            <Fields
-                className={classNames([
-                    className,
-                    {
-                        'p-2': isForm,
-                    },
-                ])}
-                {...props}
-                isForm={isForm}
-                value={value}
-            />
-        </div>
+            {...props}
+            isForm={isForm}
+            value={value}
+        />
     ) : (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
-            {text !== null ? (
-                <span className={styles.value}>{text}</span>
-            ) : (
-                <span className={styles.noValue}>Entrez une question...</span>
-            )}
+        <div className={className}>
+            {text !== null ? text : <span className="text-muted">Entrez une question...</span>}
         </div>
     );
 }

@@ -1,10 +1,11 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
 import Slider from 'rc-slider';
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import Text from './Text';
+
+import 'rc-slider/assets/index.css';
 
 import styles from '../styles/slider.module.css';
 
@@ -42,7 +43,7 @@ const generateSteps = (steps, style) =>
         {},
     );
 
-interface SliderFieldProps {
+export interface SliderFieldProps {
     value?: string | null;
     min?: number;
     max?: number;
@@ -52,6 +53,7 @@ interface SliderFieldProps {
     marksStyle?: Record<string, unknown>;
     unit?: string | null;
     withInput?: boolean;
+    disabled?: boolean;
     className?: string | null;
     onChange?: ((...args: unknown[]) => void) | null;
 }
@@ -71,6 +73,7 @@ function SliderField({
     unit = null,
     withInput = false,
     className = null,
+    disabled = false,
     onChange = null,
 }: SliderFieldProps) {
     const customOnChange = useCallback(
@@ -95,45 +98,40 @@ function SliderField({
             undefined,
         [min, max, marks, marksStep, marksCount, marksStyle],
     );
-    const slider = (
-        <div className={styles.slider}>
-            <Slider
-                value={value !== null ? value : 0}
-                min={min}
-                max={max}
-                marks={finalMarks}
-                onChange={customOnChange}
-            />
-        </div>
-    );
     return (
         <div
             className={classNames([
+                'd-flex align-items-center w-100 no-selection',
                 styles.container,
-                className,
                 {
-                    [styles.withInput]: withInput,
+                    'text-muted': disabled,
                 },
+                className,
             ])}
         >
+            <div className="w-100 px-2 flex-grow-1">
+                <Slider
+                    value={value !== null ? value : 0}
+                    min={min}
+                    max={max}
+                    disabled={disabled}
+                    marks={finalMarks}
+                    onChange={customOnChange}
+                />
+            </div>
             {withInput ? (
-                <div className="row align-items-center no-gutters">
-                    <div className="col">{slider}</div>
-                    <div className="col-auto">
-                        <Text
-                            type="number"
-                            value={value}
-                            onChange={customOnChange}
-                            className={styles.input}
-                        />
-                    </div>
-                    {unit !== null ? (
-                        <div className={classNames(['col-auto', styles.unit])}>{unit}</div>
-                    ) : null}
-                </div>
-            ) : (
-                slider
-            )}
+                <>
+                    <Text
+                        type="number"
+                        value={value}
+                        disabled={disabled}
+                        className="w-auto"
+                        size={4}
+                        onChange={customOnChange}
+                    />
+                    {unit !== null ? <div className="ms-2 small">{unit}</div> : null}
+                </>
+            ) : null}
         </div>
     );
 }
