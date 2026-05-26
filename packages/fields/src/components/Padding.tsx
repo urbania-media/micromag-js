@@ -1,22 +1,18 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import isObject from 'lodash/isObject';
-import React, { useCallback } from 'react';
-// import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { Padding } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 
 import FieldWithForm from './FieldWithForm';
 import Spacing from './Spacing';
 
-import styles from '../styles/padding.module.css';
-
 interface PaddingFieldProps {
-    value?: string | { top?: string; left?: string; bottom?: string; right?: string } | null;
+    value?: number | Padding | null;
     isForm?: boolean;
     isHorizontal?: boolean;
     className?: string;
-    onChange?: ((...args: unknown[]) => void) | null;
+    onChange?: ((newValue: Padding | null) => void) | null;
     closeForm?: ((...args: unknown[]) => void) | null;
 }
 
@@ -36,8 +32,6 @@ function PaddingField({
         bottom = null,
     } = isObject(value) ? value : { top: value, left: value, bottom: value, right: value };
 
-    const defaultValue = isObject(value) ? null : value;
-
     const previewElement =
         value !== null ? (
             <span>
@@ -47,22 +41,19 @@ function PaddingField({
             </span>
         ) : null;
 
-    const onClickReset = useCallback(() => {
+    const onClickReset = () => {
         if (onChange !== null) {
             onChange(null);
         }
-    }, [onChange, closeForm]);
+    };
 
-    const onSpacingChange = useCallback(
-        (newValue, direction = null) => {
-            if (direction !== null) {
-                onChange({ ...(isObject(value) ? value : null), [direction]: newValue });
-            } else {
-                onChange(newValue);
-            }
-        },
-        [value, onChange],
-    );
+    const onSpacingChange = (newValue, direction = null) => {
+        if (direction !== null) {
+            onChange({ ...(isObject(value) ? value : null), [direction]: newValue });
+        } else {
+            onChange(newValue);
+        }
+    };
 
     return (
         <FieldWithForm
@@ -79,8 +70,8 @@ function PaddingField({
             <div className="p-2">
                 <div className="d-flex w-100 align-content-center justify-content-center my-2">
                     <Spacing
-                        className={styles.spacing}
-                        value={defaultValue || top}
+                        className="w-auto"
+                        value={top}
                         onChange={(val) => onSpacingChange(val, 'top')}
                         placeholder={intl.formatMessage({
                             defaultMessage: 'Top',
@@ -90,8 +81,8 @@ function PaddingField({
                 </div>
                 <div className="d-flex w-100 align-content-center justify-content-between my-2">
                     <Spacing
-                        className={styles.spacing}
-                        value={defaultValue || left}
+                        className="w-auto"
+                        value={left}
                         onChange={(val) => onSpacingChange(val, 'left')}
                         placeholder={intl.formatMessage({
                             defaultMessage: 'Left',
@@ -99,8 +90,8 @@ function PaddingField({
                         })}
                     />
                     <Spacing
-                        className={styles.spacing}
-                        value={defaultValue || right}
+                        className="w-auto"
+                        value={right}
                         onChange={(val) => onSpacingChange(val, 'right')}
                         placeholder={intl.formatMessage({
                             defaultMessage: 'Right',
@@ -110,8 +101,8 @@ function PaddingField({
                 </div>
                 <div className="d-flex w-100 align-content-center justify-content-center my-2">
                     <Spacing
-                        className={styles.spacing}
-                        value={defaultValue || bottom}
+                        className="w-auto"
+                        value={bottom}
                         onChange={(val) => onSpacingChange(val, 'bottom')}
                         placeholder={intl.formatMessage({
                             defaultMessage: 'Bottom',

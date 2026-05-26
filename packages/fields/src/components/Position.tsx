@@ -5,109 +5,121 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons/faDotCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
+import isString from 'lodash/isString';
+import { Fragment, useId } from 'react';
 
-import getSelectOptions from '../utils/getSelectOptions';
-
-import styles from '../styles/position.module.css';
-
-interface IconProps {
+interface PositionValue {
+    horizontal?: string;
+    vertical?: string;
+}
+interface PositionProps {
     name?: string;
-    value?: string;
-    axisOptions?: string[];
-    crossOptions?: string[];
+    value?: string | PositionValue | null;
     className?: string;
+    disabled?: boolean;
     buttonClassName?: string;
-    onChange?: (...args: unknown[]) => void;
+    onChange?: (newValue: PositionValue | null) => void;
 }
 
-function Icon({ label }: IconProps) {
-    switch (label) {
-        case 'top-left':
-            return <FontAwesomeIcon icon={faArrowUp} className={styles.rotateLeft} />;
-        case 'top-center':
-            return <FontAwesomeIcon icon={faArrowUp} className={styles.icon} />;
-        case 'top-right':
-            return <FontAwesomeIcon icon={faArrowUp} className={styles.rotateRight} />;
-        case 'center-left':
-            return <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} />;
-        case 'center-center':
-            return <FontAwesomeIcon icon={faDotCircle} className={styles.icon} />;
-        case 'center-right':
-            return <FontAwesomeIcon icon={faArrowRight} className={styles.icon} />;
-        case 'bottom-left':
-            return <FontAwesomeIcon icon={faArrowDown} className={styles.rotateRight} />;
-        case 'bottom-center':
-            return <FontAwesomeIcon icon={faArrowDown} className={styles.icon} />;
-        case 'bottom-right':
-            return <FontAwesomeIcon icon={faArrowDown} className={styles.rotateLeft} />;
-        default:
-    }
-    return null;
-}
-
-const defaultAxisOptions = ['top', 'center', 'bottom'];
-const defaultCrossOptions = ['left', 'center', 'right'];
+const icons = {
+    'top-left': faArrowUp,
+    'top-center': faArrowUp,
+    'top-right': faArrowUp,
+    'center-left': faArrowLeft,
+    'center-center': faDotCircle,
+    'center-right': faArrowRight,
+    'bottom-left': faArrowDown,
+    'bottom-center': faArrowDown,
+    'bottom-right': faArrowDown,
+};
 
 function Position({
     name = null,
     value = null,
-    axisOptions: vertical = defaultAxisOptions,
-    crossOptions: horizontal = defaultCrossOptions,
     className = null,
     buttonClassName = null,
+    disabled = false,
     onChange = null,
-}) {
-    const axisOptions = useMemo(() => getSelectOptions(vertical), [vertical]);
-    const crossOptions = useMemo(() => getSelectOptions(horizontal), [horizontal]);
-    const { axisAlign = null, crossAlign = null } = value || {};
+}: PositionProps) {
+    const horizontalValue = isString(value) ? value.split(' ')?.[0] : value?.horizontal;
+    const verticalValue = isString(value) ? value.split(' ')?.[1] : value?.vertical;
+    const onInputChange = (e) => {
+        const newValue = e.currentTarget.checked
+            ? e.currentTarget.value.split(' ').reduce(
+                  (map, val, index) => ({
+                      ...map,
+                      [index === 0 ? 'horizontal' : 'vertical']: val,
+                  }),
+                  {},
+              )
+            : null;
+        if (onChange !== null) {
+            onChange(newValue);
+        }
+    };
+    const id = useId();
     return (
         <div
-            className={classNames([
-                'btn-group',
-                'btn-group-toggle',
-                styles.container,
-                className,
-            ])}
+            className={classNames(['d-flex', 'flex-column', 'flex-wrap', className])}
             data-toggle="buttons"
         >
-            {axisOptions.map(({ value: axisOption, label: axisLabel }) =>
-                crossOptions.map(({ value: crossOption, label: crossLabel }) => (
-                    <label
-                        key={`radio-${axisOption}-${crossOption}`}
-                        className={classNames([
-                            'btn',
-                            'btn-outline-secondary',
-                            buttonClassName,
-                            {
-                                [styles.button]: true,
-                                active: axisOption === axisAlign && crossOption === crossAlign,
-                            },
-                        ])}
-                    >
-                        <input
-                            type="radio"
-                            name={name}
-                            autoComplete="off"
-                            value={`${axisOption}-${crossOption}`}
-                            onChange={(e) => {
-                                if (onChange !== null) {
-                                    onChange(
-                                        e.currentTarget.checked
-                                            ? {
-                                                  axisAlign: axisOption,
-                                                  crossAlign: crossOption,
-                                              }
-                                            : value,
-                                    );
+            {['top', 'center', 'bottom'].map((verticalOption, verticalIndex) => (
+                <div className="btn-group btn-group-toggle" key={`option-${verticalOption}`}>
+                    {['left', 'center', 'right'].map((horizontalOption) => (
+                        <Fragment key={`option-${verticalOption}-${horizontalOption}`}>
+                            <input
+                                type="radio"
+                                name={name}
+                                className="btn-check"
+                                autoComplete="off"
+                                id={`${id}-${verticalOption}-${horizontalOption}`}
+                                value={`${horizontalOption} ${verticalOption}`}
+                                onChange={onInputChange}
+                                disabled={disabled}
+                                checked={
+                                    verticalOption === verticalValue &&
+                                    horizontalOption === horizontalValue
                                 }
-                            }}
-                            checked={axisOption === axisAlign && crossOption === crossAlign}
-                        />{' '}
-                        <Icon label={`${axisLabel}-${crossLabel}`} />
-                    </label>
-                )),
-            )}
+                            />
+                            <label
+                                className={classNames([
+                                    'btn',
+                                    'btn-outline-secondary',
+                                    buttonClassName,
+                                    {
+                                        disabled,
+                                        'rounded-top-0': verticalIndex > 0,
+                                        'rounded-bottom-0': verticalIndex <= 1,
+                                        'border-top-0': verticalIndex > 0,
+                                        active:
+                                            verticalOption === verticalValue &&
+                                            horizontalOption === horizontalValue,
+                                    },
+                                ])}
+                                htmlFor={`${id}-${verticalOption}-${horizontalOption}`}
+                            >
+                                <FontAwesomeIcon
+                                    icon={icons[`${verticalOption}-${horizontalOption}`]}
+                                    style={{
+                                        transform:
+                                            (verticalOption === 'top' &&
+                                                horizontalOption === 'right') ||
+                                            (verticalOption === 'bottom' &&
+                                                horizontalOption === 'left')
+                                                ? 'rotate(45deg)'
+                                                : (verticalOption === 'top' &&
+                                                        horizontalOption === 'left') ||
+                                                    (verticalOption === 'bottom' &&
+                                                        horizontalOption === 'right')
+                                                  ? 'rotate(-45deg)'
+                                                  : 'none',
+                                    }}
+                                />
+                            </label>
+                        </Fragment>
+                    ))}
+                </div>
+            ))}
         </div>
     );
 }

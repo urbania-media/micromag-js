@@ -1,26 +1,26 @@
-
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import { getCSRFHeaders } from '@folklore/fetch';
 import classNames from 'classnames';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useUppyConfig } from '@panneau/uppy';
 
-import { Button, ModalDialog as Dialog, Modal } from '@micromag/core/components';
+import { TextElement as TextElementType } from '@micromag/core';
+import { ModalDialog as Dialog, Modal } from '@micromag/core/components';
 
-import EditorField from './TextEditor';
+import EditorField, { TextEditorFieldProps } from './TextEditor';
 import TextElement from './TextElement';
 
 import styles from '../styles/text-modal.module.css';
 
-interface TextModalProps {
+interface TextModalProps extends Omit<TextEditorFieldProps, 'value' | 'onChange' | 'disabled'> {
     title?: string | null;
-    value?: { body?: string } | null;
+    value?: TextElementType | null;
     editorConfig?: Record<string, unknown> | null;
     inline?: boolean;
     withHighlightColors?: boolean;
-    onChange?: ((...args: unknown[]) => void) | null;
+    disabled?: boolean;
+    onChange?: ((newValue: TextElementType | null) => void) | null;
     onRequestClose?: ((...args: unknown[]) => void) | null;
     className?: string | null;
 }
@@ -34,103 +34,89 @@ function TextModal({
     className = null,
     onRequestClose = null,
     onChange = null,
+    disabled = false,
     ...props
 }: TextModalProps) {
-    const [modalOpen, setModalOpen] = useState();
+    const [modalOpen, setModalOpen] = useState(false);
 
     const { locale } = useIntl();
     const { xhr } = useUppyConfig();
     const { endpoint: xhrEndpoint = null } = xhr || {};
 
-    const previewEditorConfig = useMemo(
-        () => ({
-            extraPlugins: [],
-            highlight: {
-                options: [],
-            },
-            language: locale,
-        }),
-        [editorConfig, inline, locale],
-    );
+    const previewEditorConfig = {
+        extraPlugins: [],
+        highlight: {
+            options: [],
+        },
+        language: locale,
+    };
 
-    const finalEditorConfig = useMemo(
-        () => ({
-            toolbar: [
-                'heading2',
-                'heading3',
-                'paragraph',
-                '|',
-                'bold',
-                'italic',
-                '|',
-                'link',
-                'blockQuote',
-                'bulletedList',
-                'numberedList',
-                'uploadImage',
-                // 'mediaEmbed',
-            ],
-            link: {
-                addTargetToExternalLinks: true,
+    const finalEditorConfig = {
+        toolbar: [
+            'heading2',
+            'heading3',
+            'paragraph',
+            '|',
+            'bold',
+            'italic',
+            '|',
+            'link',
+            'blockQuote',
+            'bulletedList',
+            'numberedList',
+            'uploadImage',
+            // 'mediaEmbed',
+        ],
+        link: {
+            addTargetToExternalLinks: true,
+        },
+        simpleUpload: {
+            uploadUrl: xhrEndpoint || null,
+            withCredentials: true,
+            headers: {
+                // 'X-CSRF-TOKEN': 'CSRF-Token',
+                // Authorization: 'Bearer <JSON Web Token>',
+                ...getCSRFHeaders(),
             },
-            simpleUpload: {
-                uploadUrl: xhrEndpoint || null,
-                withCredentials: true,
-                headers: {
-                    // 'X-CSRF-TOKEN': 'CSRF-Token',
-                    // Authorization: 'Bearer <JSON Web Token>',
-                    ...getCSRFHeaders(),
-                },
-            },
-        }),
-        [editorConfig, inline, locale],
-    );
+        },
+        ...editorConfig,
+    };
 
     const bodyValue =
         value !== null && typeof value.body !== 'undefined' ? value.body || null : null;
 
-    const onBodyChange = useCallback(
-        (newBody) => {
-            const newValue = {
-                ...value,
-                body: newBody,
-            };
-            if (onChange !== null) {
-                onChange(newValue);
-            }
-        },
-        [value, onChange],
-    );
+    const onBodyChange = (newBody) => {
+        const newValue = {
+            ...value,
+            body: newBody,
+        };
+        if (onChange !== null) {
+            onChange(newValue);
+        }
+    };
 
-    const onOpen = useCallback(
-        (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setModalOpen(true);
-        },
-        [setModalOpen],
-    );
+    const onOpen = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setModalOpen(true);
+    };
 
-    const onClose = useCallback(
-        (e) => {
-            setModalOpen(false);
-            if (onRequestClose !== null) {
-                onRequestClose(e);
-            }
-        },
-        [setModalOpen, onRequestClose],
-    );
+    const onClose = (e) => {
+        setModalOpen(false);
+        if (onRequestClose !== null) {
+            onRequestClose(e);
+        }
+    };
 
     return (
         <>
-            <button type="button" className={styles.previewButton} onClick={onOpen}>
-                <TextElement
-                    className={styles.preview}
-                    inline
-                    value={value}
-                    disabled
-                    editorConfig={previewEditorConfig}
-                />
+            <button
+                type="button"
+                disabled={disabled}
+                className={classNames([styles.previewButton, className])}
+                onClick={onOpen}
+            >
+                <TextElement inline value={value} disabled editorConfig={previewEditorConfig} />
             </button>
             {modalOpen ? (
                 <Modal>
@@ -143,22 +129,19 @@ function TextModal({
                                 />
                             )
                         }
-                        className={classNames([
-                            styles.dialog,
-                            className,
-                        ])}
-                        bodyClassName={styles.dialogBody}
                         onClose={onClose}
-                        footer={
-                            <div className="p-2">
-                                <Button className={styles.close} theme="primary" onClick={onClose}>
+                        buttons={[
+                            {
+                                theme: 'primary',
+                                onClick: onClose,
+                                label: (
                                     <FormattedMessage
                                         defaultMessage="Close"
                                         description="Button label"
                                     />
-                                </Button>
-                            </div>
-                        }
+                                ),
+                            },
+                        ]}
                     >
                         <EditorField
                             {...props}

@@ -40,10 +40,6 @@
         }
     }
 
-    .center {
-        background-color: var(--mm-gray-900, #2b2b2b);
-    }
-
     .preview {
         position: absolute;
         top: 0;

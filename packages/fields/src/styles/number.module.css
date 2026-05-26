@@ -1,82 +1,9 @@
-.container {
-    position: relative;
+.input {
+    appearance: textfield;
 
-    .input {
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-            appearance: none;
-        }
-
-        max-width: 80px;
-        padding-right: 20px;
-        margin-left: auto;
-        appearance: textfield;
-    }
-
-    .arrow {
-        position: absolute;
-        top: 0;
-        right: 4px;
-        display: flex;
-        width: 20px;
-        height: 100%;
-        pointer-events: none;
-    }
-
-    .arrowIcon {
-        margin: auto;
-        font-size: 10px;
-    }
-
-    .clearButton {
-        position: relative;
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        right: 8px;
-        display: inline-block;
-        padding: 0;
-        border: 0;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        margin: 0;
         appearance: none;
-        background: transparent;
-        color: inherit;
-        cursor: pointer;
-        font-family: inherit;
-        transform: translateY(-50%);
-    }
-
-    .dataListItems {
-        position: absolute;
-        z-index: 2;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        padding: 2px 0;
-        border-radius: 4px;
-        background-color: var(--mm-gray-700, #494949);
-        list-style-type: none;
-    }
-
-    .dataListItem {
-        width: 100%;
-        padding: 0 2px;
-    }
-
-    .dataListItemButton {
-        width: 100%;
-        border: 0;
-        background-color: rgb(28 28 28 / 0);
-        color: var(--mm-white, #fff);
-        text-align: left;
-
-        &:hover {
-            background-color: rgb(28 28 28 / 0.1);
-        }
-    }
-
-    &.fullWidth {
-        .input {
-            max-width: none;
-        }
     }
 }

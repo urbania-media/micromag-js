@@ -173,12 +173,7 @@ function MediaModal({
                             'align-items-center',
                             'flex-grow-1',
                             {
-                                'btn-dark': !isHorizontal,
-                                // [styles.shaded]: !isHorizontal,
-                                // [styles.small]: isHorizontal,
-                                // 'p-2': !isHorizontal,
-                                // 'mx-auto': !isHorizontal,
-                                // 'bg-dark': !isHorizontal,
+                                'btn-light': !isHorizontal,
                             },
                         ])}
                         disabled={disabled}
@@ -190,7 +185,6 @@ function MediaModal({
                         <span
                             className={classNames([
                                 'flex-grow-1',
-                                'text-monospace',
                                 'text-truncate',
                                 {
                                     // 'fw-bold': value !== null,
@@ -228,7 +222,6 @@ function MediaModal({
                     <Dialog
                         title={dialogTitle}
                         className={classNames([styles.dialog, className])}
-                        bodyClassName={styles.dialogBody}
                         size="xl"
                         onClose={onClose}
                         buttons={
@@ -270,6 +263,7 @@ function MediaModal({
                             isPicker
                             multiple={multiple}
                             onChange={onChangeMedia}
+                            className={styles.mediaGallery}
                             onMediaFormOpen={onMediaFormOpen}
                             onMediaFormClose={onMediaFormClose}
                         />

@@ -1,18 +1,12 @@
 .container {
-    width: 100%;
-
-    .button {
-        padding: 4px;
-    }
-
     .grid {
         width: 50px;
-        height: 80px;
-        border: solid 2px var(--mm-gray-400, #b3b3b3);
+        height: 60px;
+        border: solid 1px currentcolor;
     }
 
     .column {
-        border: solid 1px var(--mm-gray-400, #b3b3b3);
-        background: var(--mm-gray-100, #f5f5f5);
+        margin: 2px;
+        background: currentcolor;
     }
 }

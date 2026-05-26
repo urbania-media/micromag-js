@@ -1,60 +1,76 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
-
 import type { TextElement as TextElementType } from '@micromag/core';
 
-import TextField from './Text';
-import EditorField from './TextEditor';
-import TextareaField from './Textarea';
+import TextField, { TextFieldProps } from './Text';
+import EditorField, { TextEditorFieldProps } from './TextEditor';
+import TextareaField, { TextareaFieldProps } from './Textarea';
 
-interface TextElementProps {
+interface BaseTextElementProps {
     value?: TextElementType | null;
     inline?: boolean;
     textOnly?: boolean;
-    onChange?: ((...args: unknown[]) => void) | null;
-    onFocus?: ((...args: unknown[]) => void) | null;
+    onChange?: ((newValue: TextElementType | null) => void) | null;
     disabled?: boolean;
 }
+
+interface InlineTextOnlyTextElementProps
+    extends BaseTextElementProps, Partial<Omit<TextFieldProps, 'value' | 'onChange' | 'disabled'>> {
+    inline: true;
+    textOnly: true;
+}
+
+interface TextOnlyTextElementProps
+    extends
+        BaseTextElementProps,
+        Partial<Omit<TextareaFieldProps, 'value' | 'onChange' | 'disabled'>> {
+    inline: false;
+    textOnly: true;
+}
+
+interface TextEditorTextElementProps
+    extends
+        BaseTextElementProps,
+        Partial<Omit<TextEditorFieldProps, 'value' | 'onChange' | 'disabled'>> {
+    textOnly?: false;
+}
+
+type TextElementProps =
+    | InlineTextOnlyTextElementProps
+    | TextOnlyTextElementProps
+    | TextEditorTextElementProps;
 
 function TextElement({
     value = null,
     onChange = null,
     inline = false,
     textOnly = false,
-    onFocus = null,
     disabled = false,
     ...props
 }: TextElementProps) {
     const bodyValue = value !== null ? value.body || null : null;
     const textStyleValue = value !== null ? value.textStyle || null : null;
-    const onBodyChange = useCallback(
-        (newBody) => {
-            const newValue = {
-                ...value,
-                body: newBody,
-            };
-            if (onChange !== null) {
-                onChange(newValue);
-            }
-        },
-        [value, onChange],
-    );
+    const onBodyChange = (newBody) => {
+        const newValue = {
+            ...value,
+            body: newBody,
+        };
+        if (onChange !== null) {
+            onChange(newValue);
+        }
+    };
 
     if (textOnly) {
         return inline ? (
             <TextField
-                {...props}
+                {...(props as TextFieldProps)}
                 value={bodyValue}
                 onChange={onBodyChange}
-                onFocus={onFocus}
                 disabled={disabled}
             />
         ) : (
             <TextareaField
-                {...props}
+                {...(props as TextareaFieldProps)}
                 value={bodyValue}
                 onChange={onBodyChange}
-                onFocus={onFocus}
                 disabled={disabled}
             />
         );
@@ -62,12 +78,11 @@ function TextElement({
 
     return (
         <EditorField
-            {...props}
+            {...(props as TextEditorFieldProps)}
             inline={inline}
             textStyle={textStyleValue}
             value={bodyValue}
             onChange={onBodyChange}
-            onFocus={onFocus}
             disabled={disabled}
         />
     );

@@ -99,7 +99,6 @@ function FieldRow({
             'mb-0': isListItem,
             'py-2': isListItem,
             'px-2': isListItem,
-            'text-light': isListItem,
         },
         className,
     ]);
@@ -257,11 +256,8 @@ function FieldRow({
                         'w-100',
                         'px-2',
                         buttonClassName,
-                        {
-                            'bg-dark': buttonTheme === null,
-                        },
                     ])}
-                    theme={buttonTheme}
+                    theme={buttonTheme ?? 'light'}
                     outline={buttonOutline}
                     onClick={onClickRow}
                 >

@@ -25,4 +25,5 @@ const FieldContainer = (props) => {
 };
 
 export const normal = meta.story(() => <FieldContainer />);
+export const isForm = meta.story(() => <FieldContainer isForm />);
 export const disabled = meta.story(() => <FieldContainer disabled />);

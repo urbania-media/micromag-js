@@ -1,11 +1,10 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import React from 'react';
+import { TextareaHTMLAttributes } from 'react';
 
 import type { Errors } from '@micromag/core';
 
-interface TextareaFieldProps {
+export interface TextareaFieldProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     id?: string | null;
     value?: string | number | null;
     errors?: Errors | null;
@@ -21,6 +20,7 @@ function TextareaField({
     required = false,
     className = null,
     onChange = null,
+    ...props
 }: TextareaFieldProps) {
     return (
         <textarea
@@ -37,6 +37,7 @@ function TextareaField({
                 onChange !== null ? onChange(!isEmpty(newValue) ? newValue : null) : null
             }
             required={required}
+            {...props}
         />
     );
 }

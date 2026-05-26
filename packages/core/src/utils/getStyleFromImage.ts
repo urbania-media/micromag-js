@@ -6,12 +6,12 @@ const getStyleFromImage = (value) => {
     }
     const { fit = {}, backgroundColor = null } = value;
     const { size = null, position = {} } = fit;
-    const { axisAlign = null, crossAlign = null } = position;
+    const { vertical = null, horizontal = null } = position;
 
     return {
         ...(size !== null ? { objectFit: size } : null),
-        ...(axisAlign !== null && crossAlign !== null
-            ? { objectPosition: `${axisAlign} ${crossAlign}` }
+        ...(vertical !== null || horizontal !== null
+            ? { objectPosition: [vertical, horizontal].filter((it) => it !== null).join(' ') }
             : null),
         ...getStyleFromColor(backgroundColor, 'backgroundColor'),
     };

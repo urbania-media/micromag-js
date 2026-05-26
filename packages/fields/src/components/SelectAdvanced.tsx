@@ -1,18 +1,16 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import classNames from 'classnames';
 import isEqual from 'lodash/isEqual';
-import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import Select from 'react-select';
+import Select, { type Props as SelectProps } from 'react-select';
 
 import type { SelectOption } from '@micromag/core';
+import { isMessage } from '@micromag/core/utils';
 
 import getSelectOptions from '../utils/getSelectOptions';
 import { selectTheme } from '../utils/selectTheme';
 
 const emptyArray: never[] = [];
 
-interface SelectAdvancedFieldProps {
+interface SelectAdvancedFieldProps extends SelectProps {
     name?: string | null;
     value?: string | null;
     options?: SelectOption[];
@@ -32,42 +30,30 @@ function SelectAdvancedField({
     onChange = null,
     ...props
 }: SelectAdvancedFieldProps) {
-    const finalOptions = useMemo(() => getSelectOptions(options), [options]);
+    const finalOptions = getSelectOptions(options).map(({ label, ...option }) => ({
+        ...option,
+        label: isMessage(label) ? intl.formatMessage(label) : label,
+    }));
     const intl = useIntl();
-    const translatedOptions = useMemo(() =>
-        finalOptions.map(({ label, ...option }) => ({
-            ...option,
-            label: typeof label === 'object' ? intl.formatMessage(label) : label,
-        })),
-    );
-    const onChangeOption = useCallback(
-        (newValue) => {
-            if (onChange !== null) {
-                onChange(newValue !== null && newValue.value ? newValue.value : null);
-            }
-        },
-        [onChange],
-    );
-    const optionValue = useMemo(
-        () =>
-            translatedOptions.find((opt) =>
-                opt.value !== null ? isEqual(value, opt.value) : false,
-            ),
-        [value, options],
+    const onChangeOption = (newValue) => {
+        if (onChange !== null) {
+            onChange(newValue !== null && newValue.value ? newValue.value : null);
+        }
+    };
+    const optionValue = finalOptions.find((opt) =>
+        opt.value !== null ? isEqual(value, opt.value) : false,
     );
 
     return (
         <Select
-            className={classNames([
-                className,
-            ])}
+            className={className}
             isClearable={!withoutReset}
             {...props}
             id={name}
             name={name}
             value={optionValue || value || null}
-            options={translatedOptions}
-            disabled={disabled}
+            options={finalOptions}
+            isDisabled={disabled}
             onChange={onChangeOption}
             theme={selectTheme}
         />

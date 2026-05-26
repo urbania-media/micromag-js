@@ -197,6 +197,7 @@ function Editor({
                             <div
                                 className={classNames([
                                     styles.center,
+                                    'bg-dark',
                                     {
                                         [styles.visible]: !isMobile || mobileView === 'preview',
                                     },

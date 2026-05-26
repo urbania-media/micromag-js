@@ -1,6 +1,7 @@
 .container {
     padding: 10px;
-    mix-blend-mode: difference;
+
+    /* mix-blend-mode: difference; */
     text-align: center;
 
     .icon {

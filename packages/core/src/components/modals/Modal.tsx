@@ -29,12 +29,13 @@ function Modal({ id = null, children = null, position = 'center', title = null }
             <div
                 className={classNames([
                     styles.container,
+                    'modal',
                     {
                         [styles[position]]: position !== null,
                     },
                 ])}
             >
-                <div className={classNames([styles.inner, 'bg-dark', 'rounded'])}>{children}</div>
+                {children}
             </div>
         </Portal>
     );

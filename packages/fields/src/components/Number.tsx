@@ -1,13 +1,16 @@
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { useCallback, useState } from 'react';
+import { HTMLAttributes, ReactNode, useState } from 'react';
 
 import { ClearButton } from '@micromag/core/components';
 
 import styles from '../styles/number.module.css';
 
-interface NumberFieldProps {
+export interface NumberFieldProps extends Omit<
+    HTMLAttributes<HTMLInputElement>,
+    'prefix' | 'onChange'
+> {
     inputId?: string | null;
     name?: string | null;
     value?: number | null;
@@ -17,11 +20,12 @@ interface NumberFieldProps {
     floatStep?: number;
     float?: boolean;
     dataList?: number[] | null;
+    prefix?: ReactNode | null;
+    suffix?: ReactNode | null;
     autoComplete?: boolean;
-    fullWidth?: boolean;
-    placeholder?: string | null;
+    disabled?: boolean;
     className?: string | null;
-    onChange?: ((...args: unknown[]) => void) | null;
+    onChange?: ((newValue: number | null) => void) | null;
 }
 
 function NumberField({
@@ -34,89 +38,102 @@ function NumberField({
     floatStep = 0.1,
     float = false,
     dataList = null,
+    prefix = null,
+    suffix = null,
     autoComplete = false,
-    fullWidth = false,
-    placeholder = null,
+    disabled = false,
     className = null,
     onChange = null,
+    ...props
 }: NumberFieldProps) {
-    const parseValue = useCallback((newValue) =>
-        float ? parseFloat(newValue) : parseInt(newValue, 10),
-    );
-    const onInputChange = useCallback(
-        (e) => {
-            if (onChange !== null) {
-                const val = e.currentTarget.value;
-                onChange(val.length ? parseValue(val) : null);
-            }
-        },
-        [onChange],
-    );
+    const parseValue = (newValue) => (float ? parseFloat(newValue) : parseInt(newValue, 10));
+    const onInputChange = (e) => {
+        if (onChange !== null) {
+            const val = e.currentTarget.value;
+            onChange(val.length > 0 ? parseValue(val) : null);
+        }
+    };
 
     const hasDataList = dataList !== null;
     const [dataListActive, setDataListActive] = useState(false);
 
-    const onInputFocus = useCallback(() => {
+    const onInputFocus = () => {
         if (hasDataList) {
             setDataListActive(true);
         }
-    }, [setDataListActive, hasDataList]);
+    };
 
-    const onInputBlur = useCallback(() => {
+    const onInputBlur = () => {
         if (hasDataList && dataListActive) {
             setDataListActive(false);
         }
-    }, [setDataListActive, hasDataList, dataListActive]);
+    };
 
-    const onDataListClick = useCallback(
-        (dataListValue) => {
-            if (onChange !== null) {
-                onChange(parseValue(dataListValue));
-                setDataListActive(false);
-            }
-        },
-        [onChange, setDataListActive],
-    );
+    const onDataListClick = (dataListValue) => {
+        if (onChange !== null) {
+            onChange(parseValue(dataListValue));
+            setDataListActive(false);
+        }
+    };
 
-    const onClear = useCallback(() => {
+    const onClear = () => {
         if (onChange !== null) {
             onChange(null);
         }
-    }, [onChange]);
+    };
 
     return (
         <div
-            className={classNames([styles.container, className, { [styles.fullWidth]: fullWidth }])}
+            className={classNames(
+                {
+                    'input-group': prefix !== null || suffix !== null,
+                    dropdown: hasDataList,
+                },
+                className,
+            )}
         >
+            {prefix !== null ? <span className="input-group-text">{prefix}</span> : null}
             <input
                 id={inputId}
                 type="number"
-                className={classNames([styles.input, 'form-control', 'ms-auto'])}
+                className={classNames(['form-control', styles.input])}
                 name={name}
                 value={value !== null ? value : ''}
                 min={min}
                 max={max}
                 step={float ? floatStep : step}
                 autoComplete={autoComplete ? 'on' : 'off'}
+                disabled={disabled}
                 onChange={onInputChange}
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
-                placeholder={placeholder}
+                {...props}
             />
             {value === null && hasDataList ? (
-                <div className={styles.arrow}>
-                    <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronDown} />
+                <div className="position-absolute top-0 end-0 d-flex h-100 p-2 align-items-center pe-none">
+                    <FontAwesomeIcon className="m-auto" icon={faChevronDown} />
                 </div>
             ) : null}
             {value !== null ? (
-                <ClearButton className={styles.clearButton} onClick={onClear} />
+                <ClearButton
+                    onClick={onClear}
+                    className="position-absolute top-0 end-0 h-100 align-items-center justify-content-center p-2"
+                />
             ) : null}
+            {suffix !== null ? <span className="input-group-text">{suffix}</span> : null}
             {hasDataList && dataListActive ? (
-                <ul className={styles.dataListItems}>
+                <ul
+                    className={classNames([
+                        'dropdown-menu mt-2',
+                        {
+                            show: dataListActive,
+                        },
+                    ])}
+                >
                     {dataList.map((dataListValue) => (
-                        <li key={`data-list-${dataListValue}`} className={styles.dataListItem}>
+                        <li key={`data-list-${dataListValue}`}>
                             <button
-                                className={styles.dataListItemButton}
+                                className="dropdown-item"
                                 type="button"
                                 onTouchStart={() => {
                                     onDataListClick(dataListValue);

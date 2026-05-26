@@ -1,20 +1,18 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
+import { Button, Label as LabelType } from '../../types';
 import Buttons from '../buttons/Buttons';
 import Label from '../partials/Label';
 
-import styles from '../../styles/modals/dialog.module.css';
-
 interface ModalDialogProps {
-    title?: Label | null;
-    header?: React.ReactNode | null;
-    children?: React.ReactNode | null;
-    footer?: React.ReactNode | null;
+    title?: LabelType | null;
+    header?: ReactNode | null;
+    children?: ReactNode | null;
+    footer?: ReactNode | null;
     size?: string | null;
     buttons?: Button[] | null;
-    onClose?: ((...args: unknown[]) => void) | null;
+    onClose?: MouseEventHandler<HTMLButtonElement> | null;
     className?: string | null;
     bodyClassName?: string | null;
 }
@@ -33,12 +31,9 @@ function ModalDialog({
     return (
         <div
             className={classNames([
-                styles.container,
                 'modal-dialog',
+                size !== null ? `modal-${size}` : null,
                 className,
-                {
-                    [`modal-${size}`]: size !== null,
-                },
             ])}
             role="dialog"
         >
@@ -50,7 +45,6 @@ function ModalDialog({
                             'p-2',
                             'd-flex',
                             'justify-content-between',
-                            styles.header,
                         ])}
                     >
                         <h5 className="modal-title">
@@ -64,21 +58,11 @@ function ModalDialog({
                         />
                     </div>
                 )}
-                <div
-                    className={classNames([
-                        'modal-body',
-                        'p-2',
-                        bodyClassName,
-                    ])}
-                >
-                    {children}
-                </div>
+                <div className={classNames(['modal-body', 'p-2', bodyClassName])}>{children}</div>
                 {footer !== null || buttons !== null ? (
-                    <div className={classNames(['modal-footer', 'p-2', styles.footer])}>
+                    <div className={classNames(['modal-footer', 'p-2'])}>
                         {footer}
-                        {buttons !== null ? (
-                            <Buttons buttons={buttons} className={styles.buttons} />
-                        ) : null}
+                        {buttons !== null ? <Buttons buttons={buttons} /> : null}
                     </div>
                 ) : null}
             </div>

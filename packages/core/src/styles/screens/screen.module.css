@@ -1,6 +1,6 @@
 .container {
-    background-color: var(--mm-black, #000);
-    color: var(--mm-white, #fff);
+    background-color: var(--mm-screen-bg, var(--mm-black, #000));
+    color: var(--mm-screen-color, var(--mm-white, #fff));
     font-family: Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: normal;

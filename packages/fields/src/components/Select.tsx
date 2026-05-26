@@ -1,16 +1,13 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
+import { HTMLAttributes } from 'react';
 
 import type { SelectOption } from '@micromag/core';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
-import styles from '../styles/select.module.css';
-
 const emptyArray: never[] = [];
 
-interface SelectFieldProps {
+interface SelectFieldProps extends HTMLAttributes<HTMLSelectElement> {
     value?: string | null;
     options?: SelectOption[];
     disabled?: boolean;
@@ -24,21 +21,11 @@ function SelectField({
     disabled = false,
     className = null,
     onChange = null,
+    ...props
 }: SelectFieldProps) {
-    const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <select
-            className={classNames([
-                styles.container,
-                'form-select',
-                className,
-                {
-                    [styles.lightCaret]: !disabled,
-                    'bg-dark': !disabled,
-                    'text-light': !disabled,
-                    'text-dark': disabled,
-                },
-            ])}
+            className={classNames(['form-select', className])}
             value={value || ''}
             disabled={disabled}
             onChange={(e) =>
@@ -46,9 +33,10 @@ function SelectField({
                     ? onChange(e.currentTarget.value !== '' ? e.currentTarget.value : null)
                     : null
             }
+            {...props}
         >
             <option value="">--</option>
-            {finalOptions.map(({ value: optionValue, label: optionLabel }) => (
+            {getSelectOptions(options).map(({ value: optionValue, label: optionLabel }) => (
                 <option key={`select-${optionValue}`} value={optionValue}>
                     {optionLabel}
                 </option>

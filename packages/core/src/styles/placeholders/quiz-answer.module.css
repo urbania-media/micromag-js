@@ -1,7 +1,8 @@
 .container {
     display: flex;
     align-items: center;
-    mix-blend-mode: difference;
+
+    /* mix-blend-mode: difference; */
 
     .block {
         flex-grow: 1;

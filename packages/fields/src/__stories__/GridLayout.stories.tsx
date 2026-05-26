@@ -10,9 +10,12 @@ const meta = preview.meta({
 
 const grids = [
     [{ rows: 1, columns: [1, 1] }],
-    { rows: 1, columns: [1, 1, 1] },
-    { rows: 2, columns: [1, 1] },
-    { rows: 2, columns: [1, 1, 1] },
+    [
+        { rows: 1, columns: [1, 1, 1] },
+        { rows: 1, columns: [1, 1, 1] },
+    ],
+    [{ rows: 4, columns: [1, 1, 1] }],
+    [{ rows: 2, columns: [1, 1, 1] }],
 ];
 
 const FieldContainer = (props) => {

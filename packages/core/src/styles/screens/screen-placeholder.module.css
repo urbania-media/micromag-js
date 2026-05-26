@@ -1,5 +1,6 @@
 .screen {
     overflow: hidden;
     background-color: transparent;
+    color: inherit;
     user-select: none;
 }

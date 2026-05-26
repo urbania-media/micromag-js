@@ -161,6 +161,7 @@ function EditorScreens({
             <Navbar
                 compact
                 noWrap
+                theme="dark"
                 withoutCollapse
                 className={classNames(['sticky-top', styles.navbar])}
             >

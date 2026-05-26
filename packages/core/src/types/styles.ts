@@ -28,6 +28,15 @@ export interface FontStyle {
     upperCase?: boolean;
 }
 
+export interface HighlightStyle {
+    color?: Color;
+    textColor?: Color;
+}
+
+export interface LinkStyle {
+    color?: Color;
+    fontStyle?: FontStyle;
+}
 export interface TextStyle {
     fontFamily?: Font;
     fontSize?: number;
@@ -36,6 +45,8 @@ export interface TextStyle {
     color?: Color;
     letterSpacing?: number;
     lineHeight?: number;
+    link?: LinkStyle;
+    highlight?: HighlightStyle;
 }
 
 export type BorderType =
@@ -74,6 +85,13 @@ export interface BoxStyle {
 export interface Margin {
     top?: number;
     bottom?: number;
+}
+
+export interface Padding {
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
 }
 
 export interface GridLayoutItem {

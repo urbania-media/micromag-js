@@ -1,10 +1,9 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import classNames from 'classnames';
-import React, { useCallback, useId, useMemo } from 'react';
+import { useId } from 'react';
 import { useIntl } from 'react-intl';
 
-import type { FormControlSize } from '@micromag/core';
+import type { FormControlSize, TextStyle } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import { useGetColors } from '@micromag/core/contexts';
 import {
@@ -15,10 +14,10 @@ import {
 } from '@micromag/core/utils';
 
 import useCKEditor from '../hooks/useCKEditor';
+import useCKEditorTranslations from '../hooks/useCKEditorTranslations';
 
 import styles from '../styles/text-editor.module.css';
 import 'ckeditor5/ckeditor5.css';
-import useCKEditorTranslations from '../hooks/useCKEditorTranslations';
 
 const emptyArray: never[] = [];
 const defaultEditorConfigValue = {
@@ -28,7 +27,7 @@ const defaultEditorConfigValue = {
     },
 };
 
-interface TextEditorFieldProps {
+export interface TextEditorFieldProps {
     value?: string | null;
     size?: FormControlSize | null;
     className?: string | null;
@@ -37,7 +36,7 @@ interface TextEditorFieldProps {
     withHighlightColors?: boolean;
     withFullEditor?: boolean;
     withoutLink?: boolean;
-    textStyle?: Record<string, unknown> | null;
+    textStyle?: TextStyle | null;
     editorConfig?: Record<string, unknown>;
     onFocus?: ((...args: unknown[]) => void) | null;
     disabled?: boolean;
@@ -71,103 +70,81 @@ function TextEditorField({
     const translations = useCKEditorTranslations(locale);
 
     const getColors = useGetColors();
-    const colors = useMemo(
-        () => (withHighlightColors ? getColors() : null) || [],
-        [withHighlightColors, getColors],
-    );
+    const colors = (withHighlightColors ? getColors() : null) || [];
 
-    const defaultEditorConfig = useMemo(() => {
-        if (withoutLink) {
-            const { toolbar: items = null } = editorConfig || {};
-            return {
-                ...editorConfig,
-                toolbar: (items || []).filter((it) => it !== 'link' && it !== '|'),
-            };
-        }
-        return editorConfig;
-    }, [editorConfig, withoutLink]);
+    const defaultEditorConfig = withoutLink
+        ? {
+              ...editorConfig,
+              toolbar: (editorConfig?.toolbar || []).filter((it) => it !== 'link' && it !== '|'),
+          }
+        : editorConfig;
 
     const uniqueId = useId();
     const id = `editor-${uniqueId}`;
 
-    const finalEditorConfig = useMemo(
-        () => ({
+    const finalEditorConfig = {
         translations: [translations],
-            licenseKey: 'GPL',
-            extraPlugins: [
-                ...defaultPlugins,
-                ...(inline ? inlinePlugins : []),
-                ...(withFullEditor ? fullPlugins : []),
-            ].filter((it) => it !== null),
-            highlight: {
-                options: [
-                    {
-                        model: 'marker',
-                        title: 'Marker',
-                        type: 'marker',
-                    },
-                    ...colors.map((color, index) => ({
-                        model: `marker_${index}`,
-                        type: 'marker',
-                        color: getColorAsString(color),
-                    })),
-                ],
-            },
-            toolbar: {
-                items: [
-                    'undo',
-                    'redo',
-                    '|',
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'superscript',
-                    '|',
-                    'link',
-                    'uploadImage',
-                    'insertTable',
-                    'mediaEmbed',
-                    '|',
-                    'bulletedList',
-                    'numberedList',
-                    'outdent',
-                    'indent',
-                ],
-            },
-            language: locale,
-            ...defaultEditorConfig,
-            mediaEmbed: {
-                previewsInData: true,
-            },
-        }),
-        [
-            translations,
-            defaultEditorConfig,
-            inline,
-            locale,
-            withFullEditor,
-            defaultPlugins,
-            inlinePlugins,
-            fullPlugins,
-        ],
-    );
+        licenseKey: 'GPL',
+        extraPlugins: [
+            ...defaultPlugins,
+            ...(inline ? inlinePlugins : []),
+            ...(withFullEditor ? fullPlugins : []),
+        ].filter((it) => it !== null),
+        highlight: {
+            options: [
+                {
+                    model: 'marker',
+                    title: 'Marker',
+                    type: 'marker',
+                },
+                ...colors.map((color, index) => ({
+                    model: `marker_${index}`,
+                    type: 'marker',
+                    color: getColorAsString(color),
+                })),
+            ],
+        },
+        toolbar: {
+            items: [
+                'undo',
+                'redo',
+                '|',
+                'heading',
+                '|',
+                'bold',
+                'italic',
+                'superscript',
+                '|',
+                'link',
+                'uploadImage',
+                'insertTable',
+                'mediaEmbed',
+                '|',
+                'bulletedList',
+                'numberedList',
+                'outdent',
+                'indent',
+            ],
+        },
+        language: locale,
+        ...defaultEditorConfig,
+        mediaEmbed: {
+            previewsInData: true,
+        },
+    };
 
     // console.log({
     //     finalEditorConfig,
     // })
 
-    const onEditorReady = useCallback(() => {}, []);
+    const onEditorReady = () => {};
 
-    const onEditorChange = useCallback(
-        (event, editor) => {
-            const data = editor.getData();
-            if (onChange !== null) {
-                onChange(data);
-            }
-        },
-        [onChange],
-    );
+    const onEditorChange = (event, editor) => {
+        const data = editor.getData();
+        if (onChange !== null) {
+            onChange(data);
+        }
+    };
 
     return (
         <div

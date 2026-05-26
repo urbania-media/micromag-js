@@ -12,7 +12,7 @@
 @import url('./theme.css');
 
 /* Theme overrides */
-@import url('./bootstrap-overrides.css');
+@import url('./bootstrap-theme.css');
 @import url('./bootstrap-patches.css');
 
 /* Uppy */

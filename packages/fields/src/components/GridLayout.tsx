@@ -28,7 +28,7 @@ function GridLayout({
             options={grids.map((layout) => ({
                 value: layout,
                 label: (
-                    <Grid layout={layout} className={styles.grid} columnClassName={styles.column} />
+                    <Grid layout={layout} className={styles.grid} axisClassName={styles.column} />
                 ),
             }))}
             value={

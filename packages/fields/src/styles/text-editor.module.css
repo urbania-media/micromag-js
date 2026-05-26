@@ -7,28 +7,25 @@
         .ck {
             &.ck-editor__editable,
             &.ck-editor__main .ck-editor__editable {
-                border: var(--mm-input-border-width) solid var(--mm-input-border-color);
-                background: var(--mm-input-bg);
                 outline: none;
 
                 &:not(.ck-editor__nested-editable) {
-                    border: 1px solid transparent;
-
                     &.ck-rounded-corners {
-                        border-radius: var(--mm-input-border-radius);
+                        border-radius: var(--bs-border-radius);
                     }
 
                     &.ck-focused {
-                        border: 1px solid transparent;
-                        box-shadow: 0 0 0 4px var(--mm-input-btn-focus-color);
+                        border: var(--bs-form-control-focus-border, 1px solid transparent);
+                        box-shadow: var(
+                            --bs-form-control-focus-box-shadow,
+                            0 0 0 4px var(--bs-primary)
+                        );
                         outline: none;
                     }
                 }
             }
 
             &.ck-editor__editable_inline {
-                padding: var(--mm-input-btn-padding-y) var(--mm-input-btn-padding-x);
-
                 > :first-child {
                     margin-top: 0;
                 }
@@ -39,13 +36,17 @@
             }
 
             &.ck-content {
-                color: var(--mm-white, #fff);
-                font-family: Helvetica, Arial, sans-serif;
-                font-size: 16px;
-                font-size: var(--mm-input-font-size);
-                font-weight: normal;
-                line-height: 1.3;
-                line-height: var(--mm-input-line-height);
+                padding: var(--bs-form-control-padding, 0.375rem 0.75rem);
+                border: var(
+                    --bs-form-control-border,
+                    var(--bs-border-width) solid var(--bs-border-color)
+                );
+                background-color: var(--bs-form-control-bg, var(--bs-body-bg));
+                color: var(--bs-form-control-color, var(--bs-body-color));
+                font-family: var(--bs-form-control-font-family, Helvetica, Arial, sans-serif);
+                font-size: var(--bs-form-control-font-size, 1rem);
+                font-weight: var(--bs-form-control-font-weight, 400);
+                line-height: var(--bs-form-control-line-height, 1.5);
 
                 & em,
                 & i {
@@ -101,17 +102,18 @@
                 &.ck-editor__main .ck-editor__editable {
                     &:not(.ck-editor__nested-editable) {
                         &.ck-rounded-corners {
-                            border-radius: var(--mm-input-border-radius-sm);
+                            border-radius: var(--bs-border-radius-sm);
                         }
                     }
                 }
 
                 &.ck-editor__editable_inline {
-                    padding: var(--mm-input-btn-padding-y-sm) var(--mm-input-btn-padding-x-sm);
+                    min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2));
                 }
 
                 &.ck-content {
-                    font-size: var(--mm-input-font-size-sm);
+                    padding: 0.25rem 0.5rem;
+                    font-size: 0.875rem;
                 }
             }
         }
@@ -124,18 +126,18 @@
                 &.ck-editor__main .ck-editor__editable {
                     &:not(.ck-editor__nested-editable) {
                         &.ck-rounded-corners {
-                            border-radius: var(--mm-input-border-radius-lg);
+                            border-radius: var(--bs-border-radius-lg);
                         }
                     }
                 }
 
                 &.ck-editor__editable_inline {
-                    padding-top: var(--mm-input-btn-padding-y-lg);
-                    padding-bottom: var(--mm-input-btn-padding-y-lg);
+                    min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2));
+                    padding: 0.5rem 1rem;
                 }
 
                 &.ck-content {
-                    font-size: var(--mm-input-font-size-lg);
+                    font-size: 1.25rem;
                 }
             }
         }
