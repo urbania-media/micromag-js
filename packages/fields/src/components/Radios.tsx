@@ -76,7 +76,7 @@ function Radios({
                     <label
                         className={classNames([
                             'btn',
-                            withBackground ? 'btn-secondary' : 'btn-outline-secondary',
+                            withBackground ? 'btn-body' : 'btn-control',
                             buttonClassName,
                             optionValue === value ? activeClassName : null,
                             {

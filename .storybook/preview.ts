@@ -1,4 +1,4 @@
-import addonDocs from '@storybook/addon-docs';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import { definePreview } from '@storybook/react-webpack5';
 import { spyOn } from 'storybook/test';
 
@@ -18,6 +18,9 @@ if (typeof window !== 'undefined') {
 }
 
 export default definePreview({
+    initialGlobals: {
+        theme: 'light',
+    },
     parameters: {
         viewport: {
             options: {
@@ -88,6 +91,15 @@ export default definePreview({
         withGoogleKeys,
         withVisitor,
         withRouter,
+        withThemeByDataAttribute({
+            themes: {
+                micromag: 'micromag',
+                light: 'light',
+                dark: 'dark',
+            },
+            defaultTheme: 'micromag',
+            attributeName: 'data-bs-theme',
+        }),
     ],
 
     beforeEach() {
@@ -102,5 +114,5 @@ export default definePreview({
         spyOn(console, 'assert').mockName('console.assert');
     },
 
-    addons: [addonDocs()],
+    // addons: [addonDocs()],
 });

@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import Dialog from '@panneau/modal-dialog';
 import { useUppyConfig } from '@panneau/uppy';
 
 import { TextElement as TextElementType } from '@micromag/core';
-import { ModalDialog as Dialog, Modal } from '@micromag/core/components';
 
 import EditorField, { TextEditorFieldProps } from './TextEditor';
 import TextElement from './TextElement';
@@ -37,8 +37,6 @@ function TextModal({
     disabled = false,
     ...props
 }: TextModalProps) {
-    const [modalOpen, setModalOpen] = useState(false);
-
     const { locale } = useIntl();
     const { xhr } = useUppyConfig();
     const { endpoint: xhrEndpoint = null } = xhr || {};
@@ -85,6 +83,8 @@ function TextModal({
     const bodyValue =
         value !== null && typeof value.body !== 'undefined' ? value.body || null : null;
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const onBodyChange = (newBody) => {
         const newValue = {
             ...value,
@@ -99,12 +99,17 @@ function TextModal({
         e.preventDefault();
         e.stopPropagation();
         setModalOpen(true);
+        setModalVisible(true);
     };
 
-    const onClose = (e) => {
+    const requestModalClose = () => {
+        setModalVisible(false);
+    };
+
+    const onModalClosed = () => {
         setModalOpen(false);
         if (onRequestClose !== null) {
-            onRequestClose(e);
+            onRequestClose();
         }
     };
 
@@ -119,42 +124,33 @@ function TextModal({
                 <TextElement inline value={value} disabled editorConfig={previewEditorConfig} />
             </button>
             {modalOpen ? (
-                <Modal>
-                    <Dialog
-                        title={
-                            title || (
-                                <FormattedMessage
-                                    defaultMessage="Edit text"
-                                    description="Modal title"
-                                />
-                            )
-                        }
-                        onClose={onClose}
-                        buttons={[
-                            {
-                                theme: 'primary',
-                                onClick: onClose,
-                                label: (
-                                    <FormattedMessage
-                                        defaultMessage="Close"
-                                        description="Button label"
-                                    />
-                                ),
-                            },
-                        ]}
-                    >
-                        <EditorField
-                            {...props}
-                            value={bodyValue}
-                            onChange={onBodyChange}
-                            className={styles.editor}
-                            inline={inline}
-                            withHighlightColors={withHighlightColors}
-                            withFullEditor
-                            editorConfig={finalEditorConfig}
-                        />
-                    </Dialog>
-                </Modal>
+                <Dialog
+                    id="text-field-modal"
+                    title={
+                        title || (
+                            <FormattedMessage
+                                defaultMessage="Edit text"
+                                description="Modal title"
+                            />
+                        )
+                    }
+                    size="xl"
+                    visible={modalVisible}
+                    requestClose={requestModalClose}
+                    onClosed={onModalClosed}
+                    className="modal-fullscreen-lg-down"
+                >
+                    <EditorField
+                        {...props}
+                        value={bodyValue}
+                        onChange={onBodyChange}
+                        className={classNames([styles.editor, 'h-100'])}
+                        inline={inline}
+                        withHighlightColors={withHighlightColors}
+                        withFullEditor
+                        editorConfig={finalEditorConfig}
+                    />
+                </Dialog>
             ) : null}
         </>
     );

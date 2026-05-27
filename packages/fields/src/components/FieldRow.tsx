@@ -160,6 +160,7 @@ function FieldRow({
                     className={classNames([
                         'col',
                         styles.colValue,
+                        'small',
                         'align-self-center',
                         {
                             'overflow-hidden': withTruncateValue,
@@ -257,7 +258,7 @@ function FieldRow({
                         'px-2',
                         buttonClassName,
                     ])}
-                    theme={buttonTheme ?? 'light'}
+                    theme={buttonTheme ?? 'control'}
                     outline={buttonOutline}
                     onClick={onClickRow}
                 >
@@ -266,6 +267,7 @@ function FieldRow({
                             className={classNames([
                                 'col',
                                 'text-truncate',
+                                'small',
                                 styles.colValue,
                                 { [styles.collapsed]: isCollapsible && isCollapsed },
                             ])}

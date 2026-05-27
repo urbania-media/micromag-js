@@ -114,7 +114,7 @@ export type ButtonTheme =
     | 'outline-link'
     | null;
 
-export type ButtonSize = 'lg' | 'sm' | null;
+export type ButtonSize = 'lg' | 'sm' | 'xs' | null;
 
 export type FormControlSize = 'lg' | 'sm' | null;
 

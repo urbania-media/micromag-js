@@ -1,7 +1,6 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import orderBy from 'lodash/orderBy';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import type { ScreenDefinition } from '@micromag/core';
@@ -60,7 +59,7 @@ function ScreenTypes({
                 screen: definition,
                 title,
                 className: classNames({
-                    'bg-secondary': !selected,
+                    'bg-body': !selected,
                     'bg-primary': selected,
                     [styles.selected]: selected,
                 }),
@@ -90,12 +89,7 @@ function ScreenTypes({
     }, [finalDefinitions, selectedTypes]);
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <div className={styles.rows}>
                 {groups.map(({ id, name, items }) => (
                     <div key={`group-${id}`} className={styles.row}>
@@ -111,7 +105,7 @@ function ScreenTypes({
                                     'rounded',
                                     {
                                         'border-secondary': selectedTypes === null,
-                                        'border-dark': selectedTypes !== null,
+                                        border: selectedTypes !== null,
                                         'bg-secondary': selectedTypes === null,
                                         'text-secondary': selectedTypes !== null,
                                     },

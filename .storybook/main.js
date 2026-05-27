@@ -1,9 +1,6 @@
-// This file has been automatically migrated to valid ESM format by Storybook.
-
-/* eslint-disable no-param-reassign */
 import { defineMain } from '@storybook/react-webpack5/node';
 import { createRequire } from 'module';
-import { dirname, join } from 'path';
+import { dirname } from 'path';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,16 +14,14 @@ require('dotenv').config();
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // insecure
 
-function getAbsolutePath(value) {
-    return dirname(require.resolve(join(value, 'package.json')));
-}
-
 export default defineMain({
     stories: getPackagesPaths().map((packagePath) =>
         path.join(packagePath, './src/**/*.@(mdx|stories.@(tsx))'),
     ),
 
     addons: [
+        '@storybook/addon-themes',
+        '@storybook/addon-webpack5-compiler-babel',
         {
             name: '@storybook/addon-styling-webpack',
             options: {
@@ -56,8 +51,6 @@ export default defineMain({
                 ],
             },
         },
-        getAbsolutePath('@storybook/addon-webpack5-compiler-babel'),
-        getAbsolutePath('@storybook/addon-docs'),
     ],
 
     webpackFinal: async (config) => {
@@ -96,16 +89,8 @@ export default defineMain({
     },
 
     framework: {
-        name: getAbsolutePath('@storybook/react-webpack5'),
+        name: '@storybook/react-webpack5',
         options: {},
-    },
-
-    docs: {
-        defaultName: 'Docs',
-    },
-
-    typescript: {
-        reactDocgen: 'react-docgen-typescript',
     },
 
     swc: () => ({

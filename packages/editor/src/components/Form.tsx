@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useCallback, useMemo, useState } from 'react';
@@ -245,7 +244,7 @@ function EditForm({
         setDeleteScreenModalOpened(false);
     }, [value, triggerOnChange, screenId, setScreenSettingsOpened, routePush, screens]);
 
-    const onDeleteScreenCancel = useCallback(() => {
+    const onDeleteModalClosed = useCallback(() => {
         setDeleteScreenModalOpened(false);
     }, [setDeleteScreenModalOpened]);
 
@@ -280,12 +279,7 @@ function EditForm({
                     compact
                     noWrap
                     withoutCollapse
-                    className={classNames([
-                        'sticky-top',
-                        'border-bottom',
-                        'border-dark',
-                        styles.navbar,
-                    ])}
+                    className={classNames(['sticky-top', 'border-bottom', styles.navbar])}
                 >
                     <Breadcrumb
                         story={value}
@@ -297,12 +291,7 @@ function EditForm({
                     />
                     {fieldParams === null ? (
                         <div className="dropdown">
-                            <SettingsButton
-                                onClick={onSettingsClick}
-                                dots
-                                className="py-0"
-                                theme="default"
-                            />
+                            <SettingsButton onClick={onSettingsClick} dots className="py-0" />
                             <DropdownMenu
                                 align="end"
                                 items={dropdownItems}
@@ -374,7 +363,7 @@ function EditForm({
             {deleteScreenModalOpened ? (
                 <DeleteScreenModal
                     onConfirm={onDeleteScreenConfirm}
-                    onCancel={onDeleteScreenCancel}
+                    onClosed={onDeleteModalClosed}
                 />
             ) : null}
         </div>

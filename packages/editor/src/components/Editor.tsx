@@ -1,9 +1,8 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { DeviceScreen, Story, Theme, ViewerTheme } from '@micromag/core';
+import type { DeviceScreen, Story, StoryTheme, ViewerTheme } from '@micromag/core';
 import { Button, Modals, Navbar } from '@micromag/core/components';
 import {
     ModalsProvider,
@@ -23,7 +22,7 @@ import Screens from './Screens';
 import styles from '../styles/editor.module.css';
 
 interface EditorProps {
-    value?: Story | Theme | null;
+    value?: Story | StoryTheme | null;
     deviceScreens?: DeviceScreen[];
     viewerTheme?: ViewerTheme | null;
     mobileView?: 'screens' | 'preview' | 'form';
@@ -127,6 +126,8 @@ function Editor({
                     <div
                         className={classNames([
                             styles.container,
+                            'bg-body-tertiary',
+                            'text-body',
                             screenSize !== null
                                 ? screenSize.screens.map(
                                       (screenName) => styles[`screen-${screenName}`],
@@ -139,7 +140,7 @@ function Editor({
                         ])}
                         ref={refContainer}
                     >
-                        <Navbar theme="light" compact noWrap withoutCollapse className={styles.top}>
+                        <Navbar compact noWrap withoutCollapse className={styles.top}>
                             {mobileView !== 'screens' ? (
                                 <Button
                                     size="sm"
@@ -197,7 +198,7 @@ function Editor({
                             <div
                                 className={classNames([
                                     styles.center,
-                                    'bg-dark',
+                                    'bg-body-secondary',
                                     {
                                         [styles.visible]: !isMobile || mobileView === 'preview',
                                     },

@@ -1,13 +1,12 @@
 import classNames from 'classnames';
 import get from 'lodash/get';
-import isArray from 'lodash/isArray';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { Label, Media } from '@micromag/core';
-import { ClearButton, ModalDialog as Dialog, Modal } from '@micromag/core/components';
+import { ClearButton } from '@micromag/core/components';
 import { getFileName } from '@micromag/core/utils';
-import MediaGallery from '@micromag/media-gallery';
+import { MediaGalleryModal } from '@micromag/media-gallery';
 
 import FieldWithForm from './FieldWithForm';
 
@@ -49,14 +48,6 @@ function MediaModal({
 }: MediaModalProps) {
     const [modalOpen, setModalOpen] = useState(false);
 
-    const [mediaFormOpen, setMediaFormOpen] = useState(false);
-    const onMediaFormOpen = () => {
-        setMediaFormOpen(true);
-    };
-    const onMediaFormClose = () => {
-        setMediaFormOpen(false);
-    };
-
     const label = value !== null ? value.name || getFileName(value.url) || null : null;
 
     let thumbnailElement = null;
@@ -66,12 +57,6 @@ function MediaModal({
     } else if (thumbnailSrc !== null) {
         thumbnailElement = <img src={thumbnailSrc} className={styles.thumbnail} alt={label} />;
     }
-
-    // Temporary value
-    const [media, setMedia] = useState(value);
-    useEffect(() => {
-        setMedia(!multiple && isArray(value) ? value[0] : value);
-    }, [value, multiple, setMedia]);
 
     let dialogTitle: ReactNode = (
         <FormattedMessage defaultMessage="Choose media" description="Modal title" />
@@ -104,41 +89,24 @@ function MediaModal({
         e.preventDefault();
         e.stopPropagation();
         setModalOpen(true);
-        setMedia(!multiple && isArray(value) ? value[0] : value);
     };
 
-    const onClose = (e = null) => {
+    const onModalClosed = () => {
         setModalOpen(false);
-        setMedia(null);
         if (onRequestClose !== null) {
-            onRequestClose(e);
+            onRequestClose();
         }
-    };
-
-    const onConfirmSelection = () => {
-        if (onChange !== null) {
-            onChange(media);
-        }
-        onClose();
     };
 
     const onChangeMedia = (newMedia = null) => {
-        const newSelectedMedia =
-            !multiple && isArray(newMedia) ? (newMedia?.[0] ?? null) : newMedia;
-        if (newSelectedMedia !== null && !multiple && autoClose) {
-            if (onChange !== null) {
-                onChange(newSelectedMedia);
-            }
-            onClose();
-        } else {
-            setMedia(newSelectedMedia);
+        if (onChange !== null) {
+            onChange(newMedia);
         }
     };
 
     const onClearMedia = () => {
         if (onChange !== null) {
             onChange(null);
-            setMedia(null);
         }
     };
 
@@ -173,7 +141,7 @@ function MediaModal({
                             'align-items-center',
                             'flex-grow-1',
                             {
-                                'btn-light': !isHorizontal,
+                                'btn-control': !isHorizontal,
                             },
                         ])}
                         disabled={disabled}
@@ -189,9 +157,9 @@ function MediaModal({
                                 {
                                     // 'fw-bold': value !== null,
                                     'fw-normal': value === null,
-                                    'text-muted': value === null,
                                     'text-center': !isHorizontal,
                                     'text-end': isHorizontal,
+                                    'text-muted': value === null,
                                 },
                             ])}
                         >
@@ -218,57 +186,14 @@ function MediaModal({
                 </div>
             </FieldWithForm>
             {modalOpen ? (
-                <Modal>
-                    <Dialog
-                        title={dialogTitle}
-                        className={classNames([styles.dialog, className])}
-                        size="xl"
-                        onClose={onClose}
-                        buttons={
-                            !mediaFormOpen
-                                ? [
-                                      {
-                                          id: 'cancel',
-                                          name: 'cancel',
-                                          label: (
-                                              <FormattedMessage
-                                                  defaultMessage="Cancel"
-                                                  description="Button label"
-                                              />
-                                          ),
-                                          theme: 'secondary',
-                                          onClick: onClose,
-                                      },
-                                      multiple || !autoClose
-                                          ? {
-                                                id: 'confirm',
-                                                name: 'confirm',
-                                                label: (
-                                                    <FormattedMessage
-                                                        defaultMessage="Confirm selection"
-                                                        description="Button label"
-                                                    />
-                                                ),
-                                                theme: 'primary',
-                                                onClick: onConfirmSelection,
-                                            }
-                                          : null,
-                                  ].filter((b) => b !== null)
-                                : null
-                        }
-                    >
-                        <MediaGallery
-                            value={media}
-                            types={type}
-                            isPicker
-                            multiple={multiple}
-                            onChange={onChangeMedia}
-                            className={styles.mediaGallery}
-                            onMediaFormOpen={onMediaFormOpen}
-                            onMediaFormClose={onMediaFormClose}
-                        />
-                    </Dialog>
-                </Modal>
+                <MediaGalleryModal
+                    value={value}
+                    multiple={multiple}
+                    autoClose={autoClose}
+                    onChange={onChangeMedia}
+                    types={type}
+                    onClosed={onModalClosed}
+                />
             ) : null}
         </>
     );

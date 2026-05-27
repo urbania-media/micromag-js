@@ -121,10 +121,10 @@ function NumberField({
                 />
             ) : null}
             {suffix !== null ? <span className="input-group-text">{suffix}</span> : null}
-            {hasDataList && dataListActive ? (
+            {hasDataList ? (
                 <ul
                     className={classNames([
-                        'dropdown-menu mt-2',
+                        'dropdown-menu mt-2 dropdown-menu-end small',
                         {
                             show: dataListActive,
                         },

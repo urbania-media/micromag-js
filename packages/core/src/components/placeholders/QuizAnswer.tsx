@@ -15,17 +15,9 @@ interface QuizAnswerProps {
 
 export function Answer({ className, good = true }: QuizAnswerProps) {
     return (
-        <div
-            className={classNames([
-                'd-flex',
-                'align-items-center',
-                'mw-75',
-                'opacity-75',
-                className,
-            ])}
-        >
+        <div className={classNames(['d-flex', 'align-items-center', 'mw-75', className])}>
             <FontAwesomeIcon className="me-2 fs-2" icon={good ? faCheck : faTimes} />
-            <PlaceholderBlock outline className="w-100 opacity-100">
+            <PlaceholderBlock outline className="w-100">
                 <PlaceholderText lines={1} height="1em" />
             </PlaceholderBlock>
         </div>

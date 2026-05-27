@@ -1,12 +1,9 @@
-/* eslint-disable react/no-array-index-key */
-
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { type ElementType, type ReactNode, useEffect, useRef, useState } from 'react';
 
 import { useDocumentEvent } from '../../hooks';
 
-// import Button from '../buttons/Button';
+import { DropdownAlign, MenuItem } from '../../types';
 import Label from '../partials/Label';
 import Link from '../partials/Link';
 
@@ -14,7 +11,7 @@ const emptyArray: never[] = [];
 
 interface DropdownProps {
     items?: MenuItem[];
-    children?: React.ReactNode | null;
+    children?: ReactNode | null;
     visible?: boolean;
     align?: DropdownAlign | null;
     className?: string | null;
@@ -33,22 +30,19 @@ function Dropdown({
     onClickItem = null,
     onClickOutside = null,
 }: DropdownProps) {
-    const refContainer = useRef(null);
+    const containerRef = useRef(null);
     const [enabled, setEnabled] = useState(visible);
 
-    const onDocumentClick = useCallback(
-        (e) => {
-            if (
-                refContainer.current &&
-                !refContainer.current.contains(e.currentTarget) &&
-                !refContainer.current.contains(e.target) &&
-                onClickOutside !== null
-            ) {
-                onClickOutside(e);
-            }
-        },
-        [refContainer.current, onClickOutside],
-    );
+    const onDocumentClick = (e) => {
+        if (
+            containerRef.current &&
+            !containerRef.current.contains(e.currentTarget) &&
+            !containerRef.current.contains(e.target) &&
+            onClickOutside !== null
+        ) {
+            onClickOutside(e);
+        }
+    };
     useDocumentEvent('click', onDocumentClick, enabled);
 
     // Delay the outside click detection
@@ -65,13 +59,16 @@ function Dropdown({
         <div
             className={classNames([
                 'dropdown-menu',
+                align !== null ? `dropdown-menu-${align}` : null,
                 {
-                    [`dropdown-menu-${align}`]: align !== null,
-                    [`show`]: visible,
+                    show: visible,
                 },
                 className,
             ])}
-            ref={refContainer}
+            style={{
+                inset: align === 'end' ? '100% 0px auto auto' : null,
+            }}
+            ref={containerRef}
         >
             {children !== null
                 ? children
@@ -86,7 +83,7 @@ function Dropdown({
                           active = false,
                           ...itemProps
                       } = it;
-                      let ItemComponent = 'div';
+                      let ItemComponent: ElementType = 'div';
                       if (type === 'link') {
                           ItemComponent = Link;
                       } else if (type === 'button') {

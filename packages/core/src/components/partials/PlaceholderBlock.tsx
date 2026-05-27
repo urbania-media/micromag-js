@@ -22,7 +22,6 @@ function PlaceholderBlock({
     return (
         <div
             className={classNames([
-                'opacity-75',
                 {
                     border: outline,
                     'border-2': outline,

@@ -14,7 +14,7 @@ import { useDefaultFields, useDefaultFilters } from './defaults';
 
 import styles from '../styles/new-media-gallery.module.css';
 
-interface MediaGalleryProps {
+export interface MediaGalleryProps {
     value?: Media | Media[] | null;
     types?: string | string[] | null;
     source?: string;
@@ -34,7 +34,7 @@ interface MediaGalleryProps {
 function MediaGallery({
     value = null,
     types = null,
-    source = 'all',
+    source = null,
     filters: providedFilters = null,
     fields: providedFields = null,
     columns = defaultColumns,
@@ -129,7 +129,6 @@ function MediaGallery({
                     className={styles.browser}
                     api={mediasApi}
                     value={pickerValue}
-                    theme="dark"
                     types={finalTypes}
                     query={finalQuery}
                     items={initialMedias}
@@ -149,7 +148,6 @@ function MediaGallery({
                 <MediasBrowserContainer
                     className={styles.browser}
                     api={mediasApi}
-                    theme="dark"
                     types={finalTypes}
                     query={finalQuery}
                     items={initialMedias}

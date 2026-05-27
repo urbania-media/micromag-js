@@ -25,10 +25,12 @@ function PlaceholderText({
 
     return (
         <div
-            className={classNames(['w-100', 'opacity-75', className])}
-            style={{
-                // mixBlendMode: 'difference',
-            }}
+            className={classNames(['w-100', className])}
+            style={
+                {
+                    // mixBlendMode: 'difference',
+                }
+            }
         >
             {[...Array(lines)].map((e, index) => (
                 <div

@@ -24,55 +24,25 @@ function CardLayout({
             case 'content-top':
                 return (
                     <>
-                        <PlaceholderTitle
-                            lines={1}
-                            lineMargin={1}
-                            height="0.3em"
-                            className="opacity-100"
-                        />
-                        <PlaceholderText
-                            lines={2}
-                            lineMargin={1}
-                            height="0.3em"
-                            className="opacity-100"
-                        />
-                        <PlaceholderImage width="100%" height="1.25em" className="opacity-100" />
+                        <PlaceholderTitle lines={1} lineMargin={1} height="0.3em" />
+                        <PlaceholderText lines={2} lineMargin={1} height="0.3em" />
+                        <PlaceholderImage width="100%" height="1.25em" />
                     </>
                 );
             case 'content-bottom':
                 return (
                     <>
-                        <PlaceholderImage width="100%" height="1.25em" className="opacity-100" />
-                        <PlaceholderTitle
-                            lines={1}
-                            lineMargin={1}
-                            height="0.3em"
-                            className="opacity-100"
-                        />
-                        <PlaceholderText
-                            lines={2}
-                            lineMargin={1}
-                            height="0.3em"
-                            className="opacity-100"
-                        />
+                        <PlaceholderImage width="100%" height="1.25em" />
+                        <PlaceholderTitle lines={1} lineMargin={1} height="0.3em" />
+                        <PlaceholderText lines={2} lineMargin={1} height="0.3em" />
                     </>
                 );
             case 'content-split':
                 return (
                     <>
-                        <PlaceholderTitle
-                            lines={1}
-                            lineMargin={1}
-                            height="0.3em"
-                            className="opacity-100"
-                        />
-                        <PlaceholderImage width="100%" height="1.25em" className="opacity-100" />
-                        <PlaceholderText
-                            lines={2}
-                            lineMargin={1}
-                            height="0.3em"
-                            className="opacity-100"
-                        />
+                        <PlaceholderTitle lines={1} lineMargin={1} height="0.3em" />
+                        <PlaceholderImage width="100%" height="1.25em" />
+                        <PlaceholderText lines={2} lineMargin={1} height="0.3em" />
                     </>
                 );
             default:

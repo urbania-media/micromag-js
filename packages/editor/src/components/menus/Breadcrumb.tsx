@@ -280,17 +280,14 @@ function Breadcrumb({
 
     return (
         <>
-            {withBack ? <BackButton onClick={onClickBack} className="me-2 py-0" /> : null}
+            {withBack ? (
+                <BackButton onClick={onClickBack} className="me-2" outline size="sm" />
+            ) : null}
             <BaseBreadcrumb
                 items={items}
-                theme="secondary"
                 withoutBar
                 noWrap
-                className={classNames([
-                    styles.container,
-                    'text-truncate',
-                    className,
-                ])}
+                className={classNames([styles.container, 'text-truncate', className])}
             />
         </>
     );

@@ -30,6 +30,7 @@ function Modal({ id = null, children = null, position = 'center', title = null }
                 className={classNames([
                     styles.container,
                     'modal',
+                    'show',
                     {
                         [styles[position]]: position !== null,
                     },

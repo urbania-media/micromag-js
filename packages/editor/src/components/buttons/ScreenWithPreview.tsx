@@ -1,8 +1,6 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React from 'react';
 import { useIntl } from 'react-intl';
 
 import type { ScreenComponent } from '@micromag/core';

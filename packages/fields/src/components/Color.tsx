@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import tinycolor from 'tinycolor2';
 
@@ -30,10 +31,12 @@ function ColorField({
 
     const previewElement =
         value !== null && color !== null ? (
-            <span className={styles.preview}>
+            <span className={classNames([styles.preview, 'border', 'ms-1'])}>
                 <span
-                    className={styles.color}
                     style={{
+                        display: 'block',
+                        width: '1.5em',
+                        height: '1.5em',
                         ...getStyleFromColor(value),
                     }}
                 />

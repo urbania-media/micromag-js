@@ -11,16 +11,8 @@ interface SurveyAnswerProps {
 
 export function Answer({ className }: SurveyAnswerProps) {
     return (
-        <div
-            className={classNames([
-                'd-flex',
-                'align-items-center',
-                'mw-75',
-                'opacity-75',
-                className,
-            ])}
-        >
-            <PlaceholderBlock outline className="w-100 me-2 opacity-100">
+        <div className={classNames(['d-flex', 'align-items-center', 'mw-75', className])}>
+            <PlaceholderBlock outline className="w-100 me-2">
                 <PlaceholderText lines={1} height="1em" />
             </PlaceholderBlock>
             <FontAwesomeIcon icon={faPercent} className="fs-2" />

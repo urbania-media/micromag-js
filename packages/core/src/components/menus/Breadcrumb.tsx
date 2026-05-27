@@ -33,6 +33,7 @@ function Breadcrumb({
                     styles.container,
                     'breadcrumb',
                     'mb-0',
+                    theme !== null ? `text-${theme}` : null,
                     {
                         'p-0': withoutBar,
                         'bg-transparent': withoutBar,
@@ -58,13 +59,7 @@ function Breadcrumb({
                             <Link
                                 href={url}
                                 onClick={onClick}
-                                className={classNames([
-                                    'font-weight-bold',
-                                    'text-decoration-none',
-                                    {
-                                        [`text-${theme}`]: theme !== null,
-                                    },
-                                ])}
+                                className={classNames(['font-weight-bold', 'text-decoration-none'])}
                             >
                                 <Label>{label}</Label>
                             </Link>
@@ -72,13 +67,7 @@ function Breadcrumb({
                         {!active && onClick ? (
                             <Button
                                 onClick={onClick}
-                                className={classNames([
-                                    'font-weight-bold',
-                                    'text-decoration-none',
-                                    {
-                                        [`text-${theme}`]: theme !== null,
-                                    },
-                                ])}
+                                className={classNames(['font-weight-bold', 'text-decoration-none'])}
                             >
                                 <Label>{label}</Label>
                             </Button>

@@ -1,4 +1,4 @@
-export { default as Button } from './buttons/Button';
+export { default as Button, type ButtonProps } from './buttons/Button';
 export { default as Buttons } from './buttons/Buttons';
 export { default as BackButton } from './buttons/Back';
 export { default as ClearButton } from './buttons/Clear';
@@ -23,11 +23,14 @@ export { default as Navbar } from './menus/Navbar';
 export { default as Pagination } from './menus/Pagination';
 export { default as Tabs } from './menus/Tabs';
 
-export { default as Modals } from './modals/Modals';
-export { default as Modal } from './modals/Modal';
-export { default as ModalDialog } from './modals/Dialog';
-export { default as ModalPortal } from './modals/Portal';
-// export { default as UploadModal } from './modals/Upload';
+export { Modal, Modals, ModalPortal } from '@panneau/element-modal';
+export { default as ModalDialog } from '@panneau/modal-dialog';
+
+// export { default as Modals } from './modals/Modals';
+// export { default as Modal } from './modals/Modal';
+// export { default as ModalDialog } from './modals/Dialog';
+// export { default as ModalPortal } from './modals/Portal';
+export { default as UploadModal } from './modals/Upload';
 
 export { default as Panels } from './panels/Panels';
 export { default as Panel } from './panels/Panel';

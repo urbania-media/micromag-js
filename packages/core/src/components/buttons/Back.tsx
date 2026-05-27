@@ -1,26 +1,17 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons/faAngleLeft';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import classNames from 'classnames';
-import React from 'react';
 
-import Button from './Button';
+import Button, { ButtonProps } from './Button';
 
-interface BackButtonProps {
+interface BackButtonProps extends ButtonProps {
     className?: string | null;
 }
 
-function BackButton({ className = null, ...props }: BackButtonProps) {
+function BackButton({ ...props }: BackButtonProps) {
     return (
-        <Button
-            className={classNames([
-                'px-2',
-                className,
-            ])}
-            size="sm"
-            icon={<FontAwesomeIcon icon={faAngleLeft} size="lg" />}
-            {...props}
-        />
+        <Button size="sm" {...props}>
+            <FontAwesomeIcon icon={faAngleLeft} />
+        </Button>
     );
 }
 

@@ -1,64 +1,36 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import classNames from 'classnames';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Button, ModalDialog as Dialog, Label, Modal } from '@micromag/core/components';
+import ConfirmModal, { ConfirmModalProps } from '@panneau/modal-confirm';
 
-import styles from '../../styles/modals/delete-screen.module.css';
-
-interface DeleteScreenModalProps {
-    className?: string;
-    onConfirm?: (...args: unknown[]) => void;
-    onCancel?: (...args: unknown[]) => void;
+interface DeleteScreenModalProps extends Omit<ConfirmModalProps, 'id'> {
+    id?: string | null;
 }
 
-function DeleteScreenModal({ className = null, onConfirm = null, onCancel = null }: DeleteScreenModalProps) {
+function DeleteScreenModal(props: DeleteScreenModalProps) {
     return (
-        <Modal>
-            <Dialog
-                title={
+        <ConfirmModal
+            id="delete-screen"
+            title={
+                <FormattedMessage
+                    defaultMessage="Delete screen"
+                    description="Title of the delete screen dialog"
+                />
+            }
+            confirmButton={{
+                label: (
                     <FormattedMessage
                         defaultMessage="Delete screen"
-                        description="Title of the delete screen dialog"
+                        description="Delete screen button label"
                     />
-                }
-                className={classNames([
-                    styles.container,
-                    className,
-                ])}
-                onClose={onCancel}
-            >
-                <div className={styles.description}>
-                    <Label>
-                        <FormattedMessage
-                            defaultMessage="Are you sure you want to delete this screen?"
-                            description="Confirmation message before deleting a screen"
-                        />
-                    </Label>
-                </div>
-                <div className={styles.actions}>
-                    <Button onClick={onCancel} className="btn-outline-secondary me-2">
-                        <Label>
-                            <FormattedMessage
-                                defaultMessage="Cancel"
-                                description="Cancel button label"
-                            />
-                        </Label>
-                    </Button>
-                    <Button
-                        onClick={onConfirm}
-                        theme="danger"
-                        label={
-                            <FormattedMessage
-                                defaultMessage="Delete screen"
-                                description="Delete screen button label"
-                            />
-                        }
-                    />
-                </div>
-            </Dialog>
-        </Modal>
+                ),
+            }}
+            {...props}
+        >
+            <FormattedMessage
+                defaultMessage="Are you sure you want to delete this screen?"
+                description="Confirmation message before deleting a screen"
+            />
+        </ConfirmModal>
     );
 }
 

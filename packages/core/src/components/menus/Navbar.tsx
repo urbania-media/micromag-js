@@ -49,11 +49,10 @@ function Navbar({
         <nav
             className={classNames([
                 'navbar',
+                theme !== null ? `bg-${theme}` : 'bg-body',
+                theme !== null ? `text-${theme === 'dark' ? 'light' : 'dark'}` : null,
+                !withoutCollapse ? `navbar-expand-${size}` : null,
                 {
-                    [`bg-${theme}`]: theme !== null,
-                    [`navbar-${theme === 'light' ? 'light' : 'dark'}`]: theme !== null,
-                    [`text-${theme === 'light' ? 'dark' : 'light'}`]: theme !== null,
-                    [`navbar-expand-${size}`]: !withoutCollapse,
                     'navbar-expand': withoutCollapse,
                     'py-2': compact,
                     'px-2': compact,

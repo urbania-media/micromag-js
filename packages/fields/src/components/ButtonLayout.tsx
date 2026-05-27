@@ -43,12 +43,8 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderImage
-                            width="1.25em"
-                            height="1.25em"
-                            className="mb-1 opacity-100"
-                        />
-                        <PlaceholderText lines={1} height={0.25} className="opacity-100" />
+                        <PlaceholderImage width="1.25em" height="1.25em" className="mb-1" />
+                        <PlaceholderText lines={1} height={0.25} />
                     </div>
                 );
             case 'label-top':
@@ -61,8 +57,8 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderText lines={1} height={0.25} className="mb-1 opacity-100" />
-                        <PlaceholderImage width="1.25em" height="1.25em" className="opacity-100" />
+                        <PlaceholderText lines={1} height={0.25} className="mb-1" />
+                        <PlaceholderImage width="1.25em" height="1.25em" />
                     </div>
                 );
             case 'no-label':
@@ -75,7 +71,7 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderImage width="1.25em" height="1.25em" className="opacity-100" />
+                        <PlaceholderImage width="1.25em" height="1.25em" />
                     </div>
                 );
             case 'label-over':
@@ -88,12 +84,8 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderImage
-                            width="1.25em"
-                            height="1.25em"
-                            className="mb-1 opacity-100"
-                        />
-                        <PlaceholderText lines={1} height={0.25} className="opacity-100" />
+                        <PlaceholderImage width="1.25em" height="1.25em" className="mb-1" />
+                        <PlaceholderText lines={1} height={0.25} />
                     </div>
                 );
             case 'label-right':
@@ -106,17 +98,8 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderImage
-                            width="1.25em"
-                            height="1.25em"
-                            className="me-1 opacity-100"
-                        />
-                        <PlaceholderText
-                            lines={1}
-                            height={0.25}
-                            width="1.25em"
-                            className="opacity-100"
-                        />
+                        <PlaceholderImage width="1.25em" height="1.25em" className="me-1" />
+                        <PlaceholderText lines={1} height={0.25} width="1.25em" />
                     </div>
                 );
             case 'label-left':
@@ -129,13 +112,8 @@ function ButtonLayout({
                             'm-auto',
                         ])}
                     >
-                        <PlaceholderText
-                            lines={1}
-                            height={0.25}
-                            width="1.25em"
-                            className="me-1 opacity-100"
-                        />
-                        <PlaceholderImage width="1.25em" height="1.25em" className="opacity-100" />
+                        <PlaceholderText lines={1} height={0.25} width="1.25em" className="me-1" />
+                        <PlaceholderImage width="1.25em" height="1.25em" />
                     </div>
                 );
             default:

@@ -85,8 +85,7 @@ function UrlField({
             <button
                 className={classNames([
                     'btn',
-                    'btn-outline-dark',
-                    'text-light',
+                    'btn-control',
                     'fw-normal',
                     {
                         show: open,

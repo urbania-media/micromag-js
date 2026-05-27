@@ -6,7 +6,6 @@
 }
 
 .mediaGallery {
-    overflow: hidden;
-    min-height: 75vh;
-    overflow-y: scroll;
+    overflow: auto;
+    max-height: 75vh;
 }

@@ -53,12 +53,11 @@
 
     &.isPlaceholder {
         .layout {
-            padding: 10px;
+            padding: var(--mm-screen-placeholder-padding, 1.5em);
         }
 
         .box {
             border: solid 2px rgb(255 255 255 / 0.5);
-            mix-blend-mode: difference;
         }
     }
 }

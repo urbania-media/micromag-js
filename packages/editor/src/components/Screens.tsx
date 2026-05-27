@@ -151,7 +151,7 @@ function EditorScreens({
         [screens, isTheme, createScreenFromDefinition, push, onClickScreen],
     );
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
-    const onCreateModalRequestClose = useCallback(
+    const onCreateModalClosed = useCallback(
         () => setCreateModalOpened(false),
         [setCreateModalOpened],
     );
@@ -161,9 +161,8 @@ function EditorScreens({
             <Navbar
                 compact
                 noWrap
-                theme="dark"
                 withoutCollapse
-                className={classNames(['sticky-top', styles.navbar])}
+                className={classNames(['sticky-top', 'border-bottom', styles.navbar])}
             >
                 <strong className="mb-0 me-auto">
                     <FormattedMessage
@@ -248,7 +247,7 @@ function EditorScreens({
                 <ScreenTypesModal
                     selectedTypes={isTheme ? screens.map(({ type }) => type) : []}
                     onClickScreenType={onClickScreenType}
-                    onRequestClose={onCreateModalRequestClose}
+                    onClosed={onCreateModalClosed}
                 />
             ) : null}
         </div>

@@ -136,7 +136,7 @@ function FieldWithForm({
                 'w-100',
                 {
                     row: thumbnailElement === null && labelElement === null,
-                    'g-1': thumbnailElement === null && labelElement === null,
+                    'gx-1 gy-0': thumbnailElement === null && labelElement === null,
                     'flex-nowrap': thumbnailElement !== null || labelElement !== null,
                 },
                 className,
@@ -145,7 +145,7 @@ function FieldWithForm({
             {thumbnailElement !== null || labelElement !== null ? (
                 <span>
                     <span
-                        className="row g-1 flex-nowrap align-items-center"
+                        className="row gx-1 gy-0 flex-nowrap align-items-center"
                         title={
                             withTitleLabel && (isString(labelString) || isString(label))
                                 ? labelString || label || ''

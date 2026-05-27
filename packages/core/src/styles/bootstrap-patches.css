@@ -6,21 +6,25 @@
  * but that CSS custom properties alone cannot reach.
  */
 
-:root {
+:root,
+[data-bs-theme] {
     --bs-form-control-bg: var(--bs-body-bg);
     --bs-form-control-color: var(--bs-body-color);
-    --bs-form-control-border: var(--bs-border-width) solid var(--bs-border-color);
+    --bs-form-control-border-color: var(--bs-border-color);
+    --bs-form-control-border: var(--bs-border-width) solid var(--bs-form-control-border-color);
     --bs-form-control-disabled-bg: var(--bs-secondary-bg);
     --bs-form-control-placeholder-color: var(--bs-secondary-color);
     --bs-form-control-focus-box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0.25);
     --bs-form-control-focus-border-color: #86b7fe;
     --bs-form-control-focus-bg: var(--bs-body-bg);
+    --bs-form-control-focus-color: var(--bs-body-color);
 }
 
 /* ===== Forms ===== */
 
 .form-control,
 .form-select {
+    border: var(--bs-form-control-border);
     background-color: var(--bs-form-control-bg);
     color: var(--bs-form-control-color);
 
@@ -28,6 +32,7 @@
         border-color: var(--bs-form-control-focus-border-color);
         background-color: var(--bs-form-control-focus-bg);
         box-shadow: var(--bs-form-control-focus-box-shadow);
+        color: var(--bs-form-control-focus-color);
     }
 
     &::placeholder {
@@ -37,4 +42,74 @@
     &:disabled {
         background-color: var(--bs-form-control-disabled-bg);
     }
+}
+
+.btn {
+    &:hover {
+        .text-muted {
+            color: inherit !important;
+        }
+
+        .btn {
+            color: inherit !important;
+        }
+    }
+}
+
+.btn-control {
+    --bs-btn-color: var(--bs-form-control-color);
+    --bs-btn-bg: var(--bs-form-control-bg);
+    --bs-btn-border-color: var(--bs-form-control-border-color);
+    --bs-btn-hover-color: var(--bs-form-control-color);
+    --bs-btn-hover-bg: var(--bs-secondary-bg);
+    --bs-btn-hover-border-color: var(--bs-form-control-color);
+    --bs-btn-focus-shadow-rgb: 161, 61, 255;
+    --bs-btn-active-color: var(--bs-form-control-color);
+    --bs-btn-active-bg: var(--bs-secondary-bg);
+    --bs-btn-active-border-color: var(--bs-form-control-color);
+    --bs-btn-disabled-color: var(--bs-form-control-color);
+    --bs-btn-disabled-border-color: var(--bs-form-control-color);
+
+    font-weight: 400;
+}
+
+.btn-outline-body {
+    --bs-btn-color: var(--bs-body-color);
+    --bs-btn-border-color: var(--bs-body-color);
+    --bs-btn-hover-bg: var(--bs-body-color);
+    --bs-btn-hover-border-color: var(--bs-body-color);
+    --bs-btn-focus-shadow-rgb: 161, 61, 255;
+    --bs-btn-active-color: var(--bs-body-bg);
+    --bs-btn-active-bg: var(--bs-body-color);
+    --bs-btn-active-border-color: var(--bs-body-color);
+    --bs-btn-disabled-color: var(--bs-body-color);
+    --bs-btn-disabled-border-color: var(--bs-body-color);
+}
+
+.modal-responsive {
+    max-width: none;
+}
+
+/* ===== Dropdown menu positioning ===== */
+.dropdown-menu {
+    &.small {
+        --bs-dropdown-font-size: 0.875em;
+    }
+}
+
+.dropdown-menu-start {
+    left: 0;
+}
+
+.dropdown-menu-end {
+    right: 0;
+}
+
+.modal-content {
+    background-color: var(--bs-tertiary-bg);
+}
+
+.modal-header,
+.modal-footer {
+    background-color: var(--bs-secondary-bg);
 }

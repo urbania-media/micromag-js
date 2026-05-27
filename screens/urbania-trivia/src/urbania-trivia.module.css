@@ -131,12 +131,10 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        mix-blend-mode: normal;
     }
 
     .videoPlaceholder {
         background-color: var(--mm-gray-500, #adadad);
-        mix-blend-mode: normal;
     }
 
     .bottomContent {

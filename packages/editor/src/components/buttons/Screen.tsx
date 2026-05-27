@@ -1,6 +1,5 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
+import { ForwardedRef, ReactNode } from 'react';
 
 import type { Label } from '@micromag/core';
 import { Button } from '@micromag/core/components';
@@ -12,11 +11,11 @@ interface ScreenButtonProps {
     id?: string;
     href?: string;
     label?: Label;
-    icon?: React.ReactNode;
+    icon?: ReactNode;
     title?: string;
     onClick?: (...args: unknown[]) => void;
-    children?: React.ReactNode;
-    refButton?: { current?: unknown };
+    children?: ReactNode;
+    ref: ForwardedRef<HTMLButtonElement>;
     className?: string;
 }
 
@@ -30,13 +29,12 @@ function ScreenButton({
     children = null,
     title = null,
     onClick = null,
-    refButton = null,
+    ref: refButton = null,
 }: ScreenButtonProps) {
     return (
         <div
             className={classNames([
                 styles.container,
-                'rounded',
                 className,
                 {
                     [styles.active]: active,
@@ -62,10 +60,18 @@ function ScreenButton({
                 onClick={onClick}
                 refButton={refButton}
             >
-                <span className={classNames([styles.border, 'rounded'])} />
+                <span
+                    className={classNames([
+                        'position-absolute top-0 start-0 w-100 h-100 border border-primary border-3 fade',
+                        {
+                            'opacity-0': !active,
+                            'opacity-100': active,
+                        },
+                    ])}
+                />
             </Button>
         </div>
     );
 }
 
-export default React.forwardRef((props, ref) => <ScreenButton {...props} refButton={ref} />);
+export default ScreenButton;

@@ -9,7 +9,7 @@ import styles from '../../styles/buttons/button.module.css';
 
 type ButtonElement = HTMLButtonElement | HTMLAnchorElement;
 
-interface ButtonProps {
+export interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
     theme?: ButtonTheme | null;
     size?: ButtonSize | null;

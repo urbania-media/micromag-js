@@ -79,7 +79,7 @@ function Checkboxes({
                         <label
                             className={classNames([
                                 'btn',
-                                'btn-outline-secondary',
+                                'btn-control',
                                 buttonClassName,
                                 {
                                     disabled,

@@ -12,7 +12,6 @@
         box-sizing: border-box;
         align-items: center;
         background-color: transparent;
-        color: #222;
 
         .button {
             position: relative;
@@ -22,7 +21,8 @@
             appearance: none;
             background: transparent;
             color: inherit;
-            color: #fff;
+
+            /* color: #fff; */
             cursor: pointer;
             font-family: inherit;
         }
@@ -118,7 +118,7 @@
     }
 
     &.withChildren {
-        background-color: var(--mm-gray-700, #494949);
+        /* background-color: var(--mm-gray-700, #494949); */
 
         .inner {
             padding-bottom: 30px;

@@ -2,12 +2,5 @@
 
 .preview {
     display: block;
-    border: solid 1px var(--bs-black, #000);
-    background: repeating-conic-gradient(#808080 0 25%, #0000 0 50%) 50% / 1.5em 1.5em;
-
-    .color {
-        display: block;
-        width: 1.5em;
-        height: 1.5em;
-    }
+    background: repeating-conic-gradient(#fff 0 25%, #ddd 0 50%) 50% / 1.5em 1.5em;
 }

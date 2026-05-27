@@ -1,6 +1,9 @@
 import isObject from 'lodash/isObject';
-import React, { useCallback } from 'react';
 import { IntlProvider } from 'react-intl';
+
+import { IntlProvider as PanneauIntlProvider } from '@panneau/intl';
+import '@panneau/intl/locale/fr';
+import panneauMessages from '@panneau/intl/locale/fr.json';
 
 import '../../packages/intl/locale/en';
 import '../../packages/intl/locale/fr';
@@ -15,7 +18,7 @@ const onIntlError = (err) => {
     console.error(err);
 };
 
-const withIntlProvider = (Story, { parameters: { intl = null } }) => {
+const withIntlProvider = (Story, { parameters: { intl = true } }) => {
     const enabled = isObject(intl) || intl === true;
     const { locale = 'fr', messages = null } = isObject(intl) ? intl : {};
 
@@ -25,9 +28,15 @@ const withIntlProvider = (Story, { parameters: { intl = null } }) => {
     // console.log('Intl', locale);
 
     return enabled ? (
-        <IntlProvider locale={locale} messages={customMessages} onError={onIntlError}>
-            <Story />
-        </IntlProvider>
+        <PanneauIntlProvider locale={locale}>
+            <IntlProvider
+                locale={locale}
+                messages={{ ...customMessages, ...panneauMessages }}
+                onError={onIntlError}
+            >
+                <Story />
+            </IntlProvider>
+        </PanneauIntlProvider>
     ) : (
         <Story />
     );

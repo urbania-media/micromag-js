@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -9,16 +8,10 @@ import styles from '../../styles/partials/empty.module.css';
 interface EmptyProps {
     children?: React.ReactNode | null;
     withoutBorder?: boolean;
-    light?: boolean;
     className?: string | null;
 }
 
-function Empty({
-    children = null,
-    withoutBorder = false,
-    light = false,
-    className = null,
-}: EmptyProps) {
+function Empty({ children = null, withoutBorder = false, className = null }: EmptyProps) {
     return (
         <div
             className={classNames([
@@ -26,7 +19,6 @@ function Empty({
                 className,
                 {
                     [styles.withoutBorder]: withoutBorder,
-                    [styles.light]: light,
                 },
             ])}
         >

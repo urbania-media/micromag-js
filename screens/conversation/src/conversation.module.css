@@ -48,6 +48,10 @@
             pointer-events: none;
         }
     }
+
+    &.isPlaceholder {
+        padding: var(--mm-screen-placeholder-padding, 1.5em);
+    }
 }
 
 .layout {

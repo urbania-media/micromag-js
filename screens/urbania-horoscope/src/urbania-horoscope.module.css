@@ -22,7 +22,7 @@
 
     &.isPlaceholder {
         .layout {
-            padding: 10px;
+            padding: var(--mm-screen-placeholder-padding, 1.5em);
         }
     }
 }

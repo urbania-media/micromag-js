@@ -59,6 +59,7 @@ const SortableTreeItemActions = function ({
         <div
             className={classNames([
                 styles.wrapper,
+                'text-body',
                 {
                     [styles.clone]: clone,
                     [styles.ghost]: ghost,
@@ -66,6 +67,7 @@ const SortableTreeItemActions = function ({
                     [styles.disableSelection]: disableSelection,
                     [styles.disableInteraction]: disableInteraction,
                     [styles.withChildren]: onCollapse !== null,
+                    'bg-body-secondary': onCollapse !== null,
                 },
             ])}
             ref={wrapperRef}

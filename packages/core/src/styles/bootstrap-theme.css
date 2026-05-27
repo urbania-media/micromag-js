@@ -119,6 +119,50 @@
     --bs-form-control-focus-border-color: #c98aff;
     --bs-form-control-focus-bg: hsl(0deg 0% 100% / 0.07);
 
+    /* ===== Pagination ===== */
+    --bs-pagination-bg: rgb(255 255 255 / 0.07);
+    --bs-pagination-border-width: 0;
+    --bs-pagination-color: var(--bs-primary);
+    --bs-pagination-hover-bg: rgb(255 255 255 / 0.12);
+    --bs-pagination-hover-color: var(--bs-primary);
+    --bs-pagination-active-bg: var(--bs-primary);
+    --bs-pagination-active-border-color: var(--bs-primary);
+    --bs-pagination-disabled-bg: rgb(255 255 255 / 0.04);
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgb(161 61 255 / 0.25);
+
+    /* ===== List group ===== */
+    --bs-list-group-bg: transparent;
+    --bs-list-group-border-color: rgb(255 255 255 / 0.13);
+    --bs-list-group-color: #f5f5f5;
+    --bs-list-group-action-color: #f5f5f5;
+    --bs-list-group-action-hover-bg: rgb(245 245 245 / 0.2);
+    --bs-list-group-active-bg: var(--bs-primary);
+    --bs-list-group-active-border-color: var(--bs-primary);
+
+    /* ===== Dropdown ===== */
+    --bs-dropdown-bg: #343434;
+    --bs-dropdown-divider-bg: rgb(255 255 255 / 0.13);
+    --bs-dropdown-border-color: rgb(255 255 255 / 0.13);
+    --bs-dropdown-link-color: #f5f5f5;
+    --bs-dropdown-link-hover-bg: var(--bs-primary);
+    --bs-dropdown-link-hover-color: #f5f5f5;
+    --bs-dropdown-link-active-bg: var(--bs-primary);
+
+    /* ===== Cards ===== */
+    --bs-card-bg: rgb(255 255 255 / 0.07);
+    --bs-card-border-width: 0;
+    --bs-card-border-color: rgb(255 255 255 / 0.13);
+    --bs-card-cap-bg: rgb(255 255 255 / 0.07);
+
+    /* ===== Modal ===== */
+    --bs-modal-bg: #2b2b2b;
+    --bs-modal-header-border-color: rgb(255 255 255 / 0.12);
+
+    /* ===== Breadcrumb ===== */
+    --bs-breadcrumb-bg: transparent;
+    --bs-breadcrumb-padding-x: 0;
+
+    /* ===== Buttons ===== */
     .btn-primary {
         --bs-btn-bg: var(--bs-primary);
         --bs-btn-border-color: var(--bs-primary);
@@ -350,108 +394,28 @@
         --bs-btn-active-color: #812dcc;
     }
 
-    /* ===== Cards ===== */
+    /* Custom controls (legacy compat) */
+    .form-check-input {
+        border-width: 1px;
+        border-color: #e9e9e9;
+        background-color: #e9e9e9;
 
-    .card {
-        --bs-card-bg: rgb(255 255 255 / 0.07);
-        --bs-card-border-width: 0;
-        --bs-card-border-color: rgb(255 255 255 / 0.13);
-        --bs-card-cap-bg: rgb(255 255 255 / 0.07);
-    }
+        &:checked {
+            border-color: var(--bs-primary);
+            background-color: var(--bs-primary);
+        }
 
-    /* ===== Modal ===== */
-
-    .modal {
-        --bs-modal-bg: #2b2b2b;
-        --bs-modal-header-border-color: rgb(255 255 255 / 0.12);
-    }
-
-    /* ===== Pagination ===== */
-
-    .pagination {
-        --bs-pagination-bg: rgb(255 255 255 / 0.07);
-        --bs-pagination-border-width: 0;
-        --bs-pagination-color: var(--bs-primary);
-        --bs-pagination-hover-bg: rgb(255 255 255 / 0.12);
-        --bs-pagination-hover-color: var(--bs-primary);
-        --bs-pagination-active-bg: var(--bs-primary);
-        --bs-pagination-active-border-color: var(--bs-primary);
-        --bs-pagination-disabled-bg: rgb(255 255 255 / 0.04);
-        --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgb(161 61 255 / 0.25);
-    }
-
-    /* ===== List group ===== */
-
-    .list-group {
-        --bs-list-group-bg: transparent;
-        --bs-list-group-border-color: rgb(255 255 255 / 0.13);
-        --bs-list-group-color: #f5f5f5;
-        --bs-list-group-action-color: #f5f5f5;
-        --bs-list-group-action-hover-bg: rgb(245 245 245 / 0.2);
-        --bs-list-group-active-bg: var(--bs-primary);
-        --bs-list-group-active-border-color: var(--bs-primary);
-    }
-
-    /* ===== Dropdown ===== */
-
-    .dropdown-menu {
-        --bs-dropdown-bg: #343434;
-        --bs-dropdown-divider-bg: rgb(255 255 255 / 0.13);
-        --bs-dropdown-border-color: rgb(255 255 255 / 0.13);
-        --bs-dropdown-link-color: #f5f5f5;
-        --bs-dropdown-link-hover-bg: var(--bs-primary);
-        --bs-dropdown-link-hover-color: #f5f5f5;
-        --bs-dropdown-link-active-bg: var(--bs-primary);
-    }
-
-    .form-check-input:checked {
-        border-color: var(--bs-primary);
-        background-color: var(--bs-primary);
-    }
-
-    .form-check-input:focus {
-        border-color: #c98aff;
-        box-shadow: 0 0 0 0.25rem rgb(161 61 255 / 0.25);
+        &:focus {
+            border-color: #c98aff;
+            box-shadow: 0 0 0 0.25rem rgb(161 61 255 / 0.25);
+        }
     }
 
     .input-group-text {
         background-color: rgb(255 255 255 / 0.12);
     }
 
-    /* Custom controls (legacy compat) */
-    .form-check-input {
-        border-width: 1px;
-        border-color: #e9e9e9;
-        background-color: #e9e9e9;
-    }
-
-    /* Badges */
-    .text-bg-secondary {
-        color: #000 !important;
-    }
-
-    /* ===== Buttons ===== */
-
-    .btn {
-        padding-top: var(--bs-btn-padding-y, 0.5rem);
-        padding-bottom: var(--bs-btn-padding-y, 0.5rem);
-        font-weight: 600;
-    }
-
-    .btn:disabled,
-    .btn.disabled {
-        opacity: 0.4;
-    }
-
-    /* ===== Breadcrumb ===== */
-
-    .breadcrumb {
-        --bs-breadcrumb-bg: transparent;
-        --bs-breadcrumb-padding-x: 0;
-    }
-
     /* ===== Badge ===== */
-
     .badge {
         padding: 0.4em 0.8em;
         font-weight: 400;
@@ -461,11 +425,11 @@
 
     .navbar-brand {
         color: var(--bs-primary);
-    }
 
-    .navbar-brand:hover,
-    .navbar-brand:focus {
-        color: var(--bs-primary);
+        &:hover,
+        &:focus {
+            color: var(--bs-primary);
+        }
     }
 
     /* ===== Typography ===== */
@@ -491,11 +455,11 @@
 
     .nav-link {
         color: var(--bs-primary);
-    }
 
-    .nav-link:hover,
-    .nav-link:focus {
-        color: #812dcc;
+        &:hover,
+        &:focus {
+            color: #812dcc;
+        }
     }
 
     .nav-pills .nav-link.active,
@@ -504,58 +468,10 @@
     }
 
     /* ===== Alerts ===== */
-
     .alert-primary {
         --bs-alert-color: #c98aff;
         --bs-alert-bg: #200d33;
         --bs-alert-border-color: #511999;
-    }
-
-    /* ===== .container-small (replaces @include make-container + media-breakpoint-up) ===== */
-
-    .container-small {
-        --bs-gutter-x: 1.5rem;
-        --bs-gutter-y: 0;
-
-        width: 100%;
-        padding-right: calc(var(--bs-gutter-x) * 0.5);
-        padding-left: calc(var(--bs-gutter-x) * 0.5);
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    @media (width >= 576px) {
-        .container-small {
-            max-width: 540px;
-        }
-    }
-
-    @media (width >= 768px) {
-        .container-small {
-            max-width: 540px;
-        }
-    }
-
-    @media (width >= 992px) {
-        .container-small {
-            max-width: 540px;
-        }
-    }
-
-    @media (width >= 1200px) {
-        .container-small {
-            max-width: 540px;
-        }
-    }
-
-    /* ===== Dropdown menu positioning ===== */
-
-    .dropdown-menu-start {
-        left: 0;
-    }
-
-    .dropdown-menu-end {
-        right: 0;
     }
 
     /* ===== Component active bg (used by various Bootstrap components) ===== */

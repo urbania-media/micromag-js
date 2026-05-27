@@ -37,34 +37,28 @@ function ModalDialog({
             ])}
             role="dialog"
         >
-            <div className="modal-content">
+            <div className="modal-content bg-body-tertiary">
                 {header || (
-                    <div
-                        className={classNames([
-                            'modal-header',
-                            'p-2',
-                            'd-flex',
-                            'justify-content-between',
-                        ])}
-                    >
+                    <div className="modal-header bg-body-secondary py-2">
                         <h5 className="modal-title">
                             <Label>{title}</Label>
                         </h5>
                         <button
                             type="button"
-                            className="btn btn-close p-2"
+                            className="btn-close"
                             aria-label="Close"
                             onClick={onClose}
                         />
                     </div>
                 )}
-                <div className={classNames(['modal-body', 'p-2', bodyClassName])}>{children}</div>
-                {footer !== null || buttons !== null ? (
-                    <div className={classNames(['modal-footer', 'p-2'])}>
-                        {footer}
-                        {buttons !== null ? <Buttons buttons={buttons} /> : null}
-                    </div>
-                ) : null}
+                <div className={classNames(['modal-body', bodyClassName])}>{children}</div>
+                {footer !== null || buttons !== null
+                    ? footer || (
+                          <div className={classNames(['modal-footer bg-body-secondary', 'p-2'])}>
+                              {buttons !== null ? <Buttons buttons={buttons} /> : null}
+                          </div>
+                      )
+                    : null}
             </div>
         </div>
     );

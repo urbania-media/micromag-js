@@ -1,49 +1,44 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import classNames from 'classnames';
-import React from 'react';
+import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { ModalDialog as Dialog, Modal } from '@micromag/core/components';
+import Dialog, { DialogModalProps } from '@panneau/modal-dialog';
 
 import ScreenTypesMenu from '../menus/ScreenTypes';
 
-import styles from '../../styles/modals/screen-types.module.css';
-
-interface ScreenTypesModalProps {
+interface ScreenTypesModalProps extends DialogModalProps {
     selectedTypes?: string[];
     className?: string;
-    onRequestClose?: (...args: unknown[]) => void;
+    onClosed?: () => void;
     onClickScreenType?: (...args: unknown[]) => void;
 }
 
 function ScreenTypesModal({
     selectedTypes = null,
     className = null,
-    onRequestClose = null,
+    onClosed = null,
     onClickScreenType = null,
 }: ScreenTypesModalProps) {
+    const [opened, setOpened] = useState(true);
+    const requestClose = () => {
+        setOpened(false);
+    };
     return (
-        <Modal>
-            <Dialog
-                title={
-                    <FormattedMessage
-                        defaultMessage="Add a screen"
-                        description="Title of the screen types selection dialog"
-                    />
-                }
-                className={classNames([
-                    styles.container,
-                    className,
-                ])}
-                onClose={onRequestClose}
-            >
-                <ScreenTypesMenu
-                    selectedTypes={selectedTypes}
-                    className={styles.menu}
-                    onClickItem={onClickScreenType}
+        <Dialog
+            id={'screen-types'}
+            title={
+                <FormattedMessage
+                    defaultMessage="Add a screen"
+                    description="Title of the screen types selection dialog"
                 />
-            </Dialog>
-        </Modal>
+            }
+            size="lg"
+            visible={opened}
+            requestClose={requestClose}
+            onClosed={onClosed}
+            className={className}
+        >
+            <ScreenTypesMenu selectedTypes={selectedTypes} onClickItem={onClickScreenType} />
+        </Dialog>
     );
 }
 
