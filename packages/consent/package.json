@@ -1,6 +1,6 @@
 {
     "name": "@micromag/consent",
-    "version": "0.4.90-alpha.1",
+    "version": "0.4.90-alpha.3",
     "private": false,
     "description": "",
     "keywords": [
@@ -62,8 +62,8 @@
         "@fortawesome/fontawesome-svg-core": "^7.2.0",
         "@fortawesome/free-solid-svg-icons": "^7.2.0",
         "@fortawesome/react-fontawesome": "^3.2.0",
-        "@micromag/core": "^0.4.90-alpha.1",
-        "@micromag/data": "^0.4.90-alpha.1",
+        "@micromag/core": "^0.4.90-alpha.3",
+        "@micromag/data": "^0.4.90-alpha.3",
         "bootstrap": "^5.3.8",
         "classnames": "^2.2.6",
         "lodash": "^4.17.23",
