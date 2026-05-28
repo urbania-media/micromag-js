@@ -26,10 +26,6 @@ export { default as Tabs } from './menus/Tabs';
 export { Modal, Modals, ModalPortal } from '@panneau/element-modal';
 export { default as DialogModal, type DialogModalProps } from '@panneau/modal-dialog';
 
-// export { default as Modals } from './modals/Modals';
-// export { default as Modal } from './modals/Modal';
-// export { default as ModalDialog } from './modals/Dialog';
-// export { default as ModalPortal } from './modals/Portal';
 export { default as UploadModal } from './modals/Upload';
 
 export { default as Panels } from './panels/Panels';

@@ -56,7 +56,6 @@ import HandTap from './partials/HandTap';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
-import { index } from '../../../editor/src/styles/buttons/screen-with-preview.module.css';
 import styles from '../styles/viewer.module.css';
 
 // @todo export from somewhere else; or use as props in possible component for screen transitions
