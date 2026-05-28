@@ -1,6 +1,4 @@
+@import url('@micromag/core/assets/css/vendor.css');
 @import url('@micromag/viewer');
 @import url('@micromag/fields');
-@import url('@micromag/elements');
-@import url('@micromag/screens');
 @import url('@micromag/media-gallery');
-@import url('@micromag/editor');

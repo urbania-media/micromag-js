@@ -1,13 +1,14 @@
-/* eslint-disable react/jsx-props-no-spreading */
+import '../styles/styles.global.css';
+
 import { createPathToRegexpParser } from '@folklore/routes';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';
 
 import { UppyProvider } from '@panneau/uppy';
 
-import type { Story, Theme } from '@micromag/core';
+import type { Story, StoryTheme } from '@micromag/core';
 import {
     ComponentsContext,
     EditorProvider,
@@ -31,7 +32,7 @@ import defaultRoutes from '../data/routes.json';
 const pathToRegexpParser = createPathToRegexpParser();
 
 interface EditorContainerProps {
-    value?: Story | Theme | null;
+    value?: Story | StoryTheme | null;
     routes?: unknown;
     memoryRouter?: boolean;
     basePath?: string | null;
