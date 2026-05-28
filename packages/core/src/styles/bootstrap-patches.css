@@ -113,3 +113,7 @@
 .modal-footer {
     background-color: var(--bs-secondary-bg);
 }
+
+.btn-group > .btn-check + .btn:hover {
+    z-index: 0;
+}

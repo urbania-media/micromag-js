@@ -5,8 +5,6 @@ import React, { useCallback } from 'react';
 import FontStyle from './FontStyle';
 import TextAlign from './TextAlign';
 
-import styles from '../styles/font-style-with-align.module.css';
-
 interface FontStylesProps {
     value?: Record<string, unknown> | null;
     fontStyleName?: string;
@@ -52,19 +50,15 @@ function FontStyles({
         <div
             className={classNames([
                 'd-flex',
-                styles.container,
+                'justify-content-between',
                 className,
             ])}
         >
             <FontStyle
-                className={styles.item}
-                buttonClassName={styles.button}
                 value={fontStyleValue}
                 onChange={onFontStyleChange}
             />
             <TextAlign
-                className={styles.item}
-                buttonClassName={styles.button}
                 value={alignValue}
                 onChange={onAlignChange}
             />

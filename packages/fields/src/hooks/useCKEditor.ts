@@ -15,8 +15,8 @@ const useCKEditor = () => {
             };
         }
 
-        import('@micromag/ckeditor/build').then(({ default: defaultExport }) => {
-            packageCache = defaultExport;
+        import('@micromag/ckeditor/build').then((packageExport) => {
+            packageCache = packageExport;
             if (!canceled) {
                 setLoadedPackage(packageCache);
             }
