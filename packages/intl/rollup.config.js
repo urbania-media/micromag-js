@@ -1,7 +1,8 @@
-import path from 'path';
+import replace from '@rollup/plugin-replace';
 import { sync as syncGlob } from 'glob';
 import { createRequire } from 'module';
-import replace from '@rollup/plugin-replace';
+import path from 'path';
+
 import { default as configs, createConfig } from '../../rollup.config';
 
 const require = createRequire(import.meta.url);
@@ -41,7 +42,4 @@ const localesFiles = locales.reduce(
     [],
 );
 
-export default [
-    ...configs,
-    ...localesFiles,
-];
+export default [...configs, ...localesFiles];

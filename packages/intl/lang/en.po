@@ -173,12 +173,6 @@ msgctxt "03U69o"
 msgid "Buttons"
 msgstr "Buttons"
 
-# Cancel button label
-#: 0GT0SI
-msgctxt "0GT0SI"
-msgid "Cancel"
-msgstr "Cancel"
-
 # Breadcrumb field label
 #: 0GzLBc
 msgctxt "0GzLBc"
@@ -413,18 +407,6 @@ msgctxt "4RV6+9"
 msgid "H264"
 msgstr "H264"
 
-# No value label
-#: 4YiKNK
-msgctxt "4YiKNK"
-msgid "Select a color..."
-msgstr "Select a color..."
-
-# Field default label
-#: 4b5gym
-msgctxt "4b5gym"
-msgid "Screen title"
-msgstr "Screen title"
-
 # Gallery Feed screen title
 #: 4bHvRS
 msgctxt "4bHvRS"
@@ -604,6 +586,12 @@ msgstr "Keypad"
 msgctxt "790Q9C"
 msgid "Select Subtitles File"
 msgstr "Select Subtitles File"
+
+# No value label
+#: 7Nf1ts
+msgctxt "7Nf1ts"
+msgid "Select..."
+msgstr "Select..."
 
 # Horoscope date
 #: 7ZzlUE
@@ -820,12 +808,6 @@ msgstr "Screen {current} of {length}"
 msgctxt "AQ8Aig"
 msgid "Used"
 msgstr "Used"
-
-# No value label
-#: AV6gfh
-msgctxt "AV6gfh"
-msgid "Edit call to action..."
-msgstr "Edit call to action..."
 
 # Field label
 #: Arl5Ze
@@ -1060,6 +1042,12 @@ msgstr "Loop"
 msgctxt "F59wsl"
 msgid "Urbania horoscope"
 msgstr "Urbania horoscope"
+
+# no value
+#: FDt0UU
+msgctxt "FDt0UU"
+msgid "Select media..."
+msgstr "Select media..."
 
 # Alignment label
 #: FKOWH0
@@ -1504,12 +1492,6 @@ msgstr "Layout"
 msgctxt "OSl7A6"
 msgid "Swipe up"
 msgstr "Swipe up"
-
-# Label when there is no item in slides field
-#: OdcEna
-msgctxt "OdcEna"
-msgid "No slide..."
-msgstr "No slide..."
 
 # Type Label in Media Gallery
 #: OkNUmk
@@ -2050,6 +2032,12 @@ msgctxt "Zpl5bJ"
 msgid "Spacing"
 msgstr "Spacing"
 
+# Page title
+#: ZpoE9K
+msgctxt "ZpoE9K"
+msgid "Select media"
+msgstr "Select media"
+
 # Button label in items field
 #: ZxgNge
 msgctxt "ZxgNge"
@@ -2537,11 +2525,6 @@ msgstr "Footer"
 msgctxt "g6b9Lg"
 msgid "Contribution"
 msgstr "Contribution"
-
-#: gJTVcQ
-msgctxt "gJTVcQ"
-msgid "Select media..."
-msgstr "Select media..."
 
 # Delete screen button label
 #: gRxcTc
@@ -3206,12 +3189,6 @@ msgstr "No image..."
 msgctxt "t2cFdl"
 msgid "Active filters"
 msgstr "Active filters"
-
-# Button label in slides field
-#: tAYwqp
-msgctxt "tAYwqp"
-msgid "Add a slide"
-msgstr "Add a slide"
 
 # Field label
 #: tYGev7

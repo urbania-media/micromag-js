@@ -173,12 +173,6 @@ msgctxt "03U69o"
 msgid "Buttons"
 msgstr "Boutons"
 
-# Cancel button label
-#: 0GT0SI
-msgctxt "0GT0SI"
-msgid "Cancel"
-msgstr "Annuler"
-
 # Breadcrumb field label
 #: 0GzLBc
 msgctxt "0GzLBc"
@@ -413,18 +407,6 @@ msgctxt "4RV6+9"
 msgid "H264"
 msgstr "H264"
 
-# No value label
-#: 4YiKNK
-msgctxt "4YiKNK"
-msgid "Select a color..."
-msgstr "Sélectionner une couleur..."
-
-# Field default label
-#: 4b5gym
-msgctxt "4b5gym"
-msgid "Screen title"
-msgstr "Titre de l'écran"
-
 # Gallery Feed screen title
 #: 4bHvRS
 msgctxt "4bHvRS"
@@ -604,6 +586,12 @@ msgstr "Clavier"
 msgctxt "790Q9C"
 msgid "Select Subtitles File"
 msgstr "Sélectionner un sous-titre"
+
+# No value label
+#: 7Nf1ts
+msgctxt "7Nf1ts"
+msgid "Select..."
+msgstr ""
 
 # Horoscope date
 #: 7ZzlUE
@@ -820,12 +808,6 @@ msgstr "Écran {current} de {length}"
 msgctxt "AQ8Aig"
 msgid "Used"
 msgstr "Utilisé"
-
-# No value label
-#: AV6gfh
-msgctxt "AV6gfh"
-msgid "Edit call to action..."
-msgstr "Modifier l'appel à l'action..."
 
 # Field label
 #: Arl5Ze
@@ -1060,6 +1042,12 @@ msgstr "En boucle"
 msgctxt "F59wsl"
 msgid "Urbania horoscope"
 msgstr "Horoscope Urbania"
+
+# no value
+#: FDt0UU
+msgctxt "FDt0UU"
+msgid "Select media..."
+msgstr ""
 
 # Alignment label
 #: FKOWH0
@@ -1504,12 +1492,6 @@ msgstr "Mise en page"
 msgctxt "OSl7A6"
 msgid "Swipe up"
 msgstr "Glisser"
-
-# Label when there is no item in slides field
-#: OdcEna
-msgctxt "OdcEna"
-msgid "No slide..."
-msgstr "Aucune diapositive..."
 
 # Type Label in Media Gallery
 #: OkNUmk
@@ -2050,6 +2032,12 @@ msgctxt "Zpl5bJ"
 msgid "Spacing"
 msgstr "Espacement"
 
+# Page title
+#: ZpoE9K
+msgctxt "ZpoE9K"
+msgid "Select media"
+msgstr ""
+
 # Button label in items field
 #: ZxgNge
 msgctxt "ZxgNge"
@@ -2538,11 +2526,6 @@ msgstr "Pied de page"
 msgctxt "g6b9Lg"
 msgid "Contribution"
 msgstr "Contribution"
-
-#: gJTVcQ
-msgctxt "gJTVcQ"
-msgid "Select media..."
-msgstr "Sélectionner un média..."
 
 # Delete screen button label
 #: gRxcTc
@@ -3207,12 +3190,6 @@ msgstr "Aucune image..."
 msgctxt "t2cFdl"
 msgid "Active filters"
 msgstr "Filtres actifs"
-
-# Button label in slides field
-#: tAYwqp
-msgctxt "tAYwqp"
-msgid "Add a slide"
-msgstr "Ajouter une diapositive"
 
 # Field label
 #: tYGev7

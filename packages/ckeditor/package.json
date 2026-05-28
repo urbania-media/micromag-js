@@ -51,7 +51,7 @@
         "clean": "rm -rf es && rm -rf lib && rm -rf dist",
         "build:ckeditor": "../../node_modules/.bin/webpack --mode production --config webpack.config.cjs",
         "prepublishOnly": "npm run build",
-        "build": "rm -rf dist && ../../scripts/prepare-package.sh --types && npm run build:ckeditor"
+        "build": "rm -rf dist && ../../scripts/prepare-package.sh && npm run build:ckeditor"
     },
     "devDependencies": {
         "@ckeditor/ckeditor5-dev-translations": "^43.1",

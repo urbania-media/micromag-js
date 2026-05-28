@@ -107,10 +107,6 @@
     "defaultMessage": "Buttons",
     "description": "Title placeholder"
   },
-  "0GT0SI": {
-    "defaultMessage": "Cancel",
-    "description": "Cancel button label"
-  },
   "0GzLBc": {
     "defaultMessage": "Message",
     "description": "Breadcrumb field label"
@@ -267,14 +263,6 @@
     "defaultMessage": "H264",
     "description": "Field label"
   },
-  "4YiKNK": {
-    "defaultMessage": "Select a color...",
-    "description": "No value label"
-  },
-  "4b5gym": {
-    "defaultMessage": "Screen title",
-    "description": "Field default label"
-  },
   "4bHvRS": {
     "defaultMessage": "Gallery Feed",
     "description": "Gallery Feed screen title"
@@ -394,6 +382,10 @@
   "790Q9C": {
     "defaultMessage": "Select Subtitles File",
     "description": "Modal title"
+  },
+  "7Nf1ts": {
+    "defaultMessage": "Select...",
+    "description": "No value label"
   },
   "7ZzlUE": {
     "defaultMessage": "Oct 23 - Nov 22",
@@ -538,10 +530,6 @@
   "AQ8Aig": {
     "defaultMessage": "Used",
     "description": "Media label"
-  },
-  "AV6gfh": {
-    "defaultMessage": "Edit call to action...",
-    "description": "No value label"
   },
   "Arl5Ze": {
     "defaultMessage": "Button styles",
@@ -698,6 +686,10 @@
   "F59wsl": {
     "defaultMessage": "Urbania horoscope",
     "description": "Urbania screen title"
+  },
+  "FDt0UU": {
+    "defaultMessage": "Select media...",
+    "description": "no value"
   },
   "FKOWH0": {
     "defaultMessage": "right aligned",
@@ -994,10 +986,6 @@
   "OSl7A6": {
     "defaultMessage": "Swipe up",
     "description": "Field label"
-  },
-  "OdcEna": {
-    "defaultMessage": "No slide...",
-    "description": "Label when there is no item in slides field"
   },
   "OkNUmk": {
     "defaultMessage": "Type",
@@ -1358,6 +1346,10 @@
     "defaultMessage": "Spacing",
     "description": "Spacing field label"
   },
+  "ZpoE9K": {
+    "defaultMessage": "Select media",
+    "description": "Page title"
+  },
   "ZxgNge": {
     "defaultMessage": "Add an item",
     "description": "Button label in items field"
@@ -1675,9 +1667,6 @@
   "g6b9Lg": {
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
-  },
-  "gJTVcQ": {
-    "defaultMessage": "Select media..."
   },
   "gRxcTc": {
     "defaultMessage": "Delete screen",
@@ -2120,10 +2109,6 @@
   "t2cFdl": {
     "defaultMessage": "Active filters",
     "description": "Active filters title"
-  },
-  "tAYwqp": {
-    "defaultMessage": "Add a slide",
-    "description": "Button label in slides field"
   },
   "tYGev7": {
     "defaultMessage": "Font size",

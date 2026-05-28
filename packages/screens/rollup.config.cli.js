@@ -15,6 +15,9 @@ export default {
         format: 'cjs',
         inlineDynamicImports: true,
     },
+    treeshake: {
+        moduleSideEffects: false,
+    },
     plugins: [
         resolve({
             extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.node'],

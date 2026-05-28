@@ -80,9 +80,6 @@
     "03U69o": {
         "defaultMessage": "Boutons"
     },
-    "0GT0SI": {
-        "defaultMessage": "Annuler"
-    },
     "0GzLBc": {
         "defaultMessage": "Message"
     },
@@ -199,12 +196,6 @@
     },
     "4RV6+9": {
         "defaultMessage": "H264"
-    },
-    "4YiKNK": {
-        "defaultMessage": "Sélectionner une couleur..."
-    },
-    "4b5gym": {
-        "defaultMessage": "Titre de l'écran"
     },
     "4bHvRS": {
         "defaultMessage": "Galerie de flux"
@@ -403,9 +394,6 @@
     },
     "AQ8Aig": {
         "defaultMessage": "Utilisé"
-    },
-    "AV6gfh": {
-        "defaultMessage": "Modifier l'appel à l'action..."
     },
     "Arl5Ze": {
         "defaultMessage": "Styles de bouton"
@@ -745,9 +733,6 @@
     },
     "OSl7A6": {
         "defaultMessage": "Glisser"
-    },
-    "OdcEna": {
-        "defaultMessage": "Aucune diapositive..."
     },
     "OkNUmk": {
         "defaultMessage": "Type"
@@ -1268,9 +1253,6 @@
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
-    "gJTVcQ": {
-        "defaultMessage": "Sélectionner un média..."
-    },
     "gRxcTc": {
         "defaultMessage": "Supprimer l'écran"
     },
@@ -1603,9 +1585,6 @@
     },
     "t2cFdl": {
         "defaultMessage": "Filtres actifs"
-    },
-    "tAYwqp": {
-        "defaultMessage": "Ajouter une diapositive"
     },
     "tYGev7": {
         "defaultMessage": "Taille de police"

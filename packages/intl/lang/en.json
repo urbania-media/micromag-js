@@ -80,9 +80,6 @@
     "03U69o": {
         "defaultMessage": "Buttons"
     },
-    "0GT0SI": {
-        "defaultMessage": "Cancel"
-    },
     "0GzLBc": {
         "defaultMessage": "Message"
     },
@@ -200,12 +197,6 @@
     "4RV6+9": {
         "defaultMessage": "H264"
     },
-    "4YiKNK": {
-        "defaultMessage": "Select a color..."
-    },
-    "4b5gym": {
-        "defaultMessage": "Screen title"
-    },
     "4bHvRS": {
         "defaultMessage": "Gallery Feed"
     },
@@ -295,6 +286,9 @@
     },
     "790Q9C": {
         "defaultMessage": "Select Subtitles File"
+    },
+    "7Nf1ts": {
+        "defaultMessage": "Select..."
     },
     "7ZzlUE": {
         "defaultMessage": "Oct 23 - Nov 22"
@@ -403,9 +397,6 @@
     },
     "AQ8Aig": {
         "defaultMessage": "Used"
-    },
-    "AV6gfh": {
-        "defaultMessage": "Edit call to action..."
     },
     "Arl5Ze": {
         "defaultMessage": "Button styles"
@@ -523,6 +514,9 @@
     },
     "F59wsl": {
         "defaultMessage": "Urbania horoscope"
+    },
+    "FDt0UU": {
+        "defaultMessage": "Select media..."
     },
     "FKOWH0": {
         "defaultMessage": "right aligned"
@@ -745,9 +739,6 @@
     },
     "OSl7A6": {
         "defaultMessage": "Swipe up"
-    },
-    "OdcEna": {
-        "defaultMessage": "No slide..."
     },
     "OkNUmk": {
         "defaultMessage": "Type"
@@ -1019,6 +1010,9 @@
     "Zpl5bJ": {
         "defaultMessage": "Spacing"
     },
+    "ZpoE9K": {
+        "defaultMessage": "Select media"
+    },
     "ZxgNge": {
         "defaultMessage": "Add an item"
     },
@@ -1267,9 +1261,6 @@
     },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
-    },
-    "gJTVcQ": {
-        "defaultMessage": "Select media..."
     },
     "gRxcTc": {
         "defaultMessage": "Delete screen"
@@ -1603,9 +1594,6 @@
     },
     "t2cFdl": {
         "defaultMessage": "Active filters"
-    },
-    "tAYwqp": {
-        "defaultMessage": "Add a slide"
     },
     "tYGev7": {
         "defaultMessage": "Font size"
