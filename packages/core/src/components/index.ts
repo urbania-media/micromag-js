@@ -24,7 +24,7 @@ export { default as Pagination } from './menus/Pagination';
 export { default as Tabs } from './menus/Tabs';
 
 export { Modal, Modals, ModalPortal } from '@panneau/element-modal';
-export { default as ModalDialog } from '@panneau/modal-dialog';
+export { default as DialogModal, type DialogModalProps } from '@panneau/modal-dialog';
 
 // export { default as Modals } from './modals/Modals';
 // export { default as Modal } from './modals/Modal';
