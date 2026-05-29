@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-closed-captions",
-    "version": "0.4.90-alpha.6",
+    "version": "0.4.90",
     "private": false,
     "description": "",
     "keywords": [
@@ -62,8 +62,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.90-alpha.6",
-        "@micromag/element-text": "^0.4.90-alpha.6",
+        "@micromag/core": "^0.4.90",
+        "@micromag/element-text": "^0.4.90",
         "classnames": "^2.2.6",
         "parse-srt": "^1.0.0-alpha",
         "react-intl": "^8.1.3 || ^10.0.0",
