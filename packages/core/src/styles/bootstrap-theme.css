@@ -51,14 +51,16 @@
     --bs-body-bg-rgb: 28, 28, 28;
     --bs-body-color: #f5f5f5;
     --bs-body-color-rgb: 245, 245, 245;
-    --bs-body-font-size: 0.9rem;
-    --bs-body-line-height: 1.4;
+
+    /* --bs-body-font-size: 0.9rem;
+    --bs-body-line-height: 1.4; */
 
     /* Typography */
-    --bs-font-sans-serif:
+
+    /* --bs-font-sans-serif:
         'Libre Franklin', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue',
         arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
+        'Noto Color Emoji'; */
 
     /* Links */
     --bs-link-color: #a13dff;
