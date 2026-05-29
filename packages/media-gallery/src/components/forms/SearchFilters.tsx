@@ -71,27 +71,11 @@ function SearchFilters({
     );
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                'flex-nowrap',
-                'mt-1',
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, 'flex-nowrap', 'mt-1', className])}>
             {activeSections.length > 0 ? (
-                <div
-                    className={classNames([
-                        'bg-dark',
-                        'flex-nowrap',
-                        'text-dark',
-                        'py-1',
-                        'px-3',
-                        'rounded',
-                    ])}
-                >
+                <div className={classNames(['flex-nowrap', 'py-1', 'px-3', 'rounded'])}>
                     <Button
-                        className={classNames([styles.closeBtn, 'py-1', 'px-1', 'text-light'])}
+                        className={classNames([styles.closeBtn, 'py-1', 'px-1'])}
                         icon={<FontAwesomeIcon icon={faTimes} />}
                         onClick={onClose}
                         title={intl.formatMessage({

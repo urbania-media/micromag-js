@@ -21,19 +21,6 @@
         font-family: inherit;
     }
 
-    &.asLink {
-        position: relative;
-        display: inline-block;
-        padding: 0;
-        border: 0;
-        appearance: none;
-        background: transparent;
-        color: var(--mm-primary, #a13dff);
-        cursor: pointer;
-        font-family: inherit;
-        font-weight: bold;
-    }
-
     &.withIcon {
         display: inline-flex;
         flex-direction: row;
@@ -62,14 +49,8 @@
         align-items: center;
     }
 
-    &.linkDisabled {
-        opacity: 0.4;
-        pointer-events: none;
-        text-decoration: none;
-    }
-
     &:focus-visible {
-        box-shadow: 0 0 2px 0 var(--micromag-focus-color, #fff);
+        box-shadow: 0 0 2px 0 var(--mm-focus-color, #fff);
         outline: 2px solid #000;
     }
 }

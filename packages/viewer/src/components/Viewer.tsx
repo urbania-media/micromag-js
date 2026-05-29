@@ -338,7 +338,7 @@ function Viewer({
         }
 
         if (finalFocusColor !== null) {
-            containerRef.current.style.setProperty('--micromag-focus-color', finalFocusColor);
+            containerRef.current.style.setProperty('--mm-focus-color', finalFocusColor);
         }
     }, [finalFocusColor, containerRef]);
 

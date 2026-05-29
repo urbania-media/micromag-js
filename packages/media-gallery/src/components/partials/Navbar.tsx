@@ -321,7 +321,7 @@ function Navbar({
                                 onClick={onClickBack}
                             />
                         </form>
-                        <strong className="navbar-text me-auto w-100 text-truncate text-light">
+                        <strong className="navbar-text me-auto w-100 text-truncate">
                             {media !== null ? media.name : null}
                         </strong>
                     </div>

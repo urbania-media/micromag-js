@@ -69,14 +69,7 @@ function Search({
                     <FontAwesomeIcon icon={loading ? faSpinner : faSearch} spin={loading} />
                 </button>
                 <input
-                    className={classNames([
-                        styles.input,
-                        'form-control',
-                        {
-                            'bg-light': !!value,
-                            'text-dark': value,
-                        },
-                    ])}
+                    className="form-control"
                     type="text"
                     value={value || ''}
                     placeholder={intl.formatMessage({
@@ -88,12 +81,7 @@ function Search({
                     onBlur={onBlur}
                 />
                 {false ? (
-                    <button
-                        type="button"
-                        className="btn text-dark position-absolute"
-                        style={{ right: -2 }}
-                        onClick={onSearchClear}
-                    >
+                    <button type="button" className="btn position-absolute" onClick={onSearchClear}>
                         <FontAwesomeIcon icon={faTimesCircle} />
                     </button>
                 ) : null}

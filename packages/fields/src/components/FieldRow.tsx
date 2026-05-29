@@ -196,6 +196,7 @@ function FieldRow({
                 type="button"
                 className={classNames([
                     containerClassName,
+                    styles.button,
                     {
                         [styles.resetButton]: !isListItem,
                         'd-block': !isListItem,

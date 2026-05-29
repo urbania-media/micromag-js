@@ -26,24 +26,24 @@
     transition: border-width 0.4s var(--mm-ease-in-bump, 'ease-out');
 
     &:focus-visible {
-        box-shadow: 0 0 1px 1px var(--micromag-focus-color, #fff);
-        outline: 0.15rem solid var(--micromag-focus-color, #fff);
+        box-shadow: 0 0 1px 1px var(--mm-focus-color, #fff);
+        outline: 0.15rem solid var(--mm-focus-color, #fff);
     }
 
     .isCurrent & {
         border-width: 0.2rem;
-        border-color: var(--micromag-focus-color, #fff);
+        border-color: var(--mm-focus-color, #fff);
 
         @media (hover: hover) {
             &:hover {
-                border: 0.25rem solid var(--micromag-focus-color, #fff);
+                border: 0.25rem solid var(--mm-focus-color, #fff);
             }
         }
     }
 
     @media (hover: hover) {
         &:hover {
-            border: 0.1rem solid var(--micromag-focus-color, #fff);
+            border: 0.1rem solid var(--mm-focus-color, #fff);
         }
     }
 }

@@ -1,8 +1,6 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React from 'react';
 
 import { Button } from '@micromag/core/components';
 
@@ -15,12 +13,9 @@ interface CloseButtonProps {
 function CloseButton({ className = null, ...props }: CloseButtonProps) {
     return (
         <Button
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             withoutStyle
-            icon={<FontAwesomeIcon icon={faTimes} className={styles.icon} />}
+            icon={<FontAwesomeIcon icon={faTimes} />}
             iconPosition="right"
             {...props}
         />

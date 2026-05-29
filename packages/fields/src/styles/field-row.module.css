@@ -34,3 +34,13 @@
         pointer-events: none;
     }
 }
+
+.button {
+    &:hover {
+        color: var(--bs-btn-hover-color, var(--bs-body-color));
+
+        :global(.text-muted) {
+            color: var(--bs-btn-hover-color, var(--bs-body-color)) !important;
+        }
+    }
+}

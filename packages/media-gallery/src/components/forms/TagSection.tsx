@@ -40,7 +40,6 @@ function TagSection({ tags = null, parent = null, onChange = null, className = n
                           'text-truncate',
                           {
                               'btn-primary': active === true,
-                              // 'btn-outline-light': active === false,
                           },
                       ]);
                       return (

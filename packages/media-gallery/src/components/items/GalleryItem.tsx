@@ -55,8 +55,6 @@ function GalleryItem({
                         'border-0',
                         'w-100',
                         'text-start',
-                        'bg-dark',
-                        'text-black',
                         styles.imageButton,
                     ])}
                     type="button"

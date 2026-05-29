@@ -26,14 +26,10 @@ export interface ButtonProps {
     disabled?: boolean;
     loading?: boolean;
     disableOnLoading?: boolean;
-    small?: boolean;
-    big?: boolean;
-    withShadow?: boolean;
     withoutStyle?: boolean;
     withoutBootstrapStyles?: boolean;
     withoutTheme?: boolean;
     outline?: boolean;
-    asLink?: boolean;
     style?: CSSProperties;
     className?: string | null;
     iconClassName?: string | null;
@@ -59,13 +55,9 @@ function Button({
     disabled = false,
     loading = false,
     disableOnLoading = true,
-    small = false,
-    big = false,
-    withShadow = false,
     withoutStyle = false,
     withoutBootstrapStyles = false,
     withoutTheme = false,
-    asLink = false,
     outline = false,
     onClick = null,
     className = null,
@@ -112,15 +104,15 @@ function Button({
         </>
     );
 
-    const withStyle = !withoutTheme && !withoutStyle && !asLink;
+    const withStyle = !withoutTheme && !withoutStyle;
 
     const buttonClassNames = classNames([
-        !withoutBootstrapStyles
+        !withoutBootstrapStyles && withStyle
             ? {
-                  btn: withStyle,
-                  [`btn-${outline ? 'outline-' : ''}${theme}`]: withStyle && theme !== null,
-                  [`btn-${size}`]: withStyle && size !== null,
-                  active: !withoutStyle && active,
+                  btn: true,
+                  [`btn-${outline ? 'outline-' : ''}${theme}`]: theme !== null,
+                  [`btn-${size}`]: size !== null,
+                  active: active,
               }
             : null,
         styles.container,
@@ -128,16 +120,12 @@ function Button({
             [styles.withoutStyle]: withoutStyle,
             [styles.withIcon]: hasIcon,
             [styles.withIconColumns]: hasIconColumns,
-            [styles.asLink]: asLink,
         },
         className,
     ]);
 
     if (href !== null) {
-        const linkClassNames = classNames([
-            buttonClassNames,
-            { disabled, [styles.linkDisabled]: disabled },
-        ]);
+        const linkClassNames = classNames([buttonClassNames, { disabled }]);
         return external || direct ? (
             <a
                 {...props}

@@ -3,7 +3,7 @@
     overflow: hidden;
 
     &:focus-within {
-        /* box-shadow: -2px -2px 2px 2px var(--micromag-focus-color, #fff); */
+        /* box-shadow: -2px -2px 2px 2px var(--mm-focus-color, #fff); */
     }
 }
 

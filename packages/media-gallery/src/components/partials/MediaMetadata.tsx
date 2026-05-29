@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import type { Media, Tag } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { useFieldComponent } from '@micromag/core/contexts';
-import { useMediaUpdate, useMediaDelete, useMediaRequestDelete } from '@micromag/data';
+import { useMediaDelete, useMediaRequestDelete, useMediaUpdate } from '@micromag/data';
 
 import styles from '../../styles/partials/media-metadata.module.css';
 
@@ -193,12 +193,7 @@ function MediaMetadata({
     const TokensField = useFieldComponent('tokens');
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
+        <div className={classNames([styles.container, className])}>
             <div
                 className={classNames([
                     'position-relative',
