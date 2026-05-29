@@ -6,6 +6,8 @@
  * These override Bootstrap's default :root values
  */
 [data-bs-theme='micromag'] {
+    color-scheme: dark;
+
     /* Colors */
     --bs-blue: #2151ff;
     --bs-purple: #a13dff;
@@ -84,6 +86,7 @@
 
     /* Focus ring - purple primary */
     --bs-focus-ring-color: rgb(161 61 255 / 0.25);
+    --bs-focus-border-color: #c98aff;
 
     /* Text-emphasis variations */
     --bs-primary-text-emphasis: #c98aff;

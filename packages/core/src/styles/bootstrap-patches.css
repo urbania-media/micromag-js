@@ -5,6 +5,9 @@
  * Overrides for component styles that Sass variables controlled at compile time
  * but that CSS custom properties alone cannot reach.
  */
+:root {
+    --bs-focus-border-color: #86b7fe;
+}
 
 :root,
 [data-bs-theme] {
@@ -14,8 +17,8 @@
     --bs-form-control-border: var(--bs-border-width) solid var(--bs-form-control-border-color);
     --bs-form-control-disabled-bg: var(--bs-secondary-bg);
     --bs-form-control-placeholder-color: var(--bs-secondary-color);
-    --bs-form-control-focus-box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0.25);
-    --bs-form-control-focus-border-color: #86b7fe;
+    --bs-form-control-focus-box-shadow: 0 0 0 0.25rem var(--bs-focus-ring-color);
+    --bs-form-control-focus-border-color: var(--bs-focus-border-color);
     --bs-form-control-focus-bg: var(--bs-body-bg);
     --bs-form-control-focus-color: var(--bs-body-color);
 }
