@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-audio",
-    "version": "0.4.92",
+    "version": "0.4.93",
     "private": false,
     "description": "",
     "keywords": [
@@ -63,8 +63,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.92",
-        "@micromag/element-closed-captions": "^0.4.92",
+        "@micromag/core": "^0.4.93",
+        "@micromag/element-closed-captions": "^0.4.93",
         "@react-spring/core": "^10.0.3",
         "@react-spring/web": "^10.0.3",
         "@use-gesture/react": "^10.3.0",
