@@ -1,24 +1,9 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import queryString from 'query-string';
-import React, { useCallback } from 'react';
-import { defineMessages } from 'react-intl';
+import { useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import Label from '../partials/Label';
 import Link from '../partials/Link';
-
-import styles from '../../styles/menus/pagination.module.css';
-
-const messages = defineMessages({
-    previous: {
-        id: 'menus.pagination.previous',
-        defaultMessage: 'Previous',
-    },
-    next: {
-        id: 'menus.pagination.next',
-        defaultMessage: 'next',
-    },
-});
 
 interface PaginationMenuProps {
     page?: number;
@@ -93,18 +78,8 @@ function PaginationMenu({
     const pages = strippedPages.length > 0 ? strippedPages : [1];
 
     return (
-        <nav
-            className={classNames([
-                styles.container,
-                className,
-            ])}
-        >
-            <ul
-                className={classNames([
-                    'pagination',
-                    paginationClassName,
-                ])}
-            >
+        <nav className={className}>
+            <ul className={classNames(['pagination mb-0', paginationClassName])}>
                 {withPreviousNext ? (
                     <li
                         className={classNames([
@@ -117,23 +92,21 @@ function PaginationMenu({
                     >
                         {page > 1 ? (
                             <Link
-                                className={classNames([
-                                    'page-link',
-                                    linkClassName,
-                                ])}
+                                className={classNames(['page-link', linkClassName])}
                                 href={getUrl(page - 1)}
                                 onClick={onClickPage !== null ? () => onClickPage(page - 1) : null}
                             >
-                                {messages.previous}
+                                <FormattedMessage
+                                    defaultMessage="Previous"
+                                    description="Pagination button label"
+                                />
                             </Link>
                         ) : (
-                            <span
-                                className={classNames([
-                                    'page-link',
-                                    linkClassName,
-                                ])}
-                            >
-                                <Label>{messages.previous}</Label>
+                            <span className={classNames(['page-link', linkClassName])}>
+                                <FormattedMessage
+                                    defaultMessage="Previous"
+                                    description="Pagination button label"
+                                />
                             </span>
                         )}
                     </li>
@@ -151,10 +124,7 @@ function PaginationMenu({
                         ])}
                     >
                         <Link
-                            className={classNames([
-                                'page-link',
-                                linkClassName,
-                            ])}
+                            className={classNames(['page-link', linkClassName])}
                             href={getUrl(pageNumber)}
                             onClick={onClickPage !== null ? () => onClickPage(pageNumber) : null}
                         >
@@ -175,23 +145,21 @@ function PaginationMenu({
                     >
                         {page < total ? (
                             <Link
-                                className={classNames([
-                                    'page-link',
-                                    linkClassName,
-                                ])}
+                                className={classNames(['page-link', linkClassName])}
                                 href={getUrl(page + 1)}
                                 onClick={onClickPage !== null ? () => onClickPage(page + 1) : null}
                             >
-                                {messages.next}
+                                <FormattedMessage
+                                    defaultMessage="Next"
+                                    description="Pagination button label"
+                                />
                             </Link>
                         ) : (
-                            <span
-                                className={classNames([
-                                    'page-link',
-                                    linkClassName,
-                                ])}
-                            >
-                                <Label>{messages.next}</Label>
+                            <span className={classNames(['page-link', linkClassName])}>
+                                <FormattedMessage
+                                    defaultMessage="Next"
+                                    description="Pagination button label"
+                                />
                             </span>
                         )}
                     </li>
