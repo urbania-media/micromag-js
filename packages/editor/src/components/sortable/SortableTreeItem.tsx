@@ -121,7 +121,7 @@ function SortableTreeItem({
                 {...props}
             >
                 {Component !== null ? (
-                    <div className={styles.parent}>
+                    <div className="shadow position-relative z-1">
                         <Component {...value} />
                     </div>
                 ) : null}

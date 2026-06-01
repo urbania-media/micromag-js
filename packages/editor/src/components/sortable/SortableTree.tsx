@@ -384,8 +384,8 @@ function SortableTree({
                         <div
                             className={classNames([
                                 styles.item,
-                                'pb-2',
                                 {
+                                    'pb-2': onCollapse === null || collapsed,
                                     [styles.parent]: onCollapse !== null && !collapsed,
                                     [styles.group]: depth === 1,
                                     'bg-body-secondary': depth === 1,

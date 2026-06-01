@@ -61,6 +61,7 @@ const SortableTreeItemActions = function ({
                 styles.wrapper,
                 'text-body',
                 {
+                    [styles.opened]: !collapsed,
                     [styles.clone]: clone,
                     [styles.ghost]: ghost,
                     [styles.indicator]: indicator,
