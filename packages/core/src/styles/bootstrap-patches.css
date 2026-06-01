@@ -118,4 +118,8 @@
 
 .btn-group > .btn-check + .btn:hover {
     z-index: 0;
+
+    &.active {
+        z-index: 1;
+    }
 }
