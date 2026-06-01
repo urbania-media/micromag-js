@@ -9,7 +9,7 @@ export const ScreensContext = createContext(null);
 
 export const useScreensManager = () => use(ScreensContext);
 
-interface ScreensProviderProps {
+export interface ScreensProviderProps {
     screens?: ScreenDefinition[] | null;
     namespaces?: string[] | null;
     filterNamespaces?: boolean;

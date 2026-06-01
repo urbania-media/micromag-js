@@ -21,7 +21,7 @@ import Screens from './Screens';
 
 import styles from '../styles/editor.module.css';
 
-interface EditorProps {
+export interface EditorProps {
     value?: Story | StoryTheme | null;
     deviceScreens?: DeviceScreen[];
     viewerTheme?: ViewerTheme | null;

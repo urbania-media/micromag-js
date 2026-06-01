@@ -1,19 +1,12 @@
-import React from 'react';
-
-import { ScreensProvider as BaseScreensProvider } from '@micromag/core/contexts';
+import {
+    ScreensProvider as BaseScreensProvider,
+    type ScreensProviderProps,
+} from '@micromag/core/contexts';
 
 import manager from './manager';
 
-interface ScreensProviderProps {
-    children: React.ReactNode;
-}
-
-function ScreensProvider({ children, ...props }: ScreensProviderProps) {
-    return (
-        <BaseScreensProvider {...props} manager={manager}>
-            {children}
-        </BaseScreensProvider>
-    );
+function ScreensProvider(props: ScreensProviderProps) {
+    return <BaseScreensProvider {...props} manager={manager} />;
 }
 
 export default ScreensProvider;

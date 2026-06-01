@@ -24,14 +24,14 @@ import { slug } from '@micromag/core/utils';
 import { FieldsProvider } from '@micromag/fields';
 import { ScreensProvider } from '@micromag/screens';
 
-import Editor from './Editor';
+import Editor, { EditorProps } from './Editor';
 import FormsProvider from './forms/FormsProvider';
 
 import defaultRoutes from '../data/routes.json';
 
 const pathToRegexpParser = createPathToRegexpParser();
 
-interface EditorContainerProps {
+interface EditorContainerProps extends EditorProps {
     value?: Story | StoryTheme | null;
     routes?: unknown;
     memoryRouter?: boolean;
