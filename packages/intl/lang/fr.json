@@ -500,6 +500,9 @@
     "EoVdMy": {
         "defaultMessage": "Modifier le contenu..."
     },
+    "EsoYzX": {
+        "defaultMessage": "Précédent"
+    },
     "Evl2dG": {
         "defaultMessage": "19 fév. - 20 mars"
     },
@@ -916,6 +919,9 @@
     },
     "Wr9olU": {
         "defaultMessage": "Typographie"
+    },
+    "X5RJlB": {
+        "defaultMessage": "Suivant"
     },
     "X7kRRa": {
         "defaultMessage": "Titre"
@@ -1402,12 +1408,6 @@
     },
     "mXeSkg": {
         "defaultMessage": "Lien"
-    },
-    "menus.pagination.next": {
-        "defaultMessage": "suivant"
-    },
-    "menus.pagination.previous": {
-        "defaultMessage": "Précédent"
     },
     "mgjMWG": {
         "defaultMessage": "colonnes"

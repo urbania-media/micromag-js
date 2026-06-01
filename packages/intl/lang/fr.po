@@ -1013,6 +1013,12 @@ msgctxt "EoVdMy"
 msgid "Edit content..."
 msgstr "Modifier le contenu..."
 
+# Pagination button label
+#: EsoYzX
+msgctxt "EsoYzX"
+msgid "Previous"
+msgstr "Précédent"
+
 # Horoscope date
 #: Evl2dG
 msgctxt "Evl2dG"
@@ -1845,6 +1851,12 @@ msgstr "Répéter"
 msgctxt "Wr9olU"
 msgid "Typography"
 msgstr "Typographie"
+
+# Pagination button label
+#: X5RJlB
+msgctxt "X5RJlB"
+msgid "Next"
+msgstr "Suivant"
 
 # Heading placeholder
 #: X7kRRa
@@ -2808,16 +2820,6 @@ msgstr "Pause"
 msgctxt "mXeSkg"
 msgid "Link"
 msgstr "Lien"
-
-#: menus.pagination.next
-msgctxt "menus.pagination.next"
-msgid "next"
-msgstr "suivant"
-
-#: menus.pagination.previous
-msgctxt "menus.pagination.previous"
-msgid "Previous"
-msgstr "Précédent"
 
 # Alignment label
 #: mgjMWG

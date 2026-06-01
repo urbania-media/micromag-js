@@ -667,6 +667,10 @@
     "defaultMessage": "Edit content...",
     "description": "Label when no value is provided to Field with form"
   },
+  "EsoYzX": {
+    "defaultMessage": "Previous",
+    "description": "Pagination button label"
+  },
   "Evl2dG": {
     "defaultMessage": "Feb 19 - Mar 20",
     "description": "Horoscope date"
@@ -1221,6 +1225,10 @@
   "Wr9olU": {
     "defaultMessage": "Typography",
     "description": "Fields section label"
+  },
+  "X5RJlB": {
+    "defaultMessage": "Next",
+    "description": "Pagination button label"
   },
   "X7kRRa": {
     "defaultMessage": "Heading",
@@ -1855,12 +1863,6 @@
   "mXeSkg": {
     "defaultMessage": "Link",
     "description": "Field label"
-  },
-  "menus.pagination.next": {
-    "defaultMessage": "next"
-  },
-  "menus.pagination.previous": {
-    "defaultMessage": "Previous"
   },
   "mgjMWG": {
     "defaultMessage": "columns",
