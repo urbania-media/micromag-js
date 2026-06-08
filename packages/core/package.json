@@ -11,6 +11,7 @@
         "type": "git",
         "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
+    "license": "ISC",
     "author": {
         "name": "Folklore",
         "email": "info@folklore.email"
@@ -29,13 +30,10 @@
             "email": "jc@folklore.email"
         }
     ],
-    "license": "ISC",
-    "type": "module",
-    "module": "es/index.js",
-    "style": "assets/css/styles.css",
     "sideEffects": [
         "**/*.css"
     ],
+    "type": "module",
     "exports": {
         ".": {
             "types": "./es/index.d.ts",
@@ -65,6 +63,7 @@
         "./assets/css/vendor": "./assets/css/vendor.css",
         "./assets/css/vendor.css": "./assets/css/vendor.css"
     },
+    "module": "es/index.js",
     "browser": {
         ".": "./es/index.js",
         "./components": "./es/components.js",
@@ -72,6 +71,8 @@
         "./hooks": "./es/hooks.js",
         "./utils": "./es/utils.js"
     },
+    "types": "es/index.d.ts",
+    "style": "assets/css/styles.css",
     "files": [
         "lib",
         "es",
@@ -83,41 +84,12 @@
         "utils.js"
     ],
     "scripts": {
+        "build": "../../scripts/prepare-package.sh --types && npm run css:vendor && npm run css:theme",
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles && rm -rf styles",
-        "css:vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
-        "css:theme": "../../scripts/build-css.js ./src/styles/theme.css ./assets/css/theme.css",
         "css:styles": "../../scripts/build-css.js ./src/styles/styles.css ./assets/css/styles.css",
-        "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh --types && npm run css:vendor && npm run css:theme"
-    },
-    "devDependencies": {
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
-    },
-    "peerDependencies": {
-        "@panneau/core": "^4.0.55",
-        "@panneau/displays": "^4.0.55",
-        "@panneau/element-button": "^4.0.55",
-        "@panneau/element-buttons": "^4.0.55",
-        "@panneau/element-dropdown": "^4.0.55",
-        "@panneau/element-form-group": "^4.0.55",
-        "@panneau/element-grid": "^4.0.55",
-        "@panneau/element-icon": "^4.0.55",
-        "@panneau/element-link": "^4.0.55",
-        "@panneau/element-media-card": "^4.0.55",
-        "@panneau/element-media-player": "^4.0.55",
-        "@panneau/element-modal": "^4.0.55",
-        "@panneau/fields": "^4.0.55",
-        "@panneau/filters": "^4.0.55",
-        "@panneau/intl": "^4.0.55",
-        "@panneau/medias": "^4.0.42",
-        "@panneau/modal-dialog": "^4.0.55",
-        "@panneau/uppy": "^4.0.55",
-        "@uppy/core": "^5.1.1",
-        "@uppy/dashboard": "^5.0.4",
-        "@uppy/react": "^5.1.1",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "css:theme": "../../scripts/build-css.js ./src/styles/theme.css ./assets/css/theme.css",
+        "css:vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
+        "prepublishOnly": "npm run build"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
@@ -156,10 +128,38 @@
         "wolfy87-eventemitter": "^5.2.9",
         "wouter": "^3.0.0"
     },
+    "devDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "peerDependencies": {
+        "@panneau/core": "^4.0.55",
+        "@panneau/displays": "^4.0.55",
+        "@panneau/element-button": "^4.0.55",
+        "@panneau/element-buttons": "^4.0.55",
+        "@panneau/element-dropdown": "^4.0.55",
+        "@panneau/element-form-group": "^4.0.55",
+        "@panneau/element-grid": "^4.0.55",
+        "@panneau/element-icon": "^4.0.55",
+        "@panneau/element-link": "^4.0.55",
+        "@panneau/element-media-card": "^4.0.55",
+        "@panneau/element-media-player": "^4.0.55",
+        "@panneau/element-modal": "^4.0.55",
+        "@panneau/fields": "^4.0.55",
+        "@panneau/filters": "^4.0.55",
+        "@panneau/intl": "^4.0.55",
+        "@panneau/medias": "^4.0.42",
+        "@panneau/modal-dialog": "^4.0.55",
+        "@panneau/uppy": "^4.0.55",
+        "@uppy/core": "^5.1.1",
+        "@uppy/dashboard": "^5.0.4",
+        "@uppy/react": "^5.1.1",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
     "publishConfig": {
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ace54773f679f91f3c85927fe98276c52ce75da3",
-    "types": "es/index.d.ts"
+    "gitHead": "ace54773f679f91f3c85927fe98276c52ce75da3"
 }

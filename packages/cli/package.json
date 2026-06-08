@@ -1,7 +1,4 @@
 {
-    "sideEffects": [
-        "**/*.css"
-    ],
     "name": "@micromag/cli",
     "version": "0.4.98",
     "private": false,
@@ -14,6 +11,7 @@
         "type": "git",
         "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
+    "license": "ISC",
     "author": {
         "name": "Folklore",
         "email": "info@folklore.email"
@@ -32,20 +30,22 @@
             "email": "jc@folklore.email"
         }
     ],
-    "license": "ISC",
-    "files": [
-        "lib",
-        "bin"
+    "sideEffects": [
+        "**/*.css"
     ],
     "bin": {
         "micromag-export": "./bin/export.js"
     },
+    "files": [
+        "lib",
+        "bin"
+    ],
     "scripts": {
+        "build": "../../scripts/prepare-package.sh",
         "clean": "rm -rf bin && rm -rf lib",
-        "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  -i '[]' --env-name=node",
         "export": "npm run node -- ./src/bin/export.js",
-        "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh"
+        "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  -i '[]' --env-name=node",
+        "prepublishOnly": "npm run build"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",

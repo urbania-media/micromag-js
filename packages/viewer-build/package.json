@@ -1,7 +1,4 @@
 {
-    "sideEffects": [
-        "**/*.css"
-    ],
     "name": "@micromag/viewer-build",
     "version": "0.4.98",
     "private": false,
@@ -14,6 +11,7 @@
         "type": "git",
         "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
+    "license": "ISC",
     "author": {
         "name": "Folklore",
         "email": "info@folklore.email"
@@ -32,22 +30,19 @@
             "email": "jc@folklore.email"
         }
     ],
-    "license": "ISC",
+    "sideEffects": [
+        "**/*.css"
+    ],
     "files": [
         "build"
     ],
     "scripts": {
-        "clean": "rm -rf build && rm -rf lib",
-        "build:viewer": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build --merge-config=./webpack.config.js ./src/index.ts",
-        "build:lib": "flklr build --disable-source-map --output-path=./lib --merge-config=./webpack.config.lib.js ./src/lib.ts",
         "build": "npm run clean && npm run build:viewer && npm run build:lib",
+        "build:lib": "flklr build --disable-source-map --output-path=./lib --merge-config=./webpack.config.lib.js ./src/lib.ts",
+        "build:viewer": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build --merge-config=./webpack.config.js ./src/index.ts",
+        "clean": "rm -rf build && rm -rf lib",
         "prepublishOnly": "npm run build"
     },
-    "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
-    },
-    "gitHead": "ace54773f679f91f3c85927fe98276c52ce75da3",
     "devDependencies": {
         "@folklore/cli": "^0.0.50",
         "@micromag/core": "^0.4.98",
@@ -57,5 +52,10 @@
         "lodash-webpack-plugin": "^0.11.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0"
-    }
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "gitHead": "ace54773f679f91f3c85927fe98276c52ce75da3"
 }

@@ -1,7 +1,4 @@
 {
-    "sideEffects": [
-        "**/*.css"
-    ],
     "name": "@micromag/ckeditor",
     "version": "0.4.93",
     "private": false,
@@ -14,6 +11,7 @@
         "type": "git",
         "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
+    "license": "ISC",
     "author": {
         "name": "Folklore",
         "email": "info@folklore.email"
@@ -32,15 +30,17 @@
             "email": "jc@folklore.email"
         }
     ],
-    "license": "ISC",
+    "sideEffects": [
+        "**/*.css"
+    ],
     "type": "module",
-    "module": "es/index.js",
     "exports": {
         ".": {
             "import": "./es/index.js"
         },
         "./build": "./dist/build.cjs"
     },
+    "module": "es/index.js",
     "browser": {
         ".": "./es/index.js",
         "./build": "./dist/build.cjs"
@@ -51,20 +51,10 @@
         "lib"
     ],
     "scripts": {
-        "clean": "rm -rf es && rm -rf lib && rm -rf dist",
+        "build": "rm -rf dist && ../../scripts/prepare-package.sh && npm run build:ckeditor",
         "build:ckeditor": "../../node_modules/.bin/webpack --mode production --config webpack.config.cjs",
-        "prepublishOnly": "npm run build",
-        "build": "rm -rf dist && ../../scripts/prepare-package.sh && npm run build:ckeditor"
-    },
-    "devDependencies": {
-        "@ckeditor/ckeditor5-dev-translations": "^43.1",
-        "@ckeditor/ckeditor5-dev-utils": "^43.1",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
-    },
-    "peerDependencies": {
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "clean": "rm -rf es && rm -rf lib && rm -rf dist",
+        "prepublishOnly": "npm run build"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
@@ -85,6 +75,16 @@
         "@ckeditor/ckeditor5-upload": "^48.0.1",
         "@folklore/fetch": "0.1.17",
         "@panneau/ckeditor": "^4.0.41"
+    },
+    "devDependencies": {
+        "@ckeditor/ckeditor5-dev-translations": "^43.1",
+        "@ckeditor/ckeditor5-dev-utils": "^43.1",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "publishConfig": {
         "access": "public",

@@ -1,7 +1,4 @@
 {
-    "sideEffects": [
-        "**/*.css"
-    ],
     "name": "@micromag/screens",
     "version": "0.4.98",
     "private": false,
@@ -14,6 +11,7 @@
         "type": "git",
         "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
+    "license": "ISC",
     "author": {
         "name": "Folklore",
         "email": "info@folklore.email"
@@ -32,10 +30,10 @@
             "email": "jc@folklore.email"
         }
     ],
-    "license": "ISC",
+    "sideEffects": [
+        "**/*.css"
+    ],
     "type": "module",
-    "module": "es/index.js",
-    "style": "assets/css/styles.css",
     "exports": {
         ".": {
             "types": "./es/index.d.ts",
@@ -52,10 +50,13 @@
         "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },
+    "module": "es/index.js",
     "browser": {
         ".": "./es/index.js",
         "./all": "./es/all.js"
     },
+    "types": "es/index.d.ts",
+    "style": "assets/css/styles.css",
     "files": [
         "lib",
         "es",
@@ -65,22 +66,14 @@
         "all.js"
     ],
     "scripts": {
+        "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.css.ejs ./assets/css/styles.css",
+        "all-styles": "npm run aggregate-css && npm run build-css",
+        "build": "npm run build:fields && ../../scripts/prepare-package.sh --types && npm run aggregate-css && npm run build-css",
+        "build:fields": "NODE_ENV=development rollup --bundleConfigAsCjs --config ./rollup.config.cli.js && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
+        "build-css": "../../scripts/build-css.js ./assets/css/styles.css ./assets/css/build.css",
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles && rm -rf fields.js && rm -rf fields.json",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  --ignore='[]' --env-name=node --no-babelrc",
-        "build:fields": "NODE_ENV=development rollup --bundleConfigAsCjs --config ./rollup.config.cli.js && node ./build-screen-fields.cjs ./ && rm -f ./build-screen-fields.cjs",
-        "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.css.ejs ./assets/css/styles.css",
-        "build-css": "../../scripts/build-css.js ./assets/css/styles.css ./assets/css/build.css",
-        "prepublishOnly": "npm run build",
-        "build": "npm run build:fields && ../../scripts/prepare-package.sh --types && npm run aggregate-css && npm run build-css",
-        "all-styles": "npm run aggregate-css && npm run build-css"
-    },
-    "devDependencies": {
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
-    },
-    "peerDependencies": {
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "prepublishOnly": "npm run build"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
@@ -113,10 +106,17 @@
         "classnames": "^2.2.6",
         "lodash-es": "^4.17.23"
     },
+    "devDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
     "publishConfig": {
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "gitHead": "ace54773f679f91f3c85927fe98276c52ce75da3",
-    "types": "es/index.d.ts"
+    "gitHead": "ace54773f679f91f3c85927fe98276c52ce75da3"
 }

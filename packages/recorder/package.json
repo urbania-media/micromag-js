@@ -1,7 +1,4 @@
 {
-    "sideEffects": [
-        "**/*.css"
-    ],
     "name": "@micromag/recorder",
     "version": "0.4.98",
     "private": false,
@@ -14,6 +11,7 @@
         "type": "git",
         "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
+    "license": "ISC",
     "author": {
         "name": "Folklore",
         "email": "info@folklore.email"
@@ -32,9 +30,11 @@
             "email": "jc@folklore.email"
         }
     ],
-    "license": "ISC",
-    "main": "bin/recorder.js",
+    "sideEffects": [
+        "**/*.css"
+    ],
     "type": "commonjs",
+    "main": "bin/recorder.js",
     "bin": {
         "micromag-recorder": "bin/recorder.js"
     },
@@ -43,21 +43,11 @@
         "bin"
     ],
     "scripts": {
-        "clean": "rm -rf cli && rm -rf build",
-        "prepublishOnly": "npm run build",
-        "build:viewer": "flklr build --disable-source-map --html-path=./src/index.html.ejs --output-path=./build --merge-config=./webpack.config.js ./src/web.tsx",
+        "build": "npm run clean && npm run build:cli",
         "build:cli": "../../scripts/prepare-package.sh",
-        "build": "npm run clean && npm run build:cli"
-    },
-    "devDependencies": {
-        "@folklore/cli": "^0.0.50",
-        "lodash-webpack-plugin": "^0.11.6",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
-    },
-    "peerDependencies": {
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "build:viewer": "flklr build --disable-source-map --html-path=./src/index.html.ejs --output-path=./build --merge-config=./webpack.config.js ./src/web.tsx",
+        "clean": "rm -rf cli && rm -rf build",
+        "prepublishOnly": "npm run build"
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
@@ -70,6 +60,16 @@
         "puppeteer": "^24.33.0",
         "puppeteer-screen-recorder": "^3.0.6",
         "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "@folklore/cli": "^0.0.50",
+        "lodash-webpack-plugin": "^0.11.6",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "publishConfig": {
         "access": "public",

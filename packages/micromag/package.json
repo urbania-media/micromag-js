@@ -1,7 +1,4 @@
 {
-    "sideEffects": [
-        "**/*.css"
-    ],
     "name": "micromag",
     "version": "0.4.98",
     "private": false,
@@ -14,6 +11,7 @@
         "type": "git",
         "url": "git+https://github.com/urbania-media/micromag-js.git"
     },
+    "license": "ISC",
     "author": {
         "name": "Folklore",
         "email": "info@folklore.email"
@@ -32,7 +30,9 @@
             "email": "jc@folklore.email"
         }
     ],
-    "license": "ISC",
+    "sideEffects": [
+        "**/*.css"
+    ],
     "type": "module",
     "module": "es/index.js",
     "files": [
@@ -41,12 +41,19 @@
         "assets"
     ],
     "scripts": {
+        "build": "../../scripts/prepare-package.sh --types && npm run css",
         "clean": "rm -rf es && rm -rf lib && rm -rf assets && rm -rf styles",
-        "css:vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
-        "css:styles": "../../scripts/build-css.js ./src/styles/styles.css ./assets/css/styles.css",
         "css": "npm run css:vendor && npm run css:styles",
-        "prepublishOnly": "npm run build",
-        "build": "../../scripts/prepare-package.sh --types && npm run css"
+        "css:styles": "../../scripts/build-css.js ./src/styles/styles.css ./assets/css/styles.css",
+        "css:vendor": "../../scripts/build-css.js ./src/styles/vendor.css ./assets/css/vendor.css",
+        "prepublishOnly": "npm run build"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.28.6",
+        "@micromag/core": "^0.4.98",
+        "@micromag/editor": "^0.4.98",
+        "@micromag/viewer": "^0.4.98",
+        "bootstrap": "^5.3.8"
     },
     "devDependencies": {
         "react": "^19.0.0",
@@ -55,13 +62,6 @@
     "peerDependencies": {
         "react": "^19.0.0",
         "react-dom": "^19.0.0"
-    },
-    "dependencies": {
-        "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.98",
-        "@micromag/editor": "^0.4.98",
-        "@micromag/viewer": "^0.4.98",
-        "bootstrap": "^5.3.8"
     },
     "gitHead": "ace54773f679f91f3c85927fe98276c52ce75da3"
 }
