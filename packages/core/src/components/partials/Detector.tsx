@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import throttle from 'lodash/throttle';
+import throttle from 'lodash-es/throttle';
 import React, { useEffect, useMemo, useRef } from 'react';
 
 import { useIntersectionObserver } from '../../hooks';

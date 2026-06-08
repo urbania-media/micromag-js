@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useIntl } from 'react-intl';

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import isNumber from 'lodash/isNumber';
-import isString from 'lodash/isString';
+import isNumber from 'lodash-es/isNumber';
+import isString from 'lodash-es/isString';
 import React from 'react';
 
 import type { StackAlign, StackDirection, StackSpacing } from '@micromag/core';

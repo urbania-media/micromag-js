@@ -1,6 +1,6 @@
-import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
-import isObject from 'lodash/isObject';
+import isArray from 'lodash-es/isArray';
+import isEmpty from 'lodash-es/isEmpty';
+import isObject from 'lodash-es/isObject';
 
 class ThemeParser {
     constructor({ screensManager }) {

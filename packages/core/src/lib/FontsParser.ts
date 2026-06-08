@@ -1,6 +1,6 @@
-import isObject from 'lodash/isObject';
-import isArray from 'lodash/isArray';
-import uniq from 'lodash/uniq';
+import isObject from 'lodash-es/isObject';
+import isArray from 'lodash-es/isArray';
+import uniq from 'lodash-es/uniq';
 import { getScreenFieldsWithStates } from '../utils';
 
 class FontsParser {

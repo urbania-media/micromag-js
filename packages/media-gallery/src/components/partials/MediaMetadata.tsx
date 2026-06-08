@@ -1,6 +1,6 @@
 // useOrganisationTeam
 import classNames from 'classnames';
-import uniqBy from 'lodash/uniqBy';
+import uniqBy from 'lodash-es/uniqBy';
 import prettyBytes from 'pretty-bytes';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';

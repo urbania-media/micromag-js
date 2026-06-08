@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from 'lodash-es/isEmpty';
 import { ForwardedRef, InputHTMLAttributes } from 'react';
 
 import type { Errors } from '@micromag/core';

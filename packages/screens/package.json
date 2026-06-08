@@ -1,4 +1,7 @@
 {
+    "sideEffects": [
+        "**/*.css"
+    ],
     "name": "@micromag/screens",
     "version": "0.4.98",
     "private": false,
@@ -108,7 +111,7 @@
         "@micromag/screen-video": "^0.4.98",
         "@micromag/screen-video-360": "^0.4.98",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.23"
+        "lodash-es": "^4.17.23"
     },
     "publishConfig": {
         "access": "public",

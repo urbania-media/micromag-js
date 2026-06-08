@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import get from 'lodash/get';
+import get from 'lodash-es/get';
 import { ReactNode, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import type { Visitor } from '../types';

@@ -1,6 +1,6 @@
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { BoxStyle, TextElement } from '@micromag/core';

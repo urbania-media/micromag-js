@@ -1,7 +1,7 @@
 import { animated as a, easings, useSpring } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import queryString from 'query-string';
 import React, { ForwardedRef, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';

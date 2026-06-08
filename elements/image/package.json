@@ -1,4 +1,7 @@
 {
+    "sideEffects": [
+        "**/*.css"
+    ],
     "name": "@micromag/element-image",
     "version": "0.4.98",
     "private": false,

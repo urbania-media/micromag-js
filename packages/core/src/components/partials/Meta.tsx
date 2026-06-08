@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
-import isArray from 'lodash/isArray';
-import isString from 'lodash/isString';
+import isArray from 'lodash-es/isArray';
+import isString from 'lodash-es/isString';
 import React from 'react';
 
 interface MetaProps {

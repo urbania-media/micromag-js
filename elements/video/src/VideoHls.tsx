@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import Hls from 'hls.js';
-import isFunction from 'lodash/isFunction';
+import isFunction from 'lodash-es/isFunction';
 import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { MediaElement, VideoMedia } from '@micromag/core';

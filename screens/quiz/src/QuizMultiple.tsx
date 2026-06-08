@@ -2,7 +2,7 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 

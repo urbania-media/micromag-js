@@ -1,4 +1,4 @@
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 
 const getRemainder = (number) => {
     const remainder = number - Math.floor(number);

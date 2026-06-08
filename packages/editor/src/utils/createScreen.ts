@@ -1,4 +1,4 @@
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import { v1 as uuid } from 'uuid';
 
 import { getScreenFieldsWithStates } from '@micromag/core/utils';

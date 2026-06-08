@@ -1,6 +1,6 @@
 // import classNames from 'classnames';
 // import { DashboardModal } from '@uppy/react';
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 import React, { Suspense, useCallback, useEffect, useMemo } from 'react';
 
 import { useUppy } from '@panneau/uppy';

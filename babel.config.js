@@ -1,7 +1,3 @@
-const path = require('path');
-const getPackagesAliases = require('./scripts/lib/getPackagesAliases');
-const { runtime } = require('webpack');
-
 module.exports = {
     presets: [
         [
@@ -29,7 +25,6 @@ module.exports = {
                 // useESModules: !isAbsolute,
             },
         ],
-        require.resolve('babel-plugin-lodash'),
         [
             require.resolve('babel-plugin-static-fs'),
             {

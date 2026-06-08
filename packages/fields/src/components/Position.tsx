@@ -5,7 +5,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons/faDotCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import { Fragment, useId } from 'react';
 
 interface PositionValue {

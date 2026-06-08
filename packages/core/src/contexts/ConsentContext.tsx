@@ -2,7 +2,7 @@
 
 /* global gtag */
 import JSCookie from 'js-cookie';
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { defineMessages } from 'react-intl';
 

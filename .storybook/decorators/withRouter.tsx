@@ -1,4 +1,4 @@
-import isObject from 'lodash/isObject';
+import isObject from 'lodash-es/isObject';
 import React from 'react';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';

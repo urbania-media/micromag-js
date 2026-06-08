@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import orderBy from 'lodash/orderBy';
+import orderBy from 'lodash-es/orderBy';
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 

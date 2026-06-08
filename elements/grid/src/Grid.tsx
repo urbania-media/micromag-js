@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 import React from 'react';
 
 import type { GridLayout } from '@micromag/core';

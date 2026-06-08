@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import get from 'lodash/get';
-import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
-import isObject from 'lodash/isObject';
-import isString from 'lodash/isString';
+import get from 'lodash-es/get';
+import isArray from 'lodash-es/isArray';
+import isEmpty from 'lodash-es/isEmpty';
+import isObject from 'lodash-es/isObject';
+import isString from 'lodash-es/isString';
 import React, { isValidElement } from 'react';
 import { FormattedMessage } from 'react-intl';
 

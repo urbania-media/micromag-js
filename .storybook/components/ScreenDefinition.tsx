@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 

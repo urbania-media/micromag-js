@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import isObject from 'lodash/isObject';
+import isObject from 'lodash-es/isObject';
 import React, { useMemo } from 'react';
 
 import type { ImageMedia } from '@micromag/core';

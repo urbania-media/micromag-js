@@ -1,8 +1,8 @@
 import '../styles/styles.global.css';
 
 import { RoutesProvider } from '@folklore/routes';
-import isEmpty from 'lodash/isEmpty';
-import uniq from 'lodash/uniq';
+import isEmpty from 'lodash-es/isEmpty';
+import uniq from 'lodash-es/uniq';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';
 

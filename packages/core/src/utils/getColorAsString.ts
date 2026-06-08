@@ -1,4 +1,4 @@
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import tinycolor from 'tinycolor2';
 
 import { Color } from '../types';

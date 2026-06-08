@@ -1,7 +1,7 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
+import isEmpty from 'lodash-es/isEmpty';
+import isString from 'lodash-es/isString';
 import { ForwardedRef, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 

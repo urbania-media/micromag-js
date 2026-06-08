@@ -355,7 +355,7 @@ function EditForm({
                     <Empty className="w-100 m-2">
                         <FormattedMessage
                             defaultMessage="Select a screen..."
-                            decription="Indication to select a screen to view the form"
+                            description="Indication to select a screen to view the form"
                         />
                     </Empty>
                 )}

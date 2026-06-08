@@ -1,4 +1,4 @@
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import queryString from 'query-string';
 import { useEffect, useState, useMemo, useCallback } from 'react';
 

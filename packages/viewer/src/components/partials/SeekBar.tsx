@@ -1,6 +1,6 @@
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 

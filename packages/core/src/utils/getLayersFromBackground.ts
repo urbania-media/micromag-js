@@ -1,4 +1,4 @@
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 
 const getLayersFromBackground = (background = null) => {
     if (background === null) {

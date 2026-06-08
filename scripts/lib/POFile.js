@@ -1,6 +1,6 @@
 const fs = require('fs');
 const fsExtra = require('fs-extra');
-const isEmpty = require('lodash/isEmpty');
+const isEmpty = require('lodash-es/isEmpty');
 const gettextParser = require('gettext-parser');
 
 class POFile {

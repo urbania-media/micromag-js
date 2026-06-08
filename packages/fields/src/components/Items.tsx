@@ -5,7 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import isFunction from 'lodash/isFunction';
+import isFunction from 'lodash-es/isFunction';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';

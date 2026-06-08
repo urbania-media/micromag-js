@@ -1,4 +1,4 @@
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import { ReactNode, createContext, use, useMemo, useState } from 'react';
 import EventEmitter from 'wolfy87-eventemitter';
 

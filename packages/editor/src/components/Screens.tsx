@@ -2,7 +2,7 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import isString from 'lodash/isString';
+import isString from 'lodash-es/isString';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Route, Switch } from 'wouter';

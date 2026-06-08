@@ -1,4 +1,4 @@
-import isObject from 'lodash/isObject';
+import isObject from 'lodash-es/isObject';
 import React from 'react';
 import { ScreenSizeProvider } from '../../packages/core/src/contexts';
 import { useScreenSizeFromElement } from '../../packages/core/src/hooks';

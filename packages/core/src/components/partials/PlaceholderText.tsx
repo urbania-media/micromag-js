@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isNumber from 'lodash/isNumber';
+import isNumber from 'lodash-es/isNumber';
 
 export interface PlaceholderTextProps {
     lines?: number;

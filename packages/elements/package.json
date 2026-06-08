@@ -1,4 +1,7 @@
 {
+    "sideEffects": [
+        "**/*.css"
+    ],
     "name": "@micromag/elements",
     "version": "0.4.98",
     "private": false,
@@ -104,7 +107,7 @@
         "@micromag/element-visual": "^0.4.98",
         "@micromag/element-webview": "^0.4.98",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.23"
+        "lodash-es": "^4.17.23"
     },
     "publishConfig": {
         "access": "public",

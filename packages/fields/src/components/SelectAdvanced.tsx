@@ -1,4 +1,4 @@
-import isEqual from 'lodash/isEqual';
+import isEqual from 'lodash-es/isEqual';
 import { useIntl } from 'react-intl';
 import Select, { type Props as SelectProps } from 'react-select';
 

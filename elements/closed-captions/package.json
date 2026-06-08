@@ -1,4 +1,7 @@
 {
+    "sideEffects": [
+        "**/*.css"
+    ],
     "name": "@micromag/element-closed-captions",
     "version": "0.4.98",
     "private": false,

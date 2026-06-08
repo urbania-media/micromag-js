@@ -1,7 +1,7 @@
-import isArray from 'lodash/isArray';
-import isObject from 'lodash/isObject';
-import uniqWith from 'lodash/uniqWith';
-import sortBy from 'lodash/sortBy';
+import isArray from 'lodash-es/isArray';
+import isObject from 'lodash-es/isObject';
+import uniqWith from 'lodash-es/uniqWith';
+import sortBy from 'lodash-es/sortBy';
 
 const sortedColors = (colors) => sortBy(colors, ['color', 'alpha']);
 

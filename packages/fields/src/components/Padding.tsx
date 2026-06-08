@@ -1,4 +1,4 @@
-import isObject from 'lodash/isObject';
+import isObject from 'lodash-es/isObject';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Padding } from '@micromag/core';

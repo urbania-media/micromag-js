@@ -1,4 +1,4 @@
-import isObject from 'lodash/isObject';
+import isObject from 'lodash-es/isObject';
 import getStyleFromBorder from './getStyleFromBorder';
 import getStyleFromColor from './getStyleFromColor';
 import getStyleFromShadow from './getStyleFromShadow';

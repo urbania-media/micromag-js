@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 import { Fragment, useId } from 'react';
 
 import type { SelectOption } from '@micromag/core';

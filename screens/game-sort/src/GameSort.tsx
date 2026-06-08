@@ -1,8 +1,8 @@
 import { animated, useSprings } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
-import isString from 'lodash/isString';
-import shuffle from 'lodash/shuffle';
+import isString from 'lodash-es/isString';
+import shuffle from 'lodash-es/shuffle';
 import React, {
     ForwardedRef,
     useCallback,

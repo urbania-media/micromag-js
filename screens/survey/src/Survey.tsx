@@ -2,7 +2,7 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import DOMPurify from 'dompurify';
-import isNumber from 'lodash/isNumber';
+import isNumber from 'lodash-es/isNumber';
 import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 

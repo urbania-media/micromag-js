@@ -1,4 +1,4 @@
-import isObject from 'lodash/isObject';
+import isObject from 'lodash-es/isObject';
 
 const getFontFamily = (value) => {
     if (value == null) {

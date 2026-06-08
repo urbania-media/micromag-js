@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isFunction from 'lodash/isFunction';
+import isFunction from 'lodash-es/isFunction';
 import React from 'react';
 import { ReactSortable } from 'react-sortablejs';
 

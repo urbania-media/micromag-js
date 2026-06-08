@@ -1,5 +1,5 @@
 import { useIntersectionObserver, useResizeObserver } from '@folklore/hooks';
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 
 export { useIntersectionObserver, useResizeObserver };
 

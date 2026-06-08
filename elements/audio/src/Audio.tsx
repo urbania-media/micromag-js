@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import isFunction from 'lodash/isFunction';
-import isNumber from 'lodash/isNumber';
+import isFunction from 'lodash-es/isFunction';
+import isNumber from 'lodash-es/isNumber';
 import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import type { AudioMedia, MediaElement } from '@micromag/core';

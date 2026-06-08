@@ -1,4 +1,7 @@
 {
+    "sideEffects": [
+        "**/*.css"
+    ],
     "name": "@micromag/viewer-build",
     "version": "0.4.98",
     "private": false,

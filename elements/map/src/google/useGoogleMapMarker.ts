@@ -1,4 +1,4 @@
-import isObject from 'lodash/isObject';
+import isObject from 'lodash-es/isObject';
 import { useCallback, useEffect, useRef } from 'react';
 
 import { useGoogleMapsClient } from '@micromag/core/contexts';

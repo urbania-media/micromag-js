@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from 'lodash-es/isEmpty';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import InputGroup from './InputGroup';

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import isObject from 'lodash/isObject';
+import isObject from 'lodash-es/isObject';
 import React from 'react';
 
 const emptyArray: never[] = [];

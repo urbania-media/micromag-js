@@ -1,4 +1,7 @@
 {
+    "sideEffects": [
+        "**/*.css"
+    ],
     "name": "@micromag/element-checkbox",
     "version": "0.4.98",
     "private": false,
@@ -64,7 +67,7 @@
         "@babel/runtime": "^7.28.6",
         "@micromag/core": "^0.4.98",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.23",
+        "lodash-es": "^4.17.23",
         "react-intl": "^8.1.3 || ^10.0.0",
         "uuid": "^9.0.0"
     },

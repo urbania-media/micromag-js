@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from 'lodash-es/isEmpty';
 import React, { useCallback, useMemo } from 'react';
 import { SketchPicker } from 'react-color';
 import tinycolor from 'tinycolor2';

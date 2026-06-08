@@ -1,4 +1,4 @@
-import isFunction from 'lodash/isFunction';
+import isFunction from 'lodash-es/isFunction';
 import { useIntl } from 'react-intl';
 
 import { Label } from '@micromag/core';

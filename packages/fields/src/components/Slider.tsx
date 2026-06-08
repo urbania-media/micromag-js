@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 import Slider from 'rc-slider';
 import { useCallback, useMemo } from 'react';
 

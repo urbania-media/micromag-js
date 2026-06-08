@@ -1,4 +1,4 @@
-import isNumber from 'lodash/isNumber';
+import isNumber from 'lodash-es/isNumber';
 import { kebabCase } from 'change-case';
 
 const convertStyleToString = style =>

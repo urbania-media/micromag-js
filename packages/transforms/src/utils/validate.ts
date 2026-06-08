@@ -1,7 +1,7 @@
-import isEmpty from 'lodash/isEmpty';
-import isInteger from 'lodash/isInteger';
-import isNumber from 'lodash/isNumber';
-import isString from 'lodash/isString';
+import isEmpty from 'lodash-es/isEmpty';
+import isInteger from 'lodash-es/isInteger';
+import isNumber from 'lodash-es/isNumber';
+import isString from 'lodash-es/isString';
 
 const validate = (content = {}, definition = null) => {
     const validated = content

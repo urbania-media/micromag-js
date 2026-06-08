@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import get from 'lodash-es/get';
 
 const getListItemFromScreen = (fieldParams, screen) => {
     const path = fieldParams.split('/');
@@ -9,7 +9,7 @@ const getListItemFromScreen = (fieldParams, screen) => {
 
     return {
         listKey,
-        itemIndex, 
+        itemIndex,
         list,
         item,
     };

@@ -1,5 +1,5 @@
-import isString from 'lodash/isString';
-import uniqBy from 'lodash/uniqBy';
+import isString from 'lodash-es/isString';
+import uniqBy from 'lodash-es/uniqBy';
 import { ReactNode, createContext, use } from 'react';
 
 import { FieldsManager } from '../lib';

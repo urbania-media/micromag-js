@@ -1,4 +1,4 @@
-import isArray from 'lodash/isArray';
+import isArray from 'lodash-es/isArray';
 
 const getMediaFilesAsArray = (files) =>
     files !== null && isArray(files)

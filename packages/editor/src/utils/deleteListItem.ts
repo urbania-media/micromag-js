@@ -1,8 +1,8 @@
-import set from 'lodash/set';
+import set from 'lodash-es/set';
 import getListItemFromScreen from './getListItemFromScreen';
 
 const deleteListItem = (fieldParams, story, screenIndex) => {
-    
+
     const { components: screens = [] } = story || {};
     const screen = screens.length > screenIndex ? screens[screenIndex] : null;
     const { listKey, list, itemIndex } = getListItemFromScreen(fieldParams, screen);
