@@ -53,6 +53,7 @@ export default {
         replace({
             values: {
                 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+                'lodash-es': 'lodash',
             },
             preventAssignment: true,
         }),

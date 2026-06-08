@@ -6,5 +6,6 @@
         "test": {
             "dependsOn": ["build"]
         }
-    }
+    },
+    "analytics": true
 }

@@ -539,6 +539,9 @@
     "G1Gyjn": {
         "defaultMessage": "Seek"
     },
+    "GGlcE2": {
+        "defaultMessage": "Select a screen..."
+    },
     "GMCLhn": {
         "defaultMessage": "Case"
     },
@@ -793,9 +796,6 @@
     },
     "Qe03Xz": {
         "defaultMessage": "Sign Subtitle"
-    },
-    "QfpTKK": {
-        "defaultMessage": "Select a screen..."
     },
     "QjbLZ9": {
         "defaultMessage": "Reading speed (in Words Per Minute)"

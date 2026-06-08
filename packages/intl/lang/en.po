@@ -1091,6 +1091,12 @@ msgctxt "G1Gyjn"
 msgid "Seek"
 msgstr "Seek"
 
+# Indication to select a screen to view the form
+#: GGlcE2
+msgctxt "GGlcE2"
+msgid "Select a screen..."
+msgstr "Select a screen..."
+
 # Field label
 #: GMCLhn
 msgctxt "GMCLhn"
@@ -1600,11 +1606,6 @@ msgstr "Add an image"
 msgctxt "Qe03Xz"
 msgid "Sign Subtitle"
 msgstr "Sign Subtitle"
-
-#: QfpTKK
-msgctxt "QfpTKK"
-msgid "Select a screen..."
-msgstr "Select a screen..."
 
 # Reading speed label
 #: QjbLZ9
