@@ -55,6 +55,7 @@ function MediaGalleryModal({
         if (onChange !== null) {
             onChange(value);
         }
+        requestClose();
     };
     return (
         <Dialog
