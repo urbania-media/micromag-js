@@ -96,9 +96,9 @@ function MediaGallery({
     const { create: createMedia } = useMediaCreate();
     const mediasApi = useMediasApi();
     const onMediaUploaded = (newMedias) =>
-        Promise.all(newMedias.map((media) => (mediasApi?.create ?? createMedia)(media))).then(
-            (newAddedMedias) => newAddedMedias,
-        );
+        Promise.all(
+            newMedias.map((media) => (mediasApi?.create?.bind(mediasApi) ?? createMedia)(media)),
+        ).then((newAddedMedias) => newAddedMedias);
 
     const uppyConfig = {
         // set sources ? - uppy sources -
