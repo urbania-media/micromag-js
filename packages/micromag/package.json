@@ -1,6 +1,6 @@
 {
     "name": "micromag",
-    "version": "0.4.100",
+    "version": "0.4.101",
     "private": false,
     "description": "",
     "keywords": [
@@ -51,8 +51,8 @@
     "dependencies": {
         "@babel/runtime": "^7.28.6",
         "@micromag/core": "^0.4.100",
-        "@micromag/editor": "^0.4.100",
-        "@micromag/viewer": "^0.4.100",
+        "@micromag/editor": "^0.4.101",
+        "@micromag/viewer": "^0.4.101",
         "bootstrap": "^5.3.8"
     },
     "devDependencies": {
