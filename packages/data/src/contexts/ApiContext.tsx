@@ -1,31 +1,36 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo } from 'react';
+import { ReactNode, createContext, use } from 'react';
 
 import Api from '../lib/Api';
 
-const ApiContext = React.createContext(null);
+const ApiContext = createContext(null);
 
-export const useApi = () => useContext(ApiContext);
+export const useApi = () => use(ApiContext);
 
 interface ApiProviderProps {
     api?: Api;
     baseUrl?: string;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
-export function ApiProvider({ api: initialApi = null, baseUrl = undefined, children }: ApiProviderProps) {
+export function ApiProvider({
+    api: initialApi = null,
+    baseUrl = undefined,
+    children,
+}: ApiProviderProps) {
     const previousApi = useApi();
-    const api = useMemo(
-        () =>
-            initialApi ||
-            previousApi ||
-            new Api({
-                baseUrl,
-                // baseUrl: 'https://micromag.studio.test/api',
-            }),
-        [previousApi, initialApi, baseUrl],
+    return (
+        <ApiContext
+            value={
+                initialApi ||
+                previousApi ||
+                new Api({
+                    baseUrl,
+                })
+            }
+        >
+            {children}
+        </ApiContext>
     );
-    return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>;
 }
 
 export default ApiContext;

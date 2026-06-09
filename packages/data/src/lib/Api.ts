@@ -4,6 +4,10 @@ import MediasApi from './Medias';
 import QuizApi from './Quiz';
 
 class Api extends Base {
+    medias: MediasApi;
+    contributions: ContributionsApi;
+    quiz: QuizApi;
+
     constructor(opts = {}) {
         super(opts);
 

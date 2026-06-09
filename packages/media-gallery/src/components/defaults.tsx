@@ -1,8 +1,9 @@
 import { useUrlGenerator } from '@folklore/routes';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-export function useDefaultFilters() {
+import { Field, Filter } from '@panneau/core';
+
+export function useDefaultFilters(): Filter[] {
     const route = useUrlGenerator();
     return [
         {
@@ -85,7 +86,7 @@ export function useDefaultFilters() {
     ];
 }
 
-export function useDefaultFields() {
+export function useDefaultFields(): Field[] {
     const route = useUrlGenerator();
     return [
         {

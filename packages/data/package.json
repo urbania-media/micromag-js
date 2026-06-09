@@ -57,6 +57,7 @@
         "@folklore/fetch": "^0.1.17",
         "@folklore/routes": "^0.4.4",
         "@micromag/core": "^0.4.100",
+        "@panneau/medias": "^4.0.60",
         "lodash-es": "^4.17.23",
         "query-string": "^9.0.0"
     },
