@@ -9,6 +9,7 @@ import {
     type MediasBrowserContainerProps,
     MediasPickerContainer,
     MediasPickerContainerProps,
+    useMediasApi,
 } from '@panneau/medias';
 
 import { useStory } from '@micromag/core/contexts';
@@ -93,8 +94,11 @@ function MediaGallery({
 
     // Upload
     const { create: createMedia } = useMediaCreate();
+    const mediasApi = useMediasApi();
     const onMediaUploaded = (newMedias) =>
-        Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => newAddedMedias);
+        Promise.all(newMedias.map(mediasApi?.create ?? createMedia)).then(
+            (newAddedMedias) => newAddedMedias,
+        );
 
     const uppyConfig = {
         // set sources ? - uppy sources -
