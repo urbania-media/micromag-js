@@ -96,7 +96,7 @@ function MediaGallery({
     const { create: createMedia } = useMediaCreate();
     const mediasApi = useMediasApi();
     const onMediaUploaded = (newMedias) =>
-        Promise.all(newMedias.map(mediasApi?.create ?? createMedia)).then(
+        Promise.all(newMedias.map((media) => (mediasApi?.create ?? createMedia)(media))).then(
             (newAddedMedias) => newAddedMedias,
         );
 
