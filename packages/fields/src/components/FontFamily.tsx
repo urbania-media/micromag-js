@@ -1,7 +1,6 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isObject from 'lodash-es/isObject';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type { Font } from '@micromag/core';
@@ -46,108 +45,92 @@ function FontFamily({
     const { systemFonts, googleFonts, customFonts } = useFonts();
     const valueName = value !== null && isObject(value) ? value.name || null : value;
     const [search, setSearch] = useState({});
-    const onSearchChange = useCallback(
-        (id, newValue) =>
-            setSearch({
-                ...search,
-                [id]: newValue,
-            }),
-        [search, setSearch],
-    );
-    const fontsGroups = useMemo(
-        () =>
-            [
-                customFonts !== null && customFonts.length > 0
-                    ? {
-                          id: 'custom',
-                          title: (
-                              <FormattedMessage
-                                  defaultMessage="Custom fonts"
-                                  description="Font family group title"
-                              />
-                          ),
-                          fonts: customFonts,
-                      }
-                    : null,
-                systemFonts !== null && systemFonts.length > 0
-                    ? {
-                          id: 'system',
-                          title: (
-                              <FormattedMessage
-                                  defaultMessage="Default fonts"
-                                  description="Font family group title"
-                              />
-                          ),
-                          fonts: systemFonts,
-                      }
-                    : null,
-                googleFonts !== null && googleFonts.length > 0
-                    ? {
-                          id: 'google',
-                          title: (
-                              <FormattedMessage
-                                  defaultMessage="Google Fonts"
-                                  description="Font family group title"
-                              />
-                          ),
-                          fonts: googleFonts,
-                      }
-                    : null,
-            ]
-                .filter((it) => it !== null)
-                .map(({ id, fonts, ...fontGroup }) => {
-                    const hasSearch = fonts.length > maxFontsVisible;
-                    const currentSearch = search[id] || null;
-                    const searchNormalized =
-                        currentSearch !== null ? normalize(currentSearch) : null;
-                    const addedValueFont =
-                        hasSearch && value !== null
-                            ? fonts.find((font) => fontEquals(font, value)) || null
-                            : null;
-                    const filteredFonts = hasSearch
-                        ? fonts
-                              .filter(
-                                  (font) =>
-                                      (searchNormalized === null ||
-                                          normalize(isObject(font) ? font.name : font).indexOf(
-                                              searchNormalized,
-                                          ) !== -1) &&
-                                      (addedValueFont === null ||
-                                          !fontEquals(addedValueFont, font)),
-                              )
-                              .slice(0, maxFontsVisible)
-                        : fonts;
-                    return {
-                        id,
-                        fonts:
-                            addedValueFont !== null
-                                ? [addedValueFont, ...filteredFonts]
-                                : filteredFonts,
-                        currentSearch,
-                        hasSearch,
-                        ...fontGroup,
-                    };
-                }),
-        [systemFonts, googleFonts, customFonts, value, search],
-    );
+    const onSearchChange = (id, newValue) =>
+        setSearch({
+            ...search,
+            [id]: newValue,
+        });
+    const fontsGroups = [
+        customFonts !== null && customFonts.length > 0
+            ? {
+                  id: 'custom',
+                  title: (
+                      <FormattedMessage
+                          defaultMessage="Custom fonts"
+                          description="Font family group title"
+                      />
+                  ),
+                  fonts: customFonts,
+              }
+            : null,
+        systemFonts !== null && systemFonts.length > 0
+            ? {
+                  id: 'system',
+                  title: (
+                      <FormattedMessage
+                          defaultMessage="Default fonts"
+                          description="Font family group title"
+                      />
+                  ),
+                  fonts: systemFonts,
+              }
+            : null,
+        googleFonts !== null && googleFonts.length > 0
+            ? {
+                  id: 'google',
+                  title: (
+                      <FormattedMessage
+                          defaultMessage="Google Fonts"
+                          description="Font family group title"
+                      />
+                  ),
+                  fonts: googleFonts,
+              }
+            : null,
+    ]
+        .filter((it) => it !== null)
+        .map(({ id, fonts, ...fontGroup }) => {
+            const hasSearch = fonts.length > maxFontsVisible;
+            const currentSearch = search[id] || null;
+            const searchNormalized = currentSearch !== null ? normalize(currentSearch) : null;
+            const addedValueFont =
+                hasSearch && value !== null
+                    ? fonts.find((font) => fontEquals(font, value)) || null
+                    : null;
+            const filteredFonts = hasSearch
+                ? fonts
+                      .filter(
+                          (font) =>
+                              (searchNormalized === null ||
+                                  normalize(isObject(font) ? font.name : font).indexOf(
+                                      searchNormalized,
+                                  ) !== -1) &&
+                              (addedValueFont === null || !fontEquals(addedValueFont, font)),
+                      )
+                      .slice(0, maxFontsVisible)
+                : fonts;
+            return {
+                id,
+                fonts: addedValueFont !== null ? [addedValueFont, ...filteredFonts] : filteredFonts,
+                currentSearch,
+                hasSearch,
+                ...fontGroup,
+            };
+        });
 
-    const fontsToLoad = useMemo(
-        () =>
-            isForm
-                ? fontsGroups.reduce((allFonts, { fonts }) => [...allFonts, ...fonts], [])
-                : [value].filter((it) => it !== null),
-        [fontsGroups],
-    );
+    const fontsToLoad = isForm
+        ? fontsGroups.reduce((allFonts, { fonts }) => [...allFonts, ...fonts], [])
+        : [value].filter((it) => it !== null);
     useLoadedFonts(fontsToLoad);
 
-    const onClickReset = useCallback(() => {
+    const onClickReset = () => {
         if (onChange !== null) {
             onChange(null);
         }
         if (closeForm !== null) {
             closeForm();
         }
-    }, [onChange, closeForm]);
+    };
 
     return (
         <FieldWithForm

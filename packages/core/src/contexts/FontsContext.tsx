@@ -1,21 +1,22 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { getJSON } from '@folklore/fetch';
-import isObject from 'lodash-es/isObject';
+import isString from 'lodash-es/isString';
 import uniqBy from 'lodash-es/uniqBy';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { ReactNode, createContext, use, useEffect, useState } from 'react';
 
 import type { Font } from '../types';
 import { useGoogleKeys } from './GoogleKeysContext';
 
-export const FontsContext = React.createContext({
+export const FontsContext = createContext({
     systemFonts: null,
     googleFonts: null,
     customFonts: null,
+    loadGoogleFonts: null,
 });
 
 export const useGoogleFonts = (options = null) => {
-    const { disabled = false, setFonts = null } = options || {};
-    const { apiKey } = useGoogleKeys();
+    const { disabled = false, setFonts = null, apiKey: optionsApiKey = null } = options || {};
+    const { apiKey: contextApiKey } = useGoogleKeys();
+    const apiKey = optionsApiKey || contextApiKey;
     const [googleFonts, setGoogleFonts] = useState(null);
     useEffect(() => {
         let canceled = false;
@@ -44,34 +45,29 @@ export const useGoogleFonts = (options = null) => {
     return googleFonts;
 };
 
-export const useFonts = (options = null) => {
-    const { withoutGoogleFonts = false } = options || {};
+export const useFonts = () => {
     const {
-        setGoogleFonts = null,
         systemFonts = null,
         googleFonts = null,
         customFonts = null,
-    } = useContext(FontsContext);
+        loadGoogleFonts = null,
+    } = use(FontsContext);
 
-    useGoogleFonts({
-        disabled: withoutGoogleFonts || (googleFonts !== null && googleFonts.length > 0),
-        setFonts: setGoogleFonts,
-    });
+    useEffect(() => {
+        if (loadGoogleFonts !== null) {
+            loadGoogleFonts();
+        }
+    }, [loadGoogleFonts]);
 
-    const fonts = useMemo(
-        () => ({
-            systemFonts,
-            googleFonts,
-            customFonts,
-        }),
-        [systemFonts, googleFonts, customFonts],
-    );
-
-    return fonts;
+    return {
+        systemFonts,
+        googleFonts,
+        customFonts,
+    };
 };
 
 interface FontsProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
     systemFonts?: Font[];
     customFonts?: Font[];
 }
@@ -85,33 +81,40 @@ export function FontsProvider({
         systemFonts: previousSystemFonts = null,
         googleFonts: previousGoogleFonts = null,
         customFonts: previousCustomFonts,
-    } = useFonts();
+        loadGoogleFonts: previousLoadGoogleFonts = null,
+    } = use(FontsContext);
 
-    const [googleFonts, setGoogleFonts] = useState(null);
+    const [shouldLoadGoogleFonts, setShouldLoadGoogleFonts] = useState(false);
 
-    const fonts = useMemo(
-        () => ({
-            systemFonts: uniqBy([...(previousSystemFonts || []), ...(systemFonts || [])], (font) =>
-                isObject(font) ? font.name : font,
-            ),
-            googleFonts: uniqBy([...(previousGoogleFonts || []), ...(googleFonts || [])], (font) =>
-                isObject(font) ? font.name : font,
-            ),
-            customFonts: uniqBy([...(previousCustomFonts || []), ...(customFonts || [])], (font) =>
-                isObject(font) ? font.name : font,
-            ),
-            setGoogleFonts,
-        }),
-        [
-            previousSystemFonts,
-            previousGoogleFonts,
-            previousCustomFonts,
-            customFonts,
-            systemFonts,
-            googleFonts,
-            setGoogleFonts,
-        ],
+    const googleFonts = useGoogleFonts({
+        disabled:
+            (previousGoogleFonts !== null && previousGoogleFonts.length > 0) ||
+            !shouldLoadGoogleFonts,
+    });
+
+    const loadGoogleFonts = () => {
+        setShouldLoadGoogleFonts(true);
+    };
+
+    return (
+        <FontsContext
+            value={{
+                systemFonts: uniqBy(
+                    [...(previousSystemFonts || []), ...(systemFonts || [])],
+                    (font) => (isString(font) ? font : font.name),
+                ),
+                googleFonts: uniqBy(
+                    [...(previousGoogleFonts || []), ...(googleFonts || [])],
+                    (font) => (isString(font) ? font : font.name),
+                ),
+                customFonts: uniqBy(
+                    [...(previousCustomFonts || []), ...(customFonts || [])],
+                    (font) => (isString(font) ? font : font.name),
+                ),
+                loadGoogleFonts: previousLoadGoogleFonts || loadGoogleFonts,
+            }}
+        >
+            {children}
+        </FontsContext>
     );
-
-    return <FontsContext.Provider value={fonts}>{children}</FontsContext.Provider>;
 }
