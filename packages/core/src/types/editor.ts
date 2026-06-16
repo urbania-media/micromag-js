@@ -63,6 +63,8 @@ export interface Breadcrumb {
 
 export interface Device {
     id: string;
+    width: number;
+    height: number;
 }
 
 export interface Modal {

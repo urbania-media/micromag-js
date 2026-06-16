@@ -1,27 +1,38 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-import type { Device, Story, StoryTheme, ViewerTheme } from '@micromag/core';
+import type { Device, Story, ViewerTheme } from '@micromag/core';
 import { PlaybackProvider, useScreenSize } from '@micromag/core/contexts';
 import { useDimensionObserver } from '@micromag/core/hooks';
 import { Viewer } from '@micromag/viewer';
 
 import useRouteParams from '../hooks/useRouteParams';
 import useScreenStates from '../hooks/useScreenStates';
-import useThemeValue from '../hooks/useThemeValue';
 
 import DevicesMenu from './menus/Devices';
 import ScreenStates from './partials/ScreenStates';
 
 import styles from '../styles/preview.module.css';
 
+const defaultDevices = [
+    {
+        id: 'mobile',
+        width: 320,
+        height: 480,
+    },
+    {
+        id: 'desktop',
+        width: 1200,
+        height: 900,
+    },
+];
+
 interface EditorPreviewProps {
-    value?: Story | StoryTheme | null;
+    value?: Story | null;
     devices?: Device[];
     device?: string;
     viewerTheme?: ViewerTheme | null;
-    isTheme?: boolean;
     className?: string | null;
     onScreenChange?: ((...args: unknown[]) => void) | null;
     onChange?: ((...args: unknown[]) => void) | null;
@@ -31,21 +42,7 @@ interface EditorPreviewProps {
 function EditorPreview({
     value = null,
     viewerTheme = null,
-    isTheme = false,
-
-    devices = [
-        {
-            id: 'mobile',
-            width: 320,
-            height: 480,
-        },
-        {
-            id: 'desktop',
-            width: 1200,
-            height: 900,
-        },
-    ],
-
+    devices = defaultDevices,
     device: initialDevice = 'mobile',
     className = null,
     onScreenChange = null,
@@ -54,7 +51,6 @@ function EditorPreview({
 }: EditorPreviewProps) {
     const { screen: screenId = null, field: fieldParam = null } = useRouteParams();
     const { screen = null, screens = [] } = useScreenSize();
-    const valueParsed = useThemeValue(value, isTheme);
 
     // Get device
     const [deviceId, setDeviceId] = useState(initialDevice || devices[0].id);
@@ -90,12 +86,12 @@ function EditorPreview({
     }, [device, bottomWidth, bottomHeight, screen, withoutDevicesSizes, initialDevice]);
 
     const currentScreen = useMemo(() => {
-        const { components = [] } = valueParsed || {};
+        const { components = [] } = value || {};
         return (
             (screenId !== null ? components.find(({ id }) => id === screenId) : components[0]) ||
             null
         );
-    }, [valueParsed, screenId]);
+    }, [value, screenId]);
     const currentScreenStates = useScreenStates(currentScreen);
     const [screenStateParam = null] =
         fieldParam !== null && currentScreenStates !== null ? fieldParam.split('/') : [];
@@ -139,7 +135,7 @@ function EditorPreview({
                             <div className={styles.viewerContainer}>
                                 <PlaybackProvider>
                                     <Viewer
-                                        story={valueParsed}
+                                        story={value}
                                         storyIsParsed
                                         screen={screenId}
                                         screenState={currentScreenStateId}

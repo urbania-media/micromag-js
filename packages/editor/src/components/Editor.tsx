@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import { RefObject, startTransition, useCallback, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import type { DeviceScreen, Story, StoryTheme, ViewerTheme } from '@micromag/core';
+import type { DeviceScreen, Story, ViewerTheme } from '@micromag/core';
 import { Button, Modals, Navbar } from '@micromag/core/components';
 import {
     EditorProvider,
@@ -22,12 +22,11 @@ import Screens from './Screens';
 import styles from '../styles/editor.module.css';
 
 export interface EditorProps {
-    value?: Story | StoryTheme | null;
+    value?: Story | null;
     deviceScreens?: DeviceScreen[];
     viewerTheme?: ViewerTheme | null;
     mobileView?: 'screens' | 'preview' | 'form';
     fullscreen?: boolean;
-    isTheme?: boolean;
     isCreateOpened?: boolean;
     onChange?: ((...args: unknown[]) => void) | null;
     className?: string | null;
@@ -36,7 +35,6 @@ export interface EditorProps {
 function Editor({
     value = null,
     viewerTheme = null,
-    isTheme = false,
     isCreateOpened = false,
     deviceScreens = getDeviceScreens(),
     mobileView: initialMobileView = 'preview',
@@ -45,7 +43,7 @@ function Editor({
     className = null,
 }: EditorProps) {
     const push = useRoutePush();
-    const refScreensContainer = useRef(null);
+    const screensContainerRef = useRef(null);
     const { screen: screenId } = useRouteParams({ screenOnly: true });
 
     // Screen size
@@ -58,22 +56,12 @@ function Editor({
 
     // Mobile view
     const [mobileView, setMobileView] = useState(initialMobileView);
-    const onClickScreens = useCallback(() => setMobileView('screens'), [mobileView, setMobileView]);
-    const onClickEdit = useCallback(() => setMobileView('form'), [setMobileView]);
-    const onClickViewScreen = useCallback(() => setMobileView('preview'), [setMobileView]);
+    const onClickScreens = () => setMobileView('screens');
+    const onClickEdit = () => setMobileView('form');
+    const onClickViewScreen = () => setMobileView('preview');
 
-    // Apply base theme values to it's own components
-    const {
-        background = null,
-        colors = null,
-        textStyles = null,
-        boxStyles = null,
-    } = isTheme ? ((value || {}) as StoryTheme) : {};
-    const baseValue = isTheme
-        ? { ...value, theme: { background, colors, textStyles, boxStyles } }
-        : value;
     const parser = useStoryParser();
-    const story = parser.parseToViewer(baseValue);
+    const story = parser.parseToViewer(value);
     const onStoryChange = (newStory) => {
         const parsedStory = parser.parseFromEditor(newStory);
         if (onChange !== null) {
@@ -105,7 +93,7 @@ function Editor({
         }
         clickedScreenIdRef.current = null;
 
-        const { current: screens } = refScreensContainer;
+        const { current: screens } = screensContainerRef;
         const items = screens.querySelectorAll(`[data-screen-id="${screenId}"]`);
         if (items !== null && items.length > 0) {
             const item = items[0];
@@ -177,11 +165,10 @@ function Editor({
                                         [styles.visible]: !isMobile || mobileView === 'screens',
                                     },
                                 ])}
-                                ref={refScreensContainer}
+                                ref={screensContainerRef}
                             >
                                 <Screens
                                     value={story}
-                                    isTheme={isTheme}
                                     isCreateOpened={isCreateOpened}
                                     isParsed
                                     onChange={onStoryChange}
@@ -202,7 +189,6 @@ function Editor({
                             >
                                 <EditorPreview
                                     value={story}
-                                    isTheme={isTheme}
                                     viewerTheme={viewerTheme}
                                     className={styles.preview}
                                     onScreenChange={onPreviewScreenChange}
@@ -220,7 +206,6 @@ function Editor({
                                 <EditorForm
                                     key={screenId}
                                     value={story}
-                                    isTheme={isTheme}
                                     onChange={onStoryChange}
                                     className={styles.inner}
                                 />

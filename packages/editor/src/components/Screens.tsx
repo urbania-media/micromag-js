@@ -1,18 +1,16 @@
-/* eslint-disable react/no-array-index-key */
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import isString from 'lodash-es/isString';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Route, Switch } from 'wouter';
 
-import type { Story, StoryTheme } from '@micromag/core';
+import type { Story } from '@micromag/core';
 import { Button, Empty, Navbar } from '@micromag/core/components';
 import { useRoutePush, useRoutes, useUrlGenerator } from '@micromag/core/contexts';
 
 import useRouteParams from '../hooks/useRouteParams';
-import useThemeValue from '../hooks/useThemeValue';
 import createScreen from '../utils/createScreen';
 
 import ScreensMenu from './menus/ScreensMenu';
@@ -21,8 +19,7 @@ import ScreenTypesModal from './modals/ScreenTypes';
 import styles from '../styles/screens.module.css';
 
 interface EditorScreensProps {
-    value?: Story | StoryTheme | null;
-    isTheme?: boolean;
+    value?: Story | null;
     isVertical?: boolean;
     isCreateOpened?: boolean;
     isParsed?: boolean;
@@ -33,8 +30,7 @@ interface EditorScreensProps {
 }
 
 function EditorScreens({
-    value: unparsedValue = null,
-    isTheme = false,
+    value = null,
     isVertical = false,
     isCreateOpened = false,
     isParsed = false,
@@ -43,7 +39,6 @@ function EditorScreens({
     onChange = null,
     className = null,
 }: EditorScreensProps) {
-    const value = useThemeValue(unparsedValue, isTheme);
     const { components: screens = [] } = value || {};
 
     const [createModalOpened, setCreateModalOpened] = useState(isCreateOpened);
@@ -65,7 +60,7 @@ function EditorScreens({
             const newScreen = createScreen(definition, themeScreen);
 
             const foundIndex = screens.findIndex(({ id }) => id === currentScreenId);
-            const currentScreenIndex = !isTheme && foundIndex >= 0 ? foundIndex + 1 : null;
+            const currentScreenIndex = foundIndex >= 0 ? foundIndex + 1 : null;
 
             const newValue = {
                 ...value,
@@ -81,7 +76,7 @@ function EditorScreens({
             }
             return newScreen;
         },
-        [value, onChange, isTheme, screens, currentScreenId, setCreateModalOpened],
+        [value, onChange, screens, currentScreenId],
     );
 
     const onOrderChange = useCallback(
@@ -132,13 +127,7 @@ function EditorScreens({
         (definition) => {
             setCreateModalOpened(false);
 
-            let currentScreen = isTheme
-                ? screens.find(({ type }) => type === definition.id) || null
-                : null;
-
-            if (!isTheme || currentScreen === null) {
-                currentScreen = createScreenFromDefinition(definition);
-            }
+            const currentScreen = createScreenFromDefinition(definition);
 
             push('screen', {
                 screen: currentScreen.id,
@@ -146,7 +135,7 @@ function EditorScreens({
 
             onClickScreen(currentScreen);
         },
-        [screens, isTheme, createScreenFromDefinition, push, onClickScreen],
+        [createScreenFromDefinition, push, onClickScreen],
     );
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
     const onCreateModalClosed = useCallback(
@@ -243,7 +232,6 @@ function EditorScreens({
             </div>
             {createModalOpened ? (
                 <ScreenTypesModal
-                    selectedTypes={isTheme ? screens.map(({ type }) => type) : []}
                     onClickScreenType={onClickScreenType}
                     onClosed={onCreateModalClosed}
                 />

@@ -4,7 +4,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'wouter';
 
-import type { Story, Theme } from '@micromag/core';
+import type { Story } from '@micromag/core';
 import { DropdownMenu, Empty, Navbar } from '@micromag/core/components';
 import { ScreenProvider, useRoutePush, useScreensManager } from '@micromag/core/contexts';
 import { getScreenFieldsWithStates, slug } from '@micromag/core/utils';
@@ -22,18 +22,12 @@ import DeleteScreenModal from './modals/DeleteScreen';
 import styles from '../styles/form.module.css';
 
 interface EditFormProps {
-    value?: Story | Theme | null;
-    isTheme?: boolean;
+    value?: Story | null;
     className?: string | null;
     onChange?: ((...args: unknown[]) => void) | null;
 }
 
-function EditForm({
-    value = null,
-    isTheme = false,
-    className = null,
-    onChange = null,
-}: EditFormProps) {
+function EditForm({ value = null, className = null, onChange = null }: EditFormProps) {
     // Match routes
     const [, setLocation] = useLocation();
     const routePush = useRoutePush();
@@ -242,26 +236,24 @@ function EditForm({
         }
         triggerOnChange(deleteScreen(value, screenId));
         setDeleteScreenModalOpened(false);
-    }, [value, triggerOnChange, screenId, setScreenSettingsOpened, routePush, screens]);
+    }, [value, triggerOnChange, screenId, routePush, screens]);
 
     const onDeleteModalClosed = useCallback(() => {
         setDeleteScreenModalOpened(false);
     }, [setDeleteScreenModalOpened]);
 
     const dropdownItems = [
-        !isTheme
-            ? {
-                  id: 'duplicate',
-                  type: 'button',
-                  label: (
-                      <FormattedMessage
-                          defaultMessage="Duplicate screen"
-                          description="Duplicate screen item"
-                      />
-                  ),
-                  onClick: onClickDuplicate,
-              }
-            : null,
+        {
+            id: 'duplicate',
+            type: 'button',
+            label: (
+                <FormattedMessage
+                    defaultMessage="Duplicate screen"
+                    description="Duplicate screen item"
+                />
+            ),
+            onClick: onClickDuplicate,
+        },
         {
             id: 'delete',
             type: 'button',
