@@ -1,38 +1,24 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { loadGoogleMaps } from '@folklore/services';
-import React, { useContext, useEffect, useState } from 'react';
+import { type ReactNode, createContext, use, useEffect, useState } from 'react';
 
 import { useGoogleKeys } from './GoogleKeysContext';
 
-export const GoogleMapsClientContext = React.createContext(null);
+export const GoogleMapsClientContext = createContext(null);
 
-export const useGoogleMapsClient = () => useContext(GoogleMapsClientContext);
+export const useGoogleMapsClient = () => use(GoogleMapsClientContext);
 
-export const withGoogleMapsClient = (WrappedComponent) => {
-    const getDisplayName = ({ displayName = null, name = null }) =>
-        displayName || name || 'Component';
-
-    function WithGoogleMapsClientComponent(props) {
-        return (
-            <GoogleMapsClientContext.Consumer>
-                {(client) => <WrappedComponent googleApiClient={client} {...props} />}
-            </GoogleMapsClientContext.Consumer>
-        );
-    }
-
-    WithGoogleMapsClientComponent.displayName = `WithGoogleMapsClient(${getDisplayName(
-        WrappedComponent,
-    )})`;
-    return WithGoogleMapsClientComponent;
-};
-
+const defaultLibraries = ['places'];
 interface GoogleMapsClientProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
     locale?: string;
     libraries?: string[];
 }
 
-export function GoogleMapsClientProvider({ children, locale = 'fr', libraries = null }: GoogleMapsClientProviderProps) {
+export function GoogleMapsClientProvider({
+    children,
+    locale = 'fr',
+    libraries = defaultLibraries,
+}: GoogleMapsClientProviderProps) {
     const { apiKey } = useGoogleKeys();
     const exisitingClient = useGoogleMapsClient();
     const [client, setClient] = useState(exisitingClient);
@@ -45,9 +31,5 @@ export function GoogleMapsClientProvider({ children, locale = 'fr', libraries = 
         }
     }, [apiKey, locale, libraries, setClient, exisitingClient]);
 
-    return (
-        <GoogleMapsClientContext.Provider value={client}>
-            {children}
-        </GoogleMapsClientContext.Provider>
-    );
+    return <GoogleMapsClientContext value={client}>{children}</GoogleMapsClientContext>;
 }

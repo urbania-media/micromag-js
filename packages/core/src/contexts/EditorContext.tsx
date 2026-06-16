@@ -1,4 +1,12 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import {
+    ReactNode,
+    createContext,
+    startTransition,
+    use,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react';
 
 import { ColorsParser } from '../lib';
 
@@ -6,25 +14,24 @@ import { useFieldsManager } from './FieldsContext';
 import { useScreensManager } from './ScreensContext';
 import { useStory } from './StoryContext';
 
-export const EditorContext = React.createContext(null);
+export const EditorContext = createContext(null);
 
-export const useEditor = () => useContext(EditorContext);
+export const useEditorContext = () => use(EditorContext);
 
-export const useGetColors = () => {
-    const { getColors = () => [] } = useEditor() || {};
-    return getColors;
+export const useEditorColors = () => {
+    const { colors } = useEditorContext() || {};
+    return colors;
 };
 
 interface EditorProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function EditorProvider({ children }: EditorProviderProps) {
     const story = useStory();
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();
-
-    const parser = useMemo(
+    const colorsParser = useMemo(
         () =>
             new ColorsParser({
                 screensManager,
@@ -32,9 +39,13 @@ export function EditorProvider({ children }: EditorProviderProps) {
             }),
         [screensManager, fieldsManager],
     );
-    const parse = useCallback((currentStory) => parser.parse(currentStory), [parser]);
-    const getColors = useCallback(() => parse(story), [parse, story]);
+    const [colors, setColors] = useState(() => colorsParser.extract(story));
 
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    return <EditorContext.Provider value={{ getColors }}>{children}</EditorContext.Provider>;
+    useEffect(() => {
+        startTransition(() => {
+            setColors(colorsParser.extract(story));
+        });
+    }, [colorsParser, story]);
+
+    return <EditorContext value={{ colors }}>{children}</EditorContext>;
 }

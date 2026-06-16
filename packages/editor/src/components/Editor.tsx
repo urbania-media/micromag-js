@@ -1,16 +1,16 @@
 import classNames from 'classnames';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { RefObject, startTransition, useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { DeviceScreen, Story, StoryTheme, ViewerTheme } from '@micromag/core';
 import { Button, Modals, Navbar } from '@micromag/core/components';
 import {
-    ModalsProvider,
-    PanelsProvider,
+    EditorProvider,
     ScreenSizeProvider,
+    StoryProvider,
     useRoutePush,
 } from '@micromag/core/contexts';
-import { useMediasParser, useParsedStory, useScreenSizeFromElement } from '@micromag/core/hooks';
+import { useScreenSizeFromElement, useStoryParser } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
 
 import useRouteParams from '../hooks/useRouteParams';
@@ -63,51 +63,47 @@ function Editor({
     const onClickViewScreen = useCallback(() => setMobileView('preview'), [setMobileView]);
 
     // Apply base theme values to it's own components
-    const { background = null, colors = null, textStyles = null, boxStyles = null } = value || {};
+    const {
+        background = null,
+        colors = null,
+        textStyles = null,
+        boxStyles = null,
+    } = isTheme ? ((value || {}) as StoryTheme) : {};
     const baseValue = isTheme
         ? { ...value, theme: { background, colors, textStyles, boxStyles } }
         : value;
-    const story = useParsedStory(baseValue);
-    const { toPath: parseMediasToPath } = useMediasParser();
-    const onStoryChange = useCallback(
-        (newStory) => {
-            const storyWithMedias = parseMediasToPath(newStory);
-            if (onChange !== null) {
-                onChange(storyWithMedias);
-            }
-        },
-        [onChange, parseMediasToPath],
-    );
+    const parser = useStoryParser();
+    const story = parser.parseToViewer(baseValue);
+    const onStoryChange = (newStory) => {
+        const parsedStory = parser.parseFromEditor(newStory);
+        if (onChange !== null) {
+            onChange(parsedStory);
+        }
+    };
 
-    const clickedScreenId = useRef(null);
-    const onClickScreen = useCallback(
-        ({ id }) => {
-            clickedScreenId.current = id;
-            if (screenSize.screen) {
-                setMobileView('preview');
-            }
-            push('screen', {
-                screen: clickedScreenId.current,
-            });
-        },
-        [screenSize.screen, push],
-    );
+    const clickedScreenIdRef = useRef(null);
+    const onClickScreen = ({ id }) => {
+        clickedScreenIdRef.current = id;
+        if (screenSize.screen) {
+            setMobileView('preview');
+        }
+        push('screen', {
+            screen: clickedScreenIdRef.current,
+        });
+    };
 
-    const onPreviewScreenChange = useCallback(
-        ({ id: newScreenId }) => {
-            push('screen', {
-                screen: newScreenId,
-            });
-        },
-        [push],
-    );
+    const onPreviewScreenChange = ({ id: newScreenId }) => {
+        push('screen', {
+            screen: newScreenId,
+        });
+    };
 
     // Auto-scroll to current screen except when manually clicking one
     useEffect(() => {
-        if (screenId === null || clickedScreenId.current === screenId) {
+        if (screenId === null || clickedScreenIdRef.current === screenId) {
             return;
         }
-        clickedScreenId.current = null;
+        clickedScreenIdRef.current = null;
 
         const { current: screens } = refScreensContainer;
         const items = screens.querySelectorAll(`[data-screen-id="${screenId}"]`);
@@ -120,8 +116,8 @@ function Editor({
     }, [screenId]);
 
     return (
-        <ModalsProvider>
-            <PanelsProvider>
+        <StoryProvider story={story}>
+            <EditorProvider>
                 <ScreenSizeProvider size={screenSize}>
                     <div
                         className={classNames([
@@ -138,7 +134,7 @@ function Editor({
                                 [styles.fullscreen]: fullscreen,
                             },
                         ])}
-                        ref={refContainer}
+                        ref={refContainer as RefObject<HTMLDivElement>}
                     >
                         <Navbar compact noWrap withoutCollapse className={styles.top}>
                             {mobileView !== 'screens' ? (
@@ -233,8 +229,8 @@ function Editor({
                         <Modals />
                     </div>
                 </ScreenSizeProvider>
-            </PanelsProvider>
-        </ModalsProvider>
+            </EditorProvider>
+        </StoryProvider>
     );
 }
 

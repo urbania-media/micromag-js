@@ -1,6 +1,8 @@
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import createDebug from 'debug';
+import isArray from 'lodash-es/isArray';
+import isObject from 'lodash-es/isObject';
 import React, { RefObject, useEffect, useImperativeHandle, useRef, useState } from 'react';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -261,7 +263,12 @@ function Viewer({
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
     // Fonts
-    const finalFonts = [...(fonts || []), themeFont].filter((font) => font !== null);
+    const finalFonts = [
+        ...(!isArray(fonts) && isObject(fonts)
+            ? Object.keys(fonts).map((key) => fonts[key])
+            : fonts || []),
+        themeFont,
+    ].filter((font) => font !== null);
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
     const isView = renderContext === 'view';

@@ -5,7 +5,7 @@ import { SketchPicker } from 'react-color';
 import tinycolor from 'tinycolor2';
 import { v4 as uuid } from 'uuid';
 
-import { useGetColors } from '@micromag/core/contexts';
+import { useEditorColors } from '@micromag/core/contexts';
 
 import styles from '../styles/colorpickler.module.css';
 
@@ -25,10 +25,10 @@ function ColorPickerField({
     onChange = null,
     ...props
 }: ColorPickerFieldProps) {
-    const getColors = useGetColors();
+    const editorColors = useEditorColors();
     const colors = useMemo(
-        () => (getColors() || []).map((c) => ({ color: c.color, title: uuid() })),
-        [getColors],
+        () => (editorColors || []).map((c) => ({ color: c.color, title: uuid() })),
+        [editorColors],
     );
 
     const { color = null, alpha = null } = value || {};

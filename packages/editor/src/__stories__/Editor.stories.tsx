@@ -35,7 +35,7 @@ import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
 
 import signs from '../../../../screens/urbania-horoscope/src/data/signs';
-import { ApiProvider } from '../../../data/src/contexts/ApiContext';
+import DataProvider from '../../../data/src/DataProvider';
 import Editor from '../components/EditorContainer';
 
 import cointreau from '#.storybook/data/stories/cointreau.json';
@@ -58,7 +58,7 @@ const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.h
 const EditorContainer = ({ defaultValue = null, isTheme = false, viewerTheme = null }) => {
     const [value, setValue] = useState(defaultValue);
     return (
-        <ApiProvider baseUrl={apiBaseUrl}>
+        <DataProvider apiBaseUrl={apiBaseUrl}>
             <QueryProvider>
                 <FieldsProvider>
                     <DisplaysProvider>
@@ -82,7 +82,7 @@ const EditorContainer = ({ defaultValue = null, isTheme = false, viewerTheme = n
                     </DisplaysProvider>
                 </FieldsProvider>
             </QueryProvider>
-        </ApiProvider>
+        </DataProvider>
     );
 };
 

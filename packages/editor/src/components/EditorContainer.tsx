@@ -1,30 +1,26 @@
 import '../styles/styles.global.css';
 
 import { createPathToRegexpParser } from '@folklore/routes';
-import { useMemo } from 'react';
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';
 
-import { UppyProvider } from '@panneau/uppy';
+import { UppyProvider, type UppyProviderConfig } from '@panneau/uppy';
 
-import type { Story, StoryTheme } from '@micromag/core';
 import {
-    ComponentsContext,
-    EditorProvider,
-    FORMS_NAMESPACE,
     FontsProvider,
     GoogleKeysProvider,
     GoogleMapsClientProvider,
-    RoutesProvider,
-    StoryProvider, // UppyProvider,
+    ModalsProvider,
+    PanelsProvider,
     VisitorProvider,
 } from '@micromag/core/contexts';
-import { slug } from '@micromag/core/utils';
 import { FieldsProvider } from '@micromag/fields';
 import { ScreensProvider } from '@micromag/screens';
 
 import Editor, { EditorProps } from './Editor';
+import EditorRoutesProvider from './RoutesProvider';
 import FormsProvider from './forms/FormsProvider';
 
 import defaultRoutes from '../data/routes.json';
@@ -32,96 +28,58 @@ import defaultRoutes from '../data/routes.json';
 const pathToRegexpParser = createPathToRegexpParser();
 
 interface EditorContainerProps extends EditorProps {
-    value?: Story | StoryTheme | null;
-    routes?: unknown;
+    routes?: Record<string, string>;
     memoryRouter?: boolean;
     basePath?: string | null;
-    uppy?: { transport?: string } | null;
+    uppy?: UppyProviderConfig | null;
     googleApiKey?: string | null;
     googleMapsLibraries?: string[];
     screenNamespaces?: string[] | null;
 }
 
 function EditorContainer({
-    value = null,
     memoryRouter = false,
     routes = defaultRoutes,
     basePath = null,
     uppy = null,
     googleApiKey = null,
-    googleMapsLibraries = ['places'],
+    googleMapsLibraries,
     screenNamespaces = null,
     ...props
 }: EditorContainerProps) {
     const { locale } = useIntl();
-
-    const { hook: memoryLocationHook, searchHook: memorySearchHook } = memoryLocation();
-    const routerProps = useMemo(
-        () => ({
-            hook: memoryRouter ? memoryLocationHook : null,
-            searchHook: memoryRouter ? memorySearchHook : null,
-            parser: pathToRegexpParser,
-            base: !memoryRouter ? basePath : null,
-        }),
-        [basePath, memoryRouter],
+    const [{ hook: memoryLocationHook, searchHook: memorySearchHook }] = useState(() =>
+        memoryLocation(),
     );
-
     return (
-        <Router {...routerProps}>
+        <Router
+            hook={memoryRouter ? memoryLocationHook : undefined}
+            searchHook={memoryRouter ? memorySearchHook : undefined}
+            parser={pathToRegexpParser}
+            base={!memoryRouter ? basePath : undefined}
+        >
             <UppyProvider {...uppy}>
-                <StoryProvider story={value}>
-                    <ScreensProvider filterNamespaces namespaces={screenNamespaces}>
-                        <GoogleKeysProvider apiKey={googleApiKey}>
-                            <GoogleMapsClientProvider
-                                locale={locale}
-                                libraries={googleMapsLibraries}
-                            >
-                                <FontsProvider>
-                                    <FieldsProvider>
-                                        <FormsProvider>
-                                            <EditorProvider>
+                <ScreensProvider filterNamespaces namespaces={screenNamespaces}>
+                    <GoogleKeysProvider apiKey={googleApiKey}>
+                        <GoogleMapsClientProvider locale={locale} libraries={googleMapsLibraries}>
+                            <FontsProvider>
+                                <FieldsProvider>
+                                    <FormsProvider>
+                                        <ModalsProvider>
+                                            <PanelsProvider>
                                                 <VisitorProvider visitor="editor">
-                                                    <ComponentsContext.Consumer>
-                                                        {(manager) => {
-                                                            const formComponents =
-                                                                manager.getComponents(
-                                                                    FORMS_NAMESPACE,
-                                                                );
-                                                            const formRegEx =
-                                                                formComponents !== null
-                                                                    ? Object.keys(formComponents)
-                                                                          .map((name) => slug(name))
-                                                                          .join('|')
-                                                                    : null;
-                                                            return (
-                                                                <RoutesProvider
-                                                                    routes={{
-                                                                        ...routes,
-                                                                        'screen.field.form': routes[
-                                                                            'screen.field.form'
-                                                                        ].replace(
-                                                                            /:form$/,
-                                                                            `:form(${formRegEx})`,
-                                                                        ),
-                                                                    }}
-                                                                >
-                                                                    <Editor
-                                                                        value={value}
-                                                                        {...props}
-                                                                    />
-                                                                </RoutesProvider>
-                                                            );
-                                                        }}
-                                                    </ComponentsContext.Consumer>
+                                                    <EditorRoutesProvider routes={routes}>
+                                                        <Editor {...props} />
+                                                    </EditorRoutesProvider>
                                                 </VisitorProvider>
-                                            </EditorProvider>
-                                        </FormsProvider>
-                                    </FieldsProvider>
-                                </FontsProvider>
-                            </GoogleMapsClientProvider>
-                        </GoogleKeysProvider>
-                    </ScreensProvider>
-                </StoryProvider>
+                                            </PanelsProvider>
+                                        </ModalsProvider>
+                                    </FormsProvider>
+                                </FieldsProvider>
+                            </FontsProvider>
+                        </GoogleMapsClientProvider>
+                    </GoogleKeysProvider>
+                </ScreensProvider>
             </UppyProvider>
         </Router>
     );

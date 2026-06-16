@@ -3,47 +3,52 @@ import isString from 'lodash-es/isString';
 import uniqBy from 'lodash-es/uniqBy';
 import { ReactNode, createContext, use, useEffect, useState } from 'react';
 
-import type { Font } from '../types';
+import type { Font, FontObject } from '../types';
 import { useGoogleKeys } from './GoogleKeysContext';
 
-export const FontsContext = createContext({
+export const FontsContext = createContext<{
+    systemFonts: Font[] | null;
+    googleFonts: FontObject[] | null;
+    customFonts: FontObject[] | null;
+    loadGoogleFonts: (() => void) | null;
+}>({
     systemFonts: null,
     googleFonts: null,
     customFonts: null,
     loadGoogleFonts: null,
 });
 
-export const useGoogleFonts = (options = null) => {
-    const { disabled = false, setFonts = null, apiKey: optionsApiKey = null } = options || {};
+export function useGoogleFonts(options = null): FontObject[] | null {
+    const { disabled = false, apiKey: optionsApiKey = null } = options || {};
     const { apiKey: contextApiKey } = useGoogleKeys();
     const apiKey = optionsApiKey || contextApiKey;
     const [googleFonts, setGoogleFonts] = useState(null);
     useEffect(() => {
-        let canceled = false;
-        if (apiKey !== null && !disabled) {
-            getJSON(
-                `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=popularity`,
-            ).then(({ items = [] }) => {
-                if (!canceled) {
-                    const newFonts = items.map((it) => ({
-                        type: 'google',
-                        name: it.family,
-                        variants: it.variants,
-                    }));
-                    if (setFonts !== null) {
-                        setFonts(newFonts);
-                    } else {
-                        setGoogleFonts(newFonts);
-                    }
-                }
-            });
+        if (apiKey === null || disabled) {
+            return () => {};
         }
+        let canceled = false;
+        getJSON<{ items: { family: string; category: string; variants: string[] }[] }>(
+            `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=popularity`,
+        ).then(({ items = [] }) => {
+            if (canceled) {
+                return;
+            }
+            setGoogleFonts(
+                items.map((it) => ({
+                    type: 'google',
+                    name: it.family,
+                    fallback: it.category,
+                    variants: it.variants,
+                })),
+            );
+        });
         return () => {
             canceled = true;
         };
-    }, [apiKey, disabled, setFonts, setGoogleFonts]);
+    }, [apiKey, disabled, setGoogleFonts]);
     return googleFonts;
-};
+}
 
 export const useFonts = () => {
     const {
@@ -69,7 +74,7 @@ export const useFonts = () => {
 interface FontsProviderProps {
     children: ReactNode;
     systemFonts?: Font[];
-    customFonts?: Font[];
+    customFonts?: FontObject[];
 }
 
 export function FontsProvider({

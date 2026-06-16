@@ -1,11 +1,12 @@
 import classNames from 'classnames';
 import isObject from 'lodash-es/isObject';
+import isString from 'lodash-es/isString';
 import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import type { Font } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-import { useFonts } from '@micromag/core/contexts';
+import { useFonts, useStoryFont } from '@micromag/core/contexts';
 import { useLoadedFonts } from '@micromag/core/hooks';
 import { getFontFamilyFromFont } from '@micromag/core/utils';
 
@@ -17,7 +18,7 @@ const normalize = (str) =>
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '');
 
-const fontEquals = (fontA, fontB) =>
+const fontEquals = (fontA: Font, fontB: Font) =>
     fontA === fontB ||
     (isObject(fontA) && isObject(fontB) && fontA.type === fontB.type && fontA.name === fontB.name);
 
@@ -28,12 +29,12 @@ interface FontFamilyProps {
     canClear?: boolean;
     maxFontsVisible?: number;
     className?: string;
-    onChange?: ((...args: unknown[]) => void) | null;
-    closeForm?: ((...args: unknown[]) => void) | null;
+    onChange?: ((newFont: string | null) => void) | null;
+    closeForm?: (() => void) | null;
 }
 
 function FontFamily({
-    value = null,
+    value: rawValue = null,
     onChange = null,
     closeForm = null,
     maxFontsVisible = 10,
@@ -43,6 +44,7 @@ function FontFamily({
 }: FontFamilyProps) {
     const intl = useIntl();
     const { systemFonts, googleFonts, customFonts } = useFonts();
+    const value = useStoryFont(rawValue);
     const valueName = value !== null && isObject(value) ? value.name || null : value;
     const [search, setSearch] = useState({});
     const onSearchChange = (id, newValue) =>
@@ -123,6 +125,15 @@ function FontFamily({
         : [value].filter((it) => it !== null);
     useLoadedFonts(fontsToLoad);
 
+    const onClickFont = (font) => {
+        if (onChange !== null) {
+            onChange(font);
+        }
+        if (closeForm !== null) {
+            closeForm();
+        }
+    };
+
     const onClickReset = () => {
         if (onChange !== null) {
             onChange(null);
@@ -177,7 +188,7 @@ function FontFamily({
                                 </div>
                             ) : null}
                             {fonts.map((font) => {
-                                const { name } = isObject(font) ? font : { name: font };
+                                const { name } = isString(font) ? { name: font } : font;
                                 return (
                                     <button
                                         key={`font-${id}-${name}`}
@@ -191,10 +202,7 @@ function FontFamily({
                                                 active: valueName === name,
                                             },
                                         ])}
-                                        onClick={() => {
-                                            onChange(font);
-                                            closeForm();
-                                        }}
+                                        onClick={() => onClickFont(font)}
                                     >
                                         <strong
                                             className="me-4"

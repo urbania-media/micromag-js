@@ -1,6 +1,6 @@
 import { BackgroundElement } from './elements';
-import { ImageMedia } from './medias';
-import { Color, TextStyle } from './styles';
+import { ImageMedia, Media } from './medias';
+import { Color, FontObject, TextStyle } from './styles';
 
 export interface StoryComponent {
     id: string;
@@ -55,4 +55,6 @@ export interface Story {
     metadata?: StoryMetadata;
     settings?: StorySettings;
     organisation?: Organisation;
+    fonts?: Record<string, FontObject> | FontObject[];
+    medias?: Record<string, Media>;
 }

@@ -2,7 +2,13 @@ import isArray from 'lodash-es/isArray';
 import isEmpty from 'lodash-es/isEmpty';
 import isObject from 'lodash-es/isObject';
 
+import ScreensManager from './ScreensManager';
+
 class ThemeParser {
+    screensManager: ScreensManager;
+    definitionCache: Record<string, { definition: any; themeScreen: any }>;
+    fieldsCache: Record<string, { fields: any[]; repetableStates?: any[] }>;
+
     constructor({ screensManager }) {
         this.screensManager = screensManager;
         this.definitionCache = {};
@@ -48,7 +54,7 @@ class ThemeParser {
         return this.fieldsCache[definitionId];
     }
 
-    parse(story) {
+    parseFromEditor(story) {
         if (story === null) {
             return story;
         }

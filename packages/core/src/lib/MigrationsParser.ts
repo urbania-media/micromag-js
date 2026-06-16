@@ -1,6 +1,15 @@
+import { ScreenComponent, Story, StoryParser } from '../types';
+import ScreensManager from './ScreensManager';
 import * as migrations from './migrations/index';
 
-class MigrationsParser {
+class MigrationsParser implements StoryParser {
+    screensManager: ScreensManager;
+    parsers: {
+        parse: (screen: ScreenComponent, story: Story) => ScreenComponent;
+        test: (screen: ScreenComponent, story: Story) => boolean;
+        priority?: number;
+    }[];
+
     constructor({ screensManager }) {
         this.screensManager = screensManager;
         this.parsers = Object.keys(migrations).map((migration) => new migrations[migration]());
@@ -15,8 +24,7 @@ class MigrationsParser {
         });
     }
 
-    // eslint-disable-next-line class-methods-use-this
-    parse(story) {
+    parseToViewer(story: Story) {
         if (story === null) {
             return story;
         }

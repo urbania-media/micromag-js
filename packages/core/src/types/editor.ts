@@ -2,6 +2,7 @@ import { ElementType } from 'react';
 
 import { Label, Target, Text } from './base';
 import { ImageMedia } from './medias';
+import { Story } from './story';
 
 export type Errors = string | string[];
 export type FormErrors = Record<string, Errors>;
@@ -154,4 +155,9 @@ export interface AdFormat {
     target?: Target;
     iframe?: string;
     image?: ImageMedia;
+}
+
+export interface StoryParser {
+    parseToViewer?: (story: Story | null, options?: Record<string, unknown>) => Story | null;
+    parseFromEditor?: (story: Story | null, options?: Record<string, unknown>) => Story | null;
 }

@@ -150,7 +150,7 @@
         "@panneau/intl": "^4.0.55",
         "@panneau/medias": "^4.0.42",
         "@panneau/modal-dialog": "^4.0.55",
-        "@panneau/uppy": "^4.0.55",
+        "@panneau/uppy": "^4.0.61",
         "@uppy/core": "^5.1.1",
         "@uppy/dashboard": "^5.0.4",
         "@uppy/react": "^5.1.1",

@@ -1,11 +1,10 @@
-/* eslint-disable react/no-array-index-key */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import React, { useCallback, useMemo, useState } from 'react';
 
-import type { Device, Story, Theme, ViewerTheme } from '@micromag/core';
+import type { Device, Story, StoryTheme, ViewerTheme } from '@micromag/core';
 import { PlaybackProvider, useScreenSize } from '@micromag/core/contexts';
-import { useDimensionObserver, useParsedStory } from '@micromag/core/hooks';
+import { useDimensionObserver } from '@micromag/core/hooks';
 import { Viewer } from '@micromag/viewer';
 
 import useRouteParams from '../hooks/useRouteParams';
@@ -18,7 +17,7 @@ import ScreenStates from './partials/ScreenStates';
 import styles from '../styles/preview.module.css';
 
 interface EditorPreviewProps {
-    value?: Story | Theme | null;
+    value?: Story | StoryTheme | null;
     devices?: Device[];
     device?: string;
     viewerTheme?: ViewerTheme | null;
@@ -55,9 +54,7 @@ function EditorPreview({
 }: EditorPreviewProps) {
     const { screen: screenId = null, field: fieldParam = null } = useRouteParams();
     const { screen = null, screens = [] } = useScreenSize();
-    const valueWithTheme = useThemeValue(value, isTheme);
-    // const valueParsed = valueWithTheme;
-    const valueParsed = useParsedStory(valueWithTheme, { withTheme: isTheme, withMedias: false });
+    const valueParsed = useThemeValue(value, isTheme);
 
     // Get device
     const [deviceId, setDeviceId] = useState(initialDevice || devices[0].id);

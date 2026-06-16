@@ -1,10 +1,21 @@
-import isArray from 'lodash-es/isArray';
 import isObject from 'lodash-es/isObject';
-import uniqBy from 'lodash-es/uniqBy';
 
-import { getScreenFieldsWithStates } from '../utils';
+import {
+    extractAtPatterns,
+    getFieldsPattern,
+    getScreenFieldsWithStates,
+    replaceAndExtractStoryEntities,
+} from '../utils';
 
-class FontsParser {
+import { StoryParser } from '../types';
+import FieldsManager from './FieldsManager';
+import ScreensManager from './ScreensManager';
+
+class FontsParser implements StoryParser {
+    fieldsManager: FieldsManager;
+    screensManager: ScreensManager;
+    fieldsPatternCache: Record<string, RegExp[]>;
+
     constructor({ fieldsManager, screensManager, fieldsPattern = {} }) {
         this.fieldsManager = fieldsManager;
         this.screensManager = screensManager;
@@ -14,42 +25,64 @@ class FontsParser {
     getFieldsPatternByScreen(type) {
         if (typeof this.fieldsPatternCache[type] === 'undefined') {
             const fields = getScreenFieldsWithStates(this.screensManager.getDefinition(type) || {});
-            this.fieldsPatternCache[type] = this.getFieldsPattern(fields || []);
+            this.fieldsPatternCache[type] = getFieldsPattern(
+                fields || [],
+                this.fieldsManager,
+                (fieldDefinition, path) => {
+                    return FontsParser.fieldIsFontFamily(fieldDefinition)
+                        ? new RegExp(`^${path}$`)
+                        : null;
+                },
+            );
         }
         return this.fieldsPatternCache[type];
     }
 
     // Extract fonts
-    parse(story) {
+    parseToViewer(story) {
         if (story === null) {
             return story;
         }
 
         // Extract fonts from screen
-        const { theme = null, components = [] } = story || {};
-        const fonts = uniqBy(
-            components.reduce((currentFonts, screen) => {
-                const { type } = screen;
-                const fieldsPattern = this.getFieldsPatternByScreen(type);
-                const newFonts = FontsParser.extractFontsWithPaths(screen, fieldsPattern);
-                return newFonts.length > 0 ? [...currentFonts, ...newFonts] : currentFonts;
-            }, []),
-            'name',
-        );
+        const { theme = null, components = [], fonts: storyFonts = null } = story || {};
+        const fonts =
+            storyFonts === null
+                ? components.reduce((currentFonts, screen) => {
+                      const { type } = screen;
+                      const fieldsPattern = this.getFieldsPatternByScreen(type);
+                      const newFonts = extractAtPatterns(
+                          screen,
+                          fieldsPattern,
+                          (val) => isObject(val) && FontsParser.valueIsFont(val),
+                      );
+                      return newFonts.length > 0
+                          ? {
+                                ...currentFonts,
+                                ...Object.keys(newFonts).reduce(
+                                    (acc, key) => ({
+                                        ...acc,
+                                        [newFonts[key].name]: newFonts[key],
+                                    }),
+                                    {},
+                                ),
+                            }
+                          : currentFonts;
+                  }, {})
+                : storyFonts;
 
         // Extract fonts from theme
-        if (theme !== null) {
-            const { fonts: themeFonts = [], ...newTheme } = this.parse(theme);
-            return fonts.length > 0 || themeFonts.length > 0
-                ? {
-                      ...story,
-                      theme: newTheme,
-                      fonts: uniqBy([...themeFonts, ...fonts], 'name'),
-                  }
-                : story;
+        const { fonts: themeFonts = null, ...newTheme } =
+            theme !== null ? this.parseToViewer(theme) : {};
+        if (themeFonts !== null && Object.keys(themeFonts).length > 0) {
+            return {
+                ...story,
+                theme: newTheme,
+                fonts: { ...themeFonts, ...fonts },
+            };
         }
 
-        return fonts.length > 0
+        return Object.keys(fonts).length > 0 && fonts !== storyFonts
             ? {
                   ...story,
                   fonts,
@@ -57,30 +90,19 @@ class FontsParser {
             : story;
     }
 
-    getFieldsPattern(fields, namePrefix = null) {
-        return (fields || []).reduce((patterns, field) => {
-            const { name = null, type = null } = field;
-            const path = [namePrefix, name].filter((it) => it !== null && it !== '').join('\\.');
-            const fieldDefinition = {
-                ...(type !== null ? this.fieldsManager.getDefinition(type) : null),
-                ...field,
-            };
+    parseFromEditor(story) {
+        if (story === null) {
+            return story;
+        }
 
-            // also check settings fields
-            const { fields: subFields = [], itemsField = null, settings = [] } = fieldDefinition;
-
-            return [
-                ...patterns,
-                ...(FontsParser.fieldIsFontFamily(fieldDefinition)
-                    ? [new RegExp(`^${path}$`)]
-                    : []),
-                ...this.getFieldsPattern(subFields, path),
-                ...this.getFieldsPattern(settings, path),
-                ...(itemsField !== null
-                    ? this.getFieldsPattern([itemsField], `${path}\\.[0-9]+`)
-                    : []),
-            ];
-        }, []);
+        const newStory = replaceAndExtractStoryEntities(
+            story,
+            'fonts',
+            ({ type }) => this.getFieldsPatternByScreen(type),
+            (val) => (isObject(val) ? val.name : val),
+            (val) => (isObject(val) ? val.name : val),
+        );
+        return newStory;
     }
 
     static fieldIsFontFamily({ id = null }) {
@@ -89,29 +111,6 @@ class FontsParser {
 
     static valueIsFont({ type = null }) {
         return type === 'custom' || type === 'google';
-    }
-
-    static extractFontsWithPaths(data, patterns, keyPrefix = null) {
-        const dataIsArray = isArray(data);
-        const keys = dataIsArray ? [...data.keys()] : Object.keys(data);
-        return keys.reduce((currentFonts, key) => {
-            const path = [keyPrefix, key].filter((it) => it !== null).join('.');
-            const patternMatch = patterns.reduce(
-                (found, pattern) => found || pattern.test(path),
-                false,
-            );
-            const value = data[key];
-            let font = null;
-            let subFonts = null;
-            if (patternMatch && isObject(value) && FontsParser.valueIsFont(value)) {
-                font = value;
-            } else if (isObject(value) || isArray(value)) {
-                subFonts = FontsParser.extractFontsWithPaths(value, patterns, path);
-            }
-            return subFonts !== null || font !== null
-                ? [...currentFonts, ...(subFonts || []), ...(font !== null ? [font] : [])]
-                : currentFonts;
-        }, []);
     }
 }
 

@@ -2,6 +2,8 @@
 import isObject from 'lodash-es/isObject';
 import React from 'react';
 
+import { useStoryMedia } from '../../contexts';
+
 const emptyArray: never[] = [];
 
 const defaultFormats = [
@@ -48,17 +50,15 @@ interface FontFacesProps {
     formats?: (string | { name?: string; format?: string })[];
 }
 
-function FontFaces({
-    fonts = emptyArray,
-    formats = defaultFormats,
-}: FontFacesProps) {
+function FontFaces({ fonts = emptyArray, formats = defaultFormats }: FontFacesProps) {
+    const getMedia = useStoryMedia();
     const fontFaces = (fonts || [])
         .filter((it) => isObject(it) && it.type === 'custom' && (it.media || null) !== null)
         .reduce((fontFontFaces, { name = null, media = null, variants = [] }) => {
             if (name === null) {
                 return fontFontFaces;
             }
-            const urls = media !== null ? getUrlsFromMedia(media, formats) : null;
+            const urls = media !== null ? getUrlsFromMedia(getMedia(media), formats) : null;
 
             const fontKey = name.toLowerCase();
 
@@ -78,7 +78,7 @@ function FontFaces({
                         if (variantMedia == null) {
                             return variantFontFaces;
                         }
-                        const variantUrls = getUrlsFromMedia(variantMedia, formats);
+                        const variantUrls = getUrlsFromMedia(getMedia(variantMedia), formats);
                         const variantKey = `${fontKey}-${weight !== null ? weight : 'normal'}-${
                             style !== null ? style : 'normal'
                         }`;

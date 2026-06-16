@@ -1,10 +1,12 @@
 import classNames from 'classnames';
 import get from 'lodash-es/get';
+import isArray from 'lodash-es/isArray';
 import { ReactNode, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { Label, Media } from '@micromag/core';
 import { ClearButton } from '@micromag/core/components';
+import { useStoryMedia } from '@micromag/core/contexts';
 import { getFileName } from '@micromag/core/utils';
 import { MediaGalleryModal } from '@micromag/media-gallery';
 
@@ -30,7 +32,7 @@ export interface MediaModalProps {
 
 function MediaModal({
     title = null,
-    value = null,
+    value: rawValue = null,
     type = null,
     disabled = false,
     noValueLabel = null,
@@ -47,6 +49,13 @@ function MediaModal({
     ...props
 }: MediaModalProps) {
     const [modalOpen, setModalOpen] = useState(false);
+    const getMedia = useStoryMedia();
+    const value =
+        rawValue !== null
+            ? isArray(rawValue)
+                ? rawValue.map((it) => getMedia(it))
+                : getMedia(rawValue)
+            : null;
 
     const label = value !== null ? value.name || getFileName(value.url) || null : null;
 

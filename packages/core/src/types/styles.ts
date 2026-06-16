@@ -3,14 +3,14 @@ import { FontMedia } from './medias';
 /**
  * Style
  */
-export interface CustomFont {
+export interface FontObject {
     type?: 'system' | 'google' | 'custom';
     name?: string;
     media?: FontMedia;
     variants?: string[] | { fvd?: string; weight?: number; style?: string }[];
 }
 
-export type Font = CustomFont | string;
+export type Font = FontObject | string;
 
 export type TextAlign = 'left' | 'right' | 'center';
 

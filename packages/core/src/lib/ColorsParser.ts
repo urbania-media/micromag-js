@@ -1,24 +1,49 @@
-import isArray from 'lodash-es/isArray';
 import isObject from 'lodash-es/isObject';
-import uniqWith from 'lodash-es/uniqWith';
 import sortBy from 'lodash-es/sortBy';
+import uniqWith from 'lodash-es/uniqWith';
+
+import { extractAtPatterns, getFieldsPattern, getScreenFieldsWithStates } from '../utils';
+
+import { ColorObject } from '../types';
+import FieldsManager from './FieldsManager';
+import ScreensManager from './ScreensManager';
 
 const sortedColors = (colors) => sortBy(colors, ['color', 'alpha']);
 
-const uniqueColors = (colors) =>
+const uniqueColors = (colors: ColorObject[]) =>
     uniqWith(
         colors,
         (colorA, colorB) => colorA.alpha === colorB.alpha && colorA.color === colorB.color,
     );
 
 class ColorsParser {
-    constructor({ fieldsManager, screensManager }) {
+    screensManager: ScreensManager;
+    fieldsManager: FieldsManager;
+    fieldsPatternCache: Record<string, RegExp[]>;
+
+    constructor({ fieldsManager, screensManager, fieldsPattern = null }) {
         this.fieldsManager = fieldsManager;
         this.screensManager = screensManager;
+        this.fieldsPatternCache = fieldsPattern || {};
     }
 
-    // Convert medias object to path
-    parse(story) {
+    getFieldsPatternByScreen(type) {
+        if (typeof this.fieldsPatternCache[type] === 'undefined') {
+            const fields = getScreenFieldsWithStates(this.screensManager.getDefinition(type) || {});
+            this.fieldsPatternCache[type] = getFieldsPattern(
+                fields || [],
+                this.fieldsManager,
+                (fieldDefinition, path) => {
+                    return ColorsParser.fieldIsColor(fieldDefinition)
+                        ? new RegExp(`^${path}$`)
+                        : null;
+                },
+            );
+        }
+        return this.fieldsPatternCache[type];
+    }
+
+    extract(story): ColorObject[] | null {
         if (story === null) {
             return story;
         }
@@ -26,9 +51,29 @@ class ColorsParser {
         const { colors } = components.reduce(
             ({ colors: currentColors = null }, screen) => {
                 const { type } = screen;
-                const { fields = [] } = this.screensManager.getDefinition(type) || {};
-                const fieldsPattern = this.getColorFieldPatterns(fields);
-                const { colors: newColors } = ColorsParser.getColorsFromPath(screen, fieldsPattern);
+                const fieldsPattern = this.getFieldsPatternByScreen(type);
+                const newColors = extractAtPatterns(
+                    screen,
+                    fieldsPattern,
+                    (val) => isObject(val) && typeof val.color !== 'undefined',
+                ).map((value) => {
+                    if (value.color.length === 4) {
+                        const innerColor = value.color
+                            .split('')
+                            .map((hex, i) => (i > 0 ? hex + hex : hex))
+                            .join('')
+                            .toUpperCase();
+                        return {
+                            alpha: value.alpha || 1,
+                            color: innerColor,
+                        };
+                    }
+
+                    return {
+                        alpha: value.alpha,
+                        color: value.color.toUpperCase(),
+                    };
+                });
                 return {
                     colors: [...currentColors, ...newColors],
                 };
@@ -37,7 +82,7 @@ class ColorsParser {
         );
 
         if (theme !== null) {
-            const themeColors = this.parse(theme);
+            const themeColors = this.extract(theme);
             return colors !== null || themeColors !== null
                 ? uniqueColors([...sortedColors(themeColors || []), ...sortedColors(colors || [])])
                 : [];
@@ -46,90 +91,8 @@ class ColorsParser {
         return colors !== null ? sortedColors(uniqueColors(colors || [])) : [];
     }
 
-    getColorFieldPatterns(fields, namePrefix = null) {
-        return fields.reduce((patterns, field) => {
-            const { name = null, type = null } = field;
-            const path = [namePrefix, name].filter((it) => it !== null).join('\\.');
-            const fieldDefinition = {
-                ...(type !== null ? this.fieldsManager.getDefinition(type) : null),
-                ...field,
-            };
-            // also check settings fields
-            const { fields: subFields = [], itemsField = null, settings = [] } = fieldDefinition;
-
-            return [
-                ...patterns,
-                ...(ColorsParser.fieldIsColor(fieldDefinition) ? [new RegExp(`^${path}$`)] : []),
-                ...this.getColorFieldPatterns(subFields, path),
-                ...this.getColorFieldPatterns(settings, path),
-                ...(itemsField !== null
-                    ? this.getColorFieldPatterns([itemsField], `${path}\\.[0-9]+`)
-                    : []),
-            ];
-        }, []);
-    }
-
     static fieldIsColor({ id = null }) {
         return id === 'color';
-    }
-
-    static getColorsFromPath(data, patterns, colors = null, keyPrefix = null) {
-        const dataIsArray = isArray(data);
-        const keys = dataIsArray ? [...data.keys()] : Object.keys(data);
-        return keys.reduce(
-            ({ data: currentData, colors: currentColors = null }, key) => {
-                const path = [keyPrefix, key].filter((it) => it !== null).join('.');
-                const patternMatch = patterns.reduce(
-                    (found, pattern) => found || pattern.test(path),
-                    false,
-                );
-                const value = data[key];
-                let color = null;
-                let newValue = null;
-                let subColors = null;
-                if (patternMatch && isObject(value)) {
-                    if (value.color && value.color.length === 4) {
-                        const innerColor = value.color
-                            .split('')
-                            .map((hex, i) => (i > 0 ? hex + hex : hex))
-                            .join('')
-                            .toUpperCase();
-                        color = {
-                            alpha: value.alpha || 1,
-                            color: innerColor,
-                        };
-                    } else if (value.color) {
-                        color = {
-                            alpha: value.alpha,
-                            color: value.color.toUpperCase(),
-                        };
-                    }
-                } else if (isObject(value) || isArray(value)) {
-                    const subReturn = ColorsParser.getColorsFromPath(value, patterns, colors, path);
-                    newValue = subReturn.data;
-                    subColors = subReturn.colors;
-                } else {
-                    newValue = value;
-                }
-
-                return {
-                    data: dataIsArray
-                        ? [...(currentData || []), newValue]
-                        : {
-                              ...currentData,
-                              [key]: newValue,
-                          },
-                    colors:
-                        color !== null
-                            ? [...(currentColors || []), ...(subColors || []), color]
-                            : [...(currentColors || []), ...(subColors || [])],
-                };
-            },
-            {
-                data: keys.length === 0 ? data : null,
-                colors,
-            },
-        );
     }
 }
 

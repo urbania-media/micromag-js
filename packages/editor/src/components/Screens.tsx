@@ -7,10 +7,9 @@ import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Route, Switch } from 'wouter';
 
-import type { Story, Theme } from '@micromag/core';
+import type { Story, StoryTheme } from '@micromag/core';
 import { Button, Empty, Navbar } from '@micromag/core/components';
 import { useRoutePush, useRoutes, useUrlGenerator } from '@micromag/core/contexts';
-import { useParsedStory } from '@micromag/core/hooks';
 
 import useRouteParams from '../hooks/useRouteParams';
 import useThemeValue from '../hooks/useThemeValue';
@@ -22,7 +21,7 @@ import ScreenTypesModal from './modals/ScreenTypes';
 import styles from '../styles/screens.module.css';
 
 interface EditorScreensProps {
-    value?: Story | Theme | null;
+    value?: Story | StoryTheme | null;
     isTheme?: boolean;
     isVertical?: boolean;
     isCreateOpened?: boolean;
@@ -44,8 +43,7 @@ function EditorScreens({
     onChange = null,
     className = null,
 }: EditorScreensProps) {
-    const valueWithTheme = useThemeValue(unparsedValue, isTheme);
-    const value = isParsed ? unparsedValue : useParsedStory(valueWithTheme, { withMedias: false });
+    const value = useThemeValue(unparsedValue, isTheme);
     const { components: screens = [] } = value || {};
 
     const [createModalOpened, setCreateModalOpened] = useState(isCreateOpened);

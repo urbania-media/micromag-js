@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import type { FormControlSize, TextStyle } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
-import { useGetColors } from '@micromag/core/contexts';
+import { useEditorColors } from '@micromag/core/contexts';
 import {
     cssEscape,
     getColorAsString,
@@ -69,8 +69,8 @@ function TextEditorField({
     } = useCKEditor();
     const translations = useCKEditorTranslations(locale);
 
-    const getColors = useGetColors();
-    const colors = (withHighlightColors ? getColors() : null) || [];
+    const editorColors = useEditorColors();
+    const colors = (withHighlightColors ? editorColors : null) || [];
 
     const defaultEditorConfig = withoutLink
         ? {
