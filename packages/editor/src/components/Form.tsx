@@ -323,7 +323,7 @@ function EditForm({ value = null, className = null, onChange = null }: EditFormP
                                                 name={item.fieldParams.replace(/\//g, '.')}
                                                 value={item.screen}
                                                 form={item.formParams}
-                                                className={styles.form}
+                                                className="p-2"
                                                 gotoFieldForm={gotoFieldForm}
                                                 closeFieldForm={closeFieldForm}
                                                 fieldContext={fieldContext}
@@ -332,7 +332,7 @@ function EditForm({ value = null, className = null, onChange = null }: EditFormP
                                         ) : (
                                             <ScreenForm
                                                 value={item.screen}
-                                                className={styles.form}
+                                                className="p-2"
                                                 onChange={onScreenFormChange}
                                                 gotoFieldForm={gotoFieldForm}
                                                 closeFieldForm={closeFieldForm}

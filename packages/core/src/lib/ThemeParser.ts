@@ -2,12 +2,26 @@ import isArray from 'lodash-es/isArray';
 import isEmpty from 'lodash-es/isEmpty';
 import isObject from 'lodash-es/isObject';
 
+import {
+    BackgroundElement,
+    BoxStyle,
+    Color,
+    Field,
+    ScreenComponent,
+    ScreenDefinition,
+    Story,
+    StoryParser,
+    TextStyle,
+} from '../types';
 import ScreensManager from './ScreensManager';
 
-class ThemeParser {
+class ThemeParser implements StoryParser {
     screensManager: ScreensManager;
-    definitionCache: Record<string, { definition: any; themeScreen: any }>;
-    fieldsCache: Record<string, { fields: any[]; repetableStates?: any[] }>;
+    definitionCache: Record<
+        string,
+        { definition: ScreenDefinition; themeScreen: ScreenComponent | null }
+    >;
+    fieldsCache: Record<string, { fields: Field[]; repetableStates?: any[] }>;
 
     constructor({ screensManager }) {
         this.screensManager = screensManager;
@@ -17,7 +31,7 @@ class ThemeParser {
 
     getDefinitionByScreen(type, themeComponents) {
         if (typeof this.definitionCache[type] === 'undefined') {
-            const definition = this.screensManager.getDefinition(type) || {};
+            const definition = this.screensManager.getDefinition(type);
             const themeScreen = themeComponents.find((it) => it.type === type) || null;
             this.definitionCache[type] = { definition, themeScreen };
         }
@@ -54,7 +68,7 @@ class ThemeParser {
         return this.fieldsCache[definitionId];
     }
 
-    parseFromEditor(story) {
+    parseFromEditor(story: Story | null) {
         if (story === null) {
             return story;
         }
@@ -137,17 +151,18 @@ class ThemeParser {
     }
 
     parseScreen(
-        definition,
-        value,
-        themeValue,
-        themeBackground,
-        themeColors,
-        themeTextStyles,
-        themeBoxStyles,
+        definition: ScreenDefinition,
+        value: ScreenComponent,
+        themeValue: ScreenComponent | null,
+        themeBackground: BackgroundElement | null,
+        themeColors: Record<string, Color>,
+        themeTextStyles: Record<string, TextStyle> | null,
+        themeBoxStyles: Record<string, BoxStyle> | null,
     ) {
         const { fields = null, repetableStates = null } = this.getFieldsForDefinition(definition);
 
-        const newThemeValue = themeValue === null && themeBackground !== null ? {} : themeValue;
+        const newThemeValue: Partial<ScreenComponent> =
+            themeValue === null && themeBackground !== null ? {} : themeValue;
 
         if (themeBackground !== null && typeof newThemeValue.background !== 'undefined') {
             newThemeValue.background = {

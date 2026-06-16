@@ -58,7 +58,7 @@ function ScreenButton({
                 href={href}
                 title={title}
                 onClick={onClick}
-                refButton={refButton}
+                ref={refButton}
             >
                 <span
                     className={classNames([

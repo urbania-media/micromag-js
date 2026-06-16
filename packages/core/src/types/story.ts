@@ -1,10 +1,21 @@
 import { BackgroundElement } from './elements';
 import { ImageMedia, Media } from './medias';
-import { Color, FontObject, TextStyle } from './styles';
+import { BoxStyle, Color, FontObject, TextStyle } from './styles';
 
+export interface ComponentMetadata {
+    title?: string;
+    description?: string;
+    [key: string]: unknown;
+}
+export interface ComponentParameters {
+    metadata?: ComponentMetadata;
+    [key: string]: unknown;
+}
 export interface StoryComponent {
     id: string;
     type: string;
+    parameters?: ComponentParameters;
+    background?: BackgroundElement;
     [key: string]: unknown;
 }
 
@@ -21,6 +32,7 @@ export interface StoryMetadata {
 export interface StoryTheme {
     id?: string;
     textStyles?: Record<string, TextStyle>;
+    boxStyles?: Record<string, BoxStyle>;
     background?: BackgroundElement;
     colors?: Record<string, Color>;
     components?: ScreenComponent[];

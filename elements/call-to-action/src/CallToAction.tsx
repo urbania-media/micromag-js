@@ -178,7 +178,7 @@ function CallToAction({
                             [styles.withoutLinkStyle]: !inWebView,
                         },
                     ])}
-                    refButton={buttonRef}
+                    ref={buttonRef}
                     focusable={focusable}
                     buttonStyle={boxStyle}
                     inline

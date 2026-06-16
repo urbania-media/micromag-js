@@ -1,24 +1,26 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { ForwardedRef, MouseEventHandler } from 'react';
 
 import type { BoxStyle, TextStyle } from '@micromag/core';
-import { Button as CoreButton } from '@micromag/core/components';
+import {
+    Button as CoreButton,
+    type ButtonProps as CoreButtonProps,
+} from '@micromag/core/components';
 import { getStyleFromBox, getStyleFromText } from '@micromag/core/utils';
 
 import styles from './styles.module.css';
 
-interface ButtonProps {
+interface ButtonProps extends CoreButtonProps {
     textStyle?: TextStyle | null;
     buttonStyle?: BoxStyle | null;
     type?: 'button' | 'submit';
     disabled?: boolean;
     focusable?: boolean;
     inline?: boolean;
-    onClick?: ((...args: unknown[]) => void) | null;
     children?: React.ReactNode | null;
     className?: string | null;
     withoutExternalBorder?: boolean;
-    refButton?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    ref?: ForwardedRef<HTMLButtonElement | HTMLAnchorElement>;
     style?: Record<string, unknown> | null;
 }
 
@@ -29,11 +31,10 @@ function Button({
     disabled = false,
     focusable = true,
     inline = false,
-    onClick = null,
     children = null,
     className = null,
     withoutExternalBorder = true,
-    refButton = null,
+    ref: refButton = null,
     style = null,
     ...buttonProps
 }: ButtonProps) {
@@ -71,8 +72,7 @@ function Button({
             className={classNames([styles.container, className])}
             disabled={disabled}
             style={finalStyles}
-            onClick={onClick}
-            refButton={refButton}
+            ref={refButton}
             type={type}
             focusable={focusable}
             withoutBootstrapStyles

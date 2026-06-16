@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 
 import Button from '../buttons/Button';
 import Link from '../partials/Link';
@@ -8,16 +7,16 @@ import Link from '../partials/Link';
 import styles from '../../styles/menus/navbar.module.css';
 
 interface NavbarProps {
-    brand?: React.ReactNode | null;
+    brand?: ReactNode | null;
     brandLink?: string | null;
-    breadcrumbs?: React.ReactNode | null;
+    breadcrumbs?: ReactNode | null;
     theme?: 'light' | 'dark' | 'primary' | null;
     size?: 'sm' | 'md' | 'lg';
     compact?: boolean;
     noWrap?: boolean;
     withoutCollapse?: boolean;
     withoutCollapseToggle?: boolean;
-    children?: React.ReactNode | null;
+    children?: ReactNode | null;
     className?: string | null;
     brandClassName?: string | null;
     breadCrumbsClassName?: string | null;

@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
 
 import IconButton from './IconButton';
 
@@ -12,14 +10,15 @@ interface NavigationButtonProps {
     className?: string;
 }
 
-function NavigationButton({ direction = 'next', onClick = null, className = null, ...props }: NavigationButtonProps) {
+function NavigationButton({
+    direction = 'next',
+    onClick = null,
+    className = null,
+    ...props
+}: NavigationButtonProps) {
     return (
         <IconButton
-            className={classNames([
-                styles.container,
-                styles[direction],
-                className,
-            ])}
+            className={classNames([styles.container, styles[direction], className])}
             onClick={(e) => {
                 e.stopPropagation();
                 onClick();

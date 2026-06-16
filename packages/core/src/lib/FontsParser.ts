@@ -1,4 +1,5 @@
 import isObject from 'lodash-es/isObject';
+import isString from 'lodash-es/isString';
 
 import {
     extractAtPatterns,
@@ -99,8 +100,7 @@ class FontsParser implements StoryParser {
             story,
             'fonts',
             ({ type }) => this.getFieldsPatternByScreen(type),
-            (val) => (isObject(val) ? val.name : val),
-            (val) => (isObject(val) ? val.name : val),
+            (val) => (isObject(val) ? val.name : val) as string,
         );
         return newStory;
     }

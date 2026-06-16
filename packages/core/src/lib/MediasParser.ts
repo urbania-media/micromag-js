@@ -85,8 +85,7 @@ class MediasParser implements StoryParser {
             story,
             'medias',
             ({ type }) => this.getFieldsPatternByScreen(type),
-            (val) => (isObject(val) ? MediasParser.getMediaPath(val) : val),
-            (val) => (isObject(val) ? MediasParser.getMediaPath(val) : val),
+            (val) => (isObject(val) ? MediasParser.getMediaPath(val) : val) as string,
         );
 
         const {

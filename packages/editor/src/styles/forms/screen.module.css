@@ -1,6 +1,5 @@
 .container {
     position: relative;
-    padding: calc(var(--mm-spacer, 5px) / 2);
 
     .inner {
         display: flex;

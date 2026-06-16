@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
+import React, { ForwardedRef, MouseEventHandler, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { BoxStyle, Media, TextElement, TextStyle } from '@micromag/core';
@@ -25,14 +25,14 @@ interface RichButtonProps {
     disabled?: boolean;
     focusable?: boolean;
     inline?: boolean;
-    onClick?: ((...args: unknown[]) => void) | null;
+    onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement | HTMLDivElement> | null;
     className?: string | null;
     textClassName?: string | null;
     imageClassName?: string | null;
     videoClassName?: string | null;
     visualClassName?: string | null;
     withoutExternalBorder?: boolean;
-    refButton?: ((...args: unknown[]) => void | { current?: unknown }) | null;
+    ref?: ForwardedRef<HTMLButtonElement | HTMLAnchorElement | HTMLDivElement>;
     children?: React.ReactNode | null;
 }
 
@@ -57,7 +57,7 @@ function RichButton({
     imageClassName = null,
     videoClassName = null,
     withoutExternalBorder = true,
-    refButton = null,
+    ref: refButton = null,
     children = null,
     ...otherProps
 }: RichButtonProps) {
@@ -107,7 +107,7 @@ function RichButton({
                 },
             ])}
             withoutExternalBorder={withoutExternalBorder}
-            refButton={refButton}
+            ref={refButton}
             {...otherProps}
         >
             <ScreenElement

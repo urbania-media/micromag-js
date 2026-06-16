@@ -263,13 +263,13 @@ function Viewer({
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
     // Fonts
-    const finalFonts = [
+    const allFonts = [
         ...(!isArray(fonts) && isObject(fonts)
             ? Object.keys(fonts).map((key) => fonts[key])
             : fonts || []),
         themeFont,
     ].filter((font) => font !== null);
-    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
+    useLoadedFonts(allFonts);
 
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
@@ -829,7 +829,7 @@ function Viewer({
                     ) : (
                         overscrollStyle
                     )}
-                    <FontFaces fonts={finalFonts} />
+                    <FontFaces fonts={allFonts} />
                     <div
                         className={classNames([
                             styles.container,
@@ -949,7 +949,7 @@ function Viewer({
                                         direction="previous"
                                         className={classNames([styles.navButton, styles.previous])}
                                         onClick={gotoPreviousScreen}
-                                        ariaLabel={intl.formatMessage({
+                                        aria-label={intl.formatMessage({
                                             defaultMessage: 'Go to previous screen',
                                             description: 'Button label',
                                         })}
@@ -1050,7 +1050,7 @@ function Viewer({
                                         direction="next"
                                         className={classNames([styles.navButton, styles.next])}
                                         onClick={gotoNextScreen}
-                                        ariaLabel={intl.formatMessage({
+                                        aria-label={intl.formatMessage({
                                             defaultMessage: 'Go to next screen',
                                             description: 'Button label',
                                         })}

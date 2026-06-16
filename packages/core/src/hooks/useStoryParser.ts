@@ -12,7 +12,6 @@ export function useStoryParser() {
         fieldsManager,
         fieldsPattern: screensManager.getFieldsPattern(),
     });
-
     return parser;
 }
 

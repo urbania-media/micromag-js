@@ -1,6 +1,10 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
+import React, {
+    AnchorHTMLAttributes,
+    ButtonHTMLAttributes,
+    ForwardedRef,
+    MouseEventHandler,
+} from 'react';
 import { Link } from 'wouter';
 
 import type { ButtonSize, ButtonTheme, Label as LabelType } from '@micromag/core';
@@ -9,8 +13,10 @@ import { getStyleFromColor } from '@micromag/core/utils';
 
 import styles from '../../styles/buttons/button.module.css';
 
-interface ButtonProps {
-    type?: string;
+export interface ButtonProps extends Omit<
+    ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement>,
+    'onClick' | 'children'
+> {
     theme?: ButtonTheme;
     size?: ButtonSize;
     href?: string;
@@ -26,14 +32,12 @@ interface ButtonProps {
     disabled?: boolean;
     loading?: boolean;
     disableOnLoading?: boolean;
-    withoutTheme?: boolean;
     asLink?: boolean;
-    ariaLabel?: string;
     className?: string;
     iconClassName?: string;
     labelClassName?: string;
-    onClick?: (...args: unknown[]) => void;
-    refButton?: (...args: unknown[]) => void | { current?: unknown };
+    onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+    ref?: ForwardedRef<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 function Button({
@@ -53,14 +57,12 @@ function Button({
     disabled = false,
     loading = false,
     disableOnLoading = true,
-    withoutTheme = false,
     asLink = false,
-    ariaLabel = null,
     onClick = null,
     className = null,
     iconClassName = null,
     labelClassName = null,
-    refButton = null,
+    ref: refButton = null,
     ...props
 }: ButtonProps) {
     const finalLabel = label || children;
@@ -77,11 +79,7 @@ function Button({
         {
             [styles.withIcon]: hasIcon,
             [styles.withIconColumns]: hasIconColumns,
-            [styles.withText]: text !== null,
-            [styles.isLink]: href !== null,
             [styles.asLink]: asLink,
-            [styles.isDisabled]: disabled,
-            [styles.isLoading]: loading,
         },
     ]);
 
@@ -94,62 +92,20 @@ function Button({
         <>
             {hasInlineIcon ? (
                 <>
-                    <span
-                        className={classNames([
-                            styles.icon,
-                            iconClassName,
-                        ])}
-                    >
-                        {icon}
-                    </span>
+                    <span className={classNames([styles.icon, iconClassName])}>{icon}</span>
                     {text !== null ? (
-                        <span
-                            className={classNames([
-                                styles.label,
-                                labelClassName,
-                            ])}
-                        >
-                            {text}
-                        </span>
+                        <span className={classNames([styles.label, labelClassName])}>{text}</span>
                     ) : null}
                 </>
             ) : null}
             {hasIconColumns ? (
                 <>
                     {iconPosition === 'left' ? (
-                        <span
-                            className={classNames([
-                                styles.icon,
-                                styles.left,
-                                {
-                                    [iconClassName]:
-                                        iconClassName !== null && iconPosition === 'left',
-                                },
-                            ])}
-                        >
-                            {icon}
-                        </span>
+                        <span className={classNames([styles.icon, iconClassName])}>{icon}</span>
                     ) : null}
-                    <span
-                        className={classNames([
-                            styles.center,
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
-                        {text}
-                    </span>
+                    <span className={classNames([styles.label, labelClassName])}>{text}</span>
                     {iconPosition === 'right' ? (
-                        <span
-                            className={classNames([
-                                styles.icon,
-                                styles.right,
-                                {
-                                    [iconClassName]:
-                                        iconClassName !== null && iconPosition === 'right',
-                                },
-                            ])}
-                        >
+                        <span className={classNames([styles.icon, styles.right, iconClassName])}>
                             {icon}
                         </span>
                     ) : null}
@@ -174,8 +130,8 @@ function Button({
                 style={buttonStyles}
                 onClick={onClick}
                 target={external ? target : null}
-                ref={refButton}
-                tabIndex={focusable ? '' : '-1'}
+                ref={refButton as ForwardedRef<HTMLAnchorElement>}
+                tabIndex={!focusable ? -1 : undefined}
             >
                 {content}
             </a>
@@ -186,8 +142,8 @@ function Button({
                 className={linkClassNames}
                 style={buttonStyles}
                 onClick={onClick}
-                ref={refButton}
-                tabIndex={focusable ? '' : '-1'}
+                ref={refButton as ForwardedRef<HTMLAnchorElement>}
+                tabIndex={!focusable ? -1 : undefined}
             >
                 {content}
             </Link>
@@ -202,9 +158,8 @@ function Button({
             style={buttonStyles}
             onClick={onClick}
             disabled={disabled || (disableOnLoading && loading)}
-            ref={refButton}
-            aria-label={ariaLabel}
-            tabIndex={focusable ? '0' : '-1'}
+            ref={refButton as ForwardedRef<HTMLButtonElement>}
+            tabIndex={!focusable ? -1 : undefined}
         >
             {content}
         </button>

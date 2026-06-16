@@ -1,5 +1,12 @@
 import classNames from 'classnames';
-import { CSSProperties, ForwardedRef, MouseEventHandler, ReactNode } from 'react';
+import {
+    AnchorHTMLAttributes,
+    ButtonHTMLAttributes,
+    CSSProperties,
+    ForwardedRef,
+    MouseEventHandler,
+    ReactNode,
+} from 'react';
 import { Link } from 'wouter';
 
 import { ButtonSize, ButtonTheme, Label as LabelType } from '../../types';
@@ -7,9 +14,12 @@ import Label from '../partials/Label';
 
 import styles from '../../styles/buttons/button.module.css';
 
-type ButtonElement = HTMLButtonElement | HTMLAnchorElement;
+export type ButtonElement = HTMLButtonElement | HTMLAnchorElement;
 
-export interface ButtonProps {
+export interface ButtonProps extends Omit<
+    ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement>,
+    'onClick' | 'children'
+> {
     type?: 'button' | 'submit' | 'reset';
     theme?: ButtonTheme | null;
     size?: ButtonSize | null;
@@ -35,7 +45,7 @@ export interface ButtonProps {
     iconClassName?: string | null;
     labelClassName?: string | null;
     onClick?: MouseEventHandler<ButtonElement> | null;
-    refButton?: ForwardedRef<ButtonElement> | null;
+    ref?: ForwardedRef<ButtonElement> | null;
 }
 
 function Button({
@@ -63,7 +73,7 @@ function Button({
     className = null,
     iconClassName = null,
     labelClassName = null,
-    refButton = null,
+    ref: refButton = null,
     ...props
 }: ButtonProps) {
     const finalLabel = label || children;
@@ -107,14 +117,17 @@ function Button({
     const withStyle = !withoutTheme && !withoutStyle;
 
     const buttonClassNames = classNames([
-        !withoutBootstrapStyles && withStyle
-            ? {
-                  btn: true,
-                  [`btn-${outline ? 'outline-' : ''}${theme}`]: theme !== null,
-                  [`btn-${size}`]: size !== null,
-                  active: active,
-              }
-            : null,
+        ...(!withoutBootstrapStyles && withStyle
+            ? [
+                  'btn',
+                  theme !== null ? `btn-${outline ? 'outline-' : ''}${theme}` : null,
+                  size !== null ? `btn-${size}` : null,
+                  {
+                      active,
+                      disabled,
+                  },
+              ]
+            : []),
         styles.container,
         {
             [styles.withoutStyle]: withoutStyle,
@@ -140,6 +153,7 @@ function Button({
             </a>
         ) : (
             <Link
+                {...props}
                 href={href}
                 className={linkClassNames}
                 onClick={onClick}

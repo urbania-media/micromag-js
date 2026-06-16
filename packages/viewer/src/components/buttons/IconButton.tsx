@@ -1,28 +1,19 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React from 'react';
 
-import Button from './Button';
+import Button, { ButtonProps } from './Button';
 
 import styles from '../../styles/buttons/icon-button.module.css';
 
-interface IconButtonProps {
+interface IconButtonProps extends ButtonProps {
     iconClassName?: string;
-    className?: string;
 }
 
 function IconButton({ iconClassName = null, className = null, ...props }: IconButtonProps) {
     return (
         <Button
-            className={classNames([
-                styles.container,
-                className,
-            ])}
+            className={classNames([styles.container, className])}
             labelClassName={styles.label}
-            iconClassName={classNames([
-                styles.icon,
-                iconClassName,
-            ])}
+            iconClassName={classNames([styles.icon, iconClassName])}
             {...props}
         />
     );

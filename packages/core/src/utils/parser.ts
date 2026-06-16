@@ -162,17 +162,15 @@ export function replaceAndExtractStoryEntities(
     story: Story | null,
     entityType: 'fonts' | 'medias',
     getFieldsPatternByScreen: (screen: ScreenComponent) => RegExp[],
-    replacer: (value: unknown, path: string) => unknown,
-    getKey = (val) => val,
+    getKey: (value: unknown, path: string) => string,
 ): Story | null {
     const { components = [] } = story || {};
     return components.reduce<Story | null>((currentStory, screen, screenIndex) => {
-        const { type } = screen;
         const fieldsPattern = getFieldsPatternByScreen(screen);
         const { data: newScreen, extract: newEntities } = replaceAtPatterns(
             screen,
             fieldsPattern,
-            replacer,
+            getKey,
         );
         if (newScreen === screen) {
             return currentStory;
@@ -193,7 +191,7 @@ export function replaceAndExtractStoryEntities(
                           if (isObject(entity)) {
                               return {
                                   ...entities,
-                                  [getKey(entity)]: entity,
+                                  [getKey(entity, key)]: entity,
                               };
                           }
                           return entities;
@@ -207,7 +205,7 @@ export function replaceStoryEntities(
     story: Story | null,
     entityType: 'fonts' | 'medias',
     getFieldsPatternByScreen: (screen: ScreenComponent) => RegExp[],
-    getKey = (val) => val,
+    getKey = (val: unknown) => val as string,
 ): Story | null {
     const { components = [] } = story || {};
     return components.reduce<Story | null>((currentStory, screen, screenIndex) => {
