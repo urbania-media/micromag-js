@@ -1,5 +1,6 @@
-import TextStyleDefinition from '../definitions/TextStyle.json';
 import { validate } from '../../utils';
+
+import TextStyleDefinition from '../definitions/TextStyle.json';
 
 const TextStyle = ({
     fontFamily = null,

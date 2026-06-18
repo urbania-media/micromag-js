@@ -25,7 +25,7 @@ import withGoogleMaps from '#.storybook/decorators/withGoogleMaps';
 // import withIntlProvider from '#.storybook/decorators/withIntlProvider';
 import withUppy from '#.storybook/decorators/withUppy';
 import preview from '#.storybook/preview';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v1 as uuid } from 'uuid';
 
 import ActionsProvider from '@panneau/actions';
@@ -40,6 +40,7 @@ import Editor from '../components/EditorContainer';
 
 import cointreau from '#.storybook/data/stories/cointreau.json';
 import hebdo from '#.storybook/data/stories/hebdo.json';
+import { getJSON } from '@folklore/fetch';
 
 const meta = preview.meta({
     component: Editor,
@@ -142,6 +143,50 @@ const viewerTheme = {
         },
     },
 };
+
+export const Loader = meta.story(() => {
+    const [url, setUrl] = useState(() => localStorage.getItem('lastLoadedStory') || null);
+    const [storyUrl, setStoryUrl] = useState(() =>
+        url !== null ? url.replace(/(\.json)?$/, '.json') : null,
+    );
+    const [story, setStory] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const newStoryUrl = url.replace(/(\.json)?$/, '.json');
+        setStoryUrl(newStoryUrl);
+        localStorage.setItem('lastLoadedStory', url);
+    };
+    useEffect(() => {
+        setLoading(true);
+        getJSON(storyUrl).then((data) => {
+            setLoading(false);
+            setStory(data);
+        });
+    }, [storyUrl]);
+
+    return (
+        <div className="d-flex flex-column" style={{ width: '100%', height: '100vh' }}>
+            <form onSubmit={onSubmit} className="p-3">
+                <div className="input-group">
+                    <input
+                        type="text"
+                        value={url || ''}
+                        onChange={(e) => setUrl(e.target.value)}
+                        className="form-control"
+                        placeholder="Enter a story URL (e.g. https://microm.ag)"
+                    />
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                        {loading ? 'Loading' : 'Load'}
+                    </button>
+                </div>
+            </form>
+            <div className="position-relative flex-grow-1">
+                {story !== null ? <EditorContainer defaultValue={story} /> : null}
+            </div>
+        </div>
+    );
+});
 
 export const TestHebdo = meta.story(() => <EditorContainer defaultValue={hebdo} />);
 

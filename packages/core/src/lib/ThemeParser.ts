@@ -68,6 +68,18 @@ class ThemeParser implements StoryParser {
         return this.fieldsCache[definitionId];
     }
 
+    valueIsEmpty(value) {
+        return (
+            value === null ||
+            (isArray(value) && value.length === 0) ||
+            (isObject(value) &&
+                Object.keys(value).reduce(
+                    (isEmpty, key) => isEmpty && this.valueIsEmpty(value[key]),
+                    true,
+                ))
+        );
+    }
+
     parseFromEditor(story: Story | null) {
         if (story === null) {
             return story;
@@ -85,6 +97,17 @@ class ThemeParser implements StoryParser {
             textStyles: themeTextStyles = null,
             boxStyles: themeBoxStyles = null,
         } = theme;
+
+        if (
+            this.valueIsEmpty(themeComponents) &&
+            this.valueIsEmpty(themeColors) &&
+            this.valueIsEmpty(themeTextStyles) &&
+            this.valueIsEmpty(themeBoxStyles) &&
+            this.valueIsEmpty(themeBackground)
+        ) {
+            const { theme, ...storyWithoutTheme } = story;
+            return storyWithoutTheme;
+        }
 
         // Speed test
         // const newComponents = [...components];

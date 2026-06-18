@@ -141,7 +141,6 @@ function EditorPreview({
                                         screenState={currentScreenStateId}
                                         className={styles.story}
                                         theme={viewerTheme}
-                                        interactions={null}
                                         renderContext="edit"
                                         onScreenChange={onScreenChange}
                                         withNavigationHint={false}

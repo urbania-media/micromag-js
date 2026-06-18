@@ -62,6 +62,10 @@ function Editor({
 
     const parser = useStoryParser();
     const story = parser.parseToViewer(value);
+    console.log({
+        value,
+        story,
+    })
     const onStoryChange = (newStory) => {
         const parsedStory = parser.parseFromEditor(newStory);
         if (onChange !== null) {
