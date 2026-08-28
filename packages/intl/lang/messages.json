@@ -39,6 +39,10 @@
     "defaultMessage": "No speaker...",
     "description": "Label when there is no item"
   },
+  "+pZ9oW": {
+    "defaultMessage": "Content of screen {index}",
+    "description": "Aria label"
+  },
   "+uInZz": {
     "defaultMessage": "Circle",
     "description": "Circle label"
@@ -306,6 +310,10 @@
   "59f2bg": {
     "defaultMessage": "Images",
     "description": "visualsWithCaptions field label"
+  },
+  "5gQz1q": {
+    "defaultMessage": "Skip to content",
+    "description": "Button label"
   },
   "5mk1b+": {
     "defaultMessage": "Share",

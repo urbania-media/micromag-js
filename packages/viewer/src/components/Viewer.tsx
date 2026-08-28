@@ -131,6 +131,7 @@ interface ViewerProps {
     withoutMenu?: boolean;
     withoutScreensMenu?: boolean;
     withoutShareMenu?: boolean;
+    withoutSkipLinks?: boolean;
     withoutMenuShadow?: boolean;
     withoutFullscreen?: boolean;
     withoutNavigationArrow?: boolean;
@@ -198,6 +199,7 @@ function Viewer({
     withoutMenu = false,
     withoutScreensMenu = false,
     withoutShareMenu = false,
+    withoutSkipLinks = false,
     withoutMenuShadow = false,
     withoutNavigationArrow = false,
     withoutTransitions = false,
@@ -854,52 +856,63 @@ function Viewer({
                                 }}
                             />
                         </div>
-                        <nav
-                            aria-label={intl.formatMessage({
-                                defaultMessage: 'Skip Links',
-                                description: 'Nav aria label',
-                            })}
-                            className={styles.accessibilityLinks}
-                        >
-                            {playbackHelpVisible ? (
-                                <>
-                                    <Button
-                                        onClick={onClickSkipToPlaybackControls}
-                                        aria-disabled={
-                                            withoutPlaybackControls || !playbackControlsVisible
-                                        }
-                                        aria-describedby="disabledReason"
-                                        className={classNames([
-                                            styles.accessibilityButton,
-                                            {
-                                                [styles.disabled]:
-                                                    withoutPlaybackControls ||
-                                                    !playbackControlsVisible,
-                                            },
-                                        ])}
-                                    >
-                                        <FormattedMessage
-                                            defaultMessage="Skip to controls"
-                                            description="Button label"
-                                        />
-                                    </Button>
-                                    {withoutPlaybackControls || !playbackControlsVisible ? (
-                                        <div
-                                            role="tooltip"
-                                            className={styles.tooltipBox}
-                                            id="disabledReason"
+                        {!withoutSkipLinks ? (
+                            <nav
+                                aria-label={intl.formatMessage({
+                                    defaultMessage: 'Skip Links',
+                                    description: 'Nav aria label',
+                                })}
+                                className={styles.accessibilityLinks}
+                            >
+                                <a
+                                    href="#content"
+                                    className={classNames([styles.accessibilityLink, 'skip-link'])}
+                                >
+                                    <FormattedMessage
+                                        defaultMessage="Skip to content"
+                                        description="Button label"
+                                    />
+                                </a>
+                                {playbackHelpVisible ? (
+                                    <>
+                                        <Button
+                                            onClick={onClickSkipToPlaybackControls}
+                                            aria-disabled={
+                                                withoutPlaybackControls || !playbackControlsVisible
+                                            }
+                                            aria-describedby="disabledReason"
+                                            className={classNames([
+                                                styles.accessibilityButton,
+                                                {
+                                                    [styles.disabled]:
+                                                        withoutPlaybackControls ||
+                                                        !playbackControlsVisible,
+                                                },
+                                            ])}
                                         >
-                                            <span className={styles.tooltip}>
-                                                <FormattedMessage
-                                                    defaultMessage="No controls available"
-                                                    description="Tooltip"
-                                                />
-                                            </span>
-                                        </div>
-                                    ) : null}
-                                </>
-                            ) : null}
-                        </nav>
+                                            <FormattedMessage
+                                                defaultMessage="Skip to controls"
+                                                description="Button label"
+                                            />
+                                        </Button>
+                                        {withoutPlaybackControls || !playbackControlsVisible ? (
+                                            <div
+                                                role="tooltip"
+                                                className={styles.tooltipBox}
+                                                id="disabledReason"
+                                            >
+                                                <span className={styles.tooltip}>
+                                                    <FormattedMessage
+                                                        defaultMessage="No controls available"
+                                                        description="Tooltip"
+                                                    />
+                                                </span>
+                                            </div>
+                                        ) : null}
+                                    </>
+                                ) : null}
+                            </nav>
+                        ) : null}
                         {!withoutMenu ? (
                             <ViewerMenu
                                 story={parsedStory}
@@ -948,8 +961,7 @@ function Viewer({
                                         })}
                                     />
                                 ) : null}
-
-                                <div
+                                <main
                                     className={styles.screensFrame}
                                     style={{
                                         width: screenContainerWidth,
@@ -997,7 +1009,7 @@ function Viewer({
                                             (withNeighborScreens && active);
 
                                         return (
-                                            <animated.div
+                                            <animated.section
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
                                                 id={current ? 'content' : null}
                                                 aria-hidden={!current}
@@ -1040,10 +1052,10 @@ function Viewer({
                                                         scale={screenScale}
                                                     />
                                                 ) : null}
-                                            </animated.div>
+                                            </animated.section>
                                         );
                                     })}
-                                </div>
+                                </main>
                                 {!withoutNavigationArrow &&
                                 !withNeighborScreens &&
                                 !navigationDisabled &&

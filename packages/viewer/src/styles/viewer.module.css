@@ -145,6 +145,24 @@
         opacity: 1;
     }
 
+    .accessibilityLink {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        display: block;
+        padding: 5px;
+        background: rgb(0 0 0 / 0.75);
+        color: var(--mm-white, #fff);
+        opacity: 0;
+        transform: translateY(100svh);
+
+        &:focus-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     .accessibilityButton {
         padding: 4px;
         color: var(--mm-white, #fff);

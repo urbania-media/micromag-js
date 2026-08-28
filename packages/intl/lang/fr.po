@@ -71,6 +71,12 @@ msgctxt "+nhSvj"
 msgid "No speaker..."
 msgstr "Aucun intervenant..."
 
+# Aria label
+#: +pZ9oW
+msgctxt "+pZ9oW"
+msgid "Content of screen {index}"
+msgstr "Contenu de l'écran {index}"
+
 # Circle label
 #: +uInZz
 msgctxt "+uInZz"
@@ -472,6 +478,12 @@ msgstr "Image de rétroaction de la réponse"
 msgctxt "59f2bg"
 msgid "Images"
 msgstr "Images"
+
+# Button label
+#: 5gQz1q
+msgctxt "5gQz1q"
+msgid "Skip to content"
+msgstr "Aller au contenu"
 
 # Share screen title
 #: 5mk1b+
@@ -1095,7 +1107,7 @@ msgstr "Rechercher"
 #: GGlcE2
 msgctxt "GGlcE2"
 msgid "Select a screen..."
-msgstr ""
+msgstr "Sélectionnez un écran"
 
 # Field label
 #: GMCLhn

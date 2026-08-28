@@ -29,6 +29,9 @@
     "+nhSvj": {
         "defaultMessage": "Aucun intervenant..."
     },
+    "+pZ9oW": {
+        "defaultMessage": "Contenu de l'écran {index}"
+    },
     "+uInZz": {
         "defaultMessage": "Cercle"
     },
@@ -229,6 +232,9 @@
     },
     "59f2bg": {
         "defaultMessage": "Images"
+    },
+    "5gQz1q": {
+        "defaultMessage": "Aller au contenu"
     },
     "5mk1b+": {
         "defaultMessage": "Partager"
@@ -538,6 +544,9 @@
     },
     "G1Gyjn": {
         "defaultMessage": "Rechercher"
+    },
+    "GGlcE2": {
+        "defaultMessage": "Sélectionnez un écran"
     },
     "GMCLhn": {
         "defaultMessage": "Casse"

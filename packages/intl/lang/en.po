@@ -71,6 +71,12 @@ msgctxt "+nhSvj"
 msgid "No speaker..."
 msgstr "No speaker..."
 
+# Aria label
+#: +pZ9oW
+msgctxt "+pZ9oW"
+msgid "Content of screen {index}"
+msgstr "Content of screen {index}"
+
 # Circle label
 #: +uInZz
 msgctxt "+uInZz"
@@ -472,6 +478,12 @@ msgstr "Answer feedback image"
 msgctxt "59f2bg"
 msgid "Images"
 msgstr "Images"
+
+# Button label
+#: 5gQz1q
+msgctxt "5gQz1q"
+msgid "Skip to content"
+msgstr "Skip to content"
 
 # Share screen title
 #: 5mk1b+

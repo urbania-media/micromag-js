@@ -94,23 +94,9 @@ function Button({
         <>
             {hasInlineIcon ? (
                 <>
-                    <span
-                        className={classNames([
-                            styles.icon,
-                            iconClassName,
-                        ])}
-                    >
-                        {icon}
-                    </span>
+                    <span className={classNames([styles.icon, iconClassName])}>{icon}</span>
                     {text !== null ? (
-                        <span
-                            className={classNames([
-                                styles.label,
-                                labelClassName,
-                            ])}
-                        >
-                            {text}
-                        </span>
+                        <span className={classNames([styles.label, labelClassName])}>{text}</span>
                     ) : null}
                 </>
             ) : null}
@@ -130,13 +116,7 @@ function Button({
                             {icon}
                         </span>
                     ) : null}
-                    <span
-                        className={classNames([
-                            styles.center,
-                            styles.label,
-                            labelClassName,
-                        ])}
-                    >
+                    <span className={classNames([styles.center, styles.label, labelClassName])}>
                         {text}
                     </span>
                     {iconPosition === 'right' ? (
