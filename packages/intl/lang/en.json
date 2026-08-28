@@ -674,6 +674,9 @@
     "KvBdrU": {
         "defaultMessage": "Background text"
     },
+    "KxLo5u": {
+        "defaultMessage": "(opens in a new window)"
+    },
     "LFziCV": {
         "defaultMessage": "Without right/wrong icon"
     },
@@ -733,6 +736,9 @@
     },
     "NmCfTO": {
         "defaultMessage": "Conversation"
+    },
+    "Nt74hI": {
+        "defaultMessage": "Cookie preferences"
     },
     "NumcrW": {
         "defaultMessage": "Capricorn"
@@ -1360,6 +1366,9 @@
     },
     "jaFXki": {
         "defaultMessage": "Gallery"
+    },
+    "jaNema": {
+        "defaultMessage": "Close the privacy settings"
     },
     "jf+4Hq": {
         "defaultMessage": "Screens"

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import React from 'react';
 
@@ -14,6 +13,7 @@ interface PillButtonProps {
     invert?: boolean;
     disabled?: boolean;
     dark?: boolean;
+    onClick?: (...args: unknown[]) => void;
     className?: string;
 }
 
@@ -26,6 +26,7 @@ function PillButton({
     disabled = false,
     invert = false,
     dark = false,
+    onClick = null,
     ...props
 }: PillButtonProps) {
     return (
@@ -41,6 +42,7 @@ function PillButton({
                 },
             ])}
             {...props}
+            onClick={disabled ? null : onClick}
             style={{ color, backgroundColor }}
             disabled={disabled}
         >

@@ -899,6 +899,10 @@
     "defaultMessage": "Background text",
     "description": "Field label"
   },
+  "KxLo5u": {
+    "defaultMessage": "(opens in a new window)",
+    "description": "Link label"
+  },
   "LFziCV": {
     "defaultMessage": "Without right/wrong icon",
     "description": "Field label"
@@ -978,6 +982,10 @@
   "NmCfTO": {
     "defaultMessage": "Conversation",
     "description": "Conversation placeholder"
+  },
+  "Nt74hI": {
+    "defaultMessage": "Cookie preferences",
+    "description": "Fieldset label"
   },
   "NumcrW": {
     "defaultMessage": "Capricorn",
@@ -1800,6 +1808,10 @@
   "jaFXki": {
     "defaultMessage": "Gallery",
     "description": "Gallery screen title"
+  },
+  "jaNema": {
+    "defaultMessage": "Close the privacy settings",
+    "description": "Button label"
   },
   "jf+4Hq": {
     "defaultMessage": "Screens",

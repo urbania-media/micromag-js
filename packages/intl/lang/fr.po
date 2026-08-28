@@ -1361,6 +1361,12 @@ msgctxt "KvBdrU"
 msgid "Background text"
 msgstr "Texte d'arrière-plan"
 
+# Link label
+#: KxLo5u
+msgctxt "KxLo5u"
+msgid "(opens in a new window)"
+msgstr ""
+
 # Field label
 #: LFziCV
 msgctxt "LFziCV"
@@ -1480,6 +1486,12 @@ msgstr "Couleur de l'icône de mauvaise réponse"
 msgctxt "NmCfTO"
 msgid "Conversation"
 msgstr "Conversation"
+
+# Fieldset label
+#: Nt74hI
+msgctxt "Nt74hI"
+msgid "Cookie preferences"
+msgstr ""
 
 # Horoscope sign
 #: NumcrW
@@ -2725,6 +2737,12 @@ msgstr "Points"
 msgctxt "jaFXki"
 msgid "Gallery"
 msgstr "Galerie"
+
+# Button label
+#: jaNema
+msgctxt "jaNema"
+msgid "Close the privacy settings"
+msgstr ""
 
 # Title of the screens section
 #: jf+4Hq

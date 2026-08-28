@@ -198,7 +198,7 @@ function Cookies({
             {!withoutChoices ? (
                 <div className={styles.buttons}>
                     {showChoices ? (
-                        <PillButton className={styles.button} onClick={onClickConfirm} small>
+                        <PillButton className={styles.button} onClick={onClickConfirm}>
                             <FormattedMessage
                                 defaultMessage="Save my preferences"
                                 description="Button label"
@@ -210,7 +210,6 @@ function Cookies({
                             onClick={onToggleTerms}
                             aria-expanded={showChoices}
                             aria-controls={choicesId}
-                            small
                         >
                             <FormattedMessage
                                 defaultMessage="Edit my settings"
@@ -221,10 +220,10 @@ function Cookies({
                 </div>
             ) : null}
             <div className={classNames([styles.buttons, styles.second])}>
-                <PillButton className={styles.button} onClick={onClickAccept} small>
+                <PillButton className={styles.button} onClick={onClickAccept}>
                     <FormattedMessage defaultMessage="Accept all" description="Button label" />
                 </PillButton>
-                <PillButton className={styles.button} onClick={onClickDeny} small>
+                <PillButton className={styles.button} onClick={onClickDeny}>
                     <FormattedMessage defaultMessage="Reject all" description="Button label" />
                 </PillButton>
             </div>
