@@ -2,13 +2,14 @@
     position: relative;
     max-height: calc(100vh - 20px);
     padding: 15px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .title {
-       font-size: 1.2rem;
+        font-size: 1.2rem;
     }
 
-    .title, .description {
+    .title,
+    .description {
         margin-bottom: 1rem;
     }
 
@@ -16,9 +17,44 @@
         margin-bottom: 1rem;
     }
 
+    /* Groups the checkboxes for assistive technologies without the default fieldset chrome */
+    .choices {
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        margin: 0;
+
+        &[hidden] {
+            display: none;
+        }
+
+        /* Focused programmatically when the choices open: no ring for pointer users */
+        &:focus {
+            outline: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid currentcolor;
+            outline-offset: 4px;
+        }
+    }
+
     .button {
         border-radius: 10px;
         margin: 0 5px 5px 0;
         font-weight: bold;
+    }
+
+    /* Visible to assistive technologies only */
+    .srOnly {
+        position: absolute;
+        overflow: hidden;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        border: 0;
+        margin: -1px;
+        clip-path: inset(50%);
+        white-space: nowrap;
     }
 }

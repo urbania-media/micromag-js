@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    min-height: 24px;
     flex-direction: row;
     align-items: flex-start;
     line-height: 1.2;
@@ -15,6 +16,11 @@
         margin: 0 0 5px;
         accent-color: var(--color-primary, var(--color-checkbox-active, #0b57d0));
         cursor: pointer;
+
+        &:focus-visible {
+            outline: 2px solid var(--color-text, #fff);
+            outline-offset: 2px;
+        }
     }
 
     .label {
@@ -28,6 +34,26 @@
     &:active {
         .label {
             text-decoration: underline;
+        }
+    }
+
+    &:has(.input:focus-visible) {
+        .label {
+            text-decoration: underline;
+        }
+    }
+
+    &.disabled {
+        cursor: default;
+        opacity: 0.7;
+
+        .input,
+        .label {
+            cursor: default;
+        }
+
+        .label {
+            text-decoration: none;
         }
     }
 }

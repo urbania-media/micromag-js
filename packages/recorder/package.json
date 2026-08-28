@@ -55,7 +55,7 @@
         "@micromag/viewer": "^0.4.109",
         "express": "^5.2.1",
         "get-port": "^7.1.0",
-        "lodash-es": "^4.17.23",
+        "lodash-es": "^4.18.1",
         "object-hash": "^3.0.0",
         "puppeteer": "^24.33.0",
         "puppeteer-screen-recorder": "^3.0.6",

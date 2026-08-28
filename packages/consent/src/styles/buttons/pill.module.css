@@ -4,7 +4,7 @@
     padding: 0;
     padding: 8px 12px;
     border: 0;
-    border: 1px solid #FFF;
+    border: 1px solid #fff;
     appearance: none;
     background: transparent;
     color: inherit;
@@ -12,8 +12,26 @@
     font-family: inherit;
     line-height: 1.2;
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
         background-color: var(--color-primary, var(--color-button-active, #0b57d0));
-        color: #FFF;
+        color: #fff;
+    }
+
+    &:focus-visible {
+        outline: 2px solid currentcolor;
+        outline-offset: 2px;
+    }
+
+    &.disabled,
+    &:disabled {
+        cursor: default;
+        opacity: 0.6;
+
+        &:hover,
+        &:active {
+            background: transparent;
+            color: inherit;
+        }
     }
 }

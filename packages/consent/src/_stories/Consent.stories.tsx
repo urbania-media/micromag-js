@@ -17,13 +17,11 @@ const meta = preview.meta({
     component: Consent,
     title: 'Viewer/Consent',
     decorators: [],
-
     parameters: {
         intl: true,
     },
 });
 
-// eslint-disable-next-line react/prop-types
 const ConsentContainer = ({ value: defaultValue = null, consent = null, ...containerProps }) => {
     const [value, setValue] = useState(defaultValue);
     const [consented, setConsented] = useState(false);

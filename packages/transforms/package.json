@@ -72,7 +72,7 @@
     "dependencies": {
         "@babel/runtime": "^7.28.6",
         "@micromag/core": "^0.4.109",
-        "lodash-es": "^4.17.23",
+        "lodash-es": "^4.18.1",
         "object-hash": "^3.0.0",
         "uuid": "^9.0.0"
     },

@@ -73,7 +73,7 @@
         "@use-gesture/react": "^10.3.0",
         "classnames": "^2.2.6",
         "detect-pointer-events": "^1.0.2",
-        "lodash-es": "^4.17.23",
+        "lodash-es": "^4.18.1",
         "query-string": "^9.1.1",
         "react-focus-lock": "^2.11.2",
         "react-helmet": "^6.1.0",

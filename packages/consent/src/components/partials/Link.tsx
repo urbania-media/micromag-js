@@ -1,5 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useInsertionEffect, useRef } from 'react';
+import { FormattedMessage } from 'react-intl';
+
+import styles from '../../styles/partials/link.module.css';
 
 export const useEvent = (fn) => {
     const ref = useRef([fn, (...args) => ref[0](...args)]).current;
@@ -37,9 +39,6 @@ function LinkPartial({
     ...props
 }: LinkPartialProps) {
     const link = href || null;
-    if (link === null) {
-        return <span className={className}>{children}</span>;
-    }
 
     const onClickLink = useCallback(
         (...args) => {
@@ -72,6 +71,11 @@ function LinkPartial({
         }
     });
 
+    // Hooks must run on every render, so this bails out only after they have been called
+    if (link === null) {
+        return <span className={className}>{children}</span>;
+    }
+
     return external ? (
         <a
             className={className}
@@ -82,6 +86,15 @@ function LinkPartial({
             {...props}
         >
             {children}
+            {target === '_blank' ? (
+                <span className={styles.srOnly}>
+                    {' '}
+                    <FormattedMessage
+                        defaultMessage="(opens in a new window)"
+                        description="Link label"
+                    />
+                </span>
+            ) : null}
         </a>
     ) : (
         <a className={className} href={href} onClick={handleClick} {...props}>

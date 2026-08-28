@@ -44,7 +44,7 @@ class FontsParser {
                 ? {
                       ...story,
                       theme: newTheme,
-                      fonts: uniqBy([...themeFonts, ...fonts], 'name'),
+                      fonts: uniqBy([...themeFonts, ...fonts], (font = null) => font?.name),
                   }
                 : story;
         }
