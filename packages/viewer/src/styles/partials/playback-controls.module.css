@@ -79,7 +79,8 @@
     }
 
     &:focus-visible {
-        box-shadow: 0 0 2px 2px var(--mm-focus-color, #fff);
+        outline: 2px solid var(--mm-focus-color, #fff);
+        outline-offset: -2px;
     }
 }
 
@@ -154,8 +155,8 @@
     }
 
     &:focus-visible {
-        box-shadow: 0 0 2px 2px var(--mm-focus-color, #fff);
-        outline: 2px solid #000;
+        outline: 2px solid var(--mm-focus-color, #fff);
+        outline-offset: -2px;
     }
 }
 
@@ -208,7 +209,8 @@
 
     &:focus-visible {
         &:focus-within {
-            box-shadow: 0 0 2px 2px var(--mm-focus-color, #fff);
+            outline: 2px solid var(--mm-focus-color, #fff);
+            outline-offset: -2px;
         }
     }
 }

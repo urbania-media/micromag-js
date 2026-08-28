@@ -15,6 +15,7 @@ interface ScreenProps {
     index?: number | null;
     active?: boolean;
     preload?: boolean;
+    focusable?: boolean;
     current?: boolean;
     component?: React.ReactNode | null;
     components?: Record<string, ElementType> | null;
@@ -30,6 +31,7 @@ function Screen({
     active = true,
     current = false,
     preload = true,
+    focusable = true,
     components = null,
     component = null,
     className = null,
@@ -43,7 +45,11 @@ function Screen({
     return (
         <ScreenProvider data={screen} renderContext={renderContext} screenState={screenState}>
             {ScreenComponent !== null ? (
-                <div className={classNames([styles.container, className])}>
+                <div
+                    className={classNames([styles.container, className])}
+                    tabIndex={focusable ? 0 : -1}
+                    aria-hidden={current || active ? 'false' : 'true'}
+                >
                     <ScreenComponent
                         {...screen}
                         index={index}
@@ -54,7 +60,9 @@ function Screen({
                     />
                 </div>
             ) : (
-                <div className={className}>{component}</div>
+                <div className={className} tabIndex={focusable ? 0 : -1}>
+                    {component}
+                </div>
             )}
         </ScreenProvider>
     );

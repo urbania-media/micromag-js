@@ -327,8 +327,8 @@
     contain: size layout style paint;
 
     &:focus-visible {
-        outline: 3px solid var(--mm-purple);
-        outline-offset: 4px;
+        outline: 2px solid var(--mm-focus-color, #fff);
+        outline-offset: 2px;
     }
 }
 

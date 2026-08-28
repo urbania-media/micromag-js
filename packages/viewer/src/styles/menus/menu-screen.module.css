@@ -26,8 +26,11 @@
     transition: border-width 0.4s var(--mm-ease-in-bump, 'ease-out');
 
     &:focus-visible {
-        box-shadow: 0 0 1px 1px var(--mm-focus-color, #fff);
-        outline: 0.15rem solid var(--mm-focus-color, #fff);
+        outline: 2px solid var(--mm-focus-color, #fff);
+        outline-offset: -2px;
+
+        /* box-shadow: 0 0 1px 1px var(--mm-focus-color, #fff);
+        outline: 0.15rem solid var(--mm-focus-color, #fff); */
     }
 
     .isCurrent & {

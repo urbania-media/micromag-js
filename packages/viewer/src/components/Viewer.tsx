@@ -1003,6 +1003,15 @@ function Viewer({
                                                 aria-hidden={!current}
                                                 style={screenStyles}
                                                 tabIndex={current ? 0 : -1}
+                                                aria-label={intl.formatMessage(
+                                                    {
+                                                        defaultMessage: 'Content of screen {index}',
+                                                        description: 'Aria label',
+                                                    },
+                                                    {
+                                                        index: i + 1,
+                                                    },
+                                                )}
                                                 className={classNames([
                                                     styles.screenContainer,
                                                     {

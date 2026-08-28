@@ -93,7 +93,7 @@ function ViewerMenuScreen({
                         screenWidth={screenWidth}
                         screenHeight={screenHeight}
                         screen={screen}
-                        focusable={focusable}
+                        focusable={false}
                         active={focusable}
                         withSize
                     />
