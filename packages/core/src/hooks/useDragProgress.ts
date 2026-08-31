@@ -108,11 +108,12 @@ function useDragProgress({
         }
     };
 
+    // The keys must be omitted entirely when there is no handler.
     const bind = useGesture(
         {
             onDrag,
-            onPointerDown: onPointerDown !== null ? onPointerDown : undefined,
-            onScroll: onScroll !== null ? onScroll : undefined,
+            ...(onPointerDown !== null ? { onPointerDown } : null),
+            ...(onScroll !== null ? { onScroll } : null),
         },
         {
             drag: dragOptions,
