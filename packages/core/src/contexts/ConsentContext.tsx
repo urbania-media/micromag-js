@@ -9,7 +9,7 @@ import { defineMessages } from 'react-intl';
 const messages = defineMessages({
     functionality_title: {
         id: 'consent.functionality_title',
-        defaultMessage: 'Functionnal',
+        defaultMessage: 'Functional',
     },
     functionality_description: {
         id: 'consent.functionality_description',

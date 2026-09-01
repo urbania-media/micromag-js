@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading, indent */
 import classNames from 'classnames';
 import isString from 'lodash-es/isString';
-import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import useConsent from '../../hooks/useConsent';
@@ -32,7 +31,7 @@ function Cookies({
     onClickLink = null,
     urls = null,
     labels = null,
-    withoutChoices = false,
+    withoutChoices: initialWithoutChoices = false,
     titleId = null,
     titleTag: TitleComponent = 'h2',
     className = null,
@@ -52,11 +51,35 @@ function Cookies({
     });
 
     const { privacy: privacyUrl = null, terms: termsUrl = null } = urls || {};
-    const { title = null, description = null, privacy = null, terms = null } = labels || {};
+    const {
+        title = null,
+        description = null,
+        privacy = null,
+        terms = null,
+        saveButton: saveButtonLabel = null,
+        editButton: editButtonLabel = null,
+        closeButton: closeButtonLabel = null,
+        acceptButton: acceptButtonLabel = null,
+        rejectButton: rejectButtonLabel = null,
+    } = labels || {};
 
     const baseId = useId();
     const finalTitleId = titleId || `${baseId}-title`;
     const choicesId = `${baseId}-choices`;
+
+    const onlyHasFunctionalCookies = useMemo(() => {
+        if (choices === null || choices.length === 0) {
+            return false;
+        }
+        return choices.every((choice) => choice?.id === 'functionality_storage');
+    }, [choices]);
+
+    const withoutChoices = useMemo(() => {
+        if (initialWithoutChoices) {
+            return true;
+        }
+        return onlyHasFunctionalCookies;
+    }, [initialWithoutChoices, onlyHasFunctionalCookies]);
 
     const [showChoices, setShowChoices] = useState(false);
 
@@ -199,10 +222,12 @@ function Cookies({
                 <div className={styles.buttons}>
                     {showChoices ? (
                         <PillButton className={styles.button} onClick={onClickConfirm}>
-                            <FormattedMessage
-                                defaultMessage="Save my preferences"
-                                description="Button label"
-                            />
+                            {saveButtonLabel || (
+                                <FormattedMessage
+                                    defaultMessage="Save my preferences"
+                                    description="Button label"
+                                />
+                            )}
                         </PillButton>
                     ) : (
                         <PillButton
@@ -211,21 +236,46 @@ function Cookies({
                             aria-expanded={showChoices}
                             aria-controls={choicesId}
                         >
-                            <FormattedMessage
-                                defaultMessage="Edit my settings"
-                                description="Button label"
-                            />
+                            {editButtonLabel || (
+                                <FormattedMessage
+                                    defaultMessage="Edit my settings"
+                                    description="Button label"
+                                />
+                            )}
                         </PillButton>
                     )}
                 </div>
             ) : null}
             <div className={classNames([styles.buttons, styles.second])}>
-                <PillButton className={styles.button} onClick={onClickAccept}>
-                    <FormattedMessage defaultMessage="Accept all" description="Button label" />
-                </PillButton>
-                <PillButton className={styles.button} onClick={onClickDeny}>
-                    <FormattedMessage defaultMessage="Reject all" description="Button label" />
-                </PillButton>
+                {onlyHasFunctionalCookies ? (
+                    <PillButton className={styles.button} onClick={onClickAccept}>
+                        {closeButtonLabel || (
+                            <FormattedMessage
+                                defaultMessage="Accept and close"
+                                description="Button label"
+                            />
+                        )}
+                    </PillButton>
+                ) : (
+                    <>
+                        <PillButton className={styles.button} onClick={onClickAccept}>
+                            {acceptButtonLabel || (
+                                <FormattedMessage
+                                    defaultMessage="Accept all"
+                                    description="Button label"
+                                />
+                            )}
+                        </PillButton>
+                        <PillButton className={styles.button} onClick={onClickDeny}>
+                            {rejectButtonLabel || (
+                                <FormattedMessage
+                                    defaultMessage="Reject all"
+                                    description="Button label"
+                                />
+                            )}
+                        </PillButton>
+                    </>
+                )}
             </div>
         </div>
     );

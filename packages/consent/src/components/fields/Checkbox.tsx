@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isString from 'lodash-es/isString';
 import React, { useCallback, useId } from 'react';

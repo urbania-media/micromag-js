@@ -69,6 +69,10 @@ export const Normal = meta.story(() => {
     return <ConsentContainer {...props} consent={['ad_storage', 'ad_personalization']} />;
 });
 
+export const FunctionalOnly = meta.story(() => {
+    return <ConsentContainer {...props} consent={['functionality_storage']} withoutChoices />;
+});
+
 export const withClose = meta.story(() => {
     return (
         <ConsentContainer
