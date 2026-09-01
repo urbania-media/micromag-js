@@ -71,8 +71,11 @@ function Cookies({
         if (choices === null || choices.length === 0) {
             return false;
         }
-        return choices.every((choice) => choice?.id === 'functionality_storage');
+        const [firstChoice = null] = choices || [];
+        return choices.length === 1 && firstChoice.id === 'functionality_storage';
     }, [choices]);
+
+    console.log('choices', choices);
 
     const withoutChoices = useMemo(() => {
         if (initialWithoutChoices) {
