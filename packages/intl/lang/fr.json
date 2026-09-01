@@ -668,11 +668,17 @@
     "KdAKt7": {
         "defaultMessage": "Téléverser un fichier image"
     },
+    "Kj74rp": {
+        "defaultMessage": "Accepter et fermer"
+    },
     "KuzZbb": {
         "defaultMessage": "Couleur d'arrière-plan"
     },
     "KvBdrU": {
         "defaultMessage": "Texte d'arrière-plan"
+    },
+    "KxLo5u": {
+        "defaultMessage": "(s'ouvre dans une nouvelle fenêtre)"
     },
     "LFziCV": {
         "defaultMessage": "Sans icône vrai/faux"
@@ -733,6 +739,9 @@
     },
     "NmCfTO": {
         "defaultMessage": "Conversation"
+    },
+    "Nt74hI": {
+        "defaultMessage": "Préférences en matière de témoins"
     },
     "NumcrW": {
         "defaultMessage": "Capricorne"
@@ -1360,6 +1369,9 @@
     },
     "jaFXki": {
         "defaultMessage": "Galerie"
+    },
+    "jaNema": {
+        "defaultMessage": "Fermer les paramètres de confidentialité"
     },
     "jf+4Hq": {
         "defaultMessage": "Écrans"

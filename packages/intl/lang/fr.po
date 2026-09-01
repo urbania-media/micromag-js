@@ -1349,6 +1349,12 @@ msgctxt "KdAKt7"
 msgid "Upload an image file"
 msgstr "Téléverser un fichier image"
 
+# Button label
+#: Kj74rp
+msgctxt "Kj74rp"
+msgid "Accept and close"
+msgstr "Accepter et fermer"
+
 # Breadcrumb field label
 #: KuzZbb
 msgctxt "KuzZbb"
@@ -1365,7 +1371,7 @@ msgstr "Texte d'arrière-plan"
 #: KxLo5u
 msgctxt "KxLo5u"
 msgid "(opens in a new window)"
-msgstr ""
+msgstr "(s'ouvre dans une nouvelle fenêtre)"
 
 # Field label
 #: LFziCV
@@ -1491,7 +1497,7 @@ msgstr "Conversation"
 #: Nt74hI
 msgctxt "Nt74hI"
 msgid "Cookie preferences"
-msgstr ""
+msgstr "Préférences en matière de témoins"
 
 # Horoscope sign
 #: NumcrW
@@ -2254,7 +2260,7 @@ msgstr "Cookies nécessaires au bon fonctionnement du site."
 
 #: consent.functionality_title
 msgctxt "consent.functionality_title"
-msgid "Functionnal"
+msgid "Functional"
 msgstr "Fonctionnel"
 
 #: consent.personalization_storage_description
@@ -2742,7 +2748,7 @@ msgstr "Galerie"
 #: jaNema
 msgctxt "jaNema"
 msgid "Close the privacy settings"
-msgstr ""
+msgstr "Fermer les paramètres de confidentialité"
 
 # Title of the screens section
 #: jf+4Hq

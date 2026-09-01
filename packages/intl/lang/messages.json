@@ -891,6 +891,10 @@
     "defaultMessage": "Upload an image file",
     "description": "Upload button label in Media Gallery"
   },
+  "Kj74rp": {
+    "defaultMessage": "Accept and close",
+    "description": "Button label"
+  },
   "KuzZbb": {
     "defaultMessage": "Background color",
     "description": "Breadcrumb field label"
@@ -1491,7 +1495,7 @@
     "defaultMessage": "Cookies required for the site to function properly."
   },
   "consent.functionality_title": {
-    "defaultMessage": "Functionnal"
+    "defaultMessage": "Functional"
   },
   "consent.personalization_storage_description": {
     "defaultMessage": "Cookies used for personalizing user experience."

@@ -1349,6 +1349,12 @@ msgctxt "KdAKt7"
 msgid "Upload an image file"
 msgstr "Upload an image file"
 
+# Button label
+#: Kj74rp
+msgctxt "Kj74rp"
+msgid "Accept and close"
+msgstr "Accept and close"
+
 # Breadcrumb field label
 #: KuzZbb
 msgctxt "KuzZbb"
@@ -2254,7 +2260,7 @@ msgstr "Cookies required for the site to function properly."
 
 #: consent.functionality_title
 msgctxt "consent.functionality_title"
-msgid "Functionnal"
+msgid "Functional"
 msgstr "Functionnal"
 
 #: consent.personalization_storage_description
