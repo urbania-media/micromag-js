@@ -1,4 +1,5 @@
 import isFunction from 'lodash-es/isFunction';
+import isPlainObject from 'lodash-es/isPlainObject';
 import { useIntl } from 'react-intl';
 
 import { Label } from '@micromag/core';
@@ -30,13 +31,12 @@ function ToggleFields({
         ...(active ? fields : []),
     ];
 
-    const finalValue =
-        value !== null
-            ? {
-                  active: true,
-                  ...value,
-              }
-            : value;
+    // The value can contain keys without `active` (ex.: theme styles added by the
+    // story parser), so the toggle and the sub-fields must both use `active`
+    const finalValue = {
+        ...value,
+        active,
+    };
 
     const defaultValue = fields.reduce(
         (acc, { name, defaultValue: fieldDefaultValue = null }) =>
@@ -52,17 +52,28 @@ function ToggleFields({
     );
 
     const onUpdateValue = (newValue) => {
+        const { active: nowActive = false } = newValue || {};
+        // Apply default values when activating, without overriding existing values
         const newValueWithDefaults =
-            defaultValue !== null &&
-            newValue !== null &&
-            Object.keys(newValue).join('') === 'active' &&
-            newValue?.active === true
-                ? {
-                      ...defaultValue,
-                      ...newValue,
-                  }
+            defaultValue !== null && nowActive && !active
+                ? Object.keys(defaultValue).reduce((acc, key) => {
+                      const currentValue = acc[key] ?? null;
+                      const fieldDefaultValue = defaultValue[key];
+                      if (currentValue === null) {
+                          return { ...acc, [key]: fieldDefaultValue };
+                      }
+                      if (isPlainObject(currentValue) && isPlainObject(fieldDefaultValue)) {
+                          return {
+                              ...acc,
+                              [key]: {
+                                  ...(fieldDefaultValue as Record<string, unknown>),
+                                  ...currentValue,
+                              },
+                          };
+                      }
+                      return acc;
+                  }, newValue)
                 : newValue;
-        const { active: nowActive = false } = newValueWithDefaults || {};
         if (onChange !== null) {
             onChange(nowActive ? newValueWithDefaults : null);
         }
