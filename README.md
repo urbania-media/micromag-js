@@ -19,8 +19,8 @@
 
 ## Deployment
 
-- push all changes to `develop` and `master` branches
-- `git checkout master` !
+- push all changes to `develop` and `main` branches
+- `git checkout main` !
 - `lerna version` (most of the time, the version bump is generally a `patch`)
     - it pushes a `v*` tag, and the [Publish workflow](.github/workflows/publish.yml) publishes the packages to npm with trusted publishing (no npm token needed)
 - if a publish fails, run the Publish workflow manually from the Actions tab: it publishes the versions that are missing from npm

@@ -4,7 +4,7 @@
     "version": "0.4.115",
     "command": {
         "publish": {
-            "allowBranch": ["master", "develop", "feature/es-module"],
+            "allowBranch": ["main", "develop", "feature/es-module"],
             "npmClientArgs": ["--maxsockets=3"]
         }
     }
