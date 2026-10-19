@@ -1,0 +1,51 @@
+name: Publish
+
+# Publishes the packages to npm with trusted publishing (OIDC), without any npm token.
+# Each package must trust this workflow on npmjs.com (see scripts/npm-trust.sh).
+on:
+  # Tags created by `lerna version`
+  push:
+    tags:
+      - 'v*'
+  # Publishes the versions in package.json files that are missing from npm
+  # (ex.: after a failed publish)
+  workflow_dispatch:
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    if: github.repository == 'urbania-media/micromag-js'
+    permissions:
+      contents: read
+      id-token: write # Required for trusted publishing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # Lerna needs the tags to find the release
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Packages are built by their prepublishOnly script
+      - name: Publish tagged release
+        if: github.event_name == 'push'
+        run: npx lerna publish from-git --yes
+
+      - name: Publish missing versions
+        if: github.event_name == 'workflow_dispatch'
+        run: npx lerna publish from-package --yes
