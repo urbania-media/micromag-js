@@ -21,4 +21,10 @@
 
 - push all changes to `develop` and `master` branches
 - `git checkout master` !
-- `lerna publish` (most of the time, the version bump is generally a `patch`)
+- `lerna version` (most of the time, the version bump is generally a `patch`)
+    - it pushes a `v*` tag, and the [Publish workflow](.github/workflows/publish.yml) publishes the packages to npm with trusted publishing (no npm token needed)
+- if a publish fails, run the Publish workflow manually from the Actions tab: it publishes the versions that are missing from npm
+
+### Trusted publishing
+
+Each package must trust the Publish workflow on npm. Run `./scripts/npm-trust.sh` once (after `npm login`, with npm 11.15.0 or above) to configure every public package. A new package must be published manually once (`npm publish` in its folder) before it can be configured.
