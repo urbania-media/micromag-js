@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-keypad",
-    "version": "0.4.113",
+    "version": "0.4.117",
     "private": false,
     "description": "",
     "keywords": [
@@ -58,7 +58,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.113",
+        "@micromag/core": "^0.4.117",
         "classnames": "^2.2.6",
         "lodash-es": "^4.18.1",
         "uuid": "^9.0.0"
