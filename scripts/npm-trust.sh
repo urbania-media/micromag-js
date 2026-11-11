@@ -3,7 +3,8 @@
 set -Eeuo pipefail
 
 # Configures npm trusted publishing for every public package, so they can be
-# published by the .github/workflows/publish.yml workflow without an npm token.
+# published by the .github/workflows/publish.yml workflow, from its `npm`
+# environment, without an npm token.
 #
 # Requires npm 11.15.0 or above, `npm login` with an account that has write
 # access to the packages and 2FA enabled. On the first 2FA prompt, enable the
@@ -13,6 +14,8 @@ set -Eeuo pipefail
 
 repository="urbania-media/micromag-js"
 workflow="publish.yml"
+# The job that publishes runs in this environment (Settings → Environments)
+environment="npm"
 
 cd "$(dirname "$0")/.."
 
@@ -28,6 +31,7 @@ for package in $packages; do
     if ! npm trust github "$package" \
         --file "$workflow" \
         --repository "$repository" \
+        --environment "$environment" \
         --allow-publish \
         --yes \
         "$@"; then

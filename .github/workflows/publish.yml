@@ -1,7 +1,15 @@
 name: Publish
 
 # Publishes the packages to npm with trusted publishing (OIDC), without any npm token.
-# Each package must trust this workflow on npmjs.com (see scripts/npm-trust.sh).
+# Each package must trust this workflow and the `npm` environment on npmjs.com (see
+# scripts/npm-trust.sh).
+#
+# Two jobs, so that the code of the dependencies never runs where the OIDC token is:
+# - `pack` installs, builds and packs every public package, with read-only permissions;
+# - `publish` downloads the tarballs and publishes the ones whose version isn't on npm yet. It
+#   installs nothing and runs no script of the packages: it only has npm, from the `npm` environment.
+# This covers both cases of `lerna publish`: the versions of the tag created by `lerna version`
+# (from-git), and the versions missing from npm after a failed publish (from-package).
 on:
   # Tags created by `lerna version`
   push:
@@ -15,41 +23,89 @@ concurrency:
   group: publish
   cancel-in-progress: false
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
-  publish:
-    name: Publish to npm
+  pack:
+    name: Build and pack
     runs-on: ubuntu-latest
     if: github.repository == 'urbania-media/micromag-js'
     permissions:
       contents: read
-      id-token: write # Required for trusted publishing
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
-          # Lerna needs the tags to find the release
-          fetch-depth: 0
+          persist-credentials: false
 
       - name: Install Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version-file: '.nvmrc'
 
+      # No secret and read-only permissions here: the install scripts of the dependencies can run
       - name: Install dependencies
         run: npm ci
 
-      # The prepublishOnly script only builds the published packages, which
-      # need the other packages to be built (ex.: @micromag/core css)
+      # The published packages need the other packages to be built (ex.: @micromag/core css)
       - name: Build packages
         run: npm run build
 
-      - name: Publish tagged release
-        if: github.event_name == 'push'
-        run: npx lerna publish from-git --yes
+      # npm pack doesn't run prepublishOnly: the packages are already built
+      - name: Pack packages
+        run: |
+          mkdir -p "$RUNNER_TEMP/packages"
+          npx lerna exec --no-private --concurrency 4 -- npm pack --pack-destination "$RUNNER_TEMP/packages"
+          ls -1 "$RUNNER_TEMP/packages"
 
+      - name: Upload the packages
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: packages
+          path: ${{ runner.temp }}/packages/*.tgz
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish to npm
+    needs: pack
+    runs-on: ubuntu-latest
+    # The `npm` environment only accepts the `v*` tags and develop (Settings → Environments). Once
+    # the trusted publisher of each package on npmjs.com names it, no other job can publish.
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write # Required for trusted publishing
+    steps:
+      - name: Install Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Download the packages
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: packages
+          path: ${{ runner.temp }}/packages
+
+      # Trusted publishing needs npm 11.5.1 or later; provenance is added on its own
       - name: Publish missing versions
-        if: github.event_name == 'workflow_dispatch'
-        run: npx lerna publish from-package --yes
+        working-directory: ${{ runner.temp }}/packages
+        run: |
+          npm --version
+          published=0
+          for tarball in *.tgz; do
+            manifest=$(tar -xOzf "$tarball" package/package.json)
+            name=$(jq -r .name <<<"$manifest")
+            version=$(jq -r .version <<<"$manifest")
+            if npm view "$name@$version" version --silent >/dev/null 2>&1; then
+              echo "$name@$version is already on npm"
+              continue
+            fi
+            echo "::group::Publishing $name@$version"
+            npm publish "./$tarball" --access public --ignore-scripts
+            echo "::endgroup::"
+            published=$((published + 1))
+          done
+          echo "Published $published package(s)" | tee -a "$GITHUB_STEP_SUMMARY"
