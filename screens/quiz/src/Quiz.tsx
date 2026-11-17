@@ -11,12 +11,13 @@ import type {
     Footer as FooterConfig,
     Header as HeaderConfig,
     ImageElement,
+    ImageMedia,
     MediaElement,
     QuizAnswer,
     TextElement,
     TextStyle,
     Transitions,
-    VisualElement,
+    VideoMedia,
 } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import {
@@ -47,7 +48,8 @@ interface QuizScreenProps {
     question?: TextElement | null;
     answers?: QuizAnswer[] | null;
     result?: { image?: ImageElement; text?: TextElement } | null;
-    resultImage?: VisualElement | null;
+    resultImage?: ImageMedia | VideoMedia | null;
+    resultVideoLoop?: boolean;
     buttonsLayout?: ButtonLayout | null;
     buttonsStyle?: BoxStyle | null;
     inactiveButtonsStyle?: BoxStyle | null;
@@ -80,6 +82,7 @@ function QuizScreen({
     answers = null,
     result = null,
     resultImage = null,
+    resultVideoLoop = true,
     buttonsLayout = null,
     buttonsStyle = null,
     inactiveButtonsStyle = null,
@@ -117,11 +120,9 @@ function QuizScreen({
     } = useViewerContext();
     const { open: openWebView } = useViewerWebView();
     const { muted } = usePlaybackContext();
-    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current, true);
 
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
     const mediaShouldLoad = current || preload;
 
     const hasHeader = isHeaderFilled(header);
@@ -139,6 +140,20 @@ function QuizScreen({
     const [userAnswerIndex, setUserAnswerIndex] = useState(
         showInstantAnswer ? goodAnswerIndex : null,
     );
+
+    // @note Once answered, a feedback video becomes the screen's main media so it plays
+    // with sound and the viewer's mute button controls it
+    const { answerImage: userAnswerVisual = null } =
+        userAnswerIndex !== null && answers !== null ? answers[userAnswerIndex] || {} : {};
+    const { type: feedbackVisualType = null } = userAnswerVisual || resultImage || {};
+    const hasFeedbackVideo =
+        userAnswerIndex !== null && feedbackVisualType === 'video' && !isPreview;
+
+    const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(
+        current,
+        !hasFeedbackVideo,
+    );
+    const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
 
     const { create: submitQuiz } = useQuizCreate({
         screenId,
@@ -285,6 +300,10 @@ function QuizScreen({
                         keypadLayout={keypadLayout}
                         result={result}
                         resultImage={resultImage}
+                        resultMediaRef={hasFeedbackVideo ? mediaRef : null}
+                        resultPlaying={backgroundPlaying}
+                        resultMuted={muted}
+                        resultLoop={resultVideoLoop}
                         answeredIndex={userAnswerIndex}
                         buttonsLayout={buttonsLayout}
                         buttonsStyle={buttonsStyle}
@@ -357,7 +376,9 @@ function QuizScreen({
                     playing={backgroundPlaying}
                     muted={muted}
                     shouldLoad={mediaShouldLoad}
-                    mediaRef={mergeRefs(mediaRef, customMediaRef)}
+                    mediaRef={
+                        !hasFeedbackVideo ? mergeRefs(mediaRef, customMediaRef) : customMediaRef
+                    }
                     withoutVideo={isPreview}
                     className={styles.background}
                 />

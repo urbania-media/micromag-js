@@ -2,7 +2,7 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
-import React, { useCallback, useState } from 'react';
+import React, { ForwardedRef, useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -10,11 +10,13 @@ import type {
     ButtonLayout,
     Color,
     ImageElement,
+    ImageMedia,
+    MediaElement,
     QuizAnswer,
     TextElement,
     TextStyle,
     Transitions as TransitionsConfig,
-    VisualElement,
+    VideoMedia,
 } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
@@ -33,7 +35,11 @@ interface QuestionProps {
     answers?: QuizAnswer[];
     keypadLayout?: Record<string, unknown>;
     result?: { image?: ImageElement; text?: TextElement };
-    resultImage?: VisualElement;
+    resultImage?: ImageMedia | VideoMedia | null;
+    resultMediaRef?: ForwardedRef<MediaElement> | null;
+    resultPlaying?: boolean;
+    resultMuted?: boolean;
+    resultLoop?: boolean;
     index?: number;
     totalCount?: number;
     answeredIndex?: number;
@@ -72,6 +78,10 @@ function Question({
     keypadLayout = null,
     result = null,
     resultImage = null,
+    resultMediaRef = null,
+    resultPlaying = true,
+    resultMuted = true,
+    resultLoop = true,
     index = null,
     totalCount = null,
     answeredIndex = null,
@@ -257,6 +267,10 @@ function Question({
                                         {hasResultVisual ? (
                                             <Visual
                                                 media={answerImage || resultImage}
+                                                mediaRef={resultMediaRef}
+                                                playing={resultPlaying && resultVisible}
+                                                muted={resultMuted}
+                                                videoLoop={resultLoop}
                                                 width="100%"
                                                 height="auto"
                                             />

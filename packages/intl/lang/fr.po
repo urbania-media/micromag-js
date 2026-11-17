@@ -1433,6 +1433,12 @@ msgctxt "M/FGRs"
 msgid "Libra"
 msgstr "Balance"
 
+# Field label
+#: M/VToF
+msgctxt "M/VToF"
+msgid "Loop feedback video"
+msgstr "Vidéo de rétroaction en boucle"
+
 # Horoscope date
 #: MBgLeH
 msgctxt "MBgLeH"

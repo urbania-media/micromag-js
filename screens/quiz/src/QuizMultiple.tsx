@@ -3,7 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
 import isArray from 'lodash-es/isArray';
-import React, { ForwardedRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+    ForwardedRef,
+    cloneElement,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type {
@@ -212,6 +220,7 @@ function QuizMultipleScreen({
         keypadLayout = null,
         result: questionResult = null,
         resultImage: questionResultImage = null,
+        resultVideoLoop: questionResultVideoLoop = true,
     } = currentQuestion || {};
 
     const currentAnsweredIndex =
@@ -223,7 +232,13 @@ function QuizMultipleScreen({
         currentAnsweredIndex !== null && typeof answers[currentAnsweredIndex] !== 'undefined'
             ? answers[currentAnsweredIndex]
             : null;
-    const { result: answerResult = null } = answer || {};
+    const { result: answerResult = null, answerImage: answerVisual = null } = answer || {};
+
+    // @note Once answered, a feedback video becomes the screen's main media so it plays
+    // with sound and the viewer's mute button controls it
+    const { type: feedbackVisualType = null } = answerVisual || questionResultImage || {};
+    const hasFeedbackVideo =
+        currentAnsweredIndex !== null && feedbackVisualType === 'video' && !isPreview;
 
     const hasTrueFalse =
         answers !== null
@@ -347,7 +362,7 @@ function QuizMultipleScreen({
 
     const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(
         current,
-        finalBackground !== null,
+        !hasFeedbackVideo,
         backgroundKey,
     );
 
@@ -484,6 +499,10 @@ function QuizMultipleScreen({
                     layout={questionLayout || layout}
                     result={questionResult}
                     resultImage={questionResultImage}
+                    resultMediaRef={hasFeedbackVideo ? mediaRef : null}
+                    resultPlaying={backgroundPlaying}
+                    resultMuted={muted}
+                    resultLoop={questionResultVideoLoop}
                     withResult={hasResult}
                     withoutGoodAnswer={withoutGoodAnswer}
                     withoutTrueFalse={!hasTrueFalse}
@@ -702,7 +721,14 @@ function QuizMultipleScreen({
                                               }),
                                     }}
                                 >
-                                    {item.element}
+                                    {/* @note A leaving question keeps its last props: release
+                                        the feedback video so it stops and frees the media ref */}
+                                    {!isActive && item.key.startsWith('question-')
+                                        ? cloneElement(item.element, {
+                                              resultMediaRef: null,
+                                              resultPlaying: false,
+                                          })
+                                        : item.element}
                                 </animated.div>
                             );
                         })}
@@ -751,7 +777,7 @@ function QuizMultipleScreen({
                               muted={muted}
                               shouldLoad={backgroundShouldLoad}
                               mediaRef={
-                                  item.key === bgItem.key
+                                  item.key === bgItem.key && !hasFeedbackVideo
                                       ? mergeRefs(mediaRef, customMediaRef)
                                       : null
                               }

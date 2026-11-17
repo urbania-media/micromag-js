@@ -947,6 +947,10 @@
     "defaultMessage": "Libra",
     "description": "Horoscope sign"
   },
+  "M/VToF": {
+    "defaultMessage": "Loop feedback video",
+    "description": "Field label"
+  },
   "MBgLeH": {
     "defaultMessage": "July 23 - Aug 22",
     "description": "Horoscope date"

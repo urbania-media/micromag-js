@@ -1,6 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import ScreenDefinition from '#.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, subtitle, transitions, videoMedia } from '#.storybook/data';
+import {
+    backgroundColor,
+    headerFooter,
+    subtitle,
+    transitions,
+    videoMedia,
+    videoMediaWithSound,
+} from '#.storybook/data';
 import preview from '#.storybook/preview';
 import React from 'react';
 
@@ -212,6 +219,19 @@ export const WithTrueFalse = meta.story((args) => (
 
 export const WithHeaderFooter = meta.story((args) => (
     <QuizMultipleScreen {...args} {...props} {...headerFooter()} />
+));
+
+export const WithFeedbackVideo = meta.story((args) => (
+    <QuizMultipleScreen
+        {...args}
+        {...props}
+        questions={props.questions.map((question, index) => ({
+            ...question,
+            result: { body: `Result ${index + 1}` },
+            resultImage: videoMediaWithSound(),
+            resultVideoLoop: index !== 0,
+        }))}
+    />
 ));
 
 export const Definition = meta.story((args) => <ScreenDefinition {...args} />);
