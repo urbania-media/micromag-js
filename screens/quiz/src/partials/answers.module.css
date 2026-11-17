@@ -5,8 +5,11 @@
     position: relative;
 }
 
+/* @note Vertical padding on the whole list (not on each item) keeps room for the
+   buttons' shadow and result icon at the edges without adding to the row gap */
 .items {
     position: relative;
+    padding: 5px 0;
 }
 
 .emptyAnswer {
@@ -99,5 +102,5 @@
 }
 
 .itemContent {
-    padding: 5px 0;
+    position: relative;
 }

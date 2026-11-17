@@ -710,6 +710,9 @@
     "M/FGRs": {
         "defaultMessage": "Libra"
     },
+    "M/VToF": {
+        "defaultMessage": "Loop feedback video"
+    },
     "MBgLeH": {
         "defaultMessage": "July 23 - Aug 22"
     },

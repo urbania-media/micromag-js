@@ -43,6 +43,8 @@ export interface Answer {
 
 export interface QuizAnswer extends Answer {
     good?: boolean;
+    result?: TextElement;
+    answerImage?: ImageMedia | VideoMedia;
 }
 
 export type CallToActionType = 'swipe-up' | 'button';

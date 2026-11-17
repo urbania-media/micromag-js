@@ -98,6 +98,15 @@ export default [
                 }),
             },
             {
+                name: 'resultVideoLoop',
+                type: 'toggle',
+                defaultValue: true,
+                label: defineMessage({
+                    defaultMessage: 'Loop feedback video',
+                    description: 'Field label',
+                }),
+            },
+            {
                 type: 'fields',
                 isList: true,
                 label: defineMessage({
@@ -350,14 +359,23 @@ export default [
                     //         description: 'Field label',
                     //     }),
                     // },
-                    // {
-                    //     name: 'resultImage',
-                    //     type: 'visual',
-                    //     label: defineMessage({
-                    //         defaultMessage: 'Result feedback image',
-                    //         description: 'Visual field label',
-                    //     }),
-                    // },
+                    {
+                        name: 'resultImage',
+                        type: 'visual',
+                        label: defineMessage({
+                            defaultMessage: 'Result feedback image',
+                            description: 'Visual field label',
+                        }),
+                    },
+                    {
+                        name: 'resultVideoLoop',
+                        type: 'toggle',
+                        defaultValue: true,
+                        label: defineMessage({
+                            defaultMessage: 'Loop feedback video',
+                            description: 'Field label',
+                        }),
+                    },
                     {
                         name: 'background',
                         type: 'background',

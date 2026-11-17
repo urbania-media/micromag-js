@@ -1,6 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import ScreenDefinition from '#.storybook/components/ScreenDefinition';
-import { backgroundColor, headerFooter, subtitle, transitions } from '#.storybook/data';
+import {
+    backgroundColor,
+    headerFooter,
+    subtitle,
+    transitions,
+    videoMediaWithSound,
+} from '#.storybook/data';
 import preview from '#.storybook/preview';
 import React from 'react';
 
@@ -86,6 +92,19 @@ export const WithHeaderFooter = meta.story((args) => (
 
 export const WithShortLayout = meta.story((args) => (
     <QuizScreen {...args} {...props} {...headerFooter()} answers={[]} />
+));
+
+export const WithGrid = meta.story((args) => (
+    <QuizScreen
+        {...args}
+        {...props}
+        keypadLayout={{ columns: 2, spacing: 20, columnAlign: 'middle', withSquareItems: true }}
+        buttonsStyle={{ shadowAngle: 135, shadowDistance: 4, shadowBlur: 10 }}
+    />
+));
+
+export const WithFeedbackVideo = meta.story((args) => (
+    <QuizScreen {...args} {...props} resultImage={videoMediaWithSound()} />
 ));
 
 export const Definition = meta.story((args) => <ScreenDefinition {...args} />);
