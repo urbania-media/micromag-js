@@ -1861,6 +1861,10 @@
     "defaultMessage": "Add an answer",
     "description": "Button label"
   },
+  "lZGj2x": {
+    "defaultMessage": "The media “{name}” will be deleted.",
+    "description": "Delete confirmation in Media Gallery"
+  },
   "li7ADr": {
     "defaultMessage": "Result",
     "description": "Result placeholder"

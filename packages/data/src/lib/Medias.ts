@@ -96,10 +96,10 @@ class MediasApi extends Base {
     replace(id, data) {
         return this.requestPost(
             this.route('replace', {
-                media: id
+                media: id,
             }),
-            data
-        )
+            data,
+        );
     }
 }
 

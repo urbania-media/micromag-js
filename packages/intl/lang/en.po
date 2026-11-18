@@ -2815,6 +2815,12 @@ msgctxt "lGh/NP"
 msgid "Add an answer"
 msgstr "Add an answer"
 
+# Delete confirmation in Media Gallery
+#: lZGj2x
+msgctxt "lZGj2x"
+msgid "The media “{name}” will be deleted."
+msgstr "The media “{name}” will be deleted."
+
 # Result placeholder
 #: li7ADr
 msgctxt "li7ADr"
