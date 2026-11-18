@@ -326,6 +326,10 @@
     margin: 10% 7.5%;
     background-color: var(--mm-black, #000);
 
+    /* @note Space between the elements, not after the last one: a margin under each element
+       left a space at the bottom of the popup that its box style (padding) couldn't remove */
+    gap: 0.5em;
+
     &.withShadow {
         box-shadow: 0 0 2px var(--mm-black, #000);
     }
@@ -363,11 +367,10 @@
     width: 100%;
     flex-grow: 1;
     flex-shrink: 0;
-    margin-bottom: 0.5em;
+    margin-bottom: 0;
 }
 
 .popupHeading {
-    margin-bottom: 0.25em;
     font-weight: inherit;
 }
 

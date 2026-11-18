@@ -80,4 +80,43 @@ export const WithHeader = meta.story((args) => <Keypad {...args} {...props} head
 
 export const WithFooter = meta.story((args) => <Keypad {...args} {...props} footer={footer()} />);
 
+// Rounded corners and a label box style set for all the buttons
+export const WithButtonStyles = meta.story((args) => (
+    <Keypad
+        {...args}
+        {...props}
+        // Like items edited in the studio: the buttons after the first have their own style,
+        // with emptied values, which must not override the ones set for all the buttons
+        items={props.items.map((item, index) => ({
+            ...item,
+            visual: imageMedia(),
+            boxStyle: index > 0 ? { borderRadius: null, backgroundColor: null } : undefined,
+            ...(index === 0
+                ? {
+                      heading: { body: 'Popup heading' },
+                      content: { body: '<p>Popup content</p>' },
+                      largeVisual: imageMedia(),
+                  }
+                : null),
+        }))}
+        keypadLayout={{ columns: 3, spacing: 10 }}
+        buttonStyles={{
+            layout: 'label-bottom',
+            boxStyle: {
+                borderRadius: 20,
+                backgroundColor: { color: '#ffffff', alpha: 1 },
+            },
+            labelBoxStyle: {
+                backgroundColor: { color: '#ffd400', alpha: 1 },
+            },
+        }}
+        popupStyles={{
+            boxStyle: {
+                padding: { top: 0, right: 0, bottom: 0, left: 0 },
+                backgroundColor: { color: '#ffffff', alpha: 1 },
+            },
+        }}
+    />
+));
+
 export const Definition = meta.story((args) => <ScreenDefinition {...args} />);
