@@ -17,12 +17,15 @@
         padding: 20px 0;
     }
 
+    /* @note Hidden with visibility too: pointer-events none doesn't stop children that set
+       it back (ex.: the feedback video), which would cover the answers and catch their taps */
     .result {
         position: absolute;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.5s ease;
         transition-delay: 0.3s;
+        visibility: hidden;
     }
 
     .emptyQuestion,
@@ -47,6 +50,7 @@
             position: relative;
             opacity: 1;
             pointer-events: all;
+            visibility: visible;
         }
     }
 
@@ -55,6 +59,7 @@
             position: absolute;
             opacity: 0;
             pointer-events: none;
+            visibility: hidden;
 
             .resultContent {
                 padding: 0;
