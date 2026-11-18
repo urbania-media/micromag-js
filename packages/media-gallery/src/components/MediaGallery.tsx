@@ -110,7 +110,15 @@ function MediaGallery({
         ...(source !== null ? { source } : null),
     };
 
-    const pickerValue = isObject(value) && !isArray(value) ? [value] : value;
+    // @note Only media objects go to the picker's selection, which must be an array: a value
+    // that isn't one (ex.: a `media://` reference missing from the story's medias, in a copied
+    // screen) would crash its table (`selectedItems.filter is not a function`)
+    let pickerValue = null;
+    if (isArray(value)) {
+        pickerValue = value.filter((it) => isObject(it));
+    } else if (isObject(value)) {
+        pickerValue = [value];
+    }
     const onPickerChange = (newValue) => {
         if (onChange !== null) {
             onChange(!multiple && isArray(newValue) ? (newValue?.[0] ?? null) : newValue);

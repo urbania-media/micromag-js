@@ -141,6 +141,11 @@ export const WithSelectedMedia = meta.story(() => {
     );
 });
 
+// A `media://` reference that the story's medias don't resolve (ex.: in a copied screen)
+export const PickerWithUnresolvedReference = meta.story(() => {
+    return <GalleryContainer {...props} type="image" isPicker value="media://999" />;
+});
+
 export const WithList = meta.story(() => {
     return <GalleryContainer medias={list} />;
 });
