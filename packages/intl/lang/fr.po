@@ -467,12 +467,6 @@ msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
 
-# Visual field label
-#: 57hjHa
-msgctxt "57hjHa"
-msgid "Answer feedback image"
-msgstr "Image de rétroaction de la réponse"
-
 # visualsWithCaptions field label
 #: 59f2bg
 msgctxt "59f2bg"
@@ -3146,6 +3140,12 @@ msgctxt "rhuDxI"
 msgid "Header"
 msgstr "En-tête"
 
+# Visual field label
+#: rlfm7C
+msgctxt "rlfm7C"
+msgid "Result feedback visual"
+msgstr "Visuel de rétroaction du résultat"
+
 # Field label
 #: rmJBin
 msgctxt "rmJBin"
@@ -3452,6 +3452,12 @@ msgctxt "wkysUu"
 msgid "Screens"
 msgstr "Écrans"
 
+# Visual field label
+#: wqKO/y
+msgctxt "wqKO/y"
+msgid "Answer feedback visual"
+msgstr "Visuel de rétroaction de la réponse"
+
 # Label when no value is provided to Audio field
 #: wt1+dM
 msgctxt "wt1+dM"
@@ -3583,12 +3589,6 @@ msgstr "Commencer à partir de l'écran courant"
 msgctxt "y7xsPe"
 msgid "Advanced settings"
 msgstr "Paramètres avancés"
-
-# Visual field label
-#: yA4B6h
-msgctxt "yA4B6h"
-msgid "Result feedback image"
-msgstr "Image de rétroaction du résultat"
 
 # Field label
 #: yByaBh

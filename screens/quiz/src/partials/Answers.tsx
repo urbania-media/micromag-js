@@ -361,7 +361,8 @@ function Answers({
                     {
                         [styles.rightAnswer]: !withoutGoodAnswer && rightAnswer === true,
                         [styles.userAnswer]: isUserAnswer,
-                        [styles.otherAnswer]: isOtherAnswer,
+                        // @note Like the inactive style, only once the user answered
+                        [styles.otherAnswer]: isInactive,
                         [styles.withoutOpacity]: !hasOpacity,
                     },
                 ])}

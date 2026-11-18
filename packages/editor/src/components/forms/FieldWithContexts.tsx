@@ -7,13 +7,21 @@ import { useFormsComponents, useScreenDefinition } from '@micromag/core/contexts
 import { getScreenFieldsWithStates } from '@micromag/core/utils';
 import { Fields } from '@micromag/fields';
 
+import styles from '../../styles/forms/state.module.css';
+
 interface FieldWithContextsProps {
     name?: string;
     form?: string;
+    className?: string | null;
     children?: React.ReactNode;
 }
 
-function FieldWithContexts({ name = null, form = null, ...props }: FieldWithContextsProps) {
+function FieldWithContexts({
+    name = null,
+    form = null,
+    className = null,
+    ...props
+}: FieldWithContextsProps) {
     const definition = useScreenDefinition() || null;
     const { states = null } = definition;
     const screenFields = getScreenFieldsWithStates(definition);
@@ -30,12 +38,16 @@ function FieldWithContexts({ name = null, form = null, ...props }: FieldWithCont
               )
             : screenFields;
 
+    // The form of the state itself (ex.: the intro, or a question of a quiz), not of one of
+    // its fields: it gets the padding of the screen form
+    const isStateForm = currentState !== null && nameParts.length <= (repeatable ? 2 : 1);
     if (currentState !== null) {
         finalNameParts =
-            (repeatable || fieldName !== null) && nameParts.length <= (repeatable ? 2 : 1)
+            (repeatable || fieldName !== null) && isStateForm
                 ? [fieldName || stateId, ...nameParts.slice(1)]
                 : nameParts.slice(1);
     }
+    const finalClassName = isStateForm ? classNames([styles.container, className]) : className;
 
     const formComponents = useFormsComponents();
     return definition !== null ? (
@@ -45,10 +57,11 @@ function FieldWithContexts({ name = null, form = null, ...props }: FieldWithCont
                 formComponents={formComponents}
                 name={finalNameParts.join('.')}
                 form={form}
+                className={finalClassName}
                 {...props}
             />
         ) : (
-            <Fields fields={stateFields} {...props} />
+            <Fields fields={stateFields} className={finalClassName} {...props} />
         )
     ) : null;
 }

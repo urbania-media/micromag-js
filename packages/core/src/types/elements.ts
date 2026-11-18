@@ -45,6 +45,7 @@ export interface QuizAnswer extends Answer {
     good?: boolean;
     result?: TextElement;
     answerImage?: ImageMedia | VideoMedia;
+    answerVideoLoop?: boolean;
 }
 
 export type CallToActionType = 'swipe-up' | 'button';

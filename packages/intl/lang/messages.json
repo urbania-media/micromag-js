@@ -303,10 +303,6 @@
     "defaultMessage": "Description",
     "description": "Description placeholder"
   },
-  "57hjHa": {
-    "defaultMessage": "Answer feedback image",
-    "description": "Visual field label"
-  },
   "59f2bg": {
     "defaultMessage": "Images",
     "description": "visualsWithCaptions field label"
@@ -2081,6 +2077,10 @@
     "defaultMessage": "Header",
     "description": "Field label"
   },
+  "rlfm7C": {
+    "defaultMessage": "Result feedback visual",
+    "description": "Visual field label"
+  },
   "rmJBin": {
     "defaultMessage": "Dimensions",
     "description": "Field label"
@@ -2285,6 +2285,10 @@
     "defaultMessage": "Screens",
     "description": "Button to show screens"
   },
+  "wqKO/y": {
+    "defaultMessage": "Answer feedback visual",
+    "description": "Visual field label"
+  },
   "wt1+dM": {
     "defaultMessage": "Select an audio file...",
     "description": "Label when no value is provided to Audio field"
@@ -2372,10 +2376,6 @@
   "y7xsPe": {
     "defaultMessage": "Advanced settings",
     "description": "Fields section label"
-  },
-  "yA4B6h": {
-    "defaultMessage": "Result feedback image",
-    "description": "Visual field label"
   },
   "yByaBh": {
     "defaultMessage": "Added by",

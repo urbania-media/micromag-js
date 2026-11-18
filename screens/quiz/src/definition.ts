@@ -93,7 +93,7 @@ export default [
                 name: 'resultImage',
                 type: 'visual',
                 label: defineMessage({
-                    defaultMessage: 'Result feedback image',
+                    defaultMessage: 'Result feedback visual',
                     description: 'Visual field label',
                 }),
             },
@@ -363,7 +363,7 @@ export default [
                         name: 'resultImage',
                         type: 'visual',
                         label: defineMessage({
-                            defaultMessage: 'Result feedback image',
+                            defaultMessage: 'Result feedback visual',
                             description: 'Visual field label',
                         }),
                     },

@@ -24,8 +24,8 @@ function resetForcePlaying(element: HTMLVideoElement) {
 interface VideoProps extends HTMLAttributes<HTMLVideoElement> {
     media?: VideoMedia | null;
     thumbnail?: ImageMedia | null;
-    width?: number | null;
-    height?: number | null;
+    width?: number | string | null;
+    height?: number | string | null;
     ref?: ForwardedRef<HTMLVideoElement> | null;
     mediaRef?: ForwardedRef<HTMLVideoElement> | null;
     muted?: boolean;
@@ -127,7 +127,9 @@ function Video({
         };
     }, [mediaUrl, withLoading]);
 
-    const withSize = width !== null && height !== null;
+    // @note An `auto` dimension keeps the natural size: positioning the video absolutely
+    // in a box of `auto` height would collapse it to 0
+    const withSize = width !== null && height !== null && width !== 'auto' && height !== 'auto';
 
     useEffect(() => {
         if (duration > 0 && customOnDurationChange !== null) {

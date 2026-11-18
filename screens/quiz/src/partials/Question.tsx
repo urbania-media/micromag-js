@@ -125,7 +125,11 @@ function Question({
 
     const answered = answeredIndex !== null;
     const answer = answeredIndex !== null && answers[answeredIndex] ? answers[answeredIndex] : null;
-    const { result: answerResult = null, answerImage = null } = answer || {};
+    const {
+        result: answerResult = null,
+        answerImage = null,
+        answerVideoLoop = true,
+    } = answer || {};
 
     const hasResult = isTextFilled(answerResult) || isTextFilled(result);
     const hasResultVisual = isImageFilled(answerImage) || isImageFilled(resultImage);
@@ -270,7 +274,11 @@ function Question({
                                                 mediaRef={resultMediaRef}
                                                 playing={resultPlaying && resultVisible}
                                                 muted={resultMuted}
-                                                videoLoop={resultLoop}
+                                                videoLoop={
+                                                    answerImage !== null
+                                                        ? answerVideoLoop
+                                                        : resultLoop
+                                                }
                                                 width="100%"
                                                 height="auto"
                                             />

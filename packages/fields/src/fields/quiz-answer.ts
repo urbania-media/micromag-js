@@ -64,8 +64,17 @@ export default {
             name: 'answerImage',
             type: 'visual',
             label: defineMessage({
-                defaultMessage: 'Answer feedback image',
+                defaultMessage: 'Answer feedback visual',
                 description: 'Visual field label',
+            }),
+        },
+        {
+            name: 'answerVideoLoop',
+            type: 'toggle',
+            defaultValue: true,
+            label: defineMessage({
+                defaultMessage: 'Loop feedback video',
+                description: 'Field label',
             }),
         },
         {
