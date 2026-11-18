@@ -1,0 +1,5 @@
+/* Form of a screen state (ex.: the intro of a quiz): same padding as the screen form */
+.container {
+    position: relative;
+    padding: calc(var(--mm-spacer, 5px) / 2);
+}

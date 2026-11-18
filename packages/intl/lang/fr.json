@@ -227,9 +227,6 @@
     "507VAi": {
         "defaultMessage": "Description"
     },
-    "57hjHa": {
-        "defaultMessage": "Image de rétroaction de la réponse"
-    },
     "59f2bg": {
         "defaultMessage": "Images"
     },
@@ -1571,6 +1568,9 @@
     "rhuDxI": {
         "defaultMessage": "En-tête"
     },
+    "rlfm7C": {
+        "defaultMessage": "Visuel de rétroaction du résultat"
+    },
     "rmJBin": {
         "defaultMessage": "Dimensions"
     },
@@ -1724,6 +1724,9 @@
     "wkysUu": {
         "defaultMessage": "Écrans"
     },
+    "wqKO/y": {
+        "defaultMessage": "Visuel de rétroaction de la réponse"
+    },
     "wt1+dM": {
         "defaultMessage": "Sélectionner un fichier audio..."
     },
@@ -1789,9 +1792,6 @@
     },
     "y7xsPe": {
         "defaultMessage": "Paramètres avancés"
-    },
-    "yA4B6h": {
-        "defaultMessage": "Image de rétroaction du résultat"
     },
     "yByaBh": {
         "defaultMessage": "Ajouté par"

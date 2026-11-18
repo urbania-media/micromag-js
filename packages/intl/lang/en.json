@@ -227,9 +227,6 @@
     "507VAi": {
         "defaultMessage": "Description"
     },
-    "57hjHa": {
-        "defaultMessage": "Answer feedback image"
-    },
     "59f2bg": {
         "defaultMessage": "Images"
     },
@@ -1571,6 +1568,9 @@
     "rhuDxI": {
         "defaultMessage": "Header"
     },
+    "rlfm7C": {
+        "defaultMessage": "Result feedback visual"
+    },
     "rmJBin": {
         "defaultMessage": "Dimensions"
     },
@@ -1724,6 +1724,9 @@
     "wkysUu": {
         "defaultMessage": "Screens"
     },
+    "wqKO/y": {
+        "defaultMessage": "Answer feedback visual"
+    },
     "wt1+dM": {
         "defaultMessage": "Select an audio file..."
     },
@@ -1789,9 +1792,6 @@
     },
     "y7xsPe": {
         "defaultMessage": "Advanced settings"
-    },
-    "yA4B6h": {
-        "defaultMessage": "Result feedback image"
     },
     "yByaBh": {
         "defaultMessage": "Added by"
