@@ -6,12 +6,15 @@ import preview from '#.storybook/preview';
 import React, { useState } from 'react';
 
 import ActionsProvider from '@panneau/actions';
+import { ModalProvider } from '@panneau/core/contexts';
 // import MicromagFieldsProvider from '../../../fields/src/FieldsProvider';
 import { QueryProvider } from '@panneau/data';
 import DisplaysProvider from '@panneau/displays';
 import FieldsProvider from '@panneau/fields';
 import FiltersProvider from '@panneau/filters';
 import ModalsProvider from '@panneau/modals';
+
+import { Modals } from '@micromag/core/components';
 
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import MediaGallery from '../components/MediaGallery';
@@ -91,17 +94,21 @@ const GalleryContainer = ({ value: defaultValue = null, ...containerProps }) => 
                 <QueryProvider>
                     <FieldsProvider>
                         <ModalsProvider>
-                            <DisplaysProvider>
-                                <FiltersProvider>
-                                    <ActionsProvider>
-                                        <MediaGallery
-                                            {...containerProps}
-                                            value={value}
-                                            onChange={setValue}
-                                        />
-                                    </ActionsProvider>
-                                </FiltersProvider>
-                            </DisplaysProvider>
+                            <ModalProvider>
+                                <DisplaysProvider>
+                                    <FiltersProvider>
+                                        <ActionsProvider>
+                                            <MediaGallery
+                                                {...containerProps}
+                                                value={value}
+                                                onChange={setValue}
+                                            />
+                                        </ActionsProvider>
+                                    </FiltersProvider>
+                                </DisplaysProvider>
+                                {/* The confirmations of the actions (ex.: delete) */}
+                                <Modals />
+                            </ModalProvider>
                         </ModalsProvider>
                     </FieldsProvider>
                 </QueryProvider>
@@ -148,6 +155,34 @@ export const PickerWithUnresolvedReference = meta.story(() => {
 
 export const WithList = meta.story(() => {
     return <GalleryContainer medias={list} />;
+});
+
+// The medias API in memory: deleting a media from the table (trash button and its confirmation)
+// removes it from the list
+const createMemoryMediasApi = () => {
+    let items = props.medias;
+    const getPage = () =>
+        Promise.resolve({
+            data: items,
+            meta: { current_page: 1, last_page: 1, total: items.length },
+        });
+    return {
+        get: getPage,
+        getTrashed: () =>
+            Promise.resolve({ data: [], meta: { current_page: 1, last_page: 1, total: 0 } }),
+        find: (id) => Promise.resolve(items.find((it) => it.id === id) ?? null),
+        create: (data) => Promise.resolve(data),
+        update: (id, data) => Promise.resolve({ ...items.find((it) => it.id === id), ...data }),
+        destroy: (id) => {
+            items = items.filter((it) => it.id !== id);
+            return Promise.resolve({ success: true });
+        },
+    };
+};
+
+export const WithDeletableMedias = meta.story(() => {
+    const [api] = useState(createMemoryMediasApi);
+    return <GalleryContainer api={api} />;
 });
 
 export const WithFontType = meta.story(() => {

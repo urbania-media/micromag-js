@@ -88,13 +88,18 @@ class MediasApi extends Base {
         );
     }
 
+    // Called by the Panneau medias browser (MediasApi.destroy) for its delete action
+    destroy(id) {
+        return this.delete(id);
+    }
+
     replace(id, data) {
         return this.requestPost(
             this.route('replace', {
-                media: id
+                media: id,
             }),
-            data
-        )
+            data,
+        );
     }
 }
 

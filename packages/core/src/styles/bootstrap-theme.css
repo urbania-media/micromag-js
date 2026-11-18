@@ -494,3 +494,10 @@
         background-color: var(--bs-primary);
     }
 }
+
+/* Panneau's modals share one backdrop, under all of them: a modal opened over another one (ex.:
+   the delete confirmation over the media gallery) didn't dim it. A modal that follows another one
+   gets its own backdrop, between them */
+.modal ~ .modal {
+    background-color: rgb(0 0 0 / 0.5);
+}
