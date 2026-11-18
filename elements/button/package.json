@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-button",
-    "version": "0.4.119",
+    "version": "0.4.121",
     "private": false,
     "description": "",
     "keywords": [
@@ -58,9 +58,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.4.119",
-        "@micromag/element-text": "^0.4.119",
-        "@micromag/element-visual": "^0.4.119",
+        "@micromag/core": "^0.4.121",
+        "@micromag/element-text": "^0.4.121",
+        "@micromag/element-visual": "^0.4.121",
         "classnames": "^2.2.6",
         "uuid": "^9.0.0"
     },
