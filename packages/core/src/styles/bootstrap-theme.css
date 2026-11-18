@@ -426,6 +426,13 @@
         font-weight: 400;
     }
 
+    /* Bootstrap sets the text of .text-bg-secondary to white when compiled, for its dark
+       default; the theme's secondary is light (ex.: the "clear" badge of the media picker's
+       selection was white on light gray), so it gets the text of .btn-secondary */
+    .text-bg-secondary {
+        color: #1c1c1c !important;
+    }
+
     /* ===== Navbar ===== */
 
     .navbar-brand {
