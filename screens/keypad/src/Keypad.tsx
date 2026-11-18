@@ -2,6 +2,7 @@ import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import isEmpty from 'lodash-es/isEmpty';
 import isString from 'lodash-es/isString';
+import pickBy from 'lodash-es/pickBy';
 import { ForwardedRef, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -58,6 +59,12 @@ import Video from '@micromag/element-video';
 import Visual from '@micromag/element-visual';
 
 import styles from './keypad.module.css';
+
+// An item's own style overrides the style set for all the buttons only where it has a value:
+// emptied values (null) of an edited item would otherwise reset them (ex.: the rounded corners
+// set for all the buttons only applied to the first one)
+const withoutEmptyValues = <T extends object>(style: T | null): Partial<T> | null =>
+    style !== null ? pickBy(style, (value) => value !== null && value !== undefined) : null;
 
 const placeholders = [
     { id: '1' },
@@ -561,8 +568,11 @@ function KeypadScreen({
                         // style={{
                         //     ...getStyleFromAlignment(alignment, true, 'flex-start'),
                         // }}
-                        textStyle={{ ...buttonTextStyle, ...finalLabelTextStyle }}
-                        buttonStyle={{ ...buttonBoxStyle, ...boxStyle }}
+                        textStyle={{
+                            ...buttonTextStyle,
+                            ...withoutEmptyValues(finalLabelTextStyle),
+                        }}
+                        buttonStyle={{ ...buttonBoxStyle, ...withoutEmptyValues(boxStyle) }}
                         label={finalLabel}
                         labelBoxStyle={buttonLabelBoxStyle}
                         visual={visual}
