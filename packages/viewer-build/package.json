@@ -39,6 +39,7 @@
     "scripts": {
         "build": "npm run clean && npm run build:viewer && npm run build:lib",
         "build:lib": "flklr build --disable-source-map --output-path=./lib --merge-config=./webpack.config.lib.js ./src/lib.ts",
+        "build:stats": "rm -rf build && flklr build --disable-source-map --html-path=./public/index.html --output-path=./build --merge-config=./webpack.config.stats.js ./src/index.ts",
         "build:viewer": "flklr build --disable-source-map --html-path=./public/index.html --output-path=./build --merge-config=./webpack.config.js ./src/index.ts",
         "clean": "rm -rf build && rm -rf lib",
         "prepublishOnly": "npm run build"

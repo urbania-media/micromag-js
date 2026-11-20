@@ -53,3 +53,6 @@ node_modules
 .claude
 storybook-static
 .playwright-mcp
+
+# Stats of the viewer build (scripts/check-viewer-build-size.mjs)
+/packages/viewer-build/stats.json
