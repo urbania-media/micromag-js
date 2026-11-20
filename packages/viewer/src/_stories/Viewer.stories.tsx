@@ -5,6 +5,7 @@ import {
     hexColor,
     imageMedia,
     video360Media,
+    videoMedia,
     webfont2Files,
     webfont3Files,
     webfontFiles,
@@ -32,6 +33,8 @@ import preview from '#.storybook/preview';
 import { getJSON } from '@folklore/fetch';
 import React, { useCallback, useEffect, useState } from 'react';
 import { v1 as uuid } from 'uuid';
+
+import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Viewer from '../components/ViewerContainer';
@@ -444,6 +447,97 @@ export const MultipleAudios = meta.story(() => (
 export const MultipleVideos = meta.story(() => (
     <Viewer screenId="1" story={multipleVideosStory} withNavigationHint memoryRouter />
 ));
+
+const transitionMetricStory = {
+    title: 'Transition metric',
+    components: [
+        {
+            id: 'video-1',
+            type: 'video',
+            layout: 'full',
+            video: { media: videoMedia(), autoPlay: true, loop: true },
+        },
+        {
+            id: 'video-2',
+            type: 'video',
+            layout: 'full',
+            video: { media: videoMedia({ vertical: true }), autoPlay: true, loop: true },
+        },
+        {
+            id: 'video-3',
+            type: 'video',
+            layout: 'full',
+            video: { media: videoMedia({ big: true }), autoPlay: true, loop: true },
+        },
+    ],
+};
+
+const formatMetricMs = (value: number | null) =>
+    value !== null ? `${Math.round(value)} ms` : 'n/a';
+
+function TransitionMetricViewer() {
+    const [metrics, setMetrics] = useState<ViewerTransitionMetric[]>([]);
+    return (
+        <>
+            <Viewer
+                story={transitionMetricStory}
+                memoryRouter
+                onTransitionMetric={(metric: ViewerTransitionMetric) => {
+                    console.log('Transition metric', metric);
+                    setMetrics((current) => [metric, ...current].slice(0, 5));
+                }}
+            />
+            <pre
+                data-testid="transition-metrics"
+                style={{
+                    position: 'fixed',
+                    left: 10,
+                    bottom: 10,
+                    zIndex: 1000,
+                    maxWidth: 'calc(100% - 20px)',
+                    margin: 0,
+                    padding: 10,
+                    background: 'rgba(0, 0, 0, 0.75)',
+                    color: '#fff',
+                    font: '11px/1.4 monospace',
+                    whiteSpace: 'pre-wrap',
+                    pointerEvents: 'none',
+                }}
+            >
+                {metrics.length === 0
+                    ? 'Tap or press → to change screen'
+                    : metrics
+                          .map(
+                              ({
+                                  fromIndex,
+                                  toIndex,
+                                  duration,
+                                  media,
+                                  playingDelay,
+                                  frames,
+                                  longTasks,
+                                  interrupted,
+                                  timedOut,
+                                  pageHidden,
+                              }) =>
+                                  [
+                                      `${fromIndex} → ${toIndex}${interrupted ? ' (interrupted)' : ''}${timedOut ? ' (timed out)' : ''}${pageHidden ? ' (page hidden)' : ''}`,
+                                      `animation ${formatMetricMs(duration)}`,
+                                      `playing ${playingDelay !== null ? `${playingDelay >= 0 ? '+' : ''}${formatMetricMs(playingDelay)}` : 'n/a'} after the end`,
+                                      media !== null
+                                          ? `frame at start ${media.frameAtStart ? 'yes' : 'no'} (readyState ${media.readyStateAtStart}), poster ${media.posterAtStart ? 'yes' : 'no'}`
+                                          : 'no media',
+                                      `dropped ${frames.dropped}/${frames.count + frames.dropped} frames, max gap ${formatMetricMs(frames.maxGap)}`,
+                                      `${longTasks.count} ${longTasks.type || 'long task'} (${formatMetricMs(longTasks.totalDuration)})`,
+                                  ].join(' · '),
+                          )
+                          .join('\n')}
+            </pre>
+        </>
+    );
+}
+
+export const TransitionMetric = meta.story(() => <TransitionMetricViewer />);
 
 export const MultipleVideosForcePaused = meta.story(() => (
     <Viewer screenId="1" story={multipleVideosStory} withNavigationHint paused memoryRouter />
