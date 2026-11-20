@@ -40,49 +40,64 @@ jobs:
         run: npm test
 
   # Parses recent published stories with the code of the base branch, then with the code of the pull
-  # request, and fails if the output changed. The stories are listed in the repository variable
-  # MICROMAG_PARSER_STORIES (slugs or URLs, separated by spaces or new lines) and downloaded at run
-  # time: they are never committed. The logs are public, so only a digest of each story (a hash per
-  # screen) is stored and shown, and the files are named story-1.json, story-2.json...
+  # request, and fails if the output changed. The stories are listed in the repository secret
+  # MICROMAG_PARSER_STORIES (slugs or URLs, separated by spaces or new lines; a secret and not a
+  # variable, so that the list is masked in the logs) and downloaded at run time: they are never
+  # committed. The logs are public, so only a digest of each story (a hash per screen) is stored and
+  # shown, and the files are named story-1.json, story-2.json...
   recent-stories:
     name: Parser on recent stories
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && vars.MICROMAG_PARSER_STORIES != ''
+    if: github.event_name == 'pull_request'
     env:
+      MICROMAG_PARSER_STORIES: ${{ secrets.MICROMAG_PARSER_STORIES }}
       MICROMAG_STORIES_DIR: ${{ runner.temp }}/stories
       MICROMAG_STORIES_DIGEST: '1'
       BASE_SHA: ${{ github.event.pull_request.base.sha }}
     steps:
+      # Secrets can't be read in `if:` and aren't given to pull requests from forks
+      - name: Check the list of stories
+        id: stories
+        run: |
+          if [ -n "$MICROMAG_PARSER_STORIES" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "MICROMAG_PARSER_STORIES is empty: skipped" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Checkout
+        if: steps.stories.outputs.enabled == 'true'
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
           persist-credentials: false
           fetch-depth: 0
 
       - name: Install Node.js
+        if: steps.stories.outputs.enabled == 'true'
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version-file: '.nvmrc'
           cache: npm
 
       - name: Install dependencies
+        if: steps.stories.outputs.enabled == 'true'
         run: npm ci
 
       - name: Download the stories
-        env:
-          MICROMAG_PARSER_STORIES: ${{ vars.MICROMAG_PARSER_STORIES }}
+        if: steps.stories.outputs.enabled == 'true'
         run: node scripts/fetch-parser-stories.mjs --anonymous --out "$MICROMAG_STORIES_DIR"
 
       # The sources of the base branch, with the test of the pull request
       - name: Parse with the base branch
+        if: steps.stories.outputs.enabled == 'true'
         run: |
           git checkout "$BASE_SHA" -- packages elements screens scripts/lib
           git checkout HEAD -- packages/core/src/lib/__tests__ vitest.config.mts
           npx vitest run packages/core/src/lib/__tests__/StoryParser.test.ts -t "local stories" --update
 
       - name: Parse with the pull request
+        if: steps.stories.outputs.enabled == 'true'
         run: |
           git checkout HEAD -- packages elements screens scripts/lib
           git clean -fdq -- packages elements screens scripts/lib
-          git status --short
           npx vitest run packages/core/src/lib/__tests__/StoryParser.test.ts -t "local stories"

@@ -40,9 +40,10 @@ To use another folder, set `MICROMAG_STORIES_DIR=/path/to/stories`: the snapshot
 ## In CI
 
 On pull requests, the `Parser on recent stories` job of the Test workflow downloads the stories
-listed in the repository variable `MICROMAG_PARSER_STORIES` (slugs or URLs, separated by spaces or
-new lines; Settings → Secrets and variables → Actions → Variables), parses them with the code of the
-base branch, then with the code of the pull request, and fails if the output changed. The logs are
-public: only a digest of each story is stored and shown (a hash per screen), and the files are named
-`story-1.json`, `story-2.json`... in the order of the variable. To see the change itself, run the
-local mode on the same stories. The job is skipped while the variable is empty.
+listed in the repository secret `MICROMAG_PARSER_STORIES` (slugs or URLs, separated by spaces or new
+lines; Settings → Secrets and variables → Actions). It's a secret and not a variable so that the
+list is masked in the logs. The job parses the stories with the code of the base branch, then with
+the code of the pull request, and fails if the output changed. The logs are public: only a digest
+of each story is stored and shown (a hash per screen), and the files are named `story-1.json`,
+`story-2.json`... in the order of the list. To see the change itself, run the local mode on the same
+stories. The job is skipped while the secret is empty, and on pull requests from forks.
