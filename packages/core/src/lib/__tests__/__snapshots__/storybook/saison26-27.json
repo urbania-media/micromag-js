@@ -1,0 +1,31 @@
+{
+    "components": [
+        "0 video 49f26cb9-dce3-4bae-8a02-526e710ad6f5 e6eb7cc409e95313",
+        "1 video bb95e2f4-7e40-493f-8497-c552c0b5e38f cfdcb2f9afd22a4c",
+        "2 video be322ac9-b788-4272-963c-5aa3cdd73e3f e2bd921bfc20c185",
+        "3 video 4108896e-784f-4678-a5f7-c2d1a3cb8434 09c9180e3eeb4c2c",
+        "4 keypad b374b2e6-baf6-4720-8979-8ba138c6627c 1554c7c64eee6458",
+        "5 video 8086c6e4-ad01-4599-b188-4fe579d28310 918346e1b03d90a9",
+        "6 video 7038dc50-282d-11f1-b7af-35aca20f42b3 3fd3540b0e0eee0c",
+        "7 video 6f32de00-282d-11f1-b7af-35aca20f42b3 a471d73399f1211d",
+        "8 video 6ded3ea0-282d-11f1-b7af-35aca20f42b3 2bdf56b5892cd377",
+        "9 video 6c4497b0-282d-11f1-b7af-35aca20f42b3 bc592b877a07a63d",
+        "10 keypad e9d91e50-c80b-4e17-b2bb-9e0e6eca9118 acd910db27ca51ff",
+        "11 video b4fd5aff-3e23-4e8e-b16c-9f42c827809b 70a0819c57e258f2",
+        "12 video 77322390-282d-11f1-b7af-35aca20f42b3 bb61088fbfb311ba",
+        "13 video 74e17cd0-282d-11f1-b7af-35aca20f42b3 b77237543fcf28db",
+        "14 video 7396d460-282d-11f1-b7af-35aca20f42b3 230a9de6157fe1c6",
+        "15 keypad f9c8aec0-2448-11f1-9243-db7234c808ea 06f76286b0860c3e",
+        "16 keypad 6530de30-2449-11f1-a93b-9f460c62ab39 2f9b9a481a22e86b",
+        "17 timeline-illustrated 0c51684b-afbf-4caa-87ce-739846bb56f5 ca55c856c8e6b68e",
+        "18 video d1190d8b-1705-4639-a52d-93b3b20b7392 940a7be8f72496ac",
+        "19 video 734ed761-80ca-4a99-9f41-19fd69341a3e 1cf20ba3f17a35de"
+    ],
+    "theme": "a7d0d9ca4a14cb08",
+    "medias": "81 d1e89ba2dc81a6fa",
+    "fonts": [
+        "custom Whyte light",
+        "custom PlakatGrotesk_bold"
+    ],
+    "rest": "d08a3ec1fe8fd57a"
+}

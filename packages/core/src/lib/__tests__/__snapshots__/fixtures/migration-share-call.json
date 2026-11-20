@@ -1,0 +1,105 @@
+{
+    "id": "synthetic-share-call",
+    "title": "ShareCall migration: shareIncentive and callToAction at the screen root",
+    "components": [
+        {
+            "id": "s1",
+            "type": "title",
+            "layout": "top",
+            "title": {
+                "body": "<p>Only a share incentive</p>"
+            },
+            "header": {
+                "shareIncentive": {
+                    "active": true,
+                    "label": {
+                        "body": "<p>Share</p>"
+                    }
+                }
+            }
+        },
+        {
+            "id": "s2",
+            "type": "title",
+            "layout": "top",
+            "title": {
+                "body": "<p>Only a call to action</p>"
+            },
+            "footer": {
+                "callToAction": {
+                    "active": true,
+                    "type": "swipe-up",
+                    "url": "https://example.com",
+                    "label": {
+                        "body": "<p>See more</p>"
+                    }
+                }
+            }
+        },
+        {
+            "id": "s3",
+            "type": "text",
+            "layout": "middle",
+            "text": {
+                "body": "<p>Both, with an existing header and footer</p>"
+            },
+            "header": {
+                "shareIncentive": {
+                    "active": true,
+                    "label": {
+                        "body": "<p>Share</p>"
+                    }
+                },
+                "header": {
+                    "badge": {
+                        "active": true,
+                        "label": {
+                            "body": "<p>Badge</p>"
+                        }
+                    }
+                }
+            },
+            "footer": {
+                "callToAction": {
+                    "active": true,
+                    "type": "button",
+                    "url": "https://example.com"
+                },
+                "footer": {
+                    "callToAction": {
+                        "active": false
+                    }
+                }
+            }
+        },
+        {
+            "id": "s4",
+            "type": "text",
+            "layout": "middle",
+            "text": {
+                "body": "<p>Explicit nulls</p>"
+            },
+            "shareIncentive": null,
+            "callToAction": null
+        },
+        {
+            "id": "s5",
+            "type": "text",
+            "layout": "middle",
+            "text": {
+                "body": "<p>Current shape: nothing to migrate</p>"
+            },
+            "header": {
+                "shareIncentive": {
+                    "active": true
+                }
+            },
+            "footer": {
+                "callToAction": {
+                    "active": true,
+                    "url": "https://example.com"
+                }
+            }
+        }
+    ]
+}

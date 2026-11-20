@@ -1,0 +1,90 @@
+{
+    "id": "synthetic-theme",
+    "title": "Theme applied to screens: background, colors, text and box styles",
+    "theme": {
+        "id": "theme-1",
+        "background": { "color": { "color": "#101010", "alpha": 1 } },
+        "colors": {
+            "primary": { "color": "#ff3366", "alpha": 1 },
+            "secondary": { "color": "#33ccff", "alpha": 1 }
+        },
+        "textStyles": {
+            "heading1": {
+                "fontSize": 40,
+                "fontStyle": { "bold": true },
+                "color": { "color": "#ffffff", "alpha": 1 }
+            },
+            "heading2": { "fontSize": 28 },
+            "text": { "fontSize": 16, "lineHeight": 1.4 },
+            "button": { "fontSize": 14, "fontStyle": { "transform": "uppercase" } },
+            "badge": { "fontSize": 12 },
+            "cta": { "fontSize": 18 }
+        },
+        "boxStyles": {
+            "button": { "backgroundColor": { "color": "#ff3366", "alpha": 1 }, "borderRadius": 8 },
+            "badge": { "backgroundColor": { "color": "#000000", "alpha": 0.5 } },
+            "cta": { "borderRadius": 20 }
+        },
+        "components": [{ "type": "title", "title": { "textStyle": { "fontSize": 99 } } }]
+    },
+    "components": [
+        {
+            "id": "t1",
+            "type": "title",
+            "layout": "top",
+            "title": { "body": "<p>Inherits heading1 and the theme background</p>" },
+            "header": { "badge": { "active": true, "label": { "body": "<p>Badge</p>" } } },
+            "footer": { "callToAction": { "active": true, "label": { "body": "<p>CTA</p>" } } }
+        },
+        {
+            "id": "t2",
+            "type": "title",
+            "layout": "middle",
+            "title": { "body": "<p>Own text style wins</p>", "textStyle": { "fontSize": 12 } },
+            "background": { "color": { "color": "#00ff00", "alpha": 1 } }
+        },
+        {
+            "id": "t3",
+            "type": "title-subtitle",
+            "layout": "top",
+            "title": { "body": "<p>Title</p>" },
+            "subtitle": { "body": "<p>Subtitle</p>" }
+        },
+        {
+            "id": "t4",
+            "type": "text",
+            "layout": "middle",
+            "text": { "body": "<p>Text</p>" },
+            "title": null
+        },
+        {
+            "id": "t5",
+            "type": "quiz-multiple",
+            "layout": "middle",
+            "title": { "body": "<p>Intro (non-repeatable state)</p>" },
+            "introButton": { "label": { "body": "<p>Start</p>" } },
+            "questions": [
+                {
+                    "id": "qq1",
+                    "text": { "body": "<p>Question in a repeatable state</p>" },
+                    "answers": [{ "id": "a1", "label": { "body": "<p>A</p>" }, "points": 1 }]
+                }
+            ]
+        },
+        {
+            "id": "t6",
+            "type": "survey",
+            "layout": "middle",
+            "question": { "body": "<p>Survey question</p>" },
+            "answers": [
+                { "id": "a1", "label": { "body": "<p>One</p>" } },
+                { "id": "a2", "label": { "body": "<p>Two</p>", "textStyle": { "fontSize": 10 } } }
+            ]
+        },
+        {
+            "id": "t7",
+            "type": "unknown-screen-type",
+            "title": { "body": "<p>No definition for this type</p>" }
+        }
+    ]
+}

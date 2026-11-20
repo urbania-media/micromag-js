@@ -1,0 +1,149 @@
+{
+    "id": "synthetic-medias-fonts",
+    "title": "Media paths resolved from story.medias, fonts extracted from screens and theme",
+    "theme": {
+        "id": "theme-2",
+        "background": { "image": "media://10" },
+        "textStyles": {
+            "heading1": {
+                "fontSize": 32,
+                "fontFamily": { "type": "custom", "name": "Theme Sans", "media": "media://20" }
+            },
+            "text": { "fontFamily": "Georgia" }
+        }
+    },
+    "medias": {
+        "media://1": {
+            "id": "1",
+            "type": "video",
+            "name": "clip.mp4",
+            "url": "https://cdn.example.com/clip.mp4",
+            "thumbnail_url": "https://cdn.example.com/clip.jpg",
+            "metadata": { "width": 1080, "height": 1920, "duration": 12.5, "mime": "video/mp4" },
+            "files": {
+                "h264": {
+                    "id": "1-h264",
+                    "handle": "h264",
+                    "url": "https://cdn.example.com/clip-h264.mp4",
+                    "mime": "video/mp4"
+                },
+                "poster": {
+                    "id": "1-poster",
+                    "handle": "poster",
+                    "url": "https://cdn.example.com/clip-poster.jpg",
+                    "mime": "image/jpeg"
+                }
+            }
+        },
+        "media://2": {
+            "id": "2",
+            "type": "image",
+            "url": "https://cdn.example.com/image.jpg",
+            "metadata": { "width": 800, "height": 600 }
+        },
+        "media://10": {
+            "id": "10",
+            "type": "image",
+            "url": "https://cdn.example.com/theme-background.jpg",
+            "metadata": { "width": 1080, "height": 1920 }
+        },
+        "media://20": {
+            "id": "20",
+            "type": "font",
+            "url": "https://cdn.example.com/theme-sans.woff2",
+            "files": { "woff2": { "url": "https://cdn.example.com/theme-sans.woff2" } }
+        },
+        "media://21": {
+            "id": "21",
+            "type": "font",
+            "url": "https://cdn.example.com/screen-serif.woff2"
+        },
+        "media://22": {
+            "id": "22",
+            "type": "font",
+            "url": "https://cdn.example.com/screen-serif-bold.woff2"
+        }
+    },
+    "components": [
+        {
+            "id": "m1",
+            "type": "video",
+            "layout": "full",
+            "video": { "media": "media://1", "autoPlay": true, "loop": false },
+            "background": { "image": "media://2" }
+        },
+        {
+            "id": "m2",
+            "type": "video",
+            "layout": "full",
+            "video": {
+                "media": {
+                    "id": "3",
+                    "type": "video",
+                    "url": "https://cdn.example.com/inline.mp4",
+                    "thumbnail_url": "https://cdn.example.com/inline.jpg",
+                    "metadata": { "width": 720, "height": 1280 }
+                }
+            }
+        },
+        {
+            "id": "m3",
+            "type": "video",
+            "layout": "full",
+            "video": { "media": "media://999" }
+        },
+        {
+            "id": "m4",
+            "type": "title",
+            "layout": "top",
+            "title": {
+                "body": "<p>Custom font with variants</p>",
+                "textStyle": {
+                    "fontFamily": {
+                        "type": "custom",
+                        "name": "Screen Serif",
+                        "media": "media://21",
+                        "variants": [{ "weight": 700, "style": "normal", "media": "media://22" }]
+                    }
+                }
+            }
+        },
+        {
+            "id": "m5",
+            "type": "title",
+            "layout": "top",
+            "title": {
+                "body": "<p>Google font, then the same custom font again</p>",
+                "textStyle": { "fontFamily": { "type": "google", "name": "Roboto" } }
+            },
+            "footer": {
+                "callToAction": {
+                    "active": true,
+                    "label": {
+                        "body": "<p>CTA</p>",
+                        "textStyle": {
+                            "fontFamily": {
+                                "type": "custom",
+                                "name": "Screen Serif",
+                                "media": "media://21"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": "m6",
+            "type": "title",
+            "layout": "top",
+            "title": { "body": "<p>System font</p>", "textStyle": { "fontFamily": "Arial" } }
+        },
+        {
+            "id": "m7",
+            "type": "image",
+            "layout": "normal",
+            "image": { "media": "media://2" },
+            "caption": { "body": "<p>Caption</p>" }
+        }
+    ]
+}

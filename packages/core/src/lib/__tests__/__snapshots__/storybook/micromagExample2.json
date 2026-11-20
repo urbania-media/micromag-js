@@ -1,0 +1,27 @@
+{
+    "components": [
+        "0 video 48c4ce10-b1bf-11ec-be7f-41d2da9947cb ee21d684c3face47",
+        "1 slideshow 3a745da0-a9a7-11ec-bf1f-fd8a66ed3568 ebdae8f87c6ed206",
+        "2 slideshow 194fb750-a9a7-11ec-bf1f-fd8a66ed3568 c8d405ead174f56f",
+        "3 video 1b89de50-a9f3-11ec-94cb-43c34e073d39 df54da8186377b6a",
+        "4 video 6b2c5fa0-a9f3-11ec-94cb-43c34e073d39 75f3c14edfbdd6f6",
+        "5 video c9abcf70-a9f3-11ec-94cb-43c34e073d39 7104df72645331bb",
+        "6 video 88bd6270-a9f4-11ec-94cb-43c34e073d39 6fc6ff44d1c689cb",
+        "7 video ba4f5b40-a9f4-11ec-94cb-43c34e073d39 237c43f9751ee9a2",
+        "8 video dbe4a840-a9f5-11ec-94cb-43c34e073d39 aa0c511a68e662dc",
+        "9 video 693babd0-a9f6-11ec-94cb-43c34e073d39 8b4d9b1c69e71da6",
+        "10 video 060af380-a9f7-11ec-94cb-43c34e073d39 d003faef2401ca7b",
+        "11 video 5aa91750-a9f7-11ec-94cb-43c34e073d39 f6d3df1f96e26392",
+        "12 slideshow 66a22e20-a9a7-11ec-bf1f-fd8a66ed3568 f4b9e1442bce6e64",
+        "13 video ac272f80-78ac-11ec-b7bf-f577f8f8629f be7f789abf25c7dd",
+        "14 survey 85515510-ac6f-11ec-9076-513a56dd9b83 f143d5636eaab3eb"
+    ],
+    "theme": "1285ff74ce023a66",
+    "medias": "14 9a60da5941a1d07d",
+    "fonts": [
+        "custom GarageGothic-Bold",
+        "custom SinaNovaReg",
+        "custom GarageGothic-Regular"
+    ],
+    "rest": "e3bfafada4c37799"
+}
