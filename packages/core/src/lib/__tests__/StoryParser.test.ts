@@ -7,7 +7,8 @@
  * - .storybook/data/stories/*.json: the stories already in the repo, with full snapshots for the
  *   small ones and a digest (one hash per screen) for the others, to keep the repo light;
  * - local/stories/*.json (ignored by git, or MICROMAG_STORIES_DIR): real stories, to compare the
- *   output before and after a change on your machine. See local/README.md.
+ *   output before and after a change on your machine, or in CI with MICROMAG_STORIES_DIGEST=1
+ *   (only a digest is stored and shown). See local/README.md.
  */
 import { createHash } from 'crypto';
 import fs from 'fs';
@@ -33,6 +34,9 @@ const localSnapshotsDir = path.join(
     process.env.MICROMAG_STORIES_DIR ? path.dirname(localDir) : path.join(__dirname, 'local'),
     '__snapshots__',
 );
+
+// Snapshot only a digest of the local stories (used in CI, where the logs are public)
+const localDigest = process.env.MICROMAG_STORIES_DIGEST === '1';
 
 // Stories of .storybook small enough to keep their full output in the repo
 const FULL_STORYBOOK_SNAPSHOTS = ['all-screens.json', 'basic.json', 'default-story.json'];
@@ -76,7 +80,7 @@ const digest = (story: Story) => {
         ),
         theme: hash(theme),
         medias: medias !== null ? `${Object.keys(medias).length} ${hash(medias)}` : null,
-        fonts: (fonts || []).map((font) => `${font?.type} ${font?.name}`),
+        fonts: fonts !== null ? `${fonts.length} ${hash(fonts)}` : null,
         rest: hash(rest),
     };
 };
@@ -128,7 +132,8 @@ describe('StoryParser', () => {
         test.each(localFiles)('%s', async (file) => {
             const story = readStory(path.join(localDir, file));
             expect(story, `${file} has no components`).not.toBeNull();
-            await expect(toJson(parser.parse(story))).toMatchFileSnapshot(
+            const parsed = parser.parse(story);
+            await expect(toJson(localDigest ? digest(parsed) : parsed)).toMatchFileSnapshot(
                 path.join(localSnapshotsDir, file),
             );
         });

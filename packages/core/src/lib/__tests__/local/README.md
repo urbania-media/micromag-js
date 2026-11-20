@@ -7,15 +7,14 @@ repository is public.
 ## Get stories
 
 Any JSON that holds a story (`{ components, theme, medias, ... }`, or `{ story: { ... } }`) works.
-A story published on microm.ag can be downloaded with its slug:
+Stories published on microm.ag can be downloaded by slug or URL:
 
 ```bash
-mkdir -p packages/core/src/lib/__tests__/local/stories
-curl -sf "https://microm.ag/<slug>.json" -o packages/core/src/lib/__tests__/local/stories/<slug>.json
+npm run test:parser:fetch -- <slug> <slug> https://microm.ag/<slug>
 ```
 
-Pick stories from several years and with different screen types (videos, quiz, keypad, custom
-fonts, themes).
+Prefer recent stories, from several sources and with different screen types (videos, quiz, keypad,
+custom fonts, themes): the stories of `.storybook` are old.
 
 ## Compare before and after a change
 
@@ -37,3 +36,13 @@ fonts, themes).
 
 To use another folder, set `MICROMAG_STORIES_DIR=/path/to/stories`: the snapshots then go in
 `/path/to/__snapshots__/`.
+
+## In CI
+
+On pull requests, the `Parser on recent stories` job of the Test workflow downloads the stories
+listed in the repository variable `MICROMAG_PARSER_STORIES` (slugs or URLs, separated by spaces or
+new lines; Settings → Secrets and variables → Actions → Variables), parses them with the code of the
+base branch, then with the code of the pull request, and fails if the output changed. The logs are
+public: only a digest of each story is stored and shown (a hash per screen), and the files are named
+`story-1.json`, `story-2.json`... in the order of the variable. To see the change itself, run the
+local mode on the same stories. The job is skipped while the variable is empty.

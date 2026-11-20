@@ -29,24 +29,6 @@
     ],
     "theme": "a7d0d9ca4a14cb08",
     "medias": "55 52667d31a77ccba0",
-    "fonts": [
-        "custom JGS Regular",
-        "custom MelunHigh-Bold",
-        "custom Roboto Regular",
-        "custom Loos-Compressed-Regular",
-        "custom Rubik-SemiBold",
-        "custom Roboto Bold",
-        "custom Gabarito Regular",
-        "custom Gabarito Bold",
-        "custom BurbankBigRegular",
-        "custom Rubik-Regular",
-        "google Roboto",
-        "google Gabarito",
-        "custom Geomanist-Book",
-        "custom MelunHigh-Regular",
-        "custom Roboto Condensed Italic",
-        "custom Gabarito Medium",
-        "custom Geomanist"
-    ],
+    "fonts": "17 c64379c3cf9464da",
     "rest": "814fd709fb2d0bc9"
 }

@@ -31,20 +31,6 @@
     ],
     "theme": "a7d0d9ca4a14cb08",
     "medias": "49 abfefade14e40c11",
-    "fonts": [
-        "custom JGS Regular",
-        "custom MelunHigh-Bold",
-        "custom Roboto Regular",
-        "custom Gabarito Regular",
-        "custom Roboto Bold",
-        "custom BurbankBigRegular",
-        "custom Rubik-Regular",
-        "custom Roboto Condensed Italic",
-        "custom MelunHigh-Regular",
-        "custom Gabarito Bold",
-        "custom Geomanist-Book",
-        "custom Gabarito Medium",
-        "custom Geomanist"
-    ],
+    "fonts": "13 e2445f84adbcb619",
     "rest": "84347ad1eefe98ac"
 }

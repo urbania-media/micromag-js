@@ -30,6 +30,7 @@
         "format": "prettier --write './{elements,packages,screens}/*/src/**/*.{js,jsx,ts,tsx,css}'",
         "test": "vitest run",
         "test:parser": "vitest run packages/core/src/lib/__tests__/StoryParser.test.ts",
+        "test:parser:fetch": "node scripts/fetch-parser-stories.mjs",
         "typecheck": "tsc --noEmit",
         "typecheck:watch": "tsc --noEmit --watch",
         "update-panneau": "npm update @panneau/core @panneau/medias @panneau/intl @panneau/uppy @panneau/fields @panneau/displays @panneau/filters"

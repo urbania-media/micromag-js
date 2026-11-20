@@ -27,11 +27,6 @@
     ],
     "theme": "a7d0d9ca4a14cb08",
     "medias": "48 6945f1e002eab524",
-    "fonts": [
-        "custom Cochin",
-        "custom CRC35",
-        "custom CRC55",
-        "custom CRC65"
-    ],
+    "fonts": "4 056bf76d13b46aad",
     "rest": "0e1ee63474e00171"
 }
