@@ -61,9 +61,9 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       # viewer-build bundles the built packages (es/ and assets/): build @micromag/viewer and the
-      # packages it depends on first (the runner has 4 CPUs; Nx runs 3 tasks at a time by default)
+      # packages it depends on first
       - name: Build the packages of the viewer
-        run: npx nx run @micromag/viewer:build --parallel=4
+        run: npx nx run @micromag/viewer:build
 
       - name: Build the viewer with stats
         run: npm run build:stats --workspace=@micromag/viewer-build
