@@ -1,0 +1,72 @@
+name: Size
+
+# Builds @micromag/viewer-build and checks its initial JS and CSS (gzip) against the budget of
+# packages/viewer-build/size-budget.json. The sizes are shown in the summary of the job.
+on:
+  pull_request:
+    # Changes that can't change the bundle (no check is required on the protected branches, so a
+    # skipped run blocks nothing)
+    paths-ignore:
+      - '**/*.md'
+      - '.storybook/**'
+      - '**/_stories/**'
+      - '**/__stories__/**'
+      - '**/*.stories.tsx'
+      - '**/__tests__/**'
+      - '.github/workflows/test.yml'
+      - '.github/workflows/publish.yml'
+  push:
+    branches:
+      - develop
+      - main
+
+concurrency:
+  group: size-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  viewer-build:
+    name: Viewer bundle size
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+
+      - name: Install Node.js
+        id: node
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version-file: '.nvmrc'
+
+      # npm ci writes about 4,500 packages (6 GB) and takes 6 to 8 minutes, even with the npm cache.
+      # node_modules is cached as is, under an exact key (no restore-keys): any change to the
+      # lockfile or to Node.js reinstalls from scratch. Install scripts don't run (npm asks to
+      # approve them), so node_modules only depends on the lockfile. Same key as the Test workflow.
+      - name: Restore node_modules
+        id: node-modules
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: node-modules-${{ runner.os }}-${{ runner.arch }}-node-${{ steps.node.outputs.node-version }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --no-fund
+
+      # viewer-build bundles the built packages (es/ and assets/): build @micromag/viewer and the
+      # packages it depends on first
+      - name: Build the packages of the viewer
+        run: npx nx run @micromag/viewer:build
+
+      - name: Build the viewer with stats
+        run: npm run build:stats --workspace=@micromag/viewer-build
+
+      - name: Check the size budget
+        run: node scripts/check-viewer-build-size.mjs

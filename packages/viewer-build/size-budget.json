@@ -1,0 +1,5 @@
+{
+    "description": "Budget of the initial JS and CSS of the viewer build, gzip level 9, in bytes (checked by scripts/check-viewer-build-size.mjs). Measured on 0.4.123: JS 367.1 KiB, CSS 29.6 KiB.",
+    "js": 384000,
+    "css": 31744
+}
