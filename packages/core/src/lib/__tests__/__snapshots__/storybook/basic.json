@@ -1,0 +1,282 @@
+{
+    "id": "10",
+    "type": "story",
+    "title": "Mon nouveau micromag du futur",
+    "author": {
+        "id": "1",
+        "name": "Nicolas",
+        "short_name": "N",
+        "avatar": null,
+        "color": {
+            "color": "#f6c19c",
+            "alpha": 1
+        }
+    },
+    "organisation": null,
+    "metadata": {
+        "description": null,
+        "language": "fr",
+        "favicon": null,
+        "shareImage": null
+    },
+    "medias": [],
+    "theme": {
+        "components": [],
+        "textStyle": {
+            "heading1": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 32,
+                "fontStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "heading2": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 24,
+                "fontStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "heading3": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 20,
+                "fontStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "button": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 16,
+                "fontStyle": {
+                    "bold": true,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "text": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Georgia",
+                "fontSize": 16,
+                "fontStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            }
+        },
+        "colors": {
+            "primary": {
+                "color": "#FFF",
+                "alpha": 1
+            },
+            "secondary": {
+                "color": "#999",
+                "alpha": 1
+            }
+        },
+        "background": {
+            "color": {
+                "color": "#000",
+                "alpha": 1
+            },
+            "image": null
+        }
+    },
+    "created_at": "2021-03-31T15:07:15-04:00",
+    "components": [
+        {
+            "background": {
+                "color": {
+                    "color": "#00F",
+                    "alpha": 1
+                },
+                "image": null
+            },
+            "id": "5250fe80-9254-11eb-a544-b5cca3068892",
+            "type": "quote",
+            "layout": "middle",
+            "header": {
+                "badge": {
+                    "inWebView": true,
+                    "active": true,
+                    "url": "https://urbania.ca",
+                    "label": {
+                        "body": "En apprendre plusse",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Agrandir Tight"
+                            }
+                        }
+                    },
+                    "boxStyle": {
+                        "borderRadius": 5,
+                        "shadowAngle": 45,
+                        "shadowDistance": 6,
+                        "shadowBlur": 0,
+                        "shadowColor": {
+                            "color": "#ff0000",
+                            "alpha": 1
+                        },
+                        "padding": {
+                            "top": 12,
+                            "left": 20,
+                            "bottom": 20,
+                            "right": 20
+                        }
+                    }
+                }
+            },
+            "quote": {
+                "body": "<p>Une citation</p>",
+                "textStyle": {
+                    "color": {
+                        "color": "#FFF",
+                        "alpha": 1
+                    },
+                    "align": "left",
+                    "fontFamily": "Arial",
+                    "fontSize": 24,
+                    "fontStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false
+                    },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "author": {
+                "body": "<p>un auteur inconnu</p>",
+                "textStyle": {
+                    "color": {
+                        "color": "#FFF",
+                        "alpha": 1
+                    },
+                    "align": "left",
+                    "fontFamily": "Georgia",
+                    "fontSize": 16,
+                    "fontStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false
+                    },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "footer": {
+                "callToAction": {
+                    "inWebView": true,
+                    "active": true,
+                    "url": "https://urbania.ca",
+                    "label": {
+                        "body": "En apprendre plusse",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Agrandir Tight"
+                            }
+                        }
+                    },
+                    "boxStyle": {
+                        "borderRadius": 5,
+                        "shadowAngle": 45,
+                        "shadowDistance": 6,
+                        "shadowBlur": 0,
+                        "shadowColor": {
+                            "color": "#ff0000",
+                            "alpha": 1
+                        },
+                        "padding": {
+                            "top": 1,
+                            "left": 20,
+                            "bottom": 10,
+                            "right": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "background": {
+                "color": {
+                    "alpha": 1,
+                    "color": "#FF00FF"
+                }
+            },
+            "id": "1cb80860-5c1a-11eb-985f-ad6fce99d848",
+            "type": "image",
+            "layout": "normal",
+            "image": {
+                "url": "https://picsum.photos/800/800?random=1",
+                "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                "metadata": {
+                    "width": 800,
+                    "height": 800
+                }
+            },
+            "footer": {
+                "callToAction": {
+                    "inWebView": true,
+                    "active": true,
+                    "url": "https://urbania.ca",
+                    "label": {
+                        "body": "En apprendre plussse",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Agrandir Tight"
+                            }
+                        }
+                    },
+                    "boxStyle": {
+                        "padding": {
+                            "top": 40,
+                            "left": 20,
+                            "bottom": 30,
+                            "right": 20
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "components": [
+        "0 video f7502ea0-5788-11ee-a27c-29973c5d3f26 a54aa9cbfd57678e",
+        "1 image-title dcb4f300-9206-11ef-b933-95e461d39cd6 7a5b962ce0fac143",
+        "2 title-with-box 09e7c220-743b-11ee-ac1c-8ba7c408ef46 93b53a19e52a55f3",
+        "3 quiz 5dba5460-7442-11ee-ac1c-8ba7c408ef46 5823f845a53a630a",
+        "4 quiz 14b31f00-7446-11ee-ac1c-8ba7c408ef46 d31a889a0046fe4f",
+        "5 quiz 2ed60150-7440-11ee-ac1c-8ba7c408ef46 dd6a025b5a52e293",
+        "6 survey 19e867c0-7449-11ee-ac1c-8ba7c408ef46 d3b8e8e34073c6f4",
+        "7 image-title-text 2fffbc60-cd0e-11ef-a233-39b11d21d262 00f6e28dccf5c74f",
+        "8 article 292dc250-8638-11ef-bd6a-df4258769b11 7aea80b9b2ee2b92",
+        "9 video fdee9c90-cf3e-11ef-b5c5-83e479895e56 b6ebe1b64d42863d",
+        "10 quiz ab7d5af0-cf2a-11ef-95b9-77fe9178bd82 7ac479c08834a58d",
+        "11 video 1fefa2f0-bd95-11ef-99b7-059b4053d520 08a92cea949e6808",
+        "12 article 8328f0d0-7a77-11ef-a388-372c6362c886 3106cd00fb0dcc82",
+        "13 video 0c45fa00-578a-11ee-a27c-29973c5d3f26 7e9c7cee42585eb0",
+        "14 article 5f392a50-d742-11ef-a917-c568ad6475f3 0e913be8b8e9d055",
+        "15 conversation 2a195d00-578b-11ee-a27c-29973c5d3f26 a4de53ddee11b5e8",
+        "16 image b8dfb3b0-dc99-11ef-9913-c55a565a340f 554abe099be2fd1d",
+        "17 urbania-recommendation 56620280-5caf-11ee-9fb4-9d5da1d49802 d64920c5535ea3f2",
+        "18 urbania-recommendation 17933ca0-578b-11ee-a27c-29973c5d3f26 f5c41d78a446e7d4",
+        "19 urbania-recommendation feaeb570-578a-11ee-a27c-29973c5d3f26 f9b2a45bed1bf08b",
+        "20 article 36e0ea50-bec1-11ef-9659-61ab69ed65c5 03c2aabdcf2f3511",
+        "21 timeline da18d990-75a5-11ef-8421-c7c1b178d5b8 5860bda0cac61f4d",
+        "22 share bb808fc0-da48-11ef-ad45-057e8860de43 e40fb86c6ab97106",
+        "23 title-with-box 1d7d6090-d756-11ef-ac4e-b548daa734ae b15caa993d24540f"
+    ],
+    "theme": "74234e98afe7498f",
+    "medias": null,
+    "fonts": "18 9061363fd4e34bce",
+    "rest": "44136fa355b3678a"
+}

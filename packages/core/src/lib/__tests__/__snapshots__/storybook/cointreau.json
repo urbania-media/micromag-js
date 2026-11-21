@@ -1,0 +1,32 @@
+{
+    "components": [
+        "0 video b6d38ba0-8920-11ee-8126-59aa655a8d7b d85a0fa20d6644d2",
+        "1 article 3eec2df0-82f8-11ee-8ade-0bb643caae0a c2e787b72a2a85bf",
+        "2 video c59e8a50-83f2-11ee-b4ed-d17bd83c866e 2e2a6e440d476d8a",
+        "3 timeline-illustrated 60487180-79a1-11ee-bae1-cd3cb0a71010 7b9f7eca21811a7d",
+        "4 gallery-feed-captions 454e40d0-798d-11ee-a0fb-edac1464fdda 1e6e7e3b730e803f",
+        "5 article dca78a80-82d0-11ee-8ade-0bb643caae0a 64dbc8da59ba946f",
+        "6 video 5d3df1a0-7996-11ee-a0fb-edac1464fdda dd79fdf3fbc83cea",
+        "7 video 9e703310-7ef3-11ee-b4ed-d17bd83c866e 7f979966512f92f8",
+        "8 video 957e0aa0-7e46-11ee-b4ed-d17bd83c866e 84ba0a57729574cd",
+        "9 video 5fdcf8c0-8aa8-11ee-8681-35c9689bb26d 98a7248e910c1192",
+        "10 video 6336f930-8aa8-11ee-8681-35c9689bb26d 0d11d8daa4a89621",
+        "11 quiz d1ec58a0-7961-11ee-ab95-1f8e33159281 4dddf1f0ebe5e986",
+        "12 gallery-feed-captions 17a10020-7fcb-11ee-a24e-0939cdd4e3d8 91eae5c2d7cac893",
+        "13 video 1af52730-8a1e-11ee-9f63-2b22ea4a0a84 c8dd83f8199bc3ee",
+        "14 timeline-illustrated a819a2e0-8559-11ee-8a3c-4bc63cb75db9 c04bc50170523d3c",
+        "15 video cc3526f0-7e46-11ee-b4ed-d17bd83c866e 531eeddd788bce38",
+        "16 article be163190-8918-11ee-8126-59aa655a8d7b 50ebb382c5bad395",
+        "17 video 0e236a50-8913-11ee-8126-59aa655a8d7b cdfe7c1116a581ac",
+        "18 timeline 3802c180-8914-11ee-8126-59aa655a8d7b e1c1190704b26245",
+        "19 video 19c7ea20-8913-11ee-8126-59aa655a8d7b b0e3a333ca5b1610",
+        "20 timeline 519de3f0-8913-11ee-8126-59aa655a8d7b a67adc4dcabe9729",
+        "21 survey 3e11d2b0-7e46-11ee-b4ed-d17bd83c866e f8904ed6bea30062",
+        "22 title-subtitle-credits ac320a30-7fdb-11ee-a24e-0939cdd4e3d8 95393b548ad1c2b1",
+        "23 title-with-box 8ceb8f30-7fda-11ee-a24e-0939cdd4e3d8 a57bccdb5250008f"
+    ],
+    "theme": "a7d0d9ca4a14cb08",
+    "medias": "48 6945f1e002eab524",
+    "fonts": "4 056bf76d13b46aad",
+    "rest": "0e1ee63474e00171"
+}

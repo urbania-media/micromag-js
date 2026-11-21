@@ -1,0 +1,79 @@
+{
+    "id": "synthetic-answers-keypad",
+    "title": "CustomAnswerLabel, KeypadItemLabel and KeypadSettings migrations",
+    "components": [
+        {
+            "id": "q1",
+            "type": "quiz",
+            "layout": "middle",
+            "question": { "body": "<p>Question?</p>" },
+            "answers": [
+                {
+                    "id": "a1",
+                    "label": { "body": "<p>Yes</p>" },
+                    "good": true,
+                    "customAnswerLabel": { "body": "<p>Right!</p>" }
+                },
+                { "id": "a2", "label": { "body": "<p>No</p>" } },
+                null
+            ]
+        },
+        {
+            "id": "q2",
+            "type": "survey",
+            "layout": "middle",
+            "question": { "body": "<p>Survey</p>" },
+            "answers": [
+                { "id": "a1", "label": { "body": "<p>One</p>" }, "customAnswerLabel": null }
+            ]
+        },
+        {
+            "id": "q3",
+            "type": "quiz",
+            "layout": "middle",
+            "question": { "body": "<p>Current shape</p>" },
+            "answers": [
+                {
+                    "id": "a1",
+                    "label": { "body": "<p>Yes</p>" },
+                    "result": { "body": "<p>Right!</p>" }
+                }
+            ]
+        },
+        {
+            "id": "k1",
+            "type": "keypad",
+            "layout": "middle",
+            "keypadSettings": {
+                "layout": { "columnAlign": "middle", "columns": 3, "spacing": 10 }
+            },
+            "items": [
+                {
+                    "id": "i1",
+                    "label": "Old string label",
+                    "textStyle": { "fontSize": 18, "color": { "color": "#ff0000", "alpha": 1 } }
+                },
+                { "id": "i2", "label": "String label without style" },
+                {
+                    "id": "i3",
+                    "label": { "body": "<p>Current label</p>", "textStyle": { "fontSize": 12 } }
+                },
+                null
+            ]
+        },
+        {
+            "id": "k2",
+            "type": "keypad",
+            "layout": "middle",
+            "keypadSettings": { "columns": 2 },
+            "items": []
+        },
+        {
+            "id": "k3",
+            "type": "text",
+            "layout": "middle",
+            "items": [{ "id": "i1", "label": "Not a keypad: untouched" }],
+            "keypadSettings": { "layout": { "columns": 2 } }
+        }
+    ]
+}
