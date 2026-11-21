@@ -1,6 +1,7 @@
 name: Test
 
-# Runs the tests (for now, the regression test of StoryParser) on each pull request.
+# Runs the tests on each pull request: the regression test of StoryParser on the fixtures, then on
+# recent published stories (base branch against pull request).
 on:
   pull_request:
   push:
@@ -26,78 +27,76 @@ jobs:
           persist-credentials: false
 
       - name: Install Node.js
+        id: node
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version-file: '.nvmrc'
-          cache: npm
+
+      # npm ci writes about 4,500 packages (6 GB) and takes 6 to 8 minutes, even with the npm cache.
+      # node_modules is cached as is, under an exact key (no restore-keys): any change to the
+      # lockfile or to Node.js reinstalls from scratch. Install scripts don't run (npm asks to
+      # approve them), so node_modules only depends on the lockfile.
+      - name: Restore node_modules
+        id: node-modules
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: node-modules-${{ runner.os }}-${{ runner.arch }}-node-${{ steps.node.outputs.node-version }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install dependencies
-        run: npm ci
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --no-fund
 
       # The tests run on the sources of the packages: no build needed. In CI, Vitest doesn't
       # write missing snapshots, it fails.
       - name: Run the tests
         run: npm test
 
-  # Parses recent published stories with the code of the base branch, then with the code of the pull
-  # request, and fails if the output changed. The stories are listed in the repository secret
-  # MICROMAG_PARSER_STORIES (slugs or URLs, separated by spaces or new lines; a secret and not a
-  # variable, so that the list is masked in the logs) and downloaded at run time: they are never
-  # committed. The logs are public, so only a digest of each story (a hash per screen) is stored and
-  # shown, and the files are named story-1.json, story-2.json...
-  recent-stories:
-    name: Parser on recent stories
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    env:
-      MICROMAG_PARSER_STORIES: ${{ secrets.MICROMAG_PARSER_STORIES }}
-      MICROMAG_STORIES_DIGEST: '1'
-      BASE_SHA: ${{ github.event.pull_request.base.sha }}
-    steps:
-      # Secrets can't be read in `if:` and aren't given to pull requests from forks. The runner
-      # context (temp folder) can't be used in the env of a job: set it here
-      - name: Check the list of stories
+      # Recent published stories, listed in the repository secret MICROMAG_PARSER_STORIES (slugs or
+      # URLs, separated by spaces or new lines), are parsed with the code of the base branch, then
+      # with the code of the pull request, and the step fails if the output changed. They are
+      # downloaded at run time and never committed. A secret and not a variable, so that the list
+      # is masked in the logs; it is only given to the steps that read it, and not to pull requests
+      # from forks. The logs are public: only a digest of each story (a hash per screen) is stored
+      # and shown, and the files are named story-1.json, story-2.json...
+      - name: Check the list of recent stories
         id: stories
+        if: github.event_name == 'pull_request'
+        env:
+          MICROMAG_PARSER_STORIES: ${{ secrets.MICROMAG_PARSER_STORIES }}
         run: |
           if [ -n "$MICROMAG_PARSER_STORIES" ]; then
             echo "enabled=true" >> "$GITHUB_OUTPUT"
-            echo "MICROMAG_STORIES_DIR=$RUNNER_TEMP/stories" >> "$GITHUB_ENV"
           else
-            echo "MICROMAG_PARSER_STORIES is empty: skipped" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "MICROMAG_PARSER_STORIES is empty: recent stories skipped" | tee -a "$GITHUB_STEP_SUMMARY"
           fi
 
-      - name: Checkout
+      - name: Download the recent stories
         if: steps.stories.outputs.enabled == 'true'
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-
-      - name: Install Node.js
-        if: steps.stories.outputs.enabled == 'true'
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
-        with:
-          node-version-file: '.nvmrc'
-          cache: npm
-
-      - name: Install dependencies
-        if: steps.stories.outputs.enabled == 'true'
-        run: npm ci
-
-      - name: Download the stories
-        if: steps.stories.outputs.enabled == 'true'
-        run: node scripts/fetch-parser-stories.mjs --anonymous --out "$MICROMAG_STORIES_DIR"
+        env:
+          MICROMAG_PARSER_STORIES: ${{ secrets.MICROMAG_PARSER_STORIES }}
+        run: node scripts/fetch-parser-stories.mjs --anonymous --out "$RUNNER_TEMP/stories"
 
       # The sources of the base branch, with the test of the pull request
-      - name: Parse with the base branch
+      - name: Parse the recent stories with the base branch
         if: steps.stories.outputs.enabled == 'true'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          MICROMAG_STORIES_DIR: ${{ runner.temp }}/stories
+          MICROMAG_STORIES_DIGEST: '1'
         run: |
+          git fetch --quiet --no-tags --depth=1 origin "$BASE_SHA"
           git checkout "$BASE_SHA" -- packages elements screens scripts/lib
           git checkout HEAD -- packages/core/src/lib/__tests__ vitest.config.mts
           npx vitest run packages/core/src/lib/__tests__/StoryParser.test.ts -t "local stories" --update
 
-      - name: Parse with the pull request
+      - name: Parse the recent stories with the pull request
         if: steps.stories.outputs.enabled == 'true'
+        env:
+          MICROMAG_STORIES_DIR: ${{ runner.temp }}/stories
+          MICROMAG_STORIES_DIGEST: '1'
         run: |
           git checkout HEAD -- packages elements screens scripts/lib
           git clean -fdq -- packages elements screens scripts/lib
