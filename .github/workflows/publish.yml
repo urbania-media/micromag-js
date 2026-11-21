@@ -43,14 +43,14 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      # No secret and read-only permissions here: the install scripts of the dependencies can run
+      # No secret and read-only permissions here: the install scripts of the dependencies can run.
+      # No audit: npm audit takes about 5 minutes on this tree (Dependabot reports the advisories).
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       # The published packages need the other packages to be built (ex.: @micromag/core css)
-      # The runner has 4 CPUs; Nx runs 3 tasks at a time by default
       - name: Build packages
-        run: npx nx run-many --target=build --parallel=4
+        run: npm run build
 
       # npm pack doesn't run prepublishOnly: the packages are already built
       - name: Pack packages
