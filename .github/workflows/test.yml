@@ -51,16 +51,17 @@ jobs:
     if: github.event_name == 'pull_request'
     env:
       MICROMAG_PARSER_STORIES: ${{ secrets.MICROMAG_PARSER_STORIES }}
-      MICROMAG_STORIES_DIR: ${{ runner.temp }}/stories
       MICROMAG_STORIES_DIGEST: '1'
       BASE_SHA: ${{ github.event.pull_request.base.sha }}
     steps:
-      # Secrets can't be read in `if:` and aren't given to pull requests from forks
+      # Secrets can't be read in `if:` and aren't given to pull requests from forks. The runner
+      # context (temp folder) can't be used in the env of a job: set it here
       - name: Check the list of stories
         id: stories
         run: |
           if [ -n "$MICROMAG_PARSER_STORIES" ]; then
             echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "MICROMAG_STORIES_DIR=$RUNNER_TEMP/stories" >> "$GITHUB_ENV"
           else
             echo "MICROMAG_PARSER_STORIES is empty: skipped" | tee -a "$GITHUB_STEP_SUMMARY"
           fi
