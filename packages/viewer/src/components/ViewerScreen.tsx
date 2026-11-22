@@ -4,6 +4,9 @@ import { ForwardedRef, useEffect, useState } from 'react';
 import type { MediaElement, RenderContext, ScreenComponent } from '@micromag/core';
 import { Screen } from '@micromag/core/components';
 
+import ScreenErrorBoundary, { ScreenErrorInfo } from './ScreenErrorBoundary';
+import ScreenError from './partials/ScreenError';
+
 // @todo: remove if validated with team
 // import HandTap from './partials/HandTap';
 // import ArrowHint from './partials/ArrowHint';
@@ -22,6 +25,7 @@ interface ViewerScreenProps {
     height?: number | null;
     scale?: number | null;
     className?: string | null;
+    onError?: ((error: Error, info: ScreenErrorInfo) => void) | null;
 }
 
 function ViewerScreen({
@@ -39,6 +43,7 @@ function ViewerScreen({
 
     // withNavigationHint,
     className = null,
+    onError = null,
 }: ViewerScreenProps) {
     const [mounted, setMounted] = useState(active || current);
     useEffect(() => {
@@ -72,16 +77,24 @@ function ViewerScreen({
                 }}
             >
                 {mounted || current ? (
-                    <Screen
-                        screen={screen}
-                        renderContext={renderContext}
-                        screenState={screenState}
-                        index={index}
-                        active={active}
-                        preload={preload}
-                        current={current}
-                        mediaRef={mediaRef}
-                    />
+                    <ScreenErrorBoundary
+                        resetKeys={[screen, renderContext]}
+                        onError={onError}
+                        fallback={(error) => (
+                            <ScreenError error={error} withDetails={renderContext === 'edit'} />
+                        )}
+                    >
+                        <Screen
+                            screen={screen}
+                            renderContext={renderContext}
+                            screenState={screenState}
+                            index={index}
+                            active={active}
+                            preload={preload}
+                            current={current}
+                            mediaRef={mediaRef}
+                        />
+                    </ScreenErrorBoundary>
                 ) : null}
             </div>
 

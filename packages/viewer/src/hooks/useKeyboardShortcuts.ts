@@ -1,18 +1,53 @@
-import { useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
-function useKeyboardShortcuts(shortcuts = {}, { disabled = false } = {}) {
+import {
+    getKeyboardScope,
+    registerKeyboardScope,
+    shouldHandleKeyboardEvent,
+} from '../lib/keyboardScope';
+
+interface UseKeyboardShortcutsOptions {
+    disabled?: boolean;
+    /**
+     * An element of the viewer: the shortcuts only respond when this viewer has the focus (or
+     * nothing has it and this viewer is the one the reader used last)
+     */
+    containerRef?: RefObject<Element | null> | null;
+}
+
+function useKeyboardShortcuts(
+    shortcuts = {},
+    { disabled = false, containerRef = null }: UseKeyboardShortcutsOptions = {},
+) {
     useEffect(() => {
+        if (disabled) {
+            return () => {};
+        }
+        const scope = containerRef !== null ? getKeyboardScope(containerRef.current) : null;
+        const unregister = scope !== null ? registerKeyboardScope(scope) : null;
+
         const onKey = (e) => {
             if (
-                ['input', 'textarea'].reduce(
-                    (foundMatch, match) => foundMatch || e.target.matches(match),
+                ['input', 'textarea', 'select', '[contenteditable="true"]'].reduce(
+                    (foundMatch, match) =>
+                        foundMatch || (e.target instanceof Element && e.target.matches(match)),
                     false,
                 )
             ) {
                 return;
             }
 
-            const { key } = e;
+            if (
+                !shouldHandleKeyboardEvent({
+                    scope,
+                    activeElement: document.activeElement,
+                    body: document.body,
+                })
+            ) {
+                return;
+            }
+
+            const { key = '' } = e;
             const lowercaseKey = key.toLowerCase();
 
             if (typeof shortcuts[lowercaseKey] !== 'undefined') {
@@ -20,15 +55,14 @@ function useKeyboardShortcuts(shortcuts = {}, { disabled = false } = {}) {
             }
         };
 
-        if (!disabled) {
-            window.addEventListener('keydown', onKey);
-        }
+        window.addEventListener('keydown', onKey);
         return () => {
-            if (!disabled) {
-                window.removeEventListener('keydown', onKey);
+            window.removeEventListener('keydown', onKey);
+            if (unregister !== null) {
+                unregister();
             }
         };
-    }, [disabled, shortcuts]);
+    }, [disabled, shortcuts, containerRef]);
 }
 
 export default useKeyboardShortcuts;

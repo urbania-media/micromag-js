@@ -420,3 +420,62 @@
             transform 0.3s 0.5s cubic-bezier(0.25, 2, 0.2, 1);
     }
 }
+
+/*
+ * Full page or fullscreen viewer: keep the chrome clear of the system areas (notch, home indicator)
+ * when the page uses `viewport-fit=cover`. The insets are zero everywhere else.
+ */
+.fillsViewport {
+    overscroll-behavior: contain;
+
+    .menuNavContainer {
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-right: env(safe-area-inset-right, 0px);
+        padding-left: env(safe-area-inset-left, 0px);
+    }
+
+    .menuShare,
+    .menuPreview {
+        padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+            env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    }
+
+    .playbackControls {
+        padding-right: env(safe-area-inset-right, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        padding-left: env(safe-area-inset-left, 0px);
+    }
+
+    .navButton {
+        &.previous {
+            left: calc(1.5em + env(safe-area-inset-left, 0px));
+        }
+
+        &.next {
+            right: calc(1.5em + env(safe-area-inset-right, 0px));
+        }
+    }
+
+    .navigationHint {
+        right: calc(5% + env(safe-area-inset-right, 0px));
+    }
+}
+
+/*
+ * Reduced motion: the animations and transitions of the viewer and of the screens end at once.
+ * Scoped to the viewer, so the host page is not affected. The screen transition and the element
+ * animations driven by springs are made immediate in the components.
+ */
+@media (prefers-reduced-motion: reduce) {
+    .container,
+    .container *,
+    .container *::before,
+    .container *::after {
+        animation-delay: 0s !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-delay: 0s !important;
+        transition-duration: 0.01ms !important;
+    }
+}

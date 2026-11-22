@@ -1,10 +1,13 @@
 import { SpringValue, animated } from '@react-spring/web';
 import classNames from 'classnames';
-import React, { RefObject, memo } from 'react';
+import React, { RefObject, memo, useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import type { MediaElement, RenderContext, ScreenComponent } from '@micromag/core';
 
+import { focusLostFromScreens, rememberFocusLoss } from '../lib/screensFocus';
+
+import type { ScreenErrorInfo } from './ScreenErrorBoundary';
 import ViewerScreen from './ViewerScreen';
 
 import styles from '../styles/viewer.module.css';
@@ -32,6 +35,12 @@ interface ViewerScreenSectionProps {
     width?: number | null;
     height?: number | null;
     scale?: number | null;
+    onScreenError?:
+        | ((
+              error: Error,
+              info: ScreenErrorInfo & { screen: ScreenComponent; index: number },
+          ) => void)
+        | null;
 }
 
 function getScreenStyles(
@@ -120,8 +129,41 @@ function ViewerScreenSection({
     width = null,
     height = null,
     scale = null,
+    onScreenError = null,
 }: ViewerScreenSectionProps) {
     const intl = useIntl();
+    const sectionRef = useRef<HTMLElement>(null);
+
+    // The other screens are inert: when the keyboard focus was in the screen that stops being
+    // current, the browser drops it on the body. It moves to the new current screen instead. Focus
+    // outside the screens (or no focus) is left alone.
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (section === null) {
+            return () => {};
+        }
+        const frame = section.parentElement;
+        const { activeElement = null } = typeof document !== 'undefined' ? document : {};
+        const focusInOtherScreen =
+            activeElement !== null &&
+            frame !== null &&
+            frame.contains(activeElement) &&
+            !section.contains(activeElement);
+        if (current && (focusInOtherScreen || focusLostFromScreens(frame))) {
+            section.focus({ preventScroll: true });
+        }
+        if (!current) {
+            return () => {};
+        }
+        const onFocusOut = (e: FocusEvent) => {
+            if (e.relatedTarget === null) {
+                rememberFocusLoss(frame);
+            }
+        };
+        section.addEventListener('focusout', onFocusOut);
+        return () => section.removeEventListener('focusout', onFocusOut);
+    }, [current]);
+
     const screenStyles = getScreenStyles(index, progress, {
         transitionType,
         screensCount,
@@ -131,8 +173,10 @@ function ViewerScreenSection({
     });
     return (
         <animated.section
+            ref={sectionRef}
             id={current ? 'content' : null}
             aria-hidden={!current}
+            inert={!current}
             style={screenStyles}
             tabIndex={current ? 0 : -1}
             aria-label={intl.formatMessage(
@@ -169,6 +213,11 @@ function ViewerScreenSection({
                     width={width}
                     height={height}
                     scale={scale}
+                    onError={
+                        onScreenError !== null
+                            ? (error, info) => onScreenError(error, { ...info, screen, index })
+                            : null
+                    }
                 />
             ) : null}
         </animated.section>

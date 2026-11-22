@@ -243,7 +243,7 @@ function Video({
             {isImageWithoutSourceFile && shouldLoad ? (
                 <img
                     src={mediaUrl}
-                    alt={description}
+                    alt={description || ''}
                     tabIndex={-1}
                     className={classNames([styles.media, innerClassName])}
                 />

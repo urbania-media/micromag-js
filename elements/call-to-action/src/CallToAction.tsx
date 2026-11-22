@@ -182,7 +182,8 @@ function CallToAction({
                     focusable={focusable}
                     buttonStyle={boxStyle}
                     inline
-                    aria-pressed={toggled}
+                    // A toggle when it opens the web view; a link has no pressed state
+                    aria-pressed={inWebView ? toggled : undefined}
                     href={!inWebView ? url : null}
                     external={!inWebView ? external : false}
                     onClick={onClickLink}

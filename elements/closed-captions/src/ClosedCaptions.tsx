@@ -3,6 +3,7 @@ import parseSRT from 'parse-srt';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import type { BoxStyle, ClosedCaptionsMedia, TextStyle } from '@micromag/core';
+import { useScreen } from '@micromag/core/contexts';
 import { getSecondsFromTime, getStyleFromBox } from '@micromag/core/utils';
 import TextElement from '@micromag/element-text';
 
@@ -29,16 +30,27 @@ function ClosedCaptions({
     const [lines, setLines] = useState([]);
     const [lineIndex, setLineIndex] = useState(-1);
 
+    // Neighbour screens mounted ahead don't fetch their captions: only the current screen does,
+    // and keeps them once loaded. Outside the viewer (no `current` in the screen context), as before.
+    const { current = null } = useScreen() || {};
+    const [wasCurrent, setWasCurrent] = useState(current !== false);
+    if (current === true && !wasCurrent) {
+        setWasCurrent(true);
+    }
+    const shouldLoad = wasCurrent || current !== false;
+
     const startOffset = timeOffset !== null ? timeOffset.split(/[\t ]*-->[\t ]*/) : null;
     const startSeconds =
         startOffset !== null && startOffset.length ? getSecondsFromTime(startOffset[0]) : 0;
 
     useEffect(() => {
-        if (url === null) {
-            return;
+        if (url === null || !shouldLoad) {
+            return () => {};
         }
+        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
         fetch(url, {
             mode: 'cors',
+            signal: controller !== null ? controller.signal : undefined,
         })
             .then((response) => response.text())
             .then((srt) => parseSRT(srt))
@@ -46,9 +58,16 @@ function ClosedCaptions({
                 setLines(parsed);
             })
             .catch((e) => {
-                console.error(e);
+                if (controller === null || !controller.signal.aborted) {
+                    console.error(e);
+                }
             });
-    }, [url, fetch, setLines]);
+        return () => {
+            if (controller !== null) {
+                controller.abort();
+            }
+        };
+    }, [url, shouldLoad, setLines]);
 
     const getLineIndexFromTime = useCallback(
         (t) => {
