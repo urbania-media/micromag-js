@@ -454,36 +454,55 @@ function Viewer({
         onNavigate: onScreenNavigate,
     });
 
-    // Long press to pause playback
-    const [pointerDownTime, setPointerDownTime] = useState(null);
+    // Long press to pause playback. The press is a timer, not state: a state change on
+    // pointerdown re-rendered the whole viewer in the frame where the transition starts.
     const [longPressPaused, setLongPressPaused] = useState(false);
     const [longPressScreenIndex, setLongPressScreenIndex] = useState(screenIndex);
-    if (screenIndex !== longPressScreenIndex && (longPressPaused || pointerDownTime !== null)) {
+    if (screenIndex !== longPressScreenIndex && longPressPaused) {
         setLongPressPaused(false);
-        setPointerDownTime(null);
-    } else if (longPressPaused && pointerDownTime !== null) {
-        setPointerDownTime(null);
     }
+    const longPressTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const longPressCanPauseRef = useRef(false);
+    const { tagName: playbackMediaTagName = null } = playbackMedia || {};
+    const canLongPressPause = playing && playbackMediaTagName === 'VIDEO';
     useEffect(() => {
-        const { tagName: mediaTagName } = playbackMedia || {};
-        const mediaIsVideo = mediaTagName === 'VIDEO';
-        if (pointerDownTime === null || !playing || !mediaIsVideo) {
-            return () => {};
+        longPressCanPauseRef.current = canLongPressPause;
+    }, [canLongPressPause]);
+    const cancelLongPress = () => {
+        if (longPressTimeoutRef.current !== null) {
+            clearTimeout(longPressTimeoutRef.current);
+            longPressTimeoutRef.current = null;
         }
-        const interval = setTimeout(() => {
-            setPlaying(false);
-            setLongPressPaused(true);
-            setLongPressScreenIndex(screenIndex);
-        }, longPressPauseDelay);
-        return () => clearTimeout(interval);
-    }, [playing, pointerDownTime, longPressPauseDelay, playbackMedia, setPlaying, screenIndex]);
+    };
+    // A screen change or unmount cancels the press
+    useEffect(
+        () => () => {
+            if (longPressTimeoutRef.current !== null) {
+                clearTimeout(longPressTimeoutRef.current);
+                longPressTimeoutRef.current = null;
+            }
+        },
+        [screenIndex],
+    );
 
     const onPointerDown = (e) => {
         if (checkClickable(e.target)) {
             return;
         }
-        setPointerDownTime(Date.now());
-        setLongPressScreenIndex(screenIndex);
+        cancelLongPress();
+        if (!longPressCanPauseRef.current) {
+            return;
+        }
+        const pressScreenIndex = screenIndex;
+        longPressTimeoutRef.current = setTimeout(() => {
+            longPressTimeoutRef.current = null;
+            if (!longPressCanPauseRef.current) {
+                return;
+            }
+            setPlaying(false);
+            setLongPressPaused(true);
+            setLongPressScreenIndex(pressScreenIndex);
+        }, longPressPauseDelay);
     };
 
     const onTap = ({
@@ -494,13 +513,12 @@ function Viewer({
         elapsedTime,
         args: [bindState],
     }) => {
-        setPointerDownTime(null);
+        cancelLongPress();
         const { playing: currentPlaying = false, longPressPaused: currentLongPressPaused = false } =
             bindState || {};
         if (!currentPlaying && currentLongPressPaused) {
             setPlaying(true);
             setLongPressPaused(false);
-            setPointerDownTime(null);
             return;
         }
         if (tapMaximumDuration !== null && elapsedTime > tapMaximumDuration) {
@@ -539,6 +557,9 @@ function Viewer({
     const onScreenProgress = (progress, { active, args: [bindState] }) => {
         const { playing: currentPlaying = false, longPressPaused: currentLongPressPaused = false } =
             bindState || {};
+        if (!active) {
+            cancelLongPress();
+        }
         if (!active && !currentPlaying && currentLongPressPaused) {
             setPlaying(true);
             setLongPressPaused(false);
