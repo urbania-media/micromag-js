@@ -1,0 +1,8 @@
+{
+    "id": "synthetic-minimal",
+    "title": "No theme, no medias, no fonts: the parser leaves the story as is",
+    "components": [
+        { "id": "n1", "type": "text", "layout": "middle", "text": { "body": "<p>Text</p>" } },
+        { "id": "n2", "type": "video", "layout": "full", "video": { "media": null } }
+    ]
+}

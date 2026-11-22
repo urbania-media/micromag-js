@@ -1,0 +1,27 @@
+{
+    "components": [
+        "0 text-title 948aa870-5c56-11eb-bc29-e3b80032c69a f2e5cec2451dadbf",
+        "1 text 6ba10670-5c56-11eb-bc29-e3b80032c69a 0649ec52d05fa274",
+        "2 quote 8191f020-5c56-11eb-bc29-e3b80032c69a 34584a986e6ad5fb",
+        "3 image a6da9da0-5c56-11eb-bc29-e3b80032c69a c31a64721c9eb6ee",
+        "4 image-title fe575050-5c56-11eb-bc29-e3b80032c69a f9156dcce40be7a7",
+        "5 image-text 080b4ac0-5c57-11eb-bc29-e3b80032c69a aa4dcd58193948da",
+        "6 image-title-text 1267ba30-5c57-11eb-bc29-e3b80032c69a 32124a8c995590d7",
+        "7 image-title-text 8aa3a290-5cc3-11eb-aaa4-b3854e3e93fd f05a3e5b93cdab2b",
+        "8 gallery 14038870-5f8f-11eb-92c5-d96f31214c3b 628e4de8a4346bfe",
+        "9 gallery-feed 1cb46ac0-5f8f-11eb-92c5-d96f31214c3b b4c99434c617c84e",
+        "10 title-subtitle-credits 4159ac50-5f8f-11eb-92c5-d96f31214c3b f1c40c9485d40246",
+        "11 audio 669d02a0-5f8f-11eb-92c5-d96f31214c3b eb005c9533594de3",
+        "12 gallery-feed-captions 2f2112b0-61df-11eb-8fda-3b02d68d10a4 b9e46021a9df1017",
+        "13 map 9bfbc870-61e0-11eb-86c1-975df1a524c6 bc6815203b170dde",
+        "14 gallery-captions b853f290-61e0-11eb-86c1-975df1a524c6 72e8c58a3a55c47d",
+        "15 ranking fc0c5f90-61e0-11eb-86c1-975df1a524c6 0985051d6e52a27f",
+        "16 timeline 1a3ca510-61e1-11eb-86c1-975df1a524c6 8a9bf234478d79fc",
+        "17 timeline-illustrated 36127fd0-61e1-11eb-86c1-975df1a524c6 c122ddb783be1e1e",
+        "18 title-subtitle-credits 4f41f2b0-61e1-11eb-86c1-975df1a524c6 4c934dcbf71d6045"
+    ],
+    "theme": "74234e98afe7498f",
+    "medias": "7 180f4c6e06c0e06a",
+    "fonts": null,
+    "rest": "5ca36162f37cf253"
+}

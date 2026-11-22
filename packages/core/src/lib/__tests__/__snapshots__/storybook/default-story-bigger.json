@@ -1,0 +1,21 @@
+{
+    "components": [
+        "0 text-title 948aa870-5c56-11eb-bc29-e3b80032c69a 6b3200b903544f4e",
+        "1 text 6ba10670-5c56-11eb-bc29-e3b80032c69a 0649ec52d05fa274",
+        "2 quote 8191f020-5c56-11eb-bc29-e3b80032c69a 34584a986e6ad5fb",
+        "3 image a6da9da0-5c56-11eb-bc29-e3b80032c69a 68a0cf8c78ef4c2a",
+        "4 image-title fe575050-5c56-11eb-bc29-e3b80032c69a 858feac9ed0af2b8",
+        "5 image-text 080b4ac0-5c57-11eb-bc29-e3b80032c69a e30181b16c6b42dd",
+        "6 image-title-text 1267ba30-5c57-11eb-bc29-e3b80032c69a d255bee0295d5d95",
+        "7 image-title-text 8aa3a290-5cc3-11eb-aaa4-b3854e3e93fd d603ffea4ca7c5b4",
+        "8 gallery 14038870-5f8f-11eb-92c5-d96f31214c3b 4d1ebceac1b4630f",
+        "9 gallery-feed 1cb46ac0-5f8f-11eb-92c5-d96f31214c3b 54d696b802816d75",
+        "10 title-subtitle-credits 4159ac50-5f8f-11eb-92c5-d96f31214c3b f1c40c9485d40246",
+        "11 audio 669d02a0-5f8f-11eb-92c5-d96f31214c3b 5790ade753c19c37",
+        "12 video 6b7edb90-5f8f-11eb-92c5-d96f31214c3b aaba59945032b5d7"
+    ],
+    "theme": "74234e98afe7498f",
+    "medias": "6 b73f9f6778c2d35e",
+    "fonts": null,
+    "rest": "3da27e416213d49f"
+}

@@ -1,0 +1,26 @@
+{
+    "components": [
+        "0 video 014dc420-fb94-11ef-8785-4d4819e2e894 6564df404102dfff",
+        "1 video 733034e0-fb96-11ef-8785-4d4819e2e894 0d8c49ed3fc508c0",
+        "2 keypad 0e1a2220-fb94-11ef-8785-4d4819e2e894 378f8fde3f2bd741",
+        "3 timeline-illustrated b20aefe0-ff81-11ef-9374-8711e1983cd9 2827d6ae525dcbef",
+        "4 image 137c16f0-08ce-11f0-b556-679bfb013e67 72c6319a5e1b665c",
+        "5 video fb8699a0-fba6-11ef-8785-4d4819e2e894 deaa40630c2bb1d2",
+        "6 video 041ca0f0-fba7-11ef-8785-4d4819e2e894 d5a19db1fd2843bf",
+        "7 video 24d67780-fba7-11ef-8785-4d4819e2e894 bcef8301dc0666b5",
+        "8 video 26af7d40-fba7-11ef-8785-4d4819e2e894 22eef8e665526f74",
+        "9 video 28c983a0-fba7-11ef-8785-4d4819e2e894 09378575b80f757d",
+        "10 video 2aa48530-fba7-11ef-8785-4d4819e2e894 0f4f5e3893edfa57",
+        "11 video 2c8f6540-fba7-11ef-8785-4d4819e2e894 f2cacace7e76e1a6",
+        "12 video 2e0849a0-fba7-11ef-8785-4d4819e2e894 7415464d3a35c42a",
+        "13 video 361041c0-fba7-11ef-8785-4d4819e2e894 2fc22971b0dd8249",
+        "14 video 37f46b10-fba7-11ef-8785-4d4819e2e894 7a450eb7a279efaf",
+        "15 quiz-multiple 33465c10-fb96-11ef-8785-4d4819e2e894 64b4fdf3100065a0",
+        "16 timeline-illustrated ea7224a0-ff6a-11ef-9b92-3dfb5df9d5db b4ee723077dc7d55",
+        "17 timeline-illustrated 4ef5cd50-ff6b-11ef-9b92-3dfb5df9d5db d2a559306da10fa6"
+    ],
+    "theme": "74234e98afe7498f",
+    "medias": "52 c9546b984136957f",
+    "fonts": "6 a253e56afae95b50",
+    "rest": "7ae8daf852d64f9f"
+}
