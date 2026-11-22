@@ -82,7 +82,9 @@ function Background({
     const imageResolution = useSetting('imageResolution', resolution);
 
     // image
-    if (media !== null && (isImage || (isVideo && (!shouldLoad || withoutVideo)))) {
+    // The video thumbnail (300x300, not the first frame) is only used where there is no video
+    // at all (previews): in the viewer it would flash before the first frame
+    if (media !== null && (isImage || (isVideo && withoutVideo))) {
         const finalUrl = getOptimalImageUrl(
             isVideo ? { url: mediaThumbnailUrl } : media,
             width,

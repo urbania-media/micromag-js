@@ -99,7 +99,9 @@ function Visual({
             {type === 'image' || !shouldLoad || withoutVideo ? (
                 <Image
                     {...props}
-                    media={isVideo ? { url: thumbnailUrl } : media}
+                    // The video thumbnail (300x300, not the first frame) is only shown where there
+                    // is no video at all (previews): in the viewer it would flash before the video
+                    media={isVideo ? { url: withoutVideo ? thumbnailUrl : null } : media}
                     ref={refVisible}
                     loadingMode={loadingMode !== 'lazy' ? 'lazy' : null}
                     objectFit={objectFit}
