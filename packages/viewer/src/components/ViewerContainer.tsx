@@ -21,6 +21,8 @@ import { useSupportsWebp } from '@micromag/core/hooks';
 import { IntlProvider } from '@micromag/intl';
 import { ScreensProvider } from '@micromag/screens';
 
+import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
+
 import Viewer from './Viewer';
 import ViewerRoutes from './ViewerRoutes';
 
@@ -49,6 +51,8 @@ interface ViewerContainerProps {
     trackingDisabled?: boolean;
     trackingPaused?: boolean;
     settings?: Record<string, unknown> | null;
+    /** Passed to the Viewer: called after each screen change with timings of the transition */
+    onTransitionMetric?: ((metric: ViewerTransitionMetric) => void) | null;
     children?: (...args: unknown[]) => void;
 }
 

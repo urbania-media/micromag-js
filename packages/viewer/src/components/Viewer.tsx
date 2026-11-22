@@ -43,6 +43,8 @@ import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
+import useTransitionMetrics from '../hooks/useTransitionMetrics';
+import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
 import stopDragEventsPropagation from '../lib/stopDragEventsPropagation';
@@ -146,6 +148,8 @@ interface ViewerProps {
     onEnd?: ((...args: unknown[]) => void) | null;
     onViewModeChange?: ((...args: unknown[]) => void) | null;
     onMenuChange?: ((...args: unknown[]) => void) | null;
+    /** Called after each screen change in view mode with timings of the transition */
+    onTransitionMetric?: ((metric: ViewerTransitionMetric) => void) | null;
     currentScreenMedia?: RefObject<MediaElement> | null;
     screensMedias?: RefObject<MediaElement[]> | null;
     screenSizeOptions?: {
@@ -214,6 +218,7 @@ function Viewer({
     onScreenChange = null,
     onViewModeChange = null,
     onMenuChange = null,
+    onTransitionMetric = null,
     currentScreenMedia = null,
     screensMedias = null,
     screenSizeOptions = null,
@@ -567,6 +572,15 @@ function Viewer({
                 keys: false,
             },
         },
+    });
+
+    useTransitionMetrics({
+        screens,
+        screenIndex,
+        progress: progressSpring,
+        mediasRef: screensMediasRef,
+        onMetric: onTransitionMetric,
+        disabled: !isView,
     });
 
     const originalDragBindings = dragContentBind({ playing, longPressPaused });
