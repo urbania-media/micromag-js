@@ -54,6 +54,9 @@ node_modules
 storybook-static
 .playwright-mcp
 
+# Stats of the viewer build (scripts/check-viewer-build-size.mjs)
+/packages/viewer-build/stats.json
+
 # Real stories for the local mode of the StoryParser test (see its README)
 /packages/core/src/lib/__tests__/local/*
 !/packages/core/src/lib/__tests__/local/README.md
