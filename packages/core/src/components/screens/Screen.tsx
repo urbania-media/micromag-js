@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { Component, ElementType, ForwardedRef } from 'react';
+import React, { ElementType, ForwardedRef } from 'react';
 
 import { getComponentFromName } from '../../utils';
 
@@ -43,7 +43,12 @@ function Screen({
     const ContextScreenComponent = useScreenComponent(type);
     const ScreenComponent = CustomScreenComponent || ContextScreenComponent;
     return (
-        <ScreenProvider data={screen} renderContext={renderContext} screenState={screenState}>
+        <ScreenProvider
+            data={screen}
+            renderContext={renderContext}
+            screenState={screenState}
+            current={current}
+        >
             {ScreenComponent !== null ? (
                 <div
                     className={classNames([styles.container, className])}

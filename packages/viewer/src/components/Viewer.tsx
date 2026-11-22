@@ -13,7 +13,7 @@ import type {
     Story,
     ViewerTheme,
 } from '@micromag/core';
-import { FontFaces, Meta } from '@micromag/core/components';
+import { FontFaces, GoogleFonts, Meta } from '@micromag/core/components';
 import {
     ScreenSizeProvider,
     StoryProvider,
@@ -25,7 +25,6 @@ import {
     useDimensionObserver,
     useDragProgress,
     useFullscreen,
-    useLoadedFonts,
     useParsedStory,
     useScreenSizeFromElement,
     useTrackScreenView,
@@ -272,9 +271,8 @@ function Viewer({
     const { title: themeTextStyle = null } = textStyles || {};
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
-    // Fonts
+    // Fonts: declared only, the browser downloads the files the mounted screens use
     const finalFonts = [...(fonts || []), themeFont].filter((font) => font !== null);
-    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
@@ -834,6 +832,7 @@ function Viewer({
                         overscrollStyle
                     )}
                     <FontFaces fonts={finalFonts} />
+                    <GoogleFonts fonts={finalFonts} />
                     <div
                         className={classNames([
                             styles.container,

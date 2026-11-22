@@ -2,15 +2,16 @@
 import React, { useContext, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
-import type { RenderContext, ScreenComponent, ScreenDefinition } from '../types';
 import { getScreenExtraField } from '../utils';
 
+import type { RenderContext, ScreenComponent, ScreenDefinition } from '../types';
 import { useScreensManager } from './ScreensContext';
 
 export const ScreenContext = React.createContext({
     data: null,
     definition: null,
     renderContext: null,
+    current: null,
 });
 
 export const useScreen = () => useContext(ScreenContext);
@@ -57,12 +58,19 @@ export const useScreenState = () => {
     return screenState;
 };
 
+// Whether the screen is the one shown to the reader (not a neighbour mounted ahead)
+export const useScreenIsCurrent = (): boolean => {
+    const { current = false } = useScreen() || {};
+    return current === true;
+};
+
 interface ScreenProviderProps {
     children: React.ReactNode;
     data?: ScreenComponent;
     definition?: ScreenDefinition;
     renderContext?: RenderContext;
     screenState?: string;
+    current?: boolean | null;
 }
 
 export function ScreenProvider({
@@ -70,6 +78,7 @@ export function ScreenProvider({
     definition = null,
     renderContext = null,
     screenState = null,
+    current = null,
     children,
 }: ScreenProviderProps) {
     const {
@@ -77,6 +86,7 @@ export function ScreenProvider({
         definition: previousDefinition = null,
         renderContext: previousContext = null,
         screenState: previousScreenState = null,
+        current: previousCurrent = null,
     } = useScreen() || {};
 
     const finalData = data || previousData || null;
@@ -88,6 +98,7 @@ export function ScreenProvider({
 
     const finalRenderContext = renderContext || previousContext || 'view';
     const finalScreenState = screenState || previousScreenState || null;
+    const finalCurrent = current !== null ? current : previousCurrent;
 
     const value = useMemo(
         () => ({
@@ -95,8 +106,9 @@ export function ScreenProvider({
             definition: finalDefinition,
             renderContext: finalRenderContext,
             screenState: finalScreenState,
+            current: finalCurrent,
         }),
-        [finalData, finalDefinition, finalRenderContext, finalScreenState],
+        [finalData, finalDefinition, finalRenderContext, finalScreenState, finalCurrent],
     );
     return <ScreenContext.Provider value={value}>{children}</ScreenContext.Provider>;
 }

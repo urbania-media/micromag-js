@@ -23,6 +23,13 @@ export const useDevicePixelRatio = () => {
     return pixelRatio;
 };
 
+// Images are not requested above 2x: on 3x screens the difference is hardly visible and the files
+// are more than twice as heavy
+const MAX_IMAGE_PIXEL_RATIO = 2;
+
+const getImagePixelRatio = (devicePixelRatio: number) =>
+    Math.min(devicePixelRatio, MAX_IMAGE_PIXEL_RATIO);
+
 const useScreenSize = ({
     width = null,
     height = null,
@@ -56,8 +63,14 @@ const useScreenSize = ({
         height,
         landscape,
         menuOverScreen,
-        resolution: scale !== null ? scale * devicePixelRatio : devicePixelRatio,
-        imageResolution: scale !== null ? Math.max(scale, devicePixelRatio) : devicePixelRatio,
+        resolution:
+            scale !== null
+                ? scale * getImagePixelRatio(devicePixelRatio)
+                : getImagePixelRatio(devicePixelRatio),
+        imageResolution:
+            scale !== null
+                ? Math.max(scale, getImagePixelRatio(devicePixelRatio))
+                : getImagePixelRatio(devicePixelRatio),
     };
 };
 
@@ -128,7 +141,9 @@ export const useScreenSizeFromElement = (options = null) => {
         fullHeight,
         screenSize,
         scale: !withoutScale ? scale : null,
-        resolution: !withoutScale ? scale * devicePixelRatio : devicePixelRatio,
+        resolution: !withoutScale
+            ? scale * getImagePixelRatio(devicePixelRatio)
+            : getImagePixelRatio(devicePixelRatio),
     };
 };
 
