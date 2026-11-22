@@ -41,6 +41,7 @@ import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
+import useStableHandler from '../hooks/useStableHandler';
 import useTransitionMetrics from '../hooks/useTransitionMetrics';
 import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 import checkClickable from '../lib/checkClickable';
@@ -407,13 +408,14 @@ function Viewer({
         }
     };
 
-    const gotoPreviousScreen = () => {
+    // Stable: they are in the viewer context, read by every screen
+    const gotoPreviousScreen = useStableHandler(() => {
         changeIndex(Math.max(0, screenIndex - 1));
-    };
+    });
 
-    const gotoNextScreen = () => {
+    const gotoNextScreen = useStableHandler(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-    };
+    });
 
     const [hasInteracted, setHasInteracted] = useState(false);
     const [wasUnmuted, setWasUnmuted] = useState(false);
@@ -639,12 +641,13 @@ function Viewer({
     const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
         useDimensionObserver();
 
-    const onClickScreen = ({ screenId: itemScreenId }) => {
+    // Stable, so that the menu doesn't render again with the viewer
+    const onClickScreen = useStableHandler(({ screenId: itemScreenId }) => {
         onInteractionPrivate();
 
         const index = screens.findIndex(({ id }) => id === itemScreenId);
         changeIndex(index);
-    };
+    });
 
     const onContextMenu = (e) => {
         if (!landscape) {
