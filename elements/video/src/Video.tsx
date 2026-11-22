@@ -23,7 +23,8 @@ function resetForcePlaying(element: HTMLVideoElement) {
 
 interface VideoProps extends HTMLAttributes<HTMLVideoElement> {
     media?: VideoMedia | null;
-    thumbnail?: ImageMedia | null;
+    /** An image, or the handle of one of the media's files (ex.: `thumbnails.2`) */
+    thumbnail?: ImageMedia | { url: string } | string | null;
     width?: number | string | null;
     height?: number | string | null;
     ref?: ForwardedRef<HTMLVideoElement> | null;

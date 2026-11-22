@@ -139,7 +139,6 @@ function Visual({
                             shouldLoad={finalShouldLoad}
                             onReady={onLoaded}
                             autoPlay
-                            withPoster
                         />
                         <div className={styles.videoTouchOverlay} />
                     </div>
