@@ -61,7 +61,6 @@ function Background({
     } = media || {};
     const { width: mediaWidth = 0, height: mediaHeight = 0 } = mediaMetadata || {};
     const isVideo = mediaType === 'video';
-    const hasThumbnail = typeof mediaThumbnailUrl === 'string' && mediaThumbnailUrl.length > 0;
     const isImage = mediaType === 'image';
 
     // Lazy load
@@ -139,10 +138,6 @@ function Background({
                         disablePictureInPicture
                         autoPlay
                         loop={loop}
-                        // The small thumbnail, not the full size frame of video screens: a
-                        // background video shouldn't share its bandwidth with a large image
-                        thumbnail={hasThumbnail ? { url: mediaThumbnailUrl } : null}
-                        withPoster={hasThumbnail}
                         focusable={false}
                     />
                 </div>

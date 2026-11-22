@@ -20,7 +20,6 @@ export { default as getLargestRemainderRound } from './getLargestRemainderRound'
 export { default as getLayersFromBackground } from './getLayersFromBackground';
 export { default as getMediaFilesAsArray } from './getMediaFilesAsArray';
 export { default as getMediaThumbnail } from './getMediaThumbnail';
-export { default as getVideoPoster } from './getVideoPoster';
 export { default as getOptimalImageUrl } from './getOptimalImageUrl';
 export { default as getSecondsFromTime } from './getSecondsFromTime';
 export { default as getScreenExtraField } from './getScreenExtraField';

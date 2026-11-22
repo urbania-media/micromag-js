@@ -346,10 +346,6 @@ function VideoScreen({
                                         disablePictureInPicture
                                         focusable={current && isView}
                                         shouldLoad={mediaShouldLoad}
-                                        // A frame of the video (not the custom thumbnail) until it
-                                        // paints, so it is never blank during a screen transition
-                                        thumbnail={null}
-                                        withPoster={isView}
                                     />
                                 )}
                             </div>
