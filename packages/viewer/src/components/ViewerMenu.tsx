@@ -268,10 +268,13 @@ function ViewerMenu({
         },
     });
 
-    useKeyboardShortcuts({
-        m: () => (!menuOpened ? onOpenMenu() : onCloseMenu()),
-        escape: () => onCloseMenu(),
-    });
+    useKeyboardShortcuts(
+        {
+            m: () => (!menuOpened ? onOpenMenu() : onCloseMenu()),
+            escape: () => onCloseMenu(),
+        },
+        { containerRef: navContainerRef },
+    );
 
     // @TODO: Fix if needed
     // const menuOpenedProgressValue = menuOpenedProgress ? menuOpenedProgress.value || 0 : 0;

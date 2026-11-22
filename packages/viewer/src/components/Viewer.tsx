@@ -26,6 +26,7 @@ import {
     useDragProgress,
     useFullscreen,
     useParsedStory,
+    usePrefersReducedMotion,
     useScreenSizeFromElement,
     useTrackScreenView,
 } from '@micromag/core/hooks';
@@ -40,20 +41,24 @@ import {
 import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
+import useSafeAreaInsets from '../hooks/useSafeAreaInsets';
 import useScreenInteraction from '../hooks/useScreenInteraction';
 import useTransitionMetrics from '../hooks/useTransitionMetrics';
 import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
+import getViewerFillsViewport from '../lib/getViewerFillsViewport';
 import stopDragEventsPropagation from '../lib/stopDragEventsPropagation';
 import waitForMediaCanPlay from '../lib/waitForMediaCanPlay';
 
+import type { ScreenErrorInfo } from './ScreenErrorBoundary';
 import ViewerMenu from './ViewerMenu';
 import ViewerScreenSection from './ViewerScreenSection';
 import Button from './buttons/Button';
 import NavigationButton from './buttons/NavigationButton';
 import ArrowHint from './partials/ArrowHint';
 import HandTap from './partials/HandTap';
+import OverscrollStyle from './partials/OverscrollStyle';
 import PlaybackControls from './partials/PlaybackControls';
 import WebView from './partials/WebView';
 
@@ -154,6 +159,13 @@ interface ViewerProps {
     onMenuChange?: ((...args: unknown[]) => void) | null;
     /** Called after each screen change in view mode with timings of the transition */
     onTransitionMetric?: ((metric: ViewerTransitionMetric) => void) | null;
+    /** Called when a screen fails to render; the screen shows a fallback and the rest keeps working */
+    onScreenError?:
+        | ((
+              error: Error,
+              info: ScreenErrorInfo & { screen: ScreenComponent; index: number },
+          ) => void)
+        | null;
     currentScreenMedia?: RefObject<MediaElement> | null;
     screensMedias?: RefObject<MediaElement[]> | null;
     screenSizeOptions?: {
@@ -223,6 +235,7 @@ function Viewer({
     onViewModeChange = null,
     onMenuChange = null,
     onTransitionMetric = null,
+    onScreenError = null,
     currentScreenMedia = null,
     screensMedias = null,
     screenSizeOptions = null,
@@ -576,6 +589,19 @@ function Viewer({
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
     const navigationDisabled = currentScreenInteractionEnabled === false;
 
+    // Stable callback, so that the screens are not rendered again when the host passes a new one
+    const onScreenErrorRef = useRef(onScreenError);
+    useEffect(() => {
+        onScreenErrorRef.current = onScreenError;
+    }, [onScreenError]);
+    const onScreenErrorPrivate = (error, info) => {
+        if (onScreenErrorRef.current !== null) {
+            onScreenErrorRef.current(error, info);
+        }
+    };
+
+    // With reduced motion, the screens change without animation (taps, swipes and keys)
+    const prefersReducedMotion = usePrefersReducedMotion();
     const {
         dragging: isDragging,
         transitioning,
@@ -592,6 +618,7 @@ function Viewer({
         onTap,
         springParams: {
             config: SPRING_CONFIG_TIGHT,
+            ...(prefersReducedMotion ? { immediate: true } : null),
         },
         dragOptions: {
             filterTaps: true,
@@ -635,6 +662,11 @@ function Viewer({
         enabled: fullscreenEnabled,
     } = useFullscreen();
 
+    // Full page or fullscreen viewer: the page scrolling and the system areas (notch, home
+    // indicator) concern it. An embedded viewer leaves them to the host page.
+    const fillsViewport = fullscreenActive || getViewerFillsViewport(viewerWidth, viewerHeight);
+    const { bottom: safeAreaBottom } = useSafeAreaInsets({ disabled: !fillsViewport });
+
     // Get element height
     const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
         useDimensionObserver();
@@ -654,14 +686,7 @@ function Viewer({
         return true;
     };
 
-    const overscrollStyle = (
-        <style
-            type="text/css"
-            href="data-viewer-overscroll"
-            precedence="medium"
-            dangerouslySetInnerHTML={{ __html: `body { overscroll-behavior: contain; }` }}
-        />
-    );
+    const overscrollStyle = <OverscrollStyle active={fillsViewport} />;
 
     useKeyboardShortcuts(
         {
@@ -680,6 +705,7 @@ function Viewer({
         },
         {
             disabled: renderContext !== 'view',
+            containerRef,
         },
     );
 
@@ -771,6 +797,8 @@ function Viewer({
         currentScreenInteractionEnabled
     ) {
         bottomHeight = playbackControlsContainerHeight / screenScale;
+    } else if (safeAreaBottom > 0) {
+        bottomHeight = safeAreaBottom / screenScale;
     }
 
     const NavigationHint = withNavigationHint === 'hand' ? HandTap : ArrowHint;
@@ -848,9 +876,11 @@ function Viewer({
                                 [styles.ready]: ready || withoutScreensTransforms,
                                 [styles.hasInteracted]: hasInteracted,
                                 [styles.isDragging]: isDragging,
+                                [styles.fillsViewport]: fillsViewport,
                             },
                         ])}
                         ref={mergeRefs(containerRef, fullscreenRef, activityRef, screenSizeRef)}
+                        data-micromag-viewer=""
                         onContextMenu={onContextMenu}
                     >
                         {/* Announce screen change on screen reader */}
@@ -1036,6 +1066,7 @@ function Viewer({
                                                 width={screenWidth}
                                                 height={screenHeight}
                                                 scale={screenScale}
+                                                onScreenError={onScreenErrorPrivate}
                                             />
                                         );
                                     })}

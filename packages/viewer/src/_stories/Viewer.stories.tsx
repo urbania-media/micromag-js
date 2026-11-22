@@ -550,6 +550,53 @@ function TransitionMetricViewer({ story = transitionMetricStory }) {
     );
 }
 
+function BrokenScreen(): React.ReactNode {
+    throw new Error('This screen throws while rendering');
+}
+
+const screenErrorStory = {
+    title: 'With a screen that throws',
+    components: [
+        { id: '1', type: 'text', text: { body: '<p>First screen</p>' } },
+        { id: '2', type: 'broken' },
+        { id: '3', type: 'text', text: { body: '<p>Third screen, after the broken one</p>' } },
+    ],
+};
+
+/**
+ * The second screen throws: it shows a fallback and the reader can still go to the third one
+ */
+export const ScreenError = meta.story(() => {
+    const [errors, setErrors] = useState<string[]>([]);
+    return (
+        <>
+            <Viewer
+                story={screenErrorStory}
+                screenComponents={{ broken: BrokenScreen }}
+                memoryRouter
+                onScreenError={(error: Error, { index }: { index: number }) => {
+                    setErrors((current) => [...current, `Screen ${index + 1}: ${error.message}`]);
+                }}
+            />
+            <pre
+                data-testid="screen-errors"
+                style={{
+                    position: 'fixed',
+                    left: 10,
+                    bottom: 10,
+                    zIndex: 1000,
+                    margin: 0,
+                    color: '#fff',
+                    font: '11px/1.4 monospace',
+                    pointerEvents: 'none',
+                }}
+            >
+                {errors.join('\n')}
+            </pre>
+        </>
+    );
+});
+
 export const TransitionMetric = meta.story(() => <TransitionMetricViewer />);
 
 export const TransitionMetricLong = meta.story(() => (

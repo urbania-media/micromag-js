@@ -1973,6 +1973,12 @@ msgctxt "YD9M2p"
 msgid "Overtitle"
 msgstr "Overtitle"
 
+# Message shown in place of a screen that failed to render
+#: YG/azm
+msgctxt "YG/azm"
+msgid "This screen could not be displayed."
+msgstr "This screen could not be displayed."
+
 # Description in Media Gallery
 #: YJZtWR
 msgctxt "YJZtWR"

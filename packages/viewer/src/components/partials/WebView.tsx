@@ -87,11 +87,14 @@ function WebViewContainer({
         trackEvent('viewer_webview', opened ? 'open' : 'close', currentUrl, { source });
     }, [trackingEnabled, currentUrl, opened]);
 
-    useKeyboardShortcuts({
-        escape: () => {
-            close();
+    useKeyboardShortcuts(
+        {
+            escape: () => {
+                close();
+            },
         },
-    });
+        { containerRef: ref },
+    );
 
     const webViewUrl = url || currentUrl;
     const currentQueryString = queryString.parse(

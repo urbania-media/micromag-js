@@ -3,6 +3,8 @@ import { animated, config as defaultConfigs } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useEffect } from 'react';
 
+import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion';
+
 import styles from '../../styles/transitions/transition.module.css';
 
 interface TransitionProps {
@@ -41,6 +43,8 @@ function Transition({
     // In react-spring v10, useSpring(fn) without deps resets the spring on every render
     // via a layout effect. Passing a SpringRef prevents this reset behavior.
     const springRef = useSpringRef();
+    // With reduced motion, the elements go straight to their final state
+    const reducedMotion = usePrefersReducedMotion();
     const [springProps, setSpringProps] = useSpring(() => ({
         ref: springRef,
     }));
@@ -56,8 +60,8 @@ function Transition({
         const props = {
             from: finalPlaying ? from : to,
             to: finalPlaying ? to : from,
-            immediate,
-            delay: withDelay ? delay : null,
+            immediate: immediate || reducedMotion,
+            delay: withDelay && !reducedMotion ? delay : null,
             reset,
             onStart,
             onRest: onComplete,
@@ -65,7 +69,7 @@ function Transition({
                 finalConfig !== null
                     ? finalConfig
                     : {
-                          duration: immediate ? 0 : finalDuration,
+                          duration: immediate || reducedMotion ? 0 : finalDuration,
                       },
         };
         // Reversible always toggles between from-to (playing) to-from (!playing)
@@ -75,6 +79,7 @@ function Transition({
         // console.log('fx', { reset, finalPlaying, immediate, reversible });
     }, [
         playing,
+        reducedMotion,
         direction,
         delay,
         duration,

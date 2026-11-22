@@ -44,11 +44,9 @@ function Image({
     ref = null,
 }: ImageProps) {
     const { metadata = null } = media || {};
-    const {
-        width: mediaWidth = 0,
-        height: mediaHeight = 0,
-        description = 'image',
-    } = metadata || {};
+    const { width: mediaWidth = 0, height: mediaHeight = 0, description = null } = metadata || {};
+    // Without a description, the image is decorative: an empty alt hides it from assistive tech
+    const finalAlt = alt !== null && alt !== '' ? alt : description || '';
     const mediaRatio = mediaWidth / mediaHeight;
 
     const [realSize, setRealSize] = useState({
@@ -211,7 +209,7 @@ function Image({
             {finalUrl !== null && finalShouldLoad ? (
                 <img
                     src={finalUrl}
-                    alt={alt || description}
+                    alt={finalAlt}
                     className={classNames([styles.img, imageClassName])}
                     style={finalImageStyle}
                     width={realWidth}

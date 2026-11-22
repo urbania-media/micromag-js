@@ -24,6 +24,7 @@ export { default as useMediaWaveform } from './useMediaWaveform';
 export * from './useObserver';
 export { default as useParsedStory } from './useParsedStory';
 export { default as usePlaceholderStyle } from './usePlaceholderStyle';
+export { default as usePrefersReducedMotion } from './usePrefersReducedMotion';
 export { default as useProgressSteps } from './useProgressSteps';
 export * from './useScreenSize';
 export { default as useSpringValue } from './useSpringValue';
