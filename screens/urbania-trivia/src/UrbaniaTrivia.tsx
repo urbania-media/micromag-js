@@ -114,8 +114,6 @@ function UrbaniaTrivia({
         setPlaying,
         showControls,
         hideControls,
-        currentQualityLevel,
-        setCurrentQualityLevel,
     } = usePlaybackContext();
     const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
 
@@ -412,8 +410,6 @@ function UrbaniaTrivia({
                                             onEnded={onEnded}
                                             focusable={current && isView}
                                             shouldLoad={mediaShouldLoad}
-                                            qualityStartLevel={currentQualityLevel}
-                                            onQualityLevelChange={setCurrentQualityLevel}
                                         />
                                     )}
 

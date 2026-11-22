@@ -48,6 +48,7 @@ import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
 import stopDragEventsPropagation from '../lib/stopDragEventsPropagation';
+import waitForMediaCanPlay from '../lib/waitForMediaCanPlay';
 
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
@@ -110,6 +111,11 @@ interface ViewerProps {
     neighborScreensActive?: number;
     neighborScreenOffset?: number;
     neighborScreenScale?: number;
+    /**
+     * Delay before the other neighbours (backward, and forward beyond the next screen) start loading.
+     * The next screen starts as soon as the media of the current screen can play, and at the latest
+     * after this delay.
+     */
     neighborPreloadDelay?: number;
     neighborPreloadBackward?: boolean;
     neighborPreloadScreens?: number | null;
@@ -349,6 +355,9 @@ function Viewer({
         }
     }, [finalFocusColor, containerRef]);
 
+    // The next screen preloads as soon as the current media can play, the other neighbours after
+    // `neighborPreloadDelay`, so they don't compete with the next screen for bandwidth
+    const [preloadNext, setPreloadNext] = useState(false);
     const [preloadNeighbors, setPreloadNeighbors] = useState(false);
 
     /**
@@ -368,6 +377,7 @@ function Viewer({
             return;
         }
 
+        setPreloadNext(false);
         setPreloadNeighbors(false);
 
         const lastScreenMedia = lastScreenMediaRef.current;
@@ -751,6 +761,16 @@ function Viewer({
     }, [shareIncentiveVisible, isView]);
 
     useEffect(() => {
+        if (preloadNext || !ready) {
+            return () => {};
+        }
+        return waitForMediaCanPlay(screensMediasRef.current[screenIndex] || null, {
+            timeout: neighborPreloadDelay,
+            onReady: () => setPreloadNext(true),
+        });
+    }, [preloadNext, ready, screenIndex, neighborPreloadDelay]);
+
+    useEffect(() => {
         if (preloadNeighbors) {
             return () => {};
         }
@@ -1002,6 +1022,9 @@ function Viewer({
                                         const active = current || isInActiveRange || isNext;
                                         const preload =
                                             current ||
+                                            (preloadNext &&
+                                                i === screenIndex + 1 &&
+                                                isInPreloadRange) ||
                                             (preloadNeighbors &&
                                                 ((isAfter && isInPreloadRange) ||
                                                     (neighborPreloadBackward &&

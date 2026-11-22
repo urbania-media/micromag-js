@@ -28,8 +28,6 @@ interface VisualProps {
     className?: string | null;
     imageClassName?: string | null;
     videoClassName?: string | null;
-    qualityStartLevel?: number | null;
-    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Visual({
@@ -51,8 +49,6 @@ function Visual({
     imageClassName = null,
     videoClassName = null,
     withoutVideo = false,
-    qualityStartLevel = null,
-    onQualityLevelChange = null,
     ...props
 }: VisualProps) {
     const { type = null, thumbnail_url: thumbnailUrl = null } = media || {};
@@ -103,7 +99,9 @@ function Visual({
             {type === 'image' || !shouldLoad || withoutVideo ? (
                 <Image
                     {...props}
-                    media={isVideo ? { url: thumbnailUrl } : media}
+                    // The video thumbnail (300x300, not the first frame) is only shown where there
+                    // is no video at all (previews): in the viewer it would flash before the video
+                    media={isVideo ? { url: withoutVideo ? thumbnailUrl : null } : media}
                     ref={refVisible}
                     loadingMode={loadingMode !== 'lazy' ? 'lazy' : null}
                     objectFit={objectFit}
@@ -143,8 +141,6 @@ function Visual({
                             shouldLoad={finalShouldLoad}
                             onReady={onLoaded}
                             autoPlay
-                            qualityStartLevel={qualityStartLevel}
-                            onQualityLevelChange={onQualityLevelChange}
                         />
                         <div className={styles.videoTouchOverlay} />
                     </div>

@@ -30,8 +30,6 @@ interface BackgroundProps {
     onPlayError?: ((...args: unknown[]) => void) | null;
     withoutVideo?: boolean;
     forceMuted?: boolean;
-    qualityStartLevel?: number | null;
-    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Background({
@@ -55,8 +53,6 @@ function Background({
     onPlayError = null,
     withoutVideo = false,
     forceMuted = false,
-    qualityStartLevel = null,
-    onQualityLevelChange = null,
 }: BackgroundProps) {
     const {
         type: mediaType = null,
@@ -86,7 +82,9 @@ function Background({
     const imageResolution = useSetting('imageResolution', resolution);
 
     // image
-    if (media !== null && (isImage || (isVideo && (!shouldLoad || withoutVideo)))) {
+    // The video thumbnail (300x300, not the first frame) is only used where there is no video
+    // at all (previews): in the viewer it would flash before the first frame
+    if (media !== null && (isImage || (isVideo && withoutVideo))) {
         const finalUrl = getOptimalImageUrl(
             isVideo ? { url: mediaThumbnailUrl } : media,
             width,
@@ -142,10 +140,7 @@ function Background({
                         disablePictureInPicture
                         autoPlay
                         loop={loop}
-                        withPoster
                         focusable={false}
-                        qualityStartLevel={qualityStartLevel}
-                        onQualityLevelChange={onQualityLevelChange}
                     />
                 </div>
             ) : null}

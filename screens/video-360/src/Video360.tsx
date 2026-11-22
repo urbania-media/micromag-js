@@ -110,8 +110,6 @@ function Video360Screen({
         setPlaying,
         showControls,
         hideControls,
-        currentQualityLevel,
-        setCurrentQualityLevel,
     } = usePlaybackContext();
     const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
     const backgroundPlaying = current && (isView || isEdit) && (isCurrentMedia || !isView);
@@ -542,8 +540,6 @@ function Video360Screen({
                             setPlaying={setPlaying}
                             focusable={current && isView}
                             shouldLoad={mediaShouldLoad}
-                            qualityStartLevel={currentQualityLevel}
-                            onQualityLevelChange={setCurrentQualityLevel}
                         />
                     </div>
                 ) : null}
