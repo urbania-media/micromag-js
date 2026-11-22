@@ -1,87 +1,119 @@
-// eslint-disable-next-line import/prefer-default-export
+interface ImageSize {
+    url?: string | null;
+    webp_url?: string | null;
+    width?: number | null;
+    height?: number | null;
+}
+
+interface OptimalImageMedia {
+    url?: string | null;
+    webp_url?: string | null;
+    sizes?: Record<string, ImageSize> | null;
+    metadata?: { width?: number | null; height?: number | null } | null;
+}
+
+interface GetOptimalImageUrlOptions {
+    resolution?: number | null;
+    supportsWebp?: boolean;
+    /** @deprecated No longer used: the smallest size that covers the rendered size is chosen */
+    maxDiff?: number;
+}
+
+const toDimension = (value: unknown): number | null =>
+    typeof value === 'number' && Number.isFinite(value) && value > 0 ? value : null;
+
+/**
+ * Returns the URL of the smallest size of the image that covers the rendered size (container size
+ * times resolution). When no size covers it, the largest one is returned. A media without `sizes`,
+ * or a call without a container size, returns the media URL as before.
+ */
 const getOptimalImageUrl = (
-    media = null,
-    containerWidth = null,
-    containerHeight = null,
-    { resolution = 1, maxDiff = 800, supportsWebp = false } = {},
-) => {
+    // Image medias, and any object with the same fields (ex.: `{ url }` for a video thumbnail)
+    media: OptimalImageMedia | object | null = null,
+    containerWidth: number | null = null,
+    containerHeight: number | null = null,
+    { resolution = 1, supportsWebp = false }: GetOptimalImageUrlOptions = {},
+): string | null => {
     const {
         sizes = null,
         url: defaultUrl = null,
         webp_url: defaultWebpUrl = null,
-        metadata: { width: imgWidth, height: imgHeight } = {},
-    } = media || {};
+        metadata = null,
+    } = (media || {}) as OptimalImageMedia;
+    const { width: imgWidth = null, height: imgHeight = null } = metadata || {};
     const finalDefaultUrl = supportsWebp && defaultWebpUrl !== null ? defaultWebpUrl : defaultUrl;
 
     if (sizes === null || (containerWidth === null && containerHeight === null)) {
         return finalDefaultUrl;
     }
 
-    const finalSizes = {
-        original: {
-            url: finalDefaultUrl,
-            width: imgWidth,
-            height: imgHeight,
-        },
-        ...sizes,
+    const finalResolution = toDimension(resolution) || 1;
+    const targetWidth =
+        toDimension(containerWidth) !== null ? containerWidth * finalResolution : null;
+    const targetHeight =
+        toDimension(containerHeight) !== null ? containerHeight * finalResolution : null;
+
+    if (targetWidth === null && targetHeight === null) {
+        return finalDefaultUrl;
+    }
+
+    const original = {
+        url: finalDefaultUrl,
+        width: toDimension(imgWidth),
+        height: toDimension(imgHeight),
     };
+    const originalHasSize = original.width !== null || original.height !== null;
 
-    const finalContainerWidth =
-        containerWidth !== null && resolution !== null
-            ? containerWidth * resolution
-            : containerWidth;
-    const finalContainerHeight =
-        containerHeight !== null && resolution !== null
-            ? containerHeight * resolution
-            : containerHeight;
+    // The sizes first: on a tie with the original, the resized file wins
+    const candidates = [
+        ...Object.keys(sizes).map((key) => {
+            const {
+                url = null,
+                webp_url: webpUrl = null,
+                width = null,
+                height = null,
+            } = sizes[key] || {};
+            return {
+                url: supportsWebp && webpUrl !== null ? webpUrl : url,
+                width: toDimension(width),
+                height: toDimension(height),
+            };
+        }),
+        original,
+    ].filter(({ url, width, height }) => url !== null && (width !== null || height !== null));
 
-    const { url: finalUrl } = Object.keys(finalSizes).reduce(
-        (acc, key) => {
-            const { diff: currentDiff, isLarger: currentIsLarger, size: currentSize } = acc;
-            const { url, webp_url: webpUrl = null, width = null, height = null } = finalSizes[key];
-            const sizeUrl = supportsWebp && webpUrl !== null ? webpUrl : url;
-            const diffWidth =
-                width !== null && finalContainerWidth !== null ? width - finalContainerWidth : null;
-            const diffHeight =
-                height !== null && finalContainerHeight !== null
-                    ? height - finalContainerHeight
-                    : null;
-            const isLarger =
-                (diffWidth === null || diffWidth >= 0) && (diffHeight === null || diffHeight >= 0);
-            let diff = [diffWidth, diffHeight].reduce(
-                (total, value) => (value !== null ? (total || 0) + Math.abs(value) : total),
-                null,
-            );
-            if (diff === null) {
-                diff = Infinity;
-            }
-            const size = (width || 0) + (height || 0);
-            const sizeIsLarger = size > currentSize;
+    // Compare on the dimensions known on both sides
+    const covers = ({ width, height }) =>
+        (targetWidth === null || width === null || width >= targetWidth) &&
+        (targetHeight === null || height === null || height >= targetHeight);
+    const getArea = ({ width, height }) =>
+        (width !== null ? width : height) * (height !== null ? height : width);
 
-            if (
-                // Difference is lower and image is larger
-                (diff < currentDiff && isLarger) ||
-                // Difference is lower and current is not larger or diff is greater than max
-                (diff < currentDiff &&
-                    ((!currentIsLarger && sizeIsLarger) || currentDiff > maxDiff)) ||
-                // Image is larger and diff is smaller than max
-                (diff <= maxDiff && !currentIsLarger && isLarger) ||
-                // Image is larger than previous
-                (diff <= maxDiff && !currentIsLarger && !isLarger && sizeIsLarger)
-            ) {
-                return {
-                    key,
-                    url: sizeUrl,
-                    diff,
-                    isLarger,
-                };
-            }
-            return acc;
-        },
-        { key: null, url: finalDefaultUrl, diff: Infinity, isLarger: false, size: 0 },
-    );
+    const best = candidates.reduce((current, candidate) => {
+        if (current === null) {
+            return candidate;
+        }
+        const currentCovers = covers(current);
+        const candidateCovers = covers(candidate);
+        if (candidateCovers !== currentCovers) {
+            return candidateCovers ? candidate : current;
+        }
+        const candidateArea = getArea(candidate);
+        const currentArea = getArea(current);
+        // Among sizes that cover, the smallest; when none covers, the largest
+        if (candidateCovers ? candidateArea < currentArea : candidateArea > currentArea) {
+            return candidate;
+        }
+        return current;
+    }, null);
 
-    return finalUrl;
+    // No size covers the rendered size and the original size is unknown: the original is the
+    // largest file we can expect
+    if (best === null || (!covers(best) && !originalHasSize)) {
+        return finalDefaultUrl;
+    }
+
+    return best.url;
 };
 
 export default getOptimalImageUrl;

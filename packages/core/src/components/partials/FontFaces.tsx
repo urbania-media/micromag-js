@@ -4,8 +4,9 @@ import React from 'react';
 
 const emptyArray: never[] = [];
 
+// Formats in order of preference. EOT (old Internet Explorer) and SVG fonts (old iOS Safari) are
+// not supported by the browsers the viewer runs on, so they are no longer declared.
 const defaultFormats = [
-    'eot',
     'woff2',
     'woff',
     {
@@ -16,7 +17,6 @@ const defaultFormats = [
         name: 'ttf',
         format: 'truetype',
     },
-    'svg',
 ];
 
 const getUrlsFromMedia = (media, formats) => {
@@ -46,12 +46,19 @@ const getUrlsFromMedia = (media, formats) => {
 interface FontFacesProps {
     fonts?: Font[];
     formats?: (string | { name?: string; format?: string })[];
+    /**
+     * `font-display` of the rules. With `swap` the text shows right away in the fallback font and
+     * switches to the custom font once it is loaded, instead of staying invisible while it loads.
+     */
+    display?: string | null;
 }
 
 function FontFaces({
     fonts = emptyArray,
     formats = defaultFormats,
+    display = 'swap',
 }: FontFacesProps) {
+    const fontDisplay = display !== null ? `font-display: ${display};` : '';
     const fontFaces = (fonts || [])
         .filter((it) => isObject(it) && it.type === 'custom' && (it.media || null) !== null)
         .reduce((fontFontFaces, { name = null, media = null, variants = [] }) => {
@@ -70,6 +77,7 @@ function FontFaces({
                 @font-face {
                     font-family: "${name}";
                     src: ${urls.join(',')};
+                    ${fontDisplay}
                 }
             `
                         : null,
@@ -92,6 +100,7 @@ function FontFaces({
                     ${weight !== null ? `font-weight: ${weight};` : ''}
                     ${style !== null ? `font-style: ${style};` : ''}
                     src: ${variantUrls.join(',')};
+                    ${fontDisplay}
                 }
             `
                                     : null,
