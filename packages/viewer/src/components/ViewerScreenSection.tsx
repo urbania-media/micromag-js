@@ -1,6 +1,6 @@
 import { SpringValue, animated } from '@react-spring/web';
 import classNames from 'classnames';
-import React, { RefObject } from 'react';
+import React, { RefObject, memo } from 'react';
 import { useIntl } from 'react-intl';
 
 import type { MediaElement, RenderContext, ScreenComponent } from '@micromag/core';
@@ -175,4 +175,6 @@ function ViewerScreenSection({
     );
 }
 
-export default ViewerScreenSection;
+// `memo`: the React compiler recreates the list of sections in `Viewer` as a whole when one of them
+// changes, so without it every section rendered again at each render of the viewer, with equal props.
+export default memo(ViewerScreenSection);
