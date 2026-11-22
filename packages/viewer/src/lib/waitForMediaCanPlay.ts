@@ -31,7 +31,6 @@ function waitForMediaCanPlay(
             timeoutId = null;
         }
         if (media !== null) {
-            // eslint-disable-next-line @typescript-eslint/no-use-before-define
             events.forEach((event) => media.removeEventListener(event, onCanPlay));
         }
     };

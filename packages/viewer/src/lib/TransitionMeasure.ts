@@ -39,7 +39,7 @@ export interface ViewerTransitionMetric {
         dropped: number;
         /** Longest gap between two frames, in ms */
         maxGap: number;
-        /** Frame interval of the display, estimated from the shortest gap */
+        /** Frame interval of the display, estimated from the median gap */
         interval: number;
     };
     /** Long tasks or long animation frames overlapping the transition */
@@ -107,6 +107,29 @@ const getMediaType = (media: MediaElement): ViewerTransitionMediaMetric['type'] 
 
 const getMediaIsPlaying = (media: MediaElement) =>
     !media.paused && !media.ended && media.readyState >= HAVE_FUTURE_DATA;
+
+/**
+ * Frame count, dropped frames and longest gap from the gaps between animation frames. The frame
+ * interval is the median gap: the shortest one can be a near-duplicate frame of a few ms, which
+ * made every normal frame count as several dropped ones.
+ */
+export function getFrameStats(gaps: number[]): ViewerTransitionMetric['frames'] | null {
+    if (gaps.length === 0) {
+        return null;
+    }
+    const sorted = [...gaps].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    const interval = Math.min(Math.max(median, 1000 / 240), 1000 / 30);
+    return {
+        count: gaps.length + 1,
+        dropped: gaps.reduce(
+            (total, gap) => total + Math.max(0, Math.round(gap / interval) - 1),
+            0,
+        ),
+        maxGap: sorted[sorted.length - 1],
+        interval,
+    };
+}
 
 /**
  * Measures one screen change of the viewer: the animation (frames and long tasks), the state of
@@ -312,18 +335,9 @@ class TransitionMeasure {
         }
 
         // Frames
-        const gaps = this.frameGaps;
-        if (gaps.length > 0) {
-            const interval = Math.min(Math.max(Math.min(...gaps), 4), 1000 / 30);
-            metric.frames = {
-                count: gaps.length + 1,
-                dropped: gaps.reduce(
-                    (total, gap) => total + Math.max(0, Math.round(gap / interval) - 1),
-                    0,
-                ),
-                maxGap: Math.max(...gaps),
-                interval,
-            };
+        const frames = getFrameStats(this.frameGaps);
+        if (frames !== null) {
+            metric.frames = frames;
         }
 
         // Long tasks: the entries arrive after the frame, so they are read at the end
