@@ -43,9 +43,10 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      # No secret and read-only permissions here: the install scripts of the dependencies can run
+      # No secret and read-only permissions here: the install scripts of the dependencies can run.
+      # No audit: npm audit takes about 5 minutes on this tree (Dependabot reports the advisories).
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       # The published packages need the other packages to be built (ex.: @micromag/core css)
       - name: Build packages
@@ -89,23 +90,68 @@ jobs:
           name: packages
           path: ${{ runner.temp }}/packages
 
-      # Trusted publishing needs npm 11.5.1 or later; provenance is added on its own
+      # Trusted publishing needs npm 11.5.1 or later; provenance is added on its own. The packages
+      # are published 4 at a time: each one gets its own OIDC token and provenance signature. A
+      # version already on npm is skipped, so a failed run can be run again (workflow_dispatch).
       - name: Publish missing versions
         working-directory: ${{ runner.temp }}/packages
+        env:
+          CONCURRENCY: 4
         run: |
           npm --version
-          published=0
-          for tarball in *.tgz; do
-            manifest=$(tar -xOzf "$tarball" package/package.json)
-            name=$(jq -r .name <<<"$manifest")
-            version=$(jq -r .version <<<"$manifest")
-            if npm view "$name@$version" version --silent >/dev/null 2>&1; then
-              echo "$name@$version is already on npm"
-              continue
+          results="$RUNNER_TEMP/publish-results"
+          mkdir -p "$results"
+
+          publish_package() {
+            local tarball="$1" manifest name version
+            manifest=$(tar -xOzf "$tarball" package/package.json 2>/dev/null)
+            name=$(jq -r '.name // empty' <<<"$manifest" 2>/dev/null)
+            version=$(jq -r '.version // empty' <<<"$manifest" 2>/dev/null)
+            if [ -z "$name" ] || [ -z "$version" ]; then
+              echo "No package.json in $tarball" > "$results/$tarball.log"
+              echo "failed $tarball" > "$results/$tarball.status"
+              return 0
             fi
-            echo "::group::Publishing $name@$version"
-            npm publish "./$tarball" --access public --ignore-scripts
+            if npm view "$name@$version" version --silent >/dev/null 2>&1; then
+              echo "skipped $name@$version" > "$results/$tarball.status"
+              return 0
+            fi
+            if npm publish "./$tarball" --access public --ignore-scripts > "$results/$tarball.log" 2>&1; then
+              echo "published $name@$version" > "$results/$tarball.status"
+            else
+              echo "failed $name@$version" > "$results/$tarball.status"
+            fi
+          }
+          export -f publish_package
+          export results
+
+          ls -1 *.tgz | xargs -P "$CONCURRENCY" -I {} bash -c 'publish_package "$1"' _ {}
+
+          for log in "$results"/*.log; do
+            [ -e "$log" ] || continue
+            tarball=$(basename "$log" .log)
+            echo "::group::$(cut -d' ' -f2 "$results/$tarball.status")"
+            cat "$log"
             echo "::endgroup::"
-            published=$((published + 1))
           done
-          echo "Published $published package(s)" | tee -a "$GITHUB_STEP_SUMMARY"
+
+          cat "$results"/*.status | sort -k2 > "$results/all"
+          grep '^skipped ' "$results/all" | sed 's/^skipped \(.*\)/\1 is already on npm/' || true
+          { grep '^failed ' "$results/all" || true; } | while read -r _ package; do
+            echo "::error::Publishing $package failed (see its group in the log)"
+          done
+          tarballs=$(ls -1 *.tgz | wc -l)
+          statuses=$(wc -l < "$results/all")
+          published=$(grep -c '^published ' "$results/all" || true)
+          failed=$(grep -c '^failed ' "$results/all" || true)
+          {
+            echo "Published $published package(s), $failed failed"
+            { grep -E '^(published|failed) ' "$results/all" || true; } | sed 's/^/- /'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          if [ "$statuses" -ne "$tarballs" ]; then
+            echo "::error::$tarballs tarballs but $statuses results"
+            exit 1
+          fi
+          if [ "$failed" -gt 0 ]; then
+            exit 1
+          fi
