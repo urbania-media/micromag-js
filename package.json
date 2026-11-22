@@ -170,9 +170,6 @@
         "wouter": "^3.9.0"
     },
     "overrides": {
-        "vue": "3.5.29",
-        "@ckeditor/ckeditor5-theme-lark": {
-            "@ckeditor/ckeditor5-ui": "$ckeditor5"
-        }
+        "vue": "3.5.29"
     }
 }
