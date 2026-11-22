@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import type { MenuItem } from '@micromag/core';
@@ -45,6 +45,25 @@ function ViewerMenuDots({
     const currentIndex = items.findIndex(({ current = false }) => current);
     const { style } = props || {};
 
+    // The click handler of the dots stays the same between screens (it reads the latest items
+    // and callbacks from a ref): a new closure per dot re-rendered every dot at each screen change
+    const onClickDotIndexRef = useRef<((index: number) => void) | null>(null);
+    useEffect(() => {
+        onClickDotIndexRef.current = (index: number) => {
+            const item = items[index] || null;
+            if ((withItemClick || withoutScreensMenu) && onClickDot !== null) {
+                onClickDot(item);
+            } else if (!withItemClick && onClickScreensMenu !== null) {
+                onClickScreensMenu();
+            }
+        };
+    }, [items, withItemClick, withoutScreensMenu, onClickDot, onClickScreensMenu]);
+    const onClickDotIndex = (index: number) => {
+        if (onClickDotIndexRef.current !== null) {
+            onClickDotIndexRef.current(index);
+        }
+    };
+
     return (
         <nav
             className={classNames([
@@ -78,13 +97,8 @@ function ViewerMenuDots({
                         count={count}
                         subIndex={subIndex}
                         className={styles.dot}
-                        onClick={() => {
-                            if ((withItemClick || withoutScreensMenu) && onClickDot !== null) {
-                                onClickDot(item);
-                            } else if (!withItemClick && onClickScreensMenu !== null) {
-                                onClickScreensMenu();
-                            }
-                        }}
+                        index={index}
+                        onClick={onClickDotIndex}
                         vertical={direction === 'vertical'}
                     />
                 );

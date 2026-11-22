@@ -459,31 +459,41 @@ const withMediaFiles = (media) => ({
     },
 });
 
-const transitionMetricStory = {
+const transitionMetricMedias = [
+    videoMedia(),
+    videoMedia({ vertical: true }),
+    videoMediaWithSound(),
+    videoMedia({ big: true }),
+    bigVideoMediaWithSound(),
+];
+
+// The same 5 videos, repeated to `count` screens
+const getTransitionMetricStory = (count: number) => ({
     title: 'Transition metric',
-    components: [
-        videoMedia(),
-        videoMedia({ vertical: true }),
-        videoMediaWithSound(),
-        videoMedia({ big: true }),
-        bigVideoMediaWithSound(),
-    ].map((media, index) => ({
+    components: Array.from({ length: count }, (_, index) => ({
         id: `video-${index + 1}`,
         type: 'video',
         layout: 'full',
-        video: { media: withMediaFiles(media), autoPlay: true, loop: true },
+        video: {
+            media: withMediaFiles(transitionMetricMedias[index % transitionMetricMedias.length]),
+            autoPlay: true,
+            loop: true,
+        },
     })),
-};
+});
+
+const transitionMetricStory = getTransitionMetricStory(5);
+const transitionMetricLongStory = getTransitionMetricStory(30);
 
 const formatMetricMs = (value: number | null) =>
     value !== null ? `${Math.round(value)} ms` : 'n/a';
 
-function TransitionMetricViewer() {
+function TransitionMetricViewer({ story = transitionMetricStory }) {
     const [metrics, setMetrics] = useState<ViewerTransitionMetric[]>([]);
     return (
         <>
             <Viewer
-                story={transitionMetricStory}
+                story={story}
                 memoryRouter
                 onTransitionMetric={(metric: ViewerTransitionMetric) => {
                     console.log('Transition metric', metric);
@@ -541,6 +551,10 @@ function TransitionMetricViewer() {
 }
 
 export const TransitionMetric = meta.story(() => <TransitionMetricViewer />);
+
+export const TransitionMetricLong = meta.story(() => (
+    <TransitionMetricViewer story={transitionMetricLongStory} />
+));
 
 export const MultipleVideosForcePaused = meta.story(() => (
     <Viewer screenId="1" story={multipleVideosStory} withNavigationHint paused memoryRouter />
