@@ -89,16 +89,16 @@ describe('FontFaces', () => {
 });
 
 describe('GoogleFonts', () => {
-    test('links the Google Fonts stylesheet with preconnects', () => {
+    test('renders only the preconnects: the stylesheet is added from an effect', () => {
         const html = renderToStaticMarkup(
             createElement(GoogleFonts, {
                 fonts: [{ type: 'google', name: 'Roboto', variants: ['700'] }],
             }),
         );
+        expect(html).toContain('rel="preconnect" href="https://fonts.googleapis.com"');
         expect(html).toContain('rel="preconnect" href="https://fonts.gstatic.com"');
-        expect(html).toContain(
-            'href="https://fonts.googleapis.com/css?family=Roboto:700&amp;display=swap"',
-        );
+        // A stylesheet link in server-rendered HTML would make the scripts after it wait for it
+        expect(html).not.toContain('stylesheet');
     });
 
     test('renders nothing without Google fonts', () => {
