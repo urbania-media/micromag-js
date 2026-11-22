@@ -40,6 +40,7 @@ export { default as Detector } from './partials/Detector';
 export { default as Element } from './partials/Element';
 export { default as Empty } from './partials/Empty';
 export { default as FontFaces } from './partials/FontFaces';
+export { default as GoogleFonts } from './partials/GoogleFonts';
 export { default as Label } from './partials/Label';
 export { default as Link } from './partials/Link';
 export { default as Media } from './partials/Media';
