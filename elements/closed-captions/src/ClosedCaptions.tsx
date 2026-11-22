@@ -93,10 +93,7 @@ function ClosedCaptions({
     const finalBoxStyles = boxStyle !== null ? getStyleFromBox(boxStyle) : null;
 
     return (
-        <div
-            className={classNames([styles.container, className])}
-            aria-live={current !== false ? 'polite' : 'off'}
-        >
+        <div className={classNames([styles.container, className])}>
             {active ? (
                 <div className={styles.captions} style={finalBoxStyles}>
                     <TextElement textStyle={textStyle} body={line.text} />

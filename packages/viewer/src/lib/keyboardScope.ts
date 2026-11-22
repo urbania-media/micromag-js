@@ -1,7 +1,8 @@
 /**
  * Keyboard shortcuts listen on the window. With several viewers on one page, only the viewer the
- * reader is using must respond: the one holding the focus or, when nothing has the focus, the last
- * one the reader touched (or the only viewer of the page).
+ * reader is using must respond: the one holding the focus or, when the focus is not in a viewer
+ * (nothing focused, or an element of the host page), the last one the reader touched (or the only
+ * viewer of the page). A single viewer responds as before, wherever the focus is outside it.
  */
 
 export const VIEWER_SCOPE_ATTRIBUTE = 'data-micromag-viewer';
@@ -11,7 +12,7 @@ let lastScope: Element | null = null;
 
 function onInteraction(e: Event) {
     const target = e.target instanceof Node ? e.target : null;
-    lastScope = null;
+    // A click in the host page keeps the last viewer used
     scopes.forEach((count, scope) => {
         if (target !== null && scope.contains(target)) {
             lastScope = scope;
@@ -51,21 +52,29 @@ export function shouldHandleKeyboardEvent({
     activeElement,
     body,
     last = lastScope !== null && scopes.has(lastScope) ? lastScope : null,
-    scopesCount = scopes.size,
+    otherScopes = [...scopes.keys()].filter((it) => it !== scope),
 }: {
     scope: Element | null;
     activeElement: Element | null;
     body: Element | null;
     last?: Element | null;
-    scopesCount?: number;
+    otherScopes?: Element[];
 }): boolean {
     // Not scoped: as before, every key pressed on the page
     if (scope === null) {
         return true;
     }
-    if (activeElement !== null && activeElement !== body) {
-        return scope.contains(activeElement);
+    const withFocus = activeElement !== null && activeElement !== body;
+    if (withFocus && scope.contains(activeElement)) {
+        return true;
     }
-    // Nothing has the focus
-    return last !== null ? last === scope : scopesCount <= 1;
+    // The focus is in another viewer: that one responds
+    if (withFocus && otherScopes.some((other) => other.contains(activeElement))) {
+        return false;
+    }
+    // Nothing focused, or an element of the host page: the last viewer used, or the only one
+    if (last !== null) {
+        return last === scope;
+    }
+    return otherScopes.length === 0;
 }

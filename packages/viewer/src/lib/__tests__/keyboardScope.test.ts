@@ -13,53 +13,70 @@ function createElement(children: object[] = []) {
 describe('shouldHandleKeyboardEvent', () => {
     const body = createElement();
     const buttonA = createElement();
+    const buttonB = createElement();
     const viewerA = createElement([buttonA]);
-    const viewerB = createElement();
-    const hostInput = createElement();
+    const viewerB = createElement([buttonB]);
+    const hostLink = createElement();
 
     it('handles every key when not scoped (as before)', () => {
-        expect(shouldHandleKeyboardEvent({ scope: null, activeElement: hostInput, body })).toBe(
+        expect(shouldHandleKeyboardEvent({ scope: null, activeElement: hostLink, body })).toBe(
             true,
         );
     });
 
-    it('handles the keys when the focus is in the viewer', () => {
-        expect(
-            shouldHandleKeyboardEvent({ scope: viewerA, activeElement: buttonA, body, last: null }),
-        ).toBe(true);
-        expect(
-            shouldHandleKeyboardEvent({ scope: viewerB, activeElement: buttonA, body, last: null }),
-        ).toBe(false);
+    describe('a single viewer on the page (same as before)', () => {
+        const single = { scope: viewerA, body, last: null, otherScopes: [] };
+
+        it('responds when the focus is in the viewer', () => {
+            expect(shouldHandleKeyboardEvent({ ...single, activeElement: buttonA })).toBe(true);
+        });
+
+        it('responds when nothing has the focus', () => {
+            expect(shouldHandleKeyboardEvent({ ...single, activeElement: body })).toBe(true);
+            expect(shouldHandleKeyboardEvent({ ...single, activeElement: null })).toBe(true);
+        });
+
+        it('responds when the focus is on an element of the host page', () => {
+            expect(shouldHandleKeyboardEvent({ ...single, activeElement: hostLink })).toBe(true);
+            expect(
+                shouldHandleKeyboardEvent({ ...single, activeElement: hostLink, last: viewerA }),
+            ).toBe(true);
+        });
     });
 
-    it('ignores the keys when the focus is elsewhere in the host page', () => {
-        expect(
-            shouldHandleKeyboardEvent({
-                scope: viewerA,
-                activeElement: hostInput,
-                body,
-                last: viewerA,
-                scopesCount: 1,
-            }),
-        ).toBe(false);
-    });
+    describe('several viewers on the page', () => {
+        it('only the viewer holding the focus responds', () => {
+            const args = { activeElement: buttonA, body, last: viewerB };
+            expect(
+                shouldHandleKeyboardEvent({ ...args, scope: viewerA, otherScopes: [viewerB] }),
+            ).toBe(true);
+            expect(
+                shouldHandleKeyboardEvent({ ...args, scope: viewerB, otherScopes: [viewerA] }),
+            ).toBe(false);
+        });
 
-    it('without focus, the only viewer of the page responds (as before)', () => {
-        expect(
-            shouldHandleKeyboardEvent({
-                scope: viewerA,
-                activeElement: body,
-                body,
-                last: null,
-                scopesCount: 1,
-            }),
-        ).toBe(true);
-    });
+        it('focus in the host page or nowhere: the last viewer used responds', () => {
+            for (const activeElement of [body, hostLink]) {
+                const args = { activeElement, body, last: viewerB };
+                expect(
+                    shouldHandleKeyboardEvent({ ...args, scope: viewerA, otherScopes: [viewerB] }),
+                ).toBe(false);
+                expect(
+                    shouldHandleKeyboardEvent({ ...args, scope: viewerB, otherScopes: [viewerA] }),
+                ).toBe(true);
+            }
+        });
 
-    it('without focus and several viewers, only the last one used responds', () => {
-        const args = { activeElement: body, body, scopesCount: 2 };
-        expect(shouldHandleKeyboardEvent({ ...args, scope: viewerA, last: viewerB })).toBe(false);
-        expect(shouldHandleKeyboardEvent({ ...args, scope: viewerB, last: viewerB })).toBe(true);
-        expect(shouldHandleKeyboardEvent({ ...args, scope: viewerA, last: null })).toBe(false);
+        it('no viewer used yet: none responds', () => {
+            expect(
+                shouldHandleKeyboardEvent({
+                    scope: viewerA,
+                    activeElement: hostLink,
+                    body,
+                    last: null,
+                    otherScopes: [viewerB],
+                }),
+            ).toBe(false);
+        });
     });
 });
