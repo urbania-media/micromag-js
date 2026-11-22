@@ -44,8 +44,30 @@ export const ViewerContext = createContext<ViewerContextType>({
 
 export const useViewerContext = () => use(ViewerContext);
 
+/*
+ * Parts of the viewer context, each in its own context, so that a component reading one part does
+ * not render again when another one changes (ex.: `activityDetected` changes at every pointer
+ * activity, the safe zones when the playback controls show). `ViewerContext` still holds every
+ * value for `useViewerContext()`. The hooks below fall back to `ViewerContext` when it is provided
+ * without `ViewerProvider`.
+ */
+type ViewerSizeContextType = Pick<ViewerContextType, 'width' | 'height'>;
+type ViewerNavigationContextType = Pick<ViewerContextType, 'gotoNextScreen' | 'gotoPreviousScreen'>;
+type ViewerInteractionContextType = Pick<
+    ViewerContextType,
+    'disableInteraction' | 'enableInteraction'
+>;
+type ViewerWebViewContextType = Pick<ViewerContextType, 'webView' | 'setWebView'>;
+
+const ViewerSizeContext = createContext<ViewerSizeContextType | null>(null);
+const ViewerNavigationContext = createContext<ViewerNavigationContextType | null>(null);
+const ViewerEventsContext = createContext<EventEmitter | null>(null);
+const ViewerActivityContext = createContext<boolean | null>(null);
+const ViewerInteractionContext = createContext<ViewerInteractionContextType | null>(null);
+const ViewerWebViewContext = createContext<ViewerWebViewContextType | null>(null);
+
 export const useViewerSize = () => {
-    const { width, height } = useViewerContext();
+    const { width, height } = use(ViewerSizeContext) || use(ViewerContext);
     return {
         width,
         height,
@@ -53,7 +75,8 @@ export const useViewerSize = () => {
 };
 
 export const useViewerNavigation = () => {
-    const { gotoNextScreen, gotoPreviousScreen } = useViewerContext();
+    const { gotoNextScreen, gotoPreviousScreen } =
+        use(ViewerNavigationContext) || use(ViewerContext);
     return {
         gotoNextScreen,
         gotoPreviousScreen,
@@ -61,22 +84,27 @@ export const useViewerNavigation = () => {
 };
 
 export const useViewerEvents = () => {
-    const { events } = useViewerContext();
-    return events;
+    const events = use(ViewerEventsContext);
+    return events !== null ? events : use(ViewerContext).events;
 };
 
 export const useViewerActivityDetected = () => {
-    const { activityDetected = false } = useViewerContext();
-    return activityDetected;
+    const activityDetected = use(ViewerActivityContext);
+    if (activityDetected !== null) {
+        return activityDetected;
+    }
+    const { activityDetected: contextActivityDetected = false } = use(ViewerContext);
+    return contextActivityDetected;
 };
 
 export const useViewerInteraction = () => {
-    const { disableInteraction, enableInteraction } = useViewerContext();
+    const { disableInteraction, enableInteraction } =
+        use(ViewerInteractionContext) || use(ViewerContext);
     return { disableInteraction, enableInteraction };
 };
 
 export const useViewerWebView = () => {
-    const { webView, setWebView } = useViewerContext();
+    const { webView, setWebView } = use(ViewerWebViewContext) || use(ViewerContext);
 
     const value = useMemo(
         () => ({
@@ -154,5 +182,25 @@ export function ViewerProvider({
         webView,
         setWebView,
     };
-    return <ViewerContext value={value}>{children}</ViewerContext>;
+    const size = { width, height };
+    const navigation = { gotoNextScreen, gotoPreviousScreen };
+    const interaction = { disableInteraction, enableInteraction };
+    const webViewValue = { webView, setWebView };
+    return (
+        <ViewerContext value={value}>
+            <ViewerSizeContext value={size}>
+                <ViewerNavigationContext value={navigation}>
+                    <ViewerEventsContext value={events}>
+                        <ViewerActivityContext value={activityDetected}>
+                            <ViewerInteractionContext value={interaction}>
+                                <ViewerWebViewContext value={webViewValue}>
+                                    {children}
+                                </ViewerWebViewContext>
+                            </ViewerInteractionContext>
+                        </ViewerActivityContext>
+                    </ViewerEventsContext>
+                </ViewerNavigationContext>
+            </ViewerSizeContext>
+        </ViewerContext>
+    );
 }

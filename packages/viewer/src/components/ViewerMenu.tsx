@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ForwardedRef, ReactNode, useEffect, useState } from 'react';
+import { ForwardedRef, ReactNode, memo, useEffect, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 
 import type { ScreenSize, Story, ViewerTheme } from '@micromag/core';
@@ -453,4 +453,6 @@ function ViewerMenu({
     );
 }
 
-export default ViewerMenu;
+// `memo`: the React compiler recreates the elements of the viewer as a block when one of its values
+// changes (ex.: playback), so the menu and all its buttons rendered again with equal props.
+export default memo(ViewerMenu);

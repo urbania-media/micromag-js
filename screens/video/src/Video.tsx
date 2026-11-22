@@ -30,12 +30,14 @@ import {
     mergeRefs,
 } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Footer from '@micromag/element-footer';
 import Header from '@micromag/element-header';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
+
+import VideoClosedCaptions from './VideoClosedCaptions';
+import createTimeStore from './createTimeStore';
 
 import styles from './video.module.css';
 
@@ -155,24 +157,21 @@ function VideoScreen({
     };
     useDebounce(current ? toggleControlsVisibility : null, activityDetected, 1000);
 
-    const [currentTime, setCurrentTime] = useState(null);
-    const [duration, setDuration] = useState(null);
+    // The current time is only read by the captions: kept out of the screen's state so that a
+    // `timeupdate` (about 4 per second) doesn't render the whole screen
+    const [timeStore] = useState(() => createTimeStore());
 
     const onTimeUpdate = (time = null) => {
         if (time !== null && typeof time.currentTarget !== 'undefined') {
             const { currentTime: targetTime = 0 } = time.currentTarget || {};
-            setCurrentTime(targetTime);
+            timeStore.set(targetTime);
         } else {
-            setCurrentTime(0);
+            timeStore.set(0);
         }
     };
 
     const onProgressStep = (step, meta) => {
         trackScreenMedia(videoMedia, `progress_${Math.round(step * 100, 10)}%`, meta);
-    };
-
-    const onDurationChange = (dur) => {
-        setDuration(dur);
     };
 
     const onPlay = ({ initial }) => {
@@ -338,7 +337,6 @@ function VideoScreen({
                                         onPause={onPause}
                                         onTimeUpdate={onTimeUpdate}
                                         onProgressStep={onProgressStep}
-                                        onDurationChange={onDurationChange}
                                         onSeeked={onSeeked}
                                         onEnded={onEnded}
                                         // onSuspended={onSuspended}
@@ -371,11 +369,11 @@ function VideoScreen({
                             !isPreview &&
                             !isCapture &&
                             !isStatic ? (
-                                <ClosedCaptions
+                                <VideoClosedCaptions
                                     className={styles.closedCaptions}
                                     media={closedCaptions} // BW Compat
                                     {...captions}
-                                    currentTime={currentTime}
+                                    timeStore={timeStore}
                                 />
                             ) : null}
                             {hasFooter ? <Footer {...footerProps} /> : null}

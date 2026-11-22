@@ -1,3 +1,4 @@
+import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import isString from 'lodash-es/isString';
@@ -5,8 +6,9 @@ import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { MediaElement } from '@micromag/core/contexts';
-import { useMediaCurrentTime, useMediaDuration, useMediaProgress } from '@micromag/core/hooks';
+import { useMediaCurrentTime, useMediaDuration } from '@micromag/core/hooks';
 
+import useMediaProgressSpring from '../../hooks/useMediaProgressSpring';
 import stopDragEventsPropagation from '../../lib/stopDragEventsPropagation';
 
 import styles from '../../styles/partials/seek-bar.module.css';
@@ -64,7 +66,8 @@ function SeekBar({
     withSeekHead = true,
 }: SeekBarProps) {
     const intl = useIntl();
-    const progress = useMediaProgress(media, {
+    // A spring, not state: the bar moves at every frame without rendering the component
+    const progress = useMediaProgressSpring(media, {
         disabled: !playing,
     });
     const [showTimestamp, setShowTimestamp] = useState(false);
@@ -75,7 +78,7 @@ function SeekBar({
         disabled: !playing && !showTimestamp,
     });
 
-    const startProgressRef = useRef(progress);
+    const startProgressRef = useRef(progress.get());
 
     const onDrag = ({
         xy: [xOffset],
@@ -106,7 +109,7 @@ function SeekBar({
     };
 
     const onDragStart = () => {
-        startProgressRef.current = progress;
+        startProgressRef.current = progress.get();
         setShowTimestamp(true);
         if (onSeekStart !== null) {
             onSeekStart();
@@ -144,10 +147,10 @@ function SeekBar({
             <div className={styles.inner}>
                 <div className={styles.progressBarContainer}>
                     <div className={styles.progressBar} style={{ backgroundColor }} />
-                    <div
+                    <animated.div
                         className={styles.playHead}
                         style={{
-                            left: `${progress * 100}%`,
+                            left: progress.to((value) => `${value * 100}%`),
                             backgroundColor: progressColor,
                         }}
                     >
@@ -162,16 +165,16 @@ function SeekBar({
                                 duration < SHOW_MILLISECONDS_THRESHOLD,
                             )}
                         </div>
-                    </div>
-                    <div
+                    </animated.div>
+                    <animated.div
                         className={styles.progress}
                         style={{
-                            transform: `scaleX(${progress})`,
+                            transform: progress.to((value) => `scaleX(${value})`),
                             backgroundColor: progressColor,
                         }}
                     />
                 </div>
-                <button
+                <animated.button
                     {...bind()}
                     type="button"
                     role="slider"

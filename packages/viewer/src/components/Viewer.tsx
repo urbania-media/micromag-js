@@ -43,6 +43,7 @@ import { ShareIncentive } from '@micromag/elements/all';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useSafeAreaInsets from '../hooks/useSafeAreaInsets';
 import useScreenInteraction from '../hooks/useScreenInteraction';
+import useStableHandler from '../hooks/useStableHandler';
 import useTransitionMetrics from '../hooks/useTransitionMetrics';
 import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 import checkClickable from '../lib/checkClickable';
@@ -420,13 +421,14 @@ function Viewer({
         }
     };
 
-    const gotoPreviousScreen = () => {
+    // Stable: they are in the viewer context, read by every screen
+    const gotoPreviousScreen = useStableHandler(() => {
         changeIndex(Math.max(0, screenIndex - 1));
-    };
+    });
 
-    const gotoNextScreen = () => {
+    const gotoNextScreen = useStableHandler(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
-    };
+    });
 
     const [hasInteracted, setHasInteracted] = useState(false);
     const [wasUnmuted, setWasUnmuted] = useState(false);
@@ -590,15 +592,13 @@ function Viewer({
     const navigationDisabled = currentScreenInteractionEnabled === false;
 
     // Stable callback, so that the screens are not rendered again when the host passes a new one
-    const onScreenErrorRef = useRef(onScreenError);
-    useEffect(() => {
-        onScreenErrorRef.current = onScreenError;
-    }, [onScreenError]);
-    const onScreenErrorPrivate = (error, info) => {
-        if (onScreenErrorRef.current !== null) {
-            onScreenErrorRef.current(error, info);
-        }
-    };
+    const onScreenErrorPrivate = useStableHandler(
+        (error: Error, info: ScreenErrorInfo & { screen: ScreenComponent; index: number }) => {
+            if (onScreenError !== null) {
+                onScreenError(error, info);
+            }
+        },
+    );
 
     // With reduced motion, the screens change without animation (taps, swipes and keys)
     const prefersReducedMotion = usePrefersReducedMotion();
@@ -671,12 +671,13 @@ function Viewer({
     const { ref: menuDotsContainerRef, height: menuDotsContainerHeight = 0 } =
         useDimensionObserver();
 
-    const onClickScreen = ({ screenId: itemScreenId }) => {
+    // Stable, so that the menu doesn't render again with the viewer
+    const onClickScreen = useStableHandler(({ screenId: itemScreenId }) => {
         onInteractionPrivate();
 
         const index = screens.findIndex(({ id }) => id === itemScreenId);
         changeIndex(index);
-    };
+    });
 
     const onContextMenu = (e) => {
         if (!landscape) {
