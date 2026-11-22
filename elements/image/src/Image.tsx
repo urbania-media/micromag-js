@@ -1,9 +1,9 @@
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
-import React, { ForwardedRef, useCallback, useRef, useState } from 'react';
+import React, { ForwardedRef, useState } from 'react';
 
 import type { ContainerStyle, ImageMedia, ObjectFit } from '@micromag/core';
-import { useSetting } from '@micromag/core/contexts';
+import { useScreenIsCurrent, useSetting } from '@micromag/core/contexts';
 import { getOptimalImageUrl } from '@micromag/core/utils';
 
 import styles from './styles.module.css';
@@ -22,7 +22,7 @@ interface ImageProps {
     className?: string | null;
     imageClassName?: string | null;
     onLoaded?: ((...args: unknown[]) => void) | null;
-    loadingMode?: string;
+    loadingMode?: 'lazy' | 'eager' | null;
     shouldLoad?: boolean;
     ref?: ForwardedRef<HTMLDivElement> | null;
 }
@@ -39,7 +39,7 @@ function Image({
     className = null,
     imageClassName = null,
     onLoaded = null,
-    loadingMode = 'lazy',
+    loadingMode,
     shouldLoad = true,
     ref = null,
 }: ImageProps) {
@@ -58,6 +58,16 @@ function Image({
     const { width: realWidth = 0, height: realHeight = 0 } = realSize;
     const supportsWebp = useSetting('supportsWebp', false);
     const imageResolution = useSetting('imageResolution', resolution);
+
+    // Unless the parent sets a loading mode, the images of the current screen load first and the
+    // others lazily, as before
+    const isCurrentScreen = useScreenIsCurrent();
+    const withDefaultLoading = typeof loadingMode === 'undefined';
+    let finalLoadingMode = loadingMode;
+    if (withDefaultLoading) {
+        finalLoadingMode = isCurrentScreen ? 'eager' : 'lazy';
+    }
+    const fetchPriority = withDefaultLoading && isCurrentScreen ? 'high' : null;
 
     const [wasLoaded, setWasLoaded] = useState(shouldLoad);
     if (shouldLoad && !wasLoaded) {
@@ -160,8 +170,9 @@ function Image({
             finalHeight = realHeight > 0 ? mediaHeight : null;
         }
 
-        imageWidthPixel = ratioWidth ?? realWidth ?? mediaWidth;
-        imageHeightPixel = ratioHeight ?? realHeight ?? mediaHeight;
+        // The rendered size when known, the size of the file otherwise
+        imageWidthPixel = validWidth ? width : (ratioWidth ?? (realWidth || mediaWidth));
+        imageHeightPixel = validHeight ? height : (ratioHeight ?? (realHeight || mediaHeight));
 
         finalContainerStyle = {
             width: finalWidth,
@@ -206,7 +217,9 @@ function Image({
                     width={realWidth}
                     height={realHeight}
                     onLoad={onImageLoaded}
-                    loading={loadingMode}
+                    loading={finalLoadingMode}
+                    fetchPriority={fetchPriority}
+                    decoding="async"
                 />
             ) : null}
         </div>
