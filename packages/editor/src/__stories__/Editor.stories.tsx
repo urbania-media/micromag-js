@@ -1,4 +1,4 @@
-import { callToAction, conversation, hlsVideoMedia, sortItems, videoMedia } from '#.storybook/data';
+import { callToAction, conversation, sortItems, videoMedia } from '#.storybook/data';
 import galleries from '#.storybook/data/galleries';
 import allScreensStory from '#.storybook/data/stories/allScreens';
 import article from '#.storybook/data/stories/article-generic';
@@ -26,7 +26,6 @@ import withGoogleMaps from '#.storybook/decorators/withGoogleMaps';
 import withUppy from '#.storybook/decorators/withUppy';
 import preview from '#.storybook/preview';
 import React, { useState } from 'react';
-import { v1 as uuid } from 'uuid';
 
 import ActionsProvider from '@panneau/actions';
 import { QueryProvider } from '@panneau/data';
@@ -411,40 +410,6 @@ export const GameSort = meta.story(() => (
         defaultValue={{
             title: 'With game sort',
             components: [{ id: '1', type: 'game-sort', items: sortItems(5) }],
-        }}
-    />
-));
-
-export const QualityLevelInPlaybackContext = meta.story(() => (
-    <EditorContainer
-        defaultValue={{
-            title: 'Quality level in PlaybackContext',
-            components: [
-                {
-                    id: uuid(),
-                    type: 'video',
-                    layout: 'full',
-                    video: {
-                        media: hlsVideoMedia(),
-                        autoPlay: true,
-                        loop: true,
-                        withSeekBar: true,
-                        withControls: true,
-                    },
-                },
-                {
-                    id: uuid(),
-                    type: 'video',
-                    layout: 'full',
-                    video: {
-                        media: hlsVideoMedia(),
-                        autoPlay: true,
-                        loop: true,
-                        withSeekBar: true,
-                        withControls: true,
-                    },
-                },
-            ],
         }}
     />
 ));

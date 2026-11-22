@@ -24,8 +24,6 @@ interface BackgroundLayersProps {
     shouldLoad?: boolean;
     withoutVideo?: boolean;
     onPlayError?: boolean | null;
-    qualityStartLevel?: number | null;
-    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
 }
 
 function BackgroundLayers({
@@ -44,8 +42,6 @@ function BackgroundLayers({
     shouldLoad = true,
     withoutVideo = false,
     onPlayError = null,
-    qualityStartLevel = null,
-    onQualityLevelChange = null,
 }: BackgroundLayersProps) {
     const hasSize = width !== null && height !== null && width > 0 && height > 0;
 
@@ -102,8 +98,6 @@ function BackgroundLayers({
                                 mediaRef={mediaRef}
                                 withoutVideo={withoutVideo}
                                 onPlayError={onPlayError}
-                                qualityStartLevel={qualityStartLevel}
-                                onQualityLevelChange={onQualityLevelChange}
                                 {...layer}
                             />
                         </div>

@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading, no-console */
 import {
     audioMedia,
+    bigVideoMediaWithSound,
     conversation,
     hexColor,
     imageMedia,
     video360Media,
     videoMedia,
+    videoMediaWithSound,
     webfont2Files,
     webfont3Files,
     webfontFiles,
@@ -448,28 +450,29 @@ export const MultipleVideos = meta.story(() => (
     <Viewer screenId="1" story={multipleVideosStory} withNavigationHint memoryRouter />
 ));
 
+// Same shape as the medias of published stories: an h264 file and full size frames
+const withMediaFiles = (media) => ({
+    ...media,
+    files: {
+        h264: { handle: 'h264', mime: 'video/mp4', url: media.url },
+        'thumbnails.0': { handle: 'thumbnails.0', mime: 'image/jpeg', url: media.thumbnail_url },
+    },
+});
+
 const transitionMetricStory = {
     title: 'Transition metric',
     components: [
-        {
-            id: 'video-1',
-            type: 'video',
-            layout: 'full',
-            video: { media: videoMedia(), autoPlay: true, loop: true },
-        },
-        {
-            id: 'video-2',
-            type: 'video',
-            layout: 'full',
-            video: { media: videoMedia({ vertical: true }), autoPlay: true, loop: true },
-        },
-        {
-            id: 'video-3',
-            type: 'video',
-            layout: 'full',
-            video: { media: videoMedia({ big: true }), autoPlay: true, loop: true },
-        },
-    ],
+        videoMedia(),
+        videoMedia({ vertical: true }),
+        videoMediaWithSound(),
+        videoMedia({ big: true }),
+        bigVideoMediaWithSound(),
+    ].map((media, index) => ({
+        id: `video-${index + 1}`,
+        type: 'video',
+        layout: 'full',
+        video: { media: withMediaFiles(media), autoPlay: true, loop: true },
+    })),
 };
 
 const formatMetricMs = (value: number | null) =>

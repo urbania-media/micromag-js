@@ -9,7 +9,7 @@ import {
     useMediaReady,
     useProgressSteps,
 } from '@micromag/core/hooks';
-import { getMediaIsPlaying, getMediaThumbnail, mergeRefs } from '@micromag/core/utils';
+import { getMediaIsPlaying, getVideoPoster, mergeRefs } from '@micromag/core/utils';
 
 import useSources from './useSources';
 
@@ -47,6 +47,10 @@ interface VideoProps extends HTMLAttributes<HTMLVideoElement> {
     onSuspended?: ((...args: unknown[]) => void) | null;
     onPlayError?: ((...args: unknown[]) => void) | null;
     focusable?: boolean;
+    /**
+     * Show a poster (a full size frame of the video) until a frame of the video can be painted,
+     * so the video is never blank while it loads (ex.: during a screen transition)
+     */
     withPoster?: boolean;
     withLoading?: boolean;
 }
@@ -88,7 +92,7 @@ function Video({
 }: VideoProps) {
     const { url: mediaUrl = null, metadata = null } = media || {};
     const { description = null, has_audio: hasAudio = null } = metadata || {};
-    const finalThumbnail = getMediaThumbnail(media, thumbnail);
+    const poster = withPoster ? getVideoPoster(media, thumbnail) : null;
     const { sources, isImage } = useSources(media);
     // console.log('media', media, sources, isImage);
 
@@ -176,6 +180,24 @@ function Video({
         }
     };
 
+    // Remove the poster as soon as the video has a frame to paint, even before it plays: the poster
+    // is a frame from later in the video, while a paused video paints its first frame
+    const [hasFrame, setHasFrame] = useState(false);
+    const [hasFrameUrl, setHasFrameUrl] = useState(mediaUrl);
+    if (hasFrameUrl !== mediaUrl) {
+        setHasFrameUrl(mediaUrl);
+        setHasFrame(false);
+    }
+    useEffect(() => {
+        const { current: element = null } = ref;
+        if (element !== null && element.readyState >= 2) {
+            setHasFrame(true);
+        }
+    }, [mediaUrl]);
+    const onLoadedData = () => {
+        setHasFrame(true);
+    };
+
     useEffect(() => {
         if (ready && onReady !== null) {
             onReady();
@@ -256,11 +278,7 @@ function Video({
                     autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
-                    poster={
-                        shouldLoad && withPoster && finalThumbnail !== null
-                            ? finalThumbnail.url || null
-                            : null
-                    }
+                    poster={shouldLoad && !hasFrame && poster !== null ? poster.url : undefined}
                     preload={finalPreload}
                     playsInline={playsInline}
                     crossOrigin={withoutCors ? 'anonymous' : null}
@@ -275,6 +293,7 @@ function Video({
                     onVolumeChange={onVolumeChange}
                     onTimeUpdate={onTimeUpdate}
                     onSuspend={onSuspend}
+                    onLoadedData={onLoadedData}
                     data-has-audio={hasAudio}
                     data-is-suspended={isSuspended}
                     aria-hidden

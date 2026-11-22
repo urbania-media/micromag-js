@@ -30,8 +30,6 @@ interface BackgroundProps {
     onPlayError?: ((...args: unknown[]) => void) | null;
     withoutVideo?: boolean;
     forceMuted?: boolean;
-    qualityStartLevel?: number | null;
-    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Background({
@@ -55,8 +53,6 @@ function Background({
     onPlayError = null,
     withoutVideo = false,
     forceMuted = false,
-    qualityStartLevel = null,
-    onQualityLevelChange = null,
 }: BackgroundProps) {
     const {
         type: mediaType = null,
@@ -144,8 +140,6 @@ function Background({
                         loop={loop}
                         withPoster
                         focusable={false}
-                        qualityStartLevel={qualityStartLevel}
-                        onQualityLevelChange={onQualityLevelChange}
                     />
                 </div>
             ) : null}

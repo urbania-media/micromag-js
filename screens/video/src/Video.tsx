@@ -107,8 +107,6 @@ function VideoScreen({
         controlsVisible,
         showControls,
         hideControls,
-        currentQualityLevel,
-        setCurrentQualityLevel,
     } = usePlaybackContext();
 
     const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(current);
@@ -348,8 +346,10 @@ function VideoScreen({
                                         disablePictureInPicture
                                         focusable={current && isView}
                                         shouldLoad={mediaShouldLoad}
-                                        qualityStartLevel={currentQualityLevel}
-                                        onQualityLevelChange={setCurrentQualityLevel}
+                                        // A frame of the video (not the custom thumbnail) until it
+                                        // paints, so it is never blank during a screen transition
+                                        thumbnail={null}
+                                        withPoster={isView}
                                     />
                                 )}
                             </div>

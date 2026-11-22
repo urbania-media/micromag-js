@@ -3,52 +3,26 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSetting } from '@micromag/core/contexts';
 import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
 
-// Disabled webm for now
-// const defaultPossibleMimes = ['video/mp4', 'video/webm', 'video/ogg', 'application/vnd.apple.mpegurl'];
+import getVideoSources, { DEFAULT_VIDEO_MIMES } from './getVideoSources';
 
 export default function useSources(media = null, options = null) {
     const { possibleMimes = null } = options || {};
     const { files: mediaFiles = null, metadata = null } = media || {};
     const { mime: mediaMime = null } = metadata || {};
+    // Hosts opt in to other formats (ex.: webm) with the setting `supportedVideoMimes`
     const settingsPossibleMimes = useSetting('supportedVideoMimes');
     const finalPossibleMimes = useMemo(
-        () => possibleMimes || settingsPossibleMimes || ['video/mp4'],
+        () => possibleMimes || settingsPossibleMimes || DEFAULT_VIDEO_MIMES,
         [possibleMimes, settingsPossibleMimes],
     );
     const files = useMemo(() => getMediaFilesAsArray(mediaFiles), [mediaFiles]);
     const [supportedMimes, setSupportedMimes] = useState(finalPossibleMimes);
     useEffect(() => {
-        let newMimes = getVideoSupportedMimes(finalPossibleMimes);
-        if (newMimes.length === 0) {
-            newMimes = ['video/mp4'];
-        }
-        setSupportedMimes(newMimes);
+        const newMimes = getVideoSupportedMimes(finalPossibleMimes);
+        setSupportedMimes(newMimes.length > 0 ? newMimes : DEFAULT_VIDEO_MIMES);
     }, [finalPossibleMimes]);
 
-    const sources = useMemo(() => {
-        if (files.length === 0) {
-            return null;
-        }
-        const supportedFiles = files.filter((file) => {
-            const fileHandle = file.handle || file.id;
-            const { mime = `video/${fileHandle === 'h264' ? 'mp4' : fileHandle}` } = file;
-            return supportedMimes.indexOf(mime) !== -1;
-        });
-        const supportedFilesWithoutOriginal = supportedFiles.filter((file) => {
-            const fileHandle = file.handle || file.id;
-            return fileHandle !== 'original';
-        });
-        return (
-            supportedFilesWithoutOriginal.length > 0
-                ? supportedFilesWithoutOriginal
-                : supportedFiles
-        ).sort(({ size: a = Infinity }, { size: b = Infinity }) => {
-            if (a === b) {
-                return 0;
-            }
-            return a > b ? 1 : -1;
-        });
-    }, [files, supportedMimes]);
+    const sources = useMemo(() => getVideoSources(files, supportedMimes), [files, supportedMimes]);
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
     const { type: originalType = null, mime: originalMime = mediaMime } =
@@ -57,7 +31,7 @@ export default function useSources(media = null, options = null) {
         originalType === 'image' || (originalMime !== null && originalMime.indexOf('image/') === 0);
 
     return {
-        sources: sources !== null && sources.length > 0 ? sources : null,
+        sources,
         files,
         isImage: originalFileIsImage,
     };

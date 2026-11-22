@@ -28,8 +28,6 @@ interface VisualProps {
     className?: string | null;
     imageClassName?: string | null;
     videoClassName?: string | null;
-    qualityStartLevel?: number | null;
-    onQualityLevelChange?: ((...args: unknown[]) => void) | null;
 }
 
 function Visual({
@@ -51,8 +49,6 @@ function Visual({
     imageClassName = null,
     videoClassName = null,
     withoutVideo = false,
-    qualityStartLevel = null,
-    onQualityLevelChange = null,
     ...props
 }: VisualProps) {
     const { type = null, thumbnail_url: thumbnailUrl = null } = media || {};
@@ -143,8 +139,7 @@ function Visual({
                             shouldLoad={finalShouldLoad}
                             onReady={onLoaded}
                             autoPlay
-                            qualityStartLevel={qualityStartLevel}
-                            onQualityLevelChange={onQualityLevelChange}
+                            withPoster
                         />
                         <div className={styles.videoTouchOverlay} />
                     </div>
