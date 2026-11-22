@@ -1,4 +1,3 @@
-import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 import createDebug from 'debug';
 import React, { RefObject, useEffect, useImperativeHandle, useRef, useState } from 'react';
@@ -50,7 +49,7 @@ import stopDragEventsPropagation from '../lib/stopDragEventsPropagation';
 import waitForMediaCanPlay from '../lib/waitForMediaCanPlay';
 
 import ViewerMenu from './ViewerMenu';
-import ViewerScreen from './ViewerScreen';
+import ViewerScreenSection from './ViewerScreenSection';
 import Button from './buttons/Button';
 import NavigationButton from './buttons/NavigationButton';
 import ArrowHint from './partials/ArrowHint';
@@ -452,36 +451,55 @@ function Viewer({
         onNavigate: onScreenNavigate,
     });
 
-    // Long press to pause playback
-    const [pointerDownTime, setPointerDownTime] = useState(null);
+    // Long press to pause playback. The press is a timer, not state: a state change on
+    // pointerdown re-rendered the whole viewer in the frame where the transition starts.
     const [longPressPaused, setLongPressPaused] = useState(false);
     const [longPressScreenIndex, setLongPressScreenIndex] = useState(screenIndex);
-    if (screenIndex !== longPressScreenIndex && (longPressPaused || pointerDownTime !== null)) {
+    if (screenIndex !== longPressScreenIndex && longPressPaused) {
         setLongPressPaused(false);
-        setPointerDownTime(null);
-    } else if (longPressPaused && pointerDownTime !== null) {
-        setPointerDownTime(null);
     }
+    const longPressTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const longPressCanPauseRef = useRef(false);
+    const { tagName: playbackMediaTagName = null } = playbackMedia || {};
+    const canLongPressPause = playing && playbackMediaTagName === 'VIDEO';
     useEffect(() => {
-        const { tagName: mediaTagName } = playbackMedia || {};
-        const mediaIsVideo = mediaTagName === 'VIDEO';
-        if (pointerDownTime === null || !playing || !mediaIsVideo) {
-            return () => {};
+        longPressCanPauseRef.current = canLongPressPause;
+    }, [canLongPressPause]);
+    const cancelLongPress = () => {
+        if (longPressTimeoutRef.current !== null) {
+            clearTimeout(longPressTimeoutRef.current);
+            longPressTimeoutRef.current = null;
         }
-        const interval = setTimeout(() => {
-            setPlaying(false);
-            setLongPressPaused(true);
-            setLongPressScreenIndex(screenIndex);
-        }, longPressPauseDelay);
-        return () => clearTimeout(interval);
-    }, [playing, pointerDownTime, longPressPauseDelay, playbackMedia, setPlaying, screenIndex]);
+    };
+    // A screen change or unmount cancels the press
+    useEffect(
+        () => () => {
+            if (longPressTimeoutRef.current !== null) {
+                clearTimeout(longPressTimeoutRef.current);
+                longPressTimeoutRef.current = null;
+            }
+        },
+        [screenIndex],
+    );
 
     const onPointerDown = (e) => {
         if (checkClickable(e.target)) {
             return;
         }
-        setPointerDownTime(Date.now());
-        setLongPressScreenIndex(screenIndex);
+        cancelLongPress();
+        if (!longPressCanPauseRef.current) {
+            return;
+        }
+        const pressScreenIndex = screenIndex;
+        longPressTimeoutRef.current = setTimeout(() => {
+            longPressTimeoutRef.current = null;
+            if (!longPressCanPauseRef.current) {
+                return;
+            }
+            setPlaying(false);
+            setLongPressPaused(true);
+            setLongPressScreenIndex(pressScreenIndex);
+        }, longPressPauseDelay);
     };
 
     const onTap = ({
@@ -492,13 +510,12 @@ function Viewer({
         elapsedTime,
         args: [bindState],
     }) => {
-        setPointerDownTime(null);
+        cancelLongPress();
         const { playing: currentPlaying = false, longPressPaused: currentLongPressPaused = false } =
             bindState || {};
         if (!currentPlaying && currentLongPressPaused) {
             setPlaying(true);
             setLongPressPaused(false);
-            setPointerDownTime(null);
             return;
         }
         if (tapMaximumDuration !== null && elapsedTime > tapMaximumDuration) {
@@ -537,6 +554,9 @@ function Viewer({
     const onScreenProgress = (progress, { active, args: [bindState] }) => {
         const { playing: currentPlaying = false, longPressPaused: currentLongPressPaused = false } =
             bindState || {};
+        if (!active) {
+            cancelLongPress();
+        }
         if (!active && !currentPlaying && currentLongPressPaused) {
             setPlaying(true);
             setLongPressPaused(false);
@@ -606,51 +626,6 @@ function Viewer({
         onPointerUp: (e) =>
             !checkClickable(e.target) ? originalDragBindings?.onPointerUp?.(e) : null,
         onScroll: (e) => (!checkClickable(e.target) ? originalDragBindings?.onScroll?.(e) : null),
-    };
-
-    const getScreenStylesByIndex = (index, spring) => {
-        if (transitionType === 'stack') {
-            return {
-                zIndex: index,
-                opacity: spring.to((progress) => {
-                    const t = index - progress;
-                    const invert = Math.min(1, Math.max(0, -t));
-                    if (Math.abs(t) > neighborScreensActive) return 0;
-                    return Math.min(Math.max(0, 1 - 0.75 * invert + (t + 1)), 1);
-                }),
-                transform: spring.to((progress) => {
-                    const t = index - progress;
-                    const clamped = Math.min(1, Math.max(0, t));
-                    const invert = Math.min(1, Math.max(0, -t));
-                    if (Math.abs(t) > neighborScreensActive) return 'translateX(100%)';
-                    return `translateX(${clamped * 100}%) scale(${1 - 0.2 * invert})`;
-                }),
-                boxShadow: spring.to((progress) => {
-                    const t = index - progress;
-                    if (Math.abs(t) > neighborScreensActive) return null;
-                    const clamped = Math.min(1, Math.max(0, t));
-                    return `0 0 ${2 * (1 - clamped)}rem ${-0.5 * (1 - clamped)}rem black`;
-                }),
-            };
-        }
-
-        return {
-            opacity: spring.to((progress) => {
-                const t = index - progress;
-                if (Math.abs(t) > neighborScreensActive) return 0;
-                const clamped = Math.min(1, Math.max(0, Math.abs(t)));
-                return 1 - 0.75 * clamped;
-            }),
-            transform: spring.to((progress) => {
-                const t = index - progress;
-                if (Math.abs(t) > neighborScreensActive) return `translate(100%)`;
-                const clamped = Math.min(1, Math.max(0, Math.abs(t)));
-                return `translateX(${t * neighborScreenOffset}%) scale(${
-                    1 - (1 - neighborScreenScale) * clamped
-                })`;
-            }),
-            zIndex: screensCount - index,
-        };
     };
 
     const {
@@ -1031,11 +1006,6 @@ function Viewer({
                                                         isInPreloadRange))) ||
                                             isNext;
 
-                                        const screenStyles = getScreenStylesByIndex(
-                                            i,
-                                            progressSpring,
-                                        );
-
                                         const isVisible =
                                             current ||
                                             (isDragging && isNext) ||
@@ -1045,50 +1015,28 @@ function Viewer({
                                             (withNeighborScreens && active);
 
                                         return (
-                                            <animated.section
+                                            <ViewerScreenSection
                                                 key={`screen-viewer-${screen.id || ''}-${i + 1}`}
-                                                id={current ? 'content' : null}
-                                                aria-hidden={!current}
-                                                style={screenStyles}
-                                                tabIndex={current ? 0 : -1}
-                                                aria-label={intl.formatMessage(
-                                                    {
-                                                        defaultMessage: 'Content of screen {index}',
-                                                        description: 'Aria label',
-                                                    },
-                                                    {
-                                                        index: i + 1,
-                                                    },
-                                                )}
-                                                className={classNames([
-                                                    styles.screenContainer,
-                                                    {
-                                                        [styles.visible]: isVisible,
-                                                        [styles.preload]: preload,
-                                                        [styles.current]: current && !transitioning,
-                                                    },
-                                                ])}
-                                            >
-                                                {screen !== null ? (
-                                                    <ViewerScreen
-                                                        className={styles.screen}
-                                                        screen={screen}
-                                                        screenState={current ? screenState : null}
-                                                        index={i}
-                                                        current={current}
-                                                        active={active || current}
-                                                        ready={current && !transitioning}
-                                                        preload={preload || current}
-                                                        mediaRef={(ref) => {
-                                                            screensMediasRef.current[i] = ref;
-                                                        }}
-                                                        renderContext={renderContext}
-                                                        width={screenWidth}
-                                                        height={screenHeight}
-                                                        scale={screenScale}
-                                                    />
-                                                ) : null}
-                                            </animated.section>
+                                                screen={screen}
+                                                index={i}
+                                                screensCount={screensCount}
+                                                current={current}
+                                                active={active || current}
+                                                preload={preload || current}
+                                                visible={isVisible}
+                                                settled={current && !transitioning}
+                                                screenState={current ? screenState : null}
+                                                progress={progressSpring}
+                                                transitionType={transitionType}
+                                                neighborScreensActive={neighborScreensActive}
+                                                neighborScreenOffset={neighborScreenOffset}
+                                                neighborScreenScale={neighborScreenScale}
+                                                mediasRef={screensMediasRef}
+                                                renderContext={renderContext}
+                                                width={screenWidth}
+                                                height={screenHeight}
+                                                scale={screenScale}
+                                            />
                                         );
                                     })}
                                 </main>

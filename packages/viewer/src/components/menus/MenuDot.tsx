@@ -1,7 +1,7 @@
 import { useSpring, useSpringRef } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import styles from '../../styles/menus/menu-dot.module.css';
 
@@ -12,7 +12,8 @@ interface ViewerMenuDotProps {
     count?: number;
     subIndex?: number;
     vertical?: boolean;
-    onClick?: (() => void) | null;
+    index?: number;
+    onClick?: ((index: number) => void) | null;
     className?: string;
 }
 
@@ -23,6 +24,7 @@ function ViewerMenuDot({
     count = 1,
     subIndex = 0,
     vertical = false,
+    index = 0,
     onClick = null,
     className = null,
 }: ViewerMenuDotProps) {
@@ -63,7 +65,7 @@ function ViewerMenuDot({
             onClick={(e) => {
                 e.stopPropagation();
                 if (onClick !== null) {
-                    onClick();
+                    onClick(index);
                 }
             }}
             tabIndex={-1}
@@ -87,4 +89,6 @@ function ViewerMenuDot({
     );
 }
 
-export default ViewerMenuDot;
+// memo: the dots are rendered in a list, which the React compiler recreates as a whole when one
+// item changes; only the dots whose props changed (1 or 2 per screen change) render again
+export default memo(ViewerMenuDot);
