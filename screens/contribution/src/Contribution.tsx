@@ -1,8 +1,6 @@
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import DOMPurify from 'dompurify';
 import React, { ForwardedRef, useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -18,7 +16,7 @@ import type {
     TextStyle,
     Transitions as TransitionsConfig,
 } from '@micromag/core';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { InlineIcon, ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -35,7 +33,9 @@ import {
     isHeaderFilled,
     isLabelFilled,
     isTextFilled,
+    loadUserInputSanitizer,
     mergeRefs,
+    sanitizeUserInput,
 } from '@micromag/core/utils';
 import { useContributionCreate, useContributions } from '@micromag/data';
 import Background from '@micromag/element-background';
@@ -169,9 +169,14 @@ function ContributionScreen({
 
     const { contributions } = useContributions({ screenId, opts: { autoload: !isPlaceholder } });
 
+    // DOMPurify is in a chunk of its own: load it with the screen, before the reader types
+    useEffect(() => {
+        loadUserInputSanitizer();
+    }, []);
+
     const onNameChange = useCallback(
         (e) => {
-            const value = DOMPurify.sanitize(e.currentTarget.value || '');
+            const value = sanitizeUserInput(e.currentTarget.value || '');
             setUserName(value);
         },
         [setUserName],
@@ -179,7 +184,7 @@ function ContributionScreen({
 
     const onMessageChange = useCallback(
         (e) => {
-            const value = DOMPurify.sanitize(e.currentTarget.value || '');
+            const value = sanitizeUserInput(e.currentTarget.value || '');
             setUserMessage(value);
         },
         [setUserMessage],
@@ -425,7 +430,7 @@ function ContributionScreen({
                     </ScreenElement>
                 </div>
                 <div className={styles.formLoading}>
-                    <FontAwesomeIcon className={styles.loadingIcon} icon={faSpinner} />
+                    <InlineIcon className={styles.loadingIcon} icon={faSpinner} />
                 </div>
             </form>
             {canViewAnswers && !hasSubmitted ? (
@@ -544,7 +549,7 @@ function ContributionScreen({
                 {showReset ? (
                     <Button
                         className={styles.reset}
-                        icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                        icon={<InlineIcon icon={faRedo} />}
                         onClick={onContributionReset}
                     />
                 ) : null}
