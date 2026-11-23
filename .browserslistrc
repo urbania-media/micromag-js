@@ -1,7 +1,11 @@
-[production staging]
-last 20 versions
-> 1%
-
-[development]
-last 10 versions
-> 1%
+# Readers are mostly on phones. Browsers released since spring 2023: iOS / Safari 16.4 and
+# Chrome 111 (March 2023), and the matching Firefox, Edge and Samsung Internet.
+[production staging development]
+ios_saf >= 16.4
+safari >= 16.4
+chrome >= 111
+and_chr >= 111
+edge >= 111
+firefox >= 111
+and_ff >= 111
+samsung >= 22
