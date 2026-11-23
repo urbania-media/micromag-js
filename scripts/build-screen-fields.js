@@ -13,7 +13,7 @@ program.arguments('<out>').action((out) => {
 program.parse(process.argv);
 
 const fields = getScreenFields();
-const { fonts: fontsMap, medias: mediasMap, theme: themeMap } = fields;
+const { fonts: fontsMap, medias: mediasMap } = fields;
 
 const fieldsJs = `export default {
     fonts: {\n${Object.keys(fontsMap)
@@ -35,16 +35,6 @@ const fieldsJs = `export default {
 };`;
 
 fsExtra.writeFileSync(path.join(outDir, './fields.js'), fieldsJs);
-fsExtra.writeJsonSync(
-    path.join(outDir, './fields.json'),
-    { fonts: fontsMap, medias: mediasMap },
-    {
-        spaces: 4,
-    },
-);
-
-// The theme pattern, in a file of its own: only the lazy screens need it (see src/lazy.ts)
-fsExtra.writeFileSync(
-    path.join(outDir, './theme-fields.js'),
-    `export default ${JSON.stringify(themeMap)};\n`,
-);
+fsExtra.writeJsonSync(path.join(outDir, './fields.json'), fields, {
+    spaces: 4,
+});

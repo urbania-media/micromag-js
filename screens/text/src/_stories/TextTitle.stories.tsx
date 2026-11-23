@@ -13,7 +13,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import TextTitleScreen from '../TextTitle';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     text: text('long'),

@@ -11,7 +11,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import Video360Screen from '../Video360';
-import definition from '../index';
+import definition from '../definition';
 
 const video360 = (props) => ({ ...props, media: video360Media(), autoPlay: true, loop: false });
 

@@ -1,5 +1,8 @@
 import { defineMessage } from 'react-intl';
 
+import GalleryScreen from './Gallery';
+import GalleryCaptionsScreen from './GalleryCaptions';
+
 // import * as transforms from './transforms/index';
 
 export default [
@@ -17,6 +20,7 @@ export default [
             defaultMessage: 'Gallery',
             description: 'Gallery screen title',
         }),
+        component: GalleryScreen,
         layouts: [
             // 2
             'two-vertical-equal',
@@ -115,6 +119,7 @@ export default [
             defaultMessage: 'Gallery with captions',
             description: 'GalleryCaptions screen title',
         }),
+        component: GalleryCaptionsScreen,
         layouts: [
             // 2
             'two-vertical-equal',

@@ -1,4 +1,4 @@
-import alias from '@rollup/plugin-alias';
+// import alias from '@rollup/plugin-alias';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 // import image from '@rollup/plugin-image';
@@ -7,7 +7,6 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import url from '@rollup/plugin-url';
-import fs from 'fs';
 import path from 'path';
 // import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss';
@@ -30,8 +29,6 @@ export const createConfig = ({
     prependPlugins = [],
     appendPlugins = [],
     afterResolvePlugins = [],
-    external = null,
-    cssFile = 'styles.css',
 } = {}) => {
     const isNode = format === 'node';
     const isCjs = format === 'cjs' || format === 'node';
@@ -53,7 +50,6 @@ export const createConfig = ({
     }
     return {
         input: input || `src/${file}`,
-        ...(external !== null ? { external } : null),
         output: finalOutputConfig,
         treeshake: {
             moduleSideEffects: ['@micromag/intl/locale/fr', '@micromag/intl/locale/en'],
@@ -106,7 +102,7 @@ export const createConfig = ({
                         generateScopedName,
                     },
                     autoModules: true,
-                    extract: !withoutPostCssExtract ? cssFile : false,
+                    extract: !withoutPostCssExtract ? 'styles.css' : false,
                     inject: false,
                 }),
             // image({
@@ -125,37 +121,4 @@ export const createConfig = ({
     };
 };
 
-/**
- * Screens split in a definition (fields, labels) and a component: es/definition.js and
- * es/component.js (with the CSS), and es/index.js that imports both through the package's subpaths
- * (`@micromag/screen-x/definition` and `/component`), so the code isn't duplicated.
- */
-const createSplitScreenConfigs = () => {
-    const { name: packageName } = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
-    return [
-        createConfig({ file: 'definition.ts', format: 'es', withoutPostCssExtract: true }),
-        createConfig({ file: 'component.ts', format: 'es' }),
-        createConfig({
-            file: 'index.ts',
-            format: 'es',
-            withoutPostCssExtract: true,
-            external: [`${packageName}/definition`, `${packageName}/component`],
-            prependPlugins: [
-                alias({
-                    entries: [
-                        {
-                            find: /^\.\/(definition|component)$/,
-                            replacement: `${packageName}/$1`,
-                        },
-                    ],
-                }),
-            ],
-        }),
-    ];
-};
-
-const isSplitScreen = fs.existsSync('src/definition.ts') && fs.existsSync('src/component.ts');
-
-export default isSplitScreen
-    ? createSplitScreenConfigs()
-    : [createConfig({ format: 'es' }) /*, createConfig({ format: 'cjs' })*/];
+export default [createConfig({ format: 'es' }) /*, createConfig({ format: 'cjs' })*/];

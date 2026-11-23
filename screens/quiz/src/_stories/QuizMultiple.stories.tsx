@@ -12,7 +12,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import QuizMultipleScreen from '../QuizMultiple';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     questions: [

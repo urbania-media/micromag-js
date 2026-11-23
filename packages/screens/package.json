@@ -45,10 +45,6 @@
             "require": "./lib/all.js",
             "import": "./es/all.js"
         },
-        "./lazy": {
-            "types": "./es/lazy.d.ts",
-            "import": "./es/lazy.js"
-        },
         "./fields": "./fields.js",
         "./fields.json": "./fields.json",
         "./assets/css/styles": "./assets/css/styles.css",
@@ -67,8 +63,7 @@
         "assets",
         "fields.js",
         "fields.json",
-        "all.js",
-        "theme-fields.js"
+        "all.js"
     ],
     "scripts": {
         "aggregate-css": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.css.ejs ./assets/css/styles.css",

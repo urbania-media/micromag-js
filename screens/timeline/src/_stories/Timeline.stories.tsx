@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import TimelineScreen from '../Timeline';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     title: { body: title() },

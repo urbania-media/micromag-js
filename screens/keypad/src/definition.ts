@@ -1,5 +1,7 @@
 import { defineMessage } from 'react-intl';
 
+import Keypad from './Keypad';
+
 export default [
     {
         id: 'keypad',
@@ -16,6 +18,7 @@ export default [
             description: 'Keypad screen title',
         }),
         layouts: ['top', 'middle', 'bottom'],
+        component: Keypad,
         states: [
             {
                 id: 'keypad',

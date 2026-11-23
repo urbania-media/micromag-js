@@ -1,5 +1,8 @@
 import { defineMessage } from 'react-intl';
 
+import TextScreen from './Text';
+import TextTitleScreen from './TextTitle';
+
 // import * as transforms from './transforms/index';
 
 export default [
@@ -17,6 +20,7 @@ export default [
             defaultMessage: 'Text',
             description: 'Text screen title',
         }),
+        component: TextScreen,
         layouts: ['top', 'middle', 'bottom'],
         // transforms,
         fields: [
@@ -96,6 +100,7 @@ export default [
             defaultMessage: 'Text with title',
             description: 'TextTitle screen title',
         }),
+        component: TextTitleScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
         // transforms,
         fields: [

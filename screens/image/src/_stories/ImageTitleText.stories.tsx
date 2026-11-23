@@ -15,7 +15,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import ImageTitleTextScreen from '../ImageTitleText';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     image: imageMedia(),

@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import UrbaniaTrivia from '../UrbaniaTrivia';
-import definition from '../index';
+import definition from '../definition';
 
 import '../../../../.storybook/fonts/fonts.css';
 

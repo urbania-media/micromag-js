@@ -1,13 +1,6 @@
-import { UrbaniaArticle, UrbaniaArticleCard } from './component';
-import definition, { definitionCard as cardDefinition } from './definition';
-
-// The definitions with their components
-export default { ...definition, component: UrbaniaArticle };
-export const definitionCard = { ...cardDefinition, component: UrbaniaArticleCard };
-
-export {
-    UrbaniaArticle,
-    UrbaniaArticleCard,
-    UrbaniaBaseArticle,
-    UrbaniaBaseArticleCard,
-} from './component';
+export { default } from './definition';
+export { default as definitionCard } from './definition-card';
+export { default as UrbaniaArticle } from './UrbaniaLoader';
+export { default as UrbaniaArticleCard } from './UrbaniaCardLoader';
+export { default as UrbaniaBaseArticle } from './UrbaniaBaseArticle';
+export { default as UrbaniaBaseArticleCard } from './UrbaniaBaseArticleCard';

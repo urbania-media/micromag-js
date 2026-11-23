@@ -38,13 +38,6 @@ const babelTypescript = {
                 ['@babel/preset-react', { runtime: 'automatic' }],
                 ['@babel/preset-typescript', { isTSX: id.endsWith('.tsx'), allExtensions: true }],
             ],
-            // The ids of the messages, as in the builds (react-intl needs them to render)
-            plugins: [
-                [
-                    require.resolve('babel-plugin-formatjs'),
-                    { idInterpolationPattern: '[sha512:contenthash:base64:6]' },
-                ],
-            ],
         });
         return result !== null ? { code: result.code ?? '', map: result.map } : null;
     },
@@ -53,8 +46,6 @@ const babelTypescript = {
 export default defineConfig({
     plugins: [babelTypescript],
     resolve: {
-        // The tests in a DOM (happy-dom) resolve the browser builds too, as with ssr below
-        conditions: ['browser', 'module', 'import', 'default'],
         alias: [
             ...packagesAliases,
             { find: /^#\.storybook\/(.*)$/, replacement: path.join(rootDir, '.storybook/$1') },
