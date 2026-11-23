@@ -1,5 +1,5 @@
 {
-    "description": "Budget of the initial JS and CSS of the viewer build, gzip level 9, in bytes (checked by scripts/check-viewer-build-size.mjs). Measured on 0.4.123: JS 367.1 KiB, CSS 29.6 KiB.",
-    "js": 384000,
-    "css": 31744
+    "description": "Budget of the initial JS and CSS of the viewer build, gzip level 9, in bytes (checked by scripts/check-viewer-build-size.mjs): the sizes measured after #48 (vendors and targets), JS 341.8 KiB and CSS 25.8 KiB, plus about 2 %.",
+    "js": 357120,
+    "css": 27136
 }
