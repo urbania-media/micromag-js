@@ -18,6 +18,7 @@ import {
     VisitorProvider,
 } from '@micromag/core/contexts';
 import { useSupportsWebp } from '@micromag/core/hooks';
+import type { VideoRenditionSetting } from '@micromag/core/utils';
 import { IntlProvider } from '@micromag/intl';
 import { ScreensProvider } from '@micromag/screens';
 
@@ -30,6 +31,26 @@ import defaultRoutes from '../data/routes.json';
 
 const emptyComponents = {};
 const defaultLocales = ['fr', 'en'];
+
+/** Settings of the viewer, read by its screens and elements (other keys are passed through) */
+export interface ViewerSettings {
+    /** Video formats a host opts in to, besides H.264 mp4 (default `['video/mp4']`) */
+    supportedVideoMimes?: string[] | null;
+    /**
+     * H.264 rendering of the videos, chosen once for the session (default `auto`):
+     * - `auto`: `h264_720` (short side at most 720) on a slow connection (`saveData`, `slow-2g`,
+     *   `2g`, `3g`), on a frame up to 430 CSS px wide, or up to 800 device pixels wide; `h264`
+     *   otherwise. Decided on the client once the frame is measured: on the server, videos render
+     *   without `<source>`.
+     * - `h264` or `h264_720`: always that rendering, from the first render (server included).
+     *
+     * A video without `files.h264_720` plays `files.h264`. A host that preloads the first video
+     * should preload `getVideoRenditionFile(media, rendition)` with the same rendition
+     * (`getVideoRendition` from `@micromag/core/utils`), and pass it here to be sure they match.
+     */
+    videoRendition?: VideoRenditionSetting;
+    [key: string]: unknown;
+}
 
 interface ViewerContainerProps {
     story?: Story | null;
@@ -50,7 +71,7 @@ interface ViewerContainerProps {
     trackingVariables?: TrackingVariables | null;
     trackingDisabled?: boolean;
     trackingPaused?: boolean;
-    settings?: Record<string, unknown> | null;
+    settings?: ViewerSettings | null;
     /** Passed to the Viewer: called after each screen change with timings of the transition */
     onTransitionMetric?: ((metric: ViewerTransitionMetric) => void) | null;
     children?: (...args: unknown[]) => void;

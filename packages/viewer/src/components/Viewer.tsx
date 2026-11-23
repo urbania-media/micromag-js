@@ -17,8 +17,10 @@ import { FontFaces, GoogleFonts, Meta } from '@micromag/core/components';
 import {
     ScreenSizeProvider,
     StoryProvider,
+    VideoRenditionProvider,
     ViewerProvider,
     usePlaybackContext,
+    useSetting,
 } from '@micromag/core/contexts';
 import {
     useActivityDetector,
@@ -36,8 +38,10 @@ import {
     getMediaFilename,
     getMediaIsPlaying,
     getMediaSrc,
+    getVideoRendition,
     mergeRefs,
 } from '@micromag/core/utils';
+import type { VideoRendition } from '@micromag/core/utils';
 import { ShareIncentive } from '@micromag/elements/all';
 
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
@@ -341,6 +345,31 @@ function Viewer({
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
     const ready = hasSize || readyWithoutSize;
+
+    /**
+     * Video rendering: one H.264 file for every video of the session (see `getVideoRendition`).
+     * Forced by the setting `videoRendition`, or `h264` outside of the view context, it is known
+     * from the first render, server included. In `auto`, the frame and the connection are only
+     * known on the client: videos render without source until the frame is measured, then the
+     * choice is made once and never changes (resize, rotation or connection change).
+     */
+    const videoRenditionSetting = useSetting('videoRendition', 'auto');
+    const [videoRendition, setVideoRendition] = useState<VideoRendition | null>(() =>
+        videoRenditionSetting !== 'auto' || !isView
+            ? getVideoRendition({ setting: isView ? videoRenditionSetting : 'h264' })
+            : null,
+    );
+    useEffect(() => {
+        if (videoRendition !== null || !ready) {
+            return;
+        }
+        setVideoRendition(
+            getVideoRendition({
+                setting: videoRenditionSetting,
+                width: screenContainerWidth > 0 ? screenContainerWidth : null,
+            }),
+        );
+    }, [videoRendition, ready, videoRenditionSetting, screenContainerWidth]);
 
     const trackingEnabled = isView;
     useEffect(() => {
@@ -833,320 +862,335 @@ function Viewer({
     return (
         <StoryProvider story={parsedStory}>
             <ScreenSizeProvider size={screenSize}>
-                <ViewerProvider
-                    events={eventsManager}
-                    menuVisible={menuVisible}
-                    menuOverScreen={menuOverScreen}
-                    width={viewerWidth}
-                    height={viewerHeight}
-                    topHeight={topHeight}
-                    bottomHeight={bottomHeight}
-                    activityDetected={activityDetected}
-                    bottomSidesWidth={
-                        (playbackControlsVisible || !playing || playbackMedia !== null) &&
-                        currentScreenInteractionEnabled
-                            ? 60 / screenScale
-                            : 0
-                    }
-                    gotoPreviousScreen={gotoPreviousScreen}
-                    gotoNextScreen={gotoNextScreen}
-                    disableInteraction={disableInteraction}
-                    enableInteraction={enableInteraction}
-                >
-                    {withMetadata ? (
-                        <Meta title={finalTitle} metadata={finalMetadata}>
-                            {overscrollStyle}
-                        </Meta>
-                    ) : (
-                        overscrollStyle
-                    )}
-                    <FontFaces fonts={finalFonts} />
-                    <GoogleFonts fonts={finalFonts} />
-                    <div
-                        className={classNames([
-                            styles.container,
-                            screenSize.screens.map((screenName) => `story-screen-${screenName}`),
-                            className,
-                            {
-                                [styles.landscape]: landscape,
-                                [styles.withoutGestures]: withoutGestures,
-                                [styles.hideMenu]: !menuVisible,
-                                [styles.disableMenu]: navigationDisabled,
-                                [styles.fadeMenu]:
-                                    playing && playbackControls && !playbackControlsVisible,
-                                [styles.ready]: ready || withoutScreensTransforms,
-                                [styles.hasInteracted]: hasInteracted,
-                                [styles.isDragging]: isDragging,
-                                [styles.fillsViewport]: fillsViewport,
-                            },
-                        ])}
-                        ref={mergeRefs(containerRef, fullscreenRef, activityRef, screenSizeRef)}
-                        data-micromag-viewer=""
-                        onContextMenu={onContextMenu}
+                <VideoRenditionProvider rendition={videoRendition}>
+                    <ViewerProvider
+                        events={eventsManager}
+                        menuVisible={menuVisible}
+                        menuOverScreen={menuOverScreen}
+                        width={viewerWidth}
+                        height={viewerHeight}
+                        topHeight={topHeight}
+                        bottomHeight={bottomHeight}
+                        activityDetected={activityDetected}
+                        bottomSidesWidth={
+                            (playbackControlsVisible || !playing || playbackMedia !== null) &&
+                            currentScreenInteractionEnabled
+                                ? 60 / screenScale
+                                : 0
+                        }
+                        gotoPreviousScreen={gotoPreviousScreen}
+                        gotoNextScreen={gotoNextScreen}
+                        disableInteraction={disableInteraction}
+                        enableInteraction={enableInteraction}
                     >
-                        {/* Announce screen change on screen reader */}
-                        <div className={styles.ariaAnnouncement} id="announce" aria-live="polite">
-                            <FormattedMessage
-                                defaultMessage="Screen {current} of {length}"
-                                description="Aria announcement"
-                                values={{
-                                    current: screenIndex + 1,
-                                    length: screens.length,
-                                }}
-                            />
-                        </div>
-                        {!withoutSkipLinks ? (
-                            <nav
-                                aria-label={intl.formatMessage({
-                                    defaultMessage: 'Skip Links',
-                                    description: 'Nav aria label',
-                                })}
-                                className={styles.accessibilityLinks}
-                            >
-                                <a
-                                    href="#content"
-                                    className={classNames([styles.accessibilityLink, 'skip-link'])}
-                                >
-                                    <FormattedMessage
-                                        defaultMessage="Skip to content"
-                                        description="Button label"
-                                    />
-                                </a>
-                                {playbackHelpVisible ? (
-                                    <>
-                                        <Button
-                                            onClick={onClickSkipToPlaybackControls}
-                                            aria-disabled={
-                                                withoutPlaybackControls || !playbackControlsVisible
-                                            }
-                                            aria-describedby="disabledReason"
-                                            className={classNames([
-                                                styles.accessibilityButton,
-                                                {
-                                                    [styles.disabled]:
-                                                        withoutPlaybackControls ||
-                                                        !playbackControlsVisible,
-                                                },
-                                            ])}
-                                        >
-                                            <FormattedMessage
-                                                defaultMessage="Skip to controls"
-                                                description="Button label"
-                                            />
-                                        </Button>
-                                        {withoutPlaybackControls || !playbackControlsVisible ? (
-                                            <div
-                                                role="tooltip"
-                                                className={styles.tooltipBox}
-                                                id="disabledReason"
-                                            >
-                                                <span className={styles.tooltip}>
-                                                    <FormattedMessage
-                                                        defaultMessage="No controls available"
-                                                        description="Tooltip"
-                                                    />
-                                                </span>
-                                            </div>
-                                        ) : null}
-                                    </>
-                                ) : null}
-                            </nav>
-                        ) : null}
-                        {!withoutMenu ? (
-                            <ViewerMenu
-                                story={parsedStory}
-                                currentScreenIndex={screenIndex}
-                                withShadow={menuOverScreen && !withoutMenuShadow}
-                                toggleFullscreen={toggleFullscreen}
-                                fullscreenActive={fullscreenActive}
-                                fullscreenEnabled={fullscreenEnabled}
-                                menuDotsButtons={menuDotsButtons}
-                                closeable={closeable}
-                                shareBasePath={shareBasePath || basePath}
-                                shareOptions={shareOptions}
-                                screenSize={screenSize}
-                                menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
-                                theme={viewerTheme}
-                                previewHeader={menuHeader}
-                                previewFooter={menuFooter}
-                                trackingEnabled={trackingEnabled}
-                                onClickScreen={onClickScreen}
-                                onClickCloseViewer={onCloseViewer}
-                                onChange={onMenuChange}
-                                withDotItemClick={screenContainerWidth > 400}
-                                withoutScreensMenu={withoutScreensMenu}
-                                withoutShareMenu={withoutShareMenu}
-                                menuItems={menuItems}
-                                afterShareMenuButton={afterShareMenuButton}
-                                beforeScreensMenuButton={beforeScreensMenuButton}
-                                withMicromagBranding={withMicromagBranding}
-                                refDots={menuDotsContainerRef}
-                            />
-                        ) : null}
-                        {ready || withoutScreensTransforms ? (
-                            <div className={styles.content} {...dragBindings}>
-                                {!withoutNavigationArrow &&
-                                !withNeighborScreens &&
-                                !navigationDisabled &&
-                                screenIndex > 0 &&
-                                screens.length > 1 ? (
-                                    <NavigationButton
-                                        direction="previous"
-                                        className={classNames([styles.navButton, styles.previous])}
-                                        onClick={gotoPreviousScreen}
-                                        ariaLabel={intl.formatMessage({
-                                            defaultMessage: 'Go to previous screen',
-                                            description: 'Button label',
-                                        })}
-                                    />
-                                ) : null}
-                                <main
-                                    className={styles.screensFrame}
-                                    style={{
-                                        width: screenContainerWidth,
-                                        height: screenContainerHeight,
-                                        overflow: !withNeighborScreens ? 'hidden' : null,
-                                    }}
-                                >
-                                    {screens.map((screen, i) => {
-                                        const current = screenIndex === i;
-                                        const isBefore = i < screenIndex;
-                                        const isAfter = i > screenIndex;
-                                        const isNext =
-                                            transitionDirection !== 0 &&
-                                            i === screenIndex + transitionDirection;
-                                        const activeRange = neighborScreensActive;
-                                        const isInActiveRange =
-                                            Math.abs(i - screenIndex) <= activeRange;
-                                        const preloadRange =
-                                            neighborPreloadScreens !== null
-                                                ? neighborPreloadScreens
-                                                : neighborScreensActive;
-                                        const isInPreloadRange =
-                                            Math.abs(i - screenIndex) <= preloadRange;
-                                        const active = current || isInActiveRange || isNext;
-                                        const preload =
-                                            current ||
-                                            (preloadNext &&
-                                                i === screenIndex + 1 &&
-                                                isInPreloadRange) ||
-                                            (preloadNeighbors &&
-                                                ((isAfter && isInPreloadRange) ||
-                                                    (neighborPreloadBackward &&
-                                                        isBefore &&
-                                                        isInPreloadRange))) ||
-                                            isNext;
-
-                                        const isVisible =
-                                            current ||
-                                            (isDragging && isNext) ||
-                                            (transitionDirection !== 0 &&
-                                                !isDragging &&
-                                                i === screenIndex - transitionDirection) ||
-                                            (withNeighborScreens && active);
-
-                                        return (
-                                            <ViewerScreenSection
-                                                key={`screen-viewer-${screen.id || ''}-${i + 1}`}
-                                                screen={screen}
-                                                index={i}
-                                                screensCount={screensCount}
-                                                current={current}
-                                                active={active || current}
-                                                preload={preload || current}
-                                                visible={isVisible}
-                                                settled={current && !transitioning}
-                                                screenState={current ? screenState : null}
-                                                progress={progressSpring}
-                                                transitionType={transitionType}
-                                                neighborScreensActive={neighborScreensActive}
-                                                neighborScreenOffset={neighborScreenOffset}
-                                                neighborScreenScale={neighborScreenScale}
-                                                mediasRef={screensMediasRef}
-                                                renderContext={renderContext}
-                                                width={screenWidth}
-                                                height={screenHeight}
-                                                scale={screenScale}
-                                                onScreenError={onScreenErrorPrivate}
-                                            />
-                                        );
-                                    })}
-                                </main>
-                                {!withoutNavigationArrow &&
-                                !withNeighborScreens &&
-                                !navigationDisabled &&
-                                screenIndex < screens.length - 1 ? (
-                                    <NavigationButton
-                                        direction="next"
-                                        className={classNames([styles.navButton, styles.next])}
-                                        onClick={gotoNextScreen}
-                                        ariaLabel={intl.formatMessage({
-                                            defaultMessage: 'Go to next screen',
-                                            description: 'Button label',
-                                        })}
-                                    />
-                                ) : null}
-                                {!withoutPlaybackControls ? (
-                                    <div
-                                        className={styles.playbackControls}
-                                        id="controls"
-                                        ref={playbackControlsContainerRef}
-                                        {...stopDragEventsPropagation}
-                                    >
-                                        <PlaybackControls
-                                            className={styles.controls}
-                                            withoutShadow={withoutMenuShadow}
-                                        />
-                                    </div>
-                                ) : null}
-                                {withNavigationHint !== false &&
-                                !withNeighborScreens &&
-                                !navigationDisabled &&
-                                screenIndex === 0 &&
-                                !hasInteracted ? (
-                                    <NavigationHint
-                                        className={styles.navigationHint}
-                                        withoutShadow={withoutMenuShadow}
-                                    />
-                                ) : null}
-                            </div>
-                        ) : null}
+                        {withMetadata ? (
+                            <Meta title={finalTitle} metadata={finalMetadata}>
+                                {overscrollStyle}
+                            </Meta>
+                        ) : (
+                            overscrollStyle
+                        )}
+                        <FontFaces fonts={finalFonts} />
+                        <GoogleFonts fonts={finalFonts} />
                         <div
                             className={classNames([
-                                styles.shareIncentiveContainer,
+                                styles.container,
+                                screenSize.screens.map(
+                                    (screenName) => `story-screen-${screenName}`,
+                                ),
+                                className,
                                 {
-                                    [styles.shareIncentiveVisible]:
-                                        hasShareIncentive && shareIncentiveVisible,
+                                    [styles.landscape]: landscape,
+                                    [styles.withoutGestures]: withoutGestures,
+                                    [styles.hideMenu]: !menuVisible,
+                                    [styles.disableMenu]: navigationDisabled,
+                                    [styles.fadeMenu]:
+                                        playing && playbackControls && !playbackControlsVisible,
+                                    [styles.ready]: ready || withoutScreensTransforms,
+                                    [styles.hasInteracted]: hasInteracted,
+                                    [styles.isDragging]: isDragging,
+                                    [styles.fillsViewport]: fillsViewport,
                                 },
                             ])}
-                            style={{
-                                top: isEditor ? 10 : menuDotsContainerHeight - 10,
-                            }}
+                            ref={mergeRefs(containerRef, fullscreenRef, activityRef, screenSizeRef)}
+                            data-micromag-viewer=""
+                            onContextMenu={onContextMenu}
                         >
-                            <ShareIncentive
-                                className={styles.shareIncentive}
-                                {...currentShareIncentive}
-                            />
-                        </div>
-                        {/* @TODO: FocusLock breaks transition animation */}
-                        {/* <FocusLock
+                            {/* Announce screen change on screen reader */}
+                            <div
+                                className={styles.ariaAnnouncement}
+                                id="announce"
+                                aria-live="polite"
+                            >
+                                <FormattedMessage
+                                    defaultMessage="Screen {current} of {length}"
+                                    description="Aria announcement"
+                                    values={{
+                                        current: screenIndex + 1,
+                                        length: screens.length,
+                                    }}
+                                />
+                            </div>
+                            {!withoutSkipLinks ? (
+                                <nav
+                                    aria-label={intl.formatMessage({
+                                        defaultMessage: 'Skip Links',
+                                        description: 'Nav aria label',
+                                    })}
+                                    className={styles.accessibilityLinks}
+                                >
+                                    <a
+                                        href="#content"
+                                        className={classNames([
+                                            styles.accessibilityLink,
+                                            'skip-link',
+                                        ])}
+                                    >
+                                        <FormattedMessage
+                                            defaultMessage="Skip to content"
+                                            description="Button label"
+                                        />
+                                    </a>
+                                    {playbackHelpVisible ? (
+                                        <>
+                                            <Button
+                                                onClick={onClickSkipToPlaybackControls}
+                                                aria-disabled={
+                                                    withoutPlaybackControls ||
+                                                    !playbackControlsVisible
+                                                }
+                                                aria-describedby="disabledReason"
+                                                className={classNames([
+                                                    styles.accessibilityButton,
+                                                    {
+                                                        [styles.disabled]:
+                                                            withoutPlaybackControls ||
+                                                            !playbackControlsVisible,
+                                                    },
+                                                ])}
+                                            >
+                                                <FormattedMessage
+                                                    defaultMessage="Skip to controls"
+                                                    description="Button label"
+                                                />
+                                            </Button>
+                                            {withoutPlaybackControls || !playbackControlsVisible ? (
+                                                <div
+                                                    role="tooltip"
+                                                    className={styles.tooltipBox}
+                                                    id="disabledReason"
+                                                >
+                                                    <span className={styles.tooltip}>
+                                                        <FormattedMessage
+                                                            defaultMessage="No controls available"
+                                                            description="Tooltip"
+                                                        />
+                                                    </span>
+                                                </div>
+                                            ) : null}
+                                        </>
+                                    ) : null}
+                                </nav>
+                            ) : null}
+                            {!withoutMenu ? (
+                                <ViewerMenu
+                                    story={parsedStory}
+                                    currentScreenIndex={screenIndex}
+                                    withShadow={menuOverScreen && !withoutMenuShadow}
+                                    toggleFullscreen={toggleFullscreen}
+                                    fullscreenActive={fullscreenActive}
+                                    fullscreenEnabled={fullscreenEnabled}
+                                    menuDotsButtons={menuDotsButtons}
+                                    closeable={closeable}
+                                    shareBasePath={shareBasePath || basePath}
+                                    shareOptions={shareOptions}
+                                    screenSize={screenSize}
+                                    menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
+                                    theme={viewerTheme}
+                                    previewHeader={menuHeader}
+                                    previewFooter={menuFooter}
+                                    trackingEnabled={trackingEnabled}
+                                    onClickScreen={onClickScreen}
+                                    onClickCloseViewer={onCloseViewer}
+                                    onChange={onMenuChange}
+                                    withDotItemClick={screenContainerWidth > 400}
+                                    withoutScreensMenu={withoutScreensMenu}
+                                    withoutShareMenu={withoutShareMenu}
+                                    menuItems={menuItems}
+                                    afterShareMenuButton={afterShareMenuButton}
+                                    beforeScreensMenuButton={beforeScreensMenuButton}
+                                    withMicromagBranding={withMicromagBranding}
+                                    refDots={menuDotsContainerRef}
+                                />
+                            ) : null}
+                            {ready || withoutScreensTransforms ? (
+                                <div className={styles.content} {...dragBindings}>
+                                    {!withoutNavigationArrow &&
+                                    !withNeighborScreens &&
+                                    !navigationDisabled &&
+                                    screenIndex > 0 &&
+                                    screens.length > 1 ? (
+                                        <NavigationButton
+                                            direction="previous"
+                                            className={classNames([
+                                                styles.navButton,
+                                                styles.previous,
+                                            ])}
+                                            onClick={gotoPreviousScreen}
+                                            ariaLabel={intl.formatMessage({
+                                                defaultMessage: 'Go to previous screen',
+                                                description: 'Button label',
+                                            })}
+                                        />
+                                    ) : null}
+                                    <main
+                                        className={styles.screensFrame}
+                                        style={{
+                                            width: screenContainerWidth,
+                                            height: screenContainerHeight,
+                                            overflow: !withNeighborScreens ? 'hidden' : null,
+                                        }}
+                                    >
+                                        {screens.map((screen, i) => {
+                                            const current = screenIndex === i;
+                                            const isBefore = i < screenIndex;
+                                            const isAfter = i > screenIndex;
+                                            const isNext =
+                                                transitionDirection !== 0 &&
+                                                i === screenIndex + transitionDirection;
+                                            const activeRange = neighborScreensActive;
+                                            const isInActiveRange =
+                                                Math.abs(i - screenIndex) <= activeRange;
+                                            const preloadRange =
+                                                neighborPreloadScreens !== null
+                                                    ? neighborPreloadScreens
+                                                    : neighborScreensActive;
+                                            const isInPreloadRange =
+                                                Math.abs(i - screenIndex) <= preloadRange;
+                                            const active = current || isInActiveRange || isNext;
+                                            const preload =
+                                                current ||
+                                                (preloadNext &&
+                                                    i === screenIndex + 1 &&
+                                                    isInPreloadRange) ||
+                                                (preloadNeighbors &&
+                                                    ((isAfter && isInPreloadRange) ||
+                                                        (neighborPreloadBackward &&
+                                                            isBefore &&
+                                                            isInPreloadRange))) ||
+                                                isNext;
+
+                                            const isVisible =
+                                                current ||
+                                                (isDragging && isNext) ||
+                                                (transitionDirection !== 0 &&
+                                                    !isDragging &&
+                                                    i === screenIndex - transitionDirection) ||
+                                                (withNeighborScreens && active);
+
+                                            return (
+                                                <ViewerScreenSection
+                                                    key={`screen-viewer-${screen.id || ''}-${i + 1}`}
+                                                    screen={screen}
+                                                    index={i}
+                                                    screensCount={screensCount}
+                                                    current={current}
+                                                    active={active || current}
+                                                    preload={preload || current}
+                                                    visible={isVisible}
+                                                    settled={current && !transitioning}
+                                                    screenState={current ? screenState : null}
+                                                    progress={progressSpring}
+                                                    transitionType={transitionType}
+                                                    neighborScreensActive={neighborScreensActive}
+                                                    neighborScreenOffset={neighborScreenOffset}
+                                                    neighborScreenScale={neighborScreenScale}
+                                                    mediasRef={screensMediasRef}
+                                                    renderContext={renderContext}
+                                                    width={screenWidth}
+                                                    height={screenHeight}
+                                                    scale={screenScale}
+                                                    onScreenError={onScreenErrorPrivate}
+                                                />
+                                            );
+                                        })}
+                                    </main>
+                                    {!withoutNavigationArrow &&
+                                    !withNeighborScreens &&
+                                    !navigationDisabled &&
+                                    screenIndex < screens.length - 1 ? (
+                                        <NavigationButton
+                                            direction="next"
+                                            className={classNames([styles.navButton, styles.next])}
+                                            onClick={gotoNextScreen}
+                                            ariaLabel={intl.formatMessage({
+                                                defaultMessage: 'Go to next screen',
+                                                description: 'Button label',
+                                            })}
+                                        />
+                                    ) : null}
+                                    {!withoutPlaybackControls ? (
+                                        <div
+                                            className={styles.playbackControls}
+                                            id="controls"
+                                            ref={playbackControlsContainerRef}
+                                            {...stopDragEventsPropagation}
+                                        >
+                                            <PlaybackControls
+                                                className={styles.controls}
+                                                withoutShadow={withoutMenuShadow}
+                                            />
+                                        </div>
+                                    ) : null}
+                                    {withNavigationHint !== false &&
+                                    !withNeighborScreens &&
+                                    !navigationDisabled &&
+                                    screenIndex === 0 &&
+                                    !hasInteracted ? (
+                                        <NavigationHint
+                                            className={styles.navigationHint}
+                                            withoutShadow={withoutMenuShadow}
+                                        />
+                                    ) : null}
+                                </div>
+                            ) : null}
+                            <div
+                                className={classNames([
+                                    styles.shareIncentiveContainer,
+                                    {
+                                        [styles.shareIncentiveVisible]:
+                                            hasShareIncentive && shareIncentiveVisible,
+                                    },
+                                ])}
+                                style={{
+                                    top: isEditor ? 10 : menuDotsContainerHeight - 10,
+                                }}
+                            >
+                                <ShareIncentive
+                                    className={styles.shareIncentive}
+                                    {...currentShareIncentive}
+                                />
+                            </div>
+                            {/* @TODO: FocusLock breaks transition animation */}
+                            {/* <FocusLock
                             disabled={!webViewOpened}
                             className={styles.focusLock}
                             group="webview"
                             returnFocus
                         > */}
-                        <WebView
-                            className={styles.webView}
-                            trackingEnabled={trackingEnabled}
-                            style={{
-                                maxWidth: withFullscreenWebView
-                                    ? null
-                                    : Math.max(screenContainerWidth, 600),
-                            }}
-                        />
-                        {/* </FocusLock> */}
-                    </div>
-                </ViewerProvider>
+                            <WebView
+                                className={styles.webView}
+                                trackingEnabled={trackingEnabled}
+                                style={{
+                                    maxWidth: withFullscreenWebView
+                                        ? null
+                                        : Math.max(screenContainerWidth, 600),
+                                }}
+                            />
+                            {/* </FocusLock> */}
+                        </div>
+                    </ViewerProvider>
+                </VideoRenditionProvider>
             </ScreenSizeProvider>
         </StoryProvider>
     );

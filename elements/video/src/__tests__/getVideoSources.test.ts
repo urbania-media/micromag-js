@@ -55,4 +55,74 @@ describe('getVideoSources', () => {
             getVideoSources([{ handle: 'original', mime: 'image/gif', url: 'image.gif' }]),
         ).toBeNull();
     });
+
+    describe('with the 720p rendering', () => {
+        const withH264720 = [
+            ...files,
+            { handle: 'h264_720', mime: 'video/mp4', url: 'video-h264_720.mp4', size: 1500 },
+        ];
+        const urls = (sources: { url?: string | null }[] | null) => sources?.map(({ url }) => url);
+
+        it('gives the same sources as before when the media has no h264_720', () => {
+            expect(urls(getVideoSources(files, null, 'h264'))).toEqual(['video-h264.mp4']);
+            expect(urls(getVideoSources(files, null, 'h264_720'))).toEqual(['video-h264.mp4']);
+            expect(urls(getVideoSources(files, ['video/webm', 'video/mp4'], 'h264_720'))).toEqual([
+                'video.webm',
+                'video-h264.mp4',
+            ]);
+        });
+
+        it('keeps only the chosen rendering, not the smallest mp4', () => {
+            expect(urls(getVideoSources(withH264720))).toEqual(['video-h264.mp4']);
+            expect(urls(getVideoSources(withH264720, null, 'h264'))).toEqual(['video-h264.mp4']);
+            expect(urls(getVideoSources(withH264720, null, 'h264_720'))).toEqual([
+                'video-h264_720.mp4',
+            ]);
+        });
+
+        it('adds the formats a host opted in to, as before', () => {
+            expect(urls(getVideoSources(withH264720, ['video/webm', 'video/mp4'], 'h264'))).toEqual(
+                ['video.webm', 'video-h264.mp4'],
+            );
+            expect(
+                urls(getVideoSources(withH264720, ['video/webm', 'video/mp4'], 'h264_720')),
+            ).toEqual(['video.webm', 'video-h264_720.mp4']);
+            // Only webm opted in: the H.264 renderings are not playable
+            expect(urls(getVideoSources(withH264720, ['video/webm'], 'h264_720'))).toEqual([
+                'video.webm',
+            ]);
+        });
+
+        it('falls back to the other rendering, then to the original', () => {
+            const onlyH264720 = withH264720.filter(({ handle }) => handle !== 'h264');
+            expect(urls(getVideoSources(onlyH264720, null, 'h264'))).toEqual([
+                'video-h264_720.mp4',
+            ]);
+            expect(
+                urls(
+                    getVideoSources(
+                        withH264720.filter(({ handle }) => handle.indexOf('h264') !== 0),
+                        null,
+                        'h264_720',
+                    ),
+                ),
+            ).toEqual(['original.mp4']);
+        });
+
+        it('guesses the mp4 mime of h264_720 without mime', () => {
+            expect(getFileMime({ handle: 'h264_720' })).toBe('video/mp4');
+            expect(
+                urls(
+                    getVideoSources(
+                        [
+                            { handle: 'h264', url: 'video-h264.mp4', size: 2 },
+                            { handle: 'h264_720', url: 'video-h264_720.mp4', size: 1 },
+                        ],
+                        null,
+                        'h264_720',
+                    ),
+                ),
+            ).toEqual(['video-h264_720.mp4']);
+        });
+    });
 });

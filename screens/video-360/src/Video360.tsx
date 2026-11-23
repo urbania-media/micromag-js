@@ -12,6 +12,7 @@ import type {
 } from '@micromag/core';
 import { PlaceholderVideo360, ScreenElement } from '@micromag/core/components';
 import {
+    VideoRenditionProvider,
     usePlaybackContext,
     usePlaybackMediaRef,
     useScreenRenderContext,
@@ -520,27 +521,30 @@ function Video360Screen({
                             top: resizedVideoTop,
                         }}
                     >
-                        <Video
-                            {...finalVideo}
-                            mediaRef={mergeRefs(mediaRef, customMediaRef)}
-                            className={styles.video}
-                            paused={!videoPlaying}
-                            muted={muted}
-                            withoutCors
-                            onReady={onVideoReady}
-                            onPlay={onPlay}
-                            onPause={onPause}
-                            onTimeUpdate={onTimeUpdate}
-                            onProgressStep={onProgressStep}
-                            onDurationChange={onDurationChange}
-                            onSeeked={onSeeked}
-                            onEnded={onEnded}
-                            onPosterLoaded={onPosterLoaded}
-                            onPlayError={onPlayError}
-                            setPlaying={setPlaying}
-                            focusable={current && isView}
-                            shouldLoad={mediaShouldLoad}
-                        />
+                        {/* Only part of a 360 video is on screen: it keeps the 1080p rendering */}
+                        <VideoRenditionProvider rendition="h264">
+                            <Video
+                                {...finalVideo}
+                                mediaRef={mergeRefs(mediaRef, customMediaRef)}
+                                className={styles.video}
+                                paused={!videoPlaying}
+                                muted={muted}
+                                withoutCors
+                                onReady={onVideoReady}
+                                onPlay={onPlay}
+                                onPause={onPause}
+                                onTimeUpdate={onTimeUpdate}
+                                onProgressStep={onProgressStep}
+                                onDurationChange={onDurationChange}
+                                onSeeked={onSeeked}
+                                onEnded={onEnded}
+                                onPosterLoaded={onPosterLoaded}
+                                onPlayError={onPlayError}
+                                setPlaying={setPlaying}
+                                focusable={current && isView}
+                                shouldLoad={mediaShouldLoad}
+                            />
+                        </VideoRenditionProvider>
                     </div>
                 ) : null}
                 <div className={styles.inner}>
