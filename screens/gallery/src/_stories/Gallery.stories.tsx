@@ -12,7 +12,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import GalleryScreen from '../Gallery';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     images: images({ count: 20 }),

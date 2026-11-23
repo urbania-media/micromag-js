@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import GalleryFeedCaptionsScreen from '../GalleryFeedCaptions';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     images: imagesWithCaptions({ count: 5 }),

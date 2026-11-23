@@ -1,5 +1,7 @@
 import { defineMessage } from 'react-intl';
 
+import UrbaniaLoaderScreen from './UrbaniaLoader';
+
 // import * as transforms from './transforms/index';
 
 export default {
@@ -17,6 +19,7 @@ export default {
         defaultMessage: 'Urbania article',
         description: 'Urbania screen title',
     }),
+    component: UrbaniaLoaderScreen,
     fields: [
         {
             name: 'url',
@@ -150,5 +153,3 @@ export default {
         },
     ],
 };
-
-export { default as definitionCard } from './definition-card';

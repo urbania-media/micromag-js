@@ -1,5 +1,8 @@
 import { defineMessage } from 'react-intl';
 
+import QuizScreen from './Quiz';
+import QuizMultipleScreen from './QuizMultiple';
+
 export default [
     {
         id: 'quiz',
@@ -15,6 +18,7 @@ export default [
             defaultMessage: 'Quiz',
             description: 'Quiz screen title',
         }),
+        component: QuizScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
         fields: [
             // {
@@ -232,6 +236,7 @@ export default [
             defaultMessage: 'Quiz with multiple questions',
             description: 'Screen title',
         }),
+        component: QuizMultipleScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
         states: [
             {

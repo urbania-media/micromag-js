@@ -13,7 +13,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import TextScreen from '../Text';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     text: text('verylong'),

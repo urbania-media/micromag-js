@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import RankingScreen from '../Ranking';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     items: [...new Array(10)].map(() => ({

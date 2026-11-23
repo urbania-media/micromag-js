@@ -1,5 +1,7 @@
 import { defineMessage } from 'react-intl';
 
+import GameSortScreen from './GameSort';
+
 // import * as transforms from './transforms/index';
 
 export default {
@@ -16,6 +18,7 @@ export default {
         defaultMessage: 'Sort game',
         description: 'Sort game screen title',
     }),
+    component: GameSortScreen,
     layouts: ['top', 'middle', 'bottom'],
     // transforms,
     fields: [

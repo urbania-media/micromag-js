@@ -1,5 +1,7 @@
 import { defineMessage } from 'react-intl';
 
+import QuoteScreen from './Quote';
+
 // import * as transforms from './transforms/index';
 
 export default {
@@ -16,6 +18,7 @@ export default {
         defaultMessage: 'Quote',
         description: 'Quote screen title',
     }),
+    component: QuoteScreen,
     layouts: ['top', 'middle', 'bottom', 'split'],
     // transforms,
     fields: [

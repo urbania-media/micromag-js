@@ -1,5 +1,10 @@
 import { defineMessage } from 'react-intl';
 
+import TitleScreen from './Title';
+import TitleSubtitleScreen from './TitleSubtitle';
+import TitleSubtitleCreditsScreen from './TitleSubtitleCredits';
+import TitleWithBoxScreen from './TitleWithBox';
+
 export default [
     {
         id: 'title',
@@ -15,6 +20,7 @@ export default [
             defaultMessage: 'Title',
             description: 'Title screen title',
         }),
+        component: TitleScreen,
         layouts: ['top', 'middle', 'bottom'],
         // transforms,
         fields: [
@@ -94,6 +100,7 @@ export default [
             defaultMessage: 'Title with subtitle',
             description: 'TitleSubtitle screen title',
         }),
+        component: TitleSubtitleScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
         // transforms,
         fields: [
@@ -184,6 +191,7 @@ export default [
             defaultMessage: 'Title with subtitle and credits',
             description: 'TitleSubtitleCredits screen title',
         }),
+        component: TitleSubtitleCreditsScreen,
         layouts: ['top', 'middle', 'bottom', 'split-top', 'split-bottom'],
         // transforms,
         fields: [
@@ -285,6 +293,7 @@ export default [
             defaultMessage: 'Title with box',
             description: 'Dcreen title',
         }),
+        component: TitleWithBoxScreen,
         layouts: ['top', 'middle', 'bottom', 'split-top', 'split-bottom'],
         // transforms,
         fields: [

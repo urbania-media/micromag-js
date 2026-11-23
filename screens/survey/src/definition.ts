@@ -1,5 +1,7 @@
 import { defineMessage } from 'react-intl';
 
+import SurveyScreen from './Survey';
+
 export default {
     id: 'survey',
     type: 'screen',
@@ -14,6 +16,7 @@ export default {
         defaultMessage: 'Survey',
         description: 'Survey screen title',
     }),
+    component: SurveyScreen,
     layouts: ['top', 'middle', 'bottom', 'split'],
     fields: [
         {

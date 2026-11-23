@@ -1,5 +1,6 @@
 import { defineMessage } from 'react-intl';
 
+import UrbaniaHoroscope from './UrbaniaHoroscope';
 import signs from './data/signs';
 
 export default [
@@ -18,6 +19,7 @@ export default [
             defaultMessage: 'Urbania horoscope',
             description: 'Urbania screen title',
         }),
+        component: UrbaniaHoroscope,
         states: [
             {
                 id: 'intro',

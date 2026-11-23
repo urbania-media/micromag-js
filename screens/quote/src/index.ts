@@ -1,7 +1,2 @@
-import { QuoteScreen } from './component';
-import definition from './definition';
-
-// The definition with its component
-export default { ...definition, component: QuoteScreen };
-
-export { QuoteScreen } from './component';
+export { default } from './definition';
+export { default as QuoteScreen } from './Quote';

@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import SurveyScreen from '../Survey';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },

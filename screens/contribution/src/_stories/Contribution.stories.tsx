@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import ContributionScreen from '../Contribution';
-import definition from '../index';
+import definition from '../definition';
 
 const props = {
     title: { body: title() },

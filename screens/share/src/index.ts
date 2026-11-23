@@ -1,7 +1,2 @@
-import { ShareScreen } from './component';
-import definition from './definition';
-
-// The definition with its component
-export default { ...definition, component: ShareScreen };
-
-export { ShareScreen } from './component';
+export { default } from './definition';
+export { default as ShareScreen } from './Share';
