@@ -1,5 +1,6 @@
 import FontsParser from '../../packages/core/src/lib/FontsParser';
 import MediasParser from '../../packages/core/src/lib/MediasParser';
+import ThemeParser from '../../packages/core/src/lib/ThemeParser';
 import getScreenFieldsWithStates from '../../packages/core/src/utils/getScreenFieldsWithStates';
 
 import fieldsManager from '../../packages/fields/src/manager';
@@ -34,8 +35,18 @@ export default function getScreenFields() {
         };
     }, {});
 
+    // What ThemeParser reads of each definition (a JSON value)
+    const themeMap = screens.reduce(
+        (map, definition) => ({
+            ...map,
+            [definition.id]: ThemeParser.getThemePattern(definition),
+        }),
+        {},
+    );
+
     return {
         fonts: fontsMap,
         medias: mediasMap,
+        theme: themeMap,
     };
 }
