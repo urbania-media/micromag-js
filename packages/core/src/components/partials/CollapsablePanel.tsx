@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { useCallback, useState } from 'react';
 
 import Button from '../buttons/Button';
+import InlineIcon from '../icons/Inline';
 
 import styles from '../../styles/partials/collapsable-panel.module.css';
 
@@ -41,20 +41,12 @@ function CollapsablePanel({
                 },
             ])}
         >
-            <div
-                className={classNames([
-                    styles.top,
-                    topClassName,
-                ])}
-            >
+            <div className={classNames([styles.top, topClassName])}>
                 <Button
                     withoutStyle
-                    className={classNames([
-                        styles.button,
-                        buttonClassName,
-                    ])}
+                    className={classNames([styles.button, buttonClassName])}
                     icon={
-                        <FontAwesomeIcon
+                        <InlineIcon
                             icon={opened ? faAngleUp : faAngleDown}
                             className={styles.icon}
                         />
@@ -66,14 +58,7 @@ function CollapsablePanel({
                     {title}
                 </Button>
             </div>
-            <div
-                className={classNames([
-                    styles.content,
-                    contentClassName,
-                ])}
-            >
-                {children}
-            </div>
+            <div className={classNames([styles.content, contentClassName])}>{children}</div>
         </div>
     );
 }

@@ -90,14 +90,23 @@ jobs:
           git fetch --quiet --no-tags --depth=1 origin "$BASE_SHA"
           git checkout "$BASE_SHA" -- packages elements screens scripts/lib
           git checkout HEAD -- packages/core/src/lib/__tests__ vitest.config.mts
+          # Dependencies added or removed by the pull request: the base branch needs its own
+          if ! git diff --quiet "$BASE_SHA" HEAD -- package-lock.json; then
+            git checkout "$BASE_SHA" -- package.json package-lock.json
+            npm ci --no-audit --no-fund
+          fi
           npx vitest run packages/core/src/lib/__tests__/StoryParser.test.ts -t "local stories" --update
 
       - name: Parse the recent stories with the pull request
         if: steps.stories.outputs.enabled == 'true'
         env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
           MICROMAG_STORIES_DIR: ${{ runner.temp }}/stories
           MICROMAG_STORIES_DIGEST: '1'
         run: |
-          git checkout HEAD -- packages elements screens scripts/lib
+          git checkout HEAD -- packages elements screens scripts/lib package.json package-lock.json
           git clean -fdq -- packages elements screens scripts/lib
+          if ! git diff --quiet "$BASE_SHA" HEAD -- package-lock.json; then
+            npm ci --no-audit --no-fund
+          fi
           npx vitest run packages/core/src/lib/__tests__/StoryParser.test.ts -t "local stories"

@@ -1,6 +1,6 @@
 import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
 interface PlaceholderImageProps extends PlaceholderBlockProps {
@@ -12,7 +12,7 @@ interface PlaceholderImageProps extends PlaceholderBlockProps {
 export function PlaceholderImage({ width, height, className, ...props }: PlaceholderImageProps) {
     return (
         <PlaceholderBlock {...props} className={className}>
-            <FontAwesomeIcon
+            <InlineIcon
                 icon={faImage}
                 className="d-block m-auto"
                 style={{

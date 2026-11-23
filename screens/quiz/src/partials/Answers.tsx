@@ -3,13 +3,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { BoxStyle, ButtonLayout, Color, QuizAnswer, TextStyle } from '@micromag/core';
-import { ScreenElement } from '@micromag/core/components';
+import { InlineIcon, ScreenElement } from '@micromag/core/components';
 import { useScreenRenderContext } from '@micromag/core/contexts';
 import { getStyleFromColor, isImageFilled, isTextFilled } from '@micromag/core/utils';
 import { RichButton } from '@micromag/element-button';
@@ -417,7 +416,7 @@ function Answers({
                                             'backgroundColor',
                                         )}
                                     >
-                                        <FontAwesomeIcon className={styles.faIcon} icon={faCheck} />
+                                        <InlineIcon className={styles.faIcon} icon={faCheck} />
                                     </span>
                                 ) : null}
                                 {!withoutIcon && answered && rightAnswer === false ? (
@@ -425,7 +424,7 @@ function Answers({
                                         className={styles.resultIcon}
                                         style={getStyleFromColor(badAnswerColor, 'backgroundColor')}
                                     >
-                                        <FontAwesomeIcon className={styles.faIcon} icon={faTimes} />
+                                        <InlineIcon className={styles.faIcon} icon={faTimes} />
                                     </span>
                                 ) : null}
                             </RichButton>

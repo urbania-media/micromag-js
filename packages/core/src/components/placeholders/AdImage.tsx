@@ -1,12 +1,12 @@
 import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
 export function AdImage({ width, height, ...props }: PlaceholderBlockProps) {
     return (
         <PlaceholderBlock {...props}>
-            <FontAwesomeIcon
+            <InlineIcon
                 icon={faImage}
                 style={{
                     width,

@@ -1,7 +1,7 @@
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons/faCommentDots';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 interface ConversationProps {
@@ -22,7 +22,7 @@ export function Conversation({ className }: ConversationProps) {
                     }}
                 />
             ))}
-            <FontAwesomeIcon icon={faCommentDots} className="d-block ms-auto mt-2 fs-1" />
+            <InlineIcon icon={faCommentDots} className="d-block ms-auto mt-2 fs-1" />
         </PlaceholderBlock>
     );
 }

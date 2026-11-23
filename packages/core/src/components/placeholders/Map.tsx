@@ -1,8 +1,8 @@
 import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkerAlt';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/map.module.css';
@@ -20,10 +20,10 @@ export function Map({ withImages = false, className, ...props }: MapPlaceholderP
             {...props}
             className={classNames([styles.container, className])}
         >
-            <FontAwesomeIcon icon={icon} className={styles.icon} />
-            <FontAwesomeIcon icon={icon} className={styles.icon} />
-            <FontAwesomeIcon icon={icon} className={styles.icon} />
-            <FontAwesomeIcon icon={icon} className={styles.icon} />
+            <InlineIcon icon={icon} className={styles.icon} />
+            <InlineIcon icon={icon} className={styles.icon} />
+            <InlineIcon icon={icon} className={styles.icon} />
+            <InlineIcon icon={icon} className={styles.icon} />
         </PlaceholderBlock>
     );
 }

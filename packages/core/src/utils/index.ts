@@ -49,6 +49,7 @@ export { default as isTextFilled } from './isTextFilled';
 export { default as isValidUrl } from './isValidUrl';
 export { default as mergeRefs } from './mergeRefs';
 export { default as pascalCase } from './pascalCase';
+export { default as sanitizeUserInput, loadUserInputSanitizer } from './sanitizeUserInput';
 export { default as schemaId } from './schemaId';
 export { default as setFieldValue } from './setFieldValue';
 export { default as slug } from './slug';

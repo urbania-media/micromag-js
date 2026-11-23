@@ -1,7 +1,5 @@
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import DOMPurify from 'dompurify';
 import isNumber from 'lodash-es/isNumber';
 import React, { ForwardedRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -18,7 +16,7 @@ import type {
     TextStyle,
     Transitions as TransitionsConfig,
 } from '@micromag/core';
-import { CloseIcon, ScreenElement, Transitions } from '@micromag/core/components';
+import { CloseIcon, InlineIcon, ScreenElement, Transitions } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -35,7 +33,9 @@ import {
     isFooterFilled,
     isHeaderFilled,
     isTextFilled,
+    loadUserInputSanitizer,
     mergeRefs,
+    sanitizeUserInput,
 } from '@micromag/core/utils';
 import { useQuiz, useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
@@ -241,6 +241,12 @@ function SurveyScreen({
     }, [setUserAnswerIndex]);
 
     const [textInput, setTextInput] = useState(null);
+
+    // DOMPurify is in a chunk of its own: load it with the screen, before the reader types
+    useEffect(() => {
+        loadUserInputSanitizer();
+    }, []);
+
     const [inputFocused, setInputFocused] = useState(false);
     const inputDisabled = isPreview || answered;
 
@@ -264,7 +270,7 @@ function SurveyScreen({
 
     const onTextInputChange = useCallback(
         (e) => {
-            const value = DOMPurify.sanitize(e.currentTarget.value || '');
+            const value = sanitizeUserInput(e.currentTarget.value || '');
             setTextInput(value !== '' ? value : null);
         },
         [setTextInput],
@@ -591,7 +597,7 @@ function SurveyScreen({
                     {showReset ? (
                         <Button
                             className={styles.reset}
-                            icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                            icon={<InlineIcon icon={faRedo} />}
                             onClick={onQuizReset}
                         />
                     ) : null}

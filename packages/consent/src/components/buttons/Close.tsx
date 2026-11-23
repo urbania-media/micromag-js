@@ -1,8 +1,7 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 
-import { Button } from '@micromag/core/components';
+import { Button, InlineIcon } from '@micromag/core/components';
 
 import styles from '../../styles/buttons/close.module.css';
 
@@ -15,7 +14,7 @@ function CloseButton({ className = null, ...props }: CloseButtonProps) {
         <Button
             className={classNames([styles.container, className])}
             withoutStyle
-            icon={<FontAwesomeIcon icon={faTimes} />}
+            icon={<InlineIcon icon={faTimes} />}
             iconPosition="right"
             {...props}
         />

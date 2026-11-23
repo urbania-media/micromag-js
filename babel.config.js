@@ -6,14 +6,8 @@ module.exports = {
                 runtime: 'automatic',
             },
         ],
-        [
-            require('@babel/preset-env'),
-            {
-                targets: {
-                    node: 'current',
-                },
-            },
-        ],
+        // Targets: the browsers of .browserslistrc
+        require('@babel/preset-env'),
         '@babel/preset-typescript',
     ],
     plugins: [
