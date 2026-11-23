@@ -1,8 +1,7 @@
-import '../styles/styles.global.css';
-
 import { RoutesProvider } from '@folklore/routes';
 import isEmpty from 'lodash-es/isEmpty';
 import uniq from 'lodash-es/uniq';
+import type { ComponentType, ReactNode } from 'react';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';
 
@@ -19,7 +18,6 @@ import {
 } from '@micromag/core/contexts';
 import { useSupportsWebp } from '@micromag/core/hooks';
 import { IntlProvider } from '@micromag/intl';
-import { ScreensProvider } from '@micromag/screens';
 
 import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 
@@ -31,7 +29,7 @@ import defaultRoutes from '../data/routes.json';
 const emptyComponents = {};
 const defaultLocales = ['fr', 'en'];
 
-interface ViewerContainerProps {
+export interface ViewerContainerProps {
     story?: Story | null;
     paused?: boolean;
     muted?: boolean;
@@ -56,7 +54,13 @@ interface ViewerContainerProps {
     children?: (...args: unknown[]) => void;
 }
 
-function ViewerContainer({
+interface ViewerContainerBaseProps extends ViewerContainerProps {
+    /** The provider of the screens: all loaded (@micromag/screens) or loaded on demand */
+    screensProvider: ComponentType<{ children: ReactNode }>;
+}
+
+function ViewerContainerBase({
+    screensProvider: ScreensProvider,
     story = null,
     paused = false,
     muted = true,
@@ -76,7 +80,7 @@ function ViewerContainer({
     trackingPaused = false,
     settings = null,
     ...otherProps
-}: ViewerContainerProps) {
+}: ViewerContainerBaseProps) {
     const {
         id = null,
         document_id: documentId,
@@ -177,4 +181,4 @@ function ViewerContainer({
     );
 }
 
-export default ViewerContainer;
+export default ViewerContainerBase;

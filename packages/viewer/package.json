@@ -40,8 +40,15 @@
             "style": "./assets/css/styles.css",
             "import": "./es/index.js"
         },
+        "./lazy": {
+            "types": "./es/lazy.d.ts",
+            "style": "./assets/css/lazy.css",
+            "import": "./es/lazy.js"
+        },
         "./assets/css/styles": "./assets/css/styles.css",
-        "./assets/css/styles.css": "./assets/css/styles.css"
+        "./assets/css/styles.css": "./assets/css/styles.css",
+        "./assets/css/lazy": "./assets/css/lazy.css",
+        "./assets/css/lazy.css": "./assets/css/lazy.css"
     },
     "module": "es/index.js",
     "types": "es/index.d.ts",

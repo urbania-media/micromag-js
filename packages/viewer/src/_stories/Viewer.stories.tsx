@@ -39,6 +39,7 @@ import { v1 as uuid } from 'uuid';
 import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 
 import FieldsProvider from '../../../fields/src/FieldsProvider';
+import LazyViewer from '../components/LazyViewerContainer';
 import Viewer from '../components/ViewerContainer';
 
 import styles from './styles.module.css';
@@ -488,11 +489,12 @@ const transitionMetricLongStory = getTransitionMetricStory(30);
 const formatMetricMs = (value: number | null) =>
     value !== null ? `${Math.round(value)} ms` : 'n/a';
 
-function TransitionMetricViewer({ story = transitionMetricStory }) {
+function TransitionMetricViewer({ story = transitionMetricStory, lazy = false }) {
     const [metrics, setMetrics] = useState<ViewerTransitionMetric[]>([]);
+    const ViewerComponent = lazy ? LazyViewer : Viewer;
     return (
         <>
-            <Viewer
+            <ViewerComponent
                 story={story}
                 memoryRouter
                 onTransitionMetric={(metric: ViewerTransitionMetric) => {
@@ -602,6 +604,15 @@ export const TransitionMetric = meta.story(() => <TransitionMetricViewer />);
 export const TransitionMetricLong = meta.story(() => (
     <TransitionMetricViewer story={transitionMetricLongStory} />
 ));
+
+// With the screens loaded on demand (as in @micromag/viewer-build)
+export const TransitionMetricLongLazy = meta.story(() => (
+    <TransitionMetricViewer story={transitionMetricLongStory} lazy />
+));
+
+// Every screen type, loaded on demand: the network panel shows a chunk per screen package, loaded
+// when the viewer mounts (the current screen and its neighbours first)
+export const LazyScreens = meta.story(() => <LazyViewer story={allScreensStory} memoryRouter />);
 
 export const MultipleVideosForcePaused = meta.story(() => (
     <Viewer screenId="1" story={multipleVideosStory} withNavigationHint paused memoryRouter />
