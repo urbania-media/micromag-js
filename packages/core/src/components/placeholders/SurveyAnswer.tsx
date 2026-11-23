@@ -1,7 +1,7 @@
 import { faPercent } from '@fortawesome/free-solid-svg-icons/faPercent';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 import PlaceholderText from '../partials/PlaceholderText';
 
@@ -15,7 +15,7 @@ export function Answer({ className }: SurveyAnswerProps) {
             <PlaceholderBlock outline className="w-100 me-2">
                 <PlaceholderText lines={1} height="1em" />
             </PlaceholderBlock>
-            <FontAwesomeIcon icon={faPercent} className="fs-2" />
+            <InlineIcon icon={faPercent} className="fs-2" />
         </div>
     );
 }

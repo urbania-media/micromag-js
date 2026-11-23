@@ -1,7 +1,7 @@
 import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
 export function Video360({ width, height, className, ...props }: PlaceholderBlockProps) {
@@ -11,7 +11,7 @@ export function Video360({ width, height, className, ...props }: PlaceholderBloc
             className={className}
             boxClassName="d-flex flex-column align-items-center justify-content-center"
         >
-            <FontAwesomeIcon
+            <InlineIcon
                 icon={faVideo}
                 className="d-block mb-1"
                 style={{

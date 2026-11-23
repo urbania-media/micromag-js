@@ -1,12 +1,12 @@
 import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
 export function Video({ width, height, ...props }: PlaceholderBlockProps) {
     return (
         <PlaceholderBlock {...props}>
-            <FontAwesomeIcon
+            <InlineIcon
                 icon={faVideo}
                 style={{
                     width,

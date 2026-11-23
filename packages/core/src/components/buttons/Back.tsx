@@ -1,6 +1,6 @@
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons/faAngleLeft';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import InlineIcon from '../icons/Inline';
 import Button, { ButtonProps } from './Button';
 
 interface BackButtonProps extends ButtonProps {
@@ -10,7 +10,7 @@ interface BackButtonProps extends ButtonProps {
 function BackButton({ ...props }: BackButtonProps) {
     return (
         <Button size="sm" {...props}>
-            <FontAwesomeIcon icon={faAngleLeft} />
+            <InlineIcon icon={faAngleLeft} />
         </Button>
     );
 }

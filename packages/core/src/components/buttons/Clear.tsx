@@ -1,7 +1,8 @@
 import { faClose } from '@fortawesome/free-solid-svg-icons/faClose';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { HTMLAttributes, MouseEventHandler } from 'react';
+
+import InlineIcon from '../icons/Inline';
 
 interface ClearButtonProps extends HTMLAttributes<HTMLButtonElement> {
     onClick?: MouseEventHandler<HTMLButtonElement> | null;
@@ -32,7 +33,7 @@ function ClearButton({
             disabled={!iconOnly ? disabled : null}
             {...props}
         >
-            <FontAwesomeIcon icon={faClose} />
+            <InlineIcon icon={faClose} />
         </ButtonComponent>
     );
 }

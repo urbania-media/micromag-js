@@ -1,20 +1,20 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
 export function VideoLoop({ width, height, ...props }: PlaceholderBlockProps) {
     return (
         <PlaceholderBlock {...props}>
-            <FontAwesomeIcon
+            <InlineIcon
                 icon={faPlay}
                 style={{
                     width,
                     height,
                 }}
             />
-            <FontAwesomeIcon
+            <InlineIcon
                 icon={faRedo}
                 style={{
                     width,

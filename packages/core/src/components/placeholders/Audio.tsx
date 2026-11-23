@@ -1,12 +1,12 @@
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import InlineIcon from '../icons/Inline';
 import PlaceholderBlock, { PlaceholderBlockProps } from '../partials/PlaceholderBlock';
 
 export function Audio({ width, height, ...props }: PlaceholderBlockProps) {
     return (
         <PlaceholderBlock {...props}>
-            <FontAwesomeIcon
+            <InlineIcon
                 icon={faMusic}
                 style={{
                     width,

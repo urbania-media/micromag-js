@@ -1,5 +1,4 @@
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, easings, useTransition } from '@react-spring/web';
 import classNames from 'classnames';
 import isArray from 'lodash-es/isArray';
@@ -26,6 +25,7 @@ import type {
     TextStyle,
     Transitions,
 } from '@micromag/core';
+import { InlineIcon } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -658,7 +658,7 @@ function QuizMultipleScreen({
                 {showReset ? (
                     <Button
                         className={styles.reset}
-                        icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                        icon={<InlineIcon icon={faRedo} />}
                         onClick={onQuizReset}
                     />
                 ) : null}

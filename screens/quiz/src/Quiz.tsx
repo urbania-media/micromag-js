@@ -1,5 +1,4 @@
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { ForwardedRef, useCallback, useEffect, useState } from 'react';
 
@@ -19,7 +18,7 @@ import type {
     Transitions,
     VideoMedia,
 } from '@micromag/core';
-import { Button } from '@micromag/core/components';
+import { Button, InlineIcon } from '@micromag/core/components';
 import {
     usePlaybackContext,
     usePlaybackMediaRef,
@@ -258,7 +257,7 @@ function QuizScreen({
                 {showReset ? (
                     <Button
                         className={styles.reset}
-                        icon={<FontAwesomeIcon icon={faRedo} size="md" />}
+                        icon={<InlineIcon icon={faRedo} />}
                         onClick={onQuizReset}
                     />
                 ) : null}
