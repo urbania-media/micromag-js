@@ -7,9 +7,12 @@ import { createConfig } from '../../rollup.config';
 const files = {
     'index.ts': {},
     'all.ts': {},
+    // ESM only: the screens are dynamic imports, with their CSS
+    'lazy.ts': { format: 'es' },
 };
 
-const isFieldsImport = (id) => id === '../fields' || id === '../fields.js';
+const isFieldsImport = (id) =>
+    ['../fields', '../fields.js', '../theme-fields', '../theme-fields.js'].includes(id);
 
 export default Object.keys(files).reduce(
     (configs, file) => [

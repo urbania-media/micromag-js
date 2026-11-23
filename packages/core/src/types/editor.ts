@@ -35,9 +35,13 @@ export interface Field {
 
 export interface ScreenDefinition extends Definition {
     type: 'screen';
-    title: Text;
+    title?: Text;
     layouts?: string[];
     fields?: Field[];
+    /** Screens loaded on demand: loads the component (see `@micromag/screens/lazy`) */
+    load?: () => Promise<unknown>;
+    /** Screens loaded on demand: true once the component is loaded */
+    isLoaded?: () => boolean;
 }
 
 export interface FieldDefinition extends Definition {
