@@ -85,7 +85,11 @@ function ScreenTypes({
                   ];
         }, []);
 
-        return orderBy(groupItems, ['order', 'name'], ['asc', 'asc']);
+        return orderBy(
+            groupItems,
+            [(item = null) => item?.order, (item = null) => item?.name],
+            ['asc', 'asc'],
+        );
     }, [finalDefinitions, selectedTypes]);
 
     return (

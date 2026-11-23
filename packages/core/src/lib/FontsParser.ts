@@ -34,7 +34,7 @@ class FontsParser {
                 const newFonts = FontsParser.extractFontsWithPaths(screen, fieldsPattern);
                 return newFonts.length > 0 ? [...currentFonts, ...newFonts] : currentFonts;
             }, []),
-            'name',
+            (font: { name?: string } | null = null) => font?.name,
         );
 
         // Extract fonts from theme

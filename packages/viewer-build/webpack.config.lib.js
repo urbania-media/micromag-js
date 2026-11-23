@@ -15,7 +15,7 @@ module.exports = {
         splitChunks: false,
         usedExports: false,
     },
-    plugins: [new LodashModuleReplacementPlugin()],
+    plugins: [new LodashModuleReplacementPlugin({ shorthands: true })],
     module: {
         rules: [
             {

@@ -1,9 +1,10 @@
 import isArray from 'lodash-es/isArray';
 import isObject from 'lodash-es/isObject';
-import uniqWith from 'lodash-es/uniqWith';
 import sortBy from 'lodash-es/sortBy';
+import uniqWith from 'lodash-es/uniqWith';
 
-const sortedColors = (colors) => sortBy(colors, ['color', 'alpha']);
+const sortedColors = (colors) =>
+    sortBy(colors, [(color = null) => color?.color, (color = null) => color?.alpha]);
 
 const uniqueColors = (colors) =>
     uniqWith(
