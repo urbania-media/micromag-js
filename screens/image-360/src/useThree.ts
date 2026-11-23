@@ -20,7 +20,7 @@ const useThree = () => {
             ({
                 Scene,
                 PerspectiveCamera,
-                SphereBufferGeometry,
+                SphereGeometry,
                 VideoTexture,
                 TextureLoader,
                 MeshBasicMaterial,
@@ -31,7 +31,7 @@ const useThree = () => {
                 packageCache = {
                     Scene,
                     PerspectiveCamera,
-                    SphereBufferGeometry,
+                    SphereGeometry,
                     VideoTexture,
                     TextureLoader,
                     MeshBasicMaterial,
