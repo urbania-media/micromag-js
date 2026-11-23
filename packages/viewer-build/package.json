@@ -31,7 +31,8 @@
         }
     ],
     "sideEffects": [
-        "**/*.css"
+        "**/*.css",
+        "./src/public-path.ts"
     ],
     "files": [
         "build"

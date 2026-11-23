@@ -70,3 +70,8 @@ jobs:
 
       - name: Check the size budget
         run: node scripts/check-viewer-build-size.mjs
+
+      # src/public-path.ts is imported only for its side effect: check that it is kept (#66)
+      - name: Check the public path
+        if: ${{ !cancelled() }}
+        run: node scripts/check-viewer-build-public-path.mjs
