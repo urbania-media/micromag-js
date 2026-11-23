@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import ShareScreen from './Share';
-
 // import * as transforms from './transforms/index';
 
 export default {
@@ -18,7 +16,6 @@ export default {
         defaultMessage: 'Share',
         description: 'Share screen title',
     }),
-    component: ShareScreen,
     layouts: ['top', 'middle', 'bottom'],
     // transforms,
     fields: [

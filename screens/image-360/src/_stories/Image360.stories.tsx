@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import Image360Screen from '../Image360';
-import definition from '../definition';
+import definition from '../index';
 
 const props = () => ({
     image: image360Media(),

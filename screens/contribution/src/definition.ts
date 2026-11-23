@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import ContributionScreen from './Contribution';
-
 export default {
     id: 'contribution',
     type: 'screen',
@@ -16,7 +14,6 @@ export default {
         defaultMessage: 'Contribution',
         description: 'Contribution screen title',
     }),
-    component: ContributionScreen,
     layouts: ['top', 'middle', 'bottom'],
     fields: [
         {

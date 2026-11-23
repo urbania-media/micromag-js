@@ -6,7 +6,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import UrbaniaRecommendation from '../UrbaniaRecommendation';
-import definition from '../definition';
+import definition from '../index';
 
 const props = {
     ...urbaniaReco,

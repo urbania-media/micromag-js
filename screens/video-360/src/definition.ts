@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import Video360Screen from './Video360';
-
 // import * as transforms from './transforms/index';
 
 export default {
@@ -18,7 +16,6 @@ export default {
         defaultMessage: '360 Video',
         description: 'Video 360 screen title',
     }),
-    component: Video360Screen,
     layouts: ['full'],
     // transforms,
     fields: [

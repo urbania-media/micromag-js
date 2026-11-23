@@ -11,7 +11,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import VideoScreen from '../Video';
-import definition from '../definition';
+import definition from '../index';
 
 const video = (props) => ({ ...props, media: videoMedia(), autoPlay: true, loop: false });
 

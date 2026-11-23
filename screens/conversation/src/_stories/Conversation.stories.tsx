@@ -11,7 +11,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import ConversationScreen from '../Conversation';
-import definition from '../definition';
+import definition from '../index';
 
 const meta = preview.meta({
     title: 'Screens/Conversation',

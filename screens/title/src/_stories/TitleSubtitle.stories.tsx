@@ -13,7 +13,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import TitleSubtitleScreen from '../TitleSubtitle';
-import definition from '../definition';
+import definition from '../index';
 
 const screen = {
     title: { body: title() },

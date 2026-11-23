@@ -11,7 +11,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import AudioScreen from '../Audio';
-import definition from '../definition';
+import definition from '../index';
 
 const audio = (props) => ({ ...props, media: audioMedia(), autoPlay: true, loop: false });
 

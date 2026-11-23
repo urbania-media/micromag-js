@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import UrbaniaTriviaScreen from './UrbaniaTrivia';
-
 export default {
     id: 'urbania-trivia',
     type: 'screen',
@@ -17,7 +15,6 @@ export default {
         defaultMessage: 'Urbania trivia',
         description: 'Urbania screen title',
     }),
-    component: UrbaniaTriviaScreen,
     fields: [
         {
             name: 'title',

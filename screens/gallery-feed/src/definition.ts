@@ -1,8 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import GalleryFeedScreen from './GalleryFeed';
-import GalleryFeedCaptionsScreen from './GalleryFeedCaptions';
-
 export default [
     {
         id: 'gallery-feed',
@@ -18,7 +15,6 @@ export default [
             defaultMessage: 'Gallery Feed',
             description: 'Gallery Feed screen title',
         }),
-        component: GalleryFeedScreen,
         layouts: ['normal'],
         // transforms,
         fields: [
@@ -96,7 +92,6 @@ export default [
             defaultMessage: 'Gallery feed with captions',
             description: 'GalleryFeedCaptions screen title',
         }),
-        component: GalleryFeedCaptionsScreen,
         layouts: ['normal', 'reverse'],
         // transforms,
         fields: [

@@ -1,8 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import MapScreen from './Map';
-import MapImagesScreen from './MapImages';
-
 // import * as transforms from './transforms/index';
 
 export default [
@@ -20,7 +17,6 @@ export default [
             defaultMessage: 'Map',
             description: 'Screen title',
         }),
-        component: MapScreen,
         layouts: ['normal'],
         // transforms,
         states: [
@@ -173,7 +169,6 @@ export default [
             defaultMessage: 'Map with image markers',
             description: 'Screen title',
         }),
-        component: MapImagesScreen,
         layouts: ['normal'],
         // transforms,
         states: [

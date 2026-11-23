@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import ShareScreen from '../Share';
-import definition from '../definition';
+import definition from '../index';
 
 const props = {
     heading: title(),

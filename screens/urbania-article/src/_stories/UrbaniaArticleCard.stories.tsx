@@ -6,7 +6,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import Article from '../UrbaniaCardLoader';
-import definition from '../definition-card';
+import { definitionCard as definition } from '../index';
 
 import testVideoArticle from './video.json';
 

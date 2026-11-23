@@ -1,11 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import ImageScreen from './Image';
-import ImageLegendScreen from './ImageLegend';
-import ImageTextScreen from './ImageText';
-import ImageTitleScreen from './ImageTitle';
-import ImageTitleTextScreen from './ImageTitleText';
-
 // import * as transforms from './transforms/index';
 
 export default [
@@ -23,7 +17,6 @@ export default [
             defaultMessage: 'Image',
             description: 'Image screen title',
         }),
-        component: ImageScreen,
         layouts: ['normal', 'fullscreen'],
         // transforms,
         fields: [
@@ -110,7 +103,6 @@ export default [
             defaultMessage: 'Image with title',
             description: 'ImageTitle screen title',
         }),
-        component: ImageTitleScreen,
         layouts: ['normal', 'reverse', 'card', 'card-reverse'],
         // transforms,
         fields: [
@@ -211,7 +203,6 @@ export default [
             defaultMessage: 'Image with text',
             description: 'ImageText screen title',
         }),
-        component: ImageTextScreen,
         layouts: ['normal', 'reverse', 'card', 'card-reverse'],
         // transforms,
         fields: [
@@ -309,7 +300,6 @@ export default [
             defaultMessage: 'Image with title and text',
             description: 'ImageTitleText screen title',
         }),
-        component: ImageTitleTextScreen,
         layouts: ['normal', 'reverse', 'title-top', 'card', 'card-reverse'],
         // transforms,
         fields: [
@@ -423,7 +413,6 @@ export default [
             defaultMessage: 'Image with legend',
             description: 'ImageLegend screen title',
         }),
-        component: ImageLegendScreen,
         layouts: ['normal', 'reverse', 'card', 'card-reverse'],
         // transforms,
         fields: [

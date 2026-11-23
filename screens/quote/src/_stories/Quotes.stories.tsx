@@ -13,7 +13,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import QuoteScreen from '../Quote';
-import definition from '../definition';
+import definition from '../index';
 
 const props = {
     quote: { body: quote() },

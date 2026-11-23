@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import UrbaniaRecommendation from './UrbaniaRecommendation';
-
 export default [
     {
         id: 'urbania-recommendation',
@@ -18,7 +16,6 @@ export default [
             defaultMessage: 'Urbania recommendation',
             description: 'Urbania screen title',
         }),
-        component: UrbaniaRecommendation,
         layouts: ['top', 'bottom'],
         fields: [
             {

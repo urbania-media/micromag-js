@@ -11,7 +11,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import GameSortScreen from '../GameSort';
-import definition from '../definition';
+import definition from '../index';
 
 const props = {
     heading: title(),

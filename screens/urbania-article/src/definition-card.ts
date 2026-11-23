@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import UrbaniaCardLoader from './UrbaniaCardLoader';
-
 export default {
     id: 'urbania-article-card',
     type: 'screen',
@@ -17,7 +15,6 @@ export default {
         defaultMessage: 'Urbania article',
         description: 'Urbania screen title',
     }),
-    component: UrbaniaCardLoader,
     fields: [
         {
             name: 'url',

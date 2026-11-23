@@ -40,6 +40,15 @@
             "style": "./assets/css/styles.css",
             "import": "./es/index.js"
         },
+        "./definition": {
+            "types": "./es/definition.d.ts",
+            "import": "./es/definition.js"
+        },
+        "./component": {
+            "types": "./es/component.d.ts",
+            "style": "./assets/css/styles.css",
+            "import": "./es/component.js"
+        },
         "./assets/css/styles": "./assets/css/styles.css",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },

@@ -11,7 +11,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import QuizScreen from '../Quiz';
-import definition from '../definition';
+import definition from '../index';
 
 const props = {
     question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
