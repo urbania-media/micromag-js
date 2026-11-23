@@ -5,7 +5,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import Article from '../UrbaniaLoader';
-import definition from '../definition';
+import definition from '../index';
 
 import testVideo from '#.storybook/data/stories/urbania-article-video.json';
 import testArticle from '#.storybook/data/stories/urbania-article.json';

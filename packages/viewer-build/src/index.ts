@@ -2,8 +2,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import Viewer from '@micromag/viewer';
-import '@micromag/viewer/assets/css/styles.css';
+// The screens are loaded on demand: each screen type of the story (component and CSS) is a chunk
+// of its own, loaded when the viewer mounts
+import '@micromag/viewer/assets/css/lazy.css';
+import Viewer from '@micromag/viewer/lazy';
 
 import './public-path';
 

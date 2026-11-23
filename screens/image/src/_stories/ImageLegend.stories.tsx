@@ -12,7 +12,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import ImageLegendScreen from '../ImageLegend';
-import definition from '../definition';
+import definition from '../index';
 
 const props = {
     image: imageMedia(),

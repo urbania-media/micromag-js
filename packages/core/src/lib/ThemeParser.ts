@@ -2,16 +2,119 @@ import isArray from 'lodash-es/isArray';
 import isEmpty from 'lodash-es/isEmpty';
 import isObject from 'lodash-es/isObject';
 
+const countNames = (fields): Record<string, number> =>
+    (isArray(fields) ? fields : []).reduce((counts, field) => {
+        const { name = null } = field || {};
+        return name !== null ? { ...counts, [name]: (counts[name] || 0) + 1 } : counts;
+    }, {});
+
+// Keeps of a list of fields what the parser reads. The parser finds a field by its name (the first
+// one), so a field is kept with its name, theme and sub-fields when it has a theme or sub-fields,
+// or when its name is used elsewhere in the same lookup (another field, a repeatable state)
+const getThemeFields = (fields, keepNames: string[] = []) => {
+    if (!isArray(fields)) {
+        return fields;
+    }
+    const counts = countNames(fields);
+    return fields
+        .filter((field) => {
+            const { name = null, theme, fields: subFields } = field || {};
+            return (
+                typeof theme !== 'undefined' ||
+                typeof subFields !== 'undefined' ||
+                (name !== null && (counts[name] > 1 || keepNames.indexOf(name) !== -1))
+            );
+        })
+        .map(({ name, theme, fields: subFields }) => ({
+            name,
+            ...(typeof theme !== 'undefined' ? { theme } : null),
+            ...(typeof subFields !== 'undefined' ? { fields: getThemeFields(subFields) } : null),
+        }));
+};
+
 class ThemeParser {
+    screensManager;
+
+    definitionCache: Record<string, { definition: unknown; themeScreen: unknown }>;
+
+    fieldsCache: Record<
+        string,
+        { fields?: Record<string, unknown>[] | null; repetableStates?: Record<string, unknown>[] }
+    >;
+
+    themePattern: Record<string, unknown> | null;
+
+    /**
+     * The part of a screen definition that the parser reads, to precompute at build time (see
+     * scripts/lib/getScreenFields.js): the parser then gives the same result without the definition
+     */
+    static getThemePattern(definition) {
+        const { id = null, fields, states = null } = definition || {};
+        const repeatableIds = (states || [])
+            .filter(({ repeatable = false }) => repeatable === true)
+            .map(({ id: stateId = null }) => stateId)
+            .filter((stateId) => stateId !== null);
+        // The fields of the screen and of its other states are looked up together
+        const lookupCounts = countNames(
+            (states || [])
+                .filter(({ repeatable = false }) => repeatable === false)
+                .reduce(
+                    (allFields, { fields: stateFields = null }) =>
+                        isArray(stateFields) ? [...allFields, ...stateFields] : allFields,
+                    isArray(fields) ? fields : [],
+                ),
+        );
+        const keepNames = [
+            ...repeatableIds,
+            ...Object.keys(lookupCounts).filter((name) => lookupCounts[name] > 1),
+        ];
+        return {
+            id,
+            ...(typeof fields !== 'undefined'
+                ? { fields: getThemeFields(fields, keepNames) }
+                : null),
+            ...(states !== null && states.length > 0
+                ? {
+                      states: states.map(
+                          ({ id: stateId, repeatable, theme, fields: stateFields }) => ({
+                              id: stateId,
+                              ...(typeof repeatable !== 'undefined' ? { repeatable } : null),
+                              ...(typeof theme !== 'undefined' ? { theme } : null),
+                              ...(typeof stateFields !== 'undefined'
+                                  ? { fields: getThemeFields(stateFields, keepNames) }
+                                  : null),
+                          }),
+                      ),
+                  }
+                : null),
+        };
+    }
+
     constructor({ screensManager }) {
         this.screensManager = screensManager;
         this.definitionCache = {};
         this.fieldsCache = {};
+        // Precomputed patterns, used for the screens whose definition has no fields (ex.: the lazy
+        // screens of the viewer, which only have their component)
+        const { theme: themePattern = null } =
+            (screensManager !== null && typeof screensManager.getFieldsPattern === 'function'
+                ? screensManager.getFieldsPattern()
+                : null) || {};
+        this.themePattern = themePattern;
+    }
+
+    getDefinition(type) {
+        const definition = this.screensManager.getDefinition(type) || null;
+        const { fields } = definition || {};
+        if (typeof fields === 'undefined' && this.themePattern !== null) {
+            return this.themePattern[type] || definition;
+        }
+        return definition;
     }
 
     getDefinitionByScreen(type, themeComponents) {
         if (typeof this.definitionCache[type] === 'undefined') {
-            const definition = this.screensManager.getDefinition(type) || {};
+            const definition = this.getDefinition(type) || {};
             const themeScreen = themeComponents.find((it) => it.type === type) || null;
             this.definitionCache[type] = { definition, themeScreen };
         }

@@ -25,6 +25,8 @@ interface ViewerScreenSectionProps {
     /** Current screen once the transition is over */
     settled?: boolean;
     screenState?: string | null;
+    /** Lazy screens: false until the component is loaded (resets the error of a failed load) */
+    loaded?: boolean;
     progress: SpringValue<number>;
     transitionType: ViewerTransitionType;
     neighborScreensActive: number;
@@ -119,6 +121,7 @@ function ViewerScreenSection({
     visible = false,
     settled = false,
     screenState = null,
+    loaded = true,
     progress,
     transitionType,
     neighborScreensActive,
@@ -202,6 +205,7 @@ function ViewerScreenSection({
                     className={styles.screen}
                     screen={screen}
                     screenState={screenState}
+                    loaded={loaded}
                     index={index}
                     current={current}
                     active={active}

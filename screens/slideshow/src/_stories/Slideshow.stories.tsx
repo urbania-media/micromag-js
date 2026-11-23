@@ -10,7 +10,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import SlideshowScreen from '../Slideshow';
-import definition from '../definition';
+import definition from '../index';
 
 const props = {
     // Note: the api call in the imageMedia() function will return the same image every time

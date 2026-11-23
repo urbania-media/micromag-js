@@ -1,8 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import TimelineScreen from './Timeline';
-import TimelineIllustratedScreen from './TimelineIllustrated';
-
 export default [
     {
         id: 'timeline',
@@ -18,7 +15,6 @@ export default [
             defaultMessage: 'Timeline',
             description: 'Timeline screen title',
         }),
-        component: TimelineScreen,
         layouts: ['normal'],
         // transforms,
         fields: [
@@ -221,7 +217,6 @@ export default [
             defaultMessage: 'Timeline with images',
             description: 'TimelineIllustrated screen title',
         }),
-        component: TimelineIllustratedScreen,
         layouts: ['title-image-description', 'title-description-image', 'image-title-description'],
         fields: [
             {

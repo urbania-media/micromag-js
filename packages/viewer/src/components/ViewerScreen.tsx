@@ -16,6 +16,8 @@ interface ViewerScreenProps {
     screen?: ScreenComponent | null;
     renderContext?: RenderContext | null;
     screenState?: string | null;
+    /** Lazy screens: false until the component is loaded (resets the error of a failed load) */
+    loaded?: boolean;
     current?: boolean;
     active?: boolean;
     preload?: boolean;
@@ -33,6 +35,7 @@ function ViewerScreen({
     renderContext = null,
     index = null,
     screenState = null,
+    loaded = true,
     active = true,
     preload = true,
     current = false,
@@ -78,7 +81,7 @@ function ViewerScreen({
             >
                 {mounted || current ? (
                     <ScreenErrorBoundary
-                        resetKeys={[screen, renderContext]}
+                        resetKeys={[screen, renderContext, loaded]}
                         onError={onError}
                         fallback={(error) => (
                             <ScreenError error={error} withDetails={renderContext === 'edit'} />

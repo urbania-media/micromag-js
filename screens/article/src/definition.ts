@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import ArticleScreen from './Article';
-
 // import * as transforms from './transforms/index';
 
 export default [
@@ -19,7 +17,6 @@ export default [
             defaultMessage: 'Article',
             description: 'Article screen title',
         }),
-        component: ArticleScreen,
         layouts: ['normal'],
         // transforms,
         fields: [

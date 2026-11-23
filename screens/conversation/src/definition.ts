@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import ConversationScreen from './Conversation';
-
 export default {
     id: 'conversation',
     type: 'screen',
@@ -16,7 +14,6 @@ export default {
         defaultMessage: 'Conversation',
         description: 'Conversation screen title',
     }),
-    component: ConversationScreen,
     layouts: ['normal'],
     fields: [
         // {

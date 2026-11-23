@@ -12,7 +12,7 @@ import preview from '#.storybook/preview';
 import React from 'react';
 
 import ImageTextScreen from '../ImageText';
-import definition from '../definition';
+import definition from '../index';
 
 const props = {
     image: imageMedia(),

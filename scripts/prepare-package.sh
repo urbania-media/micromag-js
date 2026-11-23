@@ -114,6 +114,12 @@ copy_css() {
     echo "Copying css..."
     mkdir -p ./assets/css/
     cp es/styles.css ./assets/css/styles.css
+    # Other stylesheets of the package (ex.: es/lazy.css of the viewer)
+    for css_file in es/*.css; do
+        if [ "$css_file" != "es/styles.css" ]; then
+            cp "$css_file" "./assets/css/$(basename "$css_file")"
+        fi
+    done
 }
 
 # Build

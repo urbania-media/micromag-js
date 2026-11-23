@@ -1,7 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import SlideshowScreen from './Slideshow';
-
 // import * as transforms from './transforms/index';
 
 export default [
@@ -19,7 +17,6 @@ export default [
             defaultMessage: 'Slideshow',
             description: 'Slideshow screen title',
         }),
-        component: SlideshowScreen,
         fields: [
             {
                 name: 'slides',
