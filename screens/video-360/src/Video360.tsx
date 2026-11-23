@@ -318,16 +318,16 @@ function Video360Screen({
         camera.current.lookAt(0, 0, 0);
 
         renderer.current.render(scene.current, camera.current);
-    }, []);
+    }, [THREE]);
 
-    // Init 3D layer
+    // Init 3D layer (once THREE, loaded on demand, is there)
 
     useEffect(() => {
         if (THREE !== null && hasVideoUrl && withVideoSphere) {
             const {
                 Scene = null,
                 PerspectiveCamera = null,
-                SphereBufferGeometry = null,
+                SphereGeometry = null,
                 VideoTexture = null,
                 MeshBasicMaterial = null,
                 Mesh = null,
@@ -337,7 +337,7 @@ function Video360Screen({
             if (
                 Scene === null ||
                 PerspectiveCamera === null ||
-                SphereBufferGeometry === null ||
+                SphereGeometry === null ||
                 VideoTexture === null ||
                 MeshBasicMaterial === null ||
                 Mesh === null ||
@@ -354,7 +354,7 @@ function Video360Screen({
             camera.current = new PerspectiveCamera(75, canvasWidth / canvasHeight, 1, 1100);
             scene.current = new Scene();
 
-            const geometry = new SphereBufferGeometry(500, 60, 40);
+            const geometry = new SphereGeometry(500, 60, 40);
             geometry.scale(-1, 1, 1);
 
             const { current: videoElement = null } = mediaRef || {};
@@ -379,7 +379,7 @@ function Video360Screen({
                 renderer.current = null;
             }
         };
-    }, [hasVideoUrl, withVideoSphere, render3D]);
+    }, [THREE, hasVideoUrl, withVideoSphere, render3D]);
 
     useAnimationFrame(render3D, { disabled: !withVideoSphere });
 

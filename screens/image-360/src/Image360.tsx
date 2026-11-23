@@ -175,7 +175,7 @@ function Image360Screen({
             const {
                 Scene,
                 PerspectiveCamera,
-                SphereBufferGeometry,
+                SphereGeometry,
                 MeshBasicMaterial,
                 Mesh,
                 WebGLRenderer,
@@ -185,7 +185,7 @@ function Image360Screen({
             camera.current = new PerspectiveCamera(50, canvasWidth / canvasHeight, 1, 1100);
             scene.current = new Scene();
 
-            const geometry = new SphereBufferGeometry(
+            const geometry = new SphereGeometry(
                 500,
                 60,
                 40,

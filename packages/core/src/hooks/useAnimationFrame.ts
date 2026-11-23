@@ -1,24 +1,33 @@
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
+/**
+ * Calls `onFrame` at each animation frame (with the time since the first frame) while not
+ * disabled. The latest `onFrame` is called: it can change between renders.
+ */
 const useAnimationFrame = (onFrame, { disabled = false } = {}) => {
-    const requestRef = useRef(null);
+    const onFrameRef = useRef(onFrame);
     const startTimeRef = useRef(null);
-    const callback = (time) => {
-        if (!startTimeRef.current) {
-            startTimeRef.current = time;
-        }
-        const progress = time - startTimeRef.current;
-        onFrame(progress);
-        requestRef.current = requestAnimationFrame(callback);
-    };
 
     useEffect(() => {
-        if (!disabled) {
-            requestRef.current = requestAnimationFrame(callback);
+        onFrameRef.current = onFrame;
+    });
+
+    useEffect(() => {
+        if (disabled) {
+            return () => {};
         }
+        let request = null;
+        const callback = (time) => {
+            if (!startTimeRef.current) {
+                startTimeRef.current = time;
+            }
+            onFrameRef.current(time - startTimeRef.current);
+            request = requestAnimationFrame(callback);
+        };
+        request = requestAnimationFrame(callback);
         return () => {
-            if (requestRef.current !== null) {
-                cancelAnimationFrame(requestRef.current);
+            if (request !== null) {
+                cancelAnimationFrame(request);
             }
         };
     }, [disabled]);
