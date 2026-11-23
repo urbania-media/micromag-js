@@ -53,6 +53,8 @@ const babelTypescript = {
 export default defineConfig({
     plugins: [babelTypescript],
     resolve: {
+        // The tests in a DOM (happy-dom) resolve the browser builds too, as with ssr below
+        conditions: ['browser', 'module', 'import', 'default'],
         alias: [
             ...packagesAliases,
             { find: /^#\.storybook\/(.*)$/, replacement: path.join(rootDir, '.storybook/$1') },

@@ -42,6 +42,10 @@ export interface ScreenDefinition extends Definition {
     load?: () => Promise<unknown>;
     /** Screens loaded on demand: true once the component is loaded */
     isLoaded?: () => boolean;
+    /** Screens loaded on demand: true when the last attempt to load the component failed */
+    hasFailed?: () => boolean;
+    /** Screens loaded on demand: calls the listener after each attempt; returns an unsubscribe */
+    onSettled?: (listener: () => void) => () => void;
 }
 
 export interface FieldDefinition extends Definition {

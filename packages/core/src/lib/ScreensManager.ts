@@ -48,8 +48,30 @@ class ScreensManager extends DefinitionsManager<ScreenDefinition> {
     }
 
     /**
-     * Loads the components of these screen types, in this order, and resolves once they are all
-     * loaded (at once for the screens that aren't lazy)
+     * True when these screen types are loaded or failed to load: nothing to wait for. A screen
+     * that failed shows its error (and can be loaded again with `loadScreens`).
+     */
+    screensSettled(types: (string | null)[]): boolean {
+        return unique(types).every((type) => {
+            const { isLoaded = null, hasFailed = null } = this.getDefinition(type) || {};
+            return isLoaded === null || isLoaded() || (hasFailed !== null && hasFailed());
+        });
+    }
+
+    /**
+     * The screen types, among these, whose last attempt to load failed
+     */
+    screensFailed(types: (string | null)[]): string[] {
+        return unique(types).filter((type) => {
+            const { hasFailed = null } = this.getDefinition(type) || {};
+            return hasFailed !== null && hasFailed();
+        });
+    }
+
+    /**
+     * Loads the components of these screen types, in this order (again for those that failed),
+     * and resolves once they are all loaded (at once for the screens that aren't lazy). Rejects if
+     * one of them fails.
      */
     loadScreens(types: (string | null)[]): Promise<void> {
         return Promise.all(
@@ -58,6 +80,17 @@ class ScreensManager extends DefinitionsManager<ScreenDefinition> {
                 return load !== null && (isLoaded === null || !isLoaded()) ? load() : null;
             }),
         ).then(() => undefined);
+    }
+
+    /**
+     * Calls the listener each time a lazy screen finishes an attempt to load (loaded or failed).
+     * Returns a function that unsubscribes.
+     */
+    onScreensSettled(listener: () => void): () => void {
+        const unsubscribes = this.definitions
+            .map(({ onSettled = null }) => (onSettled !== null ? onSettled(listener) : null))
+            .filter((unsubscribe) => unsubscribe !== null);
+        return () => unsubscribes.forEach((unsubscribe) => unsubscribe());
     }
 
     filter(filter: (definition: ScreenDefinition) => boolean): ScreensManager {

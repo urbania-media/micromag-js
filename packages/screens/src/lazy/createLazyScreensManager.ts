@@ -2,7 +2,7 @@ import type { ElementType } from 'react';
 
 import { ScreensManager } from '@micromag/core';
 
-import createLazyScreen from './createLazyScreen';
+import createLazyScreen, { type LazyScreenOptions } from './createLazyScreen';
 
 type FieldsPattern = Parameters<ScreensManager['setFieldsPattern']>[0];
 
@@ -13,9 +13,10 @@ type FieldsPattern = Parameters<ScreensManager['setFieldsPattern']>[0];
 export default function createLazyScreensManager(
     loaders: Record<string, () => Promise<ElementType>>,
     fieldsPattern: FieldsPattern | null = null,
+    options: LazyScreenOptions = {},
 ): ScreensManager {
     const manager = new ScreensManager(
-        Object.keys(loaders).map((id) => createLazyScreen(id, loaders[id])),
+        Object.keys(loaders).map((id) => createLazyScreen(id, loaders[id], options)),
     );
     if (fieldsPattern !== null) {
         manager.setFieldsPattern(fieldsPattern);

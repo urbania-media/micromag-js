@@ -50,7 +50,14 @@ import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
 import getViewerFillsViewport from '../lib/getViewerFillsViewport';
-import { preloadScreens, screensWindowLoaded, waitForScreens } from '../lib/screensLoading';
+import {
+    PendingNavigation,
+    preloadScreens,
+    retryFailedScreens,
+    screenLoaded,
+    screensWindowSettled,
+    waitForScreens,
+} from '../lib/screensLoading';
 import stopDragEventsPropagation from '../lib/stopDragEventsPropagation';
 import waitForMediaCanPlay from '../lib/waitForMediaCanPlay';
 
@@ -263,29 +270,32 @@ function Viewer({
     const screensManager = useScreensManager();
     useState(() => preloadScreens(screensManager, screens, screenIndex));
     useEffect(() => {
-        preloadScreens(screensManager, screens, 0);
+        // Again when the story changes, from the screen shown then (not on each screen change:
+        // the screens are already requested)
+        preloadScreens(screensManager, screens, screenIndex);
     }, [screensManager, screens]);
-    // The screens are shown once the current one and its neighbours are loaded: they mount
-    // together, with their media, as with the screens of @micromag/screens. The count makes the
-    // check run again each time screens finish loading.
+    // The screens are shown once the current one and its neighbours are settled (loaded, or failed
+    // and showing their error): they mount together, with their media, as with the screens of
+    // @micromag/screens. The count makes the checks run again each time a lazy screen settles.
     const [screensLoadedCount, setScreensLoadedCount] = useState(0);
     const screensReady =
-        screensLoadedCount >= 0 && screensWindowLoaded(screensManager, screens, screenIndex);
+        screensLoadedCount >= 0 && screensWindowSettled(screensManager, screens, screenIndex);
     useEffect(() => {
-        const waiting = waitForScreens(screensManager, screens, screenIndex);
-        if (waiting === null) {
+        if (screensManager === null || typeof screensManager.onScreensSettled !== 'function') {
             return () => {};
         }
-        let canceled = false;
-        const onLoaded = () => {
-            if (!canceled) {
-                setScreensLoadedCount((count) => count + 1);
-            }
-        };
-        waiting.then(onLoaded, onLoaded);
-        return () => {
-            canceled = true;
-        };
+        return screensManager.onScreensSettled(() => {
+            setScreensLoadedCount((count) => count + 1);
+        });
+    }, [screensManager]);
+    useEffect(() => {
+        // The reader got to this screen: load it and its neighbours again if one of them failed
+        const retrying = retryFailedScreens(screensManager, screens, screenIndex);
+        if (retrying !== null) {
+            retrying.catch(() => {
+                // Shows its error again
+            });
+        }
     }, [screensManager, screens, screenIndex]);
     const { parameters: screenParameters } = currentScreen || {};
     const { metadata: screenMetadata } = screenParameters || {};
@@ -416,32 +426,19 @@ function Viewer({
      */
     const lastScreenMediaRef = useRef<MediaElement | null>(null);
     // Screens loaded on demand: the screen the reader is going to, while it (or a neighbour) loads
-    const pendingIndexRef = useRef<number | null>(null);
-    const pendingFailedRef = useRef(false);
-    const changeIndex = (index: number, loaded = false) => {
-        if (index === screenIndex) {
-            return;
-        }
-
-        // Screens loaded on demand: the screen and its neighbours must be loaded before the reader
+    const [pendingNavigation] = useState(() => new PendingNavigation());
+    const changeIndex = (index: number) => {
+        // Screens loaded on demand: the screen and its neighbours must be settled before the reader
         // gets there, so that the next screen is always ready for the transition
-        const waiting = !loaded ? waitForScreens(screensManager, screens, index) : null;
-        if (waiting !== null) {
-            pendingIndexRef.current = index;
-            pendingFailedRef.current = false;
-            waiting.then(
-                () => setScreensLoadedCount((count) => count + 1),
-                () => {
-                    // Go anyway: the screen shows its error
-                    if (pendingIndexRef.current === index) {
-                        pendingFailedRef.current = true;
-                    }
-                    setScreensLoadedCount((count) => count + 1);
-                },
-            );
+        const canGo = pendingNavigation.request(
+            index,
+            screenIndex,
+            waitForScreens(screensManager, screens, index),
+            () => setScreensLoadedCount((count) => count + 1),
+        );
+        if (!canGo) {
             return;
         }
-        pendingIndexRef.current = null;
 
         setPreloadNext(false);
         setPreloadNeighbors(false);
@@ -458,16 +455,13 @@ function Viewer({
         }
     };
 
-    // Screens loaded on demand: go to the pending screen once it and its neighbours are loaded
+    // Screens loaded on demand: go to the held screen once it and its neighbours are settled
     useEffect(() => {
-        const index = pendingIndexRef.current;
-        if (
-            index !== null &&
-            (pendingFailedRef.current || waitForScreens(screensManager, screens, index) === null)
-        ) {
-            pendingIndexRef.current = null;
-            pendingFailedRef.current = false;
-            changeIndex(index, true);
+        const index = pendingNavigation.take((i) =>
+            screensWindowSettled(screensManager, screens, i),
+        );
+        if (index !== null) {
+            changeIndex(index);
         }
     }, [screensLoadedCount]);
 
@@ -1127,6 +1121,10 @@ function Viewer({
                                                 visible={isVisible}
                                                 settled={current && !transitioning}
                                                 screenState={current ? screenState : null}
+                                                loaded={
+                                                    screensLoadedCount >= 0 &&
+                                                    screenLoaded(screensManager, screen.type)
+                                                }
                                                 progress={progressSpring}
                                                 transitionType={transitionType}
                                                 neighborScreensActive={neighborScreensActive}
