@@ -28,11 +28,14 @@ The packages accept `react-intl` 8, 10 and 12 as a peer dependency, except `@mic
 
 ## Deployment
 
-- push all changes to `develop` and `main` branches
-- `git checkout main` !
-- `lerna version` (most of the time, the version bump is generally a `patch`)
-    - it pushes a `v*` tag, and the [Publish workflow](.github/workflows/publish.yml) publishes the packages to npm with trusted publishing (no npm token needed)
+Releases are made from `develop` (the `npm` environment of the Publish workflow only accepts `v*` tags and `develop`).
+
+- merge the pull requests of the release into `develop`, then `git checkout develop && git pull`, with a clean working tree
+- `npx lerna version patch`, or `npx lerna version minor` when host sites must change something (listed in [UPGRADING.md](UPGRADING.md)). A minor bump bumps every package, including those that didn't change.
+    - it bumps the `package.json` files, `lerna.json` and `package-lock.json`, commits `vX.Y.Z`, tags it and pushes the commit and the tag
+    - the `v*` tag starts the [Publish workflow](.github/workflows/publish.yml), which builds, packs and publishes the packages to npm with trusted publishing (no npm token needed)
 - if a publish fails, run the Publish workflow manually from the Actions tab: it publishes the versions that are missing from npm
+- host-facing changes are listed in [UPGRADING.md](UPGRADING.md)
 
 ### Trusted publishing
 
