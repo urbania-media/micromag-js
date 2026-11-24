@@ -2,7 +2,9 @@
 
 Changes a host site can notice when it updates the `@micromag/*` packages, and what it must do. Story data doesn't change between these versions: stories already created render without any migration.
 
-## From 0.4.123
+## 0.5.0 (from 0.4.123)
+
+Hosts must widen their ranges from `^0.4.x` to `^0.5.0`: in 0.x, `^0.4.x` doesn't accept 0.5.0.
 
 ### What a host must check
 
