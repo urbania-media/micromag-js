@@ -40,13 +40,21 @@ export interface ViewerSettings {
      * H.264 rendering of the videos, chosen once for the session (default `auto`):
      * - `auto`: `h264_720` (short side at most 720) on a slow connection (`saveData`, `slow-2g`,
      *   `2g`, `3g`), on a frame up to 430 CSS px wide, or up to 800 device pixels wide; `h264`
-     *   otherwise. Decided on the client once the frame is measured: on the server, videos render
-     *   without `<source>`.
+     *   otherwise. Decided on the client once the story frame is measured (also with
+     *   `readyWithoutSize`; the window width is used only if the frame has no size after 500 ms).
+     *   On the server and until then, videos render without `<source>`.
      * - `h264` or `h264_720`: always that rendering, from the first render (server included).
      *
-     * A video without `files.h264_720` plays `files.h264`. A host that preloads the first video
-     * should preload `getVideoRenditionFile(media, rendition)` with the same rendition
-     * (`getVideoRendition` from `@micromag/core/utils`), and pass it here to be sure they match.
+     * A video without `files.h264_720` plays `files.h264`.
+     *
+     * Hosts that preload the first video must update their preload with the viewer version that
+     * brings this setting, or the preload of `files.h264` is wasted on phones:
+     * - page rendered on the server: one `<link rel="preload" as="video">` per entry of
+     *   `getVideoRenditionPreloads(media.files)` (`@micromag/core/utils`), with its `media` query
+     *   (`h264_720` up to 430 px, `h264` above). It does not cover the connection step, the DPR
+     *   step or a frame narrower than the window: the viewer may then play the other file;
+     * - exact match: force the rendering here (or compute it on the client with
+     *   `getVideoRendition`) and preload `getVideoRenditionFile(media.files, rendition)`.
      */
     videoRendition?: VideoRenditionSetting;
     [key: string]: unknown;

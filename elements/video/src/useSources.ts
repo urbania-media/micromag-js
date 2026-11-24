@@ -23,10 +23,10 @@ export default function useSources(media = null, options = null) {
     }, [finalPossibleMimes]);
 
     // One H.264 rendering for the whole viewer (see `getVideoRendition`). Null while the viewer
-    // has not chosen it: no source yet, so the browser downloads nothing it would throw away
+    // has not chosen it (`pending`): the video then renders without source, so the browser
+    // downloads nothing it would throw away. The sources still tell whether the media is a video.
     const rendition = useVideoRendition();
-    const renditionSources = getVideoSources(files, supportedMimes, rendition || 'h264');
-    const sources = rendition !== null ? renditionSources : [];
+    const sources = getVideoSources(files, supportedMimes, rendition || 'h264');
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
     const { type: originalType = null, mime: originalMime = mediaMime } =
@@ -36,6 +36,7 @@ export default function useSources(media = null, options = null) {
 
     return {
         sources,
+        pending: rendition === null,
         files,
         isImage: originalFileIsImage,
     };

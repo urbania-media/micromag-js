@@ -41,6 +41,7 @@ export { default as getVideoSupportedMimes } from './getVideoSupportedMimes';
 export {
     default as getVideoRendition,
     getVideoRenditionFile,
+    getVideoRenditionPreloads,
     VIDEO_RENDITIONS,
     VIDEO_RENDITION_RULES,
 } from './getVideoRendition';
@@ -48,6 +49,7 @@ export type {
     VideoRendition,
     VideoRenditionSetting,
     GetVideoRenditionOptions,
+    VideoRenditionPreload,
 } from './getVideoRendition';
 export { default as getLayoutParts } from './getLayoutParts';
 export { default as isHeaderFilled } from './isHeaderFilled';

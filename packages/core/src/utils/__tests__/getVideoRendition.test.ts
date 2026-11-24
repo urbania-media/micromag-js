@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import getVideoRendition, {
     VIDEO_RENDITION_RULES,
     getVideoRenditionFile,
+    getVideoRenditionPreloads,
 } from '../getVideoRendition';
 
 const goodConnection = { effectiveType: '4g', saveData: false };
@@ -119,5 +120,34 @@ describe('getVideoRenditionFile', () => {
         );
         expect(getVideoRenditionFile({ original: { url: 'original.mp4' } }, 'h264')).toBeNull();
         expect(getVideoRenditionFile(null, 'h264')).toBeNull();
+    });
+});
+
+describe('getVideoRenditionPreloads', () => {
+    const h264 = { mime: 'video/mp4', url: 'video-h264.mp4' };
+    const h264720 = { mime: 'video/mp4', url: 'video-h264_720.mp4' };
+
+    it('gives the 720p file to phone windows and the 1080p file above, as step 3 of the rule', () => {
+        expect(
+            getVideoRenditionPreloads({
+                original: { url: 'original.mp4' },
+                h264,
+                h264_720: h264720,
+            }),
+        ).toEqual([
+            { rendition: 'h264_720', url: 'video-h264_720.mp4', media: '(max-width: 430px)' },
+            { rendition: 'h264', url: 'video-h264.mp4', media: '(min-width: 431px)' },
+        ]);
+    });
+
+    it('gives one link for every window with a single rendering, none without', () => {
+        expect(getVideoRenditionPreloads({ h264 })).toEqual([
+            { rendition: 'h264', url: 'video-h264.mp4', media: null },
+        ]);
+        expect(getVideoRenditionPreloads([{ handle: 'h264_720', ...h264720 }])).toEqual([
+            { rendition: 'h264_720', url: 'video-h264_720.mp4', media: null },
+        ]);
+        expect(getVideoRenditionPreloads({ original: { url: 'original.mp4' } })).toEqual([]);
+        expect(getVideoRenditionPreloads(null)).toEqual([]);
     });
 });

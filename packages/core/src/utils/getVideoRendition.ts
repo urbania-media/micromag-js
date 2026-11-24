@@ -118,3 +118,44 @@ export function getVideoRenditionFile<T extends VideoRenditionFile>(
     const fallback = rendition === 'h264_720' ? 'h264' : 'h264_720';
     return findRendition(rendition) || findRendition(fallback);
 }
+
+export interface VideoRenditionPreload {
+    rendition: VideoRendition;
+    url: string;
+    /** Media query for `<link rel="preload" as="video" media="…">`, null for every screen */
+    media: string | null;
+}
+
+/**
+ * Preload links for the first video of a page rendered on the server, where the rule cannot run:
+ * the `h264_720` file for windows up to 430 CSS px wide (step 3 of the rule), the `h264` file
+ * above. Approximate: the connection step, the DPR step (ex.: a 600 px frame at DPR 1) and a frame
+ * narrower than the window are not covered, so the viewer may still play the other file.
+ * One link without media query when the video has a single rendering, none without either.
+ */
+export function getVideoRenditionPreloads(
+    files: Record<string, Omit<VideoRenditionFile, 'handle'>> | VideoRenditionFile[] | null,
+): VideoRenditionPreload[] {
+    const filesArray: VideoRenditionFile[] = getMediaFilesAsArray(files) || [];
+    const getUrl = (handle: VideoRendition): string | null => {
+        const { url = null } = filesArray.find((file) => (file.handle || file.id) === handle) || {};
+        return url || null;
+    };
+    const h264Url = getUrl('h264');
+    const h264720Url = getUrl('h264_720');
+    const { maxPhoneFrameWidth } = VIDEO_RENDITION_RULES;
+    if (h264Url !== null && h264720Url !== null) {
+        return [
+            {
+                rendition: 'h264_720',
+                url: h264720Url,
+                media: `(max-width: ${maxPhoneFrameWidth}px)`,
+            },
+            { rendition: 'h264', url: h264Url, media: `(min-width: ${maxPhoneFrameWidth + 1}px)` },
+        ];
+    }
+    if (h264Url !== null) {
+        return [{ rendition: 'h264', url: h264Url, media: null }];
+    }
+    return h264720Url !== null ? [{ rendition: 'h264_720', url: h264720Url, media: null }] : [];
+}

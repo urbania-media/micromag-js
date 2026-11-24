@@ -52,6 +52,7 @@ import useTransitionMetrics from '../hooks/useTransitionMetrics';
 import type { ViewerTransitionMetric } from '../lib/TransitionMeasure';
 import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
+import getVideoRenditionCommitDelay from '../lib/getVideoRenditionCommitDelay';
 import getViewerFillsViewport from '../lib/getViewerFillsViewport';
 import stopDragEventsPropagation from '../lib/stopDragEventsPropagation';
 import waitForMediaCanPlay from '../lib/waitForMediaCanPlay';
@@ -359,17 +360,29 @@ function Viewer({
             ? getVideoRendition({ setting: isView ? videoRenditionSetting : 'h264' })
             : null,
     );
+    // The choice waits for the measured frame, even when the screens show before it
+    // (`readyWithoutSize`): the window width is only used if the frame never gets a size
+    const videoRenditionCommitDelay = getVideoRenditionCommitDelay({ ready, hasSize });
     useEffect(() => {
-        if (videoRendition !== null || !ready) {
-            return;
+        if (videoRendition !== null || videoRenditionCommitDelay === null) {
+            return undefined;
         }
-        setVideoRendition(
-            getVideoRendition({
-                setting: videoRenditionSetting,
-                width: screenContainerWidth > 0 ? screenContainerWidth : null,
-            }),
-        );
-    }, [videoRendition, ready, videoRenditionSetting, screenContainerWidth]);
+        const commit = () =>
+            setVideoRendition(
+                getVideoRendition({
+                    setting: videoRenditionSetting,
+                    width: screenContainerWidth > 0 ? screenContainerWidth : null,
+                }),
+            );
+        if (videoRenditionCommitDelay === 0) {
+            commit();
+            return undefined;
+        }
+        const timeout = setTimeout(commit, videoRenditionCommitDelay);
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [videoRendition, videoRenditionCommitDelay, videoRenditionSetting, screenContainerWidth]);
 
     const trackingEnabled = isView;
     useEffect(() => {
