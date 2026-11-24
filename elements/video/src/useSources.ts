@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { useSetting } from '@micromag/core/contexts';
+import { useSetting, useVideoRendition } from '@micromag/core/contexts';
 import { getMediaFilesAsArray, getVideoSupportedMimes } from '@micromag/core/utils';
 
 import getVideoSources, { DEFAULT_VIDEO_MIMES } from './getVideoSources';
@@ -22,7 +22,11 @@ export default function useSources(media = null, options = null) {
         setSupportedMimes(newMimes.length > 0 ? newMimes : DEFAULT_VIDEO_MIMES);
     }, [finalPossibleMimes]);
 
-    const sources = useMemo(() => getVideoSources(files, supportedMimes), [files, supportedMimes]);
+    // One H.264 rendering for the whole viewer (see `getVideoRendition`). Null while the viewer
+    // has not chosen it (`pending`): the video then renders without source, so the browser
+    // downloads nothing it would throw away. The sources still tell whether the media is a video.
+    const rendition = useVideoRendition();
+    const sources = getVideoSources(files, supportedMimes, rendition || 'h264');
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
     const { type: originalType = null, mime: originalMime = mediaMime } =
@@ -32,6 +36,7 @@ export default function useSources(media = null, options = null) {
 
     return {
         sources,
+        pending: rendition === null,
         files,
         isImage: originalFileIsImage,
     };

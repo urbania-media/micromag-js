@@ -38,6 +38,13 @@ const babelTypescript = {
                 ['@babel/preset-react', { runtime: 'automatic' }],
                 ['@babel/preset-typescript', { isTSX: id.endsWith('.tsx'), allExtensions: true }],
             ],
+            // Message ids, as in the builds: components using `intl.formatMessage` can render
+            plugins: [
+                [
+                    require.resolve('babel-plugin-formatjs'),
+                    { idInterpolationPattern: '[sha512:contenthash:base64:6]' },
+                ],
+            ],
         });
         return result !== null ? { code: result.code ?? '', map: result.map } : null;
     },
@@ -56,7 +63,7 @@ export default defineConfig({
         resolve: { conditions: ['browser', 'module', 'import', 'default'] },
     },
     test: {
-        include: ['{packages,elements,screens}/*/src/**/*.test.ts'],
+        include: ['{packages,elements,screens}/*/src/**/*.test.{ts,tsx}'],
         environment: 'node',
         server: {
             deps: {

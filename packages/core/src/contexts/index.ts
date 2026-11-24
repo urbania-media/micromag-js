@@ -18,5 +18,6 @@ export * from './ScreensContext';
 export * from './ScreenSizeContext';
 export * from './StoryContext';
 export * from './TrackingContext';
+export * from './VideoRenditionContext';
 export * from './ViewerContext';
 export * from './VisitorContext';

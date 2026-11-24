@@ -89,7 +89,9 @@ function Video({
     const { url: mediaUrl = null, metadata = null } = media || {};
     const { description = null, has_audio: hasAudio = null } = metadata || {};
     const finalThumbnail = getMediaThumbnail(media, thumbnail);
-    const { sources, isImage } = useSources(media);
+    const { sources, pending: sourcesPending, isImage } = useSources(media);
+    // Sources are held back while the viewer has not chosen the video rendering
+    const shouldLoadSources = shouldLoad && !sourcesPending;
     // console.log('media', media, sources, isImage);
 
     const isImageWithoutSourceFile = isImage && (sources === null || sources.length === 0);
@@ -189,13 +191,13 @@ function Video({
 
     useEffect(() => {
         const { current: element = null } = ref;
-        if (shouldLoad && !wasPreloaded && element !== null) {
+        if (shouldLoadSources && !wasPreloaded && element !== null) {
             try {
                 element.load();
             } catch {}
             setWasPreloaded(true);
         }
-    }, [shouldLoad, wasPreloaded]);
+    }, [shouldLoadSources, wasPreloaded]);
 
     useEffect(() => {
         const { current: element = null } = ref;
@@ -252,7 +254,7 @@ function Video({
                 <video
                     key={mediaUrl}
                     ref={mergeRefs(ref, mediaRef, externalRef)}
-                    src={sources === null && shouldLoad ? `${mediaUrl}#t=0.001` : undefined}
+                    src={sources === null && shouldLoadSources ? `${mediaUrl}#t=0.001` : undefined}
                     autoPlay={autoPlay && !paused}
                     loop={loop}
                     muted={muted}
@@ -279,7 +281,7 @@ function Video({
                     data-is-suspended={isSuspended}
                     aria-hidden
                 >
-                    {(shouldLoad && sources !== null ? sources : []).map(
+                    {(shouldLoadSources && sources !== null ? sources : []).map(
                         ({ url: sourceUrl, mime: sourceMime }) => (
                             <source
                                 key={`source-${sourceUrl}-${sourceMime}`}
