@@ -135,11 +135,9 @@ function ConversationScreen({
     const millisecondsPerWord = (60 * 1000) / readingSpeed;
     const filteredMessages = (messages || []).filter((m) => m !== null);
 
-    const timings = filteredMessages.map((messageParams, messageIndex) => {
-        if (messageIndex === 0) {
-            return 0;
-        }
-
+    // @note The typing time is computed from the message itself, the first one included: it shows
+    // "is typing" before appearing, like the others
+    const timings = filteredMessages.map((messageParams) => {
         const {
             timing = null,
             message = null,
