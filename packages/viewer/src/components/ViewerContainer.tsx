@@ -37,13 +37,13 @@ export interface ViewerSettings {
     /** Video formats a host opts in to, besides H.264 mp4 (default `['video/mp4']`) */
     supportedVideoMimes?: string[] | null;
     /**
-     * H.264 rendering of the videos, chosen once for the session (default `auto`):
-     * - `auto`: `h264_720` (short side at most 720) on a slow connection (`saveData`, `slow-2g`,
-     *   `2g`, `3g`), on a frame up to 430 CSS px wide, or up to 800 device pixels wide; `h264`
-     *   otherwise. Decided on the client once the story frame is measured (also with
+     * H.264 rendering of the videos, chosen once for the session (default `h264`):
+     * - `h264` or `h264_720`: always that rendering, from the first render (server included).
+     * - `auto` (opt-in): `h264_720` (short side at most 720) on a slow connection (`saveData`,
+     *   `slow-2g`, `2g`, `3g`), on a frame up to 430 CSS px wide, or up to 800 device pixels wide;
+     *   `h264` otherwise. Decided on the client once the story frame is measured (also with
      *   `readyWithoutSize`; the window width is used only if the frame has no size after 500 ms).
      *   On the server and until then, videos render without `<source>`.
-     * - `h264` or `h264_720`: always that rendering, from the first render (server included).
      *
      * A video without `files.h264_720` plays `files.h264`.
      *

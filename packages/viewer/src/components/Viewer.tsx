@@ -1,6 +1,13 @@
 import classNames from 'classnames';
 import createDebug from 'debug';
-import React, { RefObject, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, {
+    RefObject,
+    useEffect,
+    useImperativeHandle,
+    useRef,
+    useState,
+    useSyncExternalStore,
+} from 'react';
 // import FocusLock from 'react-focus-lock';
 import { FormattedMessage, useIntl } from 'react-intl';
 import EventEmitter from 'wolfy87-eventemitter';
@@ -78,6 +85,8 @@ const DRAG_VELOCITY_ACTIVATION_THRESHOLD = 0.3;
 const DEFAULT_TRANSITION_TYPE_LANDSCAPE = 'carousel';
 const DEFAULT_TRANSITION_TYPE_PORTRAIT = 'stack';
 const SHARE_INCENTIVE_TIMEOUT = 6000;
+
+const subscribeToNothing = () => () => {};
 
 const debug = createDebug('micromag:viewer');
 
@@ -350,12 +359,13 @@ function Viewer({
 
     /**
      * Video rendering: one H.264 file for every video of the session (see `getVideoRendition`).
-     * Forced by the setting `videoRendition`, or `h264` outside of the view context, it is known
-     * from the first render, server included. In `auto`, the frame and the connection are only
-     * known on the client: videos render without source until the frame is measured, then the
-     * choice is made once and never changes (resize, rotation or connection change).
+     * `h264` by default, or the one forced by the setting `videoRendition`, and `h264` outside of
+     * the view context: known from the first render, server included, so videos mount with their
+     * `<source>`. In `auto` (chosen by the host), the frame and the connection are only known on
+     * the client: the choice is made once with the measured frame and never changes (resize,
+     * rotation or connection change).
      */
-    const videoRenditionSetting = useSetting('videoRendition', 'auto');
+    const videoRenditionSetting = useSetting('videoRendition', 'h264');
     const [videoRendition, setVideoRendition] = useState<VideoRendition | null>(() =>
         videoRenditionSetting !== 'auto' || !isView
             ? getVideoRendition({ setting: isView ? videoRenditionSetting : 'h264' })
@@ -364,8 +374,31 @@ function Viewer({
     // The choice waits for the measured frame, even when the screens show before it
     // (`readyWithoutSize`): the window width is only used if the frame never gets a size
     const videoRenditionCommitDelay = getVideoRenditionCommitDelay({ ready, hasSize });
+    // False on the server and while hydrating its HTML, true in a client render
+    const isClientRender = useSyncExternalStore(
+        subscribeToNothing,
+        () => true,
+        () => false,
+    );
+    // In a client render, chosen during the render that measures the frame rather than in an
+    // effect after it: the screens show with that render, so their videos never mount without
+    // `<source>`. On iOS, a video that got its source after mounting and was played at once
+    // sometimes stayed on its first frame. The server HTML has no source: hydration keeps it, the
+    // effect below chooses after.
+    if (videoRendition === null && videoRenditionCommitDelay === 0 && isClientRender) {
+        setVideoRendition(
+            getVideoRendition({
+                setting: videoRenditionSetting,
+                width: screenContainerWidth > 0 ? screenContainerWidth : null,
+            }),
+        );
+    }
     useEffect(() => {
-        if (videoRendition !== null || videoRenditionCommitDelay === null) {
+        if (
+            videoRendition !== null ||
+            videoRenditionCommitDelay === null ||
+            (videoRenditionCommitDelay === 0 && isClientRender)
+        ) {
             return undefined;
         }
         const commit = () =>
@@ -383,7 +416,13 @@ function Viewer({
         return () => {
             clearTimeout(timeout);
         };
-    }, [videoRendition, videoRenditionCommitDelay, videoRenditionSetting, screenContainerWidth]);
+    }, [
+        videoRendition,
+        videoRenditionCommitDelay,
+        videoRenditionSetting,
+        screenContainerWidth,
+        isClientRender,
+    ]);
 
     const trackingEnabled = isView;
     useEffect(() => {

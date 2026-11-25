@@ -46,8 +46,12 @@ const getSources = (html: string) =>
     [...html.matchAll(/<source src="([^"#]+)/g)].map(([, url]) => url);
 
 describe('Viewer on the server', () => {
+    it('renders h264 by default', () => {
+        expect(getSources(render())).toEqual(['video-h264.mp4']);
+    });
+
     it('renders the video without source in auto: the client chooses the rendering', () => {
-        const html = render();
+        const html = render({ videoRendition: 'auto' });
         expect(html).toContain('<video');
         expect(getSources(html)).toEqual([]);
     });
