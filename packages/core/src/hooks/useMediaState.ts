@@ -11,6 +11,15 @@ import {
 
 import { MediaElement } from '../types';
 
+/**
+ * Whether a media plays when it sends `timeupdate`. The event also comes from a paused media: the
+ * seek to the first frame (`#t=0.001`) once its data is loaded. When iOS refuses to start the first
+ * screen (Low Power Mode), the controls then believed the media was playing and hid their play button.
+ */
+export function getMediaPlayingOnTimeUpdate(media: Pick<HTMLMediaElement, 'paused'>): boolean {
+    return !media.paused;
+}
+
 function useMediaState(
     media: MediaElement | null = null,
     { playing: wantedPlaying = false, muted: wantedMuted = false } = {},
@@ -70,7 +79,7 @@ function useMediaState(
                 debug('onTimeUpdate');
                 timeUpdated = true;
             }
-            setPlaying(true);
+            setPlaying(getMediaPlayingOnTimeUpdate(e.currentTarget));
             setBuffering(false);
         }
 
