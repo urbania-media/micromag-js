@@ -121,6 +121,7 @@
     .avatarContainer {
         width: 30px;
         height: 30px;
+        flex-shrink: 0;
         margin-right: 10px;
 
         &.right {

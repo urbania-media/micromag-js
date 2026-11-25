@@ -3,6 +3,7 @@ import ScreenDefinition from '#.storybook/components/ScreenDefinition';
 import {
     backgroundColor,
     headerFooter,
+    imageMedia,
     audioConversation as makeAudioConversation,
     conversation as makeConversation,
     title,
@@ -28,6 +29,25 @@ const meta = preview.meta({
 const conversation = makeConversation(13, 2);
 const conversation2 = makeConversation(13, 5, 'instant');
 const voiceConversation = makeAudioConversation(4, 2, 'sequence');
+
+// A speaker with a long name (on two lines) and an avatar, on each side
+const longNamesConversation = {
+    timing: 'sequence',
+    speakers: [
+        { id: 'short', name: 'Alex, 19', avatar: imageMedia(), side: 'left' },
+        {
+            id: 'long',
+            name: 'Sam, head of the department of product protection and patient safety',
+            avatar: imageMedia(),
+            side: 'right',
+        },
+    ],
+    messages: [
+        { speaker: 'short', message: 'A first message, with a few words to type.' },
+        { speaker: 'long', message: 'An answer from the speaker with a long name.' },
+        { speaker: 'short', message: 'Thanks!' },
+    ],
+};
 
 export const Normal = meta.story((args) => (
     <ConversationScreen
@@ -70,6 +90,15 @@ export const AudioMessages = meta.story((args) => (
         conversation={voiceConversation}
         timing={voiceConversation.timing}
         title={{ body: title(1) }}
+    />
+));
+
+export const LongSpeakerNames = meta.story((args) => (
+    <ConversationScreen
+        {...args}
+        conversation={longNamesConversation}
+        timing={longNamesConversation.timing}
+        background={backgroundColor()}
     />
 ));
 
