@@ -412,6 +412,16 @@ function Viewer({
     // `neighborPreloadDelay`, so they don't compete with the next screen for bandwidth
     const [preloadNext, setPreloadNext] = useState(false);
     const [preloadNeighbors, setPreloadNeighbors] = useState(false);
+    // They start again once the new screen is current, not at the tap: until the host passes the
+    // new `screen`, the screen being navigated to is still the next one, and dropping its preload
+    // removes the sources of its video. Safari then loads the video again from the start, so it
+    // slides in black and only shows a picture after the transition.
+    const [preloadScreenIndex, setPreloadScreenIndex] = useState(screenIndex);
+    if (preloadScreenIndex !== screenIndex) {
+        setPreloadScreenIndex(screenIndex);
+        setPreloadNext(false);
+        setPreloadNeighbors(false);
+    }
 
     /**
      * Screen Transitions
@@ -429,9 +439,6 @@ function Viewer({
         if (index === screenIndex) {
             return;
         }
-
-        setPreloadNext(false);
-        setPreloadNeighbors(false);
 
         const lastScreenMedia = lastScreenMediaRef.current;
         const screenMedia = screensMediasRef.current[index] || null;
