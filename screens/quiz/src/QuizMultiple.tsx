@@ -54,11 +54,16 @@ import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
 import getBackgroundKey from './getBackgroundKey';
+import getQuizResult from './getQuizResult';
 import Question from './partials/Question';
 import Results from './partials/Results';
 import Title from './partials/Title';
 
 import styles from './quiz.module.css';
+
+// Slide of the questions and fade of the backgrounds between the steps of the quiz: close to the
+// transition between screens of the viewer
+const STEP_TRANSITION_DURATION = 600;
 
 interface QuizMultipleScreenProps {
     id?: string | null;
@@ -293,20 +298,7 @@ function QuizMultipleScreen({
         if (stateId === 'results') {
             return (results || [])[parseInt(stateIndex, 10)] || null;
         }
-        return (results || [])
-            .sort(({ points: pointsA = 0 }, { points: pointsB = 0 }) => {
-                if (pointsA === pointsB) {
-                    return 0;
-                }
-                return pointsA > pointsB ? 1 : -1;
-            })
-            .reduce((lastResult, result) => {
-                const { points: lastPoints = 0 } = lastResult || {};
-                const { points = 0 } = result || {};
-                return currentPoints >= (lastPoints || 0) && currentPoints >= points
-                    ? result
-                    : lastResult;
-            }, null);
+        return getQuizResult(results, currentPoints);
     }, [isResults, results, currentPoints, stateId, stateIndex]);
 
     useEffect(() => {
@@ -360,6 +352,39 @@ function QuizMultipleScreen({
     // every question uses the same video), it stays and keeps playing instead of fading to a new
     // copy of the video that starts over, under the sliding content
     const backgroundKey = getBackgroundKey(finalBackground);
+
+    // @note The background of the next step is mounted in advance, hidden, so that its video is
+    // loaded when the step changes (like the viewer keeps the next screen preloaded): from the
+    // intro, the first question; from a question, the next one; from the last question, the result
+    // once it is known (after the last answer, or at once when every result has the same background)
+    let nextBackground = null;
+    if (isIntro) {
+        const { background: firstQuestionBackground = null } = (questions || [])[0] || {};
+        nextBackground = firstQuestionBackground || background;
+    } else if (isQuestion && questionIndex + 1 < (questions || []).length) {
+        const { background: nextQuestionBackground = null } = questions[questionIndex + 1] || {};
+        nextBackground = nextQuestionBackground || background;
+    } else if (isQuestion) {
+        const resultsBackgrounds = (results || []).map(
+            ({ background: aResultBackground = null } = {}) => aResultBackground || background,
+        );
+        const sameResultsBackground =
+            resultsBackgrounds.length > 0 &&
+            resultsBackgrounds.every(
+                (aBackground) =>
+                    getBackgroundKey(aBackground) === getBackgroundKey(resultsBackgrounds[0]),
+            );
+        if (sameResultsBackground) {
+            [nextBackground] = resultsBackgrounds;
+        } else if (currentAnsweredIndex !== null) {
+            const { background: nextResultBackground = null } =
+                getQuizResult(results, currentPoints) || {};
+            nextBackground = nextResultBackground || background;
+        }
+    }
+    const nextBackgroundKey = nextBackground !== null ? getBackgroundKey(nextBackground) : null;
+    const preloadNextBackground =
+        nextBackground !== null && nextBackgroundKey !== backgroundKey && isView;
 
     const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(
         current,
@@ -627,24 +652,34 @@ function QuizMultipleScreen({
         config: (item) =>
             item.key === 'next'
                 ? { duration: 0 }
-                : { duration: 1000, easing: easings.easeInOutSine },
+                : { duration: STEP_TRANSITION_DURATION, easing: easings.easeInOutSine },
     });
 
-    // Background transition
-    const bgItem = useMemo(
-        () => ({
-            key: backgroundKey,
-            background: finalBackground || null,
-        }),
-        [backgroundKey, finalBackground],
-    );
+    // Background transition: the current background, and the next one hidden while it preloads.
+    // When the next one becomes current, it keeps its layer (same key) and only fades in.
+    const bgItem = {
+        key: backgroundKey,
+        background: finalBackground || null,
+        preload: false,
+    };
+    const bgItems = preloadNextBackground
+        ? [
+              bgItem,
+              {
+                  key: nextBackgroundKey,
+                  background: nextBackground,
+                  preload: true,
+              },
+          ]
+        : [bgItem];
 
-    const bgTransitions = useTransition(bgItem, {
+    const bgTransitions = useTransition(bgItems, {
         keys: (item) => item.key,
         from: { opacity: 0 },
-        enter: { opacity: 1 },
+        enter: (item) => ({ opacity: item.preload ? 0 : 1 }),
+        update: (item) => ({ opacity: item.preload ? 0 : 1 }),
         leave: { opacity: 0 },
-        config: { duration: 1000, easing: easings.easeInOutSine },
+        config: { duration: STEP_TRANSITION_DURATION, easing: easings.easeInOutSine },
     });
 
     return (
