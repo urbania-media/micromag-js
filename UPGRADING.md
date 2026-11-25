@@ -2,13 +2,20 @@
 
 Changes a host site can notice when it updates the `@micromag/*` packages, and what it must do. Story data doesn't change between these versions: stories already created render without any migration.
 
+## Next release (from 0.5.4)
+
+### What a host must check
+
+- **`videoRendition` defaults to `h264`.** Every video plays `files.h264` from the first render, server included, as in 0.4.x and as when a host forced `h264`. The choice of `h264_720` on phones and slow connections is now opt-in: hosts that want it pass `settings={{ videoRendition: 'auto' }}` (see the notes on server-rendered pages below), or force `h264_720`.
+    - In `auto`, a page rendered only on the client now mounts its videos with their `<source>` (the rendering is chosen in the render that measures the frame). Server-rendered pages still get videos without `<source>` until the client has chosen.
+
 ## 0.5.0 (from 0.4.123)
 
 Hosts must widen their ranges from `^0.4.x` to `^0.5.0`: in 0.x, `^0.4.x` doesn't accept 0.5.0.
 
 ### What a host must check
 
-- **Server-rendered pages that preload the first video.** With the default `videoRendition: 'auto'`, the viewer chooses one H.264 rendering per session (`files.h264` or `files.h264_720`) once the story frame is measured on the client. Until then, on the server and during hydration, videos render as `<video>` **without any `<source>`**. A server-side `<link rel="preload">` of `files.h264` is then wasted on phones, which play `files.h264_720` when the video has it.
+- **Server-rendered pages that preload the first video.** With `videoRendition: 'auto'` (the default in 0.5.0 to 0.5.4), the viewer chooses one H.264 rendering per session (`files.h264` or `files.h264_720`) once the story frame is measured on the client. Until then, on the server and during hydration, videos render as `<video>` **without any `<source>`**. A server-side `<link rel="preload">` of `files.h264` is then wasted on phones, which play `files.h264_720` when the video has it.
     - Either emit one preload per entry of `getVideoRenditionPreloads(media.files)` (`@micromag/core/utils`): two links with `media="(max-width: 430px)"` / `media="(min-width: 431px)"` when the video has both renderings, one link otherwise;
     - or force the rendering with `settings={{ videoRendition: 'h264' }}` (or `'h264_720'`): the server then renders that `<source>` as before.
     - Chrome ignores `<link rel="preload" as="video">` (it logs "`<link rel=preload>` uses an unsupported `as` value"), so in Chrome the first video starts downloading after hydration in `auto`, whatever the host preloads. Forcing `videoRendition` is the only way to keep the `<source>` in the server HTML.
