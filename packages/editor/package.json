@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.5.5",
+    "version": "0.5.6",
     "private": false,
     "description": "",
     "keywords": [
@@ -69,8 +69,8 @@
         "@micromag/core": "^0.5.5",
         "@micromag/elements": "^0.5.5",
         "@micromag/fields": "^0.5.5",
-        "@micromag/screens": "^0.5.5",
-        "@micromag/viewer": "^0.5.5",
+        "@micromag/screens": "^0.5.6",
+        "@micromag/viewer": "^0.5.6",
         "@panneau/modal-confirm": "^4.0.55",
         "@panneau/modal-dialog": "^4.0.55",
         "@panneau/uppy": "^4.0.55",
