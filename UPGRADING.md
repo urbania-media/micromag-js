@@ -2,7 +2,7 @@
 
 Changes a host site can notice when it updates the `@micromag/*` packages, and what it must do. Story data doesn't change between these versions: stories already created render without any migration.
 
-## Next release (from 0.5.4)
+## 0.5.5 (from 0.5.4)
 
 ### What a host must check
 
