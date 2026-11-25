@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-call-to-action",
-    "version": "0.5.0",
+    "version": "0.5.5",
     "private": false,
     "description": "",
     "keywords": [
@@ -58,10 +58,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.28.6",
-        "@micromag/core": "^0.5.0",
-        "@micromag/element-button": "^0.5.0",
-        "@micromag/element-text": "^0.5.0",
-        "@micromag/element-webview": "^0.5.0",
+        "@micromag/core": "^0.5.5",
+        "@micromag/element-button": "^0.5.5",
+        "@micromag/element-text": "^0.5.5",
+        "@micromag/element-webview": "^0.5.5",
         "@react-spring/core": "^10.0.3",
         "@react-spring/web": "^10.0.3",
         "@use-gesture/react": "^10.3.0",
