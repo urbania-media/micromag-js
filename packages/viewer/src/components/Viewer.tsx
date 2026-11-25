@@ -54,6 +54,7 @@ import checkClickable from '../lib/checkClickable';
 import checkDraggable from '../lib/checkDraggable';
 import getVideoRenditionCommitDelay from '../lib/getVideoRenditionCommitDelay';
 import getViewerFillsViewport from '../lib/getViewerFillsViewport';
+import playMediaQuickly from '../lib/playMediaQuickly';
 import stopDragEventsPropagation from '../lib/stopDragEventsPropagation';
 import waitForMediaCanPlay from '../lib/waitForMediaCanPlay';
 
@@ -97,7 +98,7 @@ function updateMediaPlaying(
             lastMedia.pause();
         }
         debug('Force playing media: %s', getMediaFilename(getMediaSrc(currentMedia)));
-        currentMedia.play().catch(() => {});
+        playMediaQuickly(currentMedia).catch(() => {});
         currentMedia.dataset.forcePlaying = 'true';
     }
 }
