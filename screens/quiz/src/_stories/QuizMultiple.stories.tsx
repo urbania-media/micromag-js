@@ -189,6 +189,34 @@ const withTrueFalse = {
     transitions: transitions(),
 };
 
+// An intro, then questions that all use the same background video, and results without
+// good answers: the questions slide one after the other over a single background
+const sameBackground = {
+    video: videoMedia({ vertical: true }),
+    loop: true,
+};
+
+const sameBackgroundProps = {
+    introLayout: 'middle',
+    layout: 'bottom',
+    description: { body: subtitle() },
+    introButton: { body: 'Start' },
+    questions: [1, 2, 3].map((questionNumber) => ({
+        text: { body: `Question ${questionNumber}?` },
+        answers: [0, 4, 2].map((points, answerIndex) => ({
+            label: { body: `Answer ${questionNumber}.${answerIndex + 1}` },
+            points,
+        })),
+        background: sameBackground,
+    })),
+    results: [0, 4, 8].map((points) => ({
+        title: { body: `Result for ${points} points` },
+        description: { body: subtitle() },
+        points,
+    })),
+    background: sameBackground,
+};
+
 const meta = preview.meta({
     title: 'Screens/QuizMultiple',
     component: QuizMultipleScreen,
@@ -219,6 +247,10 @@ export const WithTrueFalse = meta.story((args) => (
 
 export const WithHeaderFooter = meta.story((args) => (
     <QuizMultipleScreen {...args} {...props} {...headerFooter()} />
+));
+
+export const SameBackground = meta.story((args) => (
+    <QuizMultipleScreen {...args} {...sameBackgroundProps} />
 ));
 
 export const WithFeedbackVideo = meta.story((args) => (

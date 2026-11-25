@@ -53,6 +53,7 @@ import Header from '@micromag/element-header';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 
+import getBackgroundKey from './getBackgroundKey';
 import Question from './partials/Question';
 import Results from './partials/Results';
 import Title from './partials/Title';
@@ -348,17 +349,17 @@ function QuizMultipleScreen({
     }, [stateId, stateIndex, isEdit, isPreview, setQuestionIndex]);
 
     let finalBackground = background;
-    let backgroundKey = 'background';
     if (isIntro && introBackground !== null) {
         finalBackground = introBackground;
-        backgroundKey = 'results';
     } else if (isResults && resultBackground !== null) {
         finalBackground = resultBackground;
-        backgroundKey = 'results';
     } else if (isQuestion && questionBackground !== null) {
         finalBackground = questionBackground;
-        backgroundKey = `question_${questionIndex}`;
     }
+    // @note Keyed by what the background shows: when the next step has the same background (ex.:
+    // every question uses the same video), it stays and keeps playing instead of fading to a new
+    // copy of the video that starts over, under the sliding content
+    const backgroundKey = getBackgroundKey(finalBackground);
 
     const { ref: mediaRef, isCurrent: isCurrentMedia = false } = usePlaybackMediaRef(
         current,
